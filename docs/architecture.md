@@ -18,7 +18,8 @@
 | A9 | Interface et commentaires en français, identifiants en anglais ; aucun `v-html` | 10 |
 | C1 | Runes : la table 1–713 de `mechanics.json` fait foi ; la formule entière n'est qu'un test de cohérence | 5.2 |
 | C2 | Statistiques dérivées : tables 1–99 (Vigor, Mind, Endurance), colonne `Increments` ignorée | 3.2 |
-| C3 | Puissance d'attaque « Calculé » : estimation bornée isolée dans `engine/attackPower.ts`, réductible à « valeurs publiées seulement » (hypothèse réversible, question au développeur) | 5.2 |
+| C3 | Puissance d'attaque « Calculé » : estimation bornée isolée dans `engine/attackPower.ts` (mode `estimate`, choisi par le développeur, D25), réductible à « valeurs publiées seulement » (`published`) | 5.2 |
+| C8 | Liens externes (D25, D26) : « Voir sur le wiki » (eldenring.wiki.gg, `url`), « Voir sur Fextralife » par l'adresse de recherche du site, carte interactive et guides en liens qui s'ouvrent dans un nouvel onglet ; aucune donnée ni ressource de Fextralife chargée | 10.4 |
 | C4 | Widget A : candidats selon le style ; puissance de sort à +0 pour les catalyseurs | 5.2 |
 | C5 | Dérivés : butin de PNJ envahisseur, régions déduites si `acquisition[].region` est `null` ; Remembrance → boss par table | 3.2 |
 | C6 | Correctifs de `data/` appliqués par dev-donnees avant la préparation ; contrôle « coef de scaling ≤ 3 » | 3.5 |
@@ -54,7 +55,7 @@ src/persistence/ ◄──► localStorage (un document versionné), export et i
 | `src/App.vue`, `src/router/`, `src/styles/` (`tokens.css`, `fonts.css`, `base.css`) | coquille, routes, styles globaux | interface · **partagé** |
 | `src/components/ds/` (`Cx*`), `components/shell/`, `components/criteria/`, `components/domain/`, `src/views/`, composants de `src/widgets/` | interface | interface |
 | `src/widgets/registry.ts` | identifiants, fichiers requis, largeurs | logique |
-| `src/composables/`, `src/ui/` | `useDatasets`, `format.ts` (logique) ; `useBreakpoint`, `useFocusTrap`, `useHotkeys`, `useVirtualList`, `useReorder`, `labels.ts`, `explainText.ts`, `breakpoints.ts` (interface) | selon le fichier |
+| `src/composables/`, `src/ui/` | `useDatasets` (logique) ; `format.ts`, `useBreakpoint`, `useFocusTrap`, `useHotkeys`, `useVirtualList`, `useReorder`, `labels.ts`, `explainText.ts`, `breakpoints.ts` (interface, D20) | selon le fichier |
 | `tests/unit/<module>/`, `tests/fixtures/` (extraits **réels** de `data/`), `tests/e2e/` | tests | auteur du module ; fixtures : données ; e2e : outillage |
 | `.cache/` | rapports, captures, sorties de Playwright | — |
 
@@ -66,10 +67,10 @@ Deux tâches ne touchent jamais en même temps un fichier **partagé** : un beso
 
 | Clé | Contenu | Taille (minifié / gzip) |
 |---|---|---|
-| 18 clés = noms de `data/` sans extension (`melee_armaments`…) | `DatasetFile` : `metadata` d'origine dans `meta`, entrées d'origine intégrales + `id` + `derived`, liste `transforms` | 7,1 Mo / 1,35 Mo au total ; `melee_armaments` 1,4 Mo / 240 Ko |
-| `tables` | tables de calcul extraites de `mechanics.json`, chacune avec sa source | ~40 Ko |
-| `search-index` | documents de recherche (§ 8) | 0,4–0,8 Mo / ~120 Ko, à mesurer |
-| `manifest.json` (nom fixe) | fichiers, tailles, empreintes | < 3 Ko |
+| 18 clés = noms de `data/` sans extension (`melee_armaments`…) | `DatasetFile` : `metadata` d'origine dans `meta`, entrées d'origine intégrales + `id` + `derived`, liste `transforms` | 7,8 Mo / 1,39 Mo au total ; `melee_armaments` 1,50 Mo / 254 Ko (mesuré) |
+| `tables` | tables de calcul extraites de `mechanics.json`, chacune avec sa source | 65 Ko / 14 Ko |
+| `search-index` | documents de recherche (§ 8) | 932 Ko / 108 Ko |
+| `manifest.json` (nom fixe) | fichiers, tailles, empreintes ; `path` relatif à `manifest.json` (le chargeur fait `new URL(path, urlDuManifeste)`) | ≈ 4 Ko |
 
 Nom servi : `<clé>.<sha256 sur 10 caractères>.json` ; sortie déterministe (sans date) ; pas de découpage en v1 (gzip suffit).
 
@@ -97,8 +98,8 @@ Nom servi : `<clé>.<sha256 sur 10 caractères>.json` ; sortie déterministe (sa
 - **Id** = `slug(wiki_page)` ; mécaniques : `slug(title)`. Vérifié unique dans chaque fichier (hors doublons `key_items`).
 - **Genres** (`EntityKind`, unicité par genre vérifiée) : `weapon` (mêlée, distance, boucliers), `ash`, `armor`, `talisman`, `spell`, `spirit`, `item` (outils, matériaux d'amélioration, objets clés, artisanat, munitions), `boss`, `location`, `npc`, `origin`, `mechanic`. Des doublons existent entre genres (`patches` boss et PNJ, `golden-seed` mécanique et objet).
 - **`EntityRef`** = `` `${kind}:${id}` `` (`weapon:moonveil`) : seule forme stockée (Ma liste, comparateur) et base des routes.
-- **Rencontre** : `slug(name)` ; doublon dans le boss → `slug(name + ' ' + variant)`, puis `+ ' ' + location` ; sinon échec (Elemer ×4, Fia's Champions ×3, Erdtree Avatar ×4 : résolus).
-- **`EncounterKey`** = `` `${bossId}/${encounterId}` ``, ou `bossId` seul pour les 16 boss sans rencontre (dont Sir Gideon Ofnir).
+- **Rencontre** : `slug(name)` ; doublon dans le boss → `slug(name + ' ' + variant)`, puis `+ ' ' + location` ; sinon échec (Elemer ×5, Fia's Champions ×3, Erdtree Avatar ×4 : résolus).
+- **`EncounterKey`** = `` `${bossId}/${encounterId}` ``, ou `bossId` seul pour les 15 boss sans rencontre (Sir Gideon Ofnir en a une depuis le correctif C1).
 - Changer le slug = changer le schéma de persistance (migration, § 7).
 
 ### 3.4 Types (`src/data/types/`)
@@ -201,6 +202,7 @@ interface Calc<T> { value: T | null; estimate: { confidence: 'high' | 'medium' }
 | `weakness.ts` | `bestDamageTypes(enc, n)`, `immunities(enc)`, `absorptionBand(v)` (seuils d'AbsorptionHeatmap) | lecture de données |
 | `attackPower.ts` | `attackPower(w, affinity, level, attrs, hands, cfg): Calc<AttackBreakdown> \| { unavailable: string }`. Mode `estimate` : base au niveau choisi depuis `upgrade.tables` (interpolée sinon, badge Estimation ; infobox à +0 si `derived.inconsistent`), −40 % par type lié à un prérequis non atteint, bonus de scaling seulement si les coefficients existent (43 armes), sinon « non calculable ». Mode `published` : valeur du tableau si documentée, sinon `unavailable`. Aucun autre module ne dépend du détail | Hypothèse C3 |
 | `coverage.ts` | `coverage(data, timelineCfg): CoverageRow[]` (documenté, estimé, non documenté, par source) | Couverture |
+| `attributeYield.ts` | `attributeYield(attrs, tables): Calc<YieldCurve[]>` : pour Vigor, Mind et Endurance, valeur par niveau 1–99 (PV, FP, endurance, charge), gain du point suivant, paliers où le gain baisse, position du profil (D23) | Statistiques dérivées |
 | `methods.ts` | titre et résumé de chaque `MethodId` (info-bulle du badge Calculé) | — |
 
 ### 5.3 Configuration (`src/engine/config/`, chaque valeur commentée)
@@ -275,7 +277,7 @@ interface SearchDoc {
 ```
 
 - `skill` : compétences des armes et des Cendres ; cible = la Cendre si elle existe, sinon l'arme. L'index sert aussi aux liens croisés : `links.ts` (nom exact normalisé → `EntityRef[]`, `resolveName(name, preferredKinds)`, sinon texte simple).
-- `normalize` : NFD, sans diacritiques, minuscules, apostrophes supprimées, autres signes → espace. Tous les mots de la requête sont exigés.
+- `normalize` : `normalizeText` de `src/data/slug.ts`, partagée avec la préparation (NFD, sans diacritiques, minuscules, apostrophes supprimées, autres signes → espace) ; pas de seconde implémentation. Tous les mots de la requête sont exigés.
 - Classement : 0 nom qui commence par la requête ; 1 chaque mot est un début de mot ; 2 sous-chaîne ; 3 `terms` (le contexte nomme le champ). Départage : position, longueur, ordre alphabétique (`localeCompare('en')`). Sans résultat, tolérance aux fautes légères : Damerau-Levenshtein ≤ 1 (mots de 4 à 7 lettres), ≤ 2 au-delà.
 - `search(index, q, { groups?, perGroup: 4 })` ; « Voir les N » → `/recherche`. `highlight(name, q): { text; match }[]` sur le nom d'origine.
 - Groupes : ceux qui ont des résultats, plus « Actions » (`actions.ts`). Saisie vide : récentes, épinglés, actions. Aucun résultat : noms en anglais, suggestions, recherche sur le wiki. Parcours linéaire (~3 500 documents) : ni index inversé ni worker.
@@ -327,6 +329,7 @@ Styles : les règles de `bundle.css` d'un composant vont dans son `<style>` non 
 | `upgrade-plan` | `UpgradePlanWidget` | 7, double hauteur | — |
 | `rune-calculator` | `RuneCalculatorWidget` (Prochain boss, Build cible, Autre) | 5 | — |
 | `data-coverage` | `DataCoverageWidget` | 5 | — |
+| `attribute-yield` | `AttributeYieldWidget` (`CxLineChart`, vue tableau ; requiert `tables`) (D23) | 7 | oui |
 
 Registre : `{ id, titleCode, howCode, span, requires, enhancedBy, fullscreen, collapsedOnMobile, component }`. D3, D4, D6, D7 du prototype : hors v1, absents. Réordonnancement par Pointer Events (`useReorder`) et au clavier (menu).
 
@@ -340,6 +343,7 @@ Registre : `{ id, titleCode, howCode, span, requires, enhancedBy, fullscreen, co
 | Wiki (déduit), Incohérence | `derived.upgrade.reliability === 'deduced'`, `derived.inconsistent` | badge ; info-bulle : champ et valeur retenue |
 | Calculé | tout `Calc<T>` | `gold-text`, badge, « Pourquoi ? », à côté de la valeur de base |
 | Voir sur le wiki | `url` | `CxWikiLink` |
+| Liens externes (D26) | `src/data/externalLinks.ts` (logique) : `fextralifeSearchUrl(name)` (`https://eldenring.wiki.fextralife.com/index.php?search=<nom encodé>`), carte interactive, pages de guides | `CxWikiLink` (variante secondaire), nouvel onglet, `rel="noopener noreferrer"` ; aucune requête de l'application vers ces sites |
 
 ### 10.5 Icônes, polices, thème, formatage, textes du wiki
 
@@ -409,7 +413,7 @@ Refusés : Prettier (`.editorconfig` suffit), jsdom, `tsx`/`ts-node` (Node 24 ex
 
 | # | Sujet | Décision du chef de projet (D17 sauf mention) |
 |---|---|---|
-| P1 | Puissance d'attaque (C3) | **en attente** (question Q2) : mode `estimate` ; un refus → `config/attackPower.ts` en mode `published`, rien d'autre ne change |
+| P1 | Puissance d'attaque (C3) | mode `estimate`, choisi par le développeur (D25) ; `published` reste disponible dans `config/attackPower.ts` |
 | P2 | Étapes, Remembrance → boss, frise, niveau recommandé, archétypes | décidés (D10 à D16) ; replis gardés : étape non déterminée, limite affichée |
 | P3 | README ScalingChip (`null` → « ? ») contre `field_notes` (`null` = pas de scaling) | suivre les données : pas de puce, écart au design |
 | P4 | Recherche : 5 par groupe (README CommandPalette) ou 4 (note `spec-search`) | 4 ; union des groupes |

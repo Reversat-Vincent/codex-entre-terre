@@ -28,6 +28,9 @@ Priorité en cas de contradiction : décisions du développeur > ce document > d
 - Les autres catalogues et fiches du brief (§ 4) : armes à distance et catalyseurs, boucliers et torches, cendres de guerre, armures, talismans, sorts, esprits, objets, lieux, PNJ, origines.
 - Ma liste, Comparateur (2 à 4 éléments), Mécaniques, Profil.
 - Les mises en page tablette.
+- Le widget « Rendement des attributs » (courbes des statistiques dérivées par niveau d'attribut), suggéré par le développeur le 01/11/2026.
+
+**Liens externes** : « Voir sur le wiki » (eldenring.wiki.gg) sur chaque entité ; à la demande du développeur, « Voir sur Fextralife », sa carte interactive et ses pages de guides, en liens qui s'ouvrent dans un nouvel onglet. Aucun contenu de ces pages n'est recopié ni chargé dans l'application.
 
 **Extensions possibles, hors v1** : les agrégations du brief (§ 5.2 D) absentes du design.
 
@@ -94,3 +97,8 @@ Priorité en cas de contradiction : décisions du développeur > ce document > d
 - Dépôt : https://github.com/Reversat-Vincent/codex-entre-terre.
 - Licence : aucune pour le code, qui reste soumis au droit d'auteur. Les données (`data/` et les fichiers qui en dérivent) gardent la licence CC BY-SA 4.0 du wiki.
 - Hors ligne : service worker (§ 4).
+- Le 01/11/2026 :
+  - GitHub Pages est activé, avec la source « GitHub Actions ».
+  - La puissance d'attaque calculée avec les attributs du profil est une estimation signalée, puisqu'un calcul exact est impossible avec les données du wiki.
+  - Fextralife sert seulement de liens (fiches, carte interactive, guides) : ses conditions interdisent la récupération automatisée de son contenu.
+  - La carte interactive est un lien, sans intégration dans l'application.
