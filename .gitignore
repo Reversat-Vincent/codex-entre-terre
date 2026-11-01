@@ -18,3 +18,6 @@ __pycache__/
 *.log
 .DS_Store
 Thumbs.db
+
+# Données préparées par `npm run data` (générées, vidées à chaque exécution)
+public/data/
