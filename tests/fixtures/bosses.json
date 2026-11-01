@@ -1,0 +1,718 @@
+{
+  "schema": 1,
+  "key": "bosses",
+  "kind": "boss",
+  "listKey": "bosses",
+  "meta": {
+    "source_pages": [
+      "https://eldenring.wiki.gg/wiki/Bosses",
+      "https://eldenring.wiki.gg/wiki/Template:Navbox_Bosses",
+      "https://eldenring.wiki.gg/wiki/Template:Navbox_Bosses_Shadow",
+      "https://eldenring.wiki.gg/wiki/Category:Bosses"
+    ],
+    "retrieved": "2026-10-31",
+    "boss_pages": 133,
+    "encounters": 302,
+    "counts_by_source": {
+      "Base game": 78,
+      "Base game + Shadow of the Erdtree": 14,
+      "Shadow of the Erdtree": 41
+    },
+    "encounters_by_source": {
+      "Base game": 251,
+      "Shadow of the Erdtree": 46,
+      "Base game + Shadow of the Erdtree": 5
+    },
+    "counts_by_tier": {
+      "Enemies": 67,
+      "Great Enemies": 22,
+      "Legends": 18,
+      "Gods": 3,
+      "Demigods": 8,
+      "Invaders and other minibosses": 14
+    },
+    "flag_lists_from_bosses_page": {
+      "mandatory_base_game": [
+        "Draconic Tree Sentinel",
+        "Fia's Champions",
+        "Godfrey, First Elden Lord (Golden Shade)",
+        "Morgott, the Omen King",
+        "Fire Giant",
+        "Godskin Duo",
+        "Maliketh, the Black Blade",
+        "Sir Gideon Ofnir, the All-Knowing",
+        "Godfrey, First Elden Lord",
+        "Radagon of the Golden Order",
+        "Elden Beast"
+      ],
+      "required_to_access_dlc": [
+        "Starscourge Radahn",
+        "Mohg, Lord of Blood"
+      ],
+      "mandatory_dlc": [
+        "Messmer the Impaler",
+        "Romina, Saint of the Bud",
+        "Promised Consort Radahn"
+      ],
+      "shardbearer": [
+        "Godrick the Grafted",
+        "Mohg, Lord of Blood",
+        "Rennala, Queen of the Full Moon",
+        "Rykard, Lord of Blasphemy",
+        "Starscourge Radahn"
+      ],
+      "remembrance_base_game": [
+        "Regal Ancestor Spirit",
+        "Astel, Naturalborn of the Void",
+        "Lichdragon Fortissax",
+        "Fire Giant",
+        "Godrick the Grafted",
+        "Rennala, Queen of the Full Moon",
+        "Rykard, Lord of Blasphemy",
+        "Starscourge Radahn",
+        "Morgott, the Omen King",
+        "Mohg, Lord of Blood",
+        "Malenia, Blade of Miquella",
+        "Maliketh, the Black Blade",
+        "Hoarah Loux, Warrior",
+        "Dragonlord Placidusax",
+        "Elden Beast"
+      ],
+      "remembrance_dlc": [
+        "Divine Beast Dancing Lion",
+        "Rellana, Twin Moon Knight",
+        "Putrescent Knight",
+        "Commander Gaius",
+        "Scadutree Avatar",
+        "Romina, Saint of the Bud",
+        "Midra, Lord of Frenzied Flame",
+        "Metyr, Mother of Fingers",
+        "Messmer the Impaler",
+        "Promised Consort Radahn"
+      ]
+    },
+    "navbox_tier_conflicts_ignored": [
+      {
+        "navbox_link": "Radahn Consort of Miquella",
+        "resolves_to": "Starscourge Radahn",
+        "tier_ignored": "Gods",
+        "link_navbox": "Shadow of the Erdtree"
+      }
+    ],
+    "field_notes": {
+      "source": "Per encounter: from the encounter location (wiki Navbox Locations: Realm of Shadow regions = 'Shadow of the Erdtree'), else from the boss navbox (Navbox Bosses vs Navbox Bosses Shadow). Page-level source = union of its encounters.",
+      "tier": "Group of the wiki boss navbox (matches the in-game victory banner: God / Demigod / Legend / Great Enemy / Enemy; plus invaders & minibosses).",
+      "flags": "From the wiki 'Bosses' page: mandatory_base_game, required_to_access_dlc, mandatory_dlc, shardbearer, remembrance_base_game, remembrance_dlc.",
+      "encounters": "One per Infobox Boss / Infobox Enemy with HP, runes or drops (a page can describe several fights / locations).",
+      "hp / runes": "Text as on the wiki (may list several locations or NG+ values); *_values = all numbers found in it.",
+      "damage_negation_percent": "Boss damage absorption per damage type, in % (higher = more resistant; negative = weak).",
+      "status_resistance": "Buildup resistance per status effect (number, text with per-location values, or 'Immune').",
+      "damage_types_dealt": "Damage types the boss inflicts (wiki 'dmg X = yes' fields), when documented.",
+      "parryable / critable": "Whether the boss can be parried / critically hit, when documented.",
+      "fight_notes": "Text of the Boss Fight / Strategy / Notes sections (moveset tables excluded)."
+    }
+  },
+  "transforms": [
+    {
+      "code": "id",
+      "field": "id",
+      "count": 133,
+      "note": "Identifiant ajouté : slug(wiki_page)."
+    },
+    {
+      "code": "derived",
+      "field": "derived",
+      "count": 133,
+      "note": "Champs dérivés ajoutés : displayName, encounters, pageKey."
+    }
+  ],
+  "entries": [
+    {
+      "name": "Elden Beast",
+      "wiki_page": "Elden Beast",
+      "url": "https://eldenring.wiki.gg/wiki/Elden_Beast",
+      "source": "Base game",
+      "tier": [
+        "Gods"
+      ],
+      "flags": [
+        "mandatory_base_game",
+        "remembrance_base_game"
+      ],
+      "character_location": "Erdtree",
+      "summary": "Elden Beast is the final boss of Elden Ring. It is encountered inside the Erdtree in Leyndell, Ashen Capital.",
+      "encounters": [
+        {
+          "name": "Elden Beast",
+          "location": "Stone Platform",
+          "regions": [
+            "Altus Plateau",
+            "Leyndell, Ashen Capital"
+          ],
+          "source": "Base game",
+          "hp": "22,127",
+          "hp_values": [
+            22127
+          ],
+          "runes": "500,000",
+          "runes_values": [
+            500000
+          ],
+          "drops": [
+            "Elden Remembrance"
+          ],
+          "damage_negation_percent": {
+            "standard": 10,
+            "strike": 10,
+            "slash": 10,
+            "pierce": 10,
+            "magic": 40,
+            "fire": 40,
+            "lightning": 40,
+            "holy": 80
+          },
+          "status_resistance": {
+            "poison": "Immune",
+            "scarlet_rot": "Immune",
+            "blood_loss": "Immune",
+            "frostbite": "Immune",
+            "sleep": "Immune",
+            "madness": "Immune"
+          },
+          "parryable": false,
+          "critable": true,
+          "defense": 121,
+          "poise": 150
+        }
+      ],
+      "fight_notes": [
+        "Elden Beast is the second half of the final boss fight, with Radagon of the Golden Order as the first half. Unlike the former fight, it is possible to summon Torrent for this fight.",
+        "[Moveset]",
+        "The Elden Beast uses a combination of physical sword attacks and golden Holy attacks. It will regularly swim away from the player, or disappear underwater before emerging, meaning that the fight often requires one to chase after the Elden Beast.",
+        "When its health reaches around 80% it will fly up into the air and create a golden ring which closes in on the player before exploding. This can be avoided by jumping over the ring as it closes in. It will also begin to use additional attacks, such as Elden Stars or Spear Showers.",
+        "At around 30% health, it will perform the Golden Ring attack again, but this time it will generate three rings that each close in on the player.",
+        "[Strategy]",
+        "Its normal sword attacks are fairly easy to dodge, with perhaps the repeating stabs being an exception.",
+        "The Golden Rings can be jumped over to preserve your momentum and get out of them quicker, while the Spear Showers can be avoid by running while zig-zagging.",
+        "Elden Stars, if it cannot be interrupted by a stagger, is quite dangerous due to the consistent damage over time it can inflict and because it will gain speed to chase if allowed to travel with minimal turning. A way to fairly easily dodge it is to circle the Elden Beast counter-clockwise (that is, heading around it to your right before circling left to run out the duration.",
+        "[Environment]",
+        "The arena is a large, flat body of shallow water. Although it appears endless, the arena does have invisible walls surrounding it.",
+        "[Notes]",
+        "It is heavily implied that the Elden Beast was the being who imprisoned Marika inside the Erdtree based on one of its attacks where it attempts to grab the player and lift them up in the air to crucify and then pierce them with a barrage of golden spears, similar to how Marika was seen in the cutscene before the final boss battle."
+      ],
+      "id": "elden-beast",
+      "derived": {
+        "displayName": "Elden Beast",
+        "encounters": [
+          {
+            "id": "elden-beast",
+            "key": "elden-beast/elden-beast"
+          }
+        ],
+        "pageKey": null
+      }
+    },
+    {
+      "name": "Godrick the Grafted",
+      "wiki_page": "Godrick the Grafted",
+      "url": "https://eldenring.wiki.gg/wiki/Godrick_the_Grafted",
+      "source": "Base game",
+      "tier": [
+        "Demigods"
+      ],
+      "flags": [
+        "remembrance_base_game",
+        "shardbearer"
+      ],
+      "character_location": "Stormveil Castle",
+      "summary": "Godrick the Grafted is a boss in Elden Ring. He is a Demigod and a Shardbearer who is encountered in Stormveil Castle.",
+      "encounters": [
+        {
+          "name": "Godrick the Grafted – Phase 1",
+          "location": "Stormveil Castle",
+          "regions": [
+            "Limgrave",
+            "Stormveil Castle"
+          ],
+          "source": "Base game",
+          "hp": "6,080",
+          "hp_values": [
+            6080
+          ],
+          "runes": "20,000",
+          "runes_values": [
+            20000
+          ],
+          "drops": [
+            "Remembrance of the Grafted",
+            "Godrick's Great Rune"
+          ],
+          "damage_negation_percent": {
+            "standard": 0,
+            "strike": 0,
+            "slash": 0,
+            "pierce": 0,
+            "magic": 20,
+            "fire": 20,
+            "lightning": 20,
+            "holy": 40
+          },
+          "status_resistance": {
+            "poison": "318 / 416 / 706 / 1163",
+            "scarlet_rot": "318 / 416 / 706 / 1163",
+            "blood_loss": "318 / 416 / 706 / 1163",
+            "frostbite": "318 / 416 / 706 / 1163",
+            "sleep": "318 / 416 / 706 / 1163",
+            "madness": "Immune"
+          },
+          "parryable": false,
+          "critable": true,
+          "defense": 105,
+          "poise": 105,
+          "other_infobox_fields": {
+            "voice": "Ramon Tikaram"
+          }
+        }
+      ],
+      "fight_notes": [
+        "Nepheli Loux, Warrior is available as a summon for this fight, as long as the player has spoken to her in Stormveil Castle. Her summon sign can be found just outside the arena.",
+        "[Moveset]",
+        "[Phase 1]",
+        "The fight begins following a cutscene. Godrick will primarily use his axe and his large left arm to deal damage, and can generate cyclones and earthquakes for area-of-effect damage. He can roll to cover ground quickly, and has a wind-based ranged homing attack.",
+        "[Phase 2]",
+        "Once Godrick's health reaches 60%, he will stop attacking the player and chop off his own arm. This is followed by a cutscene, which transitions into phase 2. Godrick can now spew fire from the dragon's head grafted to his left arm, providing him with more ranged and area-of-effect attacks.",
+        "[Environment]",
+        "The arena mainly consists of a narrow, paved area without any obstacles, lined on both sides by graveyards. There is a wider section at the arena's entrance, around the steps. It is possible to move between the gravestones, however doing so may reduce the player's ability to avoid Godrick's attacks.",
+        "[Notes]",
+        "Godrick is an optional boss, however he drops a Great Rune, two of which are required to enter Leyndell, Royal Capital.",
+        "In cut content, Gatekeeper Gostoc claimed to be a son of Godrick, and would be an alternative option to Nepheli Loux for lordship of Stormveil Castle after Godrick's defeat, after which he would succumb to the practice of grafting as well."
+      ],
+      "id": "godrick-the-grafted",
+      "derived": {
+        "displayName": "Godrick the Grafted",
+        "encounters": [
+          {
+            "id": "godrick-the-grafted-phase-1",
+            "key": "godrick-the-grafted/godrick-the-grafted-phase-1"
+          }
+        ],
+        "pageKey": null
+      }
+    },
+    {
+      "name": "Godskin Duo",
+      "wiki_page": "Godskin Duo",
+      "url": "https://eldenring.wiki.gg/wiki/Godskin_Duo",
+      "source": "Base game",
+      "tier": [
+        "Great Enemies"
+      ],
+      "flags": [
+        "mandatory_base_game"
+      ],
+      "summary": "Godskin Duo is a boss battle where you have to battle against a Godskin Apostle and Godskin Noble at the same time. They can be found in Crumbling Farum Azula. This is not an optional boss as they must be defeated to advance further in Crumbling Farum Azula.",
+      "encounters": [
+        {
+          "name": "Godskin Duo",
+          "type": "Mini-boss",
+          "location": "Crumbling Farum Azula",
+          "regions": [
+            "Mountaintops of the Giants",
+            "Crumbling Farum Azula"
+          ],
+          "source": "Base game",
+          "hp": null,
+          "hp_values": [],
+          "runes": "170000",
+          "runes_values": [
+            170000
+          ],
+          "drops": [
+            "Smithing-Stone Miner's Bell Bearing [4]",
+            "Ash of War: Black Flame Tornado"
+          ]
+        }
+      ],
+      "fight_notes": [
+        "The Godskin Duo share one health bar of around 24000 HP (NG), but also still have their own HP. If one is killed, it will either respawn automatically after ~15 seconds or the other Godskin will reanimate them. They will also still enter phase 2 if dropping close to 50% in individual HP.",
+        "The pillars within the arena are an effective way to separate them, although their phase 2 attacks will demolish the upper portion of them. In addition, both of them can be parried.",
+        "Sleep Pots can serve as a way to buy time as both bosses can be rendered temporarily paralyzed by sleep status."
+      ],
+      "id": "godskin-duo",
+      "derived": {
+        "displayName": "Godskin Duo",
+        "encounters": [
+          {
+            "id": "godskin-duo",
+            "key": "godskin-duo/godskin-duo"
+          }
+        ],
+        "pageKey": null
+      }
+    },
+    {
+      "name": "Margit, the Fell Omen",
+      "wiki_page": "Margit, the Fell Omen",
+      "url": "https://eldenring.wiki.gg/wiki/Margit,_the_Fell_Omen",
+      "source": "Base game",
+      "tier": [
+        "Great Enemies"
+      ],
+      "flags": [],
+      "character_location": "Stormveil Castle; Capital Outskirts",
+      "summary": "Margit the Fell Omen is a boss in Elden Ring.",
+      "encounters": [
+        {
+          "name": "Margit the Fell Omen",
+          "type": "Boss",
+          "location": "Limgrave; Capital Outskirts",
+          "regions": [
+            "Limgrave",
+            "Altus Plateau",
+            "Capital Outskirts"
+          ],
+          "source": "Base game",
+          "hp": "Limgrave: *4174 Capital Outskirts: *8193",
+          "hp_values": [
+            4174,
+            8193
+          ],
+          "runes": "Limgrave: *12,000 Capital Outskirts: *16,800",
+          "runes_values": [
+            12000,
+            16800
+          ],
+          "drops": [
+            "Limgrave:",
+            "Talisman Pouch",
+            "Capital Outskirts:",
+            "Viridian Amber Medallion +1"
+          ],
+          "damage_negation_percent": {
+            "standard": 0,
+            "strike": 0,
+            "slash": -10,
+            "pierce": 0,
+            "magic": 0,
+            "fire": 0,
+            "lightning": 0,
+            "holy": 40
+          },
+          "status_resistance": {
+            "poison": "316 (Stormveil); 332 (Capital Outskirts)",
+            "scarlet_rot": "316 (Stormveil); 332 (Capital Outskirts)",
+            "blood_loss": "316 (Stormveil); 332 (Capital Outskirts)",
+            "frostbite": "316 (Stormveil); 332 (Capital Outskirts)",
+            "sleep": "Immune",
+            "madness": "Immune",
+            "death_blight": "Immune"
+          },
+          "spirit_ashes_allowed": true,
+          "npc_summon_available": true
+        }
+      ],
+      "fight_notes": [
+        "Sorcerer Rogier is available as a summon for this fight.",
+        "[Moveset]",
+        "[Phase 1]",
+        "Margit makes his battle prowess clear from the start. He swings his staff with some delay to punish those who dodge on instinct, and can follow up with very fast swipes with his summoned dagger to further disorient foes. Furthermore, ranged attacks will have him respond by throwing daggers in turn and lunging at the player to close the distance. These rapid follow-ups make for powerful combos that leave little room for attacking, but there are two types of attacks that leave him open consistently: overhead strikes and ground stabs.",
+        "However, as Margit is the first hurdle many Tarnished will face on their path to becoming Elden Lord, two fundamental principles must also be considered when taking advantage of these openings: positioning and stamina management.",
+        "Margit has a rare attack reserved solely for when you run out of stamina while guarding -- a punishment for not keeping one's stamina in check. This is the only attack in phase 1 where the holy sword is used.",
+        "It is best to dodge overhead strikes and ground stabs by either dodging or running to the left, dodging them to the right is not ideal since Margit's follow-up dagger swipe triggers when you are to his left; he uses his left hand to summon his holy weapons. While the delays of his moveset may seem frustrating at first, they allow opportunities for the player to do one of two things: either stand still and allow their stamina bar to refill from previous attacks and dodges, or take the initiative and attack during the wind-up and dodge the staff when it lands - to the left, to avoid the dagger. Be prepared to expect the dagger follow-up even when in front of him, not necessarily to his left.",
+        "The Tarnished consciously walks closer to Margit's left side to trigger the follow-up. Note how Margit keeps his left hand open.",
+        "The quick dagger swipe always follows the delayed stab with poor positioning. Again, the left hand is open, and Margit uses textbook deception to trick the Tarnished into thinking his animation is over.",
+        "Observe how, by simply dodging left when Margit slams his staff, the player is placed at a much better position. Even though his left hand is open, he cannot reach behind him with his left arm.",
+        "Margit only has one move to account for this: his tail spin. It re-positions him to face the player, but the tail can be countered with a jump attack.",
+        "His jumping stab is also a prime vulnerability. He typically uses this to close the distance after input-reading a projectile and throwing holy daggers. Running forward and dodging will place one right at his back, but rolling backwards is equally viable as there is a delay after the stab before he can begin attacking again.",
+        "Dodging forwards places the player at Margit's back - an advantageous position.",
+        "He is again forced to reposition with his tail spin.",
+        "Standard light attacks will slowly whittle him down, and a mix of careful dodging, strategic positioning, and aggressive jump attacks, charged attacks and Ashes of War will see Margit repeatedly falling on his knees, leaving him open to a critical strike. Parrying him can also open him up to this as well. Small shields are better at this than medium shields, but medium shields could have Ash of War: Storm Wall put on them to have a small shield parry with medium shield defense. Two successful parries are required to critical hit. Margit will always perform a parryable attack after a successful parry.",
+        "Margit performing a parryable attack after being parried once. Note the brief attack window after the first parry.",
+        "Margit is not particularly weak to any form of physical and elemental damage, but has 40% resistance to Holy damage and 10% weakness to Slash damage. Although, elemental damage is still favorable to add to a weapon for extra damage. The Armorer's Cookbook 1 is found very close to the Godrick soldier camp and contains a recipe for Fire Grease that can be made of materials common in campfires and the Mistwood east of Lake Agheel. For weapon buffs that do not require farming, Sacred Blade is an Ash of War that scales with Faith, and so is not a bad idea for Faith builds despite its Holy damage, while Scholar's Armament deals more damage but requires investment in Intelligence.",
+        "He can also be poisoned, and two sources of poison are nearby: the Poison Grease and the Spirit Jellyfish Ashes. The Poison Grease requires the Nomadic Warrior's Cookbook 8, and the Poisonbloom that the recipe requires can be found in a poison lake in the Weeping Peninsula.",
+        "The Bleed status deals a large chunk of damage to Margit at once, which makes acquiring bleed favorable.",
+        "The damage done by the Bleed status is made evident.",
+        "Hitboxes have been made visible and the game was slowed down for demonstration purposes.",
+        "The Uchigatana deals Slash damage with light attacks, has the Ash of War: Unsheathe, the heavy version of which has deals a good amount of stance damage.",
+        "The Bloodhound's Fang has advantages and disadvantages when compared to the Uchigatana. It also deals Slash damage, but requires slightly more Dexterity (17 as opposed to 15), and requires considerably more Strength (18 compared to 11.) However, it only needs needs 12 Strength to wield two-handed. It also has the Unique Skill: Bloodhound's Finesse, composed of a retreating swipe and an invulnerable approach.",
+        "These factors, combined with the fact that they can both be infused, and both have bleed build-up built-in, make both particularly favorable choices against this boss.",
+        "However, the Nomadic Warrior's Cookbook 6 in Fort Haight contains the recipe for Blood Grease, and the Ash of War: Blood Blade in the same location make it easy to apply Bleed to one's weapon of choice regardless of type.",
+        "(When equipping Blood Blade, be sure to set your weapon to the Blood affinity to receive passive Blood Loss buildup. This will prevent the infused weapon from having external infusions added, ie. from greases, onto it.)",
+        "Margit's Shackle can be used twice during this phase to stun him for 5 seconds, opening him to attacks. This will not work in phase 2.",
+        "[Phase 2]",
+        "As his health drops to 60% or below, he will enter Phase 2 always executing the same attack: swinging his hammer,jumping up, and slamming it back down.",
+        "He will begin to use his hammer and sword more during attacks. The moveset section will have methods to deal with them.",
+        "Even with the addition of some new moves, the strategies of sticking to his right side (player's left), strafing the delayed attacks, and taking advantage of the delays to attack are still applicable.",
+        "Like in Phase 1, all of Margit's holy attacks cannot be parried, but his staff can be.",
+        "[Environment]",
+        "Margit's arena is a narrow and long pathway with chasms on each side. While the boss himself cannot fall to his death, the player must constantly reposition himself to avoid having their back against the wall or the brink.",
+        "The area is also filled with obstacles and while the weapons scattered through out can be broken by dodging into them, the wooden barricades might just get in the way of a safety roll.",
+        "One must also not overestimate the length of the arena, as Margit's gap-closing attacks are fast and cover a long distance."
+      ],
+      "id": "margit-the-fell-omen",
+      "derived": {
+        "displayName": "Margit, the Fell Omen",
+        "encounters": [
+          {
+            "id": "margit-the-fell-omen",
+            "key": "margit-the-fell-omen/margit-the-fell-omen"
+          }
+        ],
+        "pageKey": null
+      }
+    },
+    {
+      "name": "Rykard, Lord of Blasphemy",
+      "wiki_page": "Rykard, Lord of Blasphemy",
+      "url": "https://eldenring.wiki.gg/wiki/Rykard,_Lord_of_Blasphemy",
+      "source": "Base game",
+      "tier": [
+        "Demigods"
+      ],
+      "flags": [
+        "remembrance_base_game",
+        "shardbearer"
+      ],
+      "character_location": "Volcano Manor",
+      "summary": "Rykard, Lord of Blasphemy is a boss in Elden Ring. He is a Demigod and a Shardbearer who is encountered in Volcano Manor.",
+      "encounters": [
+        {
+          "name": "Rykard, Lord of Blasphemy – Phase 1",
+          "location": "Volcano Manor",
+          "regions": [
+            "Mt. Gelmir",
+            "Volcano Manor"
+          ],
+          "source": "Base game",
+          "hp": "Phase 1: *30,439 Phase 2: *59,174",
+          "hp_values": [
+            30439,
+            59174
+          ],
+          "runes": "130,000",
+          "runes_values": [
+            130000
+          ],
+          "drops": [
+            "Remembrance of the Blasphemous",
+            "Rykard's Great Rune"
+          ],
+          "damage_negation_percent": {
+            "standard": 10,
+            "strike": 35,
+            "slash": 10,
+            "pierce": 10,
+            "magic": 40,
+            "fire": 80,
+            "lightning": 20,
+            "holy": 40
+          },
+          "status_resistance": {
+            "poison": "556 / 846 / 1303",
+            "scarlet_rot": "556 / 846 / 1303",
+            "blood_loss": "556 / 846 / 1303",
+            "frostbite": "247 / 289 / 387 / 677",
+            "sleep": "556 / 846 / 1303",
+            "madness": "Immune"
+          },
+          "weak_spot": "Head",
+          "parryable": false,
+          "critable": false,
+          "defense": 115,
+          "poise": 120
+        }
+      ],
+      "fight_notes": [
+        "The fight consists of two distinct phases, each with its own health bar. Phase 1 must be beaten each time to reach phase 2.",
+        "The Serpent-Hunter can be found sticking out of a pile of corpses near the entrance to the arena, and can be obtained without alerting the boss. This weapon makes the fight significantly easier, as it produces blades of light when swung that allow for long-distance attacks.",
+        "Defeating this boss will terminate Tanith's questline, regardless of how far one has progressed it. Any Volcano Manor targets not yet unlocked will also be missed.",
+        "[Moveset]",
+        "[Phase 1 - God-Devouring Serpent]",
+        "The God-Devouring Serpent is slow-moving, surrounded by a pool of magma. The magma makes it difficult to get close without taking damage, however the Serpent-Hunter allows for one to attack from a safer distance. It uses a combination of quick biting attacks and eruptions of magma, as well as a poison attack.",
+        "[Phase 2 - Rykard, Lord of Blasphemy]",
+        "After reducing the Serpent's health to 0, a cutscene plays and phase 2 begins. Rykard, armed with a sword, moves around the arena similarly to the Serpent, however his moveset is almost entirely new.",
+        "[Environment]",
+        "Rykard's arena is a spacious cavern, dotted with piles of corpses and tall corpse pillars, which can be broken by Rykard's attacks. The size of the arena is helpful for avoiding Rykard's Rancor and Rancor Rain, as one can run around the room until the attack ends.",
+        "[Notes]",
+        "Localisation Notes",
+        "→ The \"coming trespass\" mentioned in the Blasphemous Claw description is more specifically the \"coming blasphemy\" (冒涜, Bōtoku.)"
+      ],
+      "id": "rykard-lord-of-blasphemy",
+      "derived": {
+        "displayName": "Rykard, Lord of Blasphemy",
+        "encounters": [
+          {
+            "id": "rykard-lord-of-blasphemy-phase-1",
+            "key": "rykard-lord-of-blasphemy/rykard-lord-of-blasphemy-phase-1"
+          }
+        ],
+        "pageKey": null
+      }
+    },
+    {
+      "name": "Sir Gideon Ofnir, the All-Knowing",
+      "wiki_page": "Sir Gideon Ofnir, the All-Knowing",
+      "url": "https://eldenring.wiki.gg/wiki/Sir_Gideon_Ofnir,_the_All-Knowing",
+      "source": "Base game",
+      "tier": [
+        "Enemies"
+      ],
+      "flags": [
+        "mandatory_base_game"
+      ],
+      "character_location": "Roundtable Hold",
+      "summary": "Sir Gideon Ofnir, the All-Knowing is an NPC and boss in Elden Ring. He leads the Roundtable Hold and provides the player with information on the Shardbearers after the player has acquired a Great Rune. After burning the Erdtree and defeating Maliketh, the Black Blade, the player must fight Gideon before they can enter the Erdtree.",
+      "encounters": [
+        {
+          "name": "Sir Gideon Ofnir, the All-Knowing",
+          "location": "Leyndell, Ashen Capital",
+          "regions": [
+            "Altus Plateau",
+            "Leyndell, Ashen Capital"
+          ],
+          "source": "Base game",
+          "hp": "6226",
+          "hp_values": [
+            6226
+          ],
+          "runes": "150,000",
+          "runes_values": [
+            150000
+          ],
+          "drops": [
+            "All-Knowing Set",
+            "Scepter of the All-Knowing"
+          ]
+        }
+      ],
+      "encounter_data_note": "No HP/runes/drops infobox on the wiki page.",
+      "fight_notes": [
+        "[Notes]",
+        "The Omenkiller in the Village of the Albinaurics is implied by Nepheli to be one of Gideon's agents. Due to the connection between Omenkillers and perfumers, the Depraved Perfumer in the village may be working with the Omenkiller.",
+        "Recusant Henricus, an invader in Limgrave, wears the Eye Surcoat which is said to be worn by Gideon's \"eyes and ears\".",
+        "The Eye Surcoat can be looted from a corpse in Rykard's boss arena. This is potentially another agent of Gideon."
+      ],
+      "id": "sir-gideon-ofnir-the-all-knowing",
+      "derived": {
+        "displayName": "Sir Gideon Ofnir, the All-Knowing",
+        "encounters": [
+          {
+            "id": "sir-gideon-ofnir-the-all-knowing",
+            "key": "sir-gideon-ofnir-the-all-knowing/sir-gideon-ofnir-the-all-knowing"
+          }
+        ],
+        "pageKey": null
+      }
+    },
+    {
+      "name": "Promised Consort Radahn",
+      "wiki_page": "Promised Consort Radahn",
+      "url": "https://eldenring.wiki.gg/wiki/Promised_Consort_Radahn",
+      "source": "Shadow of the Erdtree",
+      "tier": [
+        "Gods"
+      ],
+      "flags": [
+        "mandatory_dlc",
+        "remembrance_dlc"
+      ],
+      "summary": "Promised Consort Radahn is the final boss of Elden Ring: Shadow of the Erdtree. He is encountered in Enir-Ilim.",
+      "encounters": [
+        {
+          "name": "Promised Consort Radahn",
+          "location": "Enir-Ilim (Gate of Divinity)",
+          "regions": [
+            "Land of the Tower",
+            "Enir-Ilim"
+          ],
+          "source": "Shadow of the Erdtree",
+          "hp": "46,134 (until 65%)",
+          "hp_values": [
+            46134
+          ],
+          "runes": null,
+          "runes_values": [],
+          "drops": [],
+          "damage_negation_percent": {
+            "standard": 40,
+            "strike": 40,
+            "slash": 40,
+            "pierce": 20,
+            "magic": 40,
+            "fire": 40,
+            "lightning": 40,
+            "holy": 0
+          },
+          "status_resistance": {
+            "poison": "734 / 1024 / 1481",
+            "scarlet_rot": "326 / 368 / 466 / 756 / 1213",
+            "blood_loss": "734 / 1024 / 1481",
+            "frostbite": "734 / 1024 / 1481",
+            "sleep": "Immune",
+            "madness": "Immune"
+          },
+          "critable": true,
+          "defense": 125,
+          "poise": 120
+        },
+        {
+          "name": "Promised Consort Radahn – Radahn, Consort of Miquella",
+          "location": "Enir-Ilim (Gate of Divinity)",
+          "regions": [
+            "Land of the Tower",
+            "Enir-Ilim"
+          ],
+          "source": "Shadow of the Erdtree",
+          "hp": "29,987",
+          "hp_values": [
+            29987
+          ],
+          "runes": "500,000",
+          "runes_values": [
+            500000
+          ],
+          "drops": [
+            "Remembrance of a God and a Lord",
+            "Circlet of Light"
+          ],
+          "damage_negation_percent": {
+            "standard": 40,
+            "strike": 40,
+            "slash": 40,
+            "pierce": 20,
+            "magic": 40,
+            "fire": 40,
+            "lightning": 40,
+            "holy": 40
+          },
+          "status_resistance": {
+            "poison": "734 / 1024 / 1481",
+            "scarlet_rot": "734 / 1024 / 1481",
+            "blood_loss": "734 / 1024 / 1481",
+            "frostbite": "734 / 1024 / 1481",
+            "sleep": "Immune",
+            "madness": "Immune"
+          },
+          "critable": true,
+          "defense": 125,
+          "poise": 120
+        }
+      ],
+      "id": "promised-consort-radahn",
+      "derived": {
+        "displayName": "Promised Consort Radahn",
+        "encounters": [
+          {
+            "id": "promised-consort-radahn",
+            "key": "promised-consort-radahn/promised-consort-radahn"
+          },
+          {
+            "id": "promised-consort-radahn-radahn-consort-of-miquella",
+            "key": "promised-consort-radahn/promised-consort-radahn-radahn-consort-of-miquella"
+          }
+        ],
+        "pageKey": null
+      }
+    }
+  ]
+}
