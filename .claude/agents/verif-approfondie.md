@@ -20,7 +20,7 @@ Tu fais une revue approfondie du périmètre que t'indique le chef de projet sur
 - **Sécurité** : aucun `v-html` sur des données ou un fichier importé ; un fichier importé est validé entièrement avant usage.
 
 ## Méthode
-- Lance l'application (compilation puis `npm run preview`, ou la commande indiquée par le README) et les scripts Playwright du projet : captures aux points de rupture, test hors ligne. Regarde les captures. Captures et fichiers temporaires dans `.cache/verif/` ; arrête le serveur à la fin. Si ce n'est pas possible, vérifie dans le code et dis-le.
+- Lance l'application (compilation puis `npm run preview`, ou le script équivalent de `package.json`) et les scripts Playwright du projet : captures aux points de rupture, test hors ligne. Regarde les captures. Captures et fichiers temporaires dans `.cache/verif/` ; arrête le serveur à la fin. Si ce n'est pas possible, vérifie dans le code et dis-le.
 - Les écrans du design (jusqu'à 170 Ko) et les fichiers de `data/` (jusqu'à 2,4 Mo) sont volumineux : cherche avec Grep, puis lis seulement les lignes utiles.
 - Pas de constat de goût sans conséquence concrète.
 

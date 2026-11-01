@@ -22,25 +22,6 @@ Outil de fan non officiel. *Elden Ring* est une marque de FromSoftware et Bandai
 | `CLAUDE.md`, `.claude/` | Instructions du chef de projet, sous-agents, règles et permissions de Claude Code |
 | `lancer-dev.cmd` | Lance la session de développement |
 
-## Développement
-
-Le développement est conduit avec Claude Code. Une session principale, le chef de projet, découpe le travail et le confie à des sous-agents spécialisés (voir `CLAUDE.md`). Sa feuille de route est `ROADMAP.md`.
-
-- **Démarrer** : dans ce dossier, lancer `lancer-dev.cmd` (depuis PowerShell : `.\lancer-dev.cmd`), puis demander « Lance le développement selon CLAUDE.md ».
-  - Le script démarre Claude Code avec Opus en effort max et en mode automatique.
-  - Il ne charge pas les réglages utilisateur (`~/.claude/settings.json`). S'ils définissent `CLAUDE_CODE_EFFORT_LEVEL`, cette variable imposerait sinon son effort à tous les sous-agents, au lieu de l'effort prévu pour chacun.
-  - Les autres réglages utilisateur (thème, extensions…) ne s'appliquent donc pas à cette session.
-- **Limite d'usage** : Claude Code attend la réinitialisation et reprend seul, tant que la session reste ouverte.
-  - Si l'ordinateur s'est mis en veille plus d'une trentaine de minutes et que la limite s'est réinitialisée pendant ce temps, il faut appuyer sur Entrée.
-  - Pour une limite hebdomadaire (réinitialisation à plus de 24 h), choisir « Wait here, then continue automatically » dans `/rate-limit-options`.
-  - Si la limite revient aussitôt après une reprise, l'attente se réarme deux fois au plus, puis s'arrête ; la relancer depuis `/rate-limit-options`.
-- **Reprendre après une fermeture** : `.\lancer-dev.cmd --continue` reprend la dernière conversation du dossier. Sinon, `.\lancer-dev.cmd` puis « Reprends le développement » : le chef de projet repart de `ROADMAP.md`.
-- **Mettre en pause** : le demander au chef de projet.
-
-### Commandes
-
-À compléter quand l'outillage sera en place.
-
 ## Licences
 
 - **Code** : aucune licence. Il reste soumis au droit d'auteur : on peut le consulter, pas le réutiliser sans autorisation.

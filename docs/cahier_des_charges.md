@@ -82,7 +82,7 @@ Priorité en cas de contradiction : décisions du développeur > ce document > d
 - Un export puis un import restituent le même état ; un fichier invalide est refusé sans rien modifier.
 - La page publiée porte la consigne `noindex`.
 - La dernière boucle de vérification ne laisse aucun constat bloquant ou majeur.
-- Le README de projet décrit l'application, le lancement du développement, les commandes et les licences (§ 9).
+- Le README présente le projet : l'application, le contenu du dépôt et les licences (§ 9).
 
 ## 9. Décisions du développeur
 

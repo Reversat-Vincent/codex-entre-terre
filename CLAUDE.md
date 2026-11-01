@@ -14,7 +14,7 @@ Application web compagnon d'*Elden Ring*, outil de fan non officiel : un tableau
 | Design : écrans et notes de spécification | [artefact](https://claude.ai/artifact/5q5odBbwiwVvfb4LSWhiRM), copie dans `docs/design/` |
 | Design system : règles, tokens, composants, méthodes de calcul | [artefact](https://claude.ai/artifact/9Dj4PS2EkVjivTWHSqEQY7), copie dans `docs/design/ds/` |
 | Brief de design d'origine | `docs/brief/design_prompt.md` |
-| Présentation du projet, lancement du développement, commandes | `README.md` |
+| Présentation du projet (application, contenu du dépôt, licences), sans règles de développement | `README.md` |
 | Scripts d'extraction du wiki | `tools/wiki/` |
 | Sous-agents, règles de code et de données, permissions | `.claude/agents/`, `.claude/rules/`, `.claude/settings.json` |
 | Ta feuille de route | `ROADMAP.md` |
