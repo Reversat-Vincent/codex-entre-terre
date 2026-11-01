@@ -14,5 +14,10 @@ Copie de lecture des fichiers `project/` de deux artefacts claude.ai, faite le 0
 - Les écrans chargent leurs polices depuis Google Fonts. L'application, elle, les sert elle-même (`.claude/rules/code.md`).
 - Non copiés : les fichiers de l'éditeur (`artifact-type/`, `SKILL.md`, `index.html`) et `project/ds/` du prototype, doublon du design system.
 
+## Écart au design system : `ds/calculs.md`
+Depuis le 01/11/2026, `docs/design/ds/calculs.md` est **tenu par le projet** : il s'écarte de l'artefact du design system (corrections vérifiées par le référent contenu, décisions du chef de projet, sections Frise des boss, Build cible et Puissance d'attaque calculée ajoutées). Il n'est plus une copie de lecture.
+
 ## Refaire la copie
 Si un artefact change : lire ses fichiers `project/` avec l'outil Artifact (action `read`), les ranger ici (prototype dans `docs/design/`, design system dans `docs/design/ds/`), sans les fichiers listés ci-dessus, puis mettre à jour la date et les versions de ce fichier.
+
+**Ne pas écraser `ds/calculs.md`** avec la nouvelle copie : comparer les deux versions et **fusionner** (reporter dans la version du projet les changements voulus de l'artefact, garder les corrections du projet).
