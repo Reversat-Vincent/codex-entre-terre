@@ -59,7 +59,7 @@ Les 18 fichiers JSON sont dans ce dossier.
 
 | Fichier | Contenu | Entrées | Source |
 |---|---|---|---|
-| `bosses.json` | Boss : rang (Dieu / Demi-dieu / Légende / Grand ennemi / Ennemi / Envahisseur), indicateurs (obligatoire, porteur de Grande Rune, Remembrance), et pour chaque combat : lieu, régions, PV, runes, butin, absorption par type de dégâts, résistances aux statuts, parade et critique, notes de combat | 133 pages / 301 combats (pages : 78 base, 41 SotE, 14 mixtes) | [Bosses](https://eldenring.wiki.gg/wiki/Bosses), navbox [Bosses](https://eldenring.wiki.gg/wiki/Template:Navbox_Bosses) / [Bosses Shadow](https://eldenring.wiki.gg/wiki/Template:Navbox_Bosses_Shadow), [Category:Bosses](https://eldenring.wiki.gg/wiki/Category:Bosses) |
+| `bosses.json` | Boss : rang (Dieu / Demi-dieu / Légende / Grand ennemi / Ennemi / Envahisseur), indicateurs (obligatoire, porteur de Grande Rune, Remembrance), et pour chaque combat : lieu, régions, PV, runes, butin, absorption par type de dégâts, résistances aux statuts, parade et critique, notes de combat | 133 pages / 302 combats (pages : 78 base, 41 SotE, 14 mixtes ; combats : 251 base, 46 SotE, 5 mixtes) | [Bosses](https://eldenring.wiki.gg/wiki/Bosses), navbox [Bosses](https://eldenring.wiki.gg/wiki/Template:Navbox_Bosses) / [Bosses Shadow](https://eldenring.wiki.gg/wiki/Template:Navbox_Bosses_Shadow), [Category:Bosses](https://eldenring.wiki.gg/wiki/Category:Bosses) |
 | `locations.json` | Lieux : type (région, donjon principal, donjon et son sous-type, evergaol…), région, sites de grâce, boss, PNJ, ennemis, butin notable, matériaux, sous-lieux | 315 (247 / 68) | [Locations](https://eldenring.wiki.gg/wiki/Locations), [Navbox Locations](https://eldenring.wiki.gg/wiki/Template:Navbox_Locations) |
 | `npcs.json` | PNJ : rôle, lieu, région, **inventaire de boutique** (objet, prix, stock, condition), équipement, objets de quête, **progression de quête**, notes | 114 (95 / 19), dont 35 boutiques et 60 quêtes | [NPCs](https://eldenring.wiki.gg/wiki/NPCs), [Category:NPC](https://eldenring.wiki.gg/wiki/Category:NPC), [Category:Merchants](https://eldenring.wiki.gg/wiki/Category:Merchants), [Merchant & Instructor Inventories](https://eldenring.wiki.gg/wiki/Merchant_%26_Instructor_Inventories) |
 
@@ -136,6 +136,7 @@ Chaque fichier a la forme `{"metadata": {...}, "<liste>": [...]}`. La clé de la
    - Les stats d'armes ont été relues par une seconde méthode indépendante : 6 842 valeurs en mêlée, 1 288 à distance, 1 831 pour les boucliers, aucun écart.
    - Aucun reste de balisage wiki dans les textes.
    - L'étiquette DLC a été vérifiée sur des cas connus.
+5. **Correctifs après l'extraction** (01/11/2026, décisions D8 et D15 du projet) : charge d'équipement de Heavy Knight, 43 coefficients de scaling du Horn Bow (décimales sans zéro initial mal lues, lecture corrigée dans `tools/wiki/`), combat de Sir Gideon Ofnir, runes de Godskin Duo, lieu et régions de trois combats, 107 faux `Altus Plateau` dans `regions_mentioned`. Détail, anciennes valeurs et pages wiki : [`CHANGELOG.md`](CHANGELOG.md).
 
 Les principaux scripts d'extraction sont dans `tools/wiki/`, à la racine du dépôt (voir son README).
 
@@ -152,10 +153,10 @@ Les principaux scripts d'extraction sont dans `tools/wiki/`, à la racine du dé
   - Sur 29 armes de mêlée et 1 arme à distance, le tableau d'amélioration de la page contredit son infobox (`tables_consistent_with_infobox: false`, liste dans `metadata.wiki_inconsistencies_flagged`). Les valeurs de l'infobox font foi.
   - Dans `bosses.json`, un lien de la navbox DLC (« Radahn Consort of Miquella ») redirige à tort vers la page de Starscourge Radahn. Son rang « Gods » n'est pas propagé à ce boss du jeu de base ; le cas est consigné dans `metadata.navbox_tier_conflicts_ignored`.
 - **Boss** :
-  - 16 pages (surtout des PNJ envahisseurs) n'ont aucune donnée de combat sur le wiki.
-  - Les PV manquent pour 22 combats sur 301.
+  - 15 pages (surtout des PNJ envahisseurs) n'ont aucune donnée de combat (`encounters` vide). Sir Gideon Ofnir en a une depuis le correctif C1 ([`CHANGELOG.md`](CHANGELOG.md)).
+  - Les PV manquent pour 22 combats sur 302.
   - L'absorption par type de dégâts n'est renseignée que pour 88 combats, et les résistances aux statuts pour 75.
-  - Une douzaine de combats n'ont pas de région identifiable.
+  - 9 combats n'ont pas de région identifiable (`regions` vide) ; les correctifs C3 à C5 en ont situé 3 ([`CHANGELOG.md`](CHANGELOG.md)).
 - **PNJ** : la liste combine la page NPCs et les catégories NPC / Merchants ; elle n'est pas exhaustive.
 - **Acquisition vide** pour certains objets dont la section est vide sur le wiki lui-même : certaines pierres sombres, Gloveworts, Golden Runes…
 - **Pas de fichier « ordre de progression »** : le Walkthrough du wiki est inachevé (il s'arrête à Weeping Peninsula). Pour situer un élément dans la partie, utiliser `regions_mentioned`, `acquisition` et `locations.json`.

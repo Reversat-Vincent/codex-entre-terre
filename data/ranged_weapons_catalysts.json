@@ -220,8 +220,7 @@
         "Liurnia of the Lakes",
         "Caelid",
         "Mountaintops of the Giants",
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [
         "starting_equipment",
@@ -1189,8 +1188,7 @@
       "regions_mentioned": [
         "Shadow Keep",
         "Scadu Altus",
-        "Specimen Storehouse",
-        "Altus Plateau"
+        "Specimen Storehouse"
       ],
       "acquisition_flags": [
         "npc_or_quest_related"
@@ -1426,7 +1424,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 1.0
+                  "coef": 0.1
                 }
               }
             },
@@ -1449,7 +1447,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 104.0
+                  "coef": 0.104
                 }
               }
             },
@@ -1472,7 +1470,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 108.0
+                  "coef": 0.108
                 }
               }
             },
@@ -1495,7 +1493,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 112.0
+                  "coef": 0.112
                 }
               }
             },
@@ -1518,7 +1516,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 116.0
+                  "coef": 0.116
                 }
               }
             },
@@ -1541,7 +1539,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 12.0
+                  "coef": 0.12
                 }
               }
             },
@@ -1564,7 +1562,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 124.0
+                  "coef": 0.124
                 }
               },
               "passive": "-\n\n-"
@@ -1588,7 +1586,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 128.0
+                  "coef": 0.128
                 }
               }
             },
@@ -1611,7 +1609,7 @@
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 132.0
+                  "coef": 0.132
                 }
               }
             },
@@ -1630,11 +1628,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3068.0
+                  "coef": 0.3068
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 136.0
+                  "coef": 0.136
                 }
               }
             },
@@ -1653,11 +1651,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 312.0
+                  "coef": 0.312
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 14.0
+                  "coef": 0.14
                 }
               }
             },
@@ -1676,11 +1674,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3172.0
+                  "coef": 0.3172
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 143.0
+                  "coef": 0.143
                 }
               }
             },
@@ -1699,11 +1697,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3224.0
+                  "coef": 0.3224
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 146.0
+                  "coef": 0.146
                 }
               }
             },
@@ -1722,11 +1720,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3276.0
+                  "coef": 0.3276
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 149.0
+                  "coef": 0.149
                 }
               }
             },
@@ -1745,11 +1743,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3328.0
+                  "coef": 0.3328
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 152.0
+                  "coef": 0.152
                 }
               }
             },
@@ -1768,11 +1766,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 338.0
+                  "coef": 0.338
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 155.0
+                  "coef": 0.155
                 }
               }
             },
@@ -1791,11 +1789,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3432.0
+                  "coef": 0.3432
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 158.0
+                  "coef": 0.158
                 }
               }
             },
@@ -1814,11 +1812,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3484.0
+                  "coef": 0.3484
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 161.0
+                  "coef": 0.161
                 }
               }
             },
@@ -1837,11 +1835,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3536.0
+                  "coef": 0.3536
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 164.0
+                  "coef": 0.164
                 }
               }
             },
@@ -1860,11 +1858,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3588.0
+                  "coef": 0.3588
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 167.0
+                  "coef": 0.167
                 }
               }
             },
@@ -1883,11 +1881,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 364.0
+                  "coef": 0.364
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 17.0
+                  "coef": 0.17
                 }
               }
             },
@@ -1906,11 +1904,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3692.0
+                  "coef": 0.3692
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 172.0
+                  "coef": 0.172
                 }
               }
             },
@@ -1929,11 +1927,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3744.0
+                  "coef": 0.3744
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 174.0
+                  "coef": 0.174
                 }
               }
             },
@@ -1952,11 +1950,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3796.0
+                  "coef": 0.3796
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 176.0
+                  "coef": 0.176
                 }
               }
             },
@@ -1975,11 +1973,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 3848.0
+                  "coef": 0.3848
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 178.0
+                  "coef": 0.178
                 }
               }
             },
@@ -1998,11 +1996,11 @@
                 },
                 "dex": {
                   "grade": "D",
-                  "coef": 39.0
+                  "coef": 0.39
                 },
                 "int": {
                   "grade": "E",
-                  "coef": 18.0
+                  "coef": 0.18
                 }
               }
             }
@@ -4547,8 +4545,7 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "upgrade": {
@@ -5484,8 +5481,7 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "upgrade": {
@@ -7662,8 +7658,7 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "upgrade": {
@@ -9265,8 +9260,7 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "upgrade": {

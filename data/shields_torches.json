@@ -2911,8 +2911,7 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "upgrade": {
@@ -9499,8 +9498,7 @@
       "regions_mentioned": [
         "Gravesite Plain",
         "Scadu Altus",
-        "Enir-Ilim",
-        "Altus Plateau"
+        "Enir-Ilim"
       ],
       "acquisition_flags": [
         "npc_or_quest_related"

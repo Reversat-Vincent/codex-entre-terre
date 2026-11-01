@@ -197,7 +197,8 @@ def num(v):
     if v is None:
         return None
     t = clean(str(v)).replace(",", "").strip()
-    if not re.fullmatch(r"[-+]?\d+(?:\.\d+)?", t):
+    # Le wiki écrit parfois les décimales sans zéro initial (".3068") : elles sont acceptées.
+    if not re.fullmatch(r"[-+]?(?:\d+(?:\.\d+)?|\.\d+)", t):
         return None
     f = float(t)
     return int(f) if f.is_integer() and "." not in t else f

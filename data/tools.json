@@ -641,8 +641,7 @@
       "regions_mentioned": [
         "Gravesite Plain",
         "Scadu Altus",
-        "Hinterland",
-        "Altus Plateau"
+        "Hinterland"
       ],
       "acquisition_flags": [],
       "notes": [
@@ -1402,8 +1401,7 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [
         "craftable"
@@ -1876,8 +1874,7 @@
       "regions_mentioned": [
         "Scadu Altus",
         "Gravesite Plain",
-        "Shadow Keep",
-        "Altus Plateau"
+        "Shadow Keep"
       ],
       "acquisition_flags": [
         "purchasable",
@@ -5384,8 +5381,7 @@
       ],
       "regions_mentioned": [
         "Gravesite Plain",
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "infobox": {
@@ -6358,8 +6354,7 @@
       ],
       "regions_mentioned": [
         "Scadu Altus",
-        "Shadow Keep",
-        "Altus Plateau"
+        "Shadow Keep"
       ],
       "acquisition_flags": [
         "craftable"
@@ -7084,8 +7079,7 @@
         "Scadu Altus",
         "Shadow Keep",
         "Enir-Ilim",
-        "Land of the Tower",
-        "Altus Plateau"
+        "Land of the Tower"
       ],
       "acquisition_flags": [],
       "infobox": {

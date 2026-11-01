@@ -8,14 +8,14 @@
     ],
     "retrieved": "2026-10-31",
     "boss_pages": 133,
-    "encounters": 301,
+    "encounters": 302,
     "counts_by_source": {
       "Base game": 78,
       "Base game + Shadow of the Erdtree": 14,
       "Shadow of the Erdtree": 41
     },
     "encounters_by_source": {
-      "Base game": 250,
+      "Base game": 251,
       "Shadow of the Erdtree": 46,
       "Base game + Shadow of the Erdtree": 5
     },
@@ -1970,8 +1970,11 @@
         {
           "name": "Draconic Tree Sentinel (Outskirts Draconic Tree Sentinel)",
           "variant": "Outskirts Draconic Tree Sentinel",
-          "location": null,
-          "regions": [],
+          "location": "Capital Outskirts",
+          "regions": [
+            "Altus Plateau",
+            "Capital Outskirts"
+          ],
           "source": "Base game",
           "hp": "8398 HP",
           "hp_values": [
@@ -2166,7 +2169,10 @@
         {
           "name": "Elden Beast",
           "location": "Stone Platform",
-          "regions": [],
+          "regions": [
+            "Altus Plateau",
+            "Leyndell, Ashen Capital"
+          ],
           "source": "Base game",
           "hp": "22,127",
           "hp_values": [
@@ -3522,10 +3528,13 @@
           "source": "Base game",
           "hp": null,
           "hp_values": [],
-          "runes": null,
-          "runes_values": [],
+          "runes": "170000",
+          "runes_values": [
+            170000
+          ],
           "drops": [
-            "170000 Runes, Smithing-Stone Miner's Bell Bearing [4], Ash of War: Black Flame Tornado"
+            "Smithing-Stone Miner's Bell Bearing [4]",
+            "Ash of War: Black Flame Tornado"
           ]
         }
       ],
@@ -6081,7 +6090,10 @@
         {
           "name": "Radagon of the Golden Order",
           "location": "Inside the Erdtree",
-          "regions": [],
+          "regions": [
+            "Altus Plateau",
+            "Leyndell, Ashen Capital"
+          ],
           "source": "Base game",
           "hp": "13,339",
           "hp_values": [
@@ -6807,7 +6819,29 @@
       ],
       "character_location": "Roundtable Hold",
       "summary": "Sir Gideon Ofnir, the All-Knowing is an NPC and boss in Elden Ring. He leads the Roundtable Hold and provides the player with information on the Shardbearers after the player has acquired a Great Rune. After burning the Erdtree and defeating Maliketh, the Black Blade, the player must fight Gideon before they can enter the Erdtree.",
-      "encounters": [],
+      "encounters": [
+        {
+          "name": "Sir Gideon Ofnir, the All-Knowing",
+          "location": "Leyndell, Ashen Capital",
+          "regions": [
+            "Altus Plateau",
+            "Leyndell, Ashen Capital"
+          ],
+          "source": "Base game",
+          "hp": "6226",
+          "hp_values": [
+            6226
+          ],
+          "runes": "150,000",
+          "runes_values": [
+            150000
+          ],
+          "drops": [
+            "All-Knowing Set",
+            "Scepter of the All-Knowing"
+          ]
+        }
+      ],
       "encounter_data_note": "No HP/runes/drops infobox on the wiki page.",
       "fight_notes": [
         "[Notes]",
