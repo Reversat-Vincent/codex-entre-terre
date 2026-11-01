@@ -1,6 +1,5 @@
 <!-- Feuille superposée : feuille du bas (mobile) ou tiroir latéral (tablette), avec voile, poignée, Échap et focus piégé. -->
 <script setup lang="ts">
-/* eslint-disable no-undef -- la configuration ESLint ne déclare pas les globaux du navigateur pour les .vue ; le compilateur TypeScript vérifie déjà les noms. À retirer quand l'outillage aura réglé `no-undef`. */
 import { computed, onBeforeUnmount, ref, useId, watch } from 'vue'
 import { useFocusTrap } from '../../composables/useFocusTrap.ts'
 import { useHotkeys } from '../../composables/useHotkeys.ts'

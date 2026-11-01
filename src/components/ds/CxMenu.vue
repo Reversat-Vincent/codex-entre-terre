@@ -1,6 +1,5 @@
 <!-- Menu d'actions : bouton-icône qui ouvre une liste d'éléments, entièrement utilisable au clavier. -->
 <script setup lang="ts">
-/* eslint-disable no-undef -- la configuration ESLint ne déclare pas les globaux du navigateur pour les .vue ; le compilateur TypeScript vérifie déjà les noms. À retirer quand l'outillage aura réglé `no-undef`. */
 import { nextTick, onBeforeUnmount, ref, useId, watch, type ComponentPublicInstance } from 'vue'
 import CxButton from './CxButton.vue'
 import CxIcon from './CxIcon.vue'

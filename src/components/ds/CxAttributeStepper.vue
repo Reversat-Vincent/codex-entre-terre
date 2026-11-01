@@ -1,6 +1,5 @@
 <!-- Saisie rapide d'un attribut du personnage : boutons − et +, appui long ou Maj pour ±5, flèches au clavier. -->
 <script setup lang="ts">
-/* eslint-disable no-undef -- la configuration ESLint ne déclare pas les globaux du navigateur pour les .vue ; le compilateur TypeScript vérifie déjà les noms. À retirer quand l'outillage aura réglé `no-undef`. */
 import { computed, onBeforeUnmount } from 'vue'
 import { ATTRIBUTE_LABELS, type AttributeKey } from '../../ui/labels.ts'
 import CxIcon from './CxIcon.vue'

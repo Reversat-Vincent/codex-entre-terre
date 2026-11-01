@@ -22,6 +22,8 @@ export default tseslint.config(
     plugins: { jsdoc },
     rules: {
       'vue/no-v-html': 'error',
+      // typescript-eslint le recommande : TypeScript contrôle déjà les identifiants (globaux du navigateur compris), `no-undef` n'apporte que des faux positifs.
+      'no-undef': 'off',
       // Un export public (fonction, classe, type, interface, constante fléchée) porte un commentaire de documentation.
       'jsdoc/require-jsdoc': [
         'error',

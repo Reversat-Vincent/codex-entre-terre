@@ -1,6 +1,5 @@
 <!-- Bouton du design system : secondaire, principal (or), discret, icône seule, bascule ; devient un lien `a` quand `href` est fourni. -->
 <script setup lang="ts">
-/* eslint-disable no-undef -- la configuration ESLint ne déclare pas les globaux du navigateur pour les .vue ; le compilateur TypeScript vérifie déjà les noms. À retirer quand l'outillage aura réglé `no-undef`. */
 import { computed } from 'vue'
 import CxIcon from './CxIcon.vue'
 

@@ -1,0 +1,10 @@
+{
+  // Tests du code qui touche au DOM (composables, composants) : bibliothèque DOM disponible.
+  // Les tests de données (tests/unit/data) tournent sous Node et restent dans tsconfig.node.json, sans DOM.
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"]
+  },
+  "include": ["tests/**/*.ts"],
+  "exclude": ["tests/unit/data/**"]
+}
