@@ -1,0 +1,2395 @@
+{
+ "schema": 1,
+ "key": "search-index",
+ "docs": [
+  {
+   "ref": "weapon:dagger",
+   "group": "weapon",
+   "name": "Dagger",
+   "norm": "dagger",
+   "source": "Base game",
+   "ctx": [
+    "Daggers"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Twin Maiden Husks",
+     "norm": "twin maiden husks"
+    },
+    {
+     "field": "acquisition",
+     "text": "Lands Between / Realm of Shadow",
+     "norm": "lands between realm of shadow"
+    },
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "region",
+     "text": "Realm of Shadow",
+     "norm": "realm of shadow"
+    },
+    {
+     "field": "skill",
+     "text": "Quickstep",
+     "norm": "quickstep"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:parrying-dagger",
+   "group": "weapon",
+   "name": "Parrying Dagger",
+   "norm": "parrying dagger",
+   "source": "Base game",
+   "ctx": [
+    "Daggers"
+   ],
+   "terms": [
+    {
+     "field": "skill",
+     "text": "Parry",
+     "norm": "parry"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:bloodstained-dagger",
+   "group": "weapon",
+   "name": "Bloodstained Dagger",
+   "norm": "bloodstained dagger",
+   "source": "Base game",
+   "ctx": [
+    "Daggers"
+   ],
+   "terms": [
+    {
+     "field": "skill",
+     "text": "Quickstep",
+     "norm": "quickstep"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:erdsteel-dagger",
+   "group": "weapon",
+   "name": "Erdsteel Dagger",
+   "norm": "erdsteel dagger",
+   "source": "Base game",
+   "ctx": [
+    "Daggers"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Leyndell, Royal Capital",
+     "norm": "leyndell royal capital"
+    },
+    {
+     "field": "skill",
+     "text": "Quickstep",
+     "norm": "quickstep"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:smithscript-dagger",
+   "group": "weapon",
+   "name": "Smithscript Dagger",
+   "norm": "smithscript dagger",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Throwing Blades"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Ruined Forge Lava Intake",
+     "norm": "ruined forge lava intake"
+    },
+    {
+     "field": "region",
+     "text": "Gravesite Plain",
+     "norm": "gravesite plain"
+    },
+    {
+     "field": "skill",
+     "text": "Piercing Throw",
+     "norm": "piercing throw"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:sword-of-night-and-flame",
+   "group": "weapon",
+   "name": "Sword of Night and Flame",
+   "norm": "sword of night and flame",
+   "source": "Base game",
+   "ctx": [
+    "Straight Swords"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Academy of Raya Lucaria",
+     "norm": "academy of raya lucaria"
+    },
+    {
+     "field": "skill",
+     "text": "Night-and-Flame Stance",
+     "norm": "night and flame stance"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:dark-moon-greatsword",
+   "group": "weapon",
+   "name": "Dark Moon Greatsword",
+   "norm": "dark moon greatsword",
+   "source": "Base game",
+   "ctx": [
+    "Greatswords"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Cathedral of Manus Celes",
+     "norm": "cathedral of manus celes"
+    },
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    },
+    {
+     "field": "skill",
+     "text": "Moonlight Greatsword",
+     "norm": "moonlight greatsword"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:moonrithylls-knight-sword",
+   "group": "weapon",
+   "name": "Moonrithyll's Knight Sword",
+   "norm": "moonrithylls knight sword",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Colossal Swords"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Castle Ensis",
+     "norm": "castle ensis"
+    },
+    {
+     "field": "region",
+     "text": "Castle Ensis",
+     "norm": "castle ensis"
+    },
+    {
+     "field": "skill",
+     "text": "Tremendous Phalanx",
+     "norm": "tremendous phalanx"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:greatsword-of-radahn-lord",
+   "group": "weapon",
+   "name": "Greatsword of Radahn (Lord)",
+   "norm": "greatsword of radahn lord",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Colossal Swords"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "skill",
+     "text": "Promised Consort",
+     "norm": "promised consort"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:greatsword-of-radahn-light",
+   "group": "weapon",
+   "name": "Greatsword of Radahn (Light)",
+   "norm": "greatsword of radahn light",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Colossal Swords"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "skill",
+     "text": "Lightspeed Slash",
+     "norm": "lightspeed slash"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:bloodhounds-fang",
+   "group": "weapon",
+   "name": "Bloodhound's Fang",
+   "norm": "bloodhounds fang",
+   "source": "Base game",
+   "ctx": [
+    "Curved Greatswords"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Forlorn Hound Evergaol",
+     "norm": "forlorn hound evergaol"
+    },
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "skill",
+     "text": "Bloodhound's Finesse",
+     "norm": "bloodhounds finesse"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:moonveil",
+   "group": "weapon",
+   "name": "Moonveil",
+   "norm": "moonveil",
+   "source": "Base game",
+   "ctx": [
+    "Katanas"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Gael Tunnel",
+     "norm": "gael tunnel"
+    },
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    },
+    {
+     "field": "skill",
+     "text": "Transient Moonlight",
+     "norm": "transient moonlight"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:sword-of-night",
+   "group": "weapon",
+   "name": "Sword of Night",
+   "norm": "sword of night",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Katanas"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Cathedral of Manus Metyr",
+     "norm": "cathedral of manus metyr"
+    },
+    {
+     "field": "region",
+     "text": "Scadu Altus",
+     "norm": "scadu altus"
+    },
+    {
+     "field": "skill",
+     "text": "Witching Hour Slash",
+     "norm": "witching hour slash"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:reed-great-katana",
+   "group": "weapon",
+   "name": "Reed Great Katana",
+   "norm": "reed great katana",
+   "source": "Tarnished Pack",
+   "ctx": [
+    "Great Katanas"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Greyoll's Dragonbarrow Tarnished Pack",
+     "norm": "greyolls dragonbarrow tarnished pack"
+    },
+    {
+     "field": "region",
+     "text": "Dragonbarrow",
+     "norm": "dragonbarrow"
+    },
+    {
+     "field": "skill",
+     "text": "Overhead Stance",
+     "norm": "overhead stance"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:great-katana",
+   "group": "weapon",
+   "name": "Great Katana",
+   "norm": "great katana",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Great Katanas"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Gravesite Plain",
+     "norm": "gravesite plain"
+    },
+    {
+     "field": "region",
+     "text": "Gravesite Plain",
+     "norm": "gravesite plain"
+    },
+    {
+     "field": "skill",
+     "text": "Overhead Stance",
+     "norm": "overhead stance"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:dragon-hunters-great-katana",
+   "group": "weapon",
+   "name": "Dragon Hunter's Great Katana",
+   "norm": "dragon hunters great katana",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Great Katanas"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Dragon's Pit",
+     "norm": "dragons pit"
+    },
+    {
+     "field": "region",
+     "text": "Gravesite Plain",
+     "norm": "gravesite plain"
+    },
+    {
+     "field": "skill",
+     "text": "Dragonwound Slash",
+     "norm": "dragonwound slash"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:rakshasas-great-katana",
+   "group": "weapon",
+   "name": "Rakshasa's Great Katana",
+   "norm": "rakshasas great katana",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Great Katanas"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Eastern Nameless Mausoleum",
+     "norm": "eastern nameless mausoleum"
+    },
+    {
+     "field": "region",
+     "text": "Scadu Altus",
+     "norm": "scadu altus"
+    },
+    {
+     "field": "skill",
+     "text": "Weed Cutter",
+     "norm": "weed cutter"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:crescent-moon-axe",
+   "group": "weapon",
+   "name": "Crescent Moon Axe",
+   "norm": "crescent moon axe",
+   "source": "Base game",
+   "ctx": [
+    "Greataxes"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Stormveil Castle / Castle Sol (Mountaintops of the Giants)",
+     "norm": "stormveil castle castle sol mountaintops of the giants"
+    },
+    {
+     "field": "region",
+     "text": "Stormveil Castle",
+     "norm": "stormveil castle"
+    },
+    {
+     "field": "region",
+     "text": "Castle Sol",
+     "norm": "castle sol"
+    },
+    {
+     "field": "skill",
+     "text": "War Cry",
+     "norm": "war cry"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:axe-of-godrick",
+   "group": "weapon",
+   "name": "Axe of Godrick",
+   "norm": "axe of godrick",
+   "source": "Base game",
+   "ctx": [
+    "Greataxes"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "skill",
+     "text": "I Command Thee, Kneel!",
+     "norm": "i command thee kneel"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:bloodhound-claws",
+   "group": "weapon",
+   "name": "Bloodhound Claws",
+   "norm": "bloodhound claws",
+   "source": "Base game",
+   "ctx": [
+    "Claws"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    },
+    {
+     "field": "skill",
+     "text": "Bloodhound's Step",
+     "norm": "bloodhounds step"
+    }
+   ]
+  },
+  {
+   "ref": "weapon:full-moon-crossbow",
+   "group": "weapon",
+   "name": "Full Moon Crossbow",
+   "norm": "full moon crossbow",
+   "source": "Base game",
+   "ctx": [
+    "Crossbows"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Academy of Raya Lucaria",
+     "norm": "academy of raya lucaria"
+    },
+    {
+     "field": "region",
+     "text": "Academy of Raya Lucaria",
+     "norm": "academy of raya lucaria"
+    },
+    {
+     "field": "skill",
+     "text": "Kick",
+     "norm": "kick"
+    }
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-bloodhounds-step",
+   "group": "ash",
+   "name": "Ash of War: Bloodhound's Step",
+   "norm": "ash of war bloodhounds step",
+   "source": "Base game",
+   "ctx": [
+    "Keen Affinity"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Greyoll's Dragonbarrow",
+     "norm": "greyolls dragonbarrow"
+    },
+    {
+     "field": "region",
+     "text": "Greyoll's Dragonbarrow",
+     "norm": "greyolls dragonbarrow"
+    },
+    {
+     "field": "skill",
+     "text": "Bloodhound's Step",
+     "norm": "bloodhounds step"
+    }
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-seppuku",
+   "group": "ash",
+   "name": "Ash of War: Seppuku",
+   "norm": "ash of war seppuku",
+   "source": "Base game",
+   "ctx": [
+    "Poison, Blood & Occult Affinity"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Mountaintops of the Giants",
+     "norm": "mountaintops of the giants"
+    },
+    {
+     "field": "region",
+     "text": "Mountaintops of the Giants",
+     "norm": "mountaintops of the giants"
+    },
+    {
+     "field": "skill",
+     "text": "Seppuku",
+     "norm": "seppuku"
+    }
+   ]
+  },
+  {
+   "ref": "armor:godrick-soldier-helm",
+   "group": "armor",
+   "name": "Godrick Soldier Helm",
+   "norm": "godrick soldier helm",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "armor:radahn-soldier-helm",
+   "group": "armor",
+   "name": "Radahn Soldier Helm",
+   "norm": "radahn soldier helm",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "armor:godrick-knight-helm",
+   "group": "armor",
+   "name": "Godrick Knight Helm",
+   "norm": "godrick knight helm",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "armor:bloodhound-knight-helm",
+   "group": "armor",
+   "name": "Bloodhound Knight Helm",
+   "norm": "bloodhound knight helm",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "armor:radahns-redmane-helm",
+   "group": "armor",
+   "name": "Radahn's Redmane Helm",
+   "norm": "radahns redmane helm",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    }
+   ]
+  },
+  {
+   "ref": "armor:godrick-knight-armor",
+   "group": "armor",
+   "name": "Godrick Knight Armor",
+   "norm": "godrick knight armor",
+   "source": "Base game",
+   "ctx": [
+    "Chest"
+   ]
+  },
+  {
+   "ref": "armor:godrick-knight-armor-altered",
+   "group": "armor",
+   "name": "Godrick Knight Armor (Altered)",
+   "norm": "godrick knight armor altered",
+   "source": "Base game",
+   "ctx": [
+    "Chest"
+   ]
+  },
+  {
+   "ref": "armor:bloodhound-knight-armor",
+   "group": "armor",
+   "name": "Bloodhound Knight Armor",
+   "norm": "bloodhound knight armor",
+   "source": "Base game",
+   "ctx": [
+    "Chest"
+   ]
+  },
+  {
+   "ref": "armor:bloodhound-knight-armor-altered",
+   "group": "armor",
+   "name": "Bloodhound Knight Armor (Altered)",
+   "norm": "bloodhound knight armor altered",
+   "source": "Base game",
+   "ctx": [
+    "Chest"
+   ]
+  },
+  {
+   "ref": "armor:radahns-lion-armor",
+   "group": "armor",
+   "name": "Radahn's Lion Armor",
+   "norm": "radahns lion armor",
+   "source": "Base game",
+   "ctx": [
+    "Chest"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    }
+   ]
+  },
+  {
+   "ref": "armor:radahns-lion-armor-altered",
+   "group": "armor",
+   "name": "Radahn's Lion Armor (Altered)",
+   "norm": "radahns lion armor altered",
+   "source": "Base game",
+   "ctx": [
+    "Chest"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    }
+   ]
+  },
+  {
+   "ref": "armor:godrick-soldier-gauntlets",
+   "group": "armor",
+   "name": "Godrick Soldier Gauntlets",
+   "norm": "godrick soldier gauntlets",
+   "source": "Base game",
+   "ctx": [
+    "Arms"
+   ]
+  },
+  {
+   "ref": "armor:radahn-soldier-gauntlets",
+   "group": "armor",
+   "name": "Radahn Soldier Gauntlets",
+   "norm": "radahn soldier gauntlets",
+   "source": "Base game",
+   "ctx": [
+    "Arms"
+   ]
+  },
+  {
+   "ref": "armor:godrick-knight-gauntlets",
+   "group": "armor",
+   "name": "Godrick Knight Gauntlets",
+   "norm": "godrick knight gauntlets",
+   "source": "Base game",
+   "ctx": [
+    "Arms"
+   ]
+  },
+  {
+   "ref": "armor:bloodhound-knight-gauntlets",
+   "group": "armor",
+   "name": "Bloodhound Knight Gauntlets",
+   "norm": "bloodhound knight gauntlets",
+   "source": "Base game",
+   "ctx": [
+    "Arms"
+   ]
+  },
+  {
+   "ref": "armor:radahns-gauntlets",
+   "group": "armor",
+   "name": "Radahn's Gauntlets",
+   "norm": "radahns gauntlets",
+   "source": "Base game",
+   "ctx": [
+    "Arms"
+   ]
+  },
+  {
+   "ref": "armor:godrick-soldier-greaves",
+   "group": "armor",
+   "name": "Godrick Soldier Greaves",
+   "norm": "godrick soldier greaves",
+   "source": "Base game",
+   "ctx": [
+    "Legs"
+   ]
+  },
+  {
+   "ref": "armor:radahn-soldier-greaves",
+   "group": "armor",
+   "name": "Radahn Soldier Greaves",
+   "norm": "radahn soldier greaves",
+   "source": "Base game",
+   "ctx": [
+    "Legs"
+   ]
+  },
+  {
+   "ref": "armor:godrick-knight-greaves",
+   "group": "armor",
+   "name": "Godrick Knight Greaves",
+   "norm": "godrick knight greaves",
+   "source": "Base game",
+   "ctx": [
+    "Legs"
+   ]
+  },
+  {
+   "ref": "armor:bloodhound-knight-greaves",
+   "group": "armor",
+   "name": "Bloodhound Knight Greaves",
+   "norm": "bloodhound knight greaves",
+   "source": "Base game",
+   "ctx": [
+    "Legs"
+   ]
+  },
+  {
+   "ref": "armor:radahns-greaves",
+   "group": "armor",
+   "name": "Radahn's Greaves",
+   "norm": "radahns greaves",
+   "source": "Base game",
+   "ctx": [
+    "Legs"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:dagger-talisman",
+   "group": "talisman",
+   "name": "Dagger Talisman",
+   "norm": "dagger talisman",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    },
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:moon-of-nokstella",
+   "group": "talisman",
+   "name": "Moon of Nokstella",
+   "norm": "moon of nokstella",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Nokstella, Eternal City",
+     "norm": "nokstella eternal city"
+    },
+    {
+     "field": "region",
+     "text": "Nokstella, Eternal City",
+     "norm": "nokstella eternal city"
+    },
+    {
+     "field": "region",
+     "text": "Siofra River",
+     "norm": "siofra river"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:assassins-crimson-dagger",
+   "group": "talisman",
+   "name": "Assassin's Crimson Dagger",
+   "norm": "assassins crimson dagger",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Deathtouched Catacombs",
+     "norm": "deathtouched catacombs"
+    },
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:assassins-cerulean-dagger",
+   "group": "talisman",
+   "name": "Assassin's Cerulean Dagger",
+   "norm": "assassins cerulean dagger",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Black Knife Catacombs",
+     "norm": "black knife catacombs"
+    },
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    }
+   ]
+  },
+  {
+   "ref": "spell:rennalas-full-moon",
+   "group": "spell",
+   "name": "Rennala's Full Moon",
+   "norm": "rennalas full moon",
+   "source": "Base game",
+   "ctx": [
+    "Sorceries",
+    "Carian"
+   ]
+  },
+  {
+   "ref": "spell:rannis-dark-moon",
+   "group": "spell",
+   "name": "Ranni's Dark Moon",
+   "norm": "rannis dark moon",
+   "source": "Base game",
+   "ctx": [
+    "Sorceries",
+    "Carian"
+   ]
+  },
+  {
+   "ref": "spell:rellanas-twin-moons",
+   "group": "spell",
+   "name": "Rellana's Twin Moons",
+   "norm": "rellanas twin moons",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Sorceries",
+    "Carian"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    },
+    {
+     "field": "region",
+     "text": "Roundtable Hold",
+     "norm": "roundtable hold"
+    }
+   ]
+  },
+  {
+   "ref": "spell:adulas-moonblade",
+   "group": "spell",
+   "name": "Adula's Moonblade",
+   "norm": "adulas moonblade",
+   "source": "Base game",
+   "ctx": [
+    "Sorceries",
+    "carian"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Moonlight Altar",
+     "norm": "moonlight altar"
+    },
+    {
+     "field": "region",
+     "text": "Moonlight Altar",
+     "norm": "moonlight altar"
+    }
+   ]
+  },
+  {
+   "ref": "spell:rykards-rancor",
+   "group": "spell",
+   "name": "Rykard's Rancor",
+   "norm": "rykards rancor",
+   "source": "Base game",
+   "ctx": [
+    "Sorceries"
+   ]
+  },
+  {
+   "ref": "spirit:godrick-soldier-ashes",
+   "group": "spirit",
+   "name": "Godrick Soldier Ashes",
+   "norm": "godrick soldier ashes",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Stormhill",
+     "norm": "stormhill"
+    }
+   ]
+  },
+  {
+   "ref": "spirit:radahn-soldier-ashes",
+   "group": "spirit",
+   "name": "Radahn Soldier Ashes",
+   "norm": "radahn soldier ashes",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "spirit:bloodhound-knight-floh",
+   "group": "spirit",
+   "name": "Bloodhound Knight Floh",
+   "norm": "bloodhound knight floh",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "spirit:swordhand-of-night-jolan",
+   "group": "spirit",
+   "name": "Swordhand of Night Jolán",
+   "norm": "swordhand of night jolan",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "spirit:jolan-and-anna",
+   "group": "spirit",
+   "name": "Jolán and Anna",
+   "norm": "jolan and anna",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "item:throwing-dagger",
+   "group": "item",
+   "name": "Throwing Dagger",
+   "norm": "throwing dagger",
+   "source": "Base game",
+   "ctx": [
+    "Perfume Arts"
+   ]
+  },
+  {
+   "ref": "item:fan-daggers",
+   "group": "item",
+   "name": "Fan Daggers",
+   "norm": "fan daggers",
+   "source": "Base game",
+   "ctx": [
+    "Perfume Arts"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    }
+   ]
+  },
+  {
+   "ref": "item:margits-shackle",
+   "group": "item",
+   "name": "Margit's Shackle",
+   "norm": "margits shackle",
+   "source": "Base game",
+   "ctx": [
+    "Perfume Arts"
+   ]
+  },
+  {
+   "ref": "item:remembrance-of-the-full-moon-queen",
+   "group": "item",
+   "name": "Remembrance of the Full Moon Queen",
+   "norm": "remembrance of the full moon queen",
+   "source": "Base game",
+   "ctx": [
+    "Remembrances"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Rennala, Queen of the Full Moon, alongside Great Rune of the Unborn.",
+     "norm": "rennala queen of the full moon alongside great rune of the unborn"
+    },
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    }
+   ]
+  },
+  {
+   "ref": "item:remembrance-of-the-twin-moon-knight",
+   "group": "item",
+   "name": "Remembrance of the Twin Moon Knight",
+   "norm": "remembrance of the twin moon knight",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Remembrances"
+   ]
+  },
+  {
+   "ref": "item:godricks-great-rune",
+   "group": "item",
+   "name": "Godrick's Great Rune",
+   "norm": "godricks great rune",
+   "source": "Base game",
+   "ctx": [
+    "Restored Great Runes"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Stormveil Castle",
+     "norm": "stormveil castle"
+    }
+   ]
+  },
+  {
+   "ref": "item:rykards-great-rune",
+   "group": "item",
+   "name": "Rykard's Great Rune",
+   "norm": "rykards great rune",
+   "source": "Base game",
+   "ctx": [
+    "Restored Great Runes"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Altus Plateau",
+     "norm": "altus plateau"
+    }
+   ]
+  },
+  {
+   "ref": "item:radahns-great-rune",
+   "group": "item",
+   "name": "Radahn's Great Rune",
+   "norm": "radahns great rune",
+   "source": "Base game",
+   "ctx": [
+    "Restored Great Runes"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    },
+    {
+     "field": "region",
+     "text": "Dragonbarrow",
+     "norm": "dragonbarrow"
+    }
+   ]
+  },
+  {
+   "ref": "item:weathered-dagger",
+   "group": "item",
+   "name": "Weathered Dagger",
+   "norm": "weathered dagger",
+   "source": "Base game",
+   "ctx": [
+    "Containers and Slot Boosters"
+   ]
+  },
+  {
+   "ref": "item:dark-moon-ring",
+   "group": "item",
+   "name": "Dark Moon Ring",
+   "norm": "dark moon ring",
+   "source": "Base game",
+   "ctx": [
+    "Containers and Slot Boosters"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "inside the chest near Rennala, Queen of the Full Moon that requires the Discarded Palace Key to open.",
+     "norm": "inside the chest near rennala queen of the full moon that requires the discarded palace key to open"
+    },
+    {
+     "field": "region",
+     "text": "Academy of Raya Lucaria",
+     "norm": "academy of raya lucaria"
+    }
+   ]
+  },
+  {
+   "ref": "item:map-limgrave-west",
+   "group": "item",
+   "name": "Map: Limgrave, West",
+   "norm": "map limgrave west",
+   "source": "Base game",
+   "ctx": [
+    "Maps"
+   ]
+  },
+  {
+   "ref": "item:map-limgrave-east",
+   "group": "item",
+   "name": "Map: Limgrave, East",
+   "norm": "map limgrave east",
+   "source": "Base game",
+   "ctx": [
+    "Maps"
+   ]
+  },
+  {
+   "ref": "item:map-caelid",
+   "group": "item",
+   "name": "Map: Caelid",
+   "norm": "map caelid",
+   "source": "Base game",
+   "ctx": [
+    "Maps"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    }
+   ]
+  },
+  {
+   "ref": "item:radahns-spear",
+   "group": "item",
+   "name": "Radahn's Spear",
+   "norm": "radahns spear",
+   "source": "Base game",
+   "ctx": [
+    "Greatarrows"
+   ]
+  },
+  {
+   "ref": "boss:bloodhound-knight",
+   "group": "boss",
+   "name": "Bloodhound Knight",
+   "norm": "bloodhound knight",
+   "source": "Base game",
+   "ctx": [
+    "Enemies"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    },
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    },
+    {
+     "field": "region",
+     "text": "Mt. Gelmir",
+     "norm": "mt gelmir"
+    },
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    },
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "boss:godrick-soldier",
+   "group": "boss",
+   "name": "Godrick Soldier",
+   "norm": "godrick soldier",
+   "source": "Base game",
+   "ctx": [
+    "Enemies"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "region",
+     "text": "Stormhill",
+     "norm": "stormhill"
+    },
+    {
+     "field": "region",
+     "text": "Weeping Peninsula",
+     "norm": "weeping peninsula"
+    }
+   ]
+  },
+  {
+   "ref": "boss:godrick-the-grafted",
+   "group": "boss",
+   "name": "Godrick the Grafted",
+   "norm": "godrick the grafted",
+   "source": "Base game",
+   "ctx": [
+    "Demigods"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "region",
+     "text": "Stormveil Castle",
+     "norm": "stormveil castle"
+    }
+   ]
+  },
+  {
+   "ref": "boss:margit-the-fell-omen",
+   "group": "boss",
+   "name": "Margit, the Fell Omen",
+   "norm": "margit the fell omen",
+   "source": "Base game",
+   "ctx": [
+    "Great Enemies"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "region",
+     "text": "Altus Plateau",
+     "norm": "altus plateau"
+    },
+    {
+     "field": "region",
+     "text": "Capital Outskirts",
+     "norm": "capital outskirts"
+    }
+   ]
+  },
+  {
+   "ref": "boss:rennala-queen-of-the-full-moon",
+   "group": "boss",
+   "name": "Rennala, Queen of the Full Moon",
+   "norm": "rennala queen of the full moon",
+   "source": "Base game",
+   "ctx": [
+    "Legends"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    },
+    {
+     "field": "region",
+     "text": "Academy of Raya Lucaria",
+     "norm": "academy of raya lucaria"
+    }
+   ]
+  },
+  {
+   "ref": "boss:rykard-lord-of-blasphemy",
+   "group": "boss",
+   "name": "Rykard, Lord of Blasphemy",
+   "norm": "rykard lord of blasphemy",
+   "source": "Base game",
+   "ctx": [
+    "Demigods"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Mt. Gelmir",
+     "norm": "mt gelmir"
+    },
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    }
+   ]
+  },
+  {
+   "ref": "boss:starscourge-radahn",
+   "group": "boss",
+   "name": "Starscourge Radahn",
+   "norm": "starscourge radahn",
+   "source": "Base game",
+   "ctx": [
+    "Demigods"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    }
+   ]
+  },
+  {
+   "ref": "boss:moonrithyll-carian-knight",
+   "group": "boss",
+   "name": "Moonrithyll, Carian Knight",
+   "norm": "moonrithyll carian knight",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Invaders and other minibosses"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Gravesite Plain",
+     "norm": "gravesite plain"
+    },
+    {
+     "field": "region",
+     "text": "Castle Ensis",
+     "norm": "castle ensis"
+    }
+   ]
+  },
+  {
+   "ref": "boss:promised-consort-radahn",
+   "group": "boss",
+   "name": "Promised Consort Radahn",
+   "norm": "promised consort radahn",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Gods"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Land of the Tower",
+     "norm": "land of the tower"
+    },
+    {
+     "field": "region",
+     "text": "Enir-Ilim",
+     "norm": "enir ilim"
+    }
+   ]
+  },
+  {
+   "ref": "boss:rellana-twin-moon-knight",
+   "group": "boss",
+   "name": "Rellana, Twin Moon Knight",
+   "norm": "rellana twin moon knight",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Legends"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Gravesite Plain",
+     "norm": "gravesite plain"
+    },
+    {
+     "field": "region",
+     "text": "Castle Ensis",
+     "norm": "castle ensis"
+    }
+   ]
+  },
+  {
+   "ref": "boss:swordhand-of-night-jolan",
+   "group": "boss",
+   "name": "Swordhand of Night Jolán",
+   "norm": "swordhand of night jolan",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Invaders and other minibosses"
+   ]
+  },
+  {
+   "ref": "location:caelid",
+   "group": "location",
+   "name": "Caelid",
+   "norm": "caelid",
+   "source": "Base game",
+   "ctx": [
+    "Region",
+    "Caelid"
+   ]
+  },
+  {
+   "ref": "location:limgrave",
+   "group": "location",
+   "name": "Limgrave",
+   "norm": "limgrave",
+   "source": "Base game",
+   "ctx": [
+    "Region",
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "location:caelid-catacombs",
+   "group": "location",
+   "name": "Caelid Catacombs",
+   "norm": "caelid catacombs",
+   "source": "Base game",
+   "ctx": [
+    "Dungeon",
+    "Caelid"
+   ]
+  },
+  {
+   "ref": "location:caelid-colosseum",
+   "group": "location",
+   "name": "Caelid Colosseum",
+   "norm": "caelid colosseum",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Caelid"
+   ]
+  },
+  {
+   "ref": "location:caelid-waypoint-ruins",
+   "group": "location",
+   "name": "Caelid Waypoint Ruins",
+   "norm": "caelid waypoint ruins",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Caelid"
+   ]
+  },
+  {
+   "ref": "location:minor-erdtree-caelid",
+   "group": "location",
+   "name": "Minor Erdtree (Caelid)",
+   "norm": "minor erdtree caelid",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Caelid"
+   ]
+  },
+  {
+   "ref": "location:divine-tower-of-caelid",
+   "group": "location",
+   "name": "Divine Tower of Caelid",
+   "norm": "divine tower of caelid",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Greyoll's Dragonbarrow"
+   ]
+  },
+  {
+   "ref": "location:divine-tower-of-limgrave",
+   "group": "location",
+   "name": "Divine Tower of Limgrave",
+   "norm": "divine tower of limgrave",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "location:limgrave-colosseum",
+   "group": "location",
+   "name": "Limgrave Colosseum",
+   "norm": "limgrave colosseum",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "location:limgrave-tunnels",
+   "group": "location",
+   "name": "Limgrave Tunnels",
+   "norm": "limgrave tunnels",
+   "source": "Base game",
+   "ctx": [
+    "Dungeon",
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "location:minor-erdtree-limgrave",
+   "group": "location",
+   "name": "Minor Erdtree (Limgrave)",
+   "norm": "minor erdtree limgrave",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "location:moonfolk-ruins",
+   "group": "location",
+   "name": "Moonfolk Ruins",
+   "norm": "moonfolk ruins",
+   "source": "Base game",
+   "ctx": [
+    "Location",
+    "Liurnia of the Lakes"
+   ]
+  },
+  {
+   "ref": "location:moonlight-altar",
+   "group": "location",
+   "name": "Moonlight Altar",
+   "norm": "moonlight altar",
+   "source": "Base game",
+   "ctx": [
+    "Subregion",
+    "Liurnia of the Lakes"
+   ]
+  },
+  {
+   "ref": "npc:kenneth-haight",
+   "group": "npc",
+   "name": "Kenneth Haight, Limgrave Heir",
+   "norm": "kenneth haight limgrave heir",
+   "source": "Base game",
+   "ctx": [
+    "Limgrave"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "npc:rennala-queen-of-the-full-moon",
+   "group": "npc",
+   "name": "Rennala, Queen of the Full Moon",
+   "norm": "rennala queen of the full moon",
+   "source": "Base game",
+   "ctx": [
+    "Academy of Raya Lucaria"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    },
+    {
+     "field": "region",
+     "text": "Academy of Raya Lucaria",
+     "norm": "academy of raya lucaria"
+    }
+   ]
+  },
+  {
+   "ref": "npc:jolan-swordhand-of-night",
+   "group": "npc",
+   "name": "Jolán, Swordhand of Night",
+   "norm": "jolan swordhand of night",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Realm of Shadow"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Scadu Altus",
+     "norm": "scadu altus"
+    }
+   ]
+  },
+  {
+   "ref": "npc:moonrithyll-carian-knight",
+   "group": "npc",
+   "name": "Moonrithyll, Carian Knight",
+   "norm": "moonrithyll carian knight",
+   "source": "Shadow of the Erdtree",
+   "ctx": []
+  },
+  {
+   "ref": "npc:nomadic-merchant-caelid-highway-north",
+   "group": "npc",
+   "name": "Nomadic Merchant (Caelid Highway North)",
+   "norm": "nomadic merchant caelid highway north",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    }
+   ]
+  },
+  {
+   "ref": "npc:nomadic-merchant-eastern-limgrave",
+   "group": "npc",
+   "name": "Nomadic Merchant (Eastern Limgrave)",
+   "norm": "nomadic merchant eastern limgrave",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "npc:nomadic-merchant-southern-caelid",
+   "group": "npc",
+   "name": "Nomadic Merchant (Southern Caelid)",
+   "norm": "nomadic merchant southern caelid",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    }
+   ]
+  },
+  {
+   "ref": "npc:nomadic-merchant-western-limgrave",
+   "group": "npc",
+   "name": "Nomadic Merchant (Western Limgrave)",
+   "norm": "nomadic merchant western limgrave",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-bloodhounds-step",
+   "group": "skill",
+   "name": "Bloodhound's Step",
+   "norm": "bloodhounds step",
+   "source": "Base game",
+   "ctx": [
+    "Ash of War: Bloodhound's Step"
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-seppuku",
+   "group": "skill",
+   "name": "Seppuku",
+   "norm": "seppuku",
+   "source": "Base game",
+   "ctx": [
+    "Ash of War: Seppuku"
+   ]
+  },
+  {
+   "ref": "weapon:rellanas-twin-blades",
+   "group": "skill",
+   "name": "Moon-and-Fire Stance",
+   "norm": "moon and fire stance",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Rellana's Twin Blades"
+   ]
+  },
+  {
+   "ref": "weapon:greatsword-of-solitude",
+   "group": "skill",
+   "name": "Solitary Moon Slash",
+   "norm": "solitary moon slash",
+   "source": "Shadow of the Erdtree",
+   "ctx": [
+    "Greatsword of Solitude"
+   ]
+  },
+  {
+   "ref": "weapon:dark-moon-greatsword",
+   "group": "skill",
+   "name": "Moonlight Greatsword",
+   "norm": "moonlight greatsword",
+   "source": "Base game",
+   "ctx": [
+    "Dark Moon Greatsword"
+   ]
+  },
+  {
+   "ref": "weapon:bloodhounds-fang",
+   "group": "skill",
+   "name": "Bloodhound's Finesse",
+   "norm": "bloodhounds finesse",
+   "source": "Base game",
+   "ctx": [
+    "Bloodhound's Fang"
+   ]
+  },
+  {
+   "ref": "weapon:moonveil",
+   "group": "skill",
+   "name": "Transient Moonlight",
+   "norm": "transient moonlight",
+   "source": "Base game",
+   "ctx": [
+    "Moonveil"
+   ]
+  },
+  {
+   "ref": "weapon:lion-greatbow",
+   "group": "skill",
+   "name": "Radahn's Rain",
+   "norm": "radahns rain",
+   "source": "Base game",
+   "ctx": [
+    "Lion Greatbow"
+   ]
+  },
+  {
+   "ref": "origin:vagabond",
+   "group": "origin",
+   "name": "Vagabond",
+   "norm": "vagabond",
+   "source": "Base game",
+   "ctx": []
+  },
+  {
+   "ref": "origin:warrior",
+   "group": "origin",
+   "name": "Warrior",
+   "norm": "warrior",
+   "source": "Base game",
+   "ctx": []
+  },
+  {
+   "ref": "origin:hero",
+   "group": "origin",
+   "name": "Hero",
+   "norm": "hero",
+   "source": "Base game",
+   "ctx": []
+  },
+  {
+   "ref": "origin:bandit",
+   "group": "origin",
+   "name": "Bandit",
+   "norm": "bandit",
+   "source": "Base game",
+   "ctx": []
+  },
+  {
+   "ref": "mechanic:stats-and-attributes",
+   "group": "mechanic",
+   "name": "Stats and Attributes",
+   "norm": "stats and attributes",
+   "source": "Base game",
+   "ctx": [
+    "Attributes & stats"
+   ]
+  },
+  {
+   "ref": "mechanic:vigor",
+   "group": "mechanic",
+   "name": "Vigor",
+   "norm": "vigor",
+   "source": "Base game",
+   "ctx": [
+    "Attributes & stats"
+   ]
+  },
+  {
+   "ref": "mechanic:mind",
+   "group": "mechanic",
+   "name": "Mind",
+   "norm": "mind",
+   "source": "Base game",
+   "ctx": [
+    "Attributes & stats"
+   ]
+  },
+  {
+   "ref": "mechanic:endurance",
+   "group": "mechanic",
+   "name": "Endurance",
+   "norm": "endurance",
+   "source": "Base game",
+   "ctx": [
+    "Attributes & stats"
+   ]
+  },
+  {
+   "ref": "location:ainsel-river",
+   "group": "location",
+   "name": "Ainsel River",
+   "norm": "ainsel river",
+   "source": "Base game",
+   "ctx": [
+    "Region",
+    "Ainsel River"
+   ]
+  },
+  {
+   "ref": "location:altus-plateau",
+   "group": "location",
+   "name": "Altus Plateau",
+   "norm": "altus plateau",
+   "source": "Base game",
+   "ctx": [
+    "Region",
+    "Altus Plateau"
+   ]
+  },
+  {
+   "ref": "location:deeproot-depths",
+   "group": "location",
+   "name": "Deeproot Depths",
+   "norm": "deeproot depths",
+   "source": "Base game",
+   "ctx": [
+    "Region",
+    "Deeproot Depths"
+   ]
+  },
+  {
+   "ref": "location:liurnia-of-the-lakes",
+   "group": "location",
+   "name": "Liurnia of the Lakes",
+   "norm": "liurnia of the lakes",
+   "source": "Base game",
+   "ctx": [
+    "Region",
+    "Liurnia of the Lakes"
+   ]
+  },
+  {
+   "ref": "armor:commoners-headband",
+   "group": "armor",
+   "name": "Commoner's Headband",
+   "norm": "commoners headband",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    }
+   ]
+  },
+  {
+   "ref": "armor:commoners-headband-altered",
+   "group": "armor",
+   "name": "Commoner's Headband (altered)",
+   "norm": "commoners headband altered",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "armor:aristocrat-headband",
+   "group": "armor",
+   "name": "Aristocrat Headband",
+   "norm": "aristocrat headband",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "armor:aristocrat-hat",
+   "group": "armor",
+   "name": "Aristocrat Hat",
+   "norm": "aristocrat hat",
+   "source": "Base game",
+   "ctx": [
+    "Head"
+   ]
+  },
+  {
+   "ref": "item:flask-of-crimson-tears",
+   "group": "item",
+   "name": "Flask of Crimson Tears",
+   "norm": "flask of crimson tears",
+   "source": "Base game",
+   "ctx": [
+    "Tools"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Stranded Graveyard",
+     "norm": "stranded graveyard"
+    },
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "item:flask-of-cerulean-tears",
+   "group": "item",
+   "name": "Flask of Cerulean Tears",
+   "norm": "flask of cerulean tears",
+   "source": "Base game",
+   "ctx": [
+    "Tools"
+   ]
+  },
+  {
+   "ref": "item:flask-of-wondrous-physick",
+   "group": "item",
+   "name": "Flask of Wondrous Physick",
+   "norm": "flask of wondrous physick",
+   "source": "Base game",
+   "ctx": [
+    "Tools"
+   ]
+  },
+  {
+   "ref": "item:memory-of-grace",
+   "group": "item",
+   "name": "Memory of Grace",
+   "norm": "memory of grace",
+   "source": "Base game",
+   "ctx": [
+    "Tools"
+   ]
+  },
+  {
+   "ref": "talisman:crimson-amber-medallion",
+   "group": "talisman",
+   "name": "Crimson Amber Medallion",
+   "norm": "crimson amber medallion",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Weeping Peninsula",
+     "norm": "weeping peninsula"
+    },
+    {
+     "field": "region",
+     "text": "Weeping Peninsula",
+     "norm": "weeping peninsula"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:crimson-amber-medallion-1",
+   "group": "talisman",
+   "name": "Crimson Amber Medallion +1",
+   "norm": "crimson amber medallion 1",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    },
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:crimson-amber-medallion-2",
+   "group": "talisman",
+   "name": "Crimson Amber Medallion +2",
+   "norm": "crimson amber medallion 2",
+   "source": "Base game",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Subterranean Shunning-Grounds",
+     "norm": "subterranean shunning grounds"
+    },
+    {
+     "field": "region",
+     "text": "Subterranean Shunning-Grounds",
+     "norm": "subterranean shunning grounds"
+    },
+    {
+     "field": "region",
+     "text": "Leyndell, Ashen Capital",
+     "norm": "leyndell ashen capital"
+    }
+   ]
+  },
+  {
+   "ref": "talisman:crimson-amber-medallion-3",
+   "group": "talisman",
+   "name": "Crimson Amber Medallion +3",
+   "norm": "crimson amber medallion 3",
+   "source": "Shadow of the Erdtree",
+   "ctx": [],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Fog Rift Catacombs",
+     "norm": "fog rift catacombs"
+    },
+    {
+     "field": "region",
+     "text": "Fog Rift Catacombs",
+     "norm": "fog rift catacombs"
+    }
+   ]
+  },
+  {
+   "ref": "npc:melina",
+   "group": "npc",
+   "name": "Melina",
+   "norm": "melina",
+   "source": "Base game",
+   "ctx": [
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "npc:stranded-souls",
+   "group": "npc",
+   "name": "Stranded Soul",
+   "norm": "stranded soul",
+   "source": "Base game",
+   "ctx": [
+    "Limgrave"
+   ]
+  },
+  {
+   "ref": "npc:white-mask-varre",
+   "group": "npc",
+   "name": "White Mask Varré",
+   "norm": "white mask varre",
+   "source": "Base game",
+   "ctx": [
+    "Limgrave"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "region",
+     "text": "Liurnia of the Lakes",
+     "norm": "liurnia of the lakes"
+    },
+    {
+     "field": "region",
+     "text": "Siofra River",
+     "norm": "siofra river"
+    },
+    {
+     "field": "region",
+     "text": "Mohgwyn Palace",
+     "norm": "mohgwyn palace"
+    }
+   ]
+  },
+  {
+   "ref": "npc:merchant-kale",
+   "group": "npc",
+   "name": "Merchant Kalé",
+   "norm": "merchant kale",
+   "source": "Base game",
+   "ctx": [
+    "Limgrave"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    }
+   ]
+  },
+  {
+   "ref": "spirit:wandering-noble-ashes",
+   "group": "spirit",
+   "name": "Wandering Noble Ashes",
+   "norm": "wandering noble ashes",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "spirit:noble-sorcerer-ashes",
+   "group": "spirit",
+   "name": "Noble Sorcerer Ashes",
+   "norm": "noble sorcerer ashes",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "spirit:nomad-ashes",
+   "group": "spirit",
+   "name": "Nomad Ashes",
+   "norm": "nomad ashes",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ],
+   "terms": [
+    {
+     "field": "region",
+     "text": "Subterranean Shunning-Grounds",
+     "norm": "subterranean shunning grounds"
+    }
+   ]
+  },
+  {
+   "ref": "spirit:putrid-corpse-ashes",
+   "group": "spirit",
+   "name": "Putrid Corpse Ashes",
+   "norm": "putrid corpse ashes",
+   "source": "Base game",
+   "ctx": [
+    "Ashes"
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-stamp-upward-cut",
+   "group": "ash",
+   "name": "Ash of War: Stamp (Upward Cut)",
+   "norm": "ash of war stamp upward cut",
+   "source": "Base game",
+   "ctx": [
+    "Heavy Affinity"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Stormhill / Volcano Manor",
+     "norm": "stormhill volcano manor"
+    },
+    {
+     "field": "region",
+     "text": "Stormhill",
+     "norm": "stormhill"
+    },
+    {
+     "field": "region",
+     "text": "Volcano Manor",
+     "norm": "volcano manor"
+    },
+    {
+     "field": "skill",
+     "text": "Stamp (Upward Cut)",
+     "norm": "stamp upward cut"
+    }
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-stamp-sweep",
+   "group": "ash",
+   "name": "Ash of War: Stamp (Sweep)",
+   "norm": "ash of war stamp sweep",
+   "source": "Base game",
+   "ctx": [
+    "Heavy Affinity"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "region",
+     "text": "Limgrave",
+     "norm": "limgrave"
+    },
+    {
+     "field": "skill",
+     "text": "Stamp (Sweep)",
+     "norm": "stamp sweep"
+    }
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-wild-strikes",
+   "group": "ash",
+   "name": "Ash of War: Wild Strikes",
+   "norm": "ash of war wild strikes",
+   "source": "Base game",
+   "ctx": [
+    "Heavy Affinity"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Stormhill",
+     "norm": "stormhill"
+    },
+    {
+     "field": "region",
+     "text": "Stormhill",
+     "norm": "stormhill"
+    },
+    {
+     "field": "skill",
+     "text": "Wild Strikes",
+     "norm": "wild strikes"
+    }
+   ]
+  },
+  {
+   "ref": "ash:ash-of-war-lions-claw",
+   "group": "ash",
+   "name": "Ash of War: Lion's Claw",
+   "norm": "ash of war lions claw",
+   "source": "Base game",
+   "ctx": [
+    "Heavy Affinity"
+   ],
+   "terms": [
+    {
+     "field": "acquisition",
+     "text": "Caelid",
+     "norm": "caelid"
+    },
+    {
+     "field": "region",
+     "text": "Caelid",
+     "norm": "caelid"
+    },
+    {
+     "field": "skill",
+     "text": "Lion's Claw",
+     "norm": "lions claw"
+    }
+   ]
+  }
+ ]
+}
