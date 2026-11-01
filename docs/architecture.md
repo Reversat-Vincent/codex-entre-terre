@@ -136,7 +136,7 @@ type FileKey = DatasetKey | 'tables' | 'search-index';
 
 ## 4. Chargement
 
-`src/data/loader.ts` (sans Vue) : `fetchManifest(base, fetchFn)` (`no-cache`) ; `fetchDataFile(entry, onProgress, fetchFn)` lit le flux (progression en octets), parse, vérifie clé et nombre d'entrées ; erreurs `network`, `http`, `parse`, `mismatch`.
+`src/data/loader.ts` (sans Vue) : `fetchManifest(base, fetchFn)` (`no-cache`) ; `fetchDataFile(key, entry, onProgress?, fetchFn?, base?)` lit le flux (progression en octets), parse, vérifie clé et nombre d'entrées ; erreurs `network`, `http`, `parse`, `mismatch`.
 
 ```ts
 type FileStatus = 'idle' | 'loading' | 'ready' | 'error';
@@ -203,7 +203,8 @@ interface Calc<T> { value: T | null; estimate: { confidence: 'high' | 'medium' }
 | `attackPower.ts` | `attackPower(w, affinity, level, attrs, hands, cfg): Calc<AttackBreakdown> \| { unavailable: string }`. Mode `estimate` : base au niveau choisi depuis `upgrade.tables` (interpolée sinon, badge Estimation ; infobox à +0 si `derived.inconsistent`), −40 % par type lié à un prérequis non atteint, bonus de scaling seulement si les coefficients existent (43 armes), sinon « non calculable ». Mode `published` : valeur du tableau si documentée, sinon `unavailable`. Aucun autre module ne dépend du détail | Hypothèse C3 |
 | `coverage.ts` | `coverage(data, timelineCfg): CoverageRow[]` (documenté, estimé, non documenté, par source) | Couverture |
 | `attributeYield.ts` | `attributeYield(attrs, tables): Calc<YieldCurve[]>` : pour Vigor, Mind et Endurance, valeur par niveau 1–99 (PV, FP, endurance, charge), gain du point suivant, paliers où le gain baisse, position du profil (D23) | Statistiques dérivées |
-| `methods.ts` | titre et résumé de chaque `MethodId` (info-bulle du badge Calculé) | — |
+| `methods.ts`, `codes.ts` | identifiant et section de `calculs.md` de chaque `MethodId` ; liste unique des codes de composantes et de limites (les textes sont dans `src/ui/explainText.ts`) | — |
+| `readiness.ts` | préparation et jauge, réexportées par `bossLevel.ts` ; `checkRequirements` (avec explication) s'ajoute à `compareRequirements` ; les fonctions qui citent un fichier reçoivent `ctx.file` | D32 |
 
 ### 5.3 Configuration (`src/engine/config/`, chaque valeur commentée)
 
@@ -233,7 +234,7 @@ L'origine « Automatique » est le rang 1 de B ; B départage avec les armes de 
 | `pins` | `items: { ref: EntityRef; addedAt; done }[]` | `pin`, `unpin` (« Épinglé à Ma liste », Annuler 5 s), `toggleDone`, `reorder` | oui |
 | `compare` | `items: EntityRef[]` (2 à 4, même genre) | `add` (refus motivé), `remove`, `clear` | non (§ 15) |
 | `layout` | `order`, `hidden`, `collapsed`, `collapsedMobile` (D réduits par défaut) | `move`, `add`, `remove`, `toggleCollapse`, `reset` | oui |
-| `preferences` | `theme: 'sombre' \| 'parchemin'`, `navRail`, `criteriaCollapsed`, `catalogView`, `catalogColumns` | setters ; le thème écrit `data-theme` | oui |
+| `preferences` | `theme: 'sombre' \| 'parchemin'`, `navRail: 'auto' \| 'rail' \| 'expanded'`, `criteriaCollapsed`, `catalogView: Record<catalogue, 'table' \| 'grid'>`, `catalogColumns: Record<catalogue, string[]>` | setters ; le thème écrit `data-theme` | oui |
 | `search` | `open`, `query`, `recent` (8 au plus) | `openPalette`, `close`, `commit` | `recent` |
 | `catalogs`, `toasts` | filtres (ordre d'ajout), tri, page ; notifications | — | non |
 
