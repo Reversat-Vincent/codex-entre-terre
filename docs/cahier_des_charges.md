@@ -100,5 +100,5 @@ Priorité en cas de contradiction : décisions du développeur > ce document > d
 - Le 01/11/2026 :
   - GitHub Pages est activé, avec la source « GitHub Actions ».
   - La puissance d'attaque calculée avec les attributs du profil est une estimation signalée, puisqu'un calcul exact est impossible avec les données du wiki.
-  - Fextralife sert seulement de liens (fiches, carte interactive, guides) : ses conditions interdisent la récupération automatisée de son contenu.
+  - Fextralife : liens uniquement (fiches, carte interactive, guides), son exploration étant interdite.
   - La carte interactive est un lien, sans intégration dans l'application.
