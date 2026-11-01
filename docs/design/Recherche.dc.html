@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Recherche globale — Codex de l'Entre-terre</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/codex/tokens.css">
+<link rel="stylesheet" href="ds/codex/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400">
+<style>
+body{margin:0}
+.p-stage{position:relative;min-height:860px;overflow:hidden}
+.p-bg{display:flex;min-height:860px}
+.p-bg .cx-app{min-height:860px}
+.p-bgpage{flex:1 1 auto;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--space-4);align-content:start;padding:var(--space-5) var(--space-6)}
+.p-bgw{min-height:220px}
+.p-bgw .cx-w-body{display:grid;gap:10px}
+.p-layer{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;padding-top:72px}
+.p-layer .cx-palette{width:720px}
+.cx-palette-in input{font-family:var(--font-sans)}
+.cx .cx-palette-in input:focus,.cx .cx-palette-in input:focus-visible{outline:none;box-shadow:none}
+.cx-palette-in:focus-within{box-shadow:inset 0 -2px 0 var(--gold)}
+.p-pal-body{max-height:560px}
+.p-more{display:block;padding:4px var(--space-4) 6px 56px;color:var(--gold-text);font-size:12px;font-weight:600}
+.p-sub2{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.p-empty{display:grid;gap:8px;padding:var(--space-5) var(--space-4) var(--space-4);color:var(--ink-2);font-size:13px;line-height:19px}
+.p-empty b{color:var(--ink)}
+.p-recent{display:flex;flex-wrap:wrap;gap:6px;padding:4px var(--space-4) var(--space-2)}
+.p-hint{position:absolute;left:50%;top:84px;transform:translateX(-50%)}
+.cx-palette-item .cx-kbd{margin-left:0}
+.cx-palette-filters .cx-chip:disabled{opacity:.5;cursor:not-allowed}
+</style>
+</helmet>
+<div class="cx {{mqCls}}" data-theme="{{theme}}">
+<svg width="0" height="0" style="position: absolute; overflow: hidden" aria-hidden="true" focusable="false"><symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 2.5L21.5 12 12 21.5 2.5 12z"></path><path d="M12 6.5v11"></path><path d="M9.6 12L12 9.6 14.4 12 12 14.4z"></path></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol><symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></symbol><symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></symbol><symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></symbol><symbol id="i-chev-u" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4.5 7.5L8 4l3.5 3.5"></path><path d="M12.5 16.5L16 20l3.5-3.5"></path></symbol><symbol id="i-info" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 11v5.5"></path><path d="M12 7.8h.01" stroke-width="2.4"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-help" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.5"></path><path d="M12 16.7h.01" stroke-width="2.4"></path></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6"></path><path d="M20 4l-9 9"></path><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></symbol><symbol id="i-grip" viewBox="0 0 24 24"><path d="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01" stroke-width="2.6"></path></symbol><symbol id="i-more" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01" stroke-width="2.6"></path></symbol><symbol id="i-max" viewBox="0 0 24 24"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></symbol><symbol id="i-min" viewBox="0 0 24 24"><path d="M9 4v5H4"></path><path d="M15 4v5h5"></path><path d="M9 20v-5H4"></path><path d="M15 20v-5h5"></path></symbol><symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M12 2.5v2"></path><path d="M12 19.5v2"></path><path d="M2.5 12h2"></path><path d="M19.5 12h2"></path><path d="M5.3 5.3l1.4 1.4"></path><path d="M17.3 17.3l1.4 1.4"></path><path d="M5.3 18.7l1.4-1.4"></path><path d="M17.3 6.7l1.4-1.4"></path></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10z"></path></symbol><symbol id="i-dash" viewBox="0 0 24 24"><path d="M4 4h7v9H4z"></path><path d="M13 4h7v5h-7z"></path><path d="M13 11h7v9h-7z"></path><path d="M4 15h7v5H4z"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M4.5 20c1.2-3.5 4-5.5 7.5-5.5s6.3 2 7.5 5.5"></path></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6h10"></path><path d="M10 12h10"></path><path d="M10 18h10"></path><path d="M4 6l1.2 1.2L7.5 5"></path><path d="M4 12l1.2 1.2L7.5 11"></path><path d="M4 18l1.2 1.2L7.5 17"></path></symbol><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13"></path><path d="M15 5l3 3-3 3"></path><path d="M19 16H6"></path><path d="M9 13l-3 3 3 3"></path></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 4v5h7V4"></path><path d="M8 20v-6h8v6"></path></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9"></path><path d="M17 7h3"></path><path d="M4 17h3"></path><path d="M11 17h9"></path><path d="M15 5v4"></path><path d="M9 15v4"></path></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 10A8 8 0 0 0 5 7.5"></path><path d="M4.5 4v4h4"></path><path d="M4.5 14A8 8 0 0 0 19 16.5"></path><path d="M19.5 20v-4h-4"></path></symbol><symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 7.5V12l3 2"></path></symbol><symbol id="i-check-c" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M8.2 12.3l2.6 2.6 5-5.2"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"></path><path d="M12 7.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path></symbol><symbol id="i-weight" viewBox="0 0 24 24"><path d="M9 7.5a3 3 0 1 1 6 0"></path><path d="M5.5 9h13l1.5 11H4z"></path></symbol><symbol id="i-stone" viewBox="0 0 24 24"><path d="M7 5h10l3 5-8 10-8-10z"></path><path d="M4 10h16"></path><path d="M10 5l-1.5 5L12 20l3.5-10L14 5"></path></symbol><symbol id="i-rune" viewBox="0 0 24 24"><path d="M12 3.5l6 8.5-6 8.5-6-8.5z"></path><path d="M12 9l2.1 3-2.1 3-2.1-3z"></path></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path></symbol><symbol id="i-key" viewBox="0 0 24 24"><path d="M7.5 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M11.5 12H21"></path><path d="M18 12v3"></path><path d="M15 12v2"></path></symbol><symbol id="i-skill" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"></path></symbol><symbol id="i-npc" viewBox="0 0 24 24"><path d="M12 3.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M6 20.5v-3a6 6 0 0 1 12 0v3"></path><path d="M9.5 20.5v-3"></path></symbol><symbol id="i-origin" viewBox="0 0 24 24"><path d="M6 20.5V8l6-4.5L18 8v12.5"></path><path d="M10 20.5v-5h4v5"></path><path d="M6 12h12"></path></symbol><symbol id="i-boss" viewBox="0 0 24 24"><path d="M4.5 17.5L3 7l5 4 4-6.5 4 6.5 5-4-1.5 10.5z"></path><path d="M4.5 20.5h15"></path></symbol><symbol id="i-trade" viewBox="0 0 24 24"><path d="M12 3l6.5 9-6.5 9-6.5-9z"></path><path d="M12 9.5v5"></path></symbol><symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 4v10"></path><path d="M7.5 9.5L12 14l4.5-4.5"></path><path d="M5 19.5h14"></path></symbol><symbol id="i-start" viewBox="0 0 24 24"><path d="M5 20.5V4"></path><path d="M5 4.5h12l-3 3.5 3 3.5H5"></path></symbol><symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v9H6z"></path><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol><symbol id="i-s-tp" viewBox="0 0 24 24"><path d="M12 4.5l7.5 7.5-7.5 7.5L4.5 12z"></path></symbol><symbol id="i-d-standard" viewBox="0 0 24 24"><path d="M18.5 5.5L8.2 15.8"></path><path d="M18.5 5.5H15"></path><path d="M18.5 5.5V9"></path><path d="M6 13.5l4.5 4.5"></path><path d="M7.6 16.4L4.5 19.5"></path></symbol><symbol id="i-d-strike" viewBox="0 0 24 24"><path d="M14 3.5l6.5 6.5-3 3-6.5-6.5z"></path><path d="M12.8 8.7L4.3 17.2a1.6 1.6 0 0 0 2.3 2.3l8.5-8.5"></path></symbol><symbol id="i-d-slash" viewBox="0 0 24 24"><path d="M4 18.5C9 17.5 14.5 13 18 5"></path><path d="M8 20.5c5-1.5 9.5-5.5 12-12"></path></symbol><symbol id="i-d-pierce" viewBox="0 0 24 24"><path d="M4.5 19.5L19 5"></path><path d="M12.5 5H19v6.5"></path><path d="M4.5 15.5l4 4"></path></symbol><symbol id="i-d-magic" viewBox="0 0 24 24"><path d="M12 3.5l1.9 6.6 6.6 1.9-6.6 1.9L12 20.5l-1.9-6.6L3.5 12l6.6-1.9z"></path></symbol><symbol id="i-d-fire" viewBox="0 0 24 24"><path d="M12 3.5c1 3.5 5.5 5.2 5.5 10a5.5 5.5 0 0 1-11 0c0-2.6 1.5-4 2.6-5.2.3 1.7 1 2.7 2.2 3.2C11 9 10.6 6.2 12 3.5z"></path></symbol><symbol id="i-d-lightning" viewBox="0 0 24 24"><path d="M13 3L5.5 13.5H12L10.5 21l8-11H12z"></path></symbol><symbol id="i-d-holy" viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M12 3v2.5"></path><path d="M12 18.5V21"></path><path d="M3 12h2.5"></path><path d="M18.5 12H21"></path><path d="M5.6 5.6l1.8 1.8"></path><path d="M16.6 16.6l1.8 1.8"></path><path d="M5.6 18.4l1.8-1.8"></path><path d="M16.6 7.4l1.8-1.8"></path></symbol><symbol id="i-st-bleed" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.7a6 6 0 0 1-12 0c0-3.3 3-6.7 6-10.7z"></path><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"></path></symbol><symbol id="i-st-frost" viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M4.2 7.5l15.6 9"></path><path d="M4.2 16.5l15.6-9"></path><path d="M9.5 4.5L12 7l2.5-2.5"></path><path d="M9.5 19.5L12 17l2.5 2.5"></path></symbol><symbol id="i-st-poison" viewBox="0 0 24 24"><path d="M8.5 11a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M16.5 4.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path><path d="M17 13.5a2 2 0 1 1 0 4a2 2 0 0 1 0-4z"></path></symbol><symbol id="i-st-rot" viewBox="0 0 24 24"><path d="M12 10a2 2 0 1 1 0 4a2 2 0 0 1 0-4z"></path><path d="M12 10c-1.5-3-1-5.5 0-6.5 1 1 1.5 3.5 0 6.5z"></path><path d="M14 12c3-1.5 5.5-1 6.5 0-1 1-3.5 1.5-6.5 0z"></path><path d="M12 14c1.5 3 1 5.5 0 6.5-1-1-1.5-3.5 0-6.5z"></path><path d="M10 12c-3 1.5-5.5 1-6.5 0 1-1 3.5-1.5 6.5 0z"></path></symbol><symbol id="i-st-sleep" viewBox="0 0 24 24"><path d="M4 10.5c2.5 3.5 13.5 3.5 16 0"></path><path d="M7 13.5L5.5 15.5"></path><path d="M12 14.6V17"></path><path d="M17 13.5l1.5 2"></path><path d="M15 4.5h3.5L15 8h3.5"></path></symbol><symbol id="i-st-madness" viewBox="0 0 24 24"><path d="M3.5 13S7 7.5 12 7.5 20.5 13 20.5 13 17 18.5 12 18.5 3.5 13 3.5 13z"></path><path d="M12 10.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path><path d="M12 3v2"></path><path d="M7 4l1 1.6"></path><path d="M17 4l-1 1.6"></path></symbol><symbol id="i-st-death" viewBox="0 0 24 24"><path d="M12 3.5a7 7 0 0 0-7 7c0 2.6 1.3 4.2 3 5.2V19.5h8v-3.8c1.7-1 3-2.6 3-5.2a7 7 0 0 0-7-7z"></path><path d="M9.3 10.5h.01M14.7 10.5h.01" stroke-width="2.6"></path><path d="M10.5 19.5v-2"></path><path d="M13.5 19.5v-2"></path></symbol><symbol id="i-c-dagger" viewBox="0 0 24 24"><path d="M7.5 16.5L4.5 19.5"></path><path d="M6 14l4 4"></path><path d="M8.2 15.8L15 9l2.5-4.5L13 7z"></path></symbol><symbol id="i-c-straight" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5 14.5l4.5 4.5"></path><path d="M7.5 16.5L18.5 5.5V8.5L9.8 17.2"></path></symbol><symbol id="i-c-greatsword" viewBox="0 0 24 24"><path d="M3.8 20.2L6.6 17.4"></path><path d="M4.6 14.2l5.2 5.2"></path><path d="M7.4 16.6L17.5 6.5"></path><path d="M9.4 18.6L19.5 8.5"></path><path d="M17.5 6.5L20 4l-.5 4.5"></path></symbol><symbol id="i-c-lgs" viewBox="0 0 24 24"><path d="M3.5 20.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M7.8 16.2L20 4"></path><path d="M20 4l-.3 2.8L9.4 17.1"></path></symbol><symbol id="i-c-katana" viewBox="0 0 24 24"><path d="M4 20l2.6-2.6"></path><path d="M5.4 16.2l2.4 2.4"></path><path d="M7.5 16.5C12 13.5 17 9 20 4c-1.5 5.5-6 10.2-10.8 14.1"></path></symbol><symbol id="i-c-curved" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M8 16c5-1.5 9.5-5.5 11-11.5C15 9 11 12 8 16z"></path></symbol><symbol id="i-c-axe" viewBox="0 0 24 24"><path d="M5 20L15.5 9.5"></path><path d="M13 5c3 0 6 3 6 6l-3.5 1.5-4-4z"></path></symbol><symbol id="i-c-hammer" viewBox="0 0 24 24"><path d="M5 20l8.5-8.5"></path><path d="M11.5 6.5l6 6 3-3-6-6z"></path></symbol><symbol id="i-c-spear" viewBox="0 0 24 24"><path d="M4 20L16.5 7.5"></path><path d="M16.5 7.5L20.5 3.5l-1 4.5-3.5 1z"></path></symbol><symbol id="i-c-halberd" viewBox="0 0 24 24"><path d="M4 20L18 6"></path><path d="M18 6l2.5-2.5"></path><path d="M13.5 6.5c2.7-1.6 5.3.3 5 3.6l-2.4-.6z"></path></symbol><symbol id="i-c-bow" viewBox="0 0 24 24"><path d="M6 4c7 1.5 12.5 7 14 14"></path><path d="M6 4l14 14"></path><path d="M5 9.5L6 4l5.5-1"></path></symbol><symbol id="i-c-staff" viewBox="0 0 24 24"><path d="M5 20L14.5 10.5"></path><path d="M17 4a3 3 0 1 1 0 6a3 3 0 0 1 0-6z"></path></symbol><symbol id="i-c-seal" viewBox="0 0 24 24"><path d="M12 3.5a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11z"></path><path d="M12 14.5v6"></path><path d="M12 6.5l2.5 2.5-2.5 2.5L9.5 9z"></path></symbol><symbol id="i-c-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M12 3v18"></path></symbol></svg>
+
+<div class="cx-proto" role="region" aria-label="Commandes du prototype">
+<span>Prototype</span><span class="sep"></span><span>Thème</span>
+<button aria-pressed="{{pDark}}" onClick="{{setDark}}">Sombre</button>
+<button aria-pressed="{{pLight}}" onClick="{{setLight}}">Parchemin</button>
+<span class="sep"></span><span>Requête</span>
+<button aria-pressed="{{qMoon}}" onClick="{{setMoon}}">moon</button>
+<button aria-pressed="{{qGod}}" onClick="{{setGod}}">god</button>
+<button aria-pressed="{{qEmpty}}" onClick="{{setEmpty}}">vide</button>
+<button aria-pressed="{{qNone}}" onClick="{{setNone}}">lune (aucun résultat)</button>
+<span style="margin-left: auto; font-weight: 400">Index construit sur les données de l'annexe B</span>
+</div>
+<div class="p-stage">
+<div class="p-bg" aria-hidden="{{open}}">
+<div class="cx-app" style="flex: 1 1 auto">
+<nav class="cx-nav is-rail" aria-label="Navigation principale">
+<a class="cx-brand" href="Main.dc.html" aria-label="Codex de l'Entre-terre, tableau de bord"><svg class="cx-mark" aria-hidden="true"><use href="#i-mark"></use></svg></a>
+<a class="cx-nav-item is-active" href="Main.dc.html" title="Tableau de bord"><svg class="cx-i" aria-hidden="true"><use href="#i-dash"></use></svg><span class="cx-sr">Tableau de bord</span></a>
+<a class="cx-nav-item" href="Catalogue.dc.html" title="Armes"><svg class="cx-i" aria-hidden="true"><use href="#i-c-greatsword"></use></svg><span class="cx-sr">Armes</span></a>
+<a class="cx-nav-item" href="FicheBoss.dc.html" title="Boss"><svg class="cx-i" aria-hidden="true"><use href="#i-boss"></use></svg><span class="cx-sr">Boss</span></a>
+<a class="cx-nav-item" href="#lieux" title="Lieux"><svg class="cx-i" aria-hidden="true"><use href="#i-map"></use></svg><span class="cx-sr">Lieux</span></a>
+<a class="cx-nav-item" href="#mecaniques" title="Mécaniques"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg><span class="cx-sr">Mécaniques</span></a>
+<a class="cx-nav-item" href="#ma-liste" title="Ma liste"><svg class="cx-i" aria-hidden="true"><use href="#i-list"></use></svg><span class="cx-sr">Ma liste</span></a>
+</nav>
+<div class="cx-main">
+<header class="cx-topbar">
+<button class="cx-search" onClick="{{openPal}}" aria-haspopup="dialog" aria-expanded="{{open}}"><svg class="cx-i" aria-hidden="true"><use href="#i-search"></use></svg><span>Rechercher une arme, un boss, un lieu…</span><span class="cx-kbd">Ctrl K</span></button>
+</header>
+<div class="p-bgpage">
+<section class="cx-widget span-12 p-bgw"><div class="cx-w-head"><div class="cx-w-titles"><h2 class="cx-w-title">Armes recommandées au fil de la partie</h2></div></div><div class="cx-w-body"><span class="cx-skel" style="height: 14px; width: 40%"></span><span class="cx-skel" style="height: 90px"></span></div></section>
+<section class="cx-widget span-6 p-bgw"><div class="cx-w-head"><div class="cx-w-titles"><h2 class="cx-w-title">Configuration de départ optimale</h2></div></div><div class="cx-w-body"><span class="cx-skel" style="height: 14px; width: 60%"></span><span class="cx-skel" style="height: 120px"></span></div></section>
+<section class="cx-widget span-6 p-bgw"><div class="cx-w-head"><div class="cx-w-titles"><h2 class="cx-w-title">Ordre des boss et niveau recommandé</h2></div></div><div class="cx-w-body"><span class="cx-skel" style="height: 14px; width: 50%"></span><span class="cx-skel" style="height: 120px"></span></div></section>
+</div>
+</div>
+</div>
+</div>
+
+<sc-if value="{{open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-scrim" onClick="{{closePal}}"></div>
+<div class="p-layer">
+<div class="cx-palette" role="dialog" aria-modal="true" aria-label="Recherche globale">
+<div class="cx-palette-in"><svg class="cx-i lg" aria-hidden="true"><use href="#i-search"></use></svg><input id="pal-q" role="combobox" aria-expanded="true" aria-controls="pal-list" aria-activedescendant="{{activeId}}" aria-autocomplete="list" aria-label="Rechercher dans le Codex" placeholder="Arme, boss, lieu, compétence, origine…" autoComplete="off" spellCheck="false" autoFocus="true" value="{{q}}" onChange="{{onQ}}" onKeyDown="{{onKey}}"><button class="cx-kbd" style="cursor: pointer" onClick="{{closePal}}" aria-label="Fermer la recherche">Échap</button></div>
+<sc-if value="{{showChips}}" hint-placeholder-val="{{ true }}"><div class="cx-palette-filters" role="group" aria-label="Filtrer par type"><sc-for list="{{chips}}" as="c" hint-placeholder-count="5"><button class="cx-chip" aria-pressed="{{c.on}}" disabled="{{c.dis}}" onClick="{{c.go}}">{{c.label}} <span class="cx-muted">{{c.n}}</span></button></sc-for></div></sc-if>
+<div class="cx-palette-body p-pal-body" id="pal-list" role="listbox" aria-label="Résultats">
+<sc-if value="{{isEmptyQ}}" hint-placeholder-val="{{ false }}">
+<div class="cx-palette-group"><span>Recherches récentes</span><span>stockées sur cet appareil</span></div>
+<div class="p-recent"><sc-for list="{{recents}}" as="r" hint-placeholder-count="3"><button class="cx-chip" onClick="{{r.go}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-clock"></use></svg>{{r.t}}</button></sc-for></div>
+</sc-if>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<div class="cx-palette-group" role="presentation"><span>{{g.label}}</span><span>{{g.count}}</span></div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="2">
+<a class="cx-palette-item {{it.cls}}" id="{{it.id}}" role="option" aria-selected="{{it.active}}" href="{{it.href}}" onMouseEnter="{{it.hover}}"><span class="cx-palette-ic"><svg class="cx-i" aria-hidden="true"><use href="{{it.icon}}"></use></svg></span><span><span class="cx-palette-t">{{it.pre}}<mark>{{it.hit}}</mark>{{it.post}}</span> <sc-if value="{{it.hasSrc}}" hint-placeholder-val="{{ true }}"><span class="cx-badge cx-src-{{it.src}}" title="{{it.srcF}}" aria-label="Source : {{it.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{it.srcI}}"></use></svg>{{it.srcS}}</span></sc-if><sc-if value="{{it.mock}}" hint-placeholder-val="{{ false }}"> <span class="cx-mq">valeur de maquette</span></sc-if><span class="cx-palette-s">{{it.sub}}</span></span><sc-if value="{{it.active}}" hint-placeholder-val="{{ false }}"><span class="cx-kbd">↵</span></sc-if><sc-if value="{{it.notActive}}" hint-placeholder-val="{{ true }}"><span></span></sc-if></a>
+</sc-for>
+<sc-if value="{{g.hasMore}}" hint-placeholder-val="{{ false }}"><button class="p-more" style="border: 0; background: none; cursor: pointer" onClick="{{g.more}}">{{g.moreTxt}}</button></sc-if>
+</sc-for>
+<sc-if value="{{noRes}}" hint-placeholder-val="{{ false }}">
+<div class="p-empty" role="status"><span class="cx-empty-title">Aucun résultat pour « {{q}} »</span><span>Les noms viennent du wiki et restent en anglais : essayez <b>{{tryTxt}}</b>.</span><div class="cx-row" style="gap: 8px; flex-wrap: wrap"><sc-for list="{{tries}}" as="t" hint-placeholder-count="2"><button class="cx-chip" onClick="{{t.go}}">{{t.t}}</button></sc-for><a class="cx-btn cx-btn-ghost cx-btn-sm" href="#wiki">Chercher « {{q}} » sur le wiki <svg class="cx-i sm" aria-hidden="true"><use href="#i-ext"></use></svg></a></div></div>
+</sc-if>
+</div>
+<div class="cx-palette-foot"><span><span class="cx-kbd">↑</span> <span class="cx-kbd">↓</span> naviguer</span><span><span class="cx-kbd">↵</span> ouvrir</span><span><span class="cx-kbd">Tab</span> filtre suivant</span><span><span class="cx-kbd">Échap</span> fermer</span><span style="margin-left: auto">{{totalTxt}}</span></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{closed}}" hint-placeholder-val="{{ false }}"><div class="cx-toast p-hint" role="status"><svg class="cx-i sm" aria-hidden="true"><use href="#i-search"></use></svg><span>Recherche fermée. Ctrl K ou le champ de recherche la rouvrent.</span><button class="cx-btn cx-btn-sm" onClick="{{openPal}}">Rouvrir</button></div></sc-if>
+</div>
+<footer class="cx-footer"><span>Outil de fan non officiel — données : eldenring.wiki.gg (CC BY-SA 4.0)</span><span>Index local, sans serveur</span></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["sombre","parchemin"],"default":"sombre","section":"Prototype"},"query":{"editor":"text","default":"moon","section":"Prototype"},"showMock":{"editor":"boolean","default":true,"section":"Prototype"},"$preview":{"width":1440,"height":960}}'>
+var SRC = { base: { s: 'Base', f: 'Base game', i: '#i-s-base' }, sote: { s: 'SotE', f: 'Shadow of the Erdtree (DLC)', i: '#i-s-sote' }, tp: { s: 'TP', f: 'Tarnished Pack (DLC)', i: '#i-s-tp' } };
+function norm(t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/['’]/g, "'"); }
+var IDX = [];
+function add(type, name, icon, src, sub, href, extra) { IDX.push(Object.assign({ type: type, name: name, icon: icon, src: src, sub: sub, href: href || '#' }, extra || {})); }
+[['Uchigatana', 'Katana', '#i-c-katana', 'base', 'Départ Samurai ; butin, Deathtouched Catacombs (Limgrave)', 'Unsheathe'],
+ ["Lordsworn's Greatsword", 'Greatsword', '#i-c-greatsword', 'base', 'Butin, Gatefront Ruins (Limgrave)', 'Stamp (Upward Cut)'],
+ ['Claymore', 'Greatsword', '#i-c-greatsword', 'base', 'Butin, Castle Morne (Weeping Peninsula)', "Lion's Claw"],
+ ['Moonveil', 'Katana', '#i-c-katana', 'base', 'Butin garanti, Magma Wyrm, Gael Tunnel (Caelid)', 'Transient Moonlight'],
+ ['Sword of Night and Flame', 'Straight Sword', '#i-c-straight', 'base', 'Pièce verrouillée, Caria Manor (Liurnia of the Lakes)', 'Night-and-Flame Stance'],
+ ['Rivers of Blood', 'Katana', '#i-c-katana', 'base', 'Vaincre Okina, Church of Repose (Mountaintops of the Giants)', 'Corpse Piler'],
+ ['Blasphemous Blade', 'Greatsword', '#i-c-greatsword', 'base', 'Échange de la Remembrance de Rykard (Roundtable Hold)', "Taker's Flames"],
+ ['Milady', 'Light Greatsword', '#i-c-lgs', 'sote', 'Butin, Castle Ensis (Gravesite Plain)', 'Impaling Thrust'],
+ ["Rellana's Twin Blades", 'Light Greatsword', '#i-c-lgs', 'sote', 'Échange de la Remembrance de Rellana (Roundtable Hold)', 'Moon-and-Fire Stance'],
+ ['Idus Sword', 'Light Greatsword', '#i-c-lgs', 'tp', 'Départ Idus Knight ; butin, Laskyar Ruins (Liurnia of the Lakes)', 'Impaling Thrust']
+].forEach(function (w) { add('weapon', w[0], w[2], w[3], w[1] + ', ' + w[4].charAt(0).toLowerCase() + w[4].slice(1), 'FicheArme.dc.html'); add('skill', w[5], '#i-skill', null, 'Compétence de ' + w[0], 'FicheArme.dc.html'); });
+[['Margit, the Fell Omen', 'Grand ennemi', 'Stormveil Castle (Limgrave), 2 rencontres', 'base'], ['Godrick the Grafted', 'Demi-dieu', 'Stormveil Castle (Limgrave)', 'base'],
+ ['Rennala, Queen of the Full Moon', 'Légende', 'Academy of Raya Lucaria (Liurnia of the Lakes)', 'base'], ['Starscourge Radahn', 'Demi-dieu', 'Wailing Dunes (Caelid)', 'base'],
+ ['Rykard, Lord of Blasphemy', 'Demi-dieu', 'Volcano Manor (Mt. Gelmir)', 'base'], ['Mohg, Lord of Blood', 'Demi-dieu', 'Mohgwyn Palace (Siofra River)', 'base'],
+ ['Draconic Tree Sentinel', 'Ennemi', 'Capital Outskirts', 'base'], ['Godfrey, First Elden Lord (ombre dorée)', 'Grand ennemi', 'Leyndell, Royal Capital', 'base'],
+ ['Morgott, the Omen King', 'Demi-dieu', 'Leyndell, Royal Capital', 'base'], ['Fire Giant', 'Légende', 'Flame Peak (Mountaintops of the Giants)', 'base'],
+ ['Godskin Duo', 'Grand ennemi', 'Crumbling Farum Azula', 'base'], ['Maliketh, the Black Blade', 'Légende', 'Crumbling Farum Azula', 'base'],
+ ['Sir Gideon Ofnir, the All-Knowing', 'Ennemi', 'Leyndell, Ashen Capital', 'base'], ['Godfrey / Hoarah Loux', 'Légende', 'Leyndell, Ashen Capital', 'base'],
+ ['Radagon of the Golden Order', 'Dieu', "Intérieur de l'Erdtree", 'base'], ['Elden Beast', 'Dieu', "Intérieur de l'Erdtree", 'base'],
+ ['Messmer the Impaler', 'Demi-dieu', 'Shadow Keep', 'sote'], ['Romina, Saint of the Bud', 'Légende', 'Ancient Ruins of Rauh', 'sote'], ['Promised Consort Radahn', 'Dieu', 'Enir-Ilim', 'sote']
+].forEach(function (b) { add('boss', b[0], '#i-boss', b[3], b[1] + ', ' + b[2], 'FicheBoss.dc.html'); });
+[['Stormveil Castle', 'Limgrave', 'base'], ['Deathtouched Catacombs', 'Limgrave', 'base'], ['Gatefront Ruins', 'Limgrave', 'base'], ['Castle Morne', 'Weeping Peninsula', 'base'],
+ ['Academy of Raya Lucaria', 'Liurnia of the Lakes', 'base'], ['Caria Manor', 'Liurnia of the Lakes', 'base'], ['Laskyar Ruins', 'Liurnia of the Lakes', 'base'], ['Gael Tunnel', 'Caelid', 'base'],
+ ['Wailing Dunes', 'Caelid', 'base'], ['Volcano Manor', 'Mt. Gelmir', 'base'], ['Mohgwyn Palace', 'Siofra River', 'base'], ['Capital Outskirts', 'Altus Plateau', 'base'],
+ ['Leyndell, Royal Capital', 'Altus Plateau', 'base'], ['Church of Repose', 'Mountaintops of the Giants', 'base'], ['Flame Peak', 'Mountaintops of the Giants', 'base'],
+ ['Crumbling Farum Azula', 'Crumbling Farum Azula', 'base'], ['Roundtable Hold', 'Hors carte', 'base'], ['Castle Ensis', 'Gravesite Plain', 'sote'], ['Shadow Keep', 'Gravesite Plain', 'sote'],
+ ['Ancient Ruins of Rauh', 'Ancient Ruins of Rauh', 'sote'], ['Enir-Ilim', 'Enir-Ilim', 'sote']
+].forEach(function (l) { add('place', l[0], '#i-map', l[2], 'Lieu, ' + l[1]); });
+[['Vagabond', 9, 'base'], ['Warrior', 8, 'base'], ['Hero', 7, 'base'], ['Bandit', 5, 'base'], ['Astrologer', 6, 'base'], ['Prophet', 7, 'base'], ['Samurai', 9, 'base'], ['Prisoner', 9, 'base'],
+ ['Confessor', 10, 'base'], ['Wretch', 1, 'base'], ['Idus Knight', 7, 'tp'], ['Heavy Knight', 10, 'tp']
+].forEach(function (o) { add('origin', o[0], '#i-origin', o[2], 'Origine, niveau ' + o[1]); });
+[['Attribute Scaling', 'Lettres S à E et courbes de gain'], ['Status Effects', 'Saignement, givre, poison, putréfaction, sommeil, folie, mort'], ['Weapon Upgrades', 'Pierres de forge, niveaux +25 et +10'], ['Affinities', 'Cendres de guerre et affinités'], ['Level Up Costs', 'Coût en runes du niveau 1 au niveau 713'], ['Scadutree Blessing', "Bonus de la Bénédiction de l'Arbre-Ombre"]
+].forEach(function (m) { add('mech', m[0], '#i-book', null, 'Mécanique, ' + m[1], '#mecaniques', { mock: true }); });
+[['Ouvrir le tableau de bord', 'Main.dc.html', '#i-dash'], ['Ouvrir le catalogue des armes', 'Catalogue.dc.html', '#i-c-greatsword'], ['Basculer le thème clair ou sombre', '#theme', '#i-sun'], ['Charger le profil « Mage pur NG+ »', 'Main.dc.html', '#i-user'], ['Ouvrir Ma liste', '#ma-liste', '#i-list']
+].forEach(function (c) { add('action', c[0], c[2], null, 'Action', c[1]); });
+var PINNED = ['Rivers of Blood', 'Uchigatana'];
+var TYPES = [['pinned', 'Épinglés dans Ma liste'], ['weapon', 'Armes'], ['boss', 'Boss'], ['skill', 'Compétences'], ['place', 'Lieux'], ['origin', 'Origines'], ['mech', 'Mécaniques'], ['action', 'Actions']];
+var PRESETS = { moon: 'moon', god: 'god', empty: '', none: 'lune' };
+var TRIES = { lune: ['moon', 'Rennala'], epee: ['sword', 'blade'], sang: ['blood', 'Mohg'] };
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { theme: null, q: null, type: 'all', active: 0, open: true, showMoreFor: null, recents: ['rivers of blood', 'margit', 'smithing stone'] }; }
+  renderVals() {
+    var self = this, s = this.state, p = this.props || {};
+    var theme = s.theme || p.theme || 'sombre', q = s.q !== null ? s.q : (p.query !== undefined ? p.query : 'moon');
+    var showMock = p.showMock !== false;
+    var nq = norm(q).trim();
+    var hits = [];
+    if (nq) IDX.forEach(function (it) {
+      var nn = norm(it.name), i = nn.indexOf(nq);
+      if (i < 0) return;
+      var score = i === 0 ? 0 : (/[\s\-,(/]/.test(nn.charAt(i - 1)) ? 1 : 2);
+      hits.push({ it: it, i: i, score: score });
+    });
+    if (!nq) IDX.forEach(function (it) { if (it.type === 'action' || (it.type === 'weapon' && PINNED.indexOf(it.name) >= 0)) hits.push({ it: it.type === 'weapon' ? Object.assign({}, it, { type: 'pinned' }) : it, i: 0, score: it.type === 'weapon' ? 0 : 1 }); });
+    hits.sort(function (a, b) { return a.score - b.score || (nq ? a.it.name.length - b.it.name.length : 0) || (a.it.name < b.it.name ? -1 : 1); });
+    var counts = {}; TYPES.forEach(function (t) { counts[t[0]] = 0; }); hits.forEach(function (h) { counts[h.it.type]++; });
+    var type = s.type;
+    if (type !== 'all' && !counts[type]) type = 'all';
+    var shown = hits.filter(function (h) { return type === 'all' || h.it.type === type; });
+    var groups = [], flat = [];
+    TYPES.forEach(function (t) {
+      var list = shown.filter(function (h) { return h.it.type === t[0]; });
+      if (!list.length) return;
+      var lim = (type === 'all' && s.showMoreFor !== t[0]) ? (t[0] === 'action' ? 2 : 4) : 50;
+      var vis = list.slice(0, lim);
+      groups.push({ key: t[0], label: t[1], count: String(list.length), vis: vis, hasMore: list.length > lim, moreTxt: 'Voir les ' + list.length + ' résultats ' + t[1].toLowerCase().replace('armes', 'en armes'), more: function () { self.setState({ showMoreFor: t[0] }); } });
+      vis.forEach(function (h) { flat.push(h); });
+    });
+    var act = Math.min(s.active, Math.max(0, flat.length - 1));
+    var k = 0;
+    var gOut = groups.map(function (g) {
+      return { label: g.label, count: g.count, hasMore: g.hasMore, moreTxt: g.label === 'Armes' ? 'Voir les ' + g.count + ' armes' : 'Voir les ' + g.count + ' résultats', more: g.more,
+        items: g.vis.map(function (h) {
+          var idx = k++, it = h.it, n = it.name, on = idx === act;
+          return { id: 'pal-opt-' + idx, cls: on ? 'is-active' : '', active: on, notActive: !on, href: it.href, icon: it.icon,
+            pre: n.slice(0, h.i), hit: n.slice(h.i, h.i + nq.length), post: n.slice(h.i + nq.length),
+            hasSrc: !!it.src, src: it.src || 'base', srcS: it.src ? SRC[it.src].s : '', srcF: it.src ? SRC[it.src].f : '', srcI: it.src ? SRC[it.src].i : '#i-s-base',
+            sub: it.sub, mock: !!it.mock, hover: function () { if (self.state.active !== idx) self.setState({ active: idx }); } };
+        }) };
+    });
+    var chips = [{ key: 'all', label: 'Tout', n: String(hits.length) }].concat(TYPES.filter(function (t) { return t[0] !== 'pinned'; }).map(function (t) { return { key: t[0], label: t[1], n: String(counts[t[0]]) }; })).filter(function (c) { return c.key === 'all' || c.n !== '0'; }).map(function (c) {
+      return { label: c.label, n: c.n, on: type === c.key, dis: false, go: function () { self.setState({ type: c.key, active: 0, showMoreFor: null }); } };
+    });
+    var setQ = function (v) { self.setState({ q: v, active: 0, type: 'all', showMoreFor: null, open: true }); };
+    var tries = (TRIES[nq] || ['moon', 'blood']).map(function (t) { return { t: t, go: function () { setQ(t); } }; });
+    var nTypes = TYPES.filter(function (t) { return counts[t[0]] > 0; }).length;
+    var order = ['all'].concat(TYPES.map(function (t) { return t[0]; })).filter(function (x) { return x === 'all' || (x !== 'pinned' && counts[x] > 0); });
+    return {
+      theme: theme, mqCls: showMock ? '' : 'cx-hide-mq', pDark: theme === 'sombre', pLight: theme === 'parchemin',
+      setDark: function () { self.setState({ theme: 'sombre' }); }, setLight: function () { self.setState({ theme: 'parchemin' }); },
+      qMoon: q === 'moon', qGod: q === 'god', qEmpty: q === '', qNone: q === 'lune',
+      setMoon: function () { setQ('moon'); }, setGod: function () { setQ('god'); }, setEmpty: function () { setQ(''); }, setNone: function () { setQ('lune'); },
+      open: s.open, closed: !s.open, openPal: function () { self.setState({ open: true }); }, closePal: function () { self.setState({ open: false }); },
+      q: q, onQ: function (e) { setQ(e.target.value); },
+      onKey: function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); self.setState({ active: Math.min(act + 1, flat.length - 1) }); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); self.setState({ active: Math.max(act - 1, 0) }); }
+        else if (e.key === 'Escape') { e.preventDefault(); self.setState({ open: false }); }
+        else if (e.key === 'Tab') { e.preventDefault(); var i = order.indexOf(type); var nx = order[(i + (e.shiftKey ? order.length - 1 : 1)) % order.length]; self.setState({ type: nx, active: 0, showMoreFor: null }); }
+        else if (e.key === 'Enter') { var el = document.getElementById('pal-opt-' + act); if (el) el.click(); }
+      },
+      activeId: flat.length ? 'pal-opt-' + act : '', chips: chips, showChips: !!nq && hits.length > 0, groups: gOut, isEmptyQ: !nq,
+      recents: s.recents.map(function (r) { return { t: r, go: function () { setQ(r); } }; }),
+      noRes: !!nq && !hits.length, tries: tries, tryTxt: tries.map(function (t) { return '« ' + t.t + ' »'; }).join(' ou '),
+      totalTxt: nq ? (hits.length ? hits.length + (hits.length > 1 ? ' résultats' : ' résultat') + ' dans ' + nTypes + (nTypes > 1 ? ' types' : ' type') : 'Aucun résultat') : 'Index : 10 armes, 19 boss, 21 lieux, 12 origines (prototype)'
+    };
+  }
+}
+</script>
+</body>
+</html>

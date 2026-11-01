@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Critères, feuille mobile — Codex de l'Entre-terre</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/codex/tokens.css">
+<link rel="stylesheet" href="ds/codex/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400">
+<style>
+body{margin:0}
+.p-m{position:relative;width:390px;height:844px;overflow:hidden}
+.p-bg{display:flex;flex-direction:column;gap:var(--space-3)}
+.p-mh{display:flex;align-items:center;gap:var(--space-2);height:56px;padding:0 var(--space-4);border-bottom:1px solid var(--line)}
+.p-sheet-in{display:flex;flex-direction:column;min-height:0;height:100%}
+.p-sh-head{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-2) var(--space-3) var(--space-4);border-bottom:1px solid var(--line)}
+.p-sh-body{flex:1 1 auto;overflow-y:auto;padding:0 var(--space-4)}
+.p-acc{border-bottom:1px solid var(--line)}
+.p-acc-btn{display:flex;align-items:center;gap:var(--space-2);width:100%;min-height:56px;padding:0;border:0;background:transparent;color:var(--ink);text-align:left;cursor:pointer}
+.p-acc-btn b{font:600 15px/20px var(--font-sans)}
+.p-acc-btn small{display:block;color:var(--ink-3);font-size:12px;line-height:16px;font-weight:400}
+.p-acc-btn .cx-i{margin-left:auto}
+.p-acc-body{display:grid;gap:var(--space-3);padding:0 0 var(--space-4)}
+.p-m .cx-stepper{min-height:44px}
+.p-m .cx-stepper-ctl button{width:44px;height:44px}
+.p-m .cx-select{height:44px;font-size:15px}
+.p-sh-foot{display:flex;gap:var(--space-2);padding:var(--space-3) var(--space-4) var(--space-4);border-top:1px solid var(--line);background:var(--surface)}
+.p-sh-foot a{flex:1 1 auto;height:48px;font-size:15px}
+.p-icon44,.cx a.p-icon44{display:inline-grid;place-items:center;width:44px;height:44px;border:0;border-radius:var(--radius-s);background:transparent;color:var(--ink-2);text-decoration:none;cursor:pointer}
+</style>
+</helmet>
+<div class="cx p-m" data-theme="{{theme}}">
+<svg width="0" height="0" style="position: absolute; overflow: hidden" aria-hidden="true" focusable="false"><symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 2.5L21.5 12 12 21.5 2.5 12z"></path><path d="M12 6.5v11"></path><path d="M9.6 12L12 9.6 14.4 12 12 14.4z"></path></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol><symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></symbol><symbol id="i-chev-u" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"></path></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6h10"></path><path d="M10 12h10"></path><path d="M10 18h10"></path><path d="M4 6l1.2 1.2L7.5 5"></path><path d="M4 12l1.2 1.2L7.5 11"></path><path d="M4 18l1.2 1.2L7.5 17"></path></symbol><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9"></path><path d="M17 7h3"></path><path d="M4 17h3"></path><path d="M11 17h9"></path><path d="M15 5v4"></path><path d="M9 15v4"></path></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 10A8 8 0 0 0 5 7.5"></path><path d="M4.5 4v4h4"></path><path d="M4.5 14A8 8 0 0 0 19 16.5"></path><path d="M19.5 20v-4h-4"></path></symbol></svg>
+
+<div class="p-bg" aria-hidden="true">
+<div class="p-mh"><span class="cx-brand" style="padding: 0; flex: 1 1 auto"><svg class="cx-mark"><use href="#i-mark"></use></svg><span class="cx-brand-name" style="font-size: 20px">Codex</span></span><svg class="cx-i lg"><use href="#i-search"></use></svg><svg class="cx-i lg" style="margin-left: 14px"><use href="#i-list"></use></svg></div>
+<div style="padding: 0 16px; display: grid; gap: 12px">
+<div><b class="titre-m">Dex / Saignement</b><div class="cx-muted" style="font-size: 12px">Samurai, niveau {{level}}, étape Milieu</div></div>
+<div class="cx-row tight"><span class="cx-chip"><span class="k">Contenu</span>Base, SotE, TP</span><span class="cx-chip is-on"><span class="k">Build</span>Dex / Arcane → 125</span></div>
+<div class="cx-widget" style="padding: 16px; height: 300px"><span class="cx-w-title" style="font-size: 20px">Armes recommandées</span></div>
+</div>
+</div>
+<div class="cx-scrim" aria-hidden="true"></div>
+
+<section class="cx-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-t" style="height: 88%">
+<div class="p-sheet-in">
+<div class="cx-sheet-grab" aria-hidden="true"></div>
+<div class="p-sh-head">
+<h2 class="titre-m" id="sh-t" style="flex: 1 1 auto">Critères</h2>
+<button class="cx-btn cx-btn-ghost" style="height: 44px" onClick="{{reset}}"><svg class="cx-i" aria-hidden="true"><use href="#i-refresh"></use></svg>Réinitialiser</button>
+<a class="p-icon44" href="Mobile.dc.html" aria-label="Fermer les critères"><svg class="cx-i lg" aria-hidden="true"><use href="#i-x"></use></svg></a>
+</div>
+<div class="p-sh-body">
+<div class="cx-crit-field" style="padding: 12px 0"><label for="m-prof">Profil enregistré</label><select id="m-prof" class="cx-select"><option>Dex / Saignement</option><option>Mage pur NG+</option><option>Foi / Force</option></select></div>
+<sc-for list="{{sections}}" as="x" hint-placeholder-count="6">
+<div class="p-acc">
+<button class="p-acc-btn" aria-expanded="{{x.open}}" onClick="{{x.toggle}}"><span><b>{{x.t}}</b><small>{{x.sum}}</small></span><svg class="cx-i" aria-hidden="true"><use href="{{x.icon}}"></use></svg></button>
+<sc-if value="{{x.isPerso}}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{x.open}}" hint-placeholder-val="{{ true }}">
+<div class="p-acc-body">
+<div class="cx-crit-field"><label for="m-or">Origine</label><select id="m-or" class="cx-select"><option>Automatique (la mieux classée)</option><option selected>Samurai</option><option>Bandit</option><option>Warrior</option></select></div>
+<div class="cx-crit-grid2">
+<sc-for list="{{steppers}}" as="t" hint-placeholder-count="8">
+<div class="cx-stepper"><span class="cx-stepper-name"><abbr class="cx-stepper-abbr" title="{{t.full}}" style="text-decoration: none">{{t.abbr}}</abbr></span><span class="cx-stepper-ctl"><button aria-label="Diminuer {{t.full}}" disabled="{{t.minD}}" onClick="{{t.dec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">{{t.v}}</span><button aria-label="Augmenter {{t.full}}" onClick="{{t.inc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span></div>
+</sc-for>
+</div>
+<div class="cx-crit-derived">Niveau <b>{{level}}</b><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span class="cx-muted">appui long : ±5</span></div>
+<div class="cx-crit-field"><label for="m-arch">Build cible</label><select id="m-arch" class="cx-select"><option selected>Dextérité / Arcane</option><option>Dextérité</option><option>Qualité</option><option>Intelligence</option><option>Foi</option></select></div>
+<div class="cx-stepper is-target"><span class="cx-stepper-name"><span class="cx-stepper-abbr">Niveau cible</span></span><span class="cx-stepper-ctl"><button aria-label="Diminuer le niveau cible" onClick="{{tlDec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">{{tl}}</span><button aria-label="Augmenter le niveau cible" onClick="{{tlInc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span></div>
+</div>
+</sc-if>
+</sc-if>
+<sc-if value="{{x.isStyle}}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}">
+<div class="p-acc-body">
+<div class="cx-seg full" role="group" aria-label="Style de jeu"><button aria-pressed="true" style="height: 40px">Mêlée</button><button aria-pressed="false" style="height: 40px">Distance</button><button aria-pressed="false" style="height: 40px">Magie</button><button aria-pressed="false" style="height: 40px">Hybride</button></div>
+<div class="cx-seg full" role="group" aria-label="Prise en main"><button aria-pressed="true" style="height: 40px">Une main</button><button aria-pressed="false" style="height: 40px">Deux mains</button></div>
+</div>
+</sc-if>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<div class="p-sh-foot">
+<a class="cx-btn cx-btn-primary" href="Mobile.dc.html">Voir les 10 armes recommandées</a>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["sombre","parchemin"],"default":"sombre","section":"Prototype"},"$preview":{"width":390,"height":844}}'>
+var KEYS = ['vig', 'mnd', 'end', 'str', 'dex', 'int', 'fai', 'arc'];
+var AB = { vig: 'VIG', mnd: 'MND', end: 'END', str: 'STR', dex: 'DEX', int: 'INT', fai: 'FAI', arc: 'ARC' };
+var AF = { vig: 'Vigor', mnd: 'Mind', end: 'Endurance', str: 'Strength', dex: 'Dexterity', int: 'Intelligence', fai: 'Faith', arc: 'Arcane' };
+var MIN = [12, 11, 13, 12, 15, 9, 8, 8];
+var START = [26, 11, 18, 12, 27, 9, 8, 10];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { a: START.slice(), tl: 125, open: 'perso' }; }
+  renderVals() {
+    var self = this, s = this.state, theme = this.props.theme || 'sombre';
+    var level = s.a.reduce(function (x, y) { return x + y; }, 0) - 79;
+    var step = function (i, d) { var a = self.state.a.slice(); a[i] = Math.max(MIN[i], Math.min(99, a[i] + d)); self.setState({ a: a }); };
+    var defs = [['contenu', 'Contenu', 'Jeu de base, Shadow of the Erdtree, Tarnished Pack'], ['perso', 'Personnage', 'Samurai, niveau ' + level + ', build Dextérité / Arcane → ' + s.tl], ['style', 'Style de jeu', 'Mêlée, une main, Katana et Light Greatsword, saignement'], ['prog', 'Progression', "Étape Milieu, d'après les boss vaincus (3)"], ['contr', "Contraintes d'obtention", 'Aucune exclusion, pierres indifférentes'], ['fiab', 'Fiabilité', 'Valeurs estimées incluses (4 armes)']];
+    return {
+      theme: theme, level: level, tl: s.tl,
+      tlDec: function () { self.setState({ tl: Math.max(20, self.state.tl - 5) }); }, tlInc: function () { self.setState({ tl: Math.min(250, self.state.tl + 5) }); },
+      reset: function () { self.setState({ a: START.slice(), tl: 125 }); },
+      steppers: KEYS.map(function (k, i) { return { abbr: AB[k], full: AF[k], v: s.a[i], minD: s.a[i] <= MIN[i], dec: function () { step(i, -1); }, inc: function () { step(i, 1); } }; }),
+      sections: defs.map(function (d) { var open = s.open === d[0]; return { t: d[1], sum: d[2], open: open, icon: open ? '#i-chev-u' : '#i-chev-d', isPerso: d[0] === 'perso', isStyle: d[0] === 'style', toggle: function () { self.setState({ open: open ? null : d[0] }); } }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

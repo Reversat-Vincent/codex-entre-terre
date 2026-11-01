@@ -1,0 +1,25 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-31T12:13:57Z"
+  },
+  "title": "Design system du Codex",
+  "namespace": "Codex",
+  "libraries": [],
+  "sections": {},
+  "groups": [],
+  "assetGroups": {},
+  "blobs": {},
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Claude",
+    "at": "2026-10-31T12:13:57Z",
+    "via": "Claude (claude.ai)",
+    "note": "Création : tokens sombre et parchemin, règles d’affichage des données, méthodes de calcul, 26 composants."
+  }
+}

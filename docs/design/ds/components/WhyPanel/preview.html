@@ -1,0 +1,33 @@
+<!-- @dsCard group="Structure" height=330 subtitle="Panneau « Pourquoi ? » d’une recommandation" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>WhyPanel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"></path><path d="M12 7.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M4.5 20c1.2-3.5 4-5.5 7.5-5.5s6.3 2 7.5 5.5"></path></symbol><symbol id="i-info" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 11v5.5"></path><path d="M12 7.8h.01" stroke-width="2.4"></path></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13"></path><path d="M15 5l3 3-3 3"></path><path d="M19 16H6"></path><path d="M9 13l-3 3 3 3"></path></symbol></svg>
+<div class="pv"><div class="cx-why" style="max-width:900px">
+<div class="cx-why-h"><h3 class="titre-s">Pourquoi Rivers of Blood ?</h3><button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Fermer"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg></button></div>
+<div><h4>Score 77 sur 100 <span class="cx-mq">valeur de maquette</span></h4><div class="cx-breakdown">
+<div class="cx-bd-row"><span>Adéquation au build</span><b>25</b><span class="cx-bd-bar"><span style="width:100%"></span></span></div>
+<div class="cx-bd-row"><span>Puissance et scaling</span><b>18</b><span class="cx-bd-bar"><span style="width:72%"></span></span></div>
+<div class="cx-bd-row"><span>Accessibilité à votre étape</span><b>14</b><span class="cx-bd-bar"><span style="width:56%"></span></span></div>
+<div class="cx-bd-row"><span>Coût d'amélioration</span><b>20</b><span class="cx-bd-bar"><span style="width:80%"></span></span></div></div></div>
+<div><h4>Données utilisées</h4><ul class="cx-why-data">
+<li><svg class="cx-i sm" aria-hidden="true"><use href="#i-book"></use></svg><span>melee_armaments : scaling DEX D, ARC D ; prérequis ; Saignement 50</span></li>
+<li><svg class="cx-i sm" aria-hidden="true"><use href="#i-map"></use></svg><span>acquisition : Mountaintops of the Giants → étape Fin (une étape d'avance)</span></li>
+<li><svg class="cx-i sm" aria-hidden="true"><use href="#i-user"></use></svg><span>Profil : ARC 10 sur 20 demandés</span></li></ul></div>
+<div><h4>Limites</h4><ul class="cx-why-data"><li><svg class="cx-i sm" aria-hidden="true"><use href="#i-info"></use></svg><span>Score à +0 : ne tient pas compte du niveau d'amélioration ni des Cendres de guerre.</span></li><li><svg class="cx-i sm" aria-hidden="true"><use href="#i-swap"></use></svg><span>Alternatives proches : Uchigatana (75), Idus Sword (72).</span></li></ul></div>
+</div></div>
+
+</body>
+</html>

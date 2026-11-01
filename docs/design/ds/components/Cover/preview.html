@@ -1,0 +1,61 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Design system du Codex</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); overflow: hidden; }
+  .cover { position: relative; height: 288px; overflow: hidden; }
+  .band { position: absolute; left: 0; top: 0; width: 960px; height: 120px; }
+  .band svg { display: block; width: 960px; height: 120px; }
+  .gold { fill: var(--gold); }
+  .ink { fill: var(--ink); }
+  .sote { fill: var(--src-sote); }
+  .tint { fill: var(--gold-line); }
+  .blk { rx: var(--radius-l); }
+  .cut { fill: var(--bg); }
+  .thread { stroke: var(--bg); stroke-width: 2; }
+  .words { position: absolute; left: var(--space-6); right: var(--space-6); bottom: var(--space-6); }
+  .name { margin: 0; font-family: var(--font-display); font-size: 64px; line-height: .95; font-weight: 600; color: var(--ink); }
+  .tag { margin: var(--space-2) 0 0 2px; font-size: 14px; line-height: 20px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="band" aria-hidden="true">
+<svg viewBox="0 0 960 120" width="960" height="120">
+<!--
+  blocks      gold 432×128 bled off the top (the voice of the app, largest) · ink 144×96 (parchment) · gold-line 208×112 (tarnish, the tint) · src-sote 64×64 once (DLC, small) — ≈ 35 % of 960×288
+  arrangement one wide gold slab with satellites, tops bleeding off the band, space-4 gutters
+  pattern     literal motif, the gold thread: a 2 px ground line through the gold slab with 12 ground-cut lozenges at a space-8 pitch, the same marks as the progression rail
+  scales      sides in space-4 / space-8 multiples; gutters space-4; pitch space-8; corners radius-l; lozenges 12 px like .cx-tl-dot
+-->
+<rect class="gold blk" x="0" y="-16" width="432" height="128" rx="10"></rect>
+<line class="thread" x1="0" x2="432" y1="72" y2="72"></line>
+<rect class="cut" x="26" y="66" width="12" height="12" transform="rotate(45 32 72)"></rect>
+<rect class="cut" x="58" y="66" width="12" height="12" transform="rotate(45 64 72)"></rect>
+<rect class="cut" x="90" y="66" width="12" height="12" transform="rotate(45 96 72)"></rect>
+<rect class="cut" x="122" y="66" width="12" height="12" transform="rotate(45 128 72)"></rect>
+<rect class="cut" x="154" y="66" width="12" height="12" transform="rotate(45 160 72)"></rect>
+<rect class="cut" x="186" y="66" width="12" height="12" transform="rotate(45 192 72)"></rect>
+<rect class="cut" x="218" y="66" width="12" height="12" transform="rotate(45 224 72)"></rect>
+<rect class="cut" x="250" y="66" width="12" height="12" transform="rotate(45 256 72)"></rect>
+<rect class="cut" x="282" y="66" width="12" height="12" transform="rotate(45 288 72)"></rect>
+<rect class="cut" x="314" y="66" width="12" height="12" transform="rotate(45 320 72)"></rect>
+<rect class="cut" x="346" y="66" width="12" height="12" transform="rotate(45 352 72)"></rect>
+<rect class="cut" x="378" y="66" width="12" height="12" transform="rotate(45 384 72)"></rect>
+<rect class="ink blk" x="448" y="-16" width="144" height="96" rx="10"></rect>
+<rect class="tint blk" x="608" y="-16" width="208" height="112" rx="10"></rect>
+<rect class="sote blk" x="832" y="16" width="64" height="64" rx="10"></rect>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Design system du Codex</h1>
+<p class="tag">Lire vite, sans confondre un fait du wiki, une estimation et un calcul.</p>
+</div>
+</div>
+</body>
+</html>

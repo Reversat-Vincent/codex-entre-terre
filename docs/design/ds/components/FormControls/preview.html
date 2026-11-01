@@ -1,0 +1,27 @@
+<!-- @dsCard group="Contrôles" height=290 subtitle="Segments, liste, interrupteur, cases, curseur" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>FormControls</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"></svg>
+<div class="pv" style="max-width:640px">
+<div class="pv-row"><span class="pv-k">Segments</span><div class="cx-seg" role="group" aria-label="Style de jeu"><button aria-pressed="true">Mêlée</button><button aria-pressed="false">Distance</button><button aria-pressed="false">Magie</button><button aria-pressed="false">Hybride</button></div></div>
+<div class="pv-row"><span class="pv-k"><label for="o1">Origine</label></span><select class="cx-select" id="o1"><option>Automatique</option><option selected>Samurai</option><option>Vagabond</option></select></div>
+<div class="pv-row"><span class="pv-k">Interrupteur</span><div style="width:280px"><button class="cx-toggle" aria-pressed="true"><span class="cx-toggle-track"><span class="cx-toggle-thumb"></span></span>Inclure les valeurs estimées</button><button class="cx-toggle" aria-pressed="false"><span class="cx-toggle-track"><span class="cx-toggle-thumb"></span></span>Exclure les échanges de Remembrance</button></div></div>
+<div class="pv-row"><span class="pv-k">Cases</span><label class="cx-check"><input type="checkbox" checked> Jeu de base</label><label class="cx-check"><input type="checkbox" checked> Shadow of the Erdtree</label><label class="cx-check"><input type="checkbox"> Tarnished Pack</label></div>
+<div class="pv-row"><span class="pv-k"><label for="r1">Charge visée</label></span><input class="cx-range" id="r1" type="range" min="0" max="100" value="70" style="width:220px"><span class="cx-num">70 %</span><span class="cx-muted">roulade moyenne</span></div>
+</div>
+
+</body>
+</html>

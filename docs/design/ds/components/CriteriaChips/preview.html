@@ -1,0 +1,30 @@
+<!-- @dsCard group="Contrôles" height=120 subtitle="Résumé des critères actifs" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CriteriaChips</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol></svg>
+<div class="pv"><div class="cx-row">
+<span class="cx-chip"><span class="k">Contenu</span>Base, SotE, TP</span>
+<span class="cx-chip"><span class="k">Origine</span>Samurai<button class="cx-chip-x" aria-label="Retirer : origine"><svg class="cx-i xs" aria-hidden="true"><use href="#i-x"></use></svg></button></span>
+<span class="cx-chip"><span class="k">Niveau</span>42</span>
+<span class="cx-chip is-on"><span class="k">Build</span>Dex / Saignement → 126<button class="cx-chip-x" aria-label="Retirer : build cible"><svg class="cx-i xs" aria-hidden="true"><use href="#i-x"></use></svg></button></span>
+<span class="cx-chip"><span class="k">Style</span>Mêlée, deux mains</span>
+<span class="cx-chip"><span class="k">Étape</span>Milieu</span>
+<span class="cx-chip"><span class="k">Exclusion</span>Remembrance<button class="cx-chip-x" aria-label="Retirer : exclusion Remembrance"><svg class="cx-i xs" aria-hidden="true"><use href="#i-x"></use></svg></button></span>
+<button class="cx-btn cx-btn-ghost cx-btn-sm">Tout réinitialiser</button>
+</div></div>
+
+</body>
+</html>

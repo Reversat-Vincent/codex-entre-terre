@@ -1,0 +1,29 @@
+<!-- @dsCard group="États" height=560 subtitle="Vide, chargement, partiel, erreur, notification" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>States</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol></svg>
+<div class="pv" style="max-width:720px">
+<div class="cx-empty"><span class="cx-empty-title">Aucune arme de fin de jeu ne correspond à vos critères</span><span>Vos exclusions retirent les 2 armes de cette étape.</span><div class="cx-row"><button class="cx-btn cx-btn-sm"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg>Inclure les échanges de Remembrance</button><button class="cx-btn cx-btn-ghost cx-btn-sm">Voir les critères</button></div></div>
+<div class="cx-loading" aria-busy="true"><span class="cx-skel" style="height:18px;width:40%"></span><span class="cx-skel" style="height:12px;width:70%"></span><span class="cx-skel" style="height:12px;width:55%"></span><div class="cx-row"><span class="cx-skel" style="height:20px;width:60px"></span><span class="cx-skel" style="height:20px;width:60px"></span></div></div>
+<div class="cx-loading"><div class="cx-row" style="justify-content:space-between"><span class="ui-fort">Premier chargement des données</span><span class="cx-muted cx-num">11 fichiers sur 18</span></div><div class="cx-progress"><span style="width:61%"></span></div><span class="cx-muted" style="font-size:12px">bosses.json (2,1 Mo). Les données restent ensuite dans le navigateur.</span></div>
+<div class="cx-note partial"><svg class="cx-i" aria-hidden="true"><use href="#i-empty"></use></svg><span><b>Données partielles.</b> 9 boss sur 19 n'ont pas d'absorption documentée : leurs lignes sont hachurées.</span></div>
+<div class="cx-note est"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg><span><b>Plan basé sur une estimation.</b> Le type d'amélioration de Moonveil n'est pas documenté (estimation : pierres sombres, confiance haute).</span></div>
+<div class="cx-note warn"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg><span><b>Impossible de lire bosses.json.</b> Rechargez la page. Si l'erreur persiste, le fichier est peut-être incomplet : réinstallez les données.</span></div>
+<div class="cx-toast" role="status"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg><span>Épinglé à Ma liste</span><button class="cx-btn cx-btn-ghost cx-btn-sm">Annuler</button></div>
+</div>
+
+</body>
+</html>

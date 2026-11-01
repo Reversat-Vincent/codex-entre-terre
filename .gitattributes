@@ -1,0 +1,19 @@
+# Fins de ligne LF dans le dépôt et la copie de travail :
+# développement sous Windows, compilation de publication sous Linux.
+* text=auto eol=lf
+
+# Les scripts de commandes Windows gardent CRLF : cmd.exe peut mal lire un script en LF.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Fichiers binaires, jamais convertis
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary

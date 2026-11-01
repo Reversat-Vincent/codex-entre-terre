@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)", "Bash(npm ci *)", "Bash(npm run *)", "Bash(npm test *)",
+      "Bash(npx vite *)", "Bash(npx vitest *)", "Bash(npx vue-tsc *)", "Bash(npx eslint *)",
+      "Bash(npx prettier *)", "Bash(npx playwright *)", "Bash(python -I tools/wiki/*)",
+      "Bash(git status *)", "Bash(git diff *)", "Bash(git log *)", "Bash(git show *)",
+      "Bash(git add *)", "Bash(git commit *)", "Bash(git switch *)", "Bash(git branch *)",
+      "Bash(git merge *)", "Bash(git tag *)", "Bash(git mv *)", "Bash(git init *)",
+      "WebFetch(domain:eldenring.wiki.gg)", "WebFetch(domain:vuejs.org)",
+      "WebFetch(domain:router.vuejs.org)", "WebFetch(domain:pinia.vuejs.org)",
+      "WebFetch(domain:vite.dev)", "WebFetch(domain:vitest.dev)",
+      "WebFetch(domain:playwright.dev)", "WebFetch(domain:developer.mozilla.org)",
+      "WebFetch(domain:docs.github.com)"
+    ]
+  },
+  "env": { "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "1" }
+}

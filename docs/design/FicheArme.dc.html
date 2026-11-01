@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fiche arme — Codex de l'Entre-terre</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/codex/tokens.css">
+<link rel="stylesheet" href="ds/codex/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400">
+<style>
+body{margin:0}
+.p-page{flex:1 1 auto;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5) var(--space-6) var(--space-6);min-width:0}
+.p-crumb{display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:var(--ink-3);font-size:12px;line-height:16px}
+.p-hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-4);padding-bottom:var(--space-4);border-bottom:1px solid var(--line)}
+.p-hero-main{display:flex;align-items:center;gap:var(--space-4);min-width:0}
+.p-hero-ic{display:grid;place-items:center;flex:none;width:64px;height:64px;border:1px solid var(--gold-line);border-radius:var(--radius-l);background:var(--gold-wash);color:var(--gold-text)}
+.p-hero-ic .cx-i{width:34px;height:34px;stroke-width:1.4}
+.p-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:6px;color:var(--ink-2);font-size:13px}
+.p-meta>span{display:inline-flex;align-items:center;gap:6px}
+.p-meta b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.p-acts{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.p-alerts{display:grid;gap:6px}
+.p-cols{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--space-5)}
+.p-maincol{flex:999 1 620px;min-width:0;display:grid;gap:var(--space-4)}
+.p-side{flex:1 1 320px;min-width:0;display:grid;gap:var(--space-4);position:sticky;top:var(--space-4)}
+.p-sec .cx-w-head{align-items:center}
+.p-sec h2{margin:0}
+.p-sub{margin-top:2px;color:var(--ink-3);font-size:12px;line-height:16px}
+.p-tbl td,.p-tbl th{vertical-align:middle}
+.p-zero{color:var(--ink-3)}
+.p-calc{color:var(--gold-text);font-weight:600}
+.p-calc.p-zero{color:var(--ink-3);font-weight:400}
+.p-dtcell{display:inline-flex;align-items:center;gap:8px}
+.p-foot{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:var(--space-3);color:var(--ink-2);font-size:13px}
+.p-foot b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.p-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-3)}
+.p-skill{display:grid;gap:var(--space-2)}
+.p-skill-name{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.p-skill-name b{font:600 18px/22px var(--font-display);color:var(--ink)}
+.p-desc{max-width:68ch;margin:0;color:var(--ink-2);font-size:13px;line-height:20px}
+.p-dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:var(--space-3) var(--space-4);margin:0 0 var(--space-4)}
+.p-dl>div{display:grid;gap:3px;align-content:start}
+.p-dl dt{color:var(--ink-3);font-size:12px;line-height:16px}
+.p-dl dd{margin:0;color:var(--ink);font-size:13px;line-height:18px}
+.p-chart-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-2);margin-bottom:var(--space-2)}
+.p-chart-title{color:var(--ink);font-weight:600;font-size:13px}
+.p-affs{display:flex;flex-wrap:wrap;gap:6px;margin:var(--space-2) 0 var(--space-3)}
+.p-affs .cx-chip{gap:6px}
+.p-chart{position:relative;width:100%;aspect-ratio:640/240;margin-top:var(--space-2)}
+.p-chart svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.p-cross{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:3 3}
+.p-ylab{position:absolute;left:0;width:6%;transform:translateY(-50%);color:var(--ink-3);font-size:11px;line-height:14px;text-align:right;font-variant-numeric:tabular-nums}
+.p-xlab{position:absolute;top:88.5%;transform:translateX(-50%);color:var(--ink-3);font-size:11px;line-height:14px;font-variant-numeric:tabular-nums}
+.p-end{position:absolute;left:88.4%;display:inline-flex;align-items:center;gap:4px;transform:translateY(-50%);color:var(--ink-2);font-size:11px;line-height:14px;white-space:nowrap}
+.p-end .cx-legend-key{width:8px;margin:0}
+.p-hit{position:absolute;top:6.6%;height:78.4%;cursor:crosshair}
+.p-legend b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.p-lv{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.p-tbl tbody th{position:static;z-index:auto;padding:8px 10px;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);font:400 13px/18px var(--font-sans);white-space:normal}
+.p-tbl tbody tr:last-child th{border-bottom:0}
+.p-tbl tbody tr:hover th{background:var(--surface-hover)}
+.p-tipbox{position:absolute;top:2%;z-index:2;min-width:150px;padding:8px 10px;border-radius:var(--radius-s);background:var(--surface-raised);box-shadow:var(--shadow-2);color:var(--ink);font-size:12px;line-height:17px;pointer-events:none}
+.p-tipbox b{font-weight:600}
+.p-tiprow{display:flex;align-items:center;gap:6px}
+.p-tiprow .cx-legend-key{width:10px;margin:0}
+.p-tiprow span:last-child{margin-left:auto;padding-left:10px;font-variant-numeric:tabular-nums;font-weight:600}
+.p-range{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2);margin-top:var(--space-3);color:var(--ink-2);font-size:12px}
+.p-range input{flex:1 1 200px;accent-color:var(--gold)}
+.p-range output{min-width:32px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.p-tblscroll{max-height:300px;overflow:auto}
+.p-acq{display:grid;gap:var(--space-3);margin:0;padding:0;list-style:none}
+.p-acq li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:var(--space-3);align-items:start}
+.p-acq-ic{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line-strong);border-radius:var(--radius-m);color:var(--ink-2)}
+.p-acq-t{color:var(--ink);font-weight:600}
+.p-acq-k{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin-top:4px;font-size:12px;line-height:17px;color:var(--ink-2)}
+.p-acq-k span:nth-child(odd){color:var(--ink-3)}
+.p-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4)}
+.p-list{display:grid;gap:8px;margin:0;padding:0;list-style:none;color:var(--ink-2);font-size:13px;line-height:19px}
+.p-list li{display:flex;gap:8px;align-items:flex-start}
+.p-list .cx-i{margin-top:2px;color:var(--ink-3);flex:none}
+.p-patch{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 10px;margin:0;font-size:13px;line-height:19px;color:var(--ink-2)}
+.p-patch dt{color:var(--gold-text);font-weight:600;font-variant-numeric:tabular-nums}
+.p-patch dd{margin:0}
+.p-bigscore{color:var(--gold-text);font:600 40px/44px var(--font-sans);font-variant-numeric:tabular-nums}
+.p-scoreline{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-bottom:var(--space-3)}
+.p-scoreline .cx-btn{margin-left:auto;align-self:center}
+.p-why{display:grid;gap:var(--space-3);margin-top:var(--space-3);padding-top:var(--space-3);border-top:1px solid var(--line)}
+.p-why h3{margin:0 0 6px;color:var(--ink-2);font:600 12px/16px var(--font-sans)}
+.p-q{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.p-q li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 8px;font-size:13px;line-height:18px;color:var(--ink-2)}
+.p-sim{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.p-sim li{display:flex;align-items:center;gap:var(--space-2);padding:8px 0;border-top:1px solid var(--line)}
+.p-sim li:first-child{border-top:0}
+.p-sim button{padding:0;border:0;background:none;color:var(--ink);font-weight:600;text-align:left;cursor:pointer;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
+.p-sim button:hover{text-decoration-color:var(--gold)}
+.p-sim .cx-score-num{margin-left:auto;font-size:16px;line-height:20px}
+.p-src{color:var(--ink-3);font-size:12px;line-height:17px}
+.p-ext{display:inline-flex;align-items:center;gap:6px}
+@media (max-width:1100px){.p-side{position:static}}
+</style>
+</helmet>
+<div class="cx {{mqCls}}" data-theme="{{theme}}">
+<svg width="0" height="0" style="position: absolute; overflow: hidden" aria-hidden="true" focusable="false"><symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 2.5L21.5 12 12 21.5 2.5 12z"></path><path d="M12 6.5v11"></path><path d="M9.6 12L12 9.6 14.4 12 12 14.4z"></path></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol><symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></symbol><symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></symbol><symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></symbol><symbol id="i-chev-u" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4.5 7.5L8 4l3.5 3.5"></path><path d="M12.5 16.5L16 20l3.5-3.5"></path></symbol><symbol id="i-info" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 11v5.5"></path><path d="M12 7.8h.01" stroke-width="2.4"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-help" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.5"></path><path d="M12 16.7h.01" stroke-width="2.4"></path></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6"></path><path d="M20 4l-9 9"></path><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></symbol><symbol id="i-grip" viewBox="0 0 24 24"><path d="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01" stroke-width="2.6"></path></symbol><symbol id="i-more" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01" stroke-width="2.6"></path></symbol><symbol id="i-max" viewBox="0 0 24 24"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></symbol><symbol id="i-min" viewBox="0 0 24 24"><path d="M9 4v5H4"></path><path d="M15 4v5h5"></path><path d="M9 20v-5H4"></path><path d="M15 20v-5h5"></path></symbol><symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M12 2.5v2"></path><path d="M12 19.5v2"></path><path d="M2.5 12h2"></path><path d="M19.5 12h2"></path><path d="M5.3 5.3l1.4 1.4"></path><path d="M17.3 17.3l1.4 1.4"></path><path d="M5.3 18.7l1.4-1.4"></path><path d="M17.3 6.7l1.4-1.4"></path></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10z"></path></symbol><symbol id="i-dash" viewBox="0 0 24 24"><path d="M4 4h7v9H4z"></path><path d="M13 4h7v5h-7z"></path><path d="M13 11h7v9h-7z"></path><path d="M4 15h7v5H4z"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M4.5 20c1.2-3.5 4-5.5 7.5-5.5s6.3 2 7.5 5.5"></path></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6h10"></path><path d="M10 12h10"></path><path d="M10 18h10"></path><path d="M4 6l1.2 1.2L7.5 5"></path><path d="M4 12l1.2 1.2L7.5 11"></path><path d="M4 18l1.2 1.2L7.5 17"></path></symbol><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13"></path><path d="M15 5l3 3-3 3"></path><path d="M19 16H6"></path><path d="M9 13l-3 3 3 3"></path></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 4v5h7V4"></path><path d="M8 20v-6h8v6"></path></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9"></path><path d="M17 7h3"></path><path d="M4 17h3"></path><path d="M11 17h9"></path><path d="M15 5v4"></path><path d="M9 15v4"></path></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 10A8 8 0 0 0 5 7.5"></path><path d="M4.5 4v4h4"></path><path d="M4.5 14A8 8 0 0 0 19 16.5"></path><path d="M19.5 20v-4h-4"></path></symbol><symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 7.5V12l3 2"></path></symbol><symbol id="i-check-c" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M8.2 12.3l2.6 2.6 5-5.2"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"></path><path d="M12 7.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path></symbol><symbol id="i-weight" viewBox="0 0 24 24"><path d="M9 7.5a3 3 0 1 1 6 0"></path><path d="M5.5 9h13l1.5 11H4z"></path></symbol><symbol id="i-stone" viewBox="0 0 24 24"><path d="M7 5h10l3 5-8 10-8-10z"></path><path d="M4 10h16"></path><path d="M10 5l-1.5 5L12 20l3.5-10L14 5"></path></symbol><symbol id="i-rune" viewBox="0 0 24 24"><path d="M12 3.5l6 8.5-6 8.5-6-8.5z"></path><path d="M12 9l2.1 3-2.1 3-2.1-3z"></path></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path></symbol><symbol id="i-key" viewBox="0 0 24 24"><path d="M7.5 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M11.5 12H21"></path><path d="M18 12v3"></path><path d="M15 12v2"></path></symbol><symbol id="i-skill" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"></path></symbol><symbol id="i-npc" viewBox="0 0 24 24"><path d="M12 3.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M6 20.5v-3a6 6 0 0 1 12 0v3"></path><path d="M9.5 20.5v-3"></path></symbol><symbol id="i-origin" viewBox="0 0 24 24"><path d="M6 20.5V8l6-4.5L18 8v12.5"></path><path d="M10 20.5v-5h4v5"></path><path d="M6 12h12"></path></symbol><symbol id="i-boss" viewBox="0 0 24 24"><path d="M4.5 17.5L3 7l5 4 4-6.5 4 6.5 5-4-1.5 10.5z"></path><path d="M4.5 20.5h15"></path></symbol><symbol id="i-trade" viewBox="0 0 24 24"><path d="M12 3l6.5 9-6.5 9-6.5-9z"></path><path d="M12 9.5v5"></path></symbol><symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 4v10"></path><path d="M7.5 9.5L12 14l4.5-4.5"></path><path d="M5 19.5h14"></path></symbol><symbol id="i-start" viewBox="0 0 24 24"><path d="M5 20.5V4"></path><path d="M5 4.5h12l-3 3.5 3 3.5H5"></path></symbol><symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v9H6z"></path><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol><symbol id="i-s-tp" viewBox="0 0 24 24"><path d="M12 4.5l7.5 7.5-7.5 7.5L4.5 12z"></path></symbol><symbol id="i-d-standard" viewBox="0 0 24 24"><path d="M18.5 5.5L8.2 15.8"></path><path d="M18.5 5.5H15"></path><path d="M18.5 5.5V9"></path><path d="M6 13.5l4.5 4.5"></path><path d="M7.6 16.4L4.5 19.5"></path></symbol><symbol id="i-d-strike" viewBox="0 0 24 24"><path d="M14 3.5l6.5 6.5-3 3-6.5-6.5z"></path><path d="M12.8 8.7L4.3 17.2a1.6 1.6 0 0 0 2.3 2.3l8.5-8.5"></path></symbol><symbol id="i-d-slash" viewBox="0 0 24 24"><path d="M4 18.5C9 17.5 14.5 13 18 5"></path><path d="M8 20.5c5-1.5 9.5-5.5 12-12"></path></symbol><symbol id="i-d-pierce" viewBox="0 0 24 24"><path d="M4.5 19.5L19 5"></path><path d="M12.5 5H19v6.5"></path><path d="M4.5 15.5l4 4"></path></symbol><symbol id="i-d-magic" viewBox="0 0 24 24"><path d="M12 3.5l1.9 6.6 6.6 1.9-6.6 1.9L12 20.5l-1.9-6.6L3.5 12l6.6-1.9z"></path></symbol><symbol id="i-d-fire" viewBox="0 0 24 24"><path d="M12 3.5c1 3.5 5.5 5.2 5.5 10a5.5 5.5 0 0 1-11 0c0-2.6 1.5-4 2.6-5.2.3 1.7 1 2.7 2.2 3.2C11 9 10.6 6.2 12 3.5z"></path></symbol><symbol id="i-d-lightning" viewBox="0 0 24 24"><path d="M13 3L5.5 13.5H12L10.5 21l8-11H12z"></path></symbol><symbol id="i-d-holy" viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M12 3v2.5"></path><path d="M12 18.5V21"></path><path d="M3 12h2.5"></path><path d="M18.5 12H21"></path><path d="M5.6 5.6l1.8 1.8"></path><path d="M16.6 16.6l1.8 1.8"></path><path d="M5.6 18.4l1.8-1.8"></path><path d="M16.6 7.4l1.8-1.8"></path></symbol><symbol id="i-st-bleed" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.7a6 6 0 0 1-12 0c0-3.3 3-6.7 6-10.7z"></path><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"></path></symbol><symbol id="i-st-frost" viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M4.2 7.5l15.6 9"></path><path d="M4.2 16.5l15.6-9"></path><path d="M9.5 4.5L12 7l2.5-2.5"></path><path d="M9.5 19.5L12 17l2.5 2.5"></path></symbol><symbol id="i-st-poison" viewBox="0 0 24 24"><path d="M8.5 11a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M16.5 4.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path><path d="M17 13.5a2 2 0 1 1 0 4a2 2 0 0 1 0-4z"></path></symbol><symbol id="i-st-rot" viewBox="0 0 24 24"><path d="M12 10a2 2 0 1 1 0 4a2 2 0 0 1 0-4z"></path><path d="M12 10c-1.5-3-1-5.5 0-6.5 1 1 1.5 3.5 0 6.5z"></path><path d="M14 12c3-1.5 5.5-1 6.5 0-1 1-3.5 1.5-6.5 0z"></path><path d="M12 14c1.5 3 1 5.5 0 6.5-1-1-1.5-3.5 0-6.5z"></path><path d="M10 12c-3 1.5-5.5 1-6.5 0 1-1 3.5-1.5 6.5 0z"></path></symbol><symbol id="i-st-sleep" viewBox="0 0 24 24"><path d="M4 10.5c2.5 3.5 13.5 3.5 16 0"></path><path d="M7 13.5L5.5 15.5"></path><path d="M12 14.6V17"></path><path d="M17 13.5l1.5 2"></path><path d="M15 4.5h3.5L15 8h3.5"></path></symbol><symbol id="i-st-madness" viewBox="0 0 24 24"><path d="M3.5 13S7 7.5 12 7.5 20.5 13 20.5 13 17 18.5 12 18.5 3.5 13 3.5 13z"></path><path d="M12 10.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path><path d="M12 3v2"></path><path d="M7 4l1 1.6"></path><path d="M17 4l-1 1.6"></path></symbol><symbol id="i-st-death" viewBox="0 0 24 24"><path d="M12 3.5a7 7 0 0 0-7 7c0 2.6 1.3 4.2 3 5.2V19.5h8v-3.8c1.7-1 3-2.6 3-5.2a7 7 0 0 0-7-7z"></path><path d="M9.3 10.5h.01M14.7 10.5h.01" stroke-width="2.6"></path><path d="M10.5 19.5v-2"></path><path d="M13.5 19.5v-2"></path></symbol><symbol id="i-c-dagger" viewBox="0 0 24 24"><path d="M7.5 16.5L4.5 19.5"></path><path d="M6 14l4 4"></path><path d="M8.2 15.8L15 9l2.5-4.5L13 7z"></path></symbol><symbol id="i-c-straight" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5 14.5l4.5 4.5"></path><path d="M7.5 16.5L18.5 5.5V8.5L9.8 17.2"></path></symbol><symbol id="i-c-greatsword" viewBox="0 0 24 24"><path d="M3.8 20.2L6.6 17.4"></path><path d="M4.6 14.2l5.2 5.2"></path><path d="M7.4 16.6L17.5 6.5"></path><path d="M9.4 18.6L19.5 8.5"></path><path d="M17.5 6.5L20 4l-.5 4.5"></path></symbol><symbol id="i-c-lgs" viewBox="0 0 24 24"><path d="M3.5 20.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M7.8 16.2L20 4"></path><path d="M20 4l-.3 2.8L9.4 17.1"></path></symbol><symbol id="i-c-katana" viewBox="0 0 24 24"><path d="M4 20l2.6-2.6"></path><path d="M5.4 16.2l2.4 2.4"></path><path d="M7.5 16.5C12 13.5 17 9 20 4c-1.5 5.5-6 10.2-10.8 14.1"></path></symbol><symbol id="i-c-curved" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M8 16c5-1.5 9.5-5.5 11-11.5C15 9 11 12 8 16z"></path></symbol><symbol id="i-c-axe" viewBox="0 0 24 24"><path d="M5 20L15.5 9.5"></path><path d="M13 5c3 0 6 3 6 6l-3.5 1.5-4-4z"></path></symbol><symbol id="i-c-hammer" viewBox="0 0 24 24"><path d="M5 20l8.5-8.5"></path><path d="M11.5 6.5l6 6 3-3-6-6z"></path></symbol><symbol id="i-c-spear" viewBox="0 0 24 24"><path d="M4 20L16.5 7.5"></path><path d="M16.5 7.5L20.5 3.5l-1 4.5-3.5 1z"></path></symbol><symbol id="i-c-halberd" viewBox="0 0 24 24"><path d="M4 20L18 6"></path><path d="M18 6l2.5-2.5"></path><path d="M13.5 6.5c2.7-1.6 5.3.3 5 3.6l-2.4-.6z"></path></symbol><symbol id="i-c-bow" viewBox="0 0 24 24"><path d="M6 4c7 1.5 12.5 7 14 14"></path><path d="M6 4l14 14"></path><path d="M5 9.5L6 4l5.5-1"></path></symbol><symbol id="i-c-staff" viewBox="0 0 24 24"><path d="M5 20L14.5 10.5"></path><path d="M17 4a3 3 0 1 1 0 6a3 3 0 0 1 0-6z"></path></symbol><symbol id="i-c-seal" viewBox="0 0 24 24"><path d="M12 3.5a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11z"></path><path d="M12 14.5v6"></path><path d="M12 6.5l2.5 2.5-2.5 2.5L9.5 9z"></path></symbol><symbol id="i-c-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M12 3v18"></path></symbol></svg>
+<svg width="0" height="0" style="position: absolute; overflow: hidden" aria-hidden="true" focusable="false"><symbol id="i-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M4 10h16"></path><path d="M4 15h16"></path><path d="M10 5v14"></path></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"></path><path d="M7 15l4-4 3 3 5-6"></path></symbol><symbol id="i-note" viewBox="0 0 24 24"><path d="M6 3.5h9l3.5 3.5v13.5H6z"></path><path d="M9 11h6"></path><path d="M9 15h6"></path></symbol></svg>
+
+<div class="cx-proto" role="region" aria-label="Commandes du prototype">
+<span>Prototype</span><span class="sep"></span><span>Thème</span>
+<button aria-pressed="{{pDark}}" onClick="{{setDark}}">Sombre</button>
+<button aria-pressed="{{pLight}}" onClick="{{setLight}}">Parchemin</button>
+<span class="sep"></span><span>Arme</span>
+<button aria-pressed="{{selU}}" onClick="{{goU}}">Uchigatana</button>
+<button aria-pressed="{{selM}}" onClick="{{goM}}">Moonveil</button>
+<button aria-pressed="{{selR}}" onClick="{{goR}}">Rivers of Blood</button>
+<span class="sep"></span>
+<button aria-pressed="{{showMock}}" onClick="{{toggleMock}}">Annotations ◆</button>
+<span style="margin-left: auto; font-weight: 400">Données de l'annexe B ; le reste est marqué « valeur de maquette »</span>
+</div>
+<div class="cx-app">
+<nav class="cx-nav" aria-label="Navigation principale">
+<a class="cx-brand" href="Main.dc.html"><svg class="cx-mark" aria-hidden="true"><use href="#i-mark"></use></svg><span class="cx-brand-name">Codex de l'Entre-terre</span></a>
+<a class="cx-nav-item" href="Main.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-dash"></use></svg>Tableau de bord</a>
+<div class="cx-nav-label">Explorer</div>
+<a class="cx-nav-item" href="Catalogue.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-c-greatsword"></use></svg>Armes<span class="cx-nav-count">487</span></a>
+<a class="cx-nav-item sub is-active" href="Catalogue.dc.html" aria-current="page">Mêlée</a>
+<a class="cx-nav-item sub" href="#distance">Distance et catalyseurs</a>
+<a class="cx-nav-item sub" href="#boucliers">Boucliers et torches</a>
+<a class="cx-nav-item" href="#cendres"><svg class="cx-i" aria-hidden="true"><use href="#i-skill"></use></svg>Cendres de guerre<span class="cx-nav-count">116</span></a>
+<a class="cx-nav-item" href="#armures"><svg class="cx-i" aria-hidden="true"><use href="#i-shield"></use></svg>Armures<span class="cx-nav-count">704</span></a>
+<a class="cx-nav-item" href="#talismans"><svg class="cx-i" aria-hidden="true"><use href="#i-rune"></use></svg>Talismans<span class="cx-nav-count">154</span></a>
+<a class="cx-nav-item" href="#sorts"><svg class="cx-i" aria-hidden="true"><use href="#i-d-magic"></use></svg>Sorts<span class="cx-nav-count">213</span></a>
+<a class="cx-nav-item" href="#esprits"><svg class="cx-i" aria-hidden="true"><use href="#i-d-holy"></use></svg>Esprits<span class="cx-nav-count">84</span></a>
+<a class="cx-nav-item" href="#objets"><svg class="cx-i" aria-hidden="true"><use href="#i-key"></use></svg>Objets<span class="cx-nav-count">833</span></a>
+<a class="cx-nav-item" href="FicheBoss.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-boss"></use></svg>Boss<span class="cx-nav-count">133</span></a>
+<a class="cx-nav-item" href="#lieux"><svg class="cx-i" aria-hidden="true"><use href="#i-map"></use></svg>Lieux<span class="cx-nav-count">315</span></a>
+<a class="cx-nav-item" href="#pnj"><svg class="cx-i" aria-hidden="true"><use href="#i-npc"></use></svg>PNJ<span class="cx-nav-count">114</span></a>
+<a class="cx-nav-item" href="#origines"><svg class="cx-i" aria-hidden="true"><use href="#i-origin"></use></svg>Origines<span class="cx-nav-count">12</span></a>
+<div class="cx-nav-label">Outils</div>
+<a class="cx-nav-item" href="#comparateur"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg>Comparateur<span class="cx-nav-count">{{cmpCount}}</span></a>
+<a class="cx-nav-item" href="#mecaniques"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg>Mécaniques<span class="cx-nav-count">88</span></a>
+<a class="cx-nav-item" href="#ma-liste"><svg class="cx-i" aria-hidden="true"><use href="#i-list"></use></svg>Ma liste<span class="cx-nav-count">{{pinCount}}</span></a>
+<a class="cx-nav-item" href="#profil"><svg class="cx-i" aria-hidden="true"><use href="#i-user"></use></svg>Profil</a>
+</nav>
+<div class="cx-main">
+<header class="cx-topbar">
+<a class="cx-search" href="Recherche.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-search"></use></svg><span>Rechercher une arme, un boss, un lieu…</span><span class="cx-kbd">Ctrl K</span></a>
+<div class="cx-row" style="margin-left: auto; color: var(--ink-3); font-size: 12px"><svg class="cx-i sm" aria-hidden="true"><use href="#i-user"></use></svg>Profil actif : « Dex / Saignement » (Samurai, niveau 42)</div>
+</header>
+<main class="p-page">
+<p class="p-crumb"><a href="#explorer">Explorer</a><svg class="cx-i xs" aria-hidden="true"><use href="#i-chev-r"></use></svg><a href="Catalogue.dc.html">Armes de mêlée</a><svg class="cx-i xs" aria-hidden="true"><use href="#i-chev-r"></use></svg><a href="Catalogue.dc.html">{{w.cat}}</a><svg class="cx-i xs" aria-hidden="true"><use href="#i-chev-r"></use></svg><span aria-current="page">{{w.name}}</span></p>
+
+<section class="p-hero" aria-label="En-tête de la fiche">
+<div class="p-hero-main">
+<div class="p-hero-ic"><svg class="cx-i" aria-hidden="true"><use href="{{w.icon}}"></use></svg></div>
+<div>
+<h1 class="titre-xl" style="margin: 0">{{w.name}}</h1>
+<div class="p-meta">
+<span class="cx-badge cx-src-{{w.src}}" title="{{w.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{w.srcI}}"></use></svg>{{w.srcF}}</span>
+<span><svg class="cx-i sm" aria-hidden="true"><use href="{{w.icon}}"></use></svg>{{w.cat}}</span>
+<span><svg class="cx-i sm" aria-hidden="true"><use href="#i-weight"></use></svg>Poids <b>{{w.wt}}</b></span>
+<span>Types d'attaque <sc-for list="{{w.types}}" as="t" hint-placeholder-count="2"><span class="cx-dt {{t.cls}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{t.icon}}"></use></svg></span><span class="cx-mqv">{{t.label}}</span></span></sc-for></span>
+</div>
+</div>
+</div>
+<div class="p-acts">
+<button class="cx-btn" aria-pressed="{{pinned}}" onClick="{{togglePin}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-pin"></use></svg>{{pinLabel}}</button>
+<button class="cx-btn" aria-pressed="{{inCmp}}" onClick="{{toggleCmp}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-compare"></use></svg>{{cmpLabel}}</button>
+<a class="cx-btn cx-btn-ghost p-ext" href="#wiki">Voir sur le wiki<svg class="cx-i sm" aria-hidden="true"><use href="#i-ext"></use></svg></a>
+</div>
+</section>
+
+<div class="p-alerts" role="list" aria-label="Alertes de qualité des données">
+<sc-for list="{{w.alerts}}" as="a" hint-placeholder-count="2"><div class="cx-note {{a.cls}}" role="listitem"><svg class="cx-i sm" aria-hidden="true"><use href="{{a.icon}}"></use></svg><span><b>{{a.label}}</b> {{a.text}}<sc-if value="{{a.mock}}" hint-placeholder-val="{{ false }}"> <span class="cx-mq">valeur de maquette</span></sc-if></span></div></sc-for>
+</div>
+
+<div class="p-cols">
+<div class="p-maincol">
+
+<section class="cx-widget p-sec" aria-labelledby="h-atk">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-atk">Attaque et garde</h2><p class="p-sub">Valeurs de base à +0 du wiki ; la colonne Calculé suit le niveau choisi sous le graphique et le maniement</p></div><span class="cx-rel cx-rel-wiki" title="Attaque documentée sur la page du wiki"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg>Wiki</span></div>
+<div class="cx-w-body">
+<div class="cx-tbl-wrap"><table class="cx-tbl p-tbl">
+<thead><tr><th scope="col">Type de dégâts</th><th scope="col" class="num">Attaque +0</th><th scope="col" class="num">À +{{calcL}} avec votre profil <span class="cx-rel cx-rel-calc" title="Calculé par l'application"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span></th><th scope="col" class="num">Absorption en garde <span class="cx-mq">valeur de maquette</span></th></tr></thead>
+<tbody>
+<sc-for list="{{w.atkRows}}" as="r" hint-placeholder-count="5">
+<tr><th scope="row" style="font-weight: 400; color: var(--ink)"><span class="p-dtcell"><span class="cx-dt {{r.cls}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{r.icon}}"></use></svg></span></span>{{r.label}}</span></th><td class="num {{r.atkCls}}">{{r.atk}}</td><td class="num p-calc {{r.calcCls}}"><span class="{{r.calcMq}}">{{r.calc}}</span></td><td class="num"><span class="cx-mqv">{{r.guard}}</span></td></tr>
+</sc-for>
+</tbody>
+</table></div>
+<p class="p-sub" style="margin: 10px 0 0"><svg class="cx-i sm" aria-hidden="true" style="vertical-align: -3px; color: var(--gold-text)"><use href="#i-calc"></use></svg> {{calcNote}}</p>
+<div class="p-foot"><span>Critique <b class="cx-mqv">{{w.crit}}</b></span><span>Stabilité de garde <b class="cx-mqv">{{w.boost}}</b></span><span class="cx-muted">Un 0 signifie « aucun dégât de ce type » sur le wiki ; une valeur absente s'affiche « Non documenté ».</span></div>
+</div>
+</section>
+
+<section class="cx-widget p-sec" aria-labelledby="h-scl">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-scl">Scaling et prérequis</h2><p class="p-sub">Comparés au profil « Dex / Saignement »</p></div>
+<div class="cx-seg" role="group" aria-label="Maniement"><button aria-pressed="{{oneH}}" onClick="{{setOneH}}">Une main</button><button aria-pressed="{{twoH}}" onClick="{{setTwoH}}">Deux mains</button></div></div>
+<div class="cx-w-body">
+<div class="cx-tbl-wrap"><table class="cx-tbl p-tbl">
+<thead><tr><th scope="col">Attribut</th><th scope="col">Scaling à +0</th><th scope="col">Prérequis</th><th scope="col" class="num">Votre profil</th><th scope="col">État</th></tr></thead>
+<tbody>
+<sc-for list="{{attrRows}}" as="r" hint-placeholder-count="5">
+<tr>
+<th scope="row" style="font-weight: 400; color: var(--ink)">{{r.full}}</th>
+<td><sc-if value="{{r.hasScl}}" hint-placeholder-val="{{ true }}"><span class="cx-scl" title="{{r.full}} : {{r.g}} à +0"><span class="cx-scl-attr">{{r.abbr}}</span><span class="cx-scl-g g-{{r.lc}}">{{r.g}}</span></span></sc-if><sc-if value="{{r.noScl}}" hint-placeholder-val="{{ false }}"><span class="cx-muted">Aucun</span></sc-if></td>
+<td><sc-if value="{{r.hasReq}}" hint-placeholder-val="{{ true }}"><span class="cx-req {{r.cls}}" title="{{r.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{r.icon}}"></use></svg>{{r.abbr}} {{r.req}}<sc-if value="{{r.miss}}" hint-placeholder-val="{{ false }}"><span class="cx-req-gap">{{r.gap}}</span></sc-if></span></sc-if><sc-if value="{{r.noReq}}" hint-placeholder-val="{{ false }}"><span class="cx-muted">Aucun</span></sc-if></td>
+<td class="num">{{r.have}}<sc-if value="{{r.h2}}" hint-placeholder-val="{{ false }}"> <span class="cx-req-2h" title="Force ×1,5 à deux mains">×1,5 = {{r.eff}}</span></sc-if></td>
+<td style="font-size: 12px">{{r.state}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table></div>
+<div class="cx-note {{reqNoteCls}}" style="margin-top: 12px"><svg class="cx-i sm" aria-hidden="true"><use href="{{reqNoteIcon}}"></use></svg><span>{{reqNote}}</span></div>
+</div>
+</section>
+
+<section class="cx-widget p-sec" aria-labelledby="h-skill">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-skill">Compétence et effets passifs</h2></div></div>
+<div class="cx-w-body p-skill">
+<div class="p-skill-name"><svg class="cx-i" aria-hidden="true" style="color: var(--gold-text)"><use href="#i-skill"></use></svg><b>{{w.skill}}</b><span class="cx-chip">{{w.skillType}}</span><span class="cx-muted" style="font-size: 13px">Coût en PF <span class="cx-mqv" style="color: var(--ink)">{{w.fp}}</span></span></div>
+<p class="p-desc"><span class="cx-mqv">{{w.desc}}</span></p>
+<div class="p-row" style="font-size: 13px; color: var(--ink-2)"><span>Cendre de guerre : <b style="color: var(--ink)">{{w.aowTxt}}</b></span><span>Affinité : <b style="color: var(--ink)">{{w.affTxt}}</b></span></div>
+<div class="p-row"><span style="font-size: 13px; color: var(--ink-2)">Effet passif</span>
+<sc-if value="{{w.hasSt}}" hint-placeholder-val="{{ true }}"><span class="cx-dt st-bleed" title="Accumulation de saignement à +0"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-st-bleed"></use></svg></span>Saignement <span class="cx-dt-val">{{w.stVal}}</span></span><span class="cx-muted" style="font-size: 12px">accumulation par coup à +0</span></sc-if>
+<sc-if value="{{w.noPas}}" hint-placeholder-val="{{ false }}"><span class="cx-muted">Aucun</span></sc-if>
+</div>
+</div>
+</section>
+
+<section class="cx-widget p-sec" aria-labelledby="h-up">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-up">Amélioration</h2><p class="p-sub">Matériau, niveau maximal et évolution de l'attaque</p></div><span class="cx-rel {{w.rel.cls}}" title="{{w.rel.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{w.rel.icon}}"></use></svg>{{w.rel.label}}</span></div>
+<div class="cx-w-body">
+<dl class="p-dl">
+<div><dt>Matériau</dt><dd>{{w.mat}}</dd></div>
+<div><dt>Niveau maximal</dt><dd><b>{{w.maxTxt}}</b></dd></div>
+<div><dt>Cendre de guerre</dt><dd>{{w.aowTxt}}</dd></div>
+<div><dt>Affinité</dt><dd>{{w.affTxt}}</dd></div>
+<div><dt>Coût jusqu'au maximum</dt><dd><a href="Main.dc.html">Voir le plan d'amélioration</a></dd></div>
+</dl>
+
+<sc-if value="{{ch.on}}" hint-placeholder-val="{{ true }}">
+<div class="p-chart-head">
+<span class="p-chart-title">{{ch.title}}</span>
+<div class="cx-seg" role="group" aria-label="Affichage des valeurs"><button aria-pressed="{{ch.isChart}}" onClick="{{ch.showChart}}"><svg class="cx-i sm" aria-hidden="true" style="vertical-align: -2px"><use href="#i-chart"></use></svg> Graphique</button><button aria-pressed="{{ch.isTable}}" onClick="{{ch.showTable}}"><svg class="cx-i sm" aria-hidden="true" style="vertical-align: -2px"><use href="#i-table"></use></svg> Tableau</button></div>
+</div>
+<div class="cx-legend p-legend" aria-live="polite"><sc-if value="{{ch.hasHover}}" hint-placeholder-val="{{ true }}"><span class="p-lv">Niveau +{{ch.hv}}</span></sc-if><sc-for list="{{ch.leg}}" as="s" hint-placeholder-count="4"><span><span class="cx-legend-key" style="background: {{s.col}}"></span>{{s.label}}<sc-if value="{{s.hasV}}" hint-placeholder-val="{{ true }}"> <b class="{{s.cls}}">{{s.v}}</b><sc-if value="{{s.hasSplit}}" hint-placeholder-val="{{ false }}"> <span class="cx-muted">{{s.split}}</span></sc-if></sc-if></span></sc-for><span class="cx-mq">valeur de maquette</span></div><p class="p-sub" style="margin: 4px 0 0">{{ch.realNote}}</p>
+<sc-if value="{{ch.isAff}}" hint-placeholder-val="{{ true }}">
+<div class="p-affs" role="group" aria-label="Affinités affichées, 4 au maximum">
+<sc-for list="{{ch.affs}}" as="f" hint-placeholder-count="13"><button class="cx-chip {{f.cls}}" aria-pressed="{{f.on}}" disabled="{{f.dis}}" title="{{f.title}}" onClick="{{f.toggle}}"><sc-if value="{{f.on}}" hint-placeholder-val="{{ false }}"><span class="cx-legend-key" style="background: {{f.col}}; width: 10px; margin: 0"></span></sc-if>{{f.label}}</button></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ch.isDmg}}" hint-placeholder-val="{{ false }}"><p class="p-sub" style="margin: 8px 0 0">Affinité non modifiable : une courbe par type de dégâts.</p></sc-if>
+<sc-if value="{{ch.isChart}}" hint-placeholder-val="{{ true }}">
+<div class="p-chart" onMouseLeave="{{ch.leave}}">
+<svg class="cx-chart" viewBox="0 0 640 240" role="img" aria-label="{{ch.aria}}">
+<sc-for list="{{ch.grid}}" as="g" hint-placeholder-count="4"><line class="grid" x1="44" x2="560" y1="{{g.y}}" y2="{{g.y}}"></line></sc-for>
+<line class="axis" x1="44" x2="560" y1="204" y2="204"></line>
+<sc-for list="{{ch.series}}" as="s" hint-placeholder-count="4"><path class="series" d="{{s.d}}" style="stroke: {{s.col}}"></path></sc-for>
+<sc-if value="{{ch.hasHover}}" hint-placeholder-val="{{ true }}"><line class="p-cross" x1="{{ch.hx}}" x2="{{ch.hx}}" y1="16" y2="204"></line><sc-for list="{{ch.hdots}}" as="d" hint-placeholder-count="4"><circle class="dot" cx="{{ch.hx}}" cy="{{d.y}}" r="4.5" style="fill: {{d.col}}"></circle></sc-for></sc-if>
+</svg>
+<sc-for list="{{ch.ylabels}}" as="l" hint-placeholder-count="4"><span class="p-ylab" style="top: {{l.top}}%">{{l.t}}</span></sc-for>
+<sc-for list="{{ch.xlabels}}" as="l" hint-placeholder-count="6"><span class="p-xlab" style="left: {{l.left}}%">{{l.t}}</span></sc-for>
+<sc-for list="{{ch.ends}}" as="e" hint-placeholder-count="4"><span class="p-end" style="top: {{e.top}}%" aria-hidden="true"><span class="cx-legend-key" style="background: {{e.col}}"></span>{{e.t}}</span></sc-for>
+<sc-for list="{{ch.hits}}" as="h" hint-placeholder-count="26"><span class="p-hit" style="left: {{h.left}}%; width: {{h.w}}%" onMouseEnter="{{h.enter}}"></span></sc-for>
+
+</div>
+<div class="p-range"><label for="fa-lvl">Niveau affiché</label><input id="fa-lvl" type="range" min="0" max="{{ch.maxL}}" step="1" value="{{ch.hvNum}}" onChange="{{ch.onRange}}"><output for="fa-lvl">+{{ch.hv}}</output></div>
+</sc-if>
+<sc-if value="{{ch.isTable}}" hint-placeholder-val="{{ false }}">
+<div class="cx-tbl-wrap p-tblscroll" style="margin-top: 12px"><table class="cx-tbl p-tbl">
+<caption class="cx-sr">{{ch.title}}, valeurs de maquette</caption>
+<thead><tr><th scope="col">Niveau</th><sc-for list="{{ch.series}}" as="s" hint-placeholder-count="4"><th scope="col" class="num">{{s.label}}</th></sc-for></tr></thead>
+<tbody><sc-for list="{{ch.trs}}" as="r" hint-placeholder-count="10"><tr><th scope="row" style="font-weight: 600">+{{r.l}}</th><sc-for list="{{r.vs}}" as="v" hint-placeholder-count="4"><td class="num"><span class="{{v.cls}}">{{v.v}}</span></td></sc-for></tr></sc-for></tbody>
+</table></div>
+</sc-if>
+</sc-if>
+<sc-if value="{{ch.off}}" hint-placeholder-val="{{ false }}">
+<div class="cx-empty"><span class="cx-rel cx-rel-nodata"><svg class="cx-i" aria-hidden="true"><use href="#i-empty"></use></svg>Non documenté</span><span class="cx-empty-title">Pas de tableau d'amélioration sur le wiki</span><span>{{ch.offTxt}}</span><a class="p-ext" href="#wiki">Voir sur le wiki<svg class="cx-i sm" aria-hidden="true"><use href="#i-ext"></use></svg></a></div>
+</sc-if>
+</div>
+</section>
+
+<section class="cx-widget p-sec" aria-labelledby="h-acq">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-acq">Obtention</h2></div></div>
+<div class="cx-w-body">
+<ul class="p-acq">
+<sc-for list="{{w.acq}}" as="q" hint-placeholder-count="2">
+<li><span class="p-acq-ic"><svg class="cx-i" aria-hidden="true"><use href="{{q.icon}}"></use></svg></span><div><span class="p-acq-t">{{q.m}}</span>
+<div class="p-acq-k">
+<span>{{q.locLabel}}</span><span><a href="#lieu">{{q.loc}}</a></span>
+<sc-if value="{{q.hasReg}}" hint-placeholder-val="{{ true }}"><span>Région</span><span>{{q.reg}}</span></sc-if>
+<span>Détails</span><span><sc-if value="{{q.hasDet}}" hint-placeholder-val="{{ false }}">{{q.det}}</sc-if><sc-if value="{{q.noDet}}" hint-placeholder-val="{{ true }}"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Non documenté</span></sc-if></span>
+</div></div></li>
+</sc-for>
+</ul>
+</div>
+</section>
+
+<div class="p-two">
+<section class="cx-widget p-sec" aria-labelledby="h-notes">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-notes">Notes</h2></div><span class="cx-mq">valeur de maquette</span></div>
+<div class="cx-w-body"><ul class="p-list"><sc-for list="{{w.notes}}" as="n" hint-placeholder-count="2"><li><svg class="cx-i sm" aria-hidden="true"><use href="#i-note"></use></svg><span>{{n.t}}</span></li></sc-for></ul></div>
+</section>
+<section class="cx-widget p-sec" aria-labelledby="h-patch">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-patch">Historique des patchs</h2></div><span class="cx-mq">valeur de maquette</span></div>
+<div class="cx-w-body"><dl class="p-patch"><sc-for list="{{w.patches}}" as="p" hint-placeholder-count="2"><dt>{{p.v}}</dt><dd>{{p.t}}</dd></sc-for></dl></div>
+</section>
+</div>
+</div>
+
+<aside class="p-side" aria-label="Analyse pour votre profil">
+<section class="cx-widget p-sec" aria-labelledby="h-prof">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-prof">Pour votre profil</h2><p class="p-sub">« Dex / Saignement », Samurai niveau 42, étape Milieu</p></div></div>
+<div class="cx-w-body">
+<div class="p-scoreline"><span class="p-bigscore cx-mqv">{{sc.total}}</span><span class="cx-muted">sur 100</span><span class="cx-rel cx-rel-calc" title="Score calculé par l'application"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><button class="cx-btn cx-btn-ghost cx-btn-sm" aria-expanded="{{whyOpen}}" onClick="{{toggleWhy}}">Pourquoi ?</button></div>
+<div class="cx-breakdown"><sc-for list="{{sc.parts}}" as="p" hint-placeholder-count="4"><div class="cx-bd-row"><span>{{p.label}}</span><b>{{p.v}} / 25</b><span class="cx-bd-bar"><span style="width: {{p.pct}}%"></span></span></div></sc-for></div>
+<sc-if value="{{whyOpen}}" hint-placeholder-val="{{ false }}">
+<div class="p-why" role="region" aria-label="Détail du score">
+<div><h3>Données utilisées</h3><ul class="cx-why-data"><sc-for list="{{sc.data}}" as="d" hint-placeholder-count="4"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{d.icon}}"></use></svg><span>{{d.t}}</span></li></sc-for></ul></div>
+<div><h3>Limites</h3><ul class="cx-why-data"><sc-for list="{{sc.limits}}" as="d" hint-placeholder-count="2"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{d.icon}}"></use></svg><span>{{d.t}}</span></li></sc-for></ul></div>
+</div>
+</sc-if>
+</div>
+</section>
+
+<section class="cx-widget p-sec" aria-labelledby="h-qual">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-qual">Qualité des données</h2><p class="p-sub">Fiabilité champ par champ</p></div></div>
+<div class="cx-w-body"><ul class="p-q"><sc-for list="{{w.quality}}" as="q" hint-placeholder-count="6"><li><span>{{q.f}}</span><span class="cx-rel {{q.cls}}" title="{{q.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{q.icon}}"></use></svg>{{q.label}}</span></li></sc-for></ul></div>
+</section>
+
+<section class="cx-widget p-sec" aria-labelledby="h-sim">
+<div class="cx-w-head"><div class="cx-w-titles"><h2 class="titre-s" id="h-sim">Autres {{w.cat}}</h2><p class="p-sub">Score pour votre profil</p></div></div>
+<div class="cx-w-body"><ul class="p-sim"><sc-for list="{{sims}}" as="x" hint-placeholder-count="2"><li><svg class="cx-i sm" aria-hidden="true" style="color: var(--ink-3)"><use href="{{x.icon}}"></use></svg><button onClick="{{x.go}}">{{x.name}}</button><span class="cx-badge cx-src-{{x.src}}" title="{{x.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{x.srcI}}"></use></svg>{{x.srcS}}</span><span class="cx-score-num cx-mqv" title="Score calculé (valeur de maquette)">{{x.score}}</span></li></sc-for></ul></div>
+</section>
+
+<p class="p-src">Source : page « {{w.name}} » sur eldenring.wiki.gg, sous licence CC BY-SA 4.0. Dernière synchronisation des données : <span class="cx-mqv">12 octobre 2026</span>.</p>
+</aside>
+</div>
+</main>
+<footer class="cx-footer"><span>Outil de fan non officiel — données : eldenring.wiki.gg (CC BY-SA 4.0)</span><span>Valeurs de base à +0</span></footer>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["sombre","parchemin"],"default":"sombre","section":"Prototype"},"weapon":{"editor":"enum","options":["uchi","moon","rob"],"default":"uchi","section":"Prototype"},"showMock":{"editor":"boolean","default":true,"section":"Prototype"},"$preview":{"width":1440,"height":2400}}'>
+function fD(v) { return (Math.round(v * 10) / 10).toFixed(1).replace('.', ','); }
+function cl(v, a, b) { return Math.max(a, Math.min(b, v)); }
+var ATTR = ['str', 'dex', 'int', 'fai', 'arc'];
+var AB = { str: 'STR', dex: 'DEX', int: 'INT', fai: 'FAI', arc: 'ARC' };
+var AF = { str: 'Strength', dex: 'Dexterity', int: 'Intelligence', fai: 'Faith', arc: 'Arcane' };
+var LVN = { S: 1, A: 0.85, B: 0.7, C: 0.55, D: 0.4, E: 0.25 };
+var SRC = { base: { s: 'Base', f: 'Base game', i: '#i-s-base' }, sote: { s: 'SotE', f: 'Shadow of the Erdtree', i: '#i-s-sote' }, tp: { s: 'TP', f: 'Tarnished Pack', i: '#i-s-tp' } };
+var DT = { phys: ['Physique', 'dt-standard', '#i-d-standard'], magic: ['Magie', 'dt-magic', '#i-d-magic'], fire: ['Feu', 'dt-fire', '#i-d-fire'], lightning: ['Foudre', 'dt-lightning', '#i-d-lightning'], holy: ['Sacré', 'dt-holy', '#i-d-holy'] };
+var SC_ATTR = { phys: ['str', 'dex'], magic: ['int'], fire: ['fai', 'arc'], lightning: ['dex'], holy: ['fai'] };
+var CAT = ['var(--cat-1)', 'var(--cat-2)', 'var(--cat-3)', 'var(--cat-4)'];
+var P = { A: { str: 12, dex: 27, int: 9, fai: 8, arc: 10 }, w: { dex: 1, arc: 1 }, status: 'bleed', classes: ['Katana', 'Light Greatsword'], stageIdx: 1, budget: 10.7 };
+var AFF = [['Standard', 115, 0, ''], ['Heavy', 113, 0, ''], ['Keen', 104, 0, ''], ['Quality', 106, 0, ''], ['Fire', 94, 63, 'Feu'], ['Flame Art', 92, 60, 'Feu'], ['Lightning', 94, 63, 'Foudre'], ['Sacred', 92, 61, 'Sacré'], ['Magic', 93, 62, 'Magie'], ['Cold', 93, 62, 'Magie'], ['Poison', 101, 0, ''], ['Blood', 99, 0, ''], ['Occult', 97, 0, '']];
+var NORMAL_MAT = 'Smithing Stone [1] à [8], puis Ancient Dragon Smithing Stone';
+var SOMBER_MAT = 'Somber Smithing Stone [1] à [9], puis Somber Ancient Dragon Smithing Stone';
+var W = {
+  uchi: { id: 'uchi', name: 'Uchigatana', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 5.5, atk: { phys: 115 }, scl: { str: 'D', dex: 'D' }, req: { str: 11, dex: 15 },
+    types: [['Tranchant', 'dt-slash', '#i-d-slash'], ['Estoc', 'dt-pierce', '#i-d-pierce']], crit: 100, guard: { phys: 75, magic: 35, fire: 35, lightning: 35, holy: 35 }, boost: 34,
+    skill: 'Unsheathe', st: 'aow', fp: '11', desc: 'Sheathe the blade and assume a drawing stance; follow up with a quick draw slash (light attack) or a lunging draw slash (heavy attack).',
+    pas: { k: 'bleed', v: 45 }, up: 'normal', rel: 'ded', aow: true, aff: true, stage: 0, flags: [], startSam: true,
+    chart: { kind: 'aff', maxL: 25, mult: 2.41, def: ['Standard', 'Keen', 'Cold', 'Blood'], hover: 18 },
+    acq: [{ m: 'Équipement de départ', icon: '#i-start', loc: 'Samurai', start: true, reg: null, det: "Fait partie de l'équipement de départ de l'origine Samurai." }, { m: 'Butin', icon: '#i-drop', loc: 'Deathtouched Catacombs', reg: 'Limgrave', det: null }],
+    notes: ['Starting weapon of the Samurai origin.', 'Unsheathe can be cancelled before the follow-up attack.'],
+    patches: [['1.03', 'Exemple de maquette : ajustement des dégâts de la compétence.'], ['1.07', 'Exemple de maquette : récupération de Unsheathe plus courte.']],
+    alerts: [{ cls: '', icon: '#i-book', label: 'Wiki (déduit).', text: "Le type d'amélioration vient de la règle de la classe Katana : la page de l'arme ne l'indique pas." }, { cls: 'partial', icon: '#i-empty', label: 'Non documenté.', text: "Le wiki ne donne pas de détails d'obtention pour Deathtouched Catacombs." }, { cls: 'warn', icon: '#i-alert', label: 'Incohérence wiki.', text: 'Le coût en PF de Unsheathe diffère entre la page de l’arme et celle de la Cendre de guerre.', mock: true }] },
+  moon: { id: 'moon', name: 'Moonveil', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 6.5, atk: { phys: 73, magic: 87 }, scl: { str: 'E', dex: 'D', int: 'C' }, req: { str: 12, dex: 18, int: 23 },
+    types: [['Tranchant', 'dt-slash', '#i-d-slash'], ['Estoc', 'dt-pierce', '#i-d-pierce']], crit: 100, guard: { phys: 70, magic: 50, fire: 35, lightning: 35, holy: 35 }, boost: 32,
+    skill: 'Transient Moonlight', st: 'unique', fp: '18', desc: 'Sheathe the blade, then release a slash of moonlight as a short-range wave.',
+    pas: { k: 'bleed', v: 50 }, up: 'somber', rel: 'est', conf: 'haute', aow: false, aff: false, stage: 1, flags: ['drop'], startSam: false,
+    chart: null,
+    acq: [{ m: 'Butin garanti', icon: '#i-drop', loc: 'Gael Tunnel, Magma Wyrm', reg: 'Caelid', det: null }],
+    notes: ['Guaranteed drop from the Magma Wyrm boss in Gael Tunnel.'],
+    patches: [['1.04', 'Exemple de maquette : coût en PF de Transient Moonlight modifié.']],
+    alerts: [{ cls: 'est', icon: '#i-approx', label: 'Estimation, confiance haute.', text: "Le wiki ne documente pas le type d'amélioration : pierres sombres d'après les armes à compétence unique comparables." }, { cls: 'partial', icon: '#i-empty', label: 'Non documenté.', text: "Pas de tableau d'amélioration sur le wiki : l'évolution par niveau n'est pas affichée." }] },
+  rob: { id: 'rob', name: 'Rivers of Blood', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 6.5, atk: { phys: 76, fire: 76 }, scl: { str: 'E', dex: 'D', arc: 'D' }, req: { str: 12, dex: 18, arc: 20 },
+    types: [['Tranchant', 'dt-slash', '#i-d-slash'], ['Estoc', 'dt-pierce', '#i-d-pierce']], crit: 100, guard: { phys: 70, magic: 35, fire: 50, lightning: 35, holy: 35 }, boost: 32,
+    skill: 'Corpse Piler', st: 'unique', fp: '20', desc: 'Unleash a flurry of blood-tinged slashes that leave a lingering trail of cutting mist.',
+    pas: { k: 'bleed', v: 50 }, up: 'somber', rel: 'wiki', aow: false, aff: false, stage: 2, flags: ['invader'], startSam: false,
+    chart: { kind: 'dmg', maxL: 10, series: [['Physique', 76, 2.48], ['Feu', 76, 2.2]], hover: 7 },
+    acq: [{ m: 'Vaincre Okina (envahisseur PNJ)', icon: '#i-npc', loc: 'Church of Repose', reg: 'Mountaintops of the Giants', det: null }],
+    notes: ['Dropped by Bloody Finger Okina, who invades near the Church of Repose.'],
+    patches: [['1.04', 'Exemple de maquette : dégâts de Corpse Piler réduits en combat entre joueurs.'], ['1.07', 'Exemple de maquette : traînée de sang raccourcie.']],
+    alerts: [{ cls: 'partial', icon: '#i-empty', label: 'Non documenté.', text: "Le wiki ne donne pas de détails d'obtention pour Church of Repose." }] }
+};
+var ORDER = ['uchi', 'moon', 'rob'];
+function relOf(w) {
+  if (w.rel === 'est') return { cls: 'cx-rel-est', icon: '#i-approx', label: 'Estimation (' + w.conf + ')', title: "Type d'amélioration non documenté par le wiki : estimation statistique, confiance " + w.conf + '.' };
+  if (w.rel === 'ded') return { cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki (déduit)', title: "Déduit d'une règle du wiki sur la classe d'arme." };
+  return { cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki', title: 'Documenté sur la page du wiki.' };
+}
+function scoreOf(w) {
+  var ws = 0, acc = 0;
+  Object.keys(P.w).forEach(function (k) { ws += P.w[k]; acc += P.w[k] * (w.scl[k] ? LVN[w.scl[k]] : 0); });
+  var fit = Math.min(25, 50 * (ws ? acc / ws : 0)), pen = 0;
+  Object.keys(w.req).forEach(function (k) { if (!P.w[k]) { if (w.req[k] > 20) pen += 7; else if (w.req[k] > 10) pen += 4; } });
+  fit -= pen; var bonus = !!w.pas && w.pas.k === P.status; if (bonus) fit += 4; var inCls = P.classes.indexOf(w.cat) >= 0; fit += inCls ? 2 : -2; fit = cl(Math.round(fit), 0, 25);
+  var tot = 0, sl = 0; Object.keys(w.atk).forEach(function (k) { tot += w.atk[k]; }); Object.keys(w.scl).forEach(function (k) { sl += LVN[w.scl[k]]; });
+  var pow = cl(Math.round(17.5 * Math.min(1, tot / 200) + 7.5 * Math.min(1, sl / 1.6) - (w.wt > P.budget ? 4 : 0)), 0, 25);
+  var ahead = Math.max(0, w.stage - P.stageIdx), miss = 0;
+  Object.keys(w.req).forEach(function (k) { if (P.A[k] < w.req[k]) miss += w.req[k] - P.A[k]; });
+  var ac = cl(Math.round(25 - 4 * ahead - Math.min(9, 0.6 * miss) - (w.flags.indexOf('invader') >= 0 ? 1 : 0) + (w.startSam ? 2 : 0)), 0, 25);
+  var up = cl((w.up === 'somber' ? 20 : 16) - (w.rel === 'est' ? 2 : 0), 0, 25);
+  return { fit: fit, pow: pow, ac: ac, up: up, total: fit + pow + ac + up, pen: pen, bonus: bonus, inCls: inCls, miss: miss, ahead: ahead, tot: tot };
+}
+function grow(b, m, L, maxL) { return Math.round(b * (1 + (m - 1) * L / maxL)); }
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { theme: null, wid: null, showMock: null, hands: 1, why: false, view: 'chart', hover: undefined, lvl: undefined, slots: ['Standard', 'Keen', 'Cold', 'Blood'], pinned: ['rob', 'uchi'], compare: [] }; }
+  renderVals() {
+    var self = this, s = this.state, p = this.props || {};
+    var theme = s.theme || p.theme || 'sombre', wid = s.wid || p.weapon || 'uchi', w = W[wid] || W.uchi;
+    var showMock = s.showMock !== null ? s.showMock : p.showMock !== false;
+    var rel = relOf(w), sc = scoreOf(w), two = s.hands === 2;
+    var attrRows = ATTR.map(function (k) {
+      var hasScl = !!w.scl[k], hasReq = w.req[k] !== undefined, have = P.A[k], eff = k === 'str' && two ? Math.floor(have * 1.5) : have, ok = !hasReq || eff >= w.req[k];
+      var gap = hasReq && !ok ? (k === 'str' && two ? Math.ceil(w.req[k] / 1.5) - have : w.req[k] - have) : 0;
+      return { full: AF[k], abbr: AB[k], hasScl: hasScl, noScl: !hasScl, g: w.scl[k] || '', lc: (w.scl[k] || '').toLowerCase(), hasReq: hasReq, noReq: !hasReq, req: w.req[k] || '', cls: ok ? 'is-ok' : 'is-miss', icon: ok ? '#i-check' : '#i-alert', miss: !ok, gap: '+' + gap + ' ' + AB[k],
+        title: AF[k] + ' du profil : ' + have + (k === 'str' && two ? ' (×1,5 à deux mains : ' + eff + ')' : '') + ', requis : ' + (w.req[k] || 'aucun'), have: String(have), h2: k === 'str' && two, eff: String(eff),
+        state: !hasReq ? 'Sans prérequis' : ok ? 'Atteint' : 'Manque ' + gap + ' point' + (gap > 1 ? 's' : '') };
+    });
+    var missing = attrRows.filter(function (r) { return r.miss; });
+    var reqNote = missing.length ? 'Prérequis non atteints : ' + missing.map(function (r) { return r.gap; }).join(', ') + ". L'arme reste utilisable mais avec une forte pénalité d'attaque." : 'Tous les prérequis sont atteints' + (two ? ' à deux mains.' : ' à une main.');
+    var lvl = s.lvl !== undefined ? s.lvl : (w.chart ? w.chart.hover : 0), calcL = w.chart ? lvl : 0;
+    var effA = { str: two ? Math.floor(P.A.str * 1.5) : P.A.str, dex: P.A.dex, int: P.A.int, fai: P.A.fai, arc: P.A.arc };
+    var unmet = Object.keys(w.req).filter(function (k) { return effA[k] < w.req[k]; });
+    var baseAt = function (k, L) { var b = w.atk[k] || 0; if (!b || !w.chart) return b; if (w.chart.kind === 'aff') return grow(b, w.chart.mult, L, w.chart.maxL); var sr = w.chart.series.filter(function (x) { return x[0] === DT[k][0]; })[0]; return sr ? grow(sr[1], sr[2], L, w.chart.maxL) : b; };
+    var calcAt = function (k) { var b = baseAt(k, calcL); if (!b) return 0; if (unmet.length) return Math.round(b * 0.6); var bonus = 0; (SC_ATTR[k] || []).forEach(function (a) { bonus += (w.scl[a] ? LVN[w.scl[a]] : 0) * Math.min(1, effA[a] / 80) * 1.2; }); return Math.round(b * (1 + bonus)); };
+    var calcNote = (unmet.length ? 'Prérequis non atteints (' + unmet.map(function (k) { return AB[k]; }).join(', ') + ') : attaque réduite de 40 %, sans bonus de scaling.' : 'Base au niveau +' + calcL + ', plus le bonus de scaling de vos attributs' + (two ? ' (Force ×1,5 à deux mains).' : '.')) + (w.chart ? '' : ' Pas de tableau d\u2019amélioration : calcul limité à +0.') + ' Valeurs de maquette.';
+    var atkRows = ['phys', 'magic', 'fire', 'lightning', 'holy'].map(function (k) { var v = w.atk[k] || 0, cv = calcAt(k); return { calc: String(cv), calcCls: cv ? '' : 'p-zero', calcMq: cv ? 'cx-mqv' : '', label: DT[k][0], cls: DT[k][1], icon: DT[k][2], atk: String(v), atkCls: v ? '' : 'p-zero', guard: w.guard[k] + ' %' }; });
+    var quality = [
+      { f: 'Attaque, scaling, prérequis', cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki', title: 'Valeurs de la page du wiki' },
+      { f: "Type d'amélioration", cls: rel.cls, icon: rel.icon, label: rel.label, title: rel.title },
+      { f: "Tableau d'amélioration", cls: w.chart ? 'cx-rel-wiki' : 'cx-rel-nodata', icon: w.chart ? '#i-book' : '#i-empty', label: w.chart ? 'Wiki' : 'Non documenté', title: w.chart ? 'Tableau fourni par le wiki (valeurs de maquette dans ce prototype)' : 'Le wiki ne fournit pas de tableau' },
+      { f: "Détails d'obtention", cls: 'cx-rel-nodata', icon: '#i-empty', label: 'Non documenté', title: 'Champ details vide' },
+      { f: 'Score pour votre profil', cls: 'cx-rel-calc', icon: '#i-calc', label: 'Calculé', title: "Calculé par l'application" }
+    ];
+    if (w.alerts.some(function (a) { return a.cls === 'warn'; })) quality.splice(2, 0, { f: 'Coût en PF de la compétence', cls: 'cx-rel-incoh', icon: '#i-alert', label: 'Incohérence', title: 'Deux pages du wiki se contredisent (exemple de maquette)' });
+    var wv = {
+      name: w.name, cat: w.cat, icon: w.ic, src: w.src, srcF: SRC[w.src].f, srcI: SRC[w.src].i, wt: fD(w.wt),
+      types: w.types.map(function (t) { return { label: t[0], cls: t[1], icon: t[2] }; }), atkRows: atkRows, crit: w.crit, boost: w.boost,
+      skill: w.skill, skillType: w.st === 'unique' ? 'Compétence unique' : 'Cendre de guerre', fp: w.fp, desc: w.desc,
+      aowTxt: w.aow ? 'modifiable' : 'non modifiable (compétence unique)', affTxt: w.aff ? 'modifiable, 13 affinités' : 'non modifiable',
+      hasSt: !!(w.pas && w.pas.k === 'bleed'), stVal: w.pas ? String(w.pas.v) : '', noPas: !w.pas,
+      rel: rel, mat: w.up === 'somber' ? SOMBER_MAT : NORMAL_MAT, maxTxt: w.up === 'somber' ? '+10' : '+25',
+      acq: w.acq.map(function (q) { return { m: q.m, icon: q.icon, loc: q.loc, locLabel: q.start ? 'Origine' : 'Lieu', reg: q.reg || '', hasReg: !!q.reg, det: q.det || '', hasDet: !!q.det, noDet: !q.det }; }),
+      notes: w.notes.map(function (t) { return { t: t }; }), patches: w.patches.map(function (x) { return { v: x[0], t: x[1] }; }),
+      alerts: w.alerts.map(function (a) { return { cls: a.cls, icon: a.icon, label: a.label, text: a.text, mock: !!a.mock }; }), quality: quality
+    };
+    var ch = { on: !!w.chart, off: !w.chart, offTxt: w.name + " : le wiki ne fournit pas l'évolution de l'attaque par niveau. Le type d'amélioration est lui-même estimé (pierres sombres, confiance haute).", isAff: false, isDmg: false, series: [], affs: [] };
+    if (w.chart) {
+      var c = w.chart, maxL = c.maxL, ser = [];
+      if (c.kind === 'aff') {
+        s.slots.forEach(function (name, i) { if (!name) return; var a = AFF.filter(function (x) { return x[0] === name; })[0]; ser.push({ label: name, col: CAT[i], vals: (function () { var o = []; for (var L = 0; L <= maxL; L++) o.push(grow(a[1], c.mult, L, maxL) + grow(a[2], c.mult, L, maxL)); return o; })(), split: a[2] ? a[3] : '', base: a }); });
+        var nOn = s.slots.filter(function (x) { return !!x; }).length;
+        ch.affs = AFF.map(function (a) {
+          var idx = s.slots.indexOf(a[0]), on = idx >= 0, full = nOn >= 4;
+          return { label: a[0], on: on, cls: on ? 'is-on' : '', col: on ? CAT[idx] : '', dis: !on && full, title: !on && full ? '4 affinités au maximum : retirez-en une' : on ? 'Masquer ' + a[0] : 'Afficher ' + a[0],
+            toggle: function () { var sl = self.state.slots.slice(), i = sl.indexOf(a[0]); if (i >= 0) { if (sl.filter(function (x) { return !!x; }).length > 1) sl[i] = null; } else { var e = sl.indexOf(null); if (e < 0 && sl.length < 4) sl.push(a[0]); else if (e >= 0) sl[e] = a[0]; } self.setState({ slots: sl }); } };
+        });
+        ch.isAff = true; ch.title = 'Attaque totale par niveau et par affinité'; ch.realNote = 'Seule la valeur Standard +0 (115) vient de l’annexe.';
+      } else {
+        c.series.forEach(function (x, i) { var o = []; for (var L = 0; L <= maxL; L++) o.push(grow(x[1], x[2], L, maxL)); ser.push({ label: x[0], col: CAT[i], vals: o }); });
+        ch.isDmg = true; ch.title = 'Attaque par niveau et par type de dégâts'; ch.realNote = 'Seules les valeurs +0 (76 et 76) viennent de l’annexe.';
+      }
+      var isReal = function (x, L) { return L === 0 && (c.kind === 'dmg' || x.label === 'Standard'); };
+      var vmax = 0; ser.forEach(function (x) { x.vals.forEach(function (v) { vmax = Math.max(vmax, v); }); });
+      var step = vmax <= 200 ? 50 : 100, ymax = Math.ceil(vmax / step) * step;
+      var X = function (L) { return 44 + L / maxL * 516; }, Y = function (v) { return 204 - v / ymax * 188; };
+      ser.forEach(function (x) { x.d = x.vals.map(function (v, L) { return (L ? 'L' : 'M') + X(L).toFixed(1) + ' ' + Y(v).toFixed(1); }).join(' '); });
+      var grid = [], yl = []; for (var g = step; g <= ymax; g += step) { grid.push({ y: Y(g).toFixed(1) }); } for (var g2 = 0; g2 <= ymax; g2 += step) yl.push({ t: String(g2), top: (Y(g2) / 240 * 100).toFixed(2) });
+      var xt = maxL === 25 ? [0, 5, 10, 15, 20, 25] : [0, 2, 4, 6, 8, 10];
+      var ends = ser.map(function (x) { return { t: String(x.vals[maxL]), col: x.col, y: Y(x.vals[maxL]) }; }).sort(function (a, b) { return a.y - b.y; });
+      for (var i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 14) ends[i].y = ends[i - 1].y + 14;
+      var hv = (s.hover !== undefined && s.hover !== null) ? s.hover : lvl, has = true;
+      var stepW = 516 / maxL, hits = [];
+      for (var L2 = 0; L2 <= maxL; L2++) (function (L) { hits.push({ left: ((X(L) - stepW / 2) / 640 * 100).toFixed(2), w: (stepW / 640 * 100).toFixed(2), enter: function () { self.setState({ hover: L, lvl: L }); } }); })(L2);
+      var trows = has ? ser.map(function (x) { return { label: x.label, col: x.col, v: String(x.vals[hv]) + (x.split ? ' (dont ' + x.split + ' ' + grow(x.base[2], c.mult, hv, maxL) + ')' : '') }; }).sort(function (a, b) { return parseInt(b.v, 10) - parseInt(a.v, 10); }) : [];
+      var trs = []; for (var L3 = 0; L3 <= maxL; L3++) (function (L) { trs.push({ l: L, vs: ser.map(function (x) { return { v: String(x.vals[L]), cls: isReal(x, L) ? '' : 'cx-mqv' }; }) }); })(L3);
+      Object.assign(ch, {
+        series: ser.map(function (x) { return { label: x.label, col: x.col, d: x.d }; }), grid: grid, ylabels: yl,
+        leg: ser.map(function (x) { return { label: x.label, col: x.col, hasV: has, v: has ? String(x.vals[hv]) : '', cls: has && isReal(x, hv) ? '' : 'cx-mqv', hasSplit: has && !!x.split, split: has && x.split ? '(dont ' + x.split + ' ' + grow(x.base[2], c.mult, hv, maxL) + ')' : '' }; }),
+        xlabels: xt.map(function (L) { return { t: '+' + L, left: (X(L) / 640 * 100).toFixed(2) }; }),
+        ends: ends.map(function (e) { return { t: e.t, col: e.col, top: (e.y / 240 * 100).toFixed(2) }; }),
+        hits: hits, hasHover: has, hv: has ? String(hv) : '0', hvNum: has ? hv : 0, hx: has ? X(hv).toFixed(1) : '0', maxL: maxL,
+        hdots: has ? ser.map(function (x) { return { y: Y(x.vals[hv]).toFixed(1), col: x.col }; }) : [],
+        tipLeft: has ? cl(X(hv) / 640 * 100 + (hv > maxL * 0.6 ? -30 : 2), 1, 62).toFixed(2) : '0', trows: trows, tipNote: 'Base +0 : ' + (c.kind === 'aff' ? '115 (Standard)' : '76 et 76'),
+        trs: trs, isChart: s.view === 'chart', isTable: s.view === 'table',
+        showChart: function () { self.setState({ view: 'chart' }); }, showTable: function () { self.setState({ view: 'table' }); },
+        leave: function () { self.setState({ hover: null }); }, onRange: function (e) { self.setState({ lvl: parseInt(e.target.value, 10), hover: null }); },
+        aria: ch.title + ', de +0 à +' + maxL + ', valeurs de maquette. Utilisez la vue Tableau pour lire chaque valeur.'
+      });
+    }
+    var pinned = s.pinned.indexOf(w.id) >= 0, inCmp = s.compare.indexOf(w.id) >= 0;
+    var data = [
+      { icon: '#i-check', t: 'Scaling ' + ATTR.filter(function (k) { return w.scl[k]; }).map(function (k) { return AB[k] + ' ' + w.scl[k]; }).join(', ') + ' pondéré pour Dextérité / Arcane : adéquation ' + sc.fit + ' sur 25.' },
+      { icon: '#i-st-bleed', t: sc.bonus ? 'Saignement ' + w.pas.v + ' : statut préféré du profil (+4).' : 'Pas de saignement : pas de bonus de statut.' },
+      { icon: '#i-calc', t: 'Attaque +0 totale ' + sc.tot + ' et poids ' + fD(w.wt) + ' sous la limite de charge (10,7) : puissance ' + sc.pow + ' sur 25.' },
+      { icon: sc.miss ? '#i-alert' : '#i-check', t: (sc.miss ? 'Il manque ' + sc.miss + ' points d’attribut' : 'Prérequis atteints') + (sc.ahead ? ", obtention à l'étape suivante" : '') + (w.startSam ? ', équipement de départ (+2)' : '') + ' : accessibilité ' + sc.ac + ' sur 25.' },
+      { icon: '#i-stone', t: (w.up === 'somber' ? 'Pierres sombres, +10' : 'Pierres normales, +25 : plus de pierres à réunir') + (w.rel === 'est' ? ', type estimé (−2)' : '') + ' : coût ' + sc.up + ' sur 25.' }
+    ];
+    var limits = [{ icon: '#i-info', t: 'Score calculé sur les valeurs à +0 : il ne tient pas compte des affinités.' }, { icon: '#i-info', t: 'Barème identique au widget « Armes recommandées » du tableau de bord.' }];
+    var sims = ORDER.filter(function (id) { return id !== w.id; }).map(function (id) { var x = W[id]; return { name: x.name, icon: x.ic, src: x.src, srcS: SRC[x.src].s, srcF: SRC[x.src].f, srcI: SRC[x.src].i, score: String(scoreOf(x).total), go: function () { self.setState({ wid: id, hover: undefined, lvl: undefined, view: 'chart' }); } }; });
+    var goW = function (id) { return function () { self.setState({ wid: id, hover: undefined, lvl: undefined, view: 'chart' }); }; };
+    return {
+      theme: theme, mqCls: showMock ? '' : 'cx-hide-mq', pDark: theme === 'sombre', pLight: theme === 'parchemin',
+      setDark: function () { self.setState({ theme: 'sombre' }); }, setLight: function () { self.setState({ theme: 'parchemin' }); },
+      showMock: showMock, toggleMock: function () { self.setState({ showMock: !showMock }); },
+      selU: wid === 'uchi', selM: wid === 'moon', selR: wid === 'rob', goU: goW('uchi'), goM: goW('moon'), goR: goW('rob'),
+      w: wv, ch: ch, calcL: String(calcL), calcNote: calcNote, attrRows: attrRows, reqNote: reqNote, reqNoteCls: missing.length ? 'warn' : '', reqNoteIcon: missing.length ? '#i-alert' : '#i-check-c',
+      oneH: !two, twoH: two, setOneH: function () { self.setState({ hands: 1 }); }, setTwoH: function () { self.setState({ hands: 2 }); },
+      sc: { total: String(sc.total), parts: [['Adéquation au build', sc.fit], ['Puissance', sc.pow], ['Accessibilité', sc.ac], ["Coût d'amélioration", sc.up]].map(function (x) { return { label: x[0], v: String(x[1]), pct: x[1] * 4 }; }), data: data, limits: limits },
+      whyOpen: s.why, toggleWhy: function () { self.setState({ why: !self.state.why }); },
+      sims: sims,
+      pinned: pinned, pinLabel: pinned ? 'Dans Ma liste' : 'Épingler dans Ma liste', togglePin: function () { var q = self.state.pinned.slice(), i = q.indexOf(w.id); if (i >= 0) q.splice(i, 1); else q.push(w.id); self.setState({ pinned: q }); },
+      inCmp: inCmp, cmpLabel: inCmp ? 'Dans le comparateur' : 'Comparer', toggleCmp: function () { var q = self.state.compare.slice(), i = q.indexOf(w.id); if (i >= 0) q.splice(i, 1); else q.push(w.id); self.setState({ compare: q }); },
+      pinCount: String(s.pinned.length), cmpCount: s.compare.length ? String(s.compare.length) : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

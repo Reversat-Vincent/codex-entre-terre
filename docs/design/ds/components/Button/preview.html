@@ -1,0 +1,25 @@
+<!-- @dsCard group="Contrôles" height=170 subtitle="Principal, secondaire, discret, icône" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Button</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 4v5h7V4"></path><path d="M8 20v-6h8v6"></path></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4.5 7.5L8 4l3.5 3.5"></path><path d="M12.5 16.5L16 20l3.5-3.5"></path></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6"></path><path d="M20 4l-9 9"></path><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol><symbol id="i-max" viewBox="0 0 24 24"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></symbol><symbol id="i-more" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01" stroke-width="2.6"></path></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-help" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.5"></path><path d="M12 16.7h.01" stroke-width="2.4"></path></symbol></svg>
+<div class="pv">
+<div class="pv-row"><span class="pv-k">Variantes</span><button class="cx-btn cx-btn-primary"><svg class="cx-i" aria-hidden="true"><use href="#i-save"></use></svg>Enregistrer le profil</button><button class="cx-btn"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg>Comparer</button><a class="cx-btn cx-btn-ghost" href="#"><svg class="cx-i" aria-hidden="true"><use href="#i-ext"></use></svg>Voir sur le wiki</a></div>
+<div class="pv-row"><span class="pv-k">Icône seule</span><button class="cx-btn cx-btn-ghost cx-btn-icon" aria-label="Épingler"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg></button><button class="cx-btn cx-btn-ghost cx-btn-icon" aria-label="Plein écran"><svg class="cx-i" aria-hidden="true"><use href="#i-max"></use></svg></button><button class="cx-btn cx-btn-ghost cx-btn-icon" aria-label="Plus d'actions"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button><button class="cx-btn cx-btn-icon" aria-label="Rechercher"><svg class="cx-i" aria-hidden="true"><use href="#i-search"></use></svg></button></div>
+<div class="pv-row"><span class="pv-k">États</span><button class="cx-btn" aria-pressed="true"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg>Épinglé</button><button class="cx-btn" disabled><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg>Comparer (4 maximum)</button><button class="cx-btn cx-btn-sm"><svg class="cx-i sm" aria-hidden="true"><use href="#i-help"></use></svg>Pourquoi ?</button></div>
+</div>
+
+</body>
+</html>

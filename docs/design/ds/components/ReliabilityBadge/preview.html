@@ -1,0 +1,28 @@
+<!-- @dsCard group="Badges" height=300 subtitle="Wiki, estimation, non documenté, incohérence, calculé" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ReliabilityBadge</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol></svg>
+<div class="pv">
+<div class="pv-row"><span class="pv-k">Niveaux</span><span class="cx-rel cx-rel-wiki"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg>Wiki</span><span class="cx-rel cx-rel-wiki"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg>Wiki (déduit)</span><span class="cx-rel cx-rel-est"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg>Estimation (haute)</span><span class="cx-rel cx-rel-est"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg>Estimation (moyenne)</span><span class="cx-rel cx-rel-nodata"><svg class="cx-i" aria-hidden="true"><use href="#i-empty"></use></svg>Non documenté</span><span class="cx-rel cx-rel-incoh"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg>Incohérence</span><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span></div>
+<div class="pv-row"><span class="pv-k">Avec une valeur</span><span>Pierres sombres, +10</span><span class="cx-rel cx-rel-est"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg>Estimation (haute)</span><span style="width:16px"></span><span>PV</span><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Non documenté</span><span style="width:16px"></span><span class="cx-gold" style="font-weight:600">Score 77</span><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span></div>
+<div class="pv-row" style="padding-bottom:84px"><span class="pv-k">Au survol</span>
+<span class="cx-tip"><button class="cx-tip-trigger" aria-describedby="t1"><span class="cx-rel cx-rel-incoh"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg>Incohérence</span></button><span class="cx-tip-body below start is-open" role="tooltip" id="t1"><b>Le wiki se contredit sur cette page.</b> Le tableau d'amélioration ne concorde pas avec l'infobox pour la garde Magie. La valeur de l'infobox est affichée ; vérifiez sur le wiki.</span></span>
+</div>
+<div class="pv-row"><span class="pv-k">Prototype seulement</span><span class="cx-mq">valeur de maquette</span><span class="cx-mqv">77</span><span class="cx-muted">Annotation des valeurs inventées pour la maquette. Ne pas livrer.</span></div>
+</div>
+
+</body>
+</html>

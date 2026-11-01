@@ -1,0 +1,20 @@
+# Dépendances et compilation
+node_modules/
+dist/
+
+# Fichiers temporaires : téléchargements du wiki, captures et rapports de vérification
+.cache/
+coverage/
+playwright-report/
+test-results/
+
+# Réglages personnels de Claude Code, propres à chaque poste
+.claude/settings.local.json
+
+# Python
+__pycache__/
+
+# Journaux et fichiers du système
+*.log
+.DS_Store
+Thumbs.db

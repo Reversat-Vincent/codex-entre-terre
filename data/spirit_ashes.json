@@ -1,0 +1,3453 @@
+{
+  "metadata": {
+    "source_page": "https://eldenring.wiki.gg/wiki/All_Items_(Gallery)",
+    "gallery_sections": [
+      "Ashes"
+    ],
+    "source_wiki": "eldenring.wiki.gg (MediaWiki API, page wikitext)",
+    "retrieved": "2026-10-31",
+    "count": 84,
+    "counts_by_source": {
+      "Base game": 64,
+      "Shadow of the Erdtree": 20
+    },
+    "counts_by_category": {
+      "Ashes": 78,
+      "Puppets": 6
+    },
+    "field_notes": {
+      "source": "'Base game', 'Shadow of the Erdtree' (DLC) or 'Tarnished Pack' (DLC), from the DLC icon next to the item in the wiki gallery.",
+      "summary": "Opening paragraph of the wiki page (often contains exact values, e.g. talisman percentages).",
+      "effect / effect_details / effect_tables": "Infobox effect line + content of the page's Effect/Usage sections.",
+      "infobox": "All infobox fields of the page, cleaned (numbers parsed when purely numeric).",
+      "acquisition": "method / location / region / details from the Acquisition section; nested bullets prefixed with '→'.",
+      "other_sections": "Remaining gameplay sections (text bullets and tables); Trivia/Gallery/References are excluded."
+    }
+  },
+  "items": [
+    {
+      "name": "Wandering Noble Ashes",
+      "wiki_page": "Wandering Noble Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Wandering_Noble_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "さまよえる貴人の遺灰 (Samayoeru Kijin no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons five wandering noble spirits.",
+      "fp_cost": 28,
+      "summary": "Wandering Noble Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of five wandering nobles.\n\nThe spirits of nobles who, after death, now wander the\nLands Between. Surely they were in search of something\nonce—but whatever it was has long been forgotten.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse in Stormfoot Catacombs, in a dead-end room guarded by Imps."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons five Wandering Nobles, each with their own health bar.",
+        "→ Three of the spirits carry swords while the other two carry torches.",
+        "Sword-wielders deal Physical damage and torch-wielders deal Physical and Fire damage.",
+        "A somewhat lackluster summon; each individual spirit is slow, clumsy, short-ranged, doesn't hit very hard and has low health so larger enemies like bosses with wide, sweeping attacks will kill the entire group very quickly."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons five wandering noble spirits.",
+        "fp_cost": 28,
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Noble Sorcerer Ashes",
+      "wiki_page": "Noble Sorcerer Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Noble_Sorcerer_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "貴人の魔術師の遺灰 (Kijin no Majutsushi no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons noble sorcerer spirit.",
+      "fp_cost": 11,
+      "summary": "Noble Sorcerer Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a noble sorcerer.\n\nSpirit of a nobleman who once asked to be given a place\nat Raya Lucaria to learn glintstone sorceries. His talents\nwere insufficient to be worthy of donning the stone crown,\nhowever, and he is only capable of using the most\nrudimentary sorcery.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Erdtree Burial Watchdog at the end of Stormfoot Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a Noble Sorcerer.",
+        "Deals Magic damage.",
+        "Casts Glintstone Pebble in combat.",
+        "Can use his staff for melee attacks.",
+        "Will prefer to cower over fighting larger foes such as Flying Dragon Agheel."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons noble sorcerer spirit.",
+        "fp_cost": 11,
+        "obtained": "Erdtree Burial Watchdog in Stormfoot Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Nomad Ashes",
+      "wiki_page": "Nomad Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Nomad_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "放浪の民の遺灰 (Hōrō no Tami no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons nomad spirit",
+      "fp_cost": 61,
+      "summary": "Nomad Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a nomad.\n\nA member of a tribe that was entombed in the earth so as to bury the maddening disease that followed them. Able to emit the terrible flame of frenzy from his eyes, but has low HP and is frail, unable to take much in the way of punishment.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse in the Subterranean Shunning-Grounds, hanging off a ledge on the second broken curved staircase.",
+            "From the Underground Roadside Site of Grace, head to the far left end of the corridor, through the locked shortcut gate and go to the spiraling stair on the right. Carefully drop down to the left to get to a second set of spiraling stairs. Go through a corridor at the bottom and take the ladder down to a large Miranda Blossom and several Basilisks. Finally, head left to find the ash after a short tunnel."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Subterranean Shunning-Grounds"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Casts the uncharged version of The Flame of Frenzy while wandering about slowly.",
+        "→ This means they cause Fire damage and Madness build-up.",
+        "Rather weak overall, with low hp, low evasiveness/defences, and low damage.",
+        "As a Madness-attuned creature, they can be healed via Frenzyflame Stones."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons nomad spirit",
+        "fp_cost": 61,
+        "obtained": "Subterranean Shunning-Grounds",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Putrid Corpse Ashes",
+      "wiki_page": "Putrid Corpse Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Putrid_Corpse_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "腐った亡者の遺灰 (Kusatta Mōja no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons four putrid corpse spirits",
+      "fp_cost": 40,
+      "summary": "Putrid Corpse Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of four putrid corpses.\n\nThese spirits appear some distance from the summoner.\nThough their movements are dull and confused, their low\nmoans make them effective at drawing the attention of\nenemies. True death does not come easily for them.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Frenzied Duelist at the end of Gaol Cave."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons four regular Putrid Corpses.",
+        "Deals Physical damage.",
+        "This is one of the ashes which spawns at the summoning monument rather than at the summoner's side. This can actually be quite useful in certain fights such as the Valiant Gargoyles duo as with some timing they will gain the aggro of the second boss.",
+        "Highly useful as tanks due to their incredibly large health bar, having several mobs, and their moans will constantly draw enemy attention meaning they don't even need to land their sluggish attack."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons four putrid corpse spirits",
+        "fp_cost": 40,
+        "obtained": "Frenzied Duelist in Gaol Cave.",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Skeletal Militiaman Ashes",
+      "wiki_page": "Skeletal Militiaman Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Skeletal_Militiaman_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "民兵スケルトンの遺灰 (Minpei Sukeruton no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two skeletal militiaman spirits",
+      "fp_cost": 44,
+      "summary": "Skeletal Militiaman Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of two skeletal militiamen.\n\nThese are the spirits of militiamen who live in Death, and\nwill continue to rise again until properly finished off. This\nis the grotesque fate of those who come into contact with\nDeathroot.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Tibia Mariner in Summonwater Village."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two spear-wielding Skeletons that, just like their hostile counterparts, can resurrect themselves if nothing hits them again after they are \"killed\".",
+        "→ A skeleton about to resurrect is not considered an active target by enemies but they will still try to finish any attack chains against the skeleton and can still hit them accidentally.",
+        "Deals Pierce damage.",
+        "Deals low amounts of damage but capable of lasting for a long while as long as their respective body doesn't get attacked again after being defeated.",
+        "→ Slowly becomes less viable as bosses' combos become longer and longer and gain extra after effects.",
+        "Compares pretty favorably to the other skeleton summon, the Skeletal Bandit Ashes, as while the other summon does about 30% more damage and only costs half as much FP to summon, the fact that there are two of them and that the summon cost still is dirt cheap makes them a long-lasting distraction."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two skeletal militiaman spirits",
+        "fp_cost": 44,
+        "obtained": "Tibia Mariner in Summonwater Village",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Skeletal Bandit Ashes",
+      "wiki_page": "Skeletal Bandit Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Skeletal_Bandit_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "山賊スケルトンの遺灰 (Sanzoku Sukeruton no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons skeletal bandit spirit",
+      "fp_cost": 22,
+      "summary": "Skeletal Bandit Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a skeletal bandit.\n\nThis is the spirit of a bandit who lives in Death, and will\ncontinue to rise again until properly finished off. After\nthe night of the plot, Deathroot appeared in the Lands\nBetween, and Those Who Live in Death soon followed.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Tibia Mariner in Liurnia of the Lakes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a Skeletal Bandit dual-wielding curved swords that, just like its hostile counterparts, can resurrect itself if nothing hits it again after it's \"killed\".",
+        "→ A skeleton about to resurrect is not considered an active target by enemies but they will still try to finish any attack chains against the skeleton and can still hit them accidentally.",
+        "Deals Slash damage.",
+        "Deals low amounts of damage but is capable of lasting for a long while as long as its body doesn't get attacked again after being defeated.",
+        "→ Slowly becomes less viable as bosses' combos become longer and longer and gain extra after-effects.",
+        "Compares somewhat unfavorably to the other skeleton summon, the Skeletal Militiaman Ashes, as while this summon is capable of dealing 30% more damage if both swords hit and only costs half as much FP to summon, the fact that there is only one of them makes it a less reliable distraction overall."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons skeletal bandit spirit",
+        "fp_cost": 22,
+        "obtained": "Tibia Mariner in Liurnia of the Lakes",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Albinauric Ashes",
+      "wiki_page": "Albinauric Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Albinauric_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "しろがね人の遺灰 (Shiroganebito no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two Albinauric spirits",
+      "fp_cost": 53,
+      "summary": "Albinauric Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two Albinaurics.\n\nA strapping duo of cartwheeling spirits who wield ripple swords and spew freezing breath. Both are second-generation Albinaurics, with dumpy heads that resemble those of frogs.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse in a cemetery east of Caria Manor. Only accessible after defeating Royal Knight Loretta as the spot is on the high cliffs behind the Manor."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two axe-wielding Second-Generation Albinauric. Also capable of breathing out a frosty mist and of cartwheeling around to dodge.",
+        "Deals Standard damage with their axes and inflicts Frostbite build-up with their breath attack.",
+        "Not very strong but quite evasive. The Frostbite they can cause is also useful for the damage bonus it grants."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two Albinauric spirits",
+        "fp_cost": 53,
+        "obtained": "Cemetery in Liurnia of the Lakes",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Winged Misbegotten Ashes",
+      "wiki_page": "Winged Misbegotten Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Winged_Misbegotten_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "翼の混種の遺灰 (Tsubasa no Konshu no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons winged misbegotten spirit",
+      "fp_cost": 37,
+      "summary": "Winged Misbegotten Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a winged misbegotten.\n\nA spirit with the aspect of wings which takes flight to loose\narrows from its bow. The misbegotten are held to be a\npunishment for making contact with the Crucible, and from\nbirth they are treated as slaves, or worse.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Unsightly Catacombs, on the bottom level of a hall with lots of dead Misbegotten on the ground around it."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons the winged variant of the Misbegotten, which will mostly use its shortbow to plink away at foes and occasionally dashing through for a dagger stab.",
+        "Deals Standard damage with its dagger and dash attack and Pierce damage with its bow.",
+        "Very weak overall due to mediocre health, very low damage, and a very weak Stance that makes it easy to knock out of the air. The only useful features is the relatively cheap FP cost and that their flying can keep them out of harm's way somewhat. Pretty much any flying or ranged summon is better."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons winged misbegotten spirit",
+        "fp_cost": 37,
+        "obtained": "Unsightly Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Demi-Human Ashes",
+      "wiki_page": "Demi-Human Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Demi-Human_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "亜人団の遺灰 (Ajin-dan no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons five demi-human spirits",
+      "fp_cost": 69,
+      "summary": "Demi-Human Ashes is a spirit ash in Elden Ring.",
+      "description": null,
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Erdtree Burial Watchdog in Impaler's Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons five Demi-Humans: three regulars wielding a club, a falchion, and a falchion and shield respectively, one large Demi-Human with a large, spiky club, and one tiny Demi-Human with a dagger.",
+        "They mostly deal Slash and Strike damage with their weapons, but the large and tiny ones also inflict Blood Loss build-up.",
+        "Like hostile Demi-Humans, they get stronger and more aggressive during night."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons five demi-human spirits",
+        "fp_cost": 69,
+        "obtained": "Impaler's Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Clayman Ashes",
+      "wiki_page": "Clayman Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Clayman_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "泥人の遺灰 (Dorobito no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two clayman spirits",
+      "fp_cost": 77,
+      "summary": "Clayman Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two claymen.\n\nBowed with age, these spirits are sluggish but hard to stagger. The warped remains of priests who searched for revelation in service of the ancient dynasty, they employ two sorceries that produce smaller and larger bubbles.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the northern Uhl Palace Ruins on a corpse at the top of the waterfall."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two of the spellcasting Claymen, casting Oracle Bubbles and Great Oracular Bubble.",
+        "Causes Magic damage.",
+        "Rather bad due to their incredibly slow moment and casting speed coupled with only decent Poise and merely average health and damage."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two clayman spirits",
+        "fp_cost": 77,
+        "obtained": "Ainsel River",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Oracle Envoy Ashes",
+      "wiki_page": "Oracle Envoy Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Oracle_Envoy_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "神託の使者たちの遺灰 (Shintaku no Shisha-tachi no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons four Oracle Envoy spirits",
+      "fp_cost": 72,
+      "summary": "Oracle Envoy Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of four Oracle Envoys.\n\nSpirits of a monstrous band of musicians who employ sacred arts. It is said that when Oracle Envoys appear, playing their pipes, they do so to herald the arrival of a new god, or a new age.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found near the start of Miquella's Haligtree, guarded by several Oracle Envoys."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons four regular-sized Oracle Envoys, using their loud trumpet-hammers to cause damage from a distance while rolling around.",
+        "Deals mostly Holy damage, with the occasional hammer strike for Strike damage.",
+        "Deals decent damage but has a hard time hitting at melee range due to their most common attack having an arc high enough that it will sail over human-sized enemies' heads. Moving enemies are also somewhat difficult targets since the bubbles have a rather bad turning radius.",
+        "→ They have a second, much rarer bubble attack where they simply summon the bubble at their target's location before it explodes a second later.",
+        "A bit expensive, FP-wise, for their relatively mediocre performance."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons four Oracle Envoy spirits",
+        "fp_cost": 72,
+        "obtained": "Miquella's Haligtree"
+      }
+    },
+    {
+      "name": "Man-Fly Ashes",
+      "wiki_page": "Man-Fly Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Man-Fly_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "人蠅の遺灰 (Hitobae no Ihai)",
+      "type": "Ashes",
+      "effect": "Summons three man-fly spirits",
+      "fp_cost": 29,
+      "summary": "Man-Fly Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of three man-flies.\n\nTwo of the man-flies attack foes from the air, while the third spits poison from the rear.\n\nAfflicted hornsent eventually metamorphosed into a fly-like form. It was believed that the moment the transformation took place, they were relieved from their suffering.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found as loot in the Village of Flies."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 29,
+        "item_effect": "Summons three man-fly spirits",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Lone Wolf Ashes",
+      "wiki_page": "Lone Wolf Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Lone_Wolf_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "はぐれ狼の遺灰 (Hagure Ōkami no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons three lone wolf spirits.",
+      "fp_cost": 55,
+      "summary": "Lone Wolf Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of three lone wolves.\n\nSpirits of wolves chased from their pack. They later encountered a nameless Tarnished, who welcomed them as hunting companions. The wolf spirits overwhelm enemies with their agility, aiding the summoner in combat.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Given by Renna the Witch in the Church of Elleh, after the player receives the Spectral Steed Whistle from Melina.",
+            "Also sold for 500 Runes by the Twin Maiden Husks if any Site of Grace in Liurnia of the Lakes is activated without picking it up."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons three (not so lonely) Wolves that like to circle around and nip at foes' heels.",
+        "Deals Standard damage.",
+        "Surprisingly good for such an early summon due to their tendency to rush and attack foes forcing many of them (mostly those with low Poise) to stagger.",
+        "→ Conversely, their performance against any enemy they can't stagger is rather poor and often leads to them quickly dying due to their low health, barely slowing down opponents.",
+        "→ Like their enemy counterparts, they will spread out and attack from different directions."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons three lone wolf spirits.",
+        "fp_cost": 55,
+        "buy_price": 400,
+        "obtained": "Given by Renna the Witch",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Rotten Stray Ashes",
+      "wiki_page": "Rotten Stray Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Rotten_Stray_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "腐った野犬の遺灰 (Kusatta Yaken no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summon rotten stray spirit",
+      "fp_cost": 35,
+      "summary": "Rotten Stray Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a rotten stray.\n\nSpirit of a stray dog corrupted by the scarlet rot.\nThough it is only a small creature, it is as violent as it\nis nimble, and its fangs fester with poisonous rot.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a building in Sellia, Town of Sorcery, north of the Sellia Under-Stair Site of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons the Rotten variant of the Stray.",
+        "Deals Standard damage and inflicts Scarlet Rot build-up with its bite.",
+        "→ 50 Scarlet Rot build-up per bite.",
+        "Scarlet Rot lasts for 3 minutes (twice the regular duration of 90 seconds), with the total amount of damage dealt being equal to 2700 + 32% of the target's maximum health.",
+        "An excellent early summon if you are willing to go to Caelid early, due to the Scarlet Rot being capable of removing well over half of the health of early bosses.",
+        "→ Examples: Margit, the Fell Omen has 4,200 HP and thus takes roughly 4,000 damage over the duration (95% of his health), while Godrick the Grafted has 6,100 HP and takes roughly 4,700 damage over the duration (77% of his health, though all Status Effects are removed from him upon starting phase 2).",
+        "→ Falls off later on due to wider and stronger attacks as well as higher health pools reducing the effective damage."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summon rotten stray spirit",
+        "fp_cost": 35,
+        "max_held": 1,
+        "max_stored": 600,
+        "obtained": "Sellia, Town of Sorcery"
+      }
+    },
+    {
+      "name": "Giant Rat Ashes",
+      "wiki_page": "Giant Rat Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Giant_Rat_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "大ネズミの遺灰 (Ōnezumi no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons 3/4/5 giant rat spirits at level +0/+5/+10 respectively.",
+      "fp_cost": 0,
+      "summary": "Giant Rat Ashes is a spirit ash in Elden Ring.",
+      "description": null,
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse in the stable just northeast of the West Windmill Pasture."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons three to five regular Giant Rats.",
+        "→ Summons three Rats from +0 to +4, four rats from +5 to +9, and five rats at +10.",
+        "Deals Physical damage.",
+        "These ashes have the unique feature of increasing the number of summoned NPCs as the item is leveled up. The ashes' description changes depending on item level.",
+        "These ashes are quite notable for not requiring any HP or FP, meaning it can be used by any build without any help. Additionally, they do not cost any Runes to upgrade, only regular Gloveworts.",
+        "These are one of the ashes that spawns at the Summoning Monument rather than the at the summoner's side."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons 3/4/5 giant rat spirits at level +0/+5/+10 respectively.",
+        "fp_cost": 0,
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Warhawk Ashes",
+      "wiki_page": "Warhawk Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Warhawk_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "戦鷹の遺灰 (Ikusataka no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons warhawk spirit",
+      "fp_cost": 52,
+      "summary": "Warhawk Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a warhawk.\n\nSpirit of a Stormveil warhawk, the talons of which have\nbeen sliced off so that razor-fine swords could be grafted\nin their place. With its lord vanquished, and its wings\nwounded, the hawk perished as it solemnly gazed at its\nformer home. The storm is a warhawk's cradle.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Obtained in Weeping Peninsula, just north of the Church of Pilgrimage. This is the reward for finding the location depicted on the \"Prophecy\" Painting, and as such, the painting item must have already been obtained from the sideroom to the big courtyard near the Liftside Chamber Site of Grace in Stormveil Castle."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula",
+        "Stormveil Castle"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a flying Warhawk, complete with sword-talons and a flame spray.",
+        "Deals Standard damage with its sword-talons, Pierce damage with its pecks, and Fire damage with the spray.",
+        "Surprisingly durable due to its flight letting it avoid certain ground bound attacks and the additional evasiveness of its melee attacks.",
+        "→ It actually has fairly low HP and as such is quite vulnerable to area of effect attacks since those are much less likely to miss it.",
+        "Compared to the similar Stormhawk Deenh this Ash is available a good bit earlier, has the utility of a Fire-based attack, has some extra range on its melee attacks, and won't override any other Aura Buffs such as Golden Vow."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons warhawk spirit",
+        "fp_cost": 52,
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Land Squirt Ashes",
+      "wiki_page": "Land Squirt Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Land_Squirt_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "陸ほやの遺灰 (Rikuhoya no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons three land squirts",
+      "hp_cost": 240,
+      "summary": "Land Squirt Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of three land squirts Summoning consumes HP rather than FP.\n\nThese spirits appear some distance from the summoner. The firm, fleshy tubes of the creatures remain rooted to the spot, spraying poisonous liquid over their surroundings.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Liurnia of the Lakes, at the foot of the cliffs east of Academy Gate Town."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons three Land Squirts that spread a heavy, poisonous mist.",
+        "Their mist deals Standard damage and inflicts Poison build-up.",
+        "This is the only Spirit Ash that is vulnerable to Poison and Scarlet Rot, and like their living enemy counterpart they explode after a few seconds if either Status Effect is fully applied.",
+        "→ This explosion deals no damage but will inflict quick and heavy Poison build-up on anyone nearby, including the summoner of this Spirit Ash.",
+        "Spawn at the Summoning Monument when summoned, instead of at the player's side.",
+        "→ Not completely immobile, just very, very slow.",
+        "→ Since they most likely won't move far from their spawn point and the monument has a tendency to be somewhat out of the way it's important to know where it is, especially for when summoning in the open world rather than a boss arena.",
+        "Very tanky and potentially capable of inflicting heavy damage if an enemy gets stuck or held up between them, even if they are immune to Poison. However, this can be somewhat complicated by their often out-of-the-way spawn position and though they have quite a bit of health they are a bit too lacking in Poise to fully withstand the resulting assaults on them."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons three land squirts",
+        "hp_cost": 240,
+        "obtained": "Liurnia of the Lakes",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Spirit Jellyfish Ashes",
+      "wiki_page": "Spirit Jellyfish Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Spirit_Jellyfish_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "霊クラゲの遺灰 (Reikurage no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit jellyfish",
+      "fp_cost": 31,
+      "summary": "Spirit Jellyfish Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon a spirit jellyfish.\n\nA floating spirit that illuminates its surroundings. Prone\nto tears, the jellyfish girl searches for her distant home.\nWill bravely spew poison at foes on her summoner's behalf.\n\nIt seems her name is Aurelia.",
+      "effect_details": [
+        "Summons a Spirit Jellyfish."
+      ],
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Given by Roderika, Spirit Tuner at Stormhill Shack after talking to her.",
+            "If it hasn't been obtained by the time Roderika moves to Roundtable Hold it is possible to still obtain it by talking with her, though this option might not be offered if the game progresses to a certain unknown point after Leyndell, Royal Capital."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Stormhill",
+        "Roundtable Hold",
+        "Leyndell, Royal Capital"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a Spirit Jellyfish.",
+        "Deals Standard damage, and the ranged jet also inflict Poison build-up.",
+        "She can be summoned near Aureliette in the Stargazer's Ruins to complete a small side quest, and gain access to a nearby cellar containing the Primal Glintstone Blade.",
+        "Functions the same as the enemy variant, meaning she is fairly durable and capable of firing poisonous jets at range. Unfortunately, neither of her qualities scales particularly well and she is easily interrupted, making her less desirable later in-game. Still, she is useful when you get her and can be genuinely helpful against Margit, the Fell Omen since she might still be able to Poison him."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "fp_cost": 31,
+        "item_effect": "Summons spirit jellyfish",
+        "obtained": "Roderika",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Miranda Sprout Ashes",
+      "wiki_page": "Miranda Sprout Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Miranda_Sprout_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "小ミランダの遺灰 (Ko Miranda no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons five miranda sprouts",
+      "hp_cost": 185,
+      "summary": "Miranda Sprout Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of five miranda sprouts. Summoning consumes HP rather than FP.\n\nSpirits of sweet little miranda flowers, carnivorous blossoms that feed upon human flesh. They creep slowly, scattering toxic pollen. Vulnerable to fire — do take care of the little darlings.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found behind an illusory wall in Caelid Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons five regular, pink Miranda Sprouts that wave around aggressively to bash and afflict foes.",
+        "Deals Standard damage and inflicts Poison build-up. a",
+        "While they are aggressive in attacking enemies they are also very slow and weak to Fire and as such will struggle to do much more than inflict Poison once or twice."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons five miranda sprouts",
+        "hp_cost": 185,
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Spider Scorpion Ashes",
+      "wiki_page": "Spider Scorpion Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Spider_Scorpion_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "蜘蛛サソリの遺灰 (Kumo Sasori no Ihai)",
+      "type": "Ashes",
+      "effect": "Summons spider scorpion spirit",
+      "fp_cost": 41,
+      "summary": "Spider Scorpion Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a spider scorpion.\n\nThis scorpion is larger than a human, and attacks with pincers and a poisonous tail. Appears some distance from the summoner.\n\nThis breed of scorpion was native to the realm of shadow, but was far smaller in size. Recent giant scorpions are said to trace back to the Church of the Bud.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Ancient Ruins of Rauh."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Ancient Ruins of Rauh"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 41,
+        "item_effect": "Summons spider scorpion spirit",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Fingercreeper Ashes",
+      "wiki_page": "Fingercreeper Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Fingercreeper_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ユビムシの遺灰 (Yubimushi no Ihai)",
+      "type": "Ashes",
+      "effect": "Summons Fingercreeper spirit",
+      "fp_cost": 80,
+      "summary": "Fingercreeper Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a Fingercreeper.\n\nDevoted to its summoner, this young, diminutive Fingercreeper eagerly restores HP. They are ever so fond of their mothers at this tender age.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "In the Hinterland, between the Finger Ruins of Dheo and the nearest Grace, in the part where there is still grass, you can find a fissure in the ground with a gigantic hand that works as a mini-boss. Behind this creature is a cave that leads to the ashes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Hinterland"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 80,
+        "item_effect": "Summons Fingercreeper spirit",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Fanged Imp Ashes",
+      "wiki_page": "Fanged Imp Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Fanged_Imp_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "牙鬼インプの遺灰 (Kibaoni Inpu no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two fanged imp spirits",
+      "fp_cost": 50,
+      "summary": "The Fanged Imp Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon two fanged imp spirits.\n\nThese spirits are well suited to causing a disturbance, moving nimbly like pests and hurling magic pots. The two imps seem fond of each other's company.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": "Academy of Raya Lucaria",
+          "region": "Liurnia of the Lakes",
+          "details": [
+            "Purchased for 1,500 Runes from the Isolated Merchant found south-east from the Main Academy Gate Site of Grace."
+          ]
+        },
+        {
+          "method": "Keepsake",
+          "location": null,
+          "region": null,
+          "details": [
+            "May be chosen as a Keepsake when creating a new character.",
+            "→ NOTE: Choosing this option will remove it from the Isolated Merchant's shop."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes",
+        "Academy of Raya Lucaria"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two Imps, wielding serrated Forked Hatchets and throw Magic Pots as a ranged attack.",
+        "Deal Standard damage and inflict Blood Loss build-up with their melee attacks, and deal Magic damage with their ranged attack.",
+        "A decent early offensive summon if you are willing to either forgo any of the other starting Keepsakes or to ride to the Academy of Raya Lucaria very early on."
+      ],
+      "patch_notes": [
+        {
+          "version": "1.13 (General balance adjustment)",
+          "official_notes": "Will no longer stagger as easily."
+        },
+        {
+          "minor puzzle spoiler": "* Summoning this duo to fight the nearby Imps is one of the ways to solve the puzzle at Albinauric Rise."
+        }
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two fanged imp spirits",
+        "fp_cost": 50,
+        "buy_price": 2000,
+        "obtained": "Isolated Merchant (Academy of Raya Lucaria)"
+      }
+    },
+    {
+      "name": "Bigmouth Imp Ashes",
+      "wiki_page": "Bigmouth Imp Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Bigmouth_Imp_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "大口インプの遺灰 (Ōguchi Inpu no Ihai)",
+      "type": "Ashes",
+      "effect": "Summons bigmouth imp spirit",
+      "fp_cost": 60,
+      "summary": "Bigmouth Imp Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a large-mouthed imp.\n\nThe spirit of this old imp, said to be fashioned after a dragon, has a big mouth that serves as a cannon and allows it to fire shells from the rear of the battlefield.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Darklight Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 60,
+        "item_effect": "Summons bigmouth imp spirit",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Gravebird Ashes",
+      "wiki_page": "Gravebird Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Gravebird_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "墓守鳥の遺灰 (Hakamoridori no Ihai)",
+      "type": "Ashes",
+      "effect": "Summons Gravebird spirit",
+      "fp_cost": 65,
+      "summary": "Gravebird Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a Gravebird.\n\nThe spirit of an old golem and spiritgrave keeper, who flies with stone wings and spouts ghostflame.\n\nAccording to legend, the Gravebirds were crafted to be kindred to the Deathbirds.",
+      "upgrade_material": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 65,
+        "item_effect": "Summons Gravebird spirit",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Soldjars of Fortune Ashes",
+      "wiki_page": "Soldjars of Fortune Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Soldjars_of_Fortune_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "特攻野郎たちの遺灰 (Tokkō Yarō-tachi no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons three little living jar spirits",
+      "hp_cost": 135,
+      "summary": "Soldjars of Fortune Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of three little living jars. Summoning\nconsumes HP rather than FP.\n\nThese reckless spirits sacrifice themselves to vanquish\ntheir summoner's foes, and explode upon death.\nThough their bravery is admirable, their explosions can\nharm friend as well as foe, and they will also immediately\nexplode on contact with fire.\n\n\"Tell the others—tell them how brightly a fire jar burns.\"",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Grave Warden Duelist at the end of Auriza Side Tomb."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons three Living Jars of the exposive Soldjar variant, meaning they will explode if they are hit by Fire damage or are killed.",
+        "Deal Standard damage with most of their attacks and Fire damage with their explosion.",
+        "Unfortunately a fairly weak summon, with decent damage but bad movement and survivability."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons three little living jar spirits",
+        "hp_cost": 135,
+        "obtained": "Auriza Side Tomb",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Archer Ashes",
+      "wiki_page": "Archer Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Archer_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "弓兵の遺灰 (Kyūhei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons three archer spirits",
+      "fp_cost": 57,
+      "summary": "Archer Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon three archer spirits.\n\nSpirits of archers who belonged to the Fallen Hawks, a band of soldiers that once explored the Eternal City. Their arrows are imbued with cold ghostflame. Though their methods are somewhat crude, they work well as a squadron, firing a hail of arrows in unison at the sound of a war cry.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Nokstella, Eternal City, behind a building."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Nokstella, Eternal City"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons three bow-wielding Fallen Hawk Soldier.",
+        "Deals Pierce and Magic damage and inflict Frostbite with their attacks.",
+        "Decently high damage potential due to their Frostbite but overall somewhat inconsistent due to their shots and low rate of fire often missing mobile or evading foes.",
+        "(unverified) Using a roar skill such as Barbaric Roar or War Cry will make them all fire at once, once per summon."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons three archer spirits",
+        "fp_cost": 57,
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Greatshield Soldier Ashes",
+      "wiki_page": "Greatshield Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Greatshield_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "大盾兵の遺灰 (Ōtatehei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons five greatshield soldier spirits",
+      "fp_cost": 74,
+      "summary": "Greatshield Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon five greatshield soldier spirits.\n\nSpirits of greatshield soldiers who belonged to the Fallen Hawks, a band of soldiers that once explored the Eternal City. Stout defenders with a steady guard. Though their methods are somewhat crude, they work well as a squadron, and will attract the attention of enemies or lob ghostflame from the rearguard.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse in Nokron, Eternal City, south-east of the Nokron, Eternal City Site of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Nokron, Eternal City"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons five greatshield-wielding Fallen Hawk Soldiers that can shield bash and throw Pots.",
+        "Deal Strike damage with their shields and deal Magic damage and inflict Frostbite build-up with their bombs.",
+        "Generally very tanky thanks to their shields, which have high Physical block and overall decent non-Physical blocking. However, attacks that hit from above or below, like a Godskin Noble's Black Flame Ritual, will directly affect their rather mediocre HP directly and therefore kill them quickly."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons five greatshield soldier spirits",
+        "fp_cost": 74
+      }
+    },
+    {
+      "name": "Page Ashes",
+      "wiki_page": "Page Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Page_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "小姓の遺灰 (Koshō no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons page spirit",
+      "fp_cost": 81,
+      "summary": "Page Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a page.\n\nSpirit of a page who traveled at the side of the noble he\nserved. Uses a piercing sword and crossbow to defend his\nmaster. One becomes a page merely by accident of being\nborn into obscurity; nothing is asked of ability, talent,\nor volition.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Cliffbottom Catacombs, the same floor with the lever that opens the boss room."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a regular Page with a thrusting sword and a crossbow with explosive bolts.",
+        "Deals Pierce damage with their sword and Pierce and Fire damage with their crossbow.",
+        "Generally pretty evasive and prefers its ranged attacks. Only decent damage and mediocre durability but still has a tendency to survive for a while as long as it doesn't get ganged up on."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons page spirit",
+        "fp_cost": 81,
+        "obtained": "Cliffbottom Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Vulgar Militia Ashes",
+      "wiki_page": "Vulgar Militia Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Vulgar_Militia_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "卑兵の遺灰 (Hihei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons three vulgar Militia spirits",
+      "fp_cost": 70,
+      "summary": "Vulgar Militia Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of three vulgar militiamen.\n\nSpirits of the vulgar militia who wield long-hafted, serrated\nhatchets. These brutal weapons are particularly effective\nat causing blood loss to opponents. In the Lands Between,\nthe small were scorned, and so they formed their vulgar\nmilitia as a means to make a living, albeit in ignominy.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Auriza Hero's Grave. At the bottom of the hallway with the two chariots, drop down to the wooden beams below and head north to a room containing a statue. Go through the corridor behind the statue and to the right."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons three saw-wielding Vulgar Militia.",
+        "Deals Standard damage and inflicts Blood Loss build-up.",
+        "Not very durable and bad at handling crowds but quite capable of inflicting Blood Loss on single opponents as long as enemy attention can be kept away from them."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons three vulgar Militia spirits",
+        "fp_cost": 70,
+        "obtained": "Auriza Hero's Grave",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Marionette Soldier Ashes",
+      "wiki_page": "Marionette Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Marionette_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "人形兵の遺灰 (Ningyōhei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two marionette soldier spirits",
+      "fp_cost": 67,
+      "summary": "Marionette Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two marionette soldiers.\n\nSpirits of marionette soldiers created to serve a sorcerer. These marionettes are archers, each equipped with a pair of bows. On the verge of falling apart, they are ill-disciplined and attack without warning.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the graveyard near the start of the Academy of Raya Lucaria, on a corpse hanging off a ledge accessed via a short tunnel."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Academy of Raya Lucaria"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two bow-wielding Marionette Soldiers.",
+        "Deals Pierce damage.",
+        "As a red-eye Spirit Ash, this duo will remain at the spot where they are summoned, which is quite useful for having them hang back and pepper enemies with arrows.",
+        "Very high fire rate, enough to compensate for their low damage per shot as long as they can keep firing.",
+        "Will occasionally go berserk when hit, beginning to fire in all directions. Unlike their melee counterpart this is a pretty severe loss in damage for several seconds. This with their moderate health means enemies should be kept away from them."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two marionette soldier spirits",
+        "fp_cost": 67,
+        "max_held": 1,
+        "max_stored": 600,
+        "obtained": "Academy of Raya Lucaria"
+      }
+    },
+    {
+      "name": "Avionette Soldier Ashes",
+      "wiki_page": "Avionette Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Avionette_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "鳥人形兵の遺灰 (Chōjingyōhei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summon the spirits of two avionette soldiers",
+      "fp_cost": 67,
+      "summary": "Avionette Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two avionette soldiers.\n\nSpirits of marionette soldiers with avian features that were created to serve a sorcerer. Equipped with long-hafted scythes, they also attack from the skies by lobbing fire pots. Can sometimes malfunction when damaged.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found at the bottom of the waterwheel near the Schoolhouse Classroom Site of Grace in the Academy of Raya Lucaria."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Academy of Raya Lucaria"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two polearm-wielding Avionette Soldiers that also can throw Fire Pots.",
+        "Deals Physical damage and inflicts Blood Loss build-up with their polearms and deals Fire damage with their bombs.",
+        "Have a surprising amount of mobility due to their flight, though this mostly matters for reaching a foe rather than maneuvering around it since it's only in straight lines.",
+        "Like their hostile counterparts they will sometimes go berserk when hit, greatly increasing damage due to their increased attack rate. Unlike their hostile counterparts they generally have enough HP to survive through the attack and the cooldown period, and potentially trigger another berserk phase."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summon the spirits of two avionette soldiers",
+        "fp_cost": 67,
+        "obtained": "Academy of Raya Lucaria",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Kaiden Sellsword Ashes",
+      "wiki_page": "Kaiden Sellsword Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Kaiden_Sellsword_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "カイデンの傭兵の遺灰 (Kaiden no Yōhei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Kaiden Sellsword spirit.",
+      "fp_cost": 88,
+      "summary": "Kaiden Sellsword Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a Kaiden sellsword.\n\nSpirit of a mercenary belonging to a horse-riding folk.\nSkillfully uses a massive blade made for dismounting other riders, and enhances his already considerable strength with war cries. The sellswords of Kaiden made their prowess known on countless battlefields.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Erdtree Burial Watchdog in the Cliffbottom Catacombs, Liurnia of the Lakes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a dismounted Kaiden Sellsword.",
+        "Deals Slash damage.",
+        "Capable of using War Cry to increase its damage. Since this is a Weapon Buff it doesn't interfere with any Body Buff or Aura Buff (such as Barrier of Gold or Golden Vow) the user wants to apply on them.",
+        "→ When they are buffed with War Cry they can access to a special charging attack that can throw human-sized enemies such as Crystalians.",
+        "Very aggressive in combat and will attack rapidly for considerable damage, but this hyperaggression together with its average durability means the summoner has to make sure to help actively unless they want the Sellsword to perish quickly."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Kaiden Sellsword spirit.",
+        "fp_cost": 88,
+        "obtained": "Cliffbottom Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Mad Pumpkin Head Ashes",
+      "wiki_page": "Mad Pumpkin Head Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Mad_Pumpkin_Head_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "かぼちゃの狂兵の遺灰 (Kabocha no Kyōhei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summon the spirit of a mad pumpkin head",
+      "fp_cost": 110,
+      "summary": "Mad Pumpkin Head Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a mad pumpkin head.\n\nSpirit of a mad soldier with a large, brawny physique. Though he has stifled his panic within the dark confines of his helmet, he rampages as if driven mad when agitated by bloodshed or the humming of insects. This mad soldier is all that is left of a broken gladiator.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Erdtree Burial Watchdog duo in the Minor Erdtree Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a flail-wielding Mad Pumpkin Head.",
+        "Does Strike damage with all their attacks and inflicts Blood Loss build-up.",
+        "Fairly tanky due to the damage reduction its head causes. Low damage except for the occasional Blood Loss it managed to inflict. Overall very expensive, FP-wise, for what it can do.",
+        "If Blood Loss is inflicted on itself or on anyone in its immediate vicinity it will start to slam its head into the ground, causing low damage and staggering anyone nearby, even the summoner can be staggered.",
+        "→ This will also occur when hit by Swarm Pots and their variants."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summon the spirit of a mad pumpkin head",
+        "fp_cost": 110,
+        "obtained": "Minor Erdtree Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Fire Monk Ashes",
+      "wiki_page": "Fire Monk Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Fire_Monk_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "火の僧兵の遺灰 (Hi no Sōhei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Fire Monk spirit",
+      "fp_cost": 85,
+      "summary": "Fire Monk Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a Fire Monk.\n\nSpirit of a stout monk who monitored the Giants' Flame. Versed in fire incantations, and himself steeled against fire. Though he was charged with keeping watch over the Flame, after many years of solemn duty, he has succumbed to its allure.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a chest in Giants' Mountaintop Catacombs, in the area below the first lift and past two Frostbite pillars."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a mace-wielding Fire Monk that can use short-ranged flame Incantations.",
+        "Causes Strike damage with their mace, and deals Fire damage with their Incantations and certain mace attacks.",
+        "Overall mediocre and not outstanding in any area, on top of being acquire very late in the game. Decent HP but bad Poise, and mediocre damage with bad reach.",
+        "Generally just outclassed by Blackflame Monk Amon, who is acquired only slightly later as long as you have the access to the hidden area nearby. Amon only costs 30 more FP to summon but has slightly stronger stats and access to the percentage-based Black Flame effect on his attacks to actually deal good damage, something which the Fire Monk greatly struggles with."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Fire Monk spirit",
+        "fp_cost": 85,
+        "obtained": "Giants' Mountaintop Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Ancestral Follower Ashes",
+      "wiki_page": "Ancestral Follower Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Ancestral_Follower_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "祖霊の民の遺灰 (Sorei no Tami no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons ancestral follower spirit",
+      "fp_cost": 86,
+      "summary": "Ancestral Follower Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of an ancestral follower.\n\nA spirit of the horned folk who eschew letters and metalworking. Brawny, and versed in distinctive spiritual arts, this particular tribesman wields a heavy bow.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Ancestor Spirit."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a bow-wielding Ancestral Follower Warrior that can pull out a blunt axe at melee range.",
+        "Deals Pierce and Magic damage at range, and Strike damage in melee.",
+        "Uses its bow by default, letting it attack from extreme ranges with very good accuracy. While the attacks come out rather slowly, these qualities coupled with its good damage lets it put in considerable hurt on foes.",
+        "→ If any enemy comes close it will switch to its axe. While this can still do good damage due to its high aggression and advantageous Strike damage type, it loses the ranged advantage due to pursuing enemies and will rarely switch back to the bow if this happens.",
+        "Good survivability due to a good HP pool and staying at range for most fights. Should it draw the aggro of any tough foes it will hold their attention and put in good damage, but attention should preferably be drawn away from it quickly before it folds."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons ancestral follower spirit",
+        "fp_cost": 86,
+        "obtained": "Ancestor Spirit",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Horned Warrior Ashes",
+      "wiki_page": "Horned Warrior Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Horned_Warrior_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "角の戦士の遺灰 (Tsuno no Senshi no Ihai)",
+      "type": "Ashes",
+      "effect": "Summons horned warrior spirit",
+      "fp_cost": 112,
+      "summary": "Horned Warrior Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a horned warrior.\n\nThis heavily-armored guardian spirit of the tower attained inhuman strength through divine invocation, and wields a curved greatsword that brings horns to bear on its foes.\n\nIn the tower, these warriors and their weapons both are spiritual vessels.",
+      "upgrade_material": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 112,
+        "item_effect": "Summons horned warrior spirit",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Azula Beastman Ashes",
+      "wiki_page": "Azula Beastman Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Azula_Beastman_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "アズラの獣人の遺灰 (Azura no Jūjin no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two Azula beastman spirits",
+      "fp_cost": 102,
+      "summary": "Azula Beastman Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two Azula beastmen.\n\nSpirits of beastmen from doomed Farum Azula, the slowly crumbling ruins in the skies. These ruins are said to be the remains of a giant mausoleum enshrining an ancient dragon, guarded by chosen beastmen who wield weapons clad in lightning.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a room guarded by a Banished Knight, with another Banished Knight patrolling nearby, in the Dragon Temple before the Godskin Duo."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two armored Beastmen of Farum Azula wielding curved greatswords.",
+        "Deals Slash and Lightning damage.",
+        "Very aggressive and capable of staggering lightweight foes, but conversely often gets bodied by anything else due to their heavy damage but bad durability. Also pretty expensive to summon."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two Azula beastman spirits",
+        "fp_cost": 102,
+        "obtained": "Crumbling Farum Azula"
+      }
+    },
+    {
+      "name": "Man-Serpent Ashes",
+      "wiki_page": "Man-Serpent Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Man-Serpent_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "蛇人の遺灰 (Hebibito no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons man-serpent spirit",
+      "fp_cost": 62,
+      "summary": "Man-Serpent Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a man-serpent.\n\nSpirit of a deformed man-serpent that wields a whip of magma. It is said that long ago, the elder serpent that dwelled on Mt. Gelmir devoured a demigod, and the birth of the man-serpents followed.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the hall containing several Wandering Nobles and Man-Serpents in Volcano Manor, before the sending gate leading to Rykard, Lord of Blasphemy."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Volcano Manor"
+      ],
+      "acquisition_flags": [],
+      "other_sections": {
+        "Note": {
+          "text": [
+            "Upgraded with Grave Gloveworts.",
+            "Summons a magma whip-wielding Man-Serpent.",
+            "Deals Strike and Fire damage with its whip, and Fire damage with the leftover magma pools.",
+            "Not that strong or durable by itself, but the magma pools it can create with its whip are potentially quite damaging to anything that stands in them, especially large bosses. Attention must however be kept away from it, since its Poise is quite bad and staggering out of it immediately chokes it damage potential."
+          ]
+        }
+      },
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons man-serpent spirit",
+        "fp_cost": 62,
+        "obtained": "Volcano Manor",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Crystalian Ashes",
+      "wiki_page": "Crystalian Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Crystalian_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "結晶人の遺灰 (Kesshōbito no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Crystalian spirit",
+      "fp_cost": 101,
+      "summary": "Crystalian Ashes are spirit ashes in Elden Ring.",
+      "description": null,
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Sellia Hideaway, in a chest guarded by Glintstone Sorcerers."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a ringblade-wielding Crystalian.",
+        "→ Unlike the hostile versions it will almost never shatter, meaning it keeps its massive defence and Poise forever.",
+        "Deals Standard damage.",
+        "Deals very low damage and is somewhat inaccurate but has massive defences against anything that isn't Strike damage and has an utterly ridiculous Stance value of 940, letting it effectively tank through almost anything regardless. As such it's a pretty effective tank, if more due to its ability to survive than by being able to keep enemy attention on it.",
+        "→ To compare, though it only has just short of 7000 HP at +10, but since all non-Strike damage negations are at about 97% it effectively has 233000 HP against most damage types."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Crystalian spirit",
+        "fp_cost": 101,
+        "obtained": "Sellia Hideaway",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Kindred of Rot Ashes",
+      "wiki_page": "Kindred of Rot Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Kindred_of_Rot_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "腐敗の眷属の遺灰 (Fuhai no Kenzoku no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Kindred of Rot spirit",
+      "fp_cost": 73,
+      "summary": "Kindred of Rot Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon a spirit of the Kindred of Rot.\n\nThis spirit takes the form of a crawling pest, its chitinous body making a dry rustling sound. Attacks enemies by secreting sticky threads. The Kindred of Rot are the servants of the Goddess of Rot—servants that have been forsaken.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Cemetery Shade in Caelid Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons a regular Kindred of Rot.",
+        "→ Like the enemy variant it wears Kindred of Rot's Exultation, increasing its damage by 20% for 20 seconds when someone nearby is inflicted with Poison.",
+        "Deals Standard and Pierce damage with its weapon and Standard damage with Pest Threads.",
+        "→ Its Pest Threads is much, much weaker than the player version, so don't count on it doing significant damage.",
+        "Decent amount of HP and somewhat capable of dodging, but it does rather mediocre damage so its performance is rather meh."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Kindred of Rot spirit",
+        "fp_cost": 73,
+        "obtained": "Caelid Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Bloodfiend Hexer's Ashes",
+      "wiki_page": "Bloodfiend Hexer's Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Bloodfiend_Hexer%27s_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "血鬼の呪術師の遺灰 (Kekki no Jujutsushi no Ihai)",
+      "type": "Spirit Ash",
+      "summary": "Bloodfiend Hexer's Ashes is a spell in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a bloodfiend hexer. Summoning consumes HP rather than FP.\n\nThis spirit conducts bloodboon rituals with a sacred spear, casts bloodflame hexes, and takes a singular pleasure in letting the blood of foes.\n\nLong ago, a subjugated tribe discovered a twisted deity amongst the ravages of war, and they were transformed into bloodfiends. The mother of truth was their savior.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Defeat the Chief Bloodfiend at Rivermouth Cave."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ash"
+      }
+    },
+    {
+      "name": "Glintstone Sorcerer Ashes",
+      "wiki_page": "Glintstone Sorcerer Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Glintstone_Sorcerer_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "輝石魔術師の遺灰 (Kiseki Majutsushi no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons glintstone sorcerer spirit",
+      "fp_cost": 49,
+      "summary": "Glintstone Sorcerer Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of a glintstone sorcerer.\n\nSpirit of a Raya Lucaria sorcerer wearing a stone crown.\nA scholar of the Olivinus Conspectus, who has mastered the use of the Glintstone Stars sorcery.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Spiritcaller Snail in Road's End Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons the Olivinus variant of the Glintstone Sorcerer.",
+        "→ Casts both the charged and the uncharged version of Glintstone Stars.",
+        "Deals Magic damage.",
+        "Capable of dealing decent damage if simply allowed to spam its spell uninterrupted, but it is very easily stopped if enemies decide to pay attention to it and isn't exactly the sturdiest in that case either, folding pretty quickly."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons glintstone sorcerer spirit",
+        "fp_cost": 49,
+        "obtained": "Road's End Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Twinsage Sorcerer Ashes",
+      "wiki_page": "Twinsage Sorcerer Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Twinsage_Sorcerer_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "双賢魔術師の遺灰 (Sōken Majutsushi no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Twinsage sorcerer spirit",
+      "fp_cost": 89,
+      "summary": "Twinsage Sorcerer Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of a Twinsage sorcerer.\n\nSpirit of a Raya Lucaria sorcerer wearing a stone crown.\nThose who study the Twinsage Conspectus are the\nacademy's elite, capable of mastering the Glintstone\nCometshard and Crystal Burst sorceries.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Cemetery Shade in Black Knife Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons the Twinsage variant of the Glintstone Sorcerer.",
+        "→ Casts the charged and uncharge versions of Glintstone Cometshard and Crystal Burst.",
+        "Deals Magic damage.",
+        "Its Cometshard deals surprisingly low damage but the Crystal Burst is capable of dealing over a thousand damage per cast. However, this requires it to stand close to the targeted enemy and survive with its below average health and non-existant Poise."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Twinsage sorcerer spirit",
+        "fp_cost": 89,
+        "obtained": "Black Knife Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Inquisitor Ashes",
+      "wiki_page": "Inquisitor Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Inquisitor_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "責問官の遺灰 [2205000]",
+      "type": "Ashes",
+      "effect": "Summons two inquisitor spirits",
+      "fp_cost": 93,
+      "summary": "Inquisitor Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two hornsent inquisitors.\n\nThe inquisitor hags wield barbed candlesticks. One of the inquisitors casts a tower hex to heal HP, while the hex of the other boosts her own attack power.\n\nInquisitions often perplexed the minds of the uninitiated, and so seniority was viewed as an asset.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a corpse at Enir-Ilim, close to the Spiral Rise site of grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Enir-Ilim"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 93,
+        "item_effect": "Summons two inquisitor spirits",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Godrick Soldier Ashes",
+      "wiki_page": "Godrick Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Godrick_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "ゴドリック兵の遺灰 (Godorikku-hei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two Godrick soldier spirits",
+      "fp_cost": 54,
+      "summary": "Godrick Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": null,
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a cemetery on the west side of Stormhill."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Stormhill"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two Godrick Soldiers, one wielding a warpick and one wielding a crossbow and a sword.",
+        "The warpick-wielder deals Pierce damage and the crossbow-wielder deals Pierce damage with the crossbow and Standard damage with the sword.",
+        "Perfectly average, with nothing notable about them. Will perform decently but will most likely not prove crucial in any fight for anything but providing two more targets to attack for the boss."
+      ],
+      "infobox": {
+        "fp_cost": 54,
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two Godrick soldier spirits",
+        "obtained": "Stormhill",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Raya Lucaria Soldier Ashes",
+      "wiki_page": "Raya Lucaria Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Raya_Lucaria_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "レアルカリア兵の遺灰 (Rearukaria-hei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons three Raya Lucaria soldier spirits",
+      "fp_cost": 59,
+      "hp_cost": 1,
+      "summary": "Raya Lucaria Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of three Raya Lucaria soldiers.\n\nA trio of spirits, consisting of two disposable foot soldiers\nand their superior. The soldiers of Raya Lucaria were also\nknown as the Cuckoos. They were given free rein by the\nacademy to wage war as they pleased, and they were\ninfamous for their rapacious ways.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a chest in Road's End Catacombs, behind an illusory wall near the end of the dungeon."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two Raya Lucaria Foot Soldier, one wielding a dagger and another a short sword, and a Raya Lucaria Soldier wielding a greatsword and throwing Cuckoo Glintstone.",
+        "All deal Standard damage but the Soldier can also deal Pierce damage with its greatsword and Magic damage with the Glinstones.",
+        "Surprisingly it's the Foot Soldiers that pull most of the weight in this Spirit Ash, as while they're fairly fragile their high aggression lets them inflict decent damage, where as the Soldier prefers to mostly hang back, throwing the occasional Glintstone and only rarely moving in to help."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons three Raya Lucaria soldier spirits",
+        "fp_cost": 59,
+        "hp_cost": 1,
+        "obtained": "Road's End Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Leyndell Soldier Ashes",
+      "wiki_page": "Leyndell Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Leyndell_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "ローデイル兵の遺灰 (Rōdeiru-hei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two Leyndell soldier spirits",
+      "fp_cost": 64,
+      "summary": "Leyndell Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell.\nUse to summon the spirits of two Leyndell soldiers.\n\nSpirits of soldiers each equipped with a spear and greatshield.\nThe soldiers of Leyndell fight their battles defensively. During the Shattering, they were the ramparts that fortified the royal capital.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse in Sainted Hero's Grave, before falling through a collapsing floor."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two spear-and-greatshield-wielding Leyndell Soldiers.",
+        "Deals Pierce damage with their spears and Strike damage with their shields.",
+        "Overall not that good due to their actually somewhat good defences (as long as attacks don't hit from above or below) being sabotaged by their lackluster damage."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two Leyndell soldier spirits",
+        "fp_cost": 64,
+        "obtained": "Sainted Hero's Grave"
+      }
+    },
+    {
+      "name": "Radahn Soldier Ashes",
+      "wiki_page": "Radahn Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Radahn_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "ラダーン兵の遺灰 (Radān-hei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons two Radahn Soldier spirits",
+      "fp_cost": 71,
+      "summary": "Radahn Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirits of two of Radahn's soldiers.\n\nBoth spirits wield fiery weapons to perform powerful skills.\nSuch is their valor that they will immediately attack after\nbeing summoned.\n\nGeneral Radahn's soldiers were all reputed to be masterful\nwarriors, and it was popularly said that the Redmanes\nknew no weakness.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the War-Dead Catacombs. From the main hall, take the back right set of stairs and go through the tunnel forward until there is a window to the right, just before the dead-end, that can be jumped out of to get to a platform. Take the stairs to the left up to a couple of Imps and it's found in a small room full of Scarlet Rot."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons two Radahn Soldiers, one wielding a flaming greatsword and the other a flaming sword and a torch.",
+        "→ The greatsword one can use Stamp (Upward Cut) to launch foes and the torch one can use Firebreather, and have Fire Pots they can throw.",
+        "Deals Standard and Fire damage and the greatsword-wielder can also deal Pierce damage.",
+        "Surprisingly durable for a shield-less summon and capable of dealing heavy damage.",
+        "As a red-eye Spirit Ash, this duo will patrol at the spot where they are summoned, and pursue any encroaching enemies aggressively."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons two Radahn Soldier spirits",
+        "fp_cost": 71,
+        "obtained": "War-Dead Catacombs"
+      }
+    },
+    {
+      "name": "Haligtree Soldier Ashes",
+      "wiki_page": "Haligtree Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Haligtree_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "聖樹兵の遺灰 (Seiju-hei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons four Haligtree soldier spirits",
+      "fp_cost": 66,
+      "summary": "Haligtree Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of four Haligtree soldiers.\n\nSpirits of common soldiers who carry the sacred light. When weakened, they explode to deliver a last-ditch attack.\nThis was the bitter revelation discovered by the desperate soldiers who awaited the return of their lord to the rotted Haligtree.\n\nMay the flash of our deaths guide Miquella's return.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Elphael, Brace of the Haligtree, under a large chalice on a balcony on the north side of the dungeon.",
+            "From the Prayer Room Site of Grace, take the third beam on the right to a small chapel then take the opposite beam to the outer wall. There is a room below the left end of the wall with several Cleanrot Knights and past the left exit is the chalice."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Elphael, Brace of the Haligtree",
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons four Haligtree Foot Soldier, two with a dagger and two with a short sword. All four can throw Poison Pots.",
+        "→ Effectively has half as much health as their HP bars say because they will sacrifice themselves and explode once they reach that point.",
+        "Deal Standard damage with their weapon attacks and Holy damage with their explosion and can inflict Poison build-up with their Pots.",
+        "Pretty good damage due to their high aggression and very capable of inflicting Poison due to throwing their Pots in a volley early on, but very fragile due to the whole sacrifices-themselves-at-half-health thing. It's also found quite late in the game."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons four Haligtree soldier spirits",
+        "fp_cost": 66,
+        "obtained": "Elphael, Brace of the Haligtree",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Mausoleum Soldier Ashes",
+      "wiki_page": "Mausoleum Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Mausoleum_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "霊廟兵の遺灰 (Reibyō-hei no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons five mausoleum soldier spirits",
+      "fp_cost": 75,
+      "summary": "Mausoleum Soldier Ashes is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of five mausoleum soldiers.\n\nSpirits of five headless soldiers who confound foes by disappearing and reappearing at will. The mausoleum is where the bodies of soulless demigods are lain to rest, and these soldiers followed their masters into Death by severing their own heads from their bodies.",
+      "upgrade_material": "Grave Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on a corpse on a cliff in the northernmost point of the north-west part of Deeproot Depths. Straight north of The Nameless Eternal City Site of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Deeproot Depths"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Grave Gloveworts.",
+        "Summons five Mausoleum Soldiers, two wielding a greatsword, two with a warpick each, and one with a sword.",
+        "→ Can teleport short distances to close in one foes and avoid some attacks.",
+        "Deal Standard damage with the sword, Pierce damage with the warpicks, and both Standard and Pierce damage with the greatswords.",
+        "Highly capable of staggering enemies and dealing damage to being able to unleash a flurry of blows, but they aren't the most durable and only have their teleport for (an admittedly pretty good) defence."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons five mausoleum soldier spirits",
+        "fp_cost": 75,
+        "obtained": "Deeproot Depths",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Messmer Soldier Ashes",
+      "wiki_page": "Messmer Soldier Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Messmer_Soldier_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "メスメル兵の遺灰",
+      "type": "Ashes",
+      "effect": "Summons two Messmer soldier spirits",
+      "fp_cost": 72,
+      "summary": "Messmer Soldier Ashes is an ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of two of Messmer's soldiers.\n\nOne soldier wields an axe, while the other wields a spear. Both of them are adept at charge attacks.\n\nThese soldiers belonged to the ignoble penal battalion, and were buried hidden from the Scadutree's sight.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Fort of Reprimand."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "fp_cost": 72,
+        "item_effect": "Summons two Messmer soldier spirits",
+        "type": "Ashes"
+      }
+    },
+    {
+      "name": "Stormhawk Deenh",
+      "wiki_page": "Stormhawk Deenh",
+      "url": "https://eldenring.wiki.gg/wiki/Stormhawk_Deenh",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "嵐の鷹、ディーネ (Arashi no Taka, Dīne)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Stormhawk Dreenh",
+      "fp_cost": 47,
+      "summary": "Stormhawk Deenh is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of Deenh the Stormhawk.\n\nSpirit of a fierce hawk that faithfully rendered lifelong service\nto the old king of Stormveil long ago, when the true storm\nraged. Its cries embolden its fellows in battle, and the\ntempestuous winds that encircle it shred through foes.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Chapel of Anticipation. After returning to the area via the portal at The Four Belfries, go through the previously locked door near the main entrance, and follow the staircase into the upper level of the chapel to find the ashes."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a brown Stormhawk.",
+        "Deals Standard damage.",
+        "Will immediately let out a war cry that functions as an Aura Buff to strengthen itself and its summoner by increasing all Physical damage, Stamina damage against blocking, and Stance damage by 20% for 60 seconds. This war cry will periodically be reused.",
+        "While it has fairly low health, the evasiveness of its flying and its tendency to use divebomb attacks instead of simply hanging around in melee range causes Deenh to actually have pretty good survivability.",
+        "→ This divebomb attack can actually deflect projectiles (if only very rarely) and will knock human-sized enemies over."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Stormhawk Dreenh",
+        "fp_cost": 47,
+        "obtained": "Chapel of Anticipation",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Banished Knight Oleg",
+      "wiki_page": "Banished Knight Oleg",
+      "url": "https://eldenring.wiki.gg/wiki/Banished_Knight_Oleg",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "失地騎士、オレグ (Shitchi Kishi, Oregu)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Banished Knight Oleg spirit",
+      "fp_cost": 100,
+      "summary": "Banished Knight Oleg is a spirit ash in Elden Ring.",
+      "description": null,
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": "Guaranteed drop",
+          "location": "Stranded Graveyard",
+          "region": null,
+          "details": [
+            "Dropped by the Ulcerated Tree Spirit boss found at the end of Fringefolk Hero's Grave."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Banished Knight that dual-wields swords, and that can also use a variant of the Stormcaller skill that utilizes both swords and leaps like a tornado of blades for short distances.",
+        "Deals Standard damage.",
+        "Incredible durability, with high HP and pretty good defences. His main downside is that he is at his best when fighting enemies that can be staggered repeatedly by his weapons, since they may otherwise interrupt his combo."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Banished Knight Oleg spirit",
+        "fp_cost": 100,
+        "obtained": "Dropped by Ulcerated Tree Spirit in Fringefolk Hero's Grave",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Banished Knight Engvall",
+      "wiki_page": "Banished Knight Engvall",
+      "url": "https://eldenring.wiki.gg/wiki/Banished_Knight_Engvall",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "失地騎士、イングヴァル (Shitchi Kishi, Inguvaru)",
+      "type": "Ashes",
+      "effect": "Summons spirit of Banished Knight Engvall",
+      "fp_cost": 100,
+      "summary": "Banished Knight Engvall is a spirit ash in Elden Ring. A slow, tanky summon that can hit decently hard and is available very early on, Engvall's main drawback is his huge FP cost which puts him out of range of most early builds that aren't focused on magic. This makes him an ideal companion for a caster that doesn't mind devoting all or most of a cerulean flask to him.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Engvall, the Banished Knight.\n\nOne of the two knights dubbed the Wings of the Storm. Despite his banishment, he rejected the invitation of the Grace-Given Lord, instead keeping watch over a masterless castle for many years, gaining renown as a hero of the fringes.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Grave Warden Duelist in Murkwater Catacombs.",
+            "In versions prior to Patch 1.03 this Spirit Ash was unobtainable, as the boss would instead drop a Battle Hammer."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Banished Knight that wields a halberd with a more mobile variant of the Stormcaller skill on it.",
+        "Deals Standard and Pierce damage.",
+        "Though he is quite durable, he is quite expensive, FP-wise, to summon. His halberd gives him wide-sweeping attacks for cleaving through crowds, while his Stormcaller has good AOE and can knock many enemies flat. Still, he is greatly outclassed by Banished Knight Oleg due to the latter's greater damage potential: Oleg tends to move and attack faster with in longer combos, while Engvall is a bit slower and also isn't quite as good at keeping foes staggered."
+      ],
+      "infobox": {
+        "type": "Ashes",
+        "item_effect": "Summons spirit of Banished Knight Engvall",
+        "fp_cost": 100,
+        "obtained": "Murkwater Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Bloodhound Knight Floh",
+      "wiki_page": "Bloodhound Knight Floh",
+      "url": "https://eldenring.wiki.gg/wiki/Bloodhound_Knight_Floh",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "猟犬騎士、フロー (Ryōken Kishi, Furō)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Bloodhound Knight Floh",
+      "fp_cost": 95,
+      "summary": "Bloodhound Knight Floh is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Floh, the Bloodhound Knight.\n\nSpirit of a Bloodhound Knight they called the Rabid Stray. Will attack without pause immediately after being summoned. Floh vowed that there was only one lord he would serve: a true king. And so, the Rabid Stray never found a master.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Defeat the Red Wolf of the Champion boss in Gelmir Hero's Grave."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Bloodhound Knight with a curved greatsword and claws.",
+        "Deals Slash damage and inflicts slight Blood Loss build-up with both weapons.",
+        "As a red-eye Spirit Ash, this knight will remain at the spot where they are summoned, and pursue any encroaching enemies aggressively. Quite fitting for the masterless knight known as the Rabid Stray.",
+        "Like other, hostile Bloodhound Knights, Floh is quite fragile, and reliant on being able to chain staggers and Blood Loss to burst down foes without being killed. Due to this, Floh is best used by a build that can keep attention away from them and that can take advantage of the additional Blood Loss build-up to more easily cause the status themself."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Bloodhound Knight Floh",
+        "fp_cost": 95,
+        "obtained": "Gelmir Hero's Grave",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Black Knight Captain Huw",
+      "wiki_page": "Black Knight Captain Huw",
+      "url": "https://eldenring.wiki.gg/wiki/Black_Knight_Captain_Huw",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "黒騎士の副長、ヒュー (Kuro Kishi no Fukuchō, Hyū)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Black Knight Captain Huw",
+      "fp_cost": 106,
+      "summary": "Black Knight Captain Huw is a spirit ash found in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Huw, Knight-Captain of the Black Knights.\n\nThe Black Knights were the primary force of Messmer's army. Second to their first Knight-Commander was Huw, a man with agile command of both twinblade techniques and the powers of the Crucible, and whose spirit in these ashes dwells.\n\nThough a champion of the divine beast hunt, he followed his father, Andreas, into rebellion against Messmer, and like his father, he too was imprisoned in an underground tomb. Messmer mourned the loss of a brother-in-arms.",
+      "upgrade_material": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Black Knight Captain Huw",
+        "fp_cost": 106
+      }
+    },
+    {
+      "name": "Black Knight Commander Andreas",
+      "wiki_page": "Black Knight Commander Andreas",
+      "url": "https://eldenring.wiki.gg/wiki/Black_Knight_Commander_Andreas",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "黒騎士長、アンドレアス (Kuro Kishichō, Andoreasu)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Black Knight Commander Andreas",
+      "fp_cost": 108,
+      "summary": "Black Knight Commander Andreas is a spirit ash found in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Andreas, Black Knight Commander.\n\nThe Black Knights were the primary force of Messmer's army. Their first leader was Andreas, a man of endowed with great strength and command over the powers of the Crucible, and whose spirit in these ashes dwells.\n\nThough he remained a devout follower of Messmer after his flight from the Erdtree, he would rebel after learning of his liege's serpentine nature. His righteous stand was rewarded with imprisonment in an underground tomb.",
+      "upgrade_material": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Black Knight Commander Andreas",
+        "fp_cost": 108
+      }
+    },
+    {
+      "name": "Fire Knight Hilde",
+      "wiki_page": "Fire Knight Hilde",
+      "url": "https://eldenring.wiki.gg/wiki/Fire_Knight_Hilde",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "火の騎士、ヒルド (Hi no Kishi, Hirudo)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Fire Knight Hilde",
+      "fp_cost": 116,
+      "summary": "Fire Knight Hilde is a spirit ash found in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Fire Knight Hilde.\n\nA spirit who belonged to the Fire Knights; an order which answers directly to Messmer. Hilde swings a slender greatsword and casts fire incantations.\n\nHilde was a dear friend to Salza the sage, and joined those who urged that the specimens be preserved. Hilde's ashes were enshrined as a charm to protect the storehouse.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Shadow Keep",
+          "region": null,
+          "details": [
+            "Looted off a corpse located above the rafters in the Shadow Keep. The player will have to platform and ride on top of the lifts to reach the spirit ash."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Shadow Keep"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Fire Knight.",
+        "Hilde is capable of casting Fire Serpent in battle.",
+        "Hilde deals Standard, Pierce, and Fire damage with her greatsword, and Fire damage with her spell."
+      ],
+      "patch_notes": [
+        {
+          "version": "1.13 (General balance adjustment)",
+          "official_notes": "Will no longer stagger as easily. Increased Fire attack power."
+        }
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Fire Knight Hilde",
+        "fp_cost": 116,
+        "obtained": "Shadow Keep"
+      }
+    },
+    {
+      "name": "Fire Knight Queelign",
+      "wiki_page": "Fire Knight Queelign",
+      "url": "https://eldenring.wiki.gg/wiki/Fire_Knight_Queelign",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "火の騎士、クウィライン (Hi no Kishi, Kuwirain)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Fire Knight Queelign",
+      "fp_cost": 123,
+      "summary": "Fire Knight Queelign is a spirit ash in Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Fire Knight Queelign. Attacks immediately after being summoned.\n\nSpirit of a knight granted relief by the Iris of Grace. Wields a spear-like greatsword that impales foes upon fire, keeping the taint of impurity away from fair mother Marika.\n\nThat grace was his salvation, though it was but a fleeting blessing. And having been saved, all that was left to him was to wage war.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": "Drop",
+          "location": "Shadow Keep",
+          "region": null,
+          "details": [
+            "Obtained after giving Fire Knight Queelign an Iris of Grace in the Prayer Room of Shadow Keep's Church District. Accessible after defeating his invasions in both Belurat, Tower Settlement and Church of the Crusade.",
+            "→ WARNING: Mutually exclusive with Queelign's Greatsword, as it requires giving him an Iris of Occultation instead.",
+            "→ Note that since two of each Iris is available, there is no conflict when selecting the final loot of Queelign's and Jolán's respective questlines."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Shadow Keep",
+        "Belurat, Tower Settlement"
+      ],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons Fire Knight Queelign.",
+        "Queelign is capable of casting Fire Serpent and using Flame Skewer in battle.",
+        "Queelign deals Standard, Pierce, and Fire damage with his eponymous weapon, and Fire damage with his spell.",
+        "Queelign is a red-eyed spirit, meaning that he won't follow his summoner but will aggressively pursue encroaching enemies.",
+        "Just like when he invades the player, Queelign will perform a unique gesture every time he is summoned."
+      ],
+      "patch_notes": [
+        {
+          "version": "1.13 (General balance adjustment)",
+          "official_notes": "Increased Vigor and Faith."
+        }
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Fire Knight Queelign",
+        "fp_cost": 123,
+        "obtained": "Give Fire Knight Queelign an Iris of Grace"
+      }
+    },
+    {
+      "name": "Swordhand of Night Jolán",
+      "wiki_page": "Swordhand of Night Jolán",
+      "url": "https://eldenring.wiki.gg/wiki/Swordhand_of_Night_Jol%C3%A1n",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "夜の剣士、ヨラーン (Yoru no Kenshi, Yorān)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Jolán, Swordhand of Night",
+      "fp_cost": 86,
+      "summary": "Swordhand of Night Jolán is a spirit ash in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Swordhand of Night Jolán.\n\nSpirit of a swordhand granted light by the Iris of Grace. Wields a sword of bottomless black that penetrates the enemy's guard.\n\nThough it was not by the shining star that she had longed for, thus was her Night illuminated. But this was an at times blinding light, and threatened to expunge the Night entirely.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Obtained after completing Count Ymir's questline and boss fight and giving Jolán the Iris of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Jolán, Swordhand of Night",
+        "fp_cost": 86
+      }
+    },
+    {
+      "name": "Jolán and Anna",
+      "wiki_page": "Jolán and Anna",
+      "url": "https://eldenring.wiki.gg/wiki/Jol%C3%A1n_and_Anna",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ヨラーンとアンナ (Yorān to Anna)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Jolán, Swordhand of Night and Anna",
+      "fp_cost": 144,
+      "summary": "Jolán and Anna is a spirit ash found in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirits of Jolán and Anna.\n\nSpirits of two Swordhands of Night, one of them being possessed by Count Ymir's doll Anna. Together, Jolán's sword and Anna's claws are as bottomless black, and penetrate the enemy's guard.\n\nJolán and Anna were born in a cold, dark gaol, where they were raised, deprived of light, to be Swordhands of Night. Thus were they cultivated to become the most terrifying masters of their blades, though the burden of the deed left their hearts frail and pliant.",
+      "upgrade_material": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Jolán, Swordhand of Night and Anna",
+        "fp_cost": 144
+      }
+    },
+    {
+      "name": "Battlemage Hugues Ashes",
+      "wiki_page": "Battlemage Hugues (Spirit Ash)",
+      "url": "https://eldenring.wiki.gg/wiki/Battlemage_Hugues_(Spirit_Ash)",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "戦魔術師、ユーグ (Senmajutsushi, Yūgu)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Battlemage Hugues",
+      "fp_cost": 122,
+      "summary": "Battlemage Hugues is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Battlemage Hugues.\n\nHugues came from Sellia to study the Haima Conspectus at the academy, where he became a battlemage. Haima scholars seek to quell conflict with cannon fire and the gavel, but Hugues developed a longing for it.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Battlemage Hugues in the Sellia Evergaol."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Battlemage that can cast Great Glintstone Shard, Gavel of Haima and Cannon of Haima, and uses a club.",
+        "Deals Magic damage with the spells and Strike damage with the club.",
+        "Its Cannon spell can actually deal incredibly heavy knockback, forcing even Crucible Knights to be thrown several meters away.",
+        "Very high FP cost to summon.",
+        "More durable than the other mages but not as capable of dealing damage."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Battlemage Hugues",
+        "fp_cost": 122,
+        "obtained": "Sellia Evergaol",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Latenna the Albinauric",
+      "wiki_page": "Latenna the Albinauric (Spirit Ash)",
+      "url": "https://eldenring.wiki.gg/wiki/Latenna_the_Albinauric_(Spirit_Ash)",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "しろがねのラティナ (Shirogane no Ratina)",
+      "type": "Ashes",
+      "effect": "Summons the spirit of Latenna the Albinauric",
+      "fp_cost": 74,
+      "summary": "Latenna the Albinauric is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Latenna the Albinauric.\n\nA rare case of one who chose to become a spirit voluntarily.\n\nLatenna was renowned as a deft magic archer. But having lost her beloved wolf companion, Lobo, she cannot move from the place where she was summoned.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Obtained after talking to Latenna the Albinauric (NPC) at Slumbering Wolf's Shack and accepting her request."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a dismounted Albinauric Archer.",
+        "→ She can actually mount Albinauric Archer Wolf wherever they are found, though it's unknown if this is an intended interaction.",
+        "Mostly immobile, only able to shuffle around very slightly. Make sure to place her carefully, preferably on a high, hard to reach spot.",
+        "→ Railings and big rocks are good positions, as are weapons with good mix of decent reach and good speed, such as Straight Swords and Spears, to keep hostile attention on the summoner.",
+        "Fires 3 arrows at once at a steady rate. While these don't deal that much damage individually, the steady fire gives her good damage if enemy attention can be kept away from her."
+      ],
+      "infobox": {
+        "type": "Ashes",
+        "fp_cost": 74,
+        "item_effect": "Summons the spirit of Latenna the Albinauric",
+        "obtained": "Slumbering Wolf's Shack"
+      }
+    },
+    {
+      "name": "Perfumer Tricia",
+      "wiki_page": "Perfumer Tricia",
+      "url": "https://eldenring.wiki.gg/wiki/Perfumer_Tricia",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "調香師、トリシャ (Chōkōshi, Torisha)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Perfumer Tricia",
+      "fp_cost": 78,
+      "summary": "Perfumer Tricia is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to\nsummon the spirit of Tricia, the perfumer.\n\nTricia was once known as a healer who dedicated her\nefforts to treating Misbegotten, Omen, and all those seen\nas impure. When her efforts failed, she was their\ncompanion as they died, watching over them to ensure\nthat they could pass peacefully, free of pain.\n\nA tale akin to the origins of the deathbed companions.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Perfumer Tricia & Misbegotten Warrior in Unsightly Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Glovewort.",
+        "Summons a Perfumer to provide support.",
+        "Deals Fire damage.",
+        "Uses the long-lasting Perfumer-variant of Uplifting Aromatic, providing an Aura Buff that increases all damage dealt by 10% for 60 seconds, and reapplies a 90% damage reduction shield bubble (similar to Opaline Bubbletear) against the next hit as long as the mist remains.",
+        "→ Though the damage buff doesn't stack with either variant of Golden Vow or the Shared Order skill, the shield stacks with anything and everything.",
+        "A potent support summons due to the damage buff and the shield bubble, the latter which will also help her live longer. She can also spread Fire damage over a wide area, potentially briefly staggering enemies, though it will quickly fall short in damage as enemy defences increase."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Perfumer Tricia",
+        "fp_cost": 78,
+        "obtained": "Unsightly Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Depraved Perfumer Carmaan",
+      "wiki_page": "Depraved Perfumer Carmaan",
+      "url": "https://eldenring.wiki.gg/wiki/Depraved_Perfumer_Carmaan",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "堕落調香師、カルマーン (Daraku Chōkōshi, Karumān)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Depraved Perfumer Carmaan",
+      "fp_cost": 124,
+      "summary": "Depraved Perfumer Carmaan is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Carmaan, the depraved perfumer.\n\nDepraved perfumers practice their art for themselves alone. Carmaan was a notably formidable perfumer whose strength rivaled that of heroes, and it is said that he was in search of a secret physick of revivification.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Volcano Manor, in a room only accessible by going through the secret passage behind the illusory wall near the start of the dungeon."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Volcano Manor"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Depraved Perfumer.",
+        "Deals Fire damage.",
+        "While he is surprisingly durable for someone who is more of a caster-type summon and can dash away to dodge, his damage is mostly moderate. Its primary utility lies in its wide coverage and the fact that the explosive dust hangs around for a second or so, making him much more likely to hit.",
+        "→ His durability is boosted by the fact that he can pull out a Flask of Crimson Tears-like concoction to heal himself for a moderate amount of HP, twice."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Depraved Perfumer Carmaan",
+        "fp_cost": 124,
+        "obtained": "Volcano Manor",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Omenkiller Rollo",
+      "wiki_page": "Omenkiller Rollo",
+      "url": "https://eldenring.wiki.gg/wiki/Omenkiller_Rollo",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "忌み潰しのロロ (Imitsubushi no Roro)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Omenkiller Rollo",
+      "fp_cost": 113,
+      "summary": "Omenkiller Rollo is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Omenkiller Rollo.\n\nSpirit of Rollo, known as the first Omenkiller. Once a famous perfumer, Rollo imbibed a physick to rid himself of emotion, thus enabling him to enact his nightmarish labor, hunting the Omen.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Fell Twins who are encountered on the bridge leading to the Divine Tower of East Altus."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons an Omenkiller.",
+        "Deals Strike damage and inflicts Blood Loss build-up with his hammers and Fire damage with his breath attack.",
+        "A great if expensive summon, he has a fair amount of HP, has a backwards dodge with a flame-breath to cover his escape, and his great hammers both good stagger on their own and can potentially interrupt most attack should he manage to inflict Blood Loss."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Omenkiller Rollo",
+        "fp_cost": 113,
+        "obtained": "Fell Twins",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Blackflame Monk Amon",
+      "wiki_page": "Blackflame Monk Amon",
+      "url": "https://eldenring.wiki.gg/wiki/Blackflame_Monk_Amon",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "黒炎僧兵、アモン (Kokuen Sōhei, Amon)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Blackflame Monk Amon",
+      "fp_cost": 115,
+      "summary": "Blackflame Monk Amon is a spirit ash in Elden Ring.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Amon, the Blackflame Monk.\n\nAmon swore fealty to the god-slaying black flame, and so became the first fire monk to turn traitor. Or perhaps it is better said that he fled from the Giants' Flame—out of cowardice.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Stray Mimic Tear in Hidden Path to the Haligtree."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a mace-wielding Blackflame Monk.",
+        "Deals Strike damage with his weapon and Fire damage with his spells.",
+        "Essentially a stronger Fire Monk Ashes that costs 30 more FP to summon, primarily due to the blackflame effect on its spells and most of its attacks.",
+        "Very strong due to having the same rider on many of its attacks as Black Flame, causing them to deal extra damage over time depending on a percentage of enemy HP."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Blackflame Monk Amon",
+        "fp_cost": 115,
+        "obtained": "Hidden Path to the Haligtree",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Curseblade Meera",
+      "wiki_page": "Curseblade Meera",
+      "url": "https://eldenring.wiki.gg/wiki/Curseblade_Meera",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "呪剣士ミラ (Jukenshi Mira)",
+      "type": "Ashes",
+      "effect": "Summons Curseblade Meera",
+      "fp_cost": 91,
+      "summary": "Curseblade Meera is a spirit ash in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Curseblade Meera. Attacks immediately after being summoned.\n\nCurseblades appear to dance when they spin their shimmering circular blades. These ascetics, who failed to become tutelary deities, were a scourge for those who attempted to invade the hornsent homeland.\n\nLong ago, before the land was overshadowed by invasion, this scourged was shunned, and the curseblades were imprisoned. It was during this confinement that Meera met Labirith, and upon her death, Labirith was plunged into a devastating darkness.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Curseblade Labirith at the end of Bonny Gaol."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Glovewort.",
+        "Can inflict a decent amount of blood loss buildup, especially during her dancing attack."
+      ],
+      "infobox": {
+        "type": "Ashes",
+        "fp_cost": 91,
+        "obtained": "Curseblade Labirith",
+        "item_effect": "Summons Curseblade Meera"
+      }
+    },
+    {
+      "name": "Demi-Human Swordsman Yosh",
+      "wiki_page": "Demi-Human Swordsman Yosh",
+      "url": "https://eldenring.wiki.gg/wiki/Demi-Human_Swordsman_Yosh",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "亜人の剣士、ヨシ (Ajin no Kenshi, Yoshi)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Demi-Human Swordsman Yosh",
+      "fp_cost": 129,
+      "summary": "Demi-Human Swordsman Yosh is a spirit ash found in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Yosh, the demi-human swordsman.\n\nOnze, a master swordsman who devoted himself to the Star-Lined Sword, realized that only ruin awaited at the end of the procession of stars, and imprisoned himself in order to forestall it.\n\nHowever, Yosh, an apprentice who absorbed his technique, stubbornly refused to heed his master's words, and spent his entire life at his side, in defiance of his self-imposed seclusion.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Demi-Human Swordmaster Onze at Belurat Gaol."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Belurat, Tower Settlement"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Demi-Human Swordsman Yosh",
+        "fp_cost": 129,
+        "obtained": "Demi-Human Sorcerer Onze"
+      }
+    },
+    {
+      "name": "Ancient Dragon Knight Kristoff",
+      "wiki_page": "Ancient Dragon Knight Kristoff",
+      "url": "https://eldenring.wiki.gg/wiki/Ancient_Dragon_Knight_Kristoff",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "古竜の騎士、クリストフ (Koryū no Kishi, Kurisutofu)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Ancient Dragon Knight Kristoff",
+      "fp_cost": 108,
+      "summary": "Ancient Dragon Knight Kristoff is a spirit ash in Elden Ring.",
+      "description": "Legendary ashen remains. Use to summon the spirit of Kristoff, the Ancient Dragon Knight.\n\nSpirit of Kristoff, an honorable knight of Leyndell who was also a devout worshipper of the ancient dragons. His skills strike down foes with thunderbolts, the dragons' weapon of choice.\n\nAfter the First Defense of Leyndell, Kristoff earned the hero's honor of Erdtree Burial for the feat of capturing Godefroy the Grafted.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Ancient Hero of Zamor in Sainted Hero's Grave."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a spear-wielding Leyndell Knight.",
+        "Deals Pierce damage and Lightning damage with his Thunderbolt skill.",
+        "→ After using Thunderbolt his spear will also deal Lightning damage in addition to its regular Pierce damage.",
+        "Quite tanky thanks to his greatshield and excellent at grabbing enemy attention thanks to Thunderbolt, even if it doesn't deal a lot of damage."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Ancient Dragon Knight Kristoff",
+        "fp_cost": 108,
+        "obtained": "Sainted Hero's Grave"
+      }
+    },
+    {
+      "name": "Redmane Knight Ogha",
+      "wiki_page": "Redmane Knight Ogha",
+      "url": "https://eldenring.wiki.gg/wiki/Redmane_Knight_Ogha",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "赤獅子騎士、オウガ (Akajishi Kishi, Ouga)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Redmane Knight Ogha",
+      "fp_cost": 106,
+      "summary": "Redmane Knight Ogha is a spirit ash in Elden Ring.",
+      "description": "Legendary ashen remains. Use to summon\nthe spirit of Ogha, the Redmane Knight.\n\nSpirit of a mighty knight versed in the use of a greatbow.\nA valiant warrior who will attack immediately after being\nsummoned.\n\nThe longest-serving member of the Redmane Knights,\nOgha studied techniques to manipulate gravity alongside\nRadahn. May use a rain of gravitational arrows in response\nto a war cry, but only once.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Putrid Tree Spirit in War-Dead Catacombs."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Redmane Knight.",
+        "→ Wields a Greatbow for ranged combat and a Knight's Greatsword paired with a Redmane Greatshield in melee.",
+        "Deals Standard damage with his greatsword and Pierce damage with the greatbow.",
+        "Using any \"roar\" or \"cry\" type Skill, such as Regal Roar or War Cry will cause Ogha to use the Rain of Arrows skill on his target. This can only be done once per summoning.",
+        "He is a \"Red-eyed\" spirit, meaning that, once summoned, he will patrol his spawning spot and attacks any enemy that wanders into his range.",
+        "→ Since he won't follow his summoner by default like most other ashes, Cursed-Blood Pots are the only way to make him move predictably.",
+        "He prefers his Greatbow, and will only switch to the other set if an enemy wanders into his melee range."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Redmane Knight Ogha",
+        "fp_cost": 106,
+        "obtained": "War-Dead Catacombs",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Lhutel the Headless",
+      "wiki_page": "Lhutel the Headless",
+      "url": "https://eldenring.wiki.gg/wiki/Lhutel_the_Headless",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "首なし騎士、ルーテル (Kubinashi Kishi, Rūteru)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Lhutel the Headless",
+      "fp_cost": 104,
+      "summary": "Lhutel the Headless is a spirit ash in Elden Ring.",
+      "description": "Legendary ashen remains. Use to summon the spirit of Lhutel the Headless.\n\nSpirit of a headless knight who leads the mausoleum soldiers. Wields a lance enrobed in Death and hurls spectral lances at foes.\n\nLhutel sacrificed her life so that in Death she could continue to protect a soulless demigod until their revival, earning her the hero's honor of Erdtree Burial.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by the Cemetery Shade in Tombsward Catacombs, Weeping Peninsula."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a spear-wielding Mausoleum Knight.",
+        "Deals Pierce damage and inflicts Death Blight build-up.",
+        "→ The Death Blight is mostly irrelevant outside of the Caelid Colosseum.",
+        "While she doesn't deal the most damage, she is quite capable of grabbing enemy attention with the Spectral Lance skill and very survivable thanks to a combination of a greatshield and a dodge.",
+        "Not the most aggressive, but her push-and-pull attitude towards attacking means that she pairs decently well with a more aggressive player build so that boss attention can be kept bouncing between targets."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Lhutel the Headless",
+        "fp_cost": 104,
+        "obtained": "Tombsward Catacombs"
+      }
+    },
+    {
+      "name": "Cleanrot Knight Finlay",
+      "wiki_page": "Cleanrot Knight Finlay",
+      "url": "https://eldenring.wiki.gg/wiki/Cleanrot_Knight_Finlay",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "貴腐の騎士、フィンレイ (Kifu no Kishi, Finrei)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Cleanrot Knight Finlay",
+      "fp_cost": 127,
+      "summary": "Cleanrot Knight Finlay is a spirit ash in Elden Ring.",
+      "description": "Legendary ashen remains. Use to summon the spirit of the Cleanrot Knight Finlay.\n\nFinlay was one of the few survivors of the Battle of Aeonia, who in an unimaginable act of heroism carried the slumbering demigod Malenia all the way back to the Haligtree. She managed the feat alone, fending off all manner of foes along the way.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "In a treasure chest at Elphael, Brace of the Haligtree, guarded by a Cleanrot Knight. Located north of the Prayer Room grace on a rooftop that you need to jump down to from a rafter."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Elphael, Brace of the Haligtree",
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a scythe-wielding Cleanrot Knight.",
+        "Deals Slash and Holy damage and inflict Blood Loss build-up with her scythe, Pierce damage with her off-hand sword, Holy damage with her Miquella's Ring of Light, and Standard damage and Scarlet Rot build-up with her spit attack.",
+        "Can cast the Cleanrot Knights unique combination of Blessing's Boon (8 HP/s) and Flame, Protect Me (+60% Fire damage negation) to strengthen both herself and her summoner.",
+        "→ This counts as both as a Health Regen Buff and as a Body Buff, meaning it will not stack with other buffs of those categories and will override those already present.",
+        "Fairly durable, but most of her ability lies in her buff, her ability to harass foes from afar, and her ability to help slightly with Blood Loss build-up when attacking with her scythe."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Cleanrot Knight Finlay",
+        "fp_cost": 127,
+        "obtained": "Elphael, Brace of the Haligtree",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Black Knife Tiche",
+      "wiki_page": "Black Knife Tiche",
+      "url": "https://eldenring.wiki.gg/wiki/Black_Knife_Tiche",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "黒き刃、ティシー (Kuroki Yaiba, Tishī)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Black Knife Tiche",
+      "fp_cost": 132,
+      "summary": "Black Knife Tiche is a spirit ash in Elden Ring.",
+      "description": "Legendary ashen remains. Use to summon the spirit of Black Knife Tiche.\n\nTiche was one of the assassins who, on the night of the plot, imbued her black knife with the Rune of Death and slew Godwyn the Golden. She was the daughter of the Black Knife Ringleader, Alecto, and was killed protecting her mother during their flight from the royal capital.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Alecto, Black Knife Ringleader in the Ringleader's Evergaol."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Black Knife Assassin.",
+        "Her dagger deals Slash, Pierce, and Holy damage, and her Blade of Death beam deals Holy damage.",
+        "Generally considered as one of the strongest Spirit Ashes due to strength of the percentage-based damage of her Blade of Death, and due to mostly being able to make up for her low health as she is able to dodge",
+        "→ It should be noted that her Blade of Death will not stack with that of a player using a Black Knife to cast their own Blade of Death."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Black Knife Tiche",
+        "fp_cost": 132,
+        "obtained": "Alecto, Black Knife Ringleader"
+      }
+    },
+    {
+      "name": "Divine Bird Warrior Ornis",
+      "wiki_page": "Divine Bird Warrior Ornis",
+      "url": "https://eldenring.wiki.gg/wiki/Divine_Bird_Warrior_Ornis",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "神鳥の戦士、オルニス (Shinchō no Senshi, Orunisu)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Divine Bird Warrior Ornis",
+      "fp_cost": 131,
+      "summary": "Divine Bird Warrior Ornis is a spirit ash found in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Ornis the divine bird warrior.\n\nSpirit of the divine bird warrior from whom the horned warriors claimed descent. Clad in golden armor, and granted wings and feathers of divine invocation.\n\nOrnis succeeded in taming the divine bird and made its wings his own as he soared through the sky. When he finally fell to earth, he lived on as the guardian deity of the temple quarter.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found by Temple Town Ruins Site of Grace: Head north past the large Scarlet Buds and Kindreds of Rot. Go uphill and activate the Spiritspring and use it to jump on ruins above. There is an opening to the right side which lets you walk on the ledge. Continue on the ledge, jump across the gap and then make your way uphill. You can find this spirit summon inside the treasure chest in the building uphill."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Divine Bird Warrior Ornis",
+        "fp_cost": 131
+      }
+    },
+    {
+      "name": "Taylew the Golem Smith",
+      "wiki_page": "Taylew the Golem Smith",
+      "url": "https://eldenring.wiki.gg/wiki/Taylew_the_Golem_Smith",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "鍛冶ゴーレム、テウル (Kaji Gōremu, Teuru)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Taylew the Golem Smith",
+      "fp_cost": 138,
+      "summary": "Taylew the Golem Smith is a spirit ash found in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Taylew the golem smith.\n\nThe spirit of the stalwart stone golem who launches his own fists as projectiles.\n\nTaylew was said to be the runt of the litter and the first to stop moving, but it was he who became the guardian deity of smithery.",
+      "upgrade_material": null,
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Rauh Base, (Taylew's Ruined Forge)",
+          "region": null,
+          "details": [
+            "Obtained by reaching the end of the dungeon."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Rauh Base"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Taylew the Golem Smith",
+        "fp_cost": 138
+      }
+    },
+    {
+      "name": "Ancient Dragon Florissax",
+      "wiki_page": "Ancient Dragon Florissax",
+      "url": "https://eldenring.wiki.gg/wiki/Ancient_Dragon_Florissax",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "古竜フローサクス (Koryū Furōsakusu)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Ancient Dragon Florissax",
+      "fp_cost": 85,
+      "summary": "Ancient Dragon Florissax is a spirit ash in Elden Ring: Shadow of the Erdtree.",
+      "description": "Ashen remains in which spirits yet dwell. Use to summon the spirit of Ancient Dragon Florissax.\n\nFlorissax assumed this spirit form to offer her service to a new lord.\n\nUses her own dragonbolt to increase all damage negation (including physical) for herself and nearby allies. Strikes foes with the Flowerstone Gavel's dragonbolt to reduce enemy lightning damage negation.\n\nLong ago, Florissax assumed human form to share Dragon Communion with the world. Now, she has acquired a human heart.",
+      "upgrade_material": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Ancient Dragon Florissax",
+        "fp_cost": 85
+      }
+    },
+    {
+      "name": "Mimic Tear Ashes",
+      "wiki_page": "Mimic Tear Ashes",
+      "url": "https://eldenring.wiki.gg/wiki/Mimic_Tear_Ashes",
+      "section": "Ashes",
+      "category": "Ashes",
+      "source": "Base game",
+      "japanese_name": "写し身の雫の遺灰 (Utsushimi no Shizuku no Ihai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Mimic Tear spirit",
+      "hp_cost": 660,
+      "summary": "Mimic Tear Ashes is a spirit ash in Elden Ring.",
+      "description": "Legendary ashen remains. Use to summon the spirit of a mimic tear. Summoning consumes HP rather than FP.\n\nThis spirit takes the form of the summoner to fight alongside them, but its mimicry does not extend to imitating the summoner's will. Mimic tears are the result of an attempt by the Eternal City to forge a lord.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "In a treasure chest behind a Stonesword Key imp statue in Nokron, Eternal City."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Nokron, Eternal City"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons an exact, AI-controlled copy of the player that uses their current equipment, including armor, talismans, spells, weapons, and consumable items.",
+        "→ However, the Mimic Tear deals less direct damage than a player would with the same equipment. However, healing and status build-up (and the damage from said status effect) remains the same.",
+        "→ Has a hard time selecting between several damaging spells, so it's best to only carry 1, maybe 2 such spells when using this Ash.",
+        "Takes much longer to becomes active compared to other Spirit Ashes, roughly 5 seconds instead of about 1 second.",
+        "A +10 Mimic Tear has 3.3 times the HP of the unupgraded (+0) version.",
+        "Rolls only rarely, meaning it is more inclined towards heavier, tankier setups.",
+        "The only Spirit Ash that is vulnerable to Death Blight.",
+        "Has infinite uses of all consumable Items.",
+        "→ Raw Meat Dumplings can serve as an infinite-use healing item, especially so since the Mimic is immune to Poison.",
+        "→ Hard to get or farm for items such as Sleep Pots are also very useful to slot."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Mimic Tear spirit",
+        "hp_cost": 660,
+        "obtained": "Nokron, Eternal City"
+      }
+    },
+    {
+      "name": "Finger Maiden Therolina Puppet",
+      "wiki_page": "Finger Maiden Therolina Puppet",
+      "url": "https://eldenring.wiki.gg/wiki/Finger_Maiden_Therolina_Puppet",
+      "section": "Ashes",
+      "category": "Puppets",
+      "source": "Base game",
+      "japanese_name": "指巫女サロリナの傀儡 (Yubimiko Sarorina no Kairai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Finger Maiden Therolina",
+      "fp_cost": 82,
+      "summary": "Finger Maiden Therolina Puppet is a spirit ashes in Elden Ring.",
+      "description": "One of Seluvis's puppets. Use to summon the spirit of the Finger Maiden Therolina.\n\nSpirit of Finger Maiden who never met the Tarnished she was meant to guide. Uses healing incantations and Holy Water Pots, but she is not a fighter by nature and is ill-suited to battle.\n\nA Maiden without a Tarnished. A Tarnished without a Maiden. And yet no guide to bring them together.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be acquired from Seluvis once you confront him about his secret puppet workshop at the Three Sisters.",
+            "Either her or the Jarwight Puppet can be gained from Seluvis for free. If she isn't selected she costs 2 Starlight Shards to buy."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "She is one of the npcs who appear at the Redmane Castle festival. She gives you the Polite Bow gesture. It is unclear if she has already been one of Seluvis's puppets at that point.",
+        "Unless one specifically wants Therolina it's generally better to select the Jarwight Puppet as the free gift since he costs 1 more Starlight Shard (3 total) to buy.",
+        "Upgraded with Ghost Gloveworts.",
+        "She can cast Great Heal to heal and throw Holy Water Pot to deal mild amounts of Holy damage (much more against Those Who Live in Death).",
+        "Not very strong. While she is the only Spirit Ash able to heal their summoner, not counting Cleanrot Knight Finlay and her regeneration buff, she is rather bad at keeping with her summoner to actually heal them and otherwise only deal minimal damage and almost useless for even distracting enemies.",
+        "→ Except for potentially killing Royal Revenants in two casts of Great Heal, Perfumer Tricia is generally a much better supportive summon."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Finger Maiden Therolina",
+        "fp_cost": 82,
+        "obtained": "Preceptor Seluvis",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Jarwight Puppet",
+      "wiki_page": "Jarwight Puppet",
+      "url": "https://eldenring.wiki.gg/wiki/Jarwight_Puppet",
+      "section": "Ashes",
+      "category": "Puppets",
+      "source": "Base game",
+      "japanese_name": "壺男の傀儡 (Tsubootoko no Kairai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons Jarwight spirit",
+      "fp_cost": 60,
+      "summary": "Jarwight Puppet is a spirit ashes in Elden Ring.",
+      "description": "One of Seluvis' puppets. Use to summon the spirit of a jarwight.\n\nSpirit of a man who wished to become the innards of a livingjar. A jar-hurling specialist who throws all manner of pots and jars.\n\nThe warrior jar once told the nameless man this: \"You are not yet ready to join the warriors inside. No, you must apply yourself! Better yourself, and one day I will return for you.\"",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be acquired from Seluvis once you confront him about his secret puppet workshop at the Three Sisters.",
+            "Either him or the Finger Maiden Therolina Puppet can be gained from Seluvis for free. If he isn't selected he costs 3 Starlight Shards to buy."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "Unless one specifically wants Therolina it's generally better to select the Jarwight Puppet as the free gift since he costs 1 more Starlight Shard (3 total) to buy.",
+        "Upgraded with Ghost Gloveworts.",
+        "Wears a Jar and uses a wide variety of pots.",
+        "→ Pots thrown includes Fetid Pots, Fire Pots, Freezing Pots, Lightning Pots, Oil Pots, Poison Pots, Redmane Fire Pots, Swarm Pots, and Volcano Pots.",
+        "Not very strong since the pots thrown are largely random, but nonetheless somewhat entertaining."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons Jarwight spirit",
+        "fp_cost": 60,
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Dolores the Sleeping Arrow Puppet",
+      "wiki_page": "Dolores the Sleeping Arrow Puppet",
+      "url": "https://eldenring.wiki.gg/wiki/Dolores_the_Sleeping_Arrow_Puppet",
+      "section": "Ashes",
+      "category": "Puppets",
+      "source": "Base game",
+      "japanese_name": "眠りのドローレスの傀儡 (Nemuri no Dorōresu no Kairai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Dolores the Sleeping Arrow",
+      "fp_cost": 87,
+      "summary": "Dolores the Sleeping Arrow Puppet is a renowned ash in Elden Ring.",
+      "description": "One of Seluvis' favorite puppets. Use to summon the spirit of Dolores the Sleeping Arrow.\n\nSpirit of a handsome archer who dressed in the style of a man. Called the Silent Hunter by some, she fires St. Trina's arrows from her shortbow.\n\nDolores once belonged to the Roundtable Hold, where she was both a critic and a friend of Gideon the All-Knowing. It was because of her that he and Seluvis went their separate ways.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be obtained from Preceptor Seluvis after discovering his secret room and agreeing to take Seluvis's Potion to Nepheli Loux, Warrior. If a different puppet is selected, this one can be bought for 5 Starlight Shards from Seluvis. It can later be found on Pidia's body if the potion was given to someone else."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "Upgraded with Ghost Glovewort.",
+        "Summons a Tarnished wearing the Aristocrat Hat, Page Garb, and Page Trousers, and wielding a Red Branch Shortbow used to fire St. Trina's Arrow.",
+        "Deals Pierce damage and inflicts Sleep build-up.",
+        "→ Inflicts 96 Sleep build-up per arrow, enough to sleep most bosses within three to five arrows.",
+        "→ Smart enough to not attack a target that has been afflicted with long-term sleep.",
+        "Useful against enemies like the Godskin Nobles or Godskin Apostles since they have low resistance to Sleep and will be knocked out for up to a minute upon affliction. Conversely, she's completely useless against those immune to Sleep, such as the Black Knife Assassins, Night's Cavalry, and golems such as the Abductor Virgins."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Dolores the Sleeping Arrow",
+        "fp_cost": 87,
+        "obtained": "Preceptor Seluvis",
+        "max_held": 1,
+        "max_stored": 600
+      }
+    },
+    {
+      "name": "Nepheli Loux Puppet",
+      "wiki_page": "Nepheli Loux Puppet",
+      "url": "https://eldenring.wiki.gg/wiki/Nepheli_Loux_Puppet",
+      "section": "Ashes",
+      "category": "Puppets",
+      "source": "Base game",
+      "japanese_name": "ネフェリ・ルーの傀儡 (Neferi Rū no Kairai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of Nepheli Loux",
+      "fp_cost": 90,
+      "summary": "Nepheli Loux Puppet is a spirit ash in Elden Ring.",
+      "description": "One of Seluvis's favorite puppets. Use to summon the spirit of Nepheli Loux.\n\nPuppet of a warrior who was betrayed by her pure heart. Wields a Stormhawk Axe in both hands and uses the Thunderstorm skill.\n\nA diamond in the rough, deserving of special care lest its potential be squandered. Nepheli Loux truly was a warrior.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be obtained through Preceptor Seluvis's questline, if Seluvis's Potion is given to Nepheli Loux."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons Nepheli Loux, Warrior.",
+        "Deals Standard and Lightning damage.",
+        "While she's weaker than both the Dung Eater Puppet and the Mimic Tear Ashes, she's still quite durable and able to dash around to somewhat avoid hits, and the combination of her dual-wielding Axes and Thunderstorm skill both deals decent damage and will contribute towards breaking the Stance of enemies."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of Nepheli Loux",
+        "fp_cost": 90
+      }
+    },
+    {
+      "name": "Dung Eater Puppet",
+      "wiki_page": "Dung Eater Puppet",
+      "url": "https://eldenring.wiki.gg/wiki/Dung_Eater_Puppet",
+      "section": "Ashes",
+      "category": "Puppets",
+      "source": "Base game",
+      "japanese_name": "糞食いの傀儡 (Kusogui no Kairai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons spirit of the Dung Eater",
+      "fp_cost": 118,
+      "summary": "Dung Eater Puppet is a spirit ash in Elden Ring.",
+      "description": "One of Seluvis's puppets. Use to summon the spirit of the Dung Eater.\n\nSpirit of a man who murdered thousands and defiled their corpses with the Seedbed Curse. Wields a spine greatsword and hurls curses.\n\nThe Dung Eater despaired at how he met his end. How hideous and sinister this puppet is, and yet, its utter despair invites one to care for it.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Free the Dung Eater from beneath Leyndell, Royal Capital, then defeat him at the pond where you found Blackguard Big Boggart and then return to the Dung Eater in his cell with Seluvis's Potion.",
+            "Costs 5 Starlight Shards and is only available after doing the steps above and buying Preceptor Seluvis's first two puppets, then reloading the area by teleporting or exiting to the main menu and re-entering. Exhaust Seluvis's dialogue to reset the area, and the dialogue option \"I want a new puppet\" should be available\", which will unlock him."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Leyndell, Royal Capital"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "This puppet cannot be acquired in the same new game cycle as the Nepheli Loux Puppet.",
+        "Upgrade with Ghost Gloveworts.",
+        "Summons the Dung Eater.",
+        "Deals Standard damage and inflicts Blood Loss build-up with his sword, and Holy damage with his Omen Bairn projectiles.",
+        "This item is normally mutually exclusive with the Omen Set. However, it may be possible to acquire both his armor set and this puppet in the same new game cycle. This is done by first feeding him the potion when he is bound up in the Subterranean Shunning-Grounds, as usual, and then killing him after his dialogue finishes.",
+        "→ This means his puppet body won't show up in Seluvis's Cellar, but he should still be available for purchase.",
+        "Quite durable and capable of dealing decent damage thanks to the Blood Loss on his weapon, and his ability to lower enemy defences with Shriek of Milos makes him one of strongest Spirit Ashes in the game."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons spirit of the Dung Eater",
+        "fp_cost": 118
+      }
+    },
+    {
+      "name": "Nightmaiden & Swordtress Puppets",
+      "wiki_page": "Nightmaiden & Swordstress Puppets",
+      "url": "https://eldenring.wiki.gg/wiki/Nightmaiden_%26_Swordstress_Puppets",
+      "section": "Ashes",
+      "category": "Puppets",
+      "source": "Base game",
+      "japanese_name": "夜巫女と剣士の傀儡 (Yorumiko to Kenshi no Kairai)",
+      "type": "Spirit Ashes",
+      "effect": "Summons nightmaiden & swordstress spirits",
+      "fp_cost": 97,
+      "summary": "Nightmaiden & Swordtress Puppet is a spirit ash in Elden Ring.",
+      "description": "An old puppet crafted in the Eternal City. Use to summon the spirits of a nightmaiden and a swordstress.\n\nThese sisters, members of a cold-blooded race who wield flowing weapons, became puppets of their own volition.",
+      "upgrade_material": "Ghost Glovewort",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in a chest in Nokstella, Eternal City, in a room unlocked using a Stonesword Key.",
+            "From the Nokstella, Eternal City Site of Grace, simply head up the stairs until there is long bridge to your right, and the correct building will be on your left."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Nokstella, Eternal City"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Upgraded with Ghost Gloveworts.",
+        "Summons a Nox Swordstress and a Nox Nightmaiden.",
+        "Both deal Slash damage with their attacks, and the Night Maiden's Mist deals Standard and fixed damage.",
+        "Unlike the player's own Night Maiden's Mist, and like the Mimic Tear Ashes version of the spell, this spell will only damage enemies and not the Nightmaiden herself.",
+        "Quite capable against enemies that they can stunlock by simply attacking, the Swordstress has great reach and they are both fairly evasive, but they will quickly falter against sturdier foes such as most bosses. Likewise, they are not very durable and will quickly fall if counterattacks can keep them stunlocked."
+      ],
+      "infobox": {
+        "type": "Spirit Ashes",
+        "item_effect": "Summons nightmaiden & swordstress spirits",
+        "fp_cost": 97,
+        "obtained": "Nokstella, Eternal City"
+      }
+    }
+  ]
+}

@@ -1,0 +1,4371 @@
+{
+  "metadata": {
+    "source_page": "https://eldenring.wiki.gg/wiki/All_Items_(Gallery)",
+    "gallery_sections": [
+      "Crafting Materials"
+    ],
+    "source_wiki": "eldenring.wiki.gg (MediaWiki API, page wikitext)",
+    "retrieved": "2026-10-31",
+    "count": 106,
+    "counts_by_source": {
+      "Base game": 67,
+      "Shadow of the Erdtree": 39
+    },
+    "counts_by_category": {
+      "Crafting Materials": 106
+    },
+    "field_notes": {
+      "source": "'Base game', 'Shadow of the Erdtree' (DLC) or 'Tarnished Pack' (DLC), from the DLC icon next to the item in the wiki gallery.",
+      "summary": "Opening paragraph of the wiki page (often contains exact values, e.g. talisman percentages).",
+      "effect / effect_details / effect_tables": "Infobox effect line + content of the page's Effect/Usage sections.",
+      "infobox": "All infobox fields of the page, cleaned (numbers parsed when purely numeric).",
+      "acquisition": "method / location / region / details from the Acquisition section; nested bullets prefixed with '→'.",
+      "other_sections": "Remaining gameplay sections (text bullets and tables); Trivia/Gallery/References are excluded."
+    }
+  },
+  "items": [
+    {
+      "name": "Sliver of Meat",
+      "wiki_page": "Sliver of Meat",
+      "url": "https://eldenring.wiki.gg/wiki/Sliver_of_Meat",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "そぎ肉 (Soginiku)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Sliver of Meat is a crafting material in Elden Ring.",
+      "description": "A slice of thinly carved beast flesh. Material used for crafting items. Found by hunting herbivorous beasts.\n\nThe dried meat toughens the constitution.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dappled Cured Meat",
+          "Invigorating Cured Meat"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting herbivorous beasts",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dappled Cured Meat; Invigorating Cured Meat"
+      }
+    },
+    {
+      "name": "Strip of White Flesh",
+      "wiki_page": "Strip of White Flesh",
+      "url": "https://eldenring.wiki.gg/wiki/Strip_of_White_Flesh",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "白そぎ肉 (Shiro Soginiku)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Strip of White Flesh is a crafting material in Elden Ring.",
+      "description": "Thin strips of flesh taken from a bloodless creature. Material used for crafting items.\n\nThe dried meat toughens the constitution, boosting resistance. It's known for its long-lasting effect.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Land Octopus"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dappled White Cured Meat",
+          "Invigorating White Cured Meat"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting creatures [sic] bloodless creatures",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dappled White Cured Meat; Invigorating White Cured Meat"
+      }
+    },
+    {
+      "name": "Beast Liver",
+      "wiki_page": "Beast Liver",
+      "url": "https://eldenring.wiki.gg/wiki/Beast_Liver",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "獣肝 (Jūkimo)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Beast Liver is a crafting material in Elden Ring.",
+      "description": "The fresh liver of a beast; a luscious fruit of life. Material used for crafting items. Found by hunting herbivorous beasts.\n\nDried liver boosts damage negation.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by herbivorous animals with an 8% droprate:",
+            "→ Sheep are found in large quantities between the Church of Pilgrimage and Witchbane Ruins, in the Weeping Peninsula.",
+            "→ Deer are commonly found in upper and lower Siofra River, where they roam freely.",
+            "→ Springhares are found throughout Limgrave."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave",
+        "Weeping Peninsula",
+        "Siofra River"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Fireproof Dried Liver",
+          "Holyproof Dried Liver",
+          "Lightningproof Dried Liver",
+          "Spellproof Dried Liver"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting herbivorous beasts",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Fireproof Dried Liver; Holyproof Dried Liver; Lightningproof Dried Liver; Spellproof Dried Liver"
+      }
+    },
+    {
+      "name": "Lump of Flesh",
+      "wiki_page": "Lump of Flesh",
+      "url": "https://eldenring.wiki.gg/wiki/Lump_of_Flesh",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "獣肉の塊 (Kemononiku no Katamari)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Lump of Flesh is a crafting material in Elden Ring.",
+      "description": "A lump of beast flesh filled with rich juices. Material used for crafting items. Found by hunting carnivorous beasts.\n\nMeat suitable for a rustic feast.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Bears",
+            "Boars",
+            "Wolves",
+            "Dogs",
+            "Lesser Runebears"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Exalted Flesh",
+          "Dragon Communion Flesh"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting carnivorous beasts",
+        "buy_price": 100,
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Turtle Neck Meat",
+      "wiki_page": "Turtle Neck Meat",
+      "url": "https://eldenring.wiki.gg/wiki/Turtle_Neck_Meat",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "亀の首肉 (Kame no Kubiniku)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Turtle Neck Meat is a crafting material in Elden Ring.",
+      "description": "A splendid, lengthy cut of turtle neck meat. Material used for crafting items.\n\nConsidered an especially nutritious ingredient In [sic] the south of the Lands Between.",
+      "acquisition": [
+        {
+          "method": "Guaranteed Drop",
+          "location": null,
+          "region": null,
+          "details": [
+            "A 100% drop from any Turtle.",
+            "x12 drop from Miriel, Pastor of Vows if killed."
+          ]
+        },
+        {
+          "method": "Loot",
+          "location": null,
+          "region": null,
+          "details": [
+            "x2 are found on a corpse in Gaol Cave.",
+            "One is found on a corpse located at a campsite in Altus Plateau."
+          ]
+        },
+        {
+          "method": "Purchase",
+          "location": "Twin Maiden Husks",
+          "region": null,
+          "details": [
+            "An unlimited stock can be purchased from the Twin Maiden Husks after giving them the Meat Peddler's Bell Bearing."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Pickled Turtle Neck"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Turtles / Purchased from the Twin Maiden Husks / Loot",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Pickled Turtle Neck"
+      }
+    },
+    {
+      "name": "Beast Blood",
+      "wiki_page": "Beast Blood",
+      "url": "https://eldenring.wiki.gg/wiki/Beast_Blood",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "獣血 (Jūketsu)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Beast Blood is a crafting material in Elden Ring.",
+      "description": "Fresh beast blood, glinting with gold. Material used for crafting items. Found by hunting carnivorous beasts.\n\nThis glimmering blood never rots or decays.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dragonwound Grease",
+          "Dragon Communion Grease",
+          "Beastlure Pot",
+          "Cursed-Blood Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting carnivorous beasts",
+        "sell_price": 50,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dragonwound Grease"
+      }
+    },
+    {
+      "name": "Albinauric Bloodclot",
+      "wiki_page": "Albinauric Bloodclot",
+      "url": "https://eldenring.wiki.gg/wiki/Albinauric_Bloodclot",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "しろがねの凝血 (Shirogane no Gyōketsu)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Albinauric Bloodclot is an item used for crafting in Elden Ring.",
+      "description": "The thick, coagulated blood of the Albinaurics.\nMaterial used for crafting items.\n\nAlbinaurics are lifeforms made by human hands.\nThus, many believe them to live impure lives, untouched by the Erdtree's grace.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Albinauric Pot",
+          "Alluring Pot"
+        ]
+      },
+      "other_sections": {
+        "Farming": {
+          "text": [
+            "These can be farmed efficiently by killing the first-generation Albinaurics near the Village of the Albinaurics Site of Grace."
+          ]
+        }
+      },
+      "infobox": {
+        "item_effect": "Material used for crafting items",
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 100,
+        "obtained": "Found by killing Albinaurics."
+      }
+    },
+    {
+      "name": "Budding Horn",
+      "wiki_page": "Budding Horn",
+      "url": "https://eldenring.wiki.gg/wiki/Budding_Horn",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "角の芽 (Tsuno no Me)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Budding Horn is a crafting material in Elden Ring.",
+      "description": "A rarely-seen specimen of a young, budding horn. Material used for crafting items. Found by hunting herbivorous beasts.\n\nThis horn began to sprout on a beast that typically bears no horn. Perhaps it's a vestige of the primordial crucible.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dappled Cured Meat",
+          "Dappled White Cured Meat"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting herbivorous beasts",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dappled Cured Meat; Dappled White Cured Meat"
+      }
+    },
+    {
+      "name": "Old Fang",
+      "wiki_page": "Old Fang",
+      "url": "https://eldenring.wiki.gg/wiki/Old_Fang",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "古牙 (Furukiba)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Old Fang is a crafting material in Elden Ring.",
+      "description": "A rarely-seen specimen of beast fang. Material used for crafting items. Found by hunting carnivorous beasts.\n\nThese multiple, overlapping fangs grow from a single root. Perhaps they're a vestige of the primordial crucible.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting carnivorous beasts",
+        "sell_price": 50,
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Flight Pinion",
+      "wiki_page": "Flight Pinion",
+      "url": "https://eldenring.wiki.gg/wiki/Flight_Pinion",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "風切羽 (Kazakiribane)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Flight Pinion is a crafting material dropped by birds in Elden Ring. Flight Pinions are used in crafting recipes to fletch certain types of arrows, allowing them to fly further.",
+      "description": "Flight feather of a bird of prey.\n\nMaterial used for crafting items.\n\nCommonly used for arrow fletchings.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Bone Arrow (Fletched)",
+          "Bloodbone Arrow (Fletched)",
+          "Firebone Arrow (Fletched)",
+          "Poisonbone Arrow (Fletched)"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting birds",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Bone Arrow (Fletched); Bloodbone Arrow (Fletched); Firebone Arrow (Fletched); Poisonbone Arrow (Fletched)"
+      }
+    },
+    {
+      "name": "Stormhawk Feather",
+      "wiki_page": "Stormhawk Feather",
+      "url": "https://eldenring.wiki.gg/wiki/Stormhawk_Feather",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "嵐鷹の羽 (Ran'yō no Hane)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Stormhawk Feather is a crafting material in Elden Ring.",
+      "description": "A feather from a hawk that lived as one with the storms. Material used for crafting items.\n\nThese feathers, enveloped in swirling winds, are often used for arrow fletching.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by killing stormhawks",
+        "sell_price": 50,
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Four-Toed Fowl Foot",
+      "wiki_page": "Four-Toed Fowl Foot",
+      "url": "https://eldenring.wiki.gg/wiki/Four-Toed_Fowl_Foot",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "四指の鳥脚 (Yon Yubi no Toriashi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Four-Toed Fowl Foot is a crafting material in Elden Ring.",
+      "description": "A four-toed fowl's foot. Material used for crafting items.\n\nIn the Lands Between, having three digits is seen as a bad omen. As such, the four-toed fowl's foot is a gift of great luck indeed.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "===Drops===",
+            "===Farming===",
+            "More than 10 of the ideal farming target, Guillemots, can be found on the beach west and northwest of the Fourth Church of Marika in western Weeping Peninsula. Using something silent like the sorcery Freezing Mist or the skill Chilling Mist, or a Bow or Light Bow is ideal since the many birds are likely to take off when alerted."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Gold-Pickled Fowl Foot",
+          "Silver-Pickled Fowl Foot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting birds",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Gold-Pickled Fowl Foot; Silver-Pickled Fowl Foot"
+      }
+    },
+    {
+      "name": "Slumbering Egg",
+      "wiki_page": "Slumbering Egg",
+      "url": "https://eldenring.wiki.gg/wiki/Slumbering_Egg",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "睡卵 (Suiran)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Slumbering Egg is a crafting material in Elden Ring.",
+      "description": "Owl eggs that will never hatch. Material used for crafting items.\n\nPrized as a symbol of the most sublime slumber.",
+      "effect_details": [
+        "Used for crafting in the following recipes:",
+        "Clarifying White Cured Meat",
+        "Clarifying Cured Meat",
+        "Stimulating Boluses"
+      ],
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Owls"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting owls",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Crab Eggs",
+      "wiki_page": "Crab Eggs",
+      "url": "https://eldenring.wiki.gg/wiki/Crab_Eggs",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "蟹たま (Kanitama)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Crab Eggs is a crafting material in Elden Ring.",
+      "description": "Eggs of large crabs which dwell in the shallows. Material used for crafting items.\n\nA nutritious foodstuff that warms from within. The flavor is exquisite. Only those of comfort and means know the truth: a crab's eggs are more delectable than its meat.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Invigorating Cured Meat",
+          "Invigorating White Cured Meat"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting large crabs",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Invigorating Cured Meat; Invigorating White Cured Meat"
+      }
+    },
+    {
+      "name": "Land Octopus Ovary",
+      "wiki_page": "Land Octopus Ovary",
+      "url": "https://eldenring.wiki.gg/wiki/Land_Octopus_Ovary",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "蛸たま (Takotama)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Land Octopus Ovary is a crafting material in Elden Ring.",
+      "description": "Puffy, milky white ovary of a land octopus. Material used for crafting items.\n\nLand octopuses eat humans in order to bear young, and theirs is the blood that runs through these ovaries.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Land Octopus"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Invigorating Cured Meat",
+          "Invigorating White Cured Meat",
+          "Stanching Boluses"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting land octopuses",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Invigorating Cured Meat; Invigorating White Cured Meat; Stanching Boluses"
+      }
+    },
+    {
+      "name": "Thin Beast Bones",
+      "wiki_page": "Thin Beast Bones",
+      "url": "https://eldenring.wiki.gg/wiki/Thin_Beast_Bones",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "細い獣骨 (Hosoi Jūkotsu)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Thin Beast Bones is a crafting material in Elden Ring.",
+      "description": "Thin, hard beast bones. Material used for crafting items. Found by hunting beasts.\n\nCommonly used to make disposable weapons.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Bloodbone Arrow",
+          "Bloodbone Arrow (Fletched)",
+          "Bloodbone Bolt",
+          "Bone Arrow",
+          "Bone Arrow (Fletched)",
+          "Bone Bolt",
+          "Bone Dart",
+          "Firebone Arrow",
+          "Firebone Arrow (Fletched)",
+          "Firebone Bolt",
+          "Poisonbone Arrow",
+          "Poisonbone Arrow (Fletched)",
+          "Poisonbone Bolt",
+          "Poisonbone Dart",
+          "Rainbow Stone Arrow",
+          "Shattershard Arrow"
+        ]
+      },
+      "notes": [
+        "This item was originally called \"Thin Animal Bones\" in the Closed Network Test."
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting beasts",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Bloodbone Arrow; Bloodbone Arrow (Fletched); Bloodbone Bolt; Bone Arrow; Bone Arrow (Fletched); Bone Bolt; Bone Dart; Firebone Arrow; Firebone Arrow (Fletched); Firebone Bolt; Poisonbone Arrow; Poisonbone Arrow (Fletched); Poisonbone Bolt; Poisonbone Dart; Rainbow Stone Arrow; Shattershard Arrow"
+      }
+    },
+    {
+      "name": "Hefty Beast Bone",
+      "wiki_page": "Hefty Beast Bone",
+      "url": "https://eldenring.wiki.gg/wiki/Hefty_Beast_Bone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "太い獣骨 (Futoi Jūkotsu)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Hefty Beast Bone is a crafting material in Elden Ring.",
+      "description": "Thick, solid beast bones. Material used for crafting items. Found by hunting particularly large beasts.\n\nCommonly used to make disposable weapons.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Bears",
+            "Can be purchased in unlimited quantity from the Twin Maiden Husks, for 250 runes each, after giving them Bone Peddler's Bell Bearing"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting particularly large beasts",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Human Bone Shard",
+      "wiki_page": "Human Bone Shard",
+      "url": "https://eldenring.wiki.gg/wiki/Human_Bone_Shard",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "人骨の欠片 (Jinkotsu no Kakera)",
+      "type": "Crafting Material",
+      "effect": "crafting",
+      "summary": "Human Bone Shard is a crafting material in Elden Ring.",
+      "description": "Fragment of bone with dun mottling. Material used for crafting items. Found by hunting Those Who Live in Death.\n\nLamentably brittle, it crumbles at the lightest caress.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Grace Mimic",
+          "Scriptstone"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "obtained": "Found by hunting Those Who Live in Death",
+        "item_effect": "crafting",
+        "required_for": "Grace Mimic; Scriptstone"
+      }
+    },
+    {
+      "name": "Great Dragonfly Head",
+      "wiki_page": "Great Dragonfly Head",
+      "url": "https://eldenring.wiki.gg/wiki/Great_Dragonfly_Head",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "大トンボの頭 (Ōtonbo no Atama)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Great Dragonfly Head is a crafting material in Elden Ring.",
+      "description": "Head of a large dragonfly. Material used for crafting items.\n\nLong believed to have the ability to neutralize poisons.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Neutralizing Boluses"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting large dragonflies",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Neutralizing Boluses"
+      }
+    },
+    {
+      "name": "Gold Firefly",
+      "wiki_page": "Gold Firefly",
+      "url": "https://eldenring.wiki.gg/wiki/Gold_Firefly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "金色ホタル (Kin'iro Hotaru)",
+      "type": "Crafting Material",
+      "effect": "crafting",
+      "summary": "Gold Firefly is a crafting material in Elden Ring.",
+      "description": "Firefly that gives off a golden light. Material used in crafting items. Found near bodies of water close to Minor Erdtrees.\n\nThe light of fireflies is believed to have an alluring magic. Golden light is considered to invite runes.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Gold-Pickled Fowl Foot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "crafting",
+        "max_held": 999,
+        "max_stored": 999,
+        "obtained": "Found near waters close to Minor Erdtrees",
+        "required_for": "Gold-Pickled Fowl Foot"
+      }
+    },
+    {
+      "name": "Silver Firefly",
+      "wiki_page": "Silver Firefly",
+      "url": "https://eldenring.wiki.gg/wiki/Silver_Firefly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "銀色ホタル (Gin'iro Hotaru)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Silver Firefly is a crafting material in Elden Ring.",
+      "description": "Firefly that gives off a silvery light. Material used in crafting items. Found near bodies of cold water untouched by sunlight.\nThe light of fireflies is believed to have an alluring magic. Silver light is considered to invite riches.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Silver fireflies can be found in the following areas:",
+            "Ainsel River",
+            "Siofra River",
+            "Deeproot Depths",
+            "Mohgwyn Palace",
+            "Earthbore Cave",
+            "Groveside Cave",
+            "Lakeside Crystal Cave",
+            "Academy Crystal Cave",
+            "Dragonbarrow Cave",
+            "Sellia Hideaway",
+            "Coastal Cave",
+            "Highroad Cave",
+            "Perfumer's Grotto",
+            "Sage's Cave",
+            "Spiritcaller Cave",
+            "Gael Tunnel",
+            "In Liurnia of the Lakes, there are three silver fireflies that are not found in caves or underground areas:",
+            "Found on the broken bridge south of the Liurnia Highway South Site of Grace.",
+            "Found behind the Highway Lookout Tower.",
+            "Found on the broken wall on the east side of Frenzy-Flaming Tower."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes",
+        "Dragonbarrow",
+        "Siofra River",
+        "Ainsel River",
+        "Deeproot Depths",
+        "Mohgwyn Palace"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Silver-Pickled Fowl Foot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near cold waters untouched by sunlight",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Silver-Pickled Fowl Foot"
+      }
+    },
+    {
+      "name": "Glintstone Firefly",
+      "wiki_page": "Glintstone Firefly",
+      "url": "https://eldenring.wiki.gg/wiki/Glintstone_Firefly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "輝石ホタル (Kiseki Hotaru)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Glintstone Firefly is a crafting material in Elden Ring.",
+      "description": "A firefly whose glowing tail has hardened into glintstone, widely found in Liurnia Lake. Material used for crafting items.\n\nAlas, now that its tail is glintstone, it can no longer beguile potential mates.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found near large, blue crystals found in Liurnia of the Lakes and Greyoll's Dragonbarrow.",
+            "→ In Liurnia of the Lakes, well over a dozen can be found by heading to the Folly on the Lake Site of Grace near the Village of the Albinaurics and heading southwest. There are some Crystalians throughout the path but it is otherwise largely dangerfree.",
+            "→ At the eastern edge of Greyoll's Dragonbarrow, south of Lenne's Rise, is a collection of glintstone crystals carrying these Fireflies. Be aware of the large boulder that will spawn behind you if you stray too far down the path.",
+            "Dropped by certain sorcery-associated enemies: the sorcerer variant of First-Generation Albinaurics (12%), and the magic pot throwing variant of Imp."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes",
+        "Dragonbarrow"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Academy Magic Pot",
+          "Magicbone Arrow",
+          "Magicbone Arrow (Fletched)",
+          "Magicbone Bolt",
+          "Magic Pot",
+          "Roped Magic Pot",
+          "Spellproof Dried Liver"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Widely found in Liurnia Lake",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Smoldering Butterfly",
+      "wiki_page": "Smoldering Butterfly",
+      "url": "https://eldenring.wiki.gg/wiki/Smoldering_Butterfly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "燻り蝶 (Kusuburi Chō)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Smoldering Butterfly is a crafting material in Elden Ring.",
+      "description": "An eternally burning butterfly found near wildfires and elsewhere. Material used for crafting items.\n\nServes as the kindling for a number of items.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Smoldering Butterflies in the wild are most commonly found around Flame Slugs.",
+            "→ North of Warmaster's Shack is a swarm of 8 around 2 Slugs.",
+            "→ Southwest of the Eastern Tableland Site of Grace in eastern Liurnia of the Lakes is a Fire Monk camp that contains the gesture Fire Spur Me. In the nearby area are 3 swarms of Butterflies."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Drawstring Fire Grease",
+          "Fire Grease",
+          "Fire Pot",
+          "Firebone Arrow",
+          "Firebone Arrow (Fletched)",
+          "Firebone Bolt",
+          "Fireproof Dried Liver",
+          "Roped Fire Pot",
+          "Soft Cotton"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near wildfires and elsewhere",
+        "buy_price": 50,
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Drawstring Fire Grease; Fire Grease; Fire Pot; Firebone Arrow; Firebone Arrow (Fletched); Firebone Bolt; Fireproof Dried Liver; Roped Fire Pot; Soft Cotton"
+      }
+    },
+    {
+      "name": "Aeonian Butterfly",
+      "wiki_page": "Aeonian Butterfly",
+      "url": "https://eldenring.wiki.gg/wiki/Aeonian_Butterfly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "エオニアの蝶 (Eonia no Chō)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Aeonian Butterfly is an item used for crafting in Elden Ring.",
+      "description": "A butterfly with withered, scarlet wings found in the Swamp of Aeonia.\nMaterial used for crafting items.\n\nAccording to myth, these butterflies were once the wings of the Goddess of Rot herself.",
+      "effect_details": [
+        "Used for crafting in the following recipes:",
+        "Rot Pot",
+        "Rot Grease",
+        "Drawstring Rot Grease",
+        "Rotbone Arrow",
+        "Rotbone Arrow (Fletched)",
+        "Rotbone Bolt"
+      ],
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Aeonian Butterflies can be found in the world, however they do not respawn after dying or resting at a Site of Grace.",
+            "===Random Drop===",
+            "8.00% chance from Basilisk in the Lake of Rot.",
+            "1.50% chance from Kindred of Rot."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Lake of Rot"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "infobox": {
+        "item_effect": "Material used for crafting items",
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 100,
+        "obtained": "Found in the Swamp of Aeonia."
+      }
+    },
+    {
+      "name": "Nascent Butterfly",
+      "wiki_page": "Nascent Butterfly",
+      "url": "https://eldenring.wiki.gg/wiki/Nascent_Butterfly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "幼生蝶 (Yōseichō)",
+      "type": "Crafting Material",
+      "effect": "crafting",
+      "summary": "Nascent Butterfly is a crafting material in Elden Ring.",
+      "description": "An arcane butterfly with translucent wings. Material used for crafting items. Exceedingly rare to find.\n\nThis butterfly appears as if it's just emerged from its cocoon for its entire life.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Abandoned Merchant in the Siofra River region (x5)",
+            "Dropped with a 20% chance by two of the Ancestral Follower Shaman in the Ancestral Woods area of Siofra River. They are found surrounded by rats in the north-west of the area, looking out over the flooded ruins. No other shamans drop the item."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Siofra River"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Dappled Cured Meat",
+          "Dappled White Cured Meat"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "crafting",
+        "obtained": "Exceedingly rare to find",
+        "buy_price": 1500,
+        "sell_price": 100,
+        "required_for": "Dappled Cured Meat; Dappled White Cured Meat"
+      }
+    },
+    {
+      "name": "Golden Centipede",
+      "wiki_page": "Golden Centipede",
+      "url": "https://eldenring.wiki.gg/wiki/Golden_Centipede",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "黄金百足 (Ōgon Mukade)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Golden Centipede is a crafting material in Elden Ring.",
+      "description": "The golden, desiccated remains of a centipede. Material used for crafting items.\n\nKept as a fetish by Golden Order fundamentalists, especially the hunters of Those Who Live in Death. As such, they are found near churches and similar.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Some non-respawnable centipedes are found in areas associated with either Those Who Live in Death or the Golden Order.",
+            "→ Two found in Siofra Aqueduct, just before the fog gate to the Valiant Gargoyles duo boss.",
+            "→ Found in Siofra Aqueduct in a room hidden behind a waterfall after, also just before the Valiant Gargoyles.",
+            "→ Six found near the Minor Erdtree Church, at the base of a large tree.",
+            "→ Five found inside of the Church of Pilgrimage.",
+            "→ 6 are found hidden around the Minor Erdtree Church in Altus Plateau.",
+            "→ For an earlier spot, there are around 8 near the Minor Erdtree (Caelid). Start from the Minor Erdtree Catacombs Site of Grace for easier access",
+            "Drop from the Guardians around Minor Erdtree Church with a 4% droprate, the only respawning method of acquiring this crafting material. No other Guardians drop them."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid",
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop",
+        "craftable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Rejuvenating Boluses",
+          "Sacred Order Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near churches and similar; Guardians",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Living Jar Shard",
+      "wiki_page": "Living Jar Shard",
+      "url": "https://eldenring.wiki.gg/wiki/Living_Jar_Shard",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "生き壺の破片 (Ikitsubo no Hahen)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Living Jar Shard is a crafting material in Elden Ring.",
+      "description": "A fragment of a living jar, hardened after its death.\nMaterial used for crafting items.\n\nSuch fragments command a high price due to the magical power locked within. This leaves the living jars unfortunate targets for poachers.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "Material used for crafting items",
+        "obtained": "Found by killing living jars.",
+        "sell_price": 200
+      }
+    },
+    {
+      "name": "Silver Tear Husk",
+      "wiki_page": "Silver Tear Husk",
+      "url": "https://eldenring.wiki.gg/wiki/Silver_Tear_Husk",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "銀雫の殻 (Ginshizuku no Kara)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Silver Tear Husk is a crafting material in Elden Ring.",
+      "description": "A hardened husk shed by a formless life form known as the Silver Tear, found in and around the Eternal City.\nMaterial used for crafting items.\n\nThe Silver Tear makes mockery of life, reborn again and again into imitation.\nPerhaps, one day, it will be reborn a lord...",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "Material used for crafting items",
+        "obtained": "Found in and around the Eternal City.",
+        "sell_price": 10
+      }
+    },
+    {
+      "name": "Gold-Tinged Excrement",
+      "wiki_page": "Gold-Tinged Excrement",
+      "url": "https://eldenring.wiki.gg/wiki/Gold-Tinged_Excrement",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "金の排泄物 (Kin no Haisetsubutsu)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Gold-Tinged Excrement is a crafting material in Elden Ring.",
+      "description": "Someone's excrement. It has a golden tinge. Material used for crafting items. Often hidden in woods and thickets.\n\nGold-tinged excrement is a highly stable substance; it doesn't dry out, nor does it lose its customary warmth or scent. For better or for worse, it remains as it is.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Gold-Tinged Excrement is found hidden in forests and thickets throughout the Lands Between."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Fetid Pot",
+          "Roped Fetid Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Often hidden in woods and thickets",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Fetid Pot; Roped Fetid Pot"
+      }
+    },
+    {
+      "name": "Blood-Tainted Excrement",
+      "wiki_page": "Blood-Tainted Excrement",
+      "url": "https://eldenring.wiki.gg/wiki/Blood-Tainted_Excrement",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "血の混じった排泄物 (Chi no Majitta Haisetsubutsu)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Blood-Tainted Excrement is a crafting material in Elden Ring.",
+      "description": "The bloody excrement of a carnivorous beast.\nMaterial used for crafting items.\nFound in the land of the new dynasty.\n\nMixed inside with half-digested flesh are dense colonies of tiny eggs of unknown but assuredly revolting origin.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "Material used for crafting items",
+        "obtained": "Found in the land of the new dynasty.",
+        "sell_price": 10
+      }
+    },
+    {
+      "name": "Yellow Ember",
+      "wiki_page": "Yellow Ember",
+      "url": "https://eldenring.wiki.gg/wiki/Yellow_Ember",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "黄色い残り火 (Kiiroi Nokoribi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Yellow Ember is a crafting material in Elden Ring.",
+      "description": "An ember taken from the eye socket of a corpse. Material used for crafting items.\n\nA sign that the deceased suffered from the flame of frenzy. This grape has ripened and burst.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found in lands afflicted by frenzy",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Beast Horn",
+      "wiki_page": "Beast Horn",
+      "url": "https://eldenring.wiki.gg/wiki/Beast_Horn",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "獣の角 (Kemono no Tsuno)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Beast Horn is a crafting material in Shadow of the Erdtree.",
+      "description": "Horn suffused with spirituality. Material used for crafting items.\n\nFound by hunting horned beasts of the realm of shadow.\n\nThe Crucible has a particularly strong influence on the beasts of the realm of shadow, causing many to grow horns despite the characteristics of their species.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by horned beasts in the Realm of Shadow."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting horned beasts of the realm of shadow",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Fingerprint Nostrum; Spritestone; Fire Spritestone; Lulling Branch; Charming Branch"
+      }
+    },
+    {
+      "name": "Spirit Calculus",
+      "wiki_page": "Spirit Calculus",
+      "url": "https://eldenring.wiki.gg/wiki/Spirit_Calculus",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "霊結石 (Reikesseki)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Spirit Calculus is a crafting material in Shadow of the Erdtree.",
+      "description": "An exceedingly rare to find calculus, suffused with spirituality. Material used for crafting items.\n\nFound by hunting horned beasts in the Ancient Ruins of Rauh.\n\nHas a distinctive acrid odor, which some claim to be a sign of particular spiritual potency.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by horned beasts in the Ancient Ruins of Rauh."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Ancient Ruins of Rauh"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting horned beasts in ancient ruins",
+        "sell_price": 200,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Spritestone"
+      }
+    },
+    {
+      "name": "Scorpion Liver",
+      "wiki_page": "Scorpion Liver",
+      "url": "https://eldenring.wiki.gg/wiki/Scorpion_Liver",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "サソリの肝 (Sasori no Kimo)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Scorpion Liver is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Fresh organ of a spider-scorpion. It is referred to as 'liver,' but no one is quite sure of its purpose. Material used for crafting.\n\nFound by hunting spider-scorpions.\n\nA delicacy known for its numbing toxins.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Spider Scorpions."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting spider-scorpions",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Spellproof Pickled Liver; Fireproof Pickled Liver; Lightningproof Pickled Liver; Holyproof Pickled Liver; Opaline Pickled Liver; Well-Pickled Turtle Neck"
+      }
+    },
+    {
+      "name": "Fly Mold",
+      "wiki_page": "Fly Mold",
+      "url": "https://eldenring.wiki.gg/wiki/Fly_Mold",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "蝿カビ (Haekabi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Fly Mold is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "A species of fungus known for its deathly sweet stench. Material used for crafting.\n\nFound by hunting man-flies.\n\nCultivated using the flesh and blood of man-flies, it can serve as pot innards.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by man-flies."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting man-flies",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Poison Pot; Hefty Fetid Pot; Hefty Rot Pot; Hefty Fly Pot"
+      }
+    },
+    {
+      "name": "Pearlescent Scale",
+      "wiki_page": "Pearlescent Scale",
+      "url": "https://eldenring.wiki.gg/wiki/Pearlescent_Scale",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "真珠色のウロコ (Shinjuiro no Uroko)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Beast Horn is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "A glassy and glistening fragment of pearlescent hue. Material used for crafting items.\n\nFound by hunting lamprey.\n\nThese retrograde scales are found embedded deep within the skin of lamprey.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by lamprey in the Finger Ruins of Rhia and Dheo."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by hunting lamprey",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Opaline Pickled Liver; Glinting Nail; Fingerprint Nostrum"
+      }
+    },
+    {
+      "name": "Ember of Messmer",
+      "wiki_page": "Ember of Messmer",
+      "url": "https://eldenring.wiki.gg/wiki/Ember_of_Messmer",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "メスメルの残り火 (Mesumeru no Nokoribi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Ember of Messmer is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Serpentine, cord-like ember. Material used for crafting.\n\nMainly found in Scadu Altus.\n\nA remnant of Messmer's flame, the symbol of the crusade, it continues to smolder as if crawling across the ground.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by Messmerfire dogs or found on the ground in Messmer Soldier camps."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Mainly found in Scadu Altus",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Furnace Pot; Fire Spritestone; Fire Coil"
+      }
+    },
+    {
+      "name": "Black Pyrefly",
+      "wiki_page": "Black Pyrefly",
+      "url": "https://eldenring.wiki.gg/wiki/Black_Pyrefly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "黒火蝶 (Kokkachō)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Black Pyrefly is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Fiery butterfly with black cinder wings.\nMaterial used for crafting items.\n\nFlies in war-torn lands that have been scoured by Messmer's flame.\n\nThey burn in dark and slender ribbons of fire.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Several can be found in Scorched Ruins. Dropped by Shadow Commoners in Gravesite Plain."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Gravesite Plain"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Flies in burnt and war-torn lands",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Fire Pot; Sunwarmth Stone; Fireproof Pickled Liver; Messmerfire Grease; Drawstring Messmerfire Grease"
+      }
+    },
+    {
+      "name": "Glintslab Firefly",
+      "wiki_page": "Glintslab Firefly",
+      "url": "https://eldenring.wiki.gg/wiki/Glintslab_Firefly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "輝塊ホタル (Kikai Hotaru)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Glintslab Firefly is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Glintstone firefly improved by selective breeding. Material used for crafting items.\n\nMainly found near Manus Metyr.\n\nThe glintstone that produces its light has become freakishly enlarged, while the span of its life is as brief as a whisper.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Castle Ensis and in the lake around the Cathedral of Manus Metyr."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Castle Ensis"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Mainly found near Manus Metyr",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Royal Magic Grease; Drawstring Royal Magic Grease; Hefty Magic Pot; Spellproof Pickled Liver"
+      }
+    },
+    {
+      "name": "Toxic Mossling",
+      "wiki_page": "Toxic Mossling",
+      "url": "https://eldenring.wiki.gg/wiki/Toxic_Mossling",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "毒コケムシ (Doku Kokemushi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Toxic Mossling is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "A large moss animal glutted with poison. Material used for crafting items.\n\nFound in poison swamps.\n\nRound and plump, like a darling infant.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in poison swamps around the Realm of Shadow, such as beyond the Belurat well depths and the path to the Rauh Base."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Rauh Base",
+        "Belurat, Tower Settlement"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found in poison swamps",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Poison Pot"
+      }
+    },
+    {
+      "name": "Frozen Maggot",
+      "wiki_page": "Frozen Maggot",
+      "url": "https://eldenring.wiki.gg/wiki/Frozen_Maggot",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "凍り付いた蛆虫 (Kōritsuita Ujimushi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Frozen Maggot is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Frozen maggots that somehow continue to wriggle. Material used for crafting items.\n\nMainly found in gaols.\n\nThe maggots develop in great-jar innards, and are an invaluable source of sustenance to the prisoners.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Belurat Gaol, Lamenter's Gaol and Bonny Gaol. Also dropped by the Shadow Prisoners."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Belurat, Tower Settlement"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Mainly found in gaols",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Freezing Pot"
+      }
+    },
+    {
+      "name": "Winter-Lantern Fly",
+      "wiki_page": "Winter-Lantern Fly",
+      "url": "https://eldenring.wiki.gg/wiki/Winter-Lantern_Fly",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ほおずき虫 (Hoozuki Mushi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Winter-Lantern Fly is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Winged insect carrying a dangling frenzied flame grape. Material used for crafting items.\n\nFlies lazily around the abyssal forest.\n\nSaid to be heralds of the aging untouchables. On seeing these, the wise know to stay well clear of that place.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Abyssal Woods."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Abyssal Woods"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Flies lazily around the abyssal forest",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Frenzied Flame Pot; Roped Frenzied Flame Pot; Hefty Frenzied Flame Pot"
+      }
+    },
+    {
+      "name": "Grave Cricket",
+      "wiki_page": "Grave Cricket",
+      "url": "https://eldenring.wiki.gg/wiki/Grave_Cricket",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "墓鈴虫 (Hakasuzumushi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Grave Cricket is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Cricket that produces a raspy cry. Material used for crafting items.\n\nMainly found near stone coffins.\n\nThe sound of these crickets are often taken to be the rustling of the restless dead, or sometimes the sound of their calling voices.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in Charo's Hidden Grave and around stone coffins on the Cerulean Coast."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Cerulean Coast",
+        "Charo's Hidden Grave"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Mainly found near stone coffins",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Call of Tibia; Polter Stone"
+      }
+    },
+    {
+      "name": "Grave Keeper's Brainpan",
+      "wiki_page": "Grave Keeper's Brainpan",
+      "url": "https://eldenring.wiki.gg/wiki/Grave_Keeper%27s_Brainpan",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "墓守の頭蓋 (Hakamori no Zugai)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Grave Keeper's Brainpan is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Skull bone of an old grave keeper. Material used for crafting items.\n\nMainly found in hidden grave of Charo.\n\nThe old grave keepers are boatsmen, and continue to summon the dead even after withering away.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found scattered around Charo's Hidden Grave."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Charo's Hidden Grave"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Mainly found in hidden grave of Charo",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Call of Tibia"
+      }
+    },
+    {
+      "name": "Congealed Putrescence",
+      "wiki_page": "Congealed Putrescence",
+      "url": "https://eldenring.wiki.gg/wiki/Congealed_Putrescence",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "凝固した泥濘 (Gyōkoshita Nukarumi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Congealed Putrescence is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Bruise-colored putrescence that oozes from stone coffins, congealed into a large viscous lump. Material used for crafting items.\n\nFound underground in the land to where stone coffins drift.\n\nThe putrescence is what remains of the impure lives kept within the stone coffins.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on the ground in the Stone Coffin Fissure or dropped by Putrescence Slimes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Stone Coffin Fissure"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found underground in the land to where stone coffins drift",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Piquebone Arrowx10; Piquebone Arrow (Fletched)x10; Piquebone Boltx5"
+      }
+    },
+    {
+      "name": "Blessed Bone Shard",
+      "wiki_page": "Blessed Bone Shard",
+      "url": "https://eldenring.wiki.gg/wiki/Blessed_Bone_Shard",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "祝福された骨片 (Shukufukusareta Koppen)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Blessed Bone Shard is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "Shard of bone with a golden shine. Material used to craft items.\n\nExceedingly rare to find.\n\nA bone fragment touched by the gold of the Scadutree, broken from the remains of the warriors who perished in the realm of shadow. A blessing such as this is said to be the greatest honor that can be granted to the dead.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Blessed bone shards can only be harvested once per playthrough.",
+            "Rarely dropped by Black Knights and Messmer Soldiers."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Sunwarmth Stone; Festive Grease; Golden Vow"
+      }
+    },
+    {
+      "name": "Horn-Strewn Excrement",
+      "wiki_page": "Horn-Strewn Excrement",
+      "url": "https://eldenring.wiki.gg/wiki/Horn-Strewn_Excrement",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "角混じりの排泄物 (Tsunomajiri no Haisetsubutsu)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Horn-Strewn Excrement is a crafting material in Shadow of the Erdtree.",
+      "description": "Excrement of a large carnivorous beast containing fragments of horns. Material used for crafting items.\n\nFound underfoot in places like forests where beasts dwell.\n\nIt is said that the deadliest of the horned predators enjoy the sport of hunting and devouring other horned creatures.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Horn-Tinged Excrement is found in the forests at the northern Rauh Base."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Rauh Base"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Hefty Fetid Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found underfoot in places like forests where beasts dwell",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Fetid Pot"
+      }
+    },
+    {
+      "name": "Swollen Grape",
+      "wiki_page": "Swollen Grape",
+      "url": "https://eldenring.wiki.gg/wiki/Swollen_Grape",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "膨れたブドウ (Fukureta Budou)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Swollen Grape is a crafting material in Elden Ring: Shadow of the Erdtree.",
+      "description": "An eyeball of the frenzied flame that has swollen from within. Material used for crafting items.\n\nExceedingly rare to find.\n\nMarked with fingerprint burns, proof of having being touched directly by the Three Fingers' embrace.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found as loot and dropped by Aging Untouchables."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Surging Frenzied Flame"
+      }
+    },
+    {
+      "name": "Rowa Fruit",
+      "wiki_page": "Rowa Fruit",
+      "url": "https://eldenring.wiki.gg/wiki/Rowa_Fruit",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "ロアの実 (Roa no Mi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Rowa Fruit is a crafting material in Elden Ring.",
+      "description": "Berry-like red fruits that grow in shrubs. Material used for crafting items.\n\nEasily found everywhere in the Lands Between, it has a wide variety of uses.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "An early farming point is at The First Step site of grace in Limgrave, where some can be found in the nearby bushes.",
+            "A more efficient farming spot can be found at Jarburg, where Tarnished Golden Sunflowers, Grave Violets, Poisonbloom, Erdleaf Flowers, and Crystal Buds also can be found."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Exalted Flesh",
+          "Fireproof Dried Liver",
+          "Gold-Pickled Fowl Foot",
+          "Immunizing Cured Meat",
+          "Immunizing White Cured Meat",
+          "Pickled Turtle Neck",
+          "Rowa Raisin",
+          "Silver-Pickled Fowl Foot",
+          "Soft Cotton",
+          "Spellproof Dried Liver"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Easily found everywhere in the Lands Between",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Exalted Flesh; Fireproof Dried Liver; Gold-Pickled Fowl Foot; Immunizing Cured Meat; Immunizing White Cured Meat; Pickled Turtle Neck; Rowa Raisin; Silver-Pickled Fowl Foot; Soft Cotton; Spellproof Dried Liver"
+      }
+    },
+    {
+      "name": "Golden Rowa",
+      "wiki_page": "Golden Rowa",
+      "url": "https://eldenring.wiki.gg/wiki/Golden_Rowa",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "黄金のロア (Ōgon no Roa)",
+      "type": "Crafting Material",
+      "effect": "crafting",
+      "summary": "Golden Rowa is a crafting material in Elden Ring.",
+      "description": "A Rowa fruit tinted with gold. Material used for crafting items.\n\nEasily found near the Erdtree.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Essentially Altus Plateau's equivalent of the regular Rowa Fruit, it can be found in similar spots (bushes).",
+            "→ Around Mirage Rise, west-southwest of Minor Erdtree (Altus Plateau), are a fair amount as well as in between the Rise and the Bower of Bounty site of grace a bit further east.",
+            "→ The valley in between Erdtree Gazing Hill site of grace and the Golden Lineage Evergaol, especially under the bridge just before the Gaol, holds some as well."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dappled Cured Meat",
+          "Dappled White Cured Meat",
+          "Holyproof Dried Liver",
+          "Invigorating Cured Meat",
+          "Invigorating White Cured Meat",
+          "Sweet Raisin"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "crafting",
+        "obtained": "Easily found near the Erdtree",
+        "required_for": "Dappled Cured Meat; Dappled White Cured Meat; Invigorating Cured Meat; Invigorating White Cured Meat"
+      }
+    },
+    {
+      "name": "Rimed Rowa",
+      "wiki_page": "Rimed Rowa",
+      "url": "https://eldenring.wiki.gg/wiki/Rimed_Rowa",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "ロアの原種 (Roa no Genshu)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Rimed Rowa is a crafting material in Elden Ring.",
+      "description": "A berry-like fruit, thought to be the original strain of Rowa. Material used for crafting items. Found in frigid highlands.\n\nThis hardy species takes root even when frozen solid.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found throughout the Mountaintops of the Giants.",
+            "Can be found in high-altitude bushes or as random drops near the coldest regions of the highlands."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mountaintops of the Giants"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Frozen Raisin"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "Material used for crafting items",
+        "obtained": "Found in frigid highlands",
+        "sell_price": 10,
+        "required_for": "Frozen Raisin"
+      }
+    },
+    {
+      "name": "Herba",
+      "wiki_page": "Herba",
+      "url": "https://eldenring.wiki.gg/wiki/Herba",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "ヘルバ (Heruba)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Herba is a crafting material in Elden Ring.",
+      "description": "Evergreen leaves that give off a faint light. Material used for crafting items.\n\nThis very common medicinal plant can be found in thickets and elsewhere.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be found in thickets and other common areas in the Lands Between."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Neutralizing Boluses",
+          "Pickled Turtle Neck",
+          "Stanching Boluses"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found in thickets and elsewhere",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Neutralizing Boluses; Pickled Turtle Neck; Stanching Boluses"
+      }
+    },
+    {
+      "name": "Dewkissed Herba",
+      "wiki_page": "Dewkissed Herba",
+      "url": "https://eldenring.wiki.gg/wiki/Dewkissed_Herba",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "夜露のヘルバ (Yotsuyu no Heruba)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Dewkissed Herba is a crafting material in Elden Ring.",
+      "description": "A herb that grows in the false night in and around the Eternal City. Material used for crafting items.\n\nSoaked in arcane dew, it gives off the faint glow of starlight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dewkissed Herba grows underground along the Ainsel and Siofra Rivers.",
+            "It can be found near the Eternal City."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Glowstone",
+          "Preserving Boluses"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found in and around the Eternal City",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Glowstone; Preserving Boluses"
+      }
+    },
+    {
+      "name": "Arteria Leaf",
+      "wiki_page": "Arteria Leaf",
+      "url": "https://eldenring.wiki.gg/wiki/Arteria_Leaf",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "アルテリアの葉 (Aruteria no Ha)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Arteria Leaf is a crafting material in Elden Ring.",
+      "description": "Dark red leaves with thick, swollen veins. Material used for crafting items. Exceedingly rare to find.\n\nA faint pulse can be felt in the veins. Stirs the blood, providing an enlivening effect.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Arteria Leaves do not respawn after being harvested.",
+            "Can be farmed in late game, 30% drop chance from Mountaintop Trolls. The trolls in Consecrated Snowfield do not drop the item.",
+            "It grows rarely in various locations across the Lands Between.",
+            "→ In Liurnia, 3 can be found north-east of Gate Town North grace, between cliffs, surrounded by many normal and red Jellyfishes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Consecrated Snowfield",
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Bloodboil Aromatic",
+          "Exalted Flesh",
+          "Uplifting Aromatic"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Bloodboil Aromatic; Exalted Flesh; Uplifting Aromatic"
+      }
+    },
+    {
+      "name": "Mushroom",
+      "wiki_page": "Mushroom",
+      "url": "https://eldenring.wiki.gg/wiki/Mushroom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "キノコ (Kinoko)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Mushroom is a crafting material in Elden Ring.",
+      "description": "A fungal growth that thrives in damp thickets and elsewhere. Material used for crafting items.\n\nIts thick, spongy flesh makes it a key component in throwing pots.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Mushrooms grow throughout the Lands Between, especially in wetlands, making them fairly common in Liurnia of the Lakes and Limgrave.",
+            "→ The Stormfoot Catacombs have two just outside the entrance, hidden in the grass.",
+            "→ The Folly on the Lake site of grace in southern Liurnia of the Lakes has two just east of the Grace, with four more a bit to the north under a fallen stone structure.",
+            "Ten are given by Boc the Seamster after freeing him from his bush form just north of the Agheel Lake North site of grace.",
+            "Radahn Soldiers and Exile Soldiers have a 15% drop rate.",
+            "Radahn Foot Soldiers and Godrick Foot Soldiers have a 20% drop rate."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave",
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Fetid Pot",
+          "Fire Pot",
+          "Holy Water Pot",
+          "Roped Fetid Pot",
+          "Roped Fire Pot",
+          "Roped Holy Water Pot",
+          "Sleep Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Thrives in damp thickets and elsewhere",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Fetid Pot; Fire Pot; Holy Water Pot; Roped Fetid Pot; Roped Fire Pot; Roped Holy Water Pot; Sleep Pot"
+      }
+    },
+    {
+      "name": "Toxic Mushroom",
+      "wiki_page": "Toxic Mushroom",
+      "url": "https://eldenring.wiki.gg/wiki/Toxic_Mushroom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "毒カビキノコ (Dokukabi Kinoko)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Toxic Mushroom is a crafting material in Elden Ring.",
+      "description": "A mushroom covered in toxic mold that grows in rotten lands. Material used for crafting items.\n\nA skilled hand can repurpose its toxic mold into an effective ward against scarlet rot.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Harvestable Toxic Mushrooms are found growing in the rotten lands of Caelid and Lake of Rot, particularly in areas afflicted by scarlet rot."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid",
+        "Lake of Rot"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Grows in rotten lands",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Melted Mushroom",
+      "wiki_page": "Melted Mushroom",
+      "url": "https://eldenring.wiki.gg/wiki/Melted_Mushroom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "蕩けたキノコ (Toroketa Kinoko)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Melted Mushroom is a crafting material in Elden Ring.",
+      "description": "A mushroom that grows in the false night in and around the Eternal City. Material used for crafting items.\n\nIt drips with a viscous fluid that behaves much like oil.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found around in the underground Eternal City and the surrounding Ainsel and Siofra Rivers."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found in and around the Eternal City",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Erdleaf Flower",
+      "wiki_page": "Erdleaf Flower",
+      "url": "https://eldenring.wiki.gg/wiki/Erdleaf_Flower",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "落葉花 (Rakuyōka)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Erdleaf Flower is a crafting material in Elden Ring.",
+      "description": "A dusky yellow flower that has started to fade to brown, found throughout the Lands Between. Material used for crafting items.\n\nSaid to be fed by leaves that fell from the Erdtree in days of antiquity.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Erdleaf Flowers are harvested from plants growing on the Altus Plateau",
+            "Harvested in Limgrave"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave",
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Furlcalling Finger Remedy",
+          "Grace Mimic",
+          "Warming Stone"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found throughout the Lands Between",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Furlcalling Finger Remedy; Grace Mimic; Warming Stone"
+      }
+    },
+    {
+      "name": "Faded Erdleaf Flower",
+      "wiki_page": "Faded Erdleaf Flower",
+      "url": "https://eldenring.wiki.gg/wiki/Faded_Erdleaf_Flower",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "変色した落葉花 (Henshokushita Rakuyōka)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Faded Erdleaf Flower is a crafting material in Elden Ring.",
+      "description": "An Erdleaf flower that has faded to a pale scarlet, found blooming in rotten lands. Material used for crafting items.\n\nSaid to be fed by leaves that fell from the Erdtree in days of antiquity.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Faded Erdleaf Flowers are harvested in Caelid."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "max_held": 999,
+        "max_stored": 999,
+        "obtained": "Blooms in rotten lands"
+      }
+    },
+    {
+      "name": "Fire Blossom",
+      "wiki_page": "Fire Blossom",
+      "url": "https://eldenring.wiki.gg/wiki/Fire_Blossom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "火の花 (Hi no Hana)",
+      "type": "Crafting Material",
+      "summary": "Fire Blossom is a crafting material in Elden Ring.",
+      "description": "A half-ashen and smoldering flower that blooms on the Mountaintops of the Giants. Material used for crafting items.\n\nFertilized by the sparks from the forge at the peak where burns the Flame of Ruin.",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Mountaintops of the Giants",
+          "region": null,
+          "details": [
+            "Found blooming throughout the Mountaintops of the Giants."
+          ]
+        },
+        {
+          "method": "Guaranteed Drop",
+          "location": "Liurnia of the Lakes/Caelid/Mt. Gelmir/Mountaintops of the Giants",
+          "region": null,
+          "details": [
+            "3 are always dropped by Flame Chariots the first time they are killed.",
+            "→ Several are found near Fort Gael and Caelem Ruins, among other spots."
+          ]
+        },
+        {
+          "method": "Drop",
+          "location": "Liurnia of the Lakes/Divine Tower of Caelid/Fort Laiedd/Volcano Manor/Giant-Conquering Hero's Grave",
+          "region": null,
+          "details": [
+            "5% drop chance from Blackflame Monks and Fire Monks found in the locations above."
+          ]
+        },
+        {
+          "method": "Drop",
+          "location": "Mountaintops of the Giants",
+          "region": null,
+          "details": [
+            "25% drop chance from estoc-wielding Wandering Nobles found in the area."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mountaintops of the Giants",
+        "Liurnia of the Lakes",
+        "Caelid",
+        "Mt. Gelmir",
+        "Volcano Manor"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Giantsflame Fire Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 100,
+        "obtained": "Blooms on the Mountaintops of the Giants."
+      }
+    },
+    {
+      "name": "Poisonbloom",
+      "wiki_page": "Poisonbloom",
+      "url": "https://eldenring.wiki.gg/wiki/Poisonbloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "毒花 (Dokubana)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Poisonbloom is a crafting material in Elden Ring.",
+      "description": "Flower that grows in toxic terrain. Material used for crafting items.\n\nDripping with a deep-green poisonous liquid.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Poisonbloom can be harvested in swamps around the Lands Between. The flowers glow pink.",
+            "Dropped by miranda blossoms and miranda sprouts"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Poison Pot",
+          "Poisonbone Arrow",
+          "Poisonbone Arrow (Fletched)",
+          "Poisonbone Bolt",
+          "Poisonbone Dart",
+          "Roped Poison Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Blooms in toxic terrain",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Poison Pot; Poisonbone Arrow; Poisonbone Arrow (Fletched); Poisonbone Bolt; Poisonbone Dart; Roped Poison Pot"
+      }
+    },
+    {
+      "name": "Fulgurbloom",
+      "wiki_page": "Fulgurbloom",
+      "url": "https://eldenring.wiki.gg/wiki/Fulgurbloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "雷花 (Kaminaribana)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Fulgurbloom is a crafting material in Elden Ring.",
+      "description": "Yellow flower that grows in lightning-struck lands. Material used for crafting items.\n\nImbued with traces of lightning's essence.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Fulgurbloom grows abundantly in spots where lightning strikes regularly. This is most common in Altus Plateau but there are also some spots in Limgrave and Mountaintops of the Giants.",
+            "→ In Limgrave, 14 flowers can be found early on the hill just north of the Agheel Lake North site of grace or east of the Gatefront site of grace.",
+            "→ In Liurnia, 14 can be found in the waters east of Tetsu's Rise. Lightning striking the water is likely to deal minor damage.",
+            "→ In Altus Plateau, the largest collection of 27 flowers, with 3 groups of 10, 8, and 9 flowers, can be found near the Rampartside Path site of grace, east of the Sainted Hero's Grave. Head west from the Grace for the first group and then head south for the second. Go northeast to get up on the hill just south of the Grace itself for the third group. Be aware that Ancient Dragon Lansseax spawns very close to the route.",
+            "→ In East Dragonbarrow, 10 flowers can be found near the road between Minor Erdtree and the Farum Greatbridge.",
+            "→ At Castle Sol in Mountaintops of the Giants, there is a small field of them just west of the Castle Sol Main Gate site of grace.",
+            "Also dropped by certain lightning-infused enemies found in Altus Plateau and Leyndell, Royal Capital. Specifically Lightning Sheep (20%), and lightning pot-throwing Imps (10%) and Leyndell Soldiers (5%)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave",
+        "Dragonbarrow",
+        "Altus Plateau",
+        "Leyndell, Royal Capital",
+        "Mountaintops of the Giants",
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Ancient Dragonbolt Pot",
+          "Drawstring Lightning Grease",
+          "Lightning Grease",
+          "Lightning Pot",
+          "Lightningbone Arrow",
+          "Lightningbone Arrow (Fletched)",
+          "Lightningbone Bolt",
+          "Roped Lightning Pot"
+        ]
+      },
+      "notes": [
+        "Lightning that strikes around fields of Fulgurbloom can hit player and does 30-43 damage."
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Blooms in lightning-struck lands",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Altus Bloom",
+      "wiki_page": "Altus Bloom",
+      "url": "https://eldenring.wiki.gg/wiki/Altus_Bloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "アルタスの花 (Arutasu no Hana)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Altus Bloom is a crafting material in Elden Ring.",
+      "description": "A golden-tinged flower from a succulent plant that blooms on the Altus Plateau. Material used for crafting items.\n\nSaid to be a funereal flower in an era long past, before the Erdtree grew.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Grows in the Altus Plateau.",
+            "8% chance for 5 Altus Blooms to drop from Perfumers.",
+            "15% chance for 5 Altus Blooms to drop from Depraved Perfumers."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Bloodboil Aromatic",
+          "Poison Spraymist",
+          "Spark Aromatic",
+          "Uplifting Aromatic"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Grows in the Altus Plateau",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Bloodboil Aromatic; Poison Spraymist; Spark Aromatic; Uplifting Aromatic"
+      }
+    },
+    {
+      "name": "Bloodrose",
+      "wiki_page": "Bloodrose",
+      "url": "https://eldenring.wiki.gg/wiki/Bloodrose",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "血の薔薇 (Chi no Bara)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Bloodrose is a crafting material in Elden Ring.",
+      "description": "Blood-slick roses that bloom in festering blood. Material used for crafting items.\n\nParticularly beloved by those who serve the Lord of Blood. Glory to his inevitable reign.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Bloodrose can be harvested throughout the Lands Between.",
+            "→ Fort Haight",
+            "→ Rose Church",
+            "Can be purchased in unlimited quantity from Imprisoned Merchant at the Mohgwyn Dynasty Mausoleum for 800 Runes each."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mohgwyn Palace"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Blood Grease",
+          "Bloodbone Arrow",
+          "Bloodbone Arrow (Fletched)",
+          "Bloodbone Bolt",
+          "Cursed-Blood Pot",
+          "Drawstring Blood Grease"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "buy_price": 800,
+        "seller": "Imprisoned Merchant (Mohgwyn Dynasty Mausoleum)",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Blood Grease; Bloodbone Arrow; Bloodbone Arrow (Fletched); Bloodbone Bolt; Cursed-Blood Pot; Drawstring Blood Grease"
+      }
+    },
+    {
+      "name": "Grave Violet",
+      "wiki_page": "Grave Violet",
+      "url": "https://eldenring.wiki.gg/wiki/Grave_Violet",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "墓紫 (Boshi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Grave Violet is a crafting material in Elden Ring.",
+      "description": "A purple flower that blooms in graveyards. Material used for crafting items.\n\nThe hue of ghostflame, it's believed to be useful in calling forth spirits.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Grave Violets can be harvested in catacombs throughout the Lands Between.",
+            "Jarburg",
+            "Subterranean Shunning-Grounds"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Subterranean Shunning-Grounds"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Rancor Pot"
+        ]
+      },
+      "notes": [
+        "“The hue of ghostflame” from the english description is absent from the original JP, which instead moreso goes “known as a ghostflame flower, it is said to summon spirits”."
+      ],
+      "other_sections": {
+        "Dropped by": {
+          "text": [],
+          "tables": [
+            [
+              {
+                "Enemy": "Revenant Follower",
+                "Drop rate": "15.00%"
+              },
+              {
+                "Enemy": "Commoner",
+                "Drop rate": "5.00%",
+                "Notes": "Not all"
+              },
+              {
+                "Enemy": "Skeletal Militiaman",
+                "Drop rate": "4.00%",
+                "Notes": "Not all"
+              }
+            ]
+          ]
+        }
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Blooms in graveyards.",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Tarnished Golden Sunflower",
+      "wiki_page": "Tarnished Golden Sunflower",
+      "url": "https://eldenring.wiki.gg/wiki/Tarnished_Golden_Sunflower",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "色褪せた金輪草 (Iroaseta Kinrinsō)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Tarnished Golden Sunflower is a crafting material in Elden Ring.",
+      "description": "A large flower that blooms facing the Erdtree. Material used for crafting items. Found near Minor Erdtrees.\n\nThough wilted and faded, it still retains holy essence.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Most commonly found around Minor Erdtrees in Limgrave, Weeping Peninsula, Liurnia of the Lakes (northeast), and Caelid.",
+            "→ The Minor Erdtree (Limgrave), located in Mistwood, has many of these flowers around it and is not guarded by an Erdtree Avatar or Guardians.",
+            "→ Another location is in the Weeping Peninsula, found in an open field beneath a broken wall north of the Castle Morne Lift Site of Grace or southwest of the Castle Morne Rampart Site of Grace. Be cautious of a Deathbird that spawns at night here, but the Holy Water Pot crafted from this material can aid in defeating it.",
+            "→ Jarburg holds many of these, along with various other plants.",
+            "Guardians have a 4% chance to drop this item."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave",
+        "Weeping Peninsula",
+        "Liurnia of the Lakes",
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop",
+        "craftable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Holy Water Pot",
+          "Roped Holy Water Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near Minor Erdtrees",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Holy Water Pot; Roped Holy Water Pot"
+      }
+    },
+    {
+      "name": "Golden Sunflower",
+      "wiki_page": "Golden Sunflower",
+      "url": "https://eldenring.wiki.gg/wiki/Golden_Sunflower",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "金輪草 (Kinrinsō)",
+      "type": "Crafting Material",
+      "summary": "Golden Sunflower is a crafting material in Elden Ring.",
+      "description": "A golden sunflower that grows facing the Erdtree. Material used for crafting items. Found near Minor Erdtrees.\n\nAt the foot of the Erdtree, they retain their color, along with a powerful holy essence.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found near Minor Erdtrees in the Altus Plateau. Minor Erdtree (Altus Plateau) has the highest concentration, though a decent amount can also be found around the Minor Erdtree (Capital Outskirts).",
+            "The only known enemy to drop this item is a variant of Wandering Nobles that carries the Noble's Estoc and Aristocrat Hat (8% drop rate)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau",
+        "Capital Outskirts"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Drawstring Holy Grease",
+          "Haligbone Arrow",
+          "Haligbone Arrow (Fletched)",
+          "Haligbone Bolt",
+          "Holyproof Dried Liver",
+          "Holy Grease",
+          "Sacred Order Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 10,
+        "obtained": "Found near Minor Erdtrees."
+      }
+    },
+    {
+      "name": "Trina's Lily",
+      "wiki_page": "Trina's Lily",
+      "url": "https://eldenring.wiki.gg/wiki/Trina%27s_Lily",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "トリーナのスイレン (Torīna no Suiren)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Trina's Lily is a non-respawning crafting material in Elden Ring.",
+      "description": "A light-purple water lily that is on the verge of wilting. Material used for crafting items. Exceedingly rare to find.\n\nA symbol of faith in St. Trina. Dulls the senses, preventing agitation.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Trina's Lilies can be found in many places throughout the Lands Between. Once a lily has been picked up, it will not respawn until the next playthrough. They can be found in every single region except Ainsel River and Deeproot Depths."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Ainsel River",
+        "Deeproot Depths"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Trina's Lilies are used in the creation of a myriad of sleep-inducing items, all of which require either the Fevor's Cookbook [1] or Fevor's Cookbook [2]."
+        ],
+        "tables": [
+          [
+            [
+              "Crafting Recipes",
+              "Crafting Recipes",
+              "Crafting Recipes"
+            ],
+            [
+              "Icon",
+              "Name",
+              "Required Cookbook"
+            ],
+            [
+              "",
+              "Sleep Pot",
+              "Fevor's Cookbook [1]"
+            ],
+            [
+              "",
+              "Soporific Grease",
+              "Fevor's Cookbook [2]"
+            ],
+            [
+              "",
+              "Drawstring Soporific Grease",
+              "Fevor's Cookbook [2]"
+            ],
+            [
+              "",
+              "Sleepbone Arrow",
+              "Fevor's Cookbook [2]"
+            ],
+            [
+              "",
+              "Sleepbone Arrow (Fletched)",
+              "Fevor's Cookbook [2]"
+            ],
+            [
+              "",
+              "Sleepbone Bolt",
+              "Fevor's Cookbook [2]"
+            ]
+          ]
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Miquella's Lily",
+      "wiki_page": "Miquella's Lily",
+      "url": "https://eldenring.wiki.gg/wiki/Miquella%27s_Lily",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "ミケラのスイレン (Mikera no Suiren)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Miquella's Lily is a crafting material in Elden Ring.",
+      "description": "A delicate water lily of unalloyed gold that has started to fade and wilt. Material used for crafting items. Exceedingly rare to find.\n\nA flower signifying faith in the Haligtree. Thought to be beloved by the Empyrean Miquella in his youth.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Miquella's Lilies are scattered across the Lands Between, particularly around sacred areas associated with Miquella or the Haligtree. These flowers do not respawn once harvested until the next playthrough.",
+            "4% drop from only the Haligtree Soldiers and Haligtree Knights found in the graveyard after the Drainage Channel site of grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Bewitching Branch"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Bewitching Branch"
+      }
+    },
+    {
+      "name": "Crystal Bud",
+      "wiki_page": "Crystal Bud",
+      "url": "https://eldenring.wiki.gg/wiki/Crystal_Bud",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "結晶の木の芽 (Kesshō no Kinome)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Crystal Bud is a crafting material in Elden Ring.",
+      "description": "A young plant, crystalized before it could mature. Material used for crafting items.\n\nWidely found in Liurnia Lake.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found widely across Liurnia of the Lakes, typically near trees."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Cuckoo Glintstone"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Widely found in Liurnia Lake",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Cuckoo Glintstone"
+      }
+    },
+    {
+      "name": "Rimed Crystal Bud",
+      "wiki_page": "Rimed Crystal Bud",
+      "url": "https://eldenring.wiki.gg/wiki/Rimed_Crystal_Bud",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "氷結晶の木の芽 (Hyōkesshō no Kinome)",
+      "type": "Crafting Material",
+      "summary": "Rimed Crystal Bud is a crafting material in Elden Ring.",
+      "description": "A young plant, frozen into a crystal before it could mature. Material used for crafting items.\n\nWidely found in cold regions.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Rimed Crystal Buds are found widely across cold regions such as the Mountaintops of the Giants and Consecrated Snowfield."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mountaintops of the Giants",
+        "Consecrated Snowfield"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Coldbone Arrow",
+          "Coldbone Arrow (Fletched)",
+          "Coldbone Bolt",
+          "Freezing Grease",
+          "Freezing Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 10,
+        "obtained": "Widely found in cold regions."
+      }
+    },
+    {
+      "name": "Sacramental Bud",
+      "wiki_page": "Sacramental Bud",
+      "url": "https://eldenring.wiki.gg/wiki/Sacramental_Bud",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "聖血の木の芽 (Seiketsu no Kinome)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Sacramental Bud is a crafting material in Elden Ring.",
+      "description": "An immature bud containing fresh blood. Material used for crafting items.\n\nBelieved to originate long ago from a strain of buds cultivated with youthful, sacramental blood.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Sacramental Buds are found growing around the Church of the Plague and Writheblood Ruins. Buds may only be harvested once per playthrough.",
+            "Also dropped by Rotten Strays."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Bewitching Branch",
+          "Preserving Boluses"
+        ]
+      },
+      "infobox": {
+        "item_effect": "Material used for crafting items",
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 100,
+        "obtained": "Exceedingly rare to find."
+      }
+    },
+    {
+      "name": "Eye of Yelough",
+      "wiki_page": "Eye of Yelough",
+      "url": "https://eldenring.wiki.gg/wiki/Eye_of_Yelough",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "イエロの瞳 (Iero no Hitomi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Eye of Yelough is a crafting material in Elden Ring.",
+      "description": "A shrub fruit bursting with ripened pulp. Material used for crafting items.\n\nGrown in lands afflicted by frenzy, it's used for its pain-relieving properties... Though it's also known to be a dangerous intoxicant.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Eye of Yelough is found in lands afflicted by Frenzied Flame, such as the outskirts of Liurnia of the Lakes. Once harvested, it will not respawn until the next playthrough.",
+            "Ailing Village",
+            "Frenzied Flame Village",
+            "Yelough Anix Ruins"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "The Eye of Yelough resembles a branch of bursted Shabriri Grapes."
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Grown in lands afflicted by frenzy",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Miranda Powder",
+      "wiki_page": "Miranda Powder",
+      "url": "https://eldenring.wiki.gg/wiki/Miranda_Powder",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "ミランダパウダー (Miranda Paudā)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Miranda Powder is a crafting material in Elden Ring.",
+      "description": "Pollen from a man-eating miranda flower. Material used for crafting items.\n\nThroughout history, perfumers have prized this extremely fragrant form of miranda pollen, not yet scattered into the air.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Obtained by defeating miranda blossoms and miranda sprouts."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found by killing miranda flowers",
+        "max_held": 999,
+        "max_stored": 999
+      }
+    },
+    {
+      "name": "Root Resin",
+      "wiki_page": "Root Resin",
+      "url": "https://eldenring.wiki.gg/wiki/Root_Resin",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "根脂 (Neabura)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Root Resin is a crafting material in Elden Ring.",
+      "description": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can easily be farmed from the Warmaster's Shack site of grace; there are three Root Resin spawns beneath a tree directly next to the grace.",
+            "Can be purchased in unlimited quantity from the Twin Maiden Husks after giving them the Greasemonger's Bell Bearing. Shadow of the Erdtree"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Blood Grease",
+          "Dragonwound Grease",
+          "Drawstring Blood Grease",
+          "Drawstring Fire Grease",
+          "Fire Grease",
+          "Freezing Grease"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Secreted from the roots of the Greattree.; Can also be found near trees on the surface.",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Blood Grease; Dragonwound Grease; Drawstring Blood Grease; Drawstring Fire Grease; Fire Grease; Freezing Grease"
+      }
+    },
+    {
+      "name": "Cave Moss",
+      "wiki_page": "Cave Moss",
+      "url": "https://eldenring.wiki.gg/wiki/Cave_Moss",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "洞窟苔 (Dōkutsukoke)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Cave Moss is a crafting material in Elden Ring.",
+      "description": "Faintly luminescent moss that grows in dark caves. Material used in crafting items.\n\nA fundamental ingredient for medicinal boluses.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Harvestable Cave Moss is found in caves throughout the Lands Between:",
+            "→ Groveside Cave",
+            "→ Stillwater Cave",
+            "→ Abandoned Cave"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Neutralizing Boluses",
+          "Stanching Boluses"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Gives off pale light in dark caves",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Neutralizing Boluses; Stanching Boluses"
+      }
+    },
+    {
+      "name": "Budding Cave Moss",
+      "wiki_page": "Budding Cave Moss",
+      "url": "https://eldenring.wiki.gg/wiki/Budding_Cave_Moss",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "洞窟苔の花芽 (Dōkutsukoke no Kaga)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Budding Cave Moss is a crafting material in Elden Ring.",
+      "description": "Faintly luminescent moss that grows in dark caves, speckled with tiny, yellow flowers. Material used for crafting items.\n\nIt is primarily used in perfumes.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Budding Cave Moss is found in caves throughout the Lands Between. It will respawn after being harvested.",
+            "→ Lakeside Crystal Cave",
+            "→ Perfumer's Grotto",
+            "Dropped by Perfumers (x5, 8%) and Depraved Perfumers (x5, 15%)."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Bloodboil Aromatic",
+          "Ironjar Aromatic",
+          "Uplifting Aromatic"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Gives off pale light in dark caves",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Bloodboil Aromatic; Ironjar Aromatic; Uplifting Aromatic"
+      }
+    },
+    {
+      "name": "Crystal Cave Moss",
+      "wiki_page": "Crystal Cave Moss",
+      "url": "https://eldenring.wiki.gg/wiki/Crystal_Cave_Moss",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "洞窟苔の結晶 (Dōkutsukoke no Kesshō)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Crystal Cave Moss is a crafting material in Elden Ring.",
+      "description": "Faintly luminescent moss that grows in dark caves, laced with fine crystals. Material used for crafting items.\n\nAmong the mosses, it possesses unique medicinal properties.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Crystal Cave Moss is harvested in various caves throughout the Lands Between:",
+            "→ Stillwater Cave",
+            "→ Academy Crystal Cave",
+            "→ Sellia Hideaway",
+            "→ Dragonbarrow Cave",
+            "→ Sage's Cave"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Dragonbarrow"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Preserving Boluses",
+          "Clarifying Boluses",
+          "Rejuvenating Boluses"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Gives off pale light in dark caves",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Preserving Boluses; Clarifying Boluses; Rejuvenating Boluses"
+      }
+    },
+    {
+      "name": "Rada Fruit",
+      "wiki_page": "Rada Fruit",
+      "url": "https://eldenring.wiki.gg/wiki/Rada_Fruit",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ラダの実 (Rada no Mi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Rada Fruit is a crafting material in Shadow of the Erdtree.",
+      "description": "Berry-like fruit that grows into spiritgrave grass. Material used for crafting items.\n\nEasily found everywhere in the realm of shadow, though its bitter taste makes it unsuitable for consumption by humans.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be found commonly throughout the Gravesite Plain and the Realm of Shadow.",
+            "10 are sold by Moore.",
+            "Sold in unlimited quantity by the Twin Maiden Husks after giving them Herbalist's Bell Bearing."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Gravesite Plain"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Dragon Communion Flesh",
+          "Fireproof Pickled Liver",
+          "Lightningproof Pickled Liver",
+          "Opaline Pickled Liver",
+          "Spellproof Pickled Liver",
+          "Spirit Raisin"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Easily found everywhere in the realm of shadow",
+        "buy_price": 800,
+        "seller": "Moore; Herbalist's Bell Bearing",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dragon Communion Flesh; Fireproof Pickled Liver; Lightningproof Pickled Liver; Opaline Pickled Liver; Spellproof Pickled Liver; Spirit Raisin"
+      }
+    },
+    {
+      "name": "Dewgem",
+      "wiki_page": "Dewgem",
+      "url": "https://eldenring.wiki.gg/wiki/Dewgem",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "玉露 (Gyokuro)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Dewgem is a crafting material in Shadow of the Erdtree.",
+      "description": "Succulent plant that has supped on night-tinged dew. Material used for crafting items.\n\nGlows at night and blossoms mainly at the waterside.\n\nSaid to have been used in the practice of sprite medicine long ago.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found near lakes, ponds, and rivers in the Realm of Shadow."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Charming Branch",
+          "Fingerprint Nostrum",
+          "Hefty Oil Pot",
+          "Lulling Branch",
+          "Well-Pickled Turtle Neck"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Charming Branch; Fingerprint Nostrum; Hefty Oil Pot; Lulling Branch; Well-Pickled Turtle Neck"
+      }
+    },
+    {
+      "name": "Redflesh Mushroom",
+      "wiki_page": "Redflesh Mushroom",
+      "url": "https://eldenring.wiki.gg/wiki/Redflesh_Mushroom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "赤肉キノコ (Akaniku Kinoko)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Redflesh Mushroom is a crafting material in Shadow of the Erdtree.",
+      "description": "Red mushroom that grows in sullen lands. Material used for crafting items.\n\nEasily found everywhere in the realm of shadow.\n\nThe flesh of the mushroom is similar to raw meat and can serve as pot innards.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Redflesh Mushrooms may be harvested in the Realm of Shadow. They are found commonly throughout the Gravesite Plain.",
+            "One found on a corpse in the Scorched Ruins."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Gravesite Plain"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Hefty Fire Pot",
+          "Hefty Furnace Pot",
+          "Hefty Lightning Pot",
+          "Hefty Red Lightning Pot",
+          "Hefty Volcano Pot",
+          "Red Lightning Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Easily found everywhere in the realm of shadow",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Fire Pot; Hefty Furnace Pot; Hefty Lightning Pot; Hefty Red Lightning Pot; Hefty Volcano Pot; Red Lightning Pot"
+      }
+    },
+    {
+      "name": "Whiteflesh Mushroom",
+      "wiki_page": "Whiteflesh Mushroom",
+      "url": "https://eldenring.wiki.gg/wiki/Whiteflesh_Mushroom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "白肉キノコ (Shironiku Kinoko)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Whiteflesh Mushroom is a crafting material in Shadow of the Erdtree.",
+      "description": "Milky-white mushroom that grows in sullen lands. Material used for crafting items.\n\nEasily found everywhere in the realm of shadow.\n\nThe flesh of the mushroom is similar to raw meat, and can serve as pot innards.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Whiteflesh Mushrooms are commonly harvested throughout the Gravesite Plain.",
+            "Can be dropped by Shadow Nobles."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Gravesite Plain"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Eternal Sleep Pot",
+          "Frenzied Flame Pot",
+          "Hefty Frenzied Flame Pot",
+          "Hefty Oil Pot",
+          "Hefty Rancor Pot",
+          "Roped Frenzied Flame Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Easily found everywhere in the realm of shadow",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Eternal Sleep Pot; Frenzied Flame Pot; Hefty Frenzied Flame Pot; Hefty Oil Pot; Hefty Rancor Pot; Roped Frenzied Flame Pot"
+      }
+    },
+    {
+      "name": "Finger Mimic",
+      "wiki_page": "Finger Mimic",
+      "url": "https://eldenring.wiki.gg/wiki/Finger_Mimic",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "指擬き (Yubimodoki)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Finger Mimic is a crafting material in Shadow of the Erdtree.",
+      "description": "Light-pink mushroom resembling a wizened finger. Material used for crafting items.\n\nExceedingly rare to find.\n\nUsed by those who wish to become fingers to induce hallucinations. They call these mushrooms the stillborn of the Two Fingers.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found around the Finger Ruins.",
+            "→ Finger Ruins of Dheo",
+            "→ Finger Ruins of Rhia"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Fingerprint Nostrum"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Fingerprint Nostrum"
+      }
+    },
+    {
+      "name": "Yellow Fulgurbloom",
+      "wiki_page": "Yellow Fulgurbloom",
+      "url": "https://eldenring.wiki.gg/wiki/Yellow_Fulgurbloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "黄雷花 (Kikaminaribana)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Yellow Fulgurbloom is a crafting material in Shadow of the Erdtree.",
+      "description": "Yellow flower that crackles with lightning. Material used for crafting items.\n\nBlossoms in the realm of shadow's underground gravesites and places struck by lightning.\n\nImbued with yellow lightning's essence.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Yellow Fulgurbloom is found in the catacombs in the Realm of Shadow: Fog Rift Catacombs, Scorpion River Catacombs, and Darklight Catacombs.",
+            "Found in the lightning-struck forest downstream of the Ellac River."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dragonbolt Grease",
+          "Drawstring Dragonbolt Grease",
+          "Hefty Lightning Pot",
+          "Lightningproof Pickled Liver"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Blossoms in the realm of shadow's underground gravesites and places struck by lightning",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dragonbolt Grease; Drawstring Dragonbolt Grease; Hefty Lightning Pot; Lightningproof Pickled Liver"
+      }
+    },
+    {
+      "name": "Red Fulgurbloom",
+      "wiki_page": "Red Fulgurbloom",
+      "url": "https://eldenring.wiki.gg/wiki/Red_Fulgurbloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "赤雷花 (Akakaminaribana)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Red Fulgurbloom is a crafting material in Shadow of the Erdtree.",
+      "description": "A flower that crackles with red lightning. Material used for crafting items.\n\nFound at the jagged peak on the south coast.\n\nSaid to bloom where the red lightning of the ancient dragons strikes the earth.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Red Fulgurbloom grows on the Jagged Peak near the Southern Shore of the Realm of Shadow."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Jagged Peak"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Hefty Red Lightning Pot",
+          "Red Lightning Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found at the jagged peak on the south coast.",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Red Lightning Pot; Red Lightning Pot"
+      }
+    },
+    {
+      "name": "Ghostflame Bloom",
+      "wiki_page": "Ghostflame Bloom",
+      "url": "https://eldenring.wiki.gg/wiki/Ghostflame_Bloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "霊炎花 (Reienka)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Ghostflame Bloom is a crafting material in Shadow of the Erdtree.",
+      "description": "Ghostflame flower that grows in gravesites. Material used for crafting items.\n\nBlossoms in the hidden grave of Charo.\n\nOf a pair with another gravesite flower, the grave violet. All but incorporeal, it burns without so much as a sound.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Ghostflame Bloom may be harvested around Charo's Hidden Grave."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Charo's Hidden Grave"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Hefty Rancor Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Blossoms in the hidden grave of Charo.",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Rancor Pot"
+      }
+    },
+    {
+      "name": "Shadow Sunflower",
+      "wiki_page": "Shadow Sunflower",
+      "url": "https://eldenring.wiki.gg/wiki/Shadow_Sunflower",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "影輪草 (Eirinsō)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Shadow Sunflower is a crafting material in Shadow of the Erdtree.",
+      "description": "A large flower that blooms facing the Scadutree. Material used for crafting items.\n\nFound near the Scadutree.\n\nThese flowers, veiled in shadow and covered in impenetrable thorns, are suffused with profound holiness—much akin to the Scadutree itself.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in places near the Scadutree, like Scadu Altus and Scaduview."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Scadu Altus",
+        "Scaduview",
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Drawstring Golden Grease",
+          "Golden Grease",
+          "Golden Vow",
+          "Holyproof Pickled Liver"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near the Scadutree",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Drawstring Golden Grease; Golden Grease; Golden Vow; Holyproof Pickled Liver"
+      }
+    },
+    {
+      "name": "Scarlet Bud",
+      "wiki_page": "Scarlet Bud",
+      "url": "https://eldenring.wiki.gg/wiki/Scarlet_Bud",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "朱い蕾 (Akai Tsubomi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Scarlet Bud is a crafting material in Shadow of the Erdtree.",
+      "description": "A large, rotten bud that will never come into bloom. Material used for crafting items.\n\nGrows in lands blighted by the scarlet rot.\n\nThere was a time when these buds were not touched by the scarlet rot's blight — when they were the symbol of the small church deep in the ancient ruins of Rauh.",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Realm of Shadow",
+          "region": null,
+          "details": [
+            "Harvestable buds grow in the rot-afflicted parts of the western Ancient Ruins of Rauh. They are found in abundance near the Church of the Bud.",
+            "→ They grow at the Rauh Base below in rotten areas downstream from the Scorpion River Catacombs.",
+            "Scarlet Buds are dropped by Scarlet Pests at the Rauh Ruins and Rauh Base."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Ancient Ruins of Rauh",
+        "Rauh Base"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Hefty Rot Pot"
+        ]
+      },
+      "notes": [
+        "The Buds were corrupted by the scarlet rot after Messmer's Crusade. They were transformed after Romina rediscovered the element within the ashes of the Church of the Bud.",
+        "The Scarlet Buds are doomed to never bloom. Sage Gowry uses similar language in reference to Millicent and her Sisters."
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Grows in lands blighted by the scarlet rot",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Rot Pot"
+      }
+    },
+    {
+      "name": "Sanguine Amaryllis",
+      "wiki_page": "Sanguine Amaryllis",
+      "url": "https://eldenring.wiki.gg/wiki/Sanguine_Amaryllis",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "血のアマリリス (Chi no Amaririsu)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Sanguine Amaryllis is a crafting material in Shadow of the Erdtree.",
+      "description": "A bloodflower with meaty petals. Material used for crafting items.\n\nGrown by bloodfiends in pools of blood.\n\nPerhaps even the fiends admire blood's beauty.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Sanguine Amaryllis may only be found in the Realm of Shadow.",
+            "It can be found growing in Rivermouth Cave."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Hefty Fly Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Grown by bloodfiends in pools of blood",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Fly Pot"
+      }
+    },
+    {
+      "name": "Dragon's Calorbloom",
+      "wiki_page": "Dragon's Calorbloom",
+      "url": "https://eldenring.wiki.gg/wiki/Dragon%27s_Calorbloom",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "竜熱花 (Ryūnekka)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Dragon's Calorbloom is a crafting material in Shadow of the Erdtree.",
+      "description": "Flower with an uncanny shape, coursing with hot blood. Material used for crafting items.\n\nExceedingly rare to find.\n\nA single flower is said to blossom—only once—from the hearts of dead warriors who oft partook of the Dragon Communion.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dragon's Calorbloom may be found growing on the slopes of the Jagged Peak. It does not respawn after being harvested."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Jagged Peak"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Dragon Communion Flesh"
+        ]
+      },
+      "notes": [
+        "Dragon's Calorbloom is an Arteria Leaf that has blossomed to resemble the gravel stone hearts of dragons."
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dragon Communion Flesh"
+      }
+    },
+    {
+      "name": "Deep-Purple Lily",
+      "wiki_page": "Deep-Purple Lily",
+      "url": "https://eldenring.wiki.gg/wiki/Deep-Purple_Lily",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "深紫のスイレン (Fukamurasaki no Suiren)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Deep-Purple Lily is a crafting material in Shadow of the Erdtree.",
+      "description": "A deep-purple water lily that is on the verge of wilting. Material used for crafting items.\n\nGrows in the blue flower field at the coast.\n\nLike a syrupy poison, its nectar lulls the imbiber into sweet, velvety sleep.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Deep-Purple Lillies grow on the Cerulean Coast in the Realm of Shadow.",
+            "They can be looted in the Stone Coffin Fissure.",
+            "One may be harvested near the Ellac River Cave site of grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Cerulean Coast",
+        "Stone Coffin Fissure"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Drawstring Eternal Sleep Grease",
+          "Eternal Sleep Grease",
+          "Eternal Sleep Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Grows in the blue flower field at the coast",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Drawstring Eternal Sleep Grease; Eternal Sleep Grease; Eternal Sleep Pot"
+      }
+    },
+    {
+      "name": "Nectarblood Burgeon",
+      "wiki_page": "Nectarblood Burgeon",
+      "url": "https://eldenring.wiki.gg/wiki/Nectarblood_Burgeon",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "蜜血の木の芽 (Mikketsu no Kinome)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Nectarblood Burgeon is a crafting material in Shadow of the Erdtree.",
+      "description": "A young shoot, heavy with velvety purple nectar. Material used for crafting items.\n\nExceedingly rare to find.\n\nSaid to burgeon forth where the nectar-like blood of abandoned Trina pooled.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Nectarblood Burgeons grow in the Garden of Deep Purple. Once harvested, they will not respawn until the next playthrough.",
+            "Found around the Cerulean Coast Cross site of grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Cerulean Coast"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Lulling Branch"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Lulling Branch"
+      }
+    },
+    {
+      "name": "Empyrean-Blood Burgeon",
+      "wiki_page": "Empyrean-Blood Burgeon",
+      "url": "https://eldenring.wiki.gg/wiki/Empyrean-Blood_Burgeon",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "神血の木の芽 (Shinketsu no Kinome)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Empyrean-Blood Burgeon is a crafting material in Shadow of the Erdtree.",
+      "description": "A young shoot, heavy with Empyrean blood. Material used for crafting items.\n\nExceedingly rare to find.\n\nSaid to burgeon forth from where the golden blood of Miquella, the wounded Empyrean, pooled.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Empyrean-Blood Burgeons are found near Miquella's Crosses in the Realm of Shadow. Once harvested, they do not respawn until the next playthrough."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Charming Branch"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Charming Branch"
+      }
+    },
+    {
+      "name": "Knot Resin",
+      "wiki_page": "Knot Resin",
+      "url": "https://eldenring.wiki.gg/wiki/Knot_Resin",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "瘤脂 (Kobuabura)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Knot Resin is a crafting material in Shadow of the Erdtree.",
+      "description": "Knot-shaped lump of resin that exuded from the roots of trees. Material used for crafting items.\n\nFound near tree roots everywhere in the realm of shadow.\n\nServes as a primitive catalyst, making it suitable for processing using sorceries, incantations, and the like.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be purchased from the Twin Maiden Husks after giving them the Greasemonger's Bell Bearing.",
+            "Commonly found in Gravesite Plain and Scadu Altus."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Gravesite Plain",
+        "Scadu Altus",
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Dragon Communion Grease",
+          "Dragonbolt Grease",
+          "Drawstring Dragonbolt Grease",
+          "Drawstring Eternal Sleep Grease",
+          "Drawstring Golden Grease",
+          "Drawstring Messmerfire Grease",
+          "Drawstring Royal Magic Grease",
+          "Eternal Sleep Grease",
+          "Festive Grease",
+          "Golden Grease",
+          "Messmerfire Grease",
+          "Royal Magic Grease"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near tree roots everywhere in the realm of shadow",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dragon Communion Grease; Dragonbolt Grease; Drawstring Dragonbolt Grease; Drawstring Eternal Sleep Grease; Drawstring Golden Grease; Drawstring Messmerfire Grease; Drawstring Royal Magic Grease; Eternal Sleep Grease; Festive Grease; Golden Grease; Messmerfire Grease; Royal Magic Grease"
+      }
+    },
+    {
+      "name": "String",
+      "wiki_page": "String",
+      "url": "https://eldenring.wiki.gg/wiki/String",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "紐 (Himo)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "String is a crafting material in Elden Ring.",
+      "description": "Boasting no special qualities, this is merely a goodly length of string.\n\nMaterial used for crafting items. Often carried by demi-humans.\n\nUsed to make certain items easier to use.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Four found in the ground level sewers of Leyndell, Royal Capital. From the Lower Capital Church Site of Grace, go down the ladder straight ahead and take the lower left route then turn right at the next turn. It is on the left side, guarded by 3 Giant Rats and 1 small Fingercreeper.",
+            "Five found in Hermit Village, atop the roof of the southwesternmost house.",
+            "Five found in Altus Plateau guarded by some Demi-Humans north of the Grand Lift of Dectus and northeast of Altus Plateau Site of Grace.",
+            "Dropped by Demi-Humans of all varieties with a 5% droprate.",
+            "→ In Coastal Cave there are 7 Demi-Humans before the boss room and another 3 after it.",
+            "→ In Lakeside Crystal Cave there are 11 Demi-Humans on the upper level of the cave, including 1 Chief in the mini-cave at the back.",
+            "→ In Volcano Cave there are 16 Demi-Humans inside of the cave and another 6 just outside of it."
+          ]
+        },
+        {
+          "method": "Purchase",
+          "location": "Twin Maiden Husks",
+          "region": null,
+          "details": [
+            "Can be sold by the Twin Maiden Husks for 1,200 Runes after giving them the String-Seller's Bell Bearing."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau",
+        "Leyndell, Royal Capital"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "random_enemy_drop"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Drawstring Blood Grease",
+          "Drawstring Fire Grease",
+          "Drawstring Holy Grease",
+          "Drawstring Lightning Grease",
+          "Drawstring Magic Grease",
+          "Drawstring Poison Grease",
+          "Drawstring Rot Grease",
+          "Drawstring Soporific Grease",
+          "Roped Fetid Pot",
+          "Roped Fire Pot",
+          "Roped Fly Pot",
+          "Roped Holy Water Pot",
+          "Roped Lightning Pot",
+          "Roped Magic Pot",
+          "Roped Oil Pot",
+          "Roped Poison Pot",
+          "Roped Volcano Pot"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Often carried by demi-humans",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Drawstring Blood Grease; Drawstring Fire Grease; Roped Fetid Pot; Roped Fire Pot; Roped Holy Water Pot; Roped Oil Pot; Roped Poison Pot"
+      }
+    },
+    {
+      "name": "Sanctuary Stone",
+      "wiki_page": "Sanctuary Stone",
+      "url": "https://eldenring.wiki.gg/wiki/Sanctuary_Stone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "神殿石 (Shindenseki)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Sanctuary Stone is a crafting material in Elden Ring.",
+      "description": "A rare piece of stone fragment found near places where ruins have fallen from the sky. Material used for crafting items.\n\nIt feeds and strengthens the light as it shines.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found near Fallen Ruins.",
+            "Sometimes dropped by Sentry Stones.",
+            "Can be purchased in unlimited quantity from the Twin Maiden Husks after giving them Somberstone Miner's Bell Bearing 4."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "used_in_crafting": {
+        "text": [
+          "Warming Stone",
+          "Frenzyflame Stone"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found near the remains of fallen ruins, but rarely",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Warming Stone; Frenzyflame Stone"
+      }
+    },
+    {
+      "name": "Cracked Crystal",
+      "wiki_page": "Cracked Crystal",
+      "url": "https://eldenring.wiki.gg/wiki/Cracked_Crystal",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "壊れた結晶 (Kowareta Kesshō)",
+      "type": "Crafting Material",
+      "summary": "Cracked Crystal is a crafting material in Elden Ring.",
+      "description": "A cracked, impure, degraded, and altogether unremarkable crystal. Material used for crafting items.\n\nWidely found in crystal tunnels.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Crystal Dart",
+          "Cuckoo Glintstone",
+          "Shattershard Arrow"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "obtained": "Widely found in crystal tunnels",
+        "required_for": "Crystal Dart; Cuckoo Glintstone; Shattershard Arrow"
+      }
+    },
+    {
+      "name": "Volcanic Stone",
+      "wiki_page": "Volcanic Stone",
+      "url": "https://eldenring.wiki.gg/wiki/Volcanic_Stone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "火山石 (Kazanseki)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Volcanic Stone is a crafting material in Elden Ring.",
+      "description": "A smoldering rock containing hot gas. Material used for crafting items.\n\nFound on Mt. Gelmir.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "Material used for crafting items",
+        "obtained": "Found on Mt. Gelmir",
+        "sell_price": 10
+      }
+    },
+    {
+      "name": "Formic Rock",
+      "wiki_page": "Formic Rock",
+      "url": "https://eldenring.wiki.gg/wiki/Formic_Rock",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "蟻酸石 (Gisanseki)",
+      "type": "Crafting Material",
+      "effect": "Material used for crafting items",
+      "summary": "Formic Rock is a crafting material in Elden Ring.",
+      "description": "Rock formed from solidified giant ant venom. Highly acidic. Material used for crafting items.\n\nFound near Ainsel River and other places where giant ants live.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "item_effect": "Material used for crafting items",
+        "obtained": "Found near Ainsel River and other places where giant ants live.",
+        "sell_price": 100
+      }
+    },
+    {
+      "name": "Gravel Stone",
+      "wiki_page": "Gravel Stone",
+      "url": "https://eldenring.wiki.gg/wiki/Gravel_Stone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Base game",
+      "japanese_name": "さざれ石 (Sazareishi)",
+      "type": "Crafting Material",
+      "summary": "Gravel Stone is an item used for crafting in Elden Ring.",
+      "description": "A small clump of sharp, pointed stones. Material used for crafting items.\n\nSuch compound stones, found in lands once beset by ancient dragons, are said to be the scales of those very beasts.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "max_held": 999,
+        "max_stored": 999,
+        "sell_price": 100,
+        "obtained": "Found in lands once beset by ancient dragons"
+      }
+    },
+    {
+      "name": "Spiritgrave Stone",
+      "wiki_page": "Spiritgrave Stone",
+      "url": "https://eldenring.wiki.gg/wiki/Spiritgrave_Stone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "霊墓石 (Reiboseki)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "__NOTOC__\nSpiritgrave Stone is a crafting material in Shadow of the Erdtree.",
+      "description": "A piece of a gravestone that has started to turn into a spirit. Material used for crafting items.\n\nMainly found on the Gravesite Plain.\n\nIn places to where the dead have been brought since antiquity, the oldest gravestones turn into spirits and then fade away.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Ancient Ruins of Rauh",
+            "Fort of Reprimand",
+            "Gravesite Plain",
+            "Scorched Ruins",
+            "Temple Town Ruins",
+            "===Dropped by==="
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Gravesite Plain",
+        "Ancient Ruins of Rauh"
+      ],
+      "acquisition_flags": [],
+      "used_in_crafting": {
+        "text": [
+          "Polter Stone",
+          "Sunwarmth Stone",
+          "Surging Frenzied Flame"
+        ]
+      },
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Mainly found on the Gravesite Plain",
+        "sell_price": 10,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Polter Stone; Sunwarmth Stone; Surging Frenzied Flame"
+      }
+    },
+    {
+      "name": "Gas Stone",
+      "wiki_page": "Gas Stone",
+      "url": "https://eldenring.wiki.gg/wiki/Gas_Stone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ガス石 (Gasuishi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Gas Stone is an Crafting Material in Shadow of the Erdtree.",
+      "description": "Block of stone infused with hot gas. Material used for crafting items.\n\nFound in the ruined forges.\n\nPerhaps these were once used as fuel for the smithing process.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found lying amongst the slag heaps in the ruined forges of the Realm of Shadow."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found in the ruined forges",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Volcano Pot"
+      }
+    },
+    {
+      "name": "Nailstone",
+      "wiki_page": "Nailstone",
+      "url": "https://eldenring.wiki.gg/wiki/Nailstone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "爪石 (Tsumeishi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Nailstone is a Crafting Material in Shadow of the Erdtree.",
+      "description": "Flake-like stone shard with a faint fingerprint engraving. Material used for crafting items.\n\nFound at finger ruins.\n\nA piece that came loose from the tip of one of the column-like stone fingers that grow at finger ruins.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found in the Finger Ruins of Rhia and the Finger Ruins of Dheo."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found at finger ruins",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Glinting Nail"
+      }
+    },
+    {
+      "name": "Sharp Gravel Stone",
+      "wiki_page": "Sharp Gravel Stone",
+      "url": "https://eldenring.wiki.gg/wiki/Sharp_Gravel_Stone",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "尖ったさざれ石 (Togatta Sazareishi)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Sharp Gravel Stone is an Crafting Material in Shadow of the Erdtree.",
+      "description": "A particularly sharp piece of gravel stone. Material used for crafting items.\n\nFound at the jagged peak on the south coast.\n\nThe scale of an ancient dragon that has supped on the blood of lesser dragons.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found on the Jagged Peak, usually on the corpses of drakes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Jagged Peak"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Found at the jagged peak on the south coast",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Dragon Communion Flesh; Dragon Communion Harpoon; Dragon Communion Grease"
+      }
+    },
+    {
+      "name": "Rauh Burrow",
+      "wiki_page": "Rauh Burrow",
+      "url": "https://eldenring.wiki.gg/wiki/Rauh_Burrow",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ラウフの巣穴 (Raufu no Suana)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Rauh Burrow is an Crafting Material in Shadow of the Erdtree.",
+      "description": "Oval-shaped stone bearing an engraving. Material used for crafting items.\n\nRelic found at the Ancient Ruins of Rauh.\n\nIn the center of the stone is a small nest-like hole. Once this is inhabited by a sprite, the stone can be used as a ritual implement.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Found at the Ancient Ruins of Rauh."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Ancient Ruins of Rauh"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Relic found at the ancient ruins of Rauh",
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Fire Spritestone; Spritestone"
+      }
+    },
+    {
+      "name": "Furnace Visage",
+      "wiki_page": "Furnace Visage",
+      "url": "https://eldenring.wiki.gg/wiki/Furnace_Visage",
+      "section": "Crafting Materials",
+      "category": "Crafting Materials",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "焼炉の面 (Shōro no Men)",
+      "type": "Crafting Material",
+      "effect": "Crafting",
+      "summary": "Furnace Visage is an Crafting Material in Shadow of the Erdtree.",
+      "description": "A smaller imitation of the furnace golem's visage. Material used for crafting items.\n\nExceedingly rare to find.\n\nA stone mask surrounded by curled horns, depicting the fell god of fire that haunts the sagas of the hornsent.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Guaranteed drop from any Furnace Golem.",
+            "x3 can be obtained from Hornsent (character) if he is given a Scorpion Stew.",
+            "A Furnace Visage has an 8% chance to drop from the 6 Messmer Foot Soldiers by the ruined Furnace Golem immediately south of Shadow Keep, northeast of the Messmer Soldier camp."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Shadow Keep"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "infobox": {
+        "type": "Crafting Material",
+        "item_effect": "Crafting",
+        "obtained": "Exceedingly rare to find",
+        "sell_price": 100,
+        "max_held": 999,
+        "max_stored": 999,
+        "required_for": "Hefty Furnace Pot"
+      }
+    }
+  ]
+}

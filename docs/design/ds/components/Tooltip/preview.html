@@ -1,0 +1,24 @@
+<!-- @dsCard group="Structure" height=210 subtitle="Info-bulles d’explication" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tooltip</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol></svg>
+<div class="pv"><div class="pv-row" style="padding-bottom:90px;gap:32px">
+<span class="cx-tip"><button class="cx-tip-trigger" aria-describedby="tp1"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span></button><span class="cx-tip-body below start is-open" role="tooltip" id="tp1"><b>Niveau recommandé : 50.</b> Estimé à partir des PV et des runes NG du wiki et de la position du boss dans la progression. Détail dans « Pourquoi ? ».</span></span>
+<span class="cx-tip"><button class="cx-tip-trigger" aria-describedby="tp2"><abbr title="" style="text-decoration:underline dotted;font-weight:600">INT</abbr></button><span class="cx-tip-body" role="tooltip" id="tp2">Intelligence</span></span>
+</div></div>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-31T16:05:17Z"
+  },
+  "title": "Codex de l'Entre-terre — prototype",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 8160,
+      "title": "Tableau de bord — desktop 1440",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "PleinEcranA.dc.html": {
+      "x": 2080,
+      "y": 0,
+      "w": 1440,
+      "h": 1720,
+      "title": "Widget A — plein écran",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Mobile.dc.html": {
+      "x": 4080,
+      "y": 0,
+      "w": 390,
+      "h": 2970,
+      "title": "Tableau de bord — mobile 390",
+      "is_interactive": true
+    },
+    "MobileCriteres.dc.html": {
+      "x": 4990,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Mobile — feuille de critères",
+      "is_interactive": true
+    },
+    "Catalogue.dc.html": {
+      "x": 0,
+      "y": 8560,
+      "w": 1440,
+      "h": 1520,
+      "title": "Explorer — armes de mêlée",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "FicheArme.dc.html": {
+      "x": 2040,
+      "y": 8560,
+      "w": 1440,
+      "h": 2580,
+      "title": "Fiche arme",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "FicheBoss.dc.html": {
+      "x": 4040,
+      "y": 8560,
+      "w": 1440,
+      "h": 1810,
+      "title": "Fiche boss",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Recherche.dc.html": {
+      "x": 6040,
+      "y": 8560,
+      "w": 1440,
+      "h": 946,
+      "title": "Recherche globale ouverte",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "DesignSystem.dc.html": {
+      "x": 0,
+      "y": 11560,
+      "w": 1440,
+      "h": 19940,
+      "title": "Design system — tokens, composants et états",
+      "expand": "fill",
+      "is_interactive": true
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "PleinEcranA.dc.html",
+    "Mobile.dc.html",
+    "MobileCriteres.dc.html",
+    "Catalogue.dc.html",
+    "FicheArme.dc.html",
+    "FicheBoss.dc.html",
+    "Recherche.dc.html",
+    "DesignSystem.dc.html"
+  ],
+  "notes": {
+    "t-dash": {
+      "x": 0,
+      "y": -320,
+      "text": "Tableau de bord",
+      "kind": "title1",
+      "maxW": 5800
+    },
+    "t-explore": {
+      "x": 0,
+      "y": 8260,
+      "text": "Explorer, fiches et recherche",
+      "kind": "title1",
+      "maxW": 7960
+    },
+    "t-ds": {
+      "x": 0,
+      "y": 11260,
+      "text": "Design system",
+      "kind": "title1",
+      "maxW": 2000
+    },
+    "spec-main": {
+      "x": 1480,
+      "y": 0,
+      "w": 540,
+      "size": "s",
+      "text": "Spécification — Tableau de bord (desktop 1440)\n\nMise en page\n• Rail de navigation (64 px) : replié automatiquement sous 1600 px quand le panneau de critères est ouvert ; préférence mémorisée.\n• Panneau de critères 304 px, repliable à 52 px ; sous 1280 px, tiroir superposé.\n• Grille de 12 colonnes, gouttière 16 px : A, B, C et la matrice en pleine largeur ; plan d'amélioration (7) à côté du calculateur de runes et de la couverture (5).\n\nComportements\n• Chaque critère recalcule tous les widgets, sans bouton « Appliquer » ; barres et repères glissent en 150 ms (aucune animation si mouvement réduit).\n• Les puces résument les critères actifs : la croix retire un critère facultatif, un clic ouvre le panneau.\n• Widgets : réduire, plein écran, déplacer, retirer, ajouter ; disposition enregistrée localement.\n• Cocher « Vaincu » dans la frise bascule la progression en mode « Boss vaincus » ; l'étape courante devient celle du prochain boss.\n• Épingler → Ma liste (notification « Épinglé à Ma liste », Annuler pendant 5 s). Comparer : 2 à 4 armes.\n\nRègles d'affichage\n• Score, étape, niveau recommandé, priorités : badge Calculé et « Pourquoi ? ».\n• null → « Non documenté », jamais 0 ; estimation → badge pointillé ; ◆ = valeur de maquette (prototype seulement).\n\nCas limites\n• Colonne d'étape vide : message et élargissement le plus efficace (Remembrance, estimations, DLC, style).\n• Sir Gideon Ofnir : aucune donnée de combat → « Non estimé ». Godskin Duo : PV non documentés → estimation par la position seule.\n• DLC désactivé : voie DLC et colonne DLC remplacées par un état vide avec « Activer ».\n• Premier chargement : progression par fichier ; un widget s'affiche dès que ses fichiers sont lus. Fichier illisible : message dans les widgets concernés."
+    },
+    "spec-full": {
+      "x": 3560,
+      "y": 0,
+      "w": 460,
+      "size": "s",
+      "text": "Spécification — Widget A en plein écran\n\nComportements\n• Ouvert par l'icône plein écran du widget A ; Échap ou « Quitter le plein écran » revient au tableau de bord, à la même position.\n• Mêmes critères que le tableau de bord (puces en tête) : toute modification recalcule le tableau.\n• Tri par en-tête (Maj + clic : tri secondaire, rang affiché) ; filtres Étape, Classe, Amélioration, « Prérequis atteints », recherche par nom.\n• Clic sur une ligne : le détail « Pourquoi ? » se déplie sous la ligne, une ligne ouverte à la fois.\n\nRègles d'affichage\n• Score et étape : badge Calculé ; « Valeurs de base à +0 » rappelé.\n• Les null se trient toujours en dernier ; estimations badgées dans la colonne Amélioration.\n• Au-delà de 100 lignes : virtualisation (lignes de 34 px), en-tête collant, compteur.\n\nCas limites\n• Aucun résultat : message et boutons d'élargissement.\n• Armes exclues par un critère : comptées (« N masquées par vos critères ») et affichables grisées."
+    },
+    "spec-mobile": {
+      "x": 4510,
+      "y": 0,
+      "w": 420,
+      "size": "s",
+      "text": "Spécification — Tableau de bord mobile (390)\n\nMise en page\n• En-tête : marque, recherche (plein écran), Ma liste.\n• Puces de critères défilant horizontalement, bouton « Critères » (feuille du bas).\n• Widgets empilés en pleine largeur, dans l'ordre du desktop ; les widgets D sont réduits par défaut.\n• Barre d'onglets : Accueil, Explorer, Ma liste, Mécaniques, Profil ; cibles de 44 px au moins.\n\nComportements\n• Widget A : un onglet par étape, l'étape courante ouverte, cartes en pleine largeur.\n• Widget C : prochain boss mis en avant, frise compacte, « Voir la frise complète ».\n• Ce qui se lit au survol sur desktop s'ouvre à l'appui (« Pourquoi ? », info-bulles).\n\nCas limites\n• Noms longs : retour à la ligne, jamais de troncature d'un nom d'entité.\n• Hors ligne : les données restent dans le navigateur après le premier chargement."
+    },
+    "spec-sheet": {
+      "x": 5420,
+      "y": 0,
+      "w": 380,
+      "size": "s",
+      "text": "Spécification — Feuille de critères (mobile)\n\n• Feuille du bas à 88 % de la hauteur, poignée et « Fermer » ; le tableau de bord reste visible, assombri.\n• Sections repliables : Contenu, Personnage, Style de jeu, Progression, Contraintes, Fiabilité ; Personnage ouvert par défaut.\n• Recalcul immédiat : le bouton du bas annonce le résultat (« Voir 10 armes ») et ferme la feuille.\n• Steppers de 44 px ; appui long pour ±5.\n• « Réinitialiser » restaure le profil enregistré, avec « Annuler » dans la notification."
+    },
+    "spec-catalog": {
+      "x": 1480,
+      "y": 8560,
+      "w": 500,
+      "size": "s",
+      "text": "Spécification — Catalogue des armes\n\nComportements\n• Bascule Tableau / Grille mémorisée par catalogue ; onglets Mêlée, Distance et catalyseurs, Boucliers et torches.\n• Facettes : classe, contenu, scaling dominant à +0, type d'amélioration, effet passif, région ; « Inclure les estimations » et « Prérequis atteints ». Les compteurs d'une facette ignorent sa propre sélection et appliquent les autres ; une option à 0 reste visible et désactivée.\n• Filtres actifs en puces, dans l'ordre d'ajout, avec une croix et « Effacer ».\n• Tri : clic sur l'en-tête, Maj + clic pour un tri secondaire numéroté ; « Trier par » reprend le tri principal.\n• « Colonnes » choisit les colonnes affichées (Compétence masquée par défaut pour tenir en 1440 px).\n• Pagination par 50, virtualisation au-delà de 100 lignes (704 armures), en-tête collant.\n\nRègles d'affichage\n• Nom en lien vers la fiche, badge de source juste après, classe dessous ; attaque à +0 ; prérequis comparés au profil actif (« +14 INT »).\n• Amélioration : pierres et niveau maximal, badge Wiki, Wiki (déduit) ou Estimation avec sa confiance.\n\nCas limites\n• Aucun résultat : filtres rappelés et suggestions chiffrées (« Retirer « Saignement » : 1 arme »), puis « Effacer tous les filtres ».\n• Prototype : compteurs calculés sur les 10 armes de l'annexe B ; commandes Filtres Aucun, Actifs, Sans résultat dans la barre du prototype."
+    },
+    "spec-weapon": {
+      "x": 3520,
+      "y": 8560,
+      "w": 460,
+      "size": "s",
+      "text": "Spécification — Fiche arme\n\nComportements\n• Ouverte depuis une carte, une ligne, la recherche ou un lien croisé ; « Autres Katana » ouvre une fiche voisine.\n• Attaque et garde : valeurs du wiki à +0 et, à côté, une colonne Calculé (niveau choisi sous le graphique, profil actif, une ou deux mains), jamais à la place de la base.\n• Graphique d'évolution : 4 affinités au plus, couleur attachée à l'affinité et non à son rang ; survol ou curseur « Niveau affiché » : réticule et valeurs dans la légende ; vue Tableau équivalente.\n• Arme sans affinité (pierres sombres) : une courbe par type de dégâts.\n• « Pourquoi ? » détaille le score : 4 composantes sur 25, données utilisées, limites.\n\nRègles d'affichage\n• En-tête : nom, source, classe, poids, types d'attaque, Épingler, Comparer, Voir sur le wiki.\n• Alertes de qualité en tête (déduit, non documenté, incohérence) et récapitulatif « Qualité des données ».\n• Prérequis comparés au profil ; à deux mains, Force ×1,5.\n\nCas limites\n• Pas de tableau d'amélioration (Moonveil) : état « Non documenté » à la place du graphique ; calcul limité à +0.\n• Prérequis non atteints : attaque calculée réduite, sans bonus de scaling, avec un message explicite."
+    },
+    "spec-boss": {
+      "x": 5520,
+      "y": 8560,
+      "w": 460,
+      "size": "s",
+      "text": "Spécification — Fiche boss\n\nComportements\n• Un onglet par rencontre (lieu, région) ; flèches gauche et droite entre onglets ; pas d'onglets pour une rencontre unique.\n• « Rencontre vaincue » se synchronise avec la frise du tableau de bord.\n• « Pour votre profil » : jauge niveau / niveau recommandé (Calculé, « Pourquoi ? ») et armes du profil efficaces contre les faiblesses, avec leurs prérequis.\n\nRègles d'affichage\n• Tuiles : PV et runes NG (Wiki), niveau recommandé (Calculé), parade, critique.\n• Absorption : barres divergentes autour de 0 %, échelle commune avec la matrice des faiblesses, valeur écrite, mention « Faiblesse ».\n• Statuts : valeur chiffrée ou « Immunisé » avec icône barrée.\n• Butin en liens vers les fiches ; source CC BY-SA rappelée.\n\nCas limites\n• Faiblesses absentes (Mohg) : état « Non documenté », aucune suggestion d'arme.\n• Aucune donnée de combat (Godskin Duo) : PV et runes « Non documenté », niveau estimé par la seule position dans l'histoire."
+    },
+    "spec-search": {
+      "x": 7520,
+      "y": 8560,
+      "w": 420,
+      "size": "s",
+      "text": "Spécification — Recherche globale\n\nComportements\n• Ctrl/⌘ + K partout, ou le champ de la barre supérieure ; Échap ou clic sur le voile ferme et rend le focus.\n• Insensible aux accents et à la casse ; porte sur armes, boss, compétences, lieux, origines, mécaniques et actions.\n• Classement : début du nom, puis début de mot, puis le reste ; 4 résultats par groupe, puis « Voir les N ».\n• Clavier : ↑ ↓ naviguer, Entrée ouvrir, Tab filtre suivant ; champ en combobox, option active annoncée.\n\nRègles d'affichage\n• Partie trouvée surlignée en or ; badge de source après chaque nom ; ligne de contexte (classe, lieu, rang).\n• Filtres par type : seulement les types qui ont des résultats.\n\nCas limites\n• Saisie vide : recherches récentes, éléments épinglés, actions.\n• Aucun résultat : rappel que les noms restent en anglais, suggestions (« lune » → « moon », « Rennala »), recherche sur le wiki."
+    },
+    "spec-ds": {
+      "x": 1480,
+      "y": 11560,
+      "w": 480,
+      "size": "s",
+      "text": "Spécification — Design system\n\n• Page générée depuis « Design system du Codex » (tokens.json, tokens.css, aperçus des composants) : mêmes classes que les écrans du prototype.\n• Couleurs : 77 tokens avec valeur sombre et parchemin, rôle et contraste WCAG calculé (64 vérifications conformes).\n• Export : « Télécharger tokens.css » ou « Copier les variables CSS » ; le contenu de tokens.css est lisible sur la page.\n• Thème : data-theme sur la racine, sombre par défaut ; aucun composant ne porte de couleur propre à un thème.\n• Le badge « valeur de maquette » (.cx-mq, .cx-mqv) n'existe que dans le prototype : ne pas le livrer.\n• Méthodes de calcul (score, étape, origine optimale, niveau recommandé, runes, plan d'amélioration) : fichier calculs.md du design system."
+    }
+  },
+  "designSystems": [
+    {
+      "title": "Design system du Codex",
+      "namespace": "codex",
+      "artifact": "https://claude.ai/artifact/9Dj4PS2EkVjivTWHSqEQY7",
+      "version": "1793448860-548b",
+      "copiedAt": "2026-10-31T16:05:17Z"
+    }
+  ]
+}

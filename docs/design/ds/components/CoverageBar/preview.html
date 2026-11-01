@@ -1,0 +1,24 @@
+<!-- @dsCard group="Visualisation" height=230 subtitle="Part documentée, estimée, absente" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CoverageBar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"></svg>
+<div class="pv" style="max-width:560px"><div class="cx-cov">
+<div class="cx-cov-row"><span>Type d'amélioration, armes de mêlée</span><span><b>150</b> sur 335 documentés</span><div class="cx-cov-bar" role="img" aria-label="150 documentés, 172 estimés, 13 absents"><span class="p-doc" style="width:44.8%"></span><span class="p-est" style="width:51.3%"></span><span class="p-null" style="width:3.9%"></span></div></div>
+<div class="cx-cov-row"><span>PV des boss (301 combats)</span><span><b>281</b> sur 301 <span class="cx-mq">valeur de maquette</span></span><div class="cx-cov-bar"><span class="p-doc" style="width:93.4%"></span><span class="p-null" style="width:6.6%"></span></div></div>
+</div><div class="cx-legend"><span><span class="cx-swatch p-doc"></span> Documenté (wiki)</span><span><span class="cx-swatch p-est"></span> Estimé</span><span><span class="cx-swatch p-null"></span> Non documenté</span></div></div>
+
+</body>
+</html>

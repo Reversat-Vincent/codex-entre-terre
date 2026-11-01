@@ -1,0 +1,39 @@
+<!-- @dsCard group="Contrôles" height=520 subtitle="Filtres à facettes d’un catalogue" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>FacetFilters</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol><symbol id="i-s-tp" viewBox="0 0 24 24"><path d="M12 4.5l7.5 7.5-7.5 7.5L4.5 12z"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol></svg>
+<div class="pv" style="max-width:280px">
+<div class="cx-row tight"><span class="cx-chip is-on">Katana<button class="cx-chip-x" aria-label="Retirer : Katana"><svg class="cx-i xs" aria-hidden="true"><use href="#i-x"></use></svg></button></span><span class="cx-chip is-on">Saignement<button class="cx-chip-x" aria-label="Retirer : Saignement"><svg class="cx-i xs" aria-hidden="true"><use href="#i-x"></use></svg></button></span><button class="cx-btn cx-btn-ghost cx-btn-sm">Effacer</button></div>
+<div class="cx-facets">
+ <div class="cx-facet"><div class="cx-facet-h">Classe <span class="cx-muted">4 sur 30</span></div>
+  <label class="cx-check"><input type="checkbox" checked> Katana <span class="cx-check-meta">3</span></label>
+  <label class="cx-check"><input type="checkbox"> Greatsword <span class="cx-check-meta">3</span></label>
+  <label class="cx-check"><input type="checkbox"> Light Greatsword <span class="cx-check-meta">3</span></label>
+  <label class="cx-check"><input type="checkbox"> Straight Sword <span class="cx-check-meta">1</span></label>
+  <button class="cx-facet-more">Voir les 26 autres classes</button></div>
+ <div class="cx-facet"><div class="cx-facet-h">Contenu</div>
+  <label class="cx-check"><input type="checkbox" checked> <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span> Base game <span class="cx-check-meta">7</span></label>
+  <label class="cx-check"><input type="checkbox" checked> <span class="cx-badge cx-src-sote" title="Shadow of the Erdtree (DLC)" aria-label="Source : Shadow of the Erdtree"><svg class="cx-i" aria-hidden="true"><use href="#i-s-sote"></use></svg>SotE</span> Shadow of the Erdtree <span class="cx-check-meta">2</span></label>
+  <label class="cx-check"><input type="checkbox" checked> <span class="cx-badge cx-src-tp" title="Tarnished Pack (DLC)" aria-label="Source : Tarnished Pack"><svg class="cx-i" aria-hidden="true"><use href="#i-s-tp"></use></svg>TP</span> Tarnished Pack <span class="cx-check-meta">1</span></label></div>
+ <div class="cx-facet"><div class="cx-facet-h">Type d'amélioration</div>
+  <label class="cx-check"><input type="checkbox"> Pierres normales <span class="cx-check-meta">5</span></label>
+  <label class="cx-check"><input type="checkbox"> Pierres sombres <span class="cx-check-meta">5</span></label>
+  <label class="cx-check"><input type="checkbox" checked> Inclure les estimations <span class="cx-rel cx-rel-est"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg>4</span></label></div>
+ <div class="cx-facet"><div class="cx-facet-h">Prérequis</div><button class="cx-toggle" aria-pressed="false"><span class="cx-toggle-track"><span class="cx-toggle-thumb"></span></span>Seulement les prérequis atteints</button></div>
+</div></div>
+
+</body>
+</html>

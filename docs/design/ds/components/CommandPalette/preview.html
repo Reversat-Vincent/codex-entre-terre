@@ -1,0 +1,32 @@
+<!-- @dsCard group="Structure" height=560 subtitle="Recherche globale (Ctrl/⌘ + K)" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CommandPalette</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-c-katana" viewBox="0 0 24 24"><path d="M4 20l2.6-2.6"></path><path d="M5.4 16.2l2.4 2.4"></path><path d="M7.5 16.5C12 13.5 17 9 20 4c-1.5 5.5-6 10.2-10.8 14.1"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-c-lgs" viewBox="0 0 24 24"><path d="M3.5 20.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M7.8 16.2L20 4"></path><path d="M20 4l-.3 2.8L9.4 17.1"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol><symbol id="i-boss" viewBox="0 0 24 24"><path d="M4.5 17.5L3 7l5 4 4-6.5 4 6.5 5-4-1.5 10.5z"></path><path d="M4.5 20.5h15"></path></symbol></svg>
+<div class="pv"><div class="cx-palette" role="dialog" aria-label="Recherche globale">
+<div class="cx-palette-in"><svg class="cx-i lg" aria-hidden="true"><use href="#i-search"></use></svg><input aria-label="Rechercher" value="moon"><span class="cx-kbd">Échap</span></div>
+<div class="cx-palette-filters"><button class="cx-chip" aria-pressed="true">Tout <span class="cx-muted">5</span></button><button class="cx-chip" aria-pressed="false">Armes <span class="cx-muted">2</span></button><button class="cx-chip" aria-pressed="false">Boss <span class="cx-muted">1</span></button><button class="cx-chip" aria-pressed="false">Compétences <span class="cx-muted">2</span></button></div>
+<div class="cx-palette-body">
+<div class="cx-palette-group"><span>Armes</span><span>2</span></div>
+<a class="cx-palette-item is-active" href="#"><span class="cx-palette-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-c-katana"></use></svg></span><span><span class="cx-palette-t"><mark>Moon</mark>veil</span> <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span><span class="cx-palette-s">Katana, butin garanti, Gael Tunnel (Caelid)</span></span><span class="cx-kbd">↵</span></a>
+<a class="cx-palette-item" href="#"><span class="cx-palette-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-c-lgs"></use></svg></span><span><span class="cx-palette-t">Rellana's Twin Blades</span> <span class="cx-badge cx-src-sote" title="Shadow of the Erdtree (DLC)" aria-label="Source : Shadow of the Erdtree"><svg class="cx-i" aria-hidden="true"><use href="#i-s-sote"></use></svg>SotE</span><span class="cx-palette-s">Compétence : <mark>Moon</mark>-and-Fire Stance</span></span><span></span></a>
+<div class="cx-palette-group"><span>Boss</span><span>1</span></div>
+<a class="cx-palette-item" href="#"><span class="cx-palette-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-boss"></use></svg></span><span><span class="cx-palette-t">Rennala, Queen of the Full <mark>Moon</mark></span> <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span><span class="cx-palette-s">Légende, Academy of Raya Lucaria (Liurnia of the Lakes)</span></span><span></span></a>
+</div>
+<div class="cx-palette-foot"><span><span class="cx-kbd">↑</span> <span class="cx-kbd">↓</span> naviguer</span><span><span class="cx-kbd">↵</span> ouvrir</span><span><span class="cx-kbd">Tab</span> filtrer par type</span></div>
+</div></div>
+
+</body>
+</html>

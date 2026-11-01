@@ -1,0 +1,3721 @@
+{
+  "metadata": {
+    "source_page": "https://eldenring.wiki.gg/wiki/All_Items_(Gallery)",
+    "gallery_sections": [
+      "Arrows/Bolts"
+    ],
+    "source_wiki": "eldenring.wiki.gg (MediaWiki API, page wikitext)",
+    "retrieved": "2026-10-31",
+    "count": 68,
+    "counts_by_source": {
+      "Base game": 63,
+      "Shadow of the Erdtree": 5
+    },
+    "counts_by_category": {
+      "Arrows": 34,
+      "Greatarrows": 8,
+      "Bolts": 21,
+      "Greatbolts": 5
+    },
+    "field_notes": {
+      "source": "'Base game', 'Shadow of the Erdtree' (DLC) or 'Tarnished Pack' (DLC), from the DLC icon next to the item in the wiki gallery.",
+      "summary": "Opening paragraph of the wiki page (often contains exact values, e.g. talisman percentages).",
+      "effect / effect_details / effect_tables": "Infobox effect line + content of the page's Effect/Usage sections.",
+      "infobox": "All infobox fields of the page, cleaned (numbers parsed when purely numeric).",
+      "acquisition": "method / location / region / details from the Acquisition section; nested bullets prefixed with '→'.",
+      "other_sections": "Remaining gameplay sections (text bullets and tables); Trivia/Gallery/References are excluded."
+    }
+  },
+  "items": [
+    {
+      "name": "Bone Arrow",
+      "wiki_page": "Bone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Bone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 35,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from thin animal bones. Craftable item.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [1], sold by Merchant Kalé."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 35,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce"
+      }
+    },
+    {
+      "name": "Bone Arrow (Fletched)",
+      "wiki_page": "Bone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Bone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 35,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from thin animal bones. Craftable item.\n\nThe feather fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [1], sold by Merchant Kalé."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "obtained": "Craftable",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 35,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce"
+      }
+    },
+    {
+      "name": "Magicbone Arrow",
+      "wiki_page": "Magicbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Magicbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の魔力矢 (Hone no Maryoku Ya)",
+      "type": "Arrow",
+      "effect": "Animal bone arrow with glintstone tincture tip",
+      "attack_power": {
+        "physical": 10,
+        "magic": 90,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Magicbone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a glintstone tincture. Deals magic damage.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Craftable after obtaining the Glintstone Craftsman's Cookbook [4] found in a chest in a room in the Academy of Raya Lucaria, left of the door after the Schoolhouse Classroom Site of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Academy of Raya Lucaria"
+      ],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone arrow with glintstone tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Glintstone Craftsman's Cookbook [5]",
+        "required_items": "Thin Beast Bones x3; Glintstone Firefly x2",
+        "physical_power": 10,
+        "magic_power": 90,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Magicbone Arrow",
+      "wiki_page": "Magicbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Magicbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の魔力矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Fletched bone arrow with glintstone tincture tip",
+      "attack_power": {
+        "physical": 10,
+        "magic": 90,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Magicbone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a glintstone tincture. Deals magic damage.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Thin Beast Bones x3",
+          "Glintstone Firefly x2",
+          "Flight Pinion x1"
+        ]
+      },
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Fletched bone arrow with glintstone tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Glintstone Craftsman's Cookbook [5]",
+        "required_items": "Thin Beast Bones x3; Glintstone Firefly x2; Flight Pinion x1",
+        "physical_power": 10,
+        "magic_power": 90,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Firebone Arrow",
+      "wiki_page": "Firebone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Firebone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 10,
+        "magic": 0,
+        "fire": 90,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Firebone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is set alight before firing. Deals fire damage.\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Armorer's Cookbook [2], which can be purchased from Nomadic Merchant (Western Limgrave) for 1500 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "obtained": "Craftable",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 10,
+        "magic_power": 0,
+        "fire_power": 90,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce",
+        "cookbook": "Armorer's Cookbook [2]"
+      }
+    },
+    {
+      "name": "Firebone Arrow (Fletched)",
+      "wiki_page": "Firebone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Firebone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 10,
+        "magic": 0,
+        "fire": 90,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Firebone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is set alight before firing. Deals fire damage.\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Armorer's Cookbook [2], which can be purchased from Nomadic Merchant (Western Limgrave) for 1500 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "obtained": "Craftable",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 10,
+        "magic_power": 0,
+        "fire_power": 90,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce",
+        "cookbook": "Armorer's Cookbook [2]"
+      }
+    },
+    {
+      "name": "Lightningbone Arrow",
+      "wiki_page": "Lightningbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Lightningbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の雷矢",
+      "type": "Arrow",
+      "effect": "Animal bone arrow charged with lightning",
+      "attack_power": {
+        "physical": 10,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 90,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Lightningbone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones with a lightning-infused tip. Deals lightning damage.\n\nCraftable item.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Ancient Dragon Apostle's Cookbook [1]",
+          "→ Thin Beast Bones x3",
+          "→ Fulgurbloom x1"
+        ]
+      },
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone arrow charged with lightning",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Ancient Dragon Apostle's Cookbook [1]",
+        "required_items": "Thin Beast Bones x3; Fulgurbloom x1",
+        "physical_power": 10,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 90,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Lightningbone Arrow",
+      "wiki_page": "Lightningbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Lightningbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の雷矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Fletched animal bone arrow charged with lightning",
+      "attack_power": {
+        "physical": 10,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 90,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Lightningbone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones with a lightning-infused tip. Deals lightning damage.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Thin Beast Bones x3",
+          "Fulgurbloom x1",
+          "Flight Pinion x1"
+        ]
+      },
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Fletched animal bone arrow charged with lightning",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Ancient Dragon Apostle's Cookbook [1]",
+        "required_items": "Thin Beast Bones x3; Fulgurbloom x1; Flight Pinion x1",
+        "physical_power": 10,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 90,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Haligbone Arrow",
+      "wiki_page": "Haligbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Haligbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の聖矢",
+      "type": "Arrow",
+      "effect": "Animal bone arrow with gold tincture tip",
+      "attack_power": {
+        "physical": 10,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 90
+      },
+      "critical": 100,
+      "summary": "Haligbone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a golden tincture. Deals holy damage.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Missionary's Cookbook [4], found in the Minor Erdtree Church in Altus Plateau."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone arrow with gold tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Missionary's Cookbook [4]",
+        "required_items": "Thin Beast Bones x3; Golden Sunflower x2",
+        "physical_power": 10,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 90,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Haligbone Arrow",
+      "wiki_page": "Haligbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Haligbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の聖矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Fletched bone arrow with gold tincture tip",
+      "attack_power": {
+        "physical": 10,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 90
+      },
+      "critical": 100,
+      "summary": "Haligbone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a golden tincture. Deals holy damage.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Missionary's Cookbook [4], found in the Minor Erdtree Church in Altus Plateau."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Fletched bone arrow with gold tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Missionary's Cookbook [4]",
+        "required_items": "Thin Beast Bones x3; Golden Sunflower x2; Flight Pinion x1",
+        "physical_power": 10,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 90,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Poisonbone Arrow",
+      "wiki_page": "Poisonbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Poisonbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Poisonbone Arrow is bow ammunition in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with venom. Afflicts targets with poison.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [3], sold by Nomadic Merchant (Northern Limgrave)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "passive_effects": "Causes poison buildup (60)",
+        "cookbook": "Nomadic Warrior's Cookbook [3]",
+        "required_items": "* Thin Beast Bones x3\n* Poisonbloom x1"
+      }
+    },
+    {
+      "name": "Poisonbone Arrow (Fletched)",
+      "wiki_page": "Poisonbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Poisonbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Poisonbone Arrow (Fletched) is an improved variant of the Poisonbone Arrow bow ammunition in Elden Ring. By using a Flight Pinion during the crafting process, fletched Poisonbone Arrows can fly further distances than normal Poisonbone Arrows.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with venom. Afflicts targets with poison.\n\nCraftable item. The fletchling adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [3], sold by Nomadic Merchant (Northern Limgrave)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "passive_effects": "Causes poison buildup (60)",
+        "cookbook": "Nomadic Warrior's Cookbook [3]",
+        "required_items": "* Thin Beast Bones x3\n* Poisonbloom x1\n*Flight Pinion x1"
+      }
+    },
+    {
+      "name": "Rotbone Arrow",
+      "wiki_page": "Rotbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Rotbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の腐れ矢",
+      "type": "Arrow",
+      "effect": "Animal bone arrow with rot-coated tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Rotbone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with rot. Afflicts targets with scarlet rot.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [15], which can be bought from the Nomadic Merchant (Southern Caelid) for 4000 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone arrow with rot-coated tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [15]",
+        "required_items": "Thin Beast Bones x3; Aeonian Butterfly x1",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "scarlet_rot": 50,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes scarlet rot buildup (50)"
+      }
+    },
+    {
+      "name": "Rotbone Arrow",
+      "wiki_page": "Rotbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Rotbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の腐れ矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Fletched bone arrow with rot-coated tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Rotbone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with rot. Afflicts targets with scarlet rot.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [15], which can be bought from the Nomadic Merchant (Southern Caelid) for 4000 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Fletched bone arrow with rot-coated tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [15]",
+        "required_items": "Thin Beast Bones x3; Flight Pinion x1; Aeonian Butterfly x1",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "scarlet_rot": 50,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes scarlet rot buildup (50)"
+      }
+    },
+    {
+      "name": "Bloodbone Arrow",
+      "wiki_page": "Bloodbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Bloodbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bloodbone Arrow is bow ammunition in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a blood tincture. Afflicts targets with blood loss.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [6], found in a room within Fort Haight."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "notes": [
+        "The two crafting materials, Thin Beast Bones and Bloodroses, are both available for purchase in infinite quantity:",
+        "→ Thin Beast Bones are sold by the Twin Maiden Husks for 150 Runes each after giving them the Bone Peddler's Bell Bearing.",
+        "→ Bloodroses are sold for 800 Runes each by the Imprisoned Merchant in Mohgwyn Dynasty Mausoleum."
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "passive_effects": "Causes blood loss buildup (55)",
+        "cookbook": "Nomadic Warrior's Cookbook [6]",
+        "required_items": "* Thin Beast Bones x3\n* Bloodrose x1"
+      }
+    },
+    {
+      "name": "Bloodbone Arrow (Fletched)",
+      "wiki_page": "Bloodbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Bloodbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bloodbone Arrow (Fletched) is bow ammunition in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a blood tincture. Afflicts targets with blood loss.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [6], found in a room within Fort Haight."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "passive_effects": "Causes blood loss buildup (55)",
+        "cookbook": "Nomadic Warrior's Cookbook [6]",
+        "required_items": "* Thin Beast Bones x3\n* Bloodrose x1\n*Flight Pinion x1"
+      }
+    },
+    {
+      "name": "Coldbone Arrow",
+      "wiki_page": "Coldbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Coldbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の氷結矢",
+      "type": "Arrow",
+      "effect": "Animal bone arrow with frozen tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 10,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Coldbone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones with a frozen tip. Afflicts targets with frost.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Glintstone Craftsman's Cookbook [7], sold by Pidia, Carian Servant."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone arrow with frozen tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Glintstone Craftsman's Cookbook [7]",
+        "required_items": "Thin Beast Bones x3; Rimed Crystal Bud x3",
+        "physical_power": 25,
+        "magic_power": 10,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "frost": 60,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes frost buildup (60)"
+      }
+    },
+    {
+      "name": "Coldbone Arrow",
+      "wiki_page": "Coldbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Coldbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の氷結矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Fletched bone arrow with frozen tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 10,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Coldbone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones with a frozen tip. Afflicts targets with frost.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Glintstone Craftsman's Cookbook [7]"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Fletched bone arrow with frozen tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Glintstone Craftsman's Cookbook [7]",
+        "required_items": "Thin Beast Bones x3; Rimed Crystal Bud x3; Flight Pinion x1",
+        "physical_power": 25,
+        "magic_power": 10,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "frost": 60,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes frost buildup (60)"
+      }
+    },
+    {
+      "name": "Sleepbone Arrow",
+      "wiki_page": "Sleepbone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Sleepbone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null
+      },
+      "critical": null,
+      "summary": "Sleepbone Arrow is a craftable item in Elden Ring.",
+      "description": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Thin Animal Bones 2x",
+          "Flight Pinion 1x",
+          "Trina's Lily 1x"
+        ]
+      },
+      "other_sections": {
+        "Ingame description": {
+          "text": [
+            "Feathered animal bone arrow with sedative rip."
+          ]
+        }
+      },
+      "infobox": {
+        "type": "Arrow"
+      }
+    },
+    {
+      "name": "Sleepbone Arrow",
+      "wiki_page": "Sleepbone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Sleepbone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "骨の眠り矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Fletched animal bone arrow with waterlily tincture tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Sleepbone Arrow (Fletched) is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones. The tip is daubed with a water lily tincture. Afflicts targets with sleep.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Thin Beast Bones x3",
+          "Flight Pinion x1",
+          "Trina's Lily x1"
+        ]
+      },
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Fletched animal bone arrow with waterlily tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Fevor's Cookbook [2]",
+        "required_items": "Thin Beast Bones x3; Flight Pinion x1; Trina's Lily x1",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "sleep": 84,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Shattershard Arrow",
+      "wiki_page": "Shattershard Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Shattershard_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Shattershard Arrow is bow ammunition in Elden Ring.",
+      "description": "Arrow whittled from animal bones tipped with a shard of crystal. Creates a resonating noise at the point of impact.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [11], sold by the Nomadic Merchant (Liurnia Lake Shore) for 1500 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "cookbook": "Nomadic Warrior's Cookbook [11]",
+        "required_items": "* Thin Beast Bones x3\n* Cracked Crystal x2"
+      }
+    },
+    {
+      "name": "Shattershard Arrow",
+      "wiki_page": "Shattershard Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Shattershard_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "attack_power": {
+        "physical": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null
+      },
+      "critical": null,
+      "summary": "Shattershard Arrow (Fletched) is an item used for crafting in Elden Ring.",
+      "description": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {}
+    },
+    {
+      "name": "Rainbow Stone Arrow",
+      "wiki_page": "Rainbow Stone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Rainbow_Stone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Rainbow Stone Arrow is bow ammunition in Elden Ring.",
+      "description": "Arrow whittled from animal bones tipped with chips of Rainbow Stone. Colored light shines at the point of impact.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [7], found on the broken bridge to the east of Stormveil Castle."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Stormveil Castle"
+      ],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "cookbook": "Nomadic Warrior's Cookbook [7]",
+        "required_items": "* Thin Beast Bones x3\n* Ruin Fragment x3"
+      }
+    },
+    {
+      "name": "Rainbow Stone Arrow",
+      "wiki_page": "Rainbow Stone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Rainbow_Stone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "虹色石の矢（羽付き）",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Rainbow Stone Arrow (Fletched) is a type of arrow in Elden Ring that is described to be craftable but currently isn't.",
+      "description": "Arrow whittled from animal bones tipped with chips of Rainbow Stone. Colored light shines at the point of impact.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Subterranean Shunning-Grounds",
+            "→ x10 Found among slugs in the first maze of pipes before the first shortcut."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Subterranean Shunning-Grounds"
+      ],
+      "acquisition_flags": [],
+      "notes": [
+        "Ironic for what is supposed to be a craftable item, this is the rarest arrow type in the game."
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craftable",
+        "loot": "Subterranean Shunning-Grounds",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Piquebone Arrow",
+      "wiki_page": "Piquebone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Piquebone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "骨の誘い矢",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 28,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Piquebone Arrow are a type of arrow in Elden Ring: Shadow of the Erdtree.",
+      "description": "Arrow whittled from animal bones. The tip is soaked in putrescence.\nReleases a white smoke at the point of impact, luring in foes of human build who are not in combat, and drawing their aggression. Effective on demi-humans even if they are already in a combat state. Craftable item.",
+      "effect_details": [
+        "Attracts the aggression of humanoid foes that are outside of combat, with the exception of Demi-humans, whom can be influenced even if they are within combat.",
+        "While Shattershard Arrows can be similarly used to attract the attention of a more varied pool of enemies than this item, they have the downside of often being incapable of attracting enemies with predetermined, scripted behavior. Like those those who are positioned behind corners and set up to ambush the player whenever they enter a certain location.",
+        "→ However as long as those stationed enemies are humanoid, Piquebone Arrows are capable of breaking them out of their script and forcibly attract their attention regardless."
+      ],
+      "acquisition": [
+        {
+          "method": "Craftable",
+          "location": "Grave Keeper's Cookbook [1]",
+          "region": null,
+          "details": [
+            "x1 Thin Beast Bones",
+            "x2 Congealed Putrescence",
+            "x1 Human Bone Shard"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craftable",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 28,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Piquebone Arrow (Fletched)",
+      "wiki_page": "Piquebone Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Piquebone_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "骨の誘い矢（羽付き）",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Piquebone Arrow (Fletched) are a type of arrow in Elden Ring: Shadow of the Erdtree.",
+      "description": "Arrow whittled from animal bones. The tip is soaked in putrescence.\nReleases a white smoke at the point of impact, luring in foes of human build who are not in combat, and drawing their aggression. Effective on demi-humans even if they are already in a combat state. Craftable item. The fletching adds distance to the arrow's flight.",
+      "effect_details": [
+        "Attracts the aggression of humanoid foes that are outside of combat, with the exception of Demi-humans, whom can be influenced even if they are within combat.",
+        "While Shattershard Arrows can be similarly used to attract the attention of a more varied pool of enemies than this item, they have the downside of often being incapable of attracting enemies with predetermined, scripted behavior. Like those those who are positioned behind corners and set up to ambush the player whenever they enter a certain location.",
+        "→ However as long as those stationed enemies are humanoid, Piquebone Arrows are capable of breaking them out of their script and forcibly attract their attention regardless."
+      ],
+      "acquisition": [
+        {
+          "method": "Craftable",
+          "location": "Grave Keeper's Cookbook [1]",
+          "region": null,
+          "details": [
+            "x1 Thin Beast Bones",
+            "x2 Congealed Putrescence",
+            "x1 Human Bone Shard",
+            "x1 Flight Pinion"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craftable",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Stormwing Bone Arrow",
+      "wiki_page": "Stormwing Bone Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Stormwing_Bone_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "嵐羽の骨矢",
+      "type": "Arrow",
+      "effect": "Bone arrow fletched with stormhawk feathers",
+      "attack_power": {
+        "physical": 55,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Stormwing Bone Arrow is a craftable arrow in Elden Ring.",
+      "description": "Arrow whittled from animal bones fletched with stormhawk feathers. Craftable item.\n\nFlies enshrouded in storm winds, breaking enemy stances and guards with ease.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [10], found within Stormveil Castle."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Stormveil Castle"
+      ],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Bone arrow fletched with stormhawk feathers",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [10]",
+        "required_items": "Thin Beast Bones x3; Stormhawk Feather x1",
+        "physical_power": 55,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Arrow",
+      "wiki_page": "Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 45,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Arrow is bow ammunition in Elden Ring.",
+      "description": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Nomadic Merchant southeast of Coastal Cave, beneath the collapsed structure",
+            "Nomadic Merchant at Castle Morne Rampart in the Weeping Peninsula region",
+            "Nomadic Merchant east of Saintsbridge",
+            "Abandoned Merchant in the Siofra River region"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula",
+        "Siofra River"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Arrow",
+        "obtained": "Purchase",
+        "buy_price": 20,
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 45,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100
+      }
+    },
+    {
+      "name": "Dwelling Arrow",
+      "wiki_page": "Dwelling Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Dwelling_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 15,
+        "magic": 95,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Dwelling Arrow is an ammunition in Elden Ring.",
+      "description": "Arrows in which the spirits of small animals are thought to dwell. Deals magic damage.\n\nUsed by the master hunters of the ancestral followers.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Abandoned Merchant in the Siofra River region (x30)"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Siofra River"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "buy_price": 160,
+        "physical_power": 15,
+        "magic_power": 95,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Purchase"
+      }
+    },
+    {
+      "name": "Fire Arrow",
+      "wiki_page": "Fire Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Fire_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 95,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Fire Arrow is bow ammunition in Elden Ring.",
+      "description": "Arrow with the tip set alight. Deals fire damage.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Arrow",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 95,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce"
+      }
+    },
+    {
+      "name": "Golden Arrow",
+      "wiki_page": "Golden Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Golden_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "黄金の矢",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 95
+      },
+      "critical": 100,
+      "summary": "Golden Arrow are a type of arrow in Elden Ring.",
+      "description": "Carved arrows made in tandem with the Erdtree Bow. Deals holy damage.\n\nHighly effective against Those Who Live in Death, and able to prevent them from rising again.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Sold by the Hermit Merchant of Capital Outskirts for 120 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Capital Outskirts"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Purchase; Loot",
+        "buy_price": 120,
+        "sell_price": 10,
+        "trade": "Yes",
+        "required_items": "x1",
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 95,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Serpent Arrow",
+      "wiki_page": "Serpent Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Serpent_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "effect": "+78 Poison Buildup",
+      "attack_power": {
+        "physical": 30,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Serpent Arrow is an ammunition in Elden Ring.",
+      "description": "Arrow carved to resemble a flying snake. Used in tandem with the Serpent Bow.\n\nLoyal minions of the Formless Serpents, their fangs are daubed with deadly poison.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "the Dragonbarrow's Isolated Merchant sells endless Serpent Arrows for 120 runes each.",
+            "Serpent Arrows are also dropped by Serpent Snails & Skeletal Snails."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Arrow",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "+78 Poison Buildup",
+        "obtained": "Purchase; Loot",
+        "buy_price": 120,
+        "physical_power": 30,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100
+      }
+    },
+    {
+      "name": "Spiritflame Arrow",
+      "wiki_page": "Spiritflame Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Spiritflame_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "japanese_name": "霊火の矢",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 30,
+        "magic": 40,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Spiritflame Arrow are a type of arrow in Elden Ring.",
+      "description": "Arrow set alight with ghostflame before firing. Deals magic damage while also afflicting foes with frost.\n\nUsed by the Company of the Fallen Hawk, once ordered to explore the Eternal City.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Random Drop:",
+            "→ Nokron, Eternal City",
+            "→→ 5% Chance of dropping from Fallen Hawk Soldiers.",
+            "Loot:",
+            "→ Elphael, Brace of the Haligtree",
+            "→→ x15 Found on a chair in a building one the ramparts north-east of the Elphael Inner Wall Site of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Elphael, Brace of the Haligtree",
+        "Nokron, Eternal City",
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Loot; Random Drop",
+        "sell_price": 10,
+        "trade": "Yes",
+        "required_items": "x1",
+        "physical_power": 30,
+        "magic_power": 40,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "frost": 65,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes frost buildup (65)"
+      }
+    },
+    {
+      "name": "St. Trina's Arrow",
+      "wiki_page": "St. Trina's Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/St._Trina%27s_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Arrows",
+      "source": "Base game",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 5,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "St. Trina's Arrow is an arrow and ammunition in Elden Ring.",
+      "description": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "buy_price": 60,
+        "physical_power": 5,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "passive_effects": "Confers sleep status ailment (96)"
+      }
+    },
+    {
+      "name": "Bone Great Arrow",
+      "wiki_page": "Bone Great Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Bone_Great_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "japanese_name": "骨の大矢",
+      "type": "Arrow",
+      "effect": "Thick, whittled animal bone arrow, large as a spear",
+      "attack_power": {
+        "physical": 90,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bone Great Arrow is a craftable great arrow in Elden Ring.",
+      "description": "Greatarrow as large as a spear whittled from stout animal bones.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [13], found north of Bellum Church."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 30,
+        "max_stored": 600,
+        "item_effect": "Thick, whittled animal bone arrow, large as a spear",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [13]",
+        "required_items": "Hefty Beast Bone x1",
+        "physical_power": 90,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Bone Great Arrow",
+      "wiki_page": "Bone Great Arrow (Fletched)",
+      "url": "https://eldenring.wiki.gg/wiki/Bone_Great_Arrow_(Fletched)",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "japanese_name": "骨の大矢（羽付き）",
+      "type": "Arrow",
+      "effect": "Thick, whittled bone arrow with feather fletchings",
+      "attack_power": {
+        "physical": 90,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bone Great Arrow (Fletched) is a craftable great arrow in Elden Ring.",
+      "description": "Greatarrow as large as a spear whittled from stout animal bones.\n\nCraftable item. The fletching adds distance to the arrow's flight.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [13], found north of Bellum Church."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 30,
+        "max_stored": 600,
+        "item_effect": "Thick, whittled bone arrow with feather fletchings",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [13]",
+        "required_items": "Hefty Beast Bone x1; Flight Pinion x1",
+        "physical_power": 90,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Great Arrow",
+      "wiki_page": "Great Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Great_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "type": "Greatarrow",
+      "attack_power": {
+        "physical": 100,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Great Arrow is greatbow ammunition in Elden Ring.",
+      "description": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Patches in Murkwater Cave (x10)",
+            "Nomadic Merchant at Castle Morne Rampart in the Weeping Peninsula region (x8)"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Greatarrow",
+        "attack_type": "Pierce",
+        "buy_price": 300,
+        "physical_power": 100,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 30,
+        "max_stored": 600,
+        "obtained": "Purchase"
+      }
+    },
+    {
+      "name": "Golem's Great Arrow",
+      "wiki_page": "Golem's Great Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Golem%27s_Great_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "japanese_name": "ゴーレムの大矢",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 105,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Golem's Great Arrow is a type of Greatarrow in Elden Ring.",
+      "description": "Greatarrow of black stone crafted by a civilization now gone to ruin. Used by the Guardian Golem.\n\nThis hefty arrow is enrobed in tempestuous winds, allowing it to break enemy stances and guards with ease.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "===Retail==="
+          ]
+        },
+        {
+          "method": "Random Drop",
+          "location": null,
+          "region": null,
+          "details": [
+            "5% chance of dropping from Greatbow-wielding Guardian Golems. (Always drops in a bundle of x5 arrows at a time.)",
+            "===1.00==="
+          ]
+        },
+        {
+          "method": "Random Drop",
+          "location": null,
+          "region": null,
+          "details": [
+            "5% chance of dropping from Greatbow-wielding Guardian Golems. (Always drops in a bundle of x5 arrows at a time.)"
+          ]
+        },
+        {
+          "method": "Purchase",
+          "location": "Altus Plateau",
+          "region": null,
+          "details": [
+            "An infinite amount can be bought for 500 Runes per arrow from the Nomadic Merchant on the Forest-Spanning Greatbridge."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "random_enemy_drop"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "sub-type": "Great Arrow",
+        "attack_type": "Pierce",
+        "max_held": 30,
+        "max_stored": 600,
+        "obtained": "Purchase (1.00 only); Random Drop",
+        "buy_price": "500 (1.00 only)",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 105,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Golem's Magic Arrow",
+      "wiki_page": "Golem's Magic Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Golem%27s_Magic_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "japanese_name": "ゴーレムの魔力矢",
+      "type": "Arrow",
+      "attack_power": {
+        "physical": 40,
+        "magic": 125,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Golem's Magic Arrow is a type of Greatarrow in Elden Ring.",
+      "description": "Greatarrow of black stone crafted by a civilization now gone to ruin. Imbued with its ancient magic.\n\nDeals magic damage.",
+      "acquisition": [
+        {
+          "method": "Random Drop",
+          "location": null,
+          "region": null,
+          "details": [
+            "5% chance of dropping from the magic greatbow-wielding Guardian Golems guarding the path to the Colosseum in Caelid. (Always drops in a bundle of x5 arrows at a time.)"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "infobox": {
+        "type": "Arrow",
+        "attack_type": "Pierce",
+        "max_held": 30,
+        "max_stored": 600,
+        "drop": "Guardian Golem",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 40,
+        "magic_power": 125,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Golden Great Arrow",
+      "wiki_page": "Golden Great Arrow",
+      "url": "https://eldenring.wiki.gg/wiki/Golden_Great_Arrow",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "japanese_name": "黄金の大矢 (Ōgon no Ōya)",
+      "type": "Greatarrow",
+      "attack_power": {
+        "physical": 40,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 110
+      },
+      "critical": 100,
+      "summary": "Golden Great Arrow is a type of Greatarrow in Elden Ring.",
+      "description": "Carved greatarrows made together with the Erdtree Greatbow. Deals holy damage.\n\nImbued with an oath-sworn incantation, which boosts the attack and defense of the archer and their nearby allies.",
+      "effect_details": [
+        "Golden Great Arrows will release a golden aura wherever the they land -- this aura boosts the Attack Power of nearby allies by +7.5% (+2.5% against other players) and their damage reduction by +7.5% (+1.5% against other players) for 45 seconds."
+      ],
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchased from the Hermit Merchant of Capital Outskirts for 500 runes."
+          ]
+        },
+        {
+          "method": "Loot",
+          "location": null,
+          "region": null,
+          "details": [
+            "10 Golden Great Arrows can be found inside a chest in the Sage's Cave."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Capital Outskirts"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "The Attack Power of the Golden Great Arrow scale with the Faith scaling of the Erdtree Greatbow.",
+        "The seal that is briefly created when the Greatarrow lands is the same as the one created when casting some Erdtree Incantations.",
+        "The buff from Golden Great Arrows count as an Aura Buff and do not conflict with Body Buffs or Weapon Buffs."
+      ],
+      "infobox": {
+        "type": "Greatarrow",
+        "attack_type": "Pierce",
+        "max_held": 30,
+        "max_stored": 600,
+        "obtained": "Purchase; Loot",
+        "buy_price": 500,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 40,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 110,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Radahn's Spear",
+      "wiki_page": "Radahn's Spear",
+      "url": "https://eldenring.wiki.gg/wiki/Radahn%27s_Spear",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Base game",
+      "type": "Greatarrow",
+      "attack_power": {
+        "physical": 100,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Radahn's Spear is greatbow ammunition in Elden Ring.",
+      "description": "Greatarrows used by General Radahn during the festival of combat. These are in fact the many spears with which he was stabbed by the Cleanrot Knights.\n\nImbued with Radahn's gravitational power.",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": null,
+          "region": null,
+          "details": [
+            "Found throughout the Wailing Dunes."
+          ]
+        },
+        {
+          "method": "Purchase",
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchaseable from Finger Reader Enia for 800 Runes after defeating Starscourge Radahn."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "Radahn's Spear gains a +20% damage buff when used while the Lion Greatbow is equipped in either the main-hand or off-hand.",
+        "→ This buff stacks with itself if the player has another Lion Greatbow equipped."
+      ],
+      "infobox": {
+        "type": "Greatarrow",
+        "attack_type": "Pierce",
+        "buy_price": 800,
+        "physical_power": 100,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 30,
+        "max_stored": 600,
+        "obtained": "Wailing Dunes/Finger Reader Enia"
+      }
+    },
+    {
+      "name": "Igon's Harpoon",
+      "wiki_page": "Igon's Harpoon",
+      "url": "https://eldenring.wiki.gg/wiki/Igon%27s_Harpoon",
+      "section": "Arrows/Bolts",
+      "category": "Greatarrows",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "エーゴンの銛 (Ēgon no Mori)",
+      "type": "Greatarrow",
+      "attack_power": {
+        "physical": 90,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Igon's Harpoon is a type of Greatarrow in Shadow of the Erdtree.",
+      "description": "Great arrow that bristles with sharp gravel stone pieces. Has an anti-dragon effect.\n\nThe broken drake warrior Igon made these one by one in the midst of his agony—so that Bayle the Dread himself would know fear.",
+      "effect_details": [
+        "Deals +30% extra damage against Dragons and +15% against Ancient Dragons."
+      ],
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": "Roundtable Hold",
+          "region": null,
+          "details": [
+            "Purchased for 1,000 from the Twin Maiden Husks after giving them Igon's Bell Bearing."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "notes": [
+        "The Attack Power of Igon's Harpoon is enhanced by +20% when fired from Igon's Greatbow."
+      ],
+      "infobox": {
+        "type": "Greatarrow",
+        "attack_type": "Pierce",
+        "max_held": 30,
+        "max_stored": 600,
+        "obtained": "Purchase",
+        "buy_price": 1000,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 90,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Bone Bolt",
+      "wiki_page": "Bone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Bone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 40,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from a thin animal bone. Craftable item.\n\nTough the tip is certainly sharp, it does not fly particularly true.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [1], sold by Merchant Kalé."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "obtained": "Craftable",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 40,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce"
+      }
+    },
+    {
+      "name": "Magicbone Bolt",
+      "wiki_page": "Magicbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Magicbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "骨の魔力ボルト",
+      "type": "Bolt",
+      "effect": "Animal bone bolt with glintstone tincture tip",
+      "attack_power": {
+        "physical": 14,
+        "magic": 75,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Magicbone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is daubed with a glintstone tincture. Deals magic damage.\n\nCraftable item.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Glintstone Craftsman's Cookbook [5]",
+          "→ Thin Beast Bones x2",
+          "→ Glintstone Firefly x2"
+        ]
+      },
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone bolt with glintstone tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Glintstone Craftsman's Cookbook [5]",
+        "required_items": "Thin Beast Bones x2; Glintstone Firefly x2",
+        "physical_power": 14,
+        "magic_power": 75,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Firebone Bolt",
+      "wiki_page": "Firebone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Firebone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 75,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Firebone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is set alight before firing. Deals fire damage.\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Armorer's Cookbook [2], which can be purchased from Nomadic Merchant (Western Limgrave) for 1500 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "obtained": "Craftable",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 75,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce",
+        "cookbook": "Armorer's Cookbook [2]"
+      }
+    },
+    {
+      "name": "Lightningbone Bolt",
+      "wiki_page": "Lightningbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Lightningbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "骨の雷ボルト",
+      "type": "Bolt",
+      "effect": "Animal bone bolt with lightning-imbued tip",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 75,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Lightningbone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt crafted from animal bone with a lightning-infused tip. Deals lightning damage.\n\nCraftable item.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Ancient Dragon Apostle's Cookbook [1]",
+          "→ Thin Beast Bones x2",
+          "→ Fulgurbloom x1"
+        ]
+      },
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone bolt with lightning-imbued tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Ancient Dragon Apostle's Cookbook [1]",
+        "required_items": "Thin Beast Bones x2; Fulgurbloom x1",
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 75,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Haligbone Bolt",
+      "wiki_page": "Haligbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Haligbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "骨の聖ボルト",
+      "type": "Bolt",
+      "effect": "Animal bone bolt with gold tincture tip",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 75
+      },
+      "critical": 100,
+      "summary": "Haligbone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is daubed with a golden tincture. Deals holy damage.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Missionary's Cookbook [4], found in the Minor Erdtree Church in Altus Plateau."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone bolt with gold tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Missionary's Cookbook [4]",
+        "required_items": "Thin Beast Bones x2; Golden Sunflower x2",
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 75,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Poisonbone Bolt",
+      "wiki_page": "Poisonbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Poisonbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Poisonbone Bolt is crossbow ammunition in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is daubed with venom. Afflicts targets with poison.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [3], sold by Nomadic Merchant (Northern Limgrave)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "passive_effects": "Causes poison buildup (66)",
+        "cookbook": "Nomadic Warrior's Cookbook [3]",
+        "required_items": "* Thin Beast Bones x2\n* Poisonbloom x1"
+      }
+    },
+    {
+      "name": "Rotbone Bolt",
+      "wiki_page": "Rotbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Rotbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "骨の腐れボルト",
+      "type": "Bolt",
+      "effect": "Animal bone bolt with rot-coated tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Rotbone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is daubed with rot. Afflicts targets with scarlet rot.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [15], which can be bought from the Nomadic Merchant (Southern Caelid) for 4000 runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone bolt with rot-coated tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [15]",
+        "required_items": "Thin Beast Bones x2; Aeonian Butterfly x1",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "scarlet_rot": 55,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes scarlet rot buildup (55)"
+      }
+    },
+    {
+      "name": "Bloodbone Bolt",
+      "wiki_page": "Bloodbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Bloodbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bloodbone Bolt is crossbow ammunition in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is daubed with a blood tincture. Afflicts targets with blood loss.\n\nCraftable item.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [6], found in a room within Fort Haight."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "notes": [
+        "The two crafting materials, Thin Beast Bones and Bloodroses, are both available for purchase in infinite quantity:",
+        "→ Thin Beast Bones are sold by the Twin Maiden Husks for 150 Runes each after giving them the Bone Peddler's Bell Bearing.",
+        "→ Bloodroses are sold for 800 Runes each by the Imprisoned Merchant in Mohgwyn Dynasty Mausoleum."
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craft",
+        "passive_effects": "Causes blood loss buildup (50)",
+        "cookbook": "Nomadic Warrior's Cookbook [6]",
+        "required_items": "* Thin Beast Bones x2\n* Bloodrose x1"
+      }
+    },
+    {
+      "name": "Coldbone Bolt",
+      "wiki_page": "Coldbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Coldbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "骨の氷結ボルト",
+      "type": "Bolt",
+      "effect": "Animal bone bolt with frozen tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 20,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Coldbone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from animal bone with a frozen tip. Afflicts targets with frost.\n\nCraftable item.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone bolt with frozen tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Glintstone Craftsman's Cookbook [7]",
+        "required_items": "Thin Beast Bones x2; Rimed Crystal Bud x3",
+        "physical_power": 25,
+        "magic_power": 20,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "frost": 65,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes frost buildup (65)"
+      }
+    },
+    {
+      "name": "Sleepbone Bolt",
+      "wiki_page": "Sleepbone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Sleepbone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "骨の眠りボルト",
+      "type": "Bolt",
+      "effect": "Animal bone bolt with waterlily tincture tip",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Sleepbone Bolt is a craftable bolt in Elden Ring.",
+      "description": "Bolt carved from animal bone. The tip is daubed with a waterlily tincture. Afflicts targets with sleep.\n\nCraftable item.",
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "crafting": {
+        "text": [
+          "Fevor's Cookbook [2]",
+          "→ Thin Beast Bones x2",
+          "→ Trina's Lily x1"
+        ]
+      },
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "item_effect": "Animal bone bolt with waterlily tincture tip",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Fevor's Cookbook [2]",
+        "required_items": "Thin Beast Bones x2; Trina's Lily x1",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "sleep": 90,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes sleep buildup (90)"
+      }
+    },
+    {
+      "name": "Piquebone Bolt",
+      "wiki_page": "Piquebone Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Piquebone_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "骨の誘いボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 25,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Piquebone Bolt are a type of bolt in Elden Ring: Shadow of the Erdtree.",
+      "description": "Bolt whittled from animal bones. The tip is soaked in putrescence.\n\nReleases a white smoke at the point of impact, luring in foes of human build who are not in combat, and drawing their aggression. Effective on demi-humans even if they are already in a combat state. Craftable item.",
+      "effect_details": [
+        "Attracts the aggression of humanoid foes that are outside of combat, with the exception of Demi-humans, whom can be influenced even if they are within combat.",
+        "While Shattershard Arrows can be similarly used to attract the attention of a more varied pool of enemies than this item, they have the downside of often being incapable of attracting enemies with predetermined, scripted behavior. Like those those who are positioned behind corners and set up to ambush the player whenever they enter a certain location.",
+        "→ However as long as those stationed enemies are humanoid, Piquebone Bolts are capable of breaking them out of their script and forcibly attract their attention regardless."
+      ],
+      "acquisition": [
+        {
+          "method": "Craftable",
+          "location": "Grave Keeper's Cookbook [1]",
+          "region": null,
+          "details": [
+            "x2 Thin Beast Bones",
+            "x2 Congealed Putrescence",
+            "x1 Human Bone Shard"
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Craftable",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 25,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Bolt",
+      "wiki_page": "Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 50,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bolt is a type of ammunition in Elden Ring.",
+      "description": null,
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Nomadic Merchant southeast of Coastal Cave, beneath the collapsed structure",
+            "Nomadic Merchant at Castle Morne Rampart in the Weeping Peninsula region",
+            "Nomadic Merchant east of Saintsbridge",
+            "Abandoned Merchant in the Siofra River region"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula",
+        "Siofra River"
+      ],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "physical_power": 50,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 99,
+        "max_stored": 600,
+        "buy_price": 40
+      }
+    },
+    {
+      "name": "Lordsworn's Bolt",
+      "wiki_page": "Lordsworn's Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Lordsworn%27s_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 65,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Lordsworn's Bolt is a craftable bolt in Elden Ring.",
+      "description": null,
+      "acquisition": [],
+      "regions_mentioned": [],
+      "acquisition_flags": [],
+      "infobox": {
+        "type": "Bolt",
+        "obtained": "Craftable",
+        "max_held": 99,
+        "max_stored": 600,
+        "physical_power": 65,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "attack_type": "Pierce"
+      }
+    },
+    {
+      "name": "Meteor Bolt",
+      "wiki_page": "Meteor Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Meteor_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "流星ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 25,
+        "magic": 80,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Meteor Bolt are a type of bolt in Elden Ring.",
+      "description": "Enchanted work of craft made in tandem with the Full Moon Crossbow. The tip is embedded with glintstone.\n\nLike a shooting star, these bolts leave a beautiful trail when fired. Deals magic damage.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchase:",
+            "→ Liurnia of the Lakes",
+            "→→ Can be purchased from the Isolated Merchant on the curving bridge outside the Academy of Raya Lucaria for 120 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes",
+        "Academy of Raya Lucaria"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Purchase",
+        "buy_price": 120,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 25,
+        "magic_power": 80,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Flaming Bolt",
+      "wiki_page": "Flaming Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Flaming_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "燃える火のボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 20,
+        "magic": 0,
+        "fire": 80,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Flaming Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolt with a fiercely burned tip. Deals powerful fire damage.\n\nUsed by survivors of Radahn's army to stave off the scarlet rot.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchase:",
+            "→ Caelid",
+            "→→ Can be purchased from the Nomadic Merchant of southern Caelid for 120 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Purchase",
+        "buy_price": 120,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 20,
+        "magic_power": 0,
+        "fire_power": 80,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Explosive Bolt",
+      "wiki_page": "Explosive Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Explosive_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "爆発ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 70,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Explosive Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolt tipped with a shard of Explosive Stone. Explodes on impact, dealing fire damage.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Loot:",
+            "→ Caelid",
+            "→→ x6 Found on a corpse by the cliffs of the ravine north of Caelem Ruins.",
+            "Purchase:",
+            "→ Mt. Gelmir",
+            "→→ Sold by the Nomadic Merchant of Mt. Gelmir for 160 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid",
+        "Mt. Gelmir"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Loot; Purchase",
+        "buy_price": 160,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 70,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Perfumer's Bolt",
+      "wiki_page": "Perfumer's Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Perfumer%27s_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "調香ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 15,
+        "magic": 0,
+        "fire": 65,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Perfumer's Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolt created with perfumer techniques. Used by nobles' guards and the like.\n\nThe point of impact explodes with sparks, dealing fire damage.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Random Drop:",
+            "→ Perfumers",
+            "→ Noble Page (5x, 10% chance for regular Page variant and 25% chance for High Page variant)",
+            "→→ The earliest available farm is two regular Pages inside of Tombsward Ruins while the generally most convenient farm is of the single High Page found down the second set of stairs on the path from West Capital Rampart Site of Grace to the Erdtree Sanctuary Site of Grace in Leyndell, Royal Capital (note that this enemy doesn't exist in Leyndell, Ashen Capital)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Leyndell, Royal Capital",
+        "Leyndell, Ashen Capital"
+      ],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "notes": [
+        "Boosted by the Perfumer's Talisman.",
+        "→ This boost makes them slightly stronger than Explosive Bolts."
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Loot",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 15,
+        "magic_power": 0,
+        "fire_power": 65,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Lightning Bolt",
+      "wiki_page": "Lightning Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Lightning_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "ライトニングボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 20,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 80,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Lightning Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolt tipped with a shard of Gravel Stone. Deals powerful lightning damage.\n\nUsed by worshippers of the ancient dragons.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchase:",
+            "→ Altus Plateau",
+            "→→ Can be purchased from the Nomadic Merchant on the southern end of the Forest-Spanning Greatbridge."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Altus Plateau"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Purchase",
+        "buy_price": 160,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 20,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 80,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Golden Bolt",
+      "wiki_page": "Golden Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Golden_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "黄金ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 20,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 80
+      },
+      "critical": 100,
+      "summary": "Golden Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolt blessed with an incantation of the Erdtree. Deals powerful holy damage.\n\nOnce used by guards of the Capital.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchased from the Hermit Merchant of Capital Outskirts for 120 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Capital Outskirts"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Purchase",
+        "buy_price": 120,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 20,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 80,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Black-Key Bolt",
+      "wiki_page": "Black-Key Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Black-Key_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "黒鍵の杭",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 30,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Black-Key Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolts used in Crepus' Black-Key Crossbow, an assassin's tool of exquisite craftsmanship.\n\nThe intricate spiral tip bores deep, injecting scarlet rot far into the flesh of its target.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Loot:",
+            "→ Roundtable Hold",
+            "→→ 20x found behind the first Imp Statue alongside the Crepus's Black-Key Crossbow.",
+            "→ Caelid",
+            "→→ 20x found on top of Sellia Gateway; can be accessed by traveling along the road southwest of the Church of the Plague.",
+            "→ Leyndell, Royal Capital",
+            "→→ 20x found in a room in the eastern wing of the Fortified Manor next to the Two Fingers' Prayerbook.",
+            "→ Lake of Rot",
+            "→→ 10x found on a corpse close to the first floor panel southwest of the Lake of Rot Shoreside Site of Grace.",
+            "Guaranteed Drop:",
+            "→ Altus Plateau",
+            "→→ 20x received automatically after successfully defeating Rileigh the Idle as part of the Volcano Manor assassinations questline."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold",
+        "Caelid",
+        "Altus Plateau",
+        "Volcano Manor",
+        "Leyndell, Royal Capital",
+        "Lake of Rot"
+      ],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Loot; Guaranteed Drop",
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 30,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "scarlet_rot": 60,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes scarlet rot buildup (60)"
+      }
+    },
+    {
+      "name": "Burred Bolt",
+      "wiki_page": "Burred Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Burred_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Bolts",
+      "source": "Base game",
+      "japanese_name": "逆棘ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 30,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Burred Bolt are a type of bolt in Elden Ring.",
+      "description": "Bolt covered in thorns. One of the most horrific weapons used in the Shattering. Afflicts target with blood loss.\n\nDifficult to remove once buried in flesh, causing appalling damage to the body.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Can be purchased from the Imprisoned Merchant of Mohgwyn Dynasty Mausoleum for 200 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mohgwyn Palace"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 99,
+        "max_stored": 600,
+        "obtained": "Loot; Purchase",
+        "buy_price": 200,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 30,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "blood_loss": 65,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No",
+        "passive_effects": "Causes blood loss buildup (65)"
+      }
+    },
+    {
+      "name": "Bone Ballista Bolt",
+      "wiki_page": "Bone Ballista Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Bone_Ballista_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Greatbolts",
+      "source": "Base game",
+      "japanese_name": "骨のバリスタボルト",
+      "type": "Bolt",
+      "effect": "Thick, whittled bone bolt, large as a spear",
+      "attack_power": {
+        "physical": 150,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Bone Ballista Bolt is a craftable greatbolt in Elden Ring.",
+      "description": "Greatbolt as large as a spear carved from stout animal bones.\nCraftable item.\n\nThough the tip is certainly sharp, it does not fly particularly true.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Recipe is included with Nomadic Warrior's Cookbook [13], found north of Bellum Church."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "craftable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 20,
+        "max_stored": 600,
+        "item_effect": "Thick, whittled bone bolt, large as a spear",
+        "obtained": "Craftable",
+        "sell_price": 1,
+        "trade": "Yes",
+        "cookbook": "Nomadic Warrior's Cookbook [13]",
+        "required_items": "Hefty Beast Bone x1",
+        "physical_power": 150,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Ballista Bolt",
+      "wiki_page": "Ballista Bolt",
+      "url": "https://eldenring.wiki.gg/wiki/Ballista_Bolt",
+      "section": "Arrows/Bolts",
+      "category": "Greatbolts",
+      "source": "Base game",
+      "type": "Greatbolt",
+      "attack_power": {
+        "physical": 160,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Ballista Bolt is a type of Greatbolt in Elden Ring.",
+      "description": "Greatbolt as large as a spear for use with Hand Ballista.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Loot:",
+            "→ x5 are found at the top of Forest Lookout Tower along with the Hand Ballista.",
+            "→ x5 Ballista Bolts can be found in Stormveil Castle, behind the main gate.",
+            "Purchase:",
+            "→ x5 Ballista Bolts are sold by Patches in Murkwater Cave for 300 Runes.",
+            "→ x8 are sold by the Nomadic Merchant at Castle Morne Rampart in the Weeping Peninsula region for 300 Runes.",
+            "→ x15 are sold by the Isolated Merchant in the Weeping Peninsula region 300 Runes.",
+            "→ x5 are sold by Gatekeeper Gostoc in Stormveil Castle 300 Runes.",
+            "→ Unlimited Ballista Bolts are sold by the Hermit Merchant in the Capital Outskirts on the Altus Plateau 300 Runes.",
+            "→ Unlimited Ballista Bolts are sold by the Nomadic Merchant on Mt. Gelmir 300 Runes.",
+            "→ Unlimited Ballista Bolts are sold by the Hermit Merchant on the Mountaintops of the Giants 300 Runes.",
+            "→ Unlimited Ballista Bolts are sold by Moore in the Gravesite Plain for 300 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Weeping Peninsula",
+        "Stormveil Castle",
+        "Altus Plateau",
+        "Mt. Gelmir",
+        "Capital Outskirts",
+        "Mountaintops of the Giants",
+        "Gravesite Plain"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Greatbolt",
+        "attack_type": "Pierce",
+        "buy_price": 300,
+        "physical_power": 160,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "max_held": 20,
+        "max_stored": 600,
+        "obtained": "Purchase"
+      }
+    },
+    {
+      "name": "Explosive Greatbolt",
+      "wiki_page": "Explosive Greatbolt",
+      "url": "https://eldenring.wiki.gg/wiki/Explosive_Greatbolt",
+      "section": "Arrows/Bolts",
+      "category": "Greatbolts",
+      "source": "Base game",
+      "japanese_name": "爆発大ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 50,
+        "magic": 0,
+        "fire": 150,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Explosive Greatbolt is a greatbolt in Elden Ring.",
+      "description": "Greatbolt tipped with a clump of Explosive Stone shards.\n\nDetonates a large explosion on impact, dealing fire damage",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Loot:",
+            "→ Mt. Gelmir",
+            "→→ x5 Found on a corpse guarded by two Abductor Virgins north-west of the Bridge of Iniquity Site of Grace.",
+            "→ Volcano Manor",
+            "→→ x5 Found on a corpse hanging on a balcony north of the Guest Hall Site of Grace.",
+            "Purchase:",
+            "→ Mt. Gelmir",
+            "→→ Sold by the Nomadic Merchant of Mt. Gelmir for 800 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mt. Gelmir",
+        "Volcano Manor"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 20,
+        "max_stored": 600,
+        "obtained": "Purchase; Loot",
+        "buy_price": 800,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 50,
+        "magic_power": 0,
+        "fire_power": 150,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Lightning Greatbolt",
+      "wiki_page": "Lightning Greatbolt",
+      "url": "https://eldenring.wiki.gg/wiki/Lightning_Greatbolt",
+      "section": "Arrows/Bolts",
+      "category": "Greatbolts",
+      "source": "Base game",
+      "japanese_name": "ライトニング大ボルト",
+      "type": "Bolt",
+      "attack_power": {
+        "physical": 50,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 150,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Lightning Greatbolt is a greatbolt in Elden Ring.",
+      "description": "Greatbolt tipped with a clump of Gravel Stone shards.\n\nDeals powerful lightning damage.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Purchase:",
+            "→ Mountaintops of the Giants",
+            "→→ Sold by the Hermit Merchant of Mountaintops of the Giants for 500 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Mountaintops of the Giants"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Bolt",
+        "attack_type": "Pierce",
+        "max_held": 20,
+        "max_stored": 600,
+        "obtained": "Purchase; Loot",
+        "buy_price": 500,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 50,
+        "magic_power": 0,
+        "fire_power": 0,
+        "lightning_power": 150,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    },
+    {
+      "name": "Rabbath's Greatbolt",
+      "wiki_page": "Rabbath's Greatbolt",
+      "url": "https://eldenring.wiki.gg/wiki/Rabbath%27s_Greatbolt",
+      "section": "Arrows/Bolts",
+      "category": "Greatbolts",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "ラバスの大ボルト",
+      "type": "Greatbolt",
+      "attack_power": {
+        "physical": 50,
+        "magic": 150,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "critical": 100,
+      "summary": "Rabbath's Greatbolt are a type of greatbolt in Elden Ring: Shadow of the Erdtree.",
+      "description": "Greatbolt tipped with a clump of glintstone shards. One of Spellmachinist Rabbath's innovative designs.\n\nDetonates a large explosion on impact, dealing magic damage.",
+      "effect_details": [
+        "Causes an explosion of Magic damage on point of impact.",
+        "Magic Attack Power is enhanced even further when fired from Rabbath's Cannon."
+      ],
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": "Roundtable Hold",
+          "region": null,
+          "details": [
+            "Purchased for 800 from the Twin Maiden Husks after giving them the Spellmachinist's Bell Bearing."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "infobox": {
+        "type": "Greatbolt",
+        "attack_type": "Pierce",
+        "max_held": 20,
+        "max_stored": 600,
+        "obtained": "Purchase",
+        "buy_price": 800,
+        "sell_price": 10,
+        "trade": "Yes",
+        "physical_power": 50,
+        "magic_power": 150,
+        "fire_power": 0,
+        "lightning_power": 0,
+        "holy_power": 0,
+        "critical": 100,
+        "parryable": "No",
+        "deflectable": "Yes",
+        "reflectable": "No"
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+<!-- @dsCard group="Structure" height=560 subtitle="Carte d’arme recommandée (widget A)" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>WeaponCard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-c-katana" viewBox="0 0 24 24"><path d="M4 20l2.6-2.6"></path><path d="M5.4 16.2l2.4 2.4"></path><path d="M7.5 16.5C12 13.5 17 9 20 4c-1.5 5.5-6 10.2-10.8 14.1"></path></symbol><symbol id="i-weight" viewBox="0 0 24 24"><path d="M9 7.5a3 3 0 1 1 6 0"></path><path d="M5.5 9h13l1.5 11H4z"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-skill" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"></path></symbol><symbol id="i-st-bleed" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.7a6 6 0 0 1-12 0c0-3.3 3-6.7 6-10.7z"></path><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"></path></symbol><symbol id="i-stone" viewBox="0 0 24 24"><path d="M7 5h10l3 5-8 10-8-10z"></path><path d="M4 10h16"></path><path d="M10 5l-1.5 5L12 20l3.5-10L14 5"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"></path><path d="M12 7.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4.5 7.5L8 4l3.5 3.5"></path><path d="M12.5 16.5L16 20l3.5-3.5"></path></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13"></path><path d="M15 5l3 3-3 3"></path><path d="M19 16H6"></path><path d="M9 13l-3 3 3 3"></path></symbol><symbol id="i-help" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.5"></path><path d="M12 16.7h.01" stroke-width="2.4"></path></symbol><symbol id="i-c-greatsword" viewBox="0 0 24 24"><path d="M3.8 20.2L6.6 17.4"></path><path d="M4.6 14.2l5.2 5.2"></path><path d="M7.4 16.6L17.5 6.5"></path><path d="M9.4 18.6L19.5 8.5"></path><path d="M17.5 6.5L20 4l-.5 4.5"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-trade" viewBox="0 0 24 24"><path d="M12 3l6.5 9-6.5 9-6.5-9z"></path><path d="M12 9.5v5"></path></symbol></svg>
+<div class="pv"><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:820px">
+<article class="cx-wcard is-top">
+  <div class="cx-wcard-head">
+    <div><a class="cx-wcard-name" href="#">Rivers of Blood</a>
+      <div class="cx-wcard-sub"><svg class="cx-i sm" aria-hidden="true"><use href="#i-c-katana"></use></svg><span>Katana</span><span><svg class="cx-i xs" aria-hidden="true"><use href="#i-weight"></use></svg> 6,5</span><span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div></div>
+    <div class="cx-score" title="Score de recommandation (Calculé)"><span class="cx-score-num">77</span><span class="cx-score-bar"><span style="width:77%"></span></span></div>
+  </div>
+  <div class="cx-wcard-field"><span class="cx-req is-ok"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>STR 12</span><span class="cx-req is-ok"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>DEX 18</span><span class="cx-req is-miss"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg>ARC 20<span class="cx-req-gap">+10 ARC</span></span></div>
+  <div class="cx-wcard-field"><span class="cx-scl"><span class="cx-scl-attr">STR</span><span class="cx-scl-g g-e">E</span></span><span class="cx-scl"><span class="cx-scl-attr">DEX</span><span class="cx-scl-g g-d">D</span></span><span class="cx-scl"><span class="cx-scl-attr">ARC</span><span class="cx-scl-g g-d">D</span></span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-skill"></use></svg><span><b>Corpse Piler</b> compétence unique</span></div>
+  <div class="cx-wcard-line"><span class="cx-dt st-bleed"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-st-bleed"></use></svg></span>Saignement <span class="cx-dt-val">50</span></span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-stone"></use></svg><span>Pierres sombres, +10</span><span class="cx-rel cx-rel-wiki"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg>Wiki</span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-map"></use></svg><span>Vaincre Okina — Church of Repose, Mountaintops of the Giants</span></div>
+  
+  <div class="cx-wcard-acts">
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm cx-wcard-pin" aria-label="Épingler à Ma liste" aria-pressed="false"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Comparer"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Voir les alternatives"><svg class="cx-i" aria-hidden="true"><use href="#i-swap"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-sm cx-btn-why"><svg class="cx-i sm" aria-hidden="true"><use href="#i-help"></use></svg>Pourquoi ?</button>
+  </div>
+</article>
+<article class="cx-wcard">
+  <div class="cx-wcard-head">
+    <div><a class="cx-wcard-name" href="#">Uchigatana</a>
+      <div class="cx-wcard-sub"><svg class="cx-i sm" aria-hidden="true"><use href="#i-c-katana"></use></svg><span>Katana</span><span><svg class="cx-i xs" aria-hidden="true"><use href="#i-weight"></use></svg> 5,5</span><span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div></div>
+    <div class="cx-score" title="Score de recommandation (Calculé)"><span class="cx-score-num">75</span><span class="cx-score-bar"><span style="width:75%"></span></span></div>
+  </div>
+  <div class="cx-wcard-field"><span class="cx-req is-ok"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>STR 11</span><span class="cx-req is-ok"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>DEX 15</span></div>
+  <div class="cx-wcard-field"><span class="cx-scl"><span class="cx-scl-attr">STR</span><span class="cx-scl-g g-d">D</span></span><span class="cx-scl"><span class="cx-scl-attr">DEX</span><span class="cx-scl-g g-d">D</span></span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-skill"></use></svg><span><b>Unsheathe</b> Cendre de guerre</span></div>
+  <div class="cx-wcard-line"><span class="cx-dt st-bleed"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-st-bleed"></use></svg></span>Saignement <span class="cx-dt-val">45</span></span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-stone"></use></svg><span>Pierres normales, +25</span><span class="cx-rel cx-rel-wiki"><svg class="cx-i" aria-hidden="true"><use href="#i-book"></use></svg>Wiki (déduit)</span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-map"></use></svg><span>Butin — Deathtouched Catacombs, Limgrave</span></div>
+  
+  <div class="cx-wcard-acts">
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm cx-wcard-pin" aria-label="Épingler à Ma liste" aria-pressed="false"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Comparer"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Voir les alternatives"><svg class="cx-i" aria-hidden="true"><use href="#i-swap"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-sm cx-btn-why"><svg class="cx-i sm" aria-hidden="true"><use href="#i-help"></use></svg>Pourquoi ?</button>
+  </div>
+</article>
+<article class="cx-wcard">
+  <div class="cx-wcard-head">
+    <div><a class="cx-wcard-name" href="#">Blasphemous Blade</a>
+      <div class="cx-wcard-sub"><svg class="cx-i sm" aria-hidden="true"><use href="#i-c-greatsword"></use></svg><span>Greatsword</span><span><svg class="cx-i xs" aria-hidden="true"><use href="#i-weight"></use></svg> 13,5</span><span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div></div>
+    <div class="cx-score" title="Score de recommandation (Calculé)"><span class="cx-score-num">54</span><span class="cx-score-bar"><span style="width:54%"></span></span></div>
+  </div>
+  <div class="cx-wcard-field"><span class="cx-req is-miss"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg>STR 22<span class="cx-req-gap">+3 STR</span></span><span class="cx-req is-ok"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>DEX 15</span><span class="cx-req is-miss"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg>FAI 21<span class="cx-req-gap">+13 FAI</span></span></div>
+  <div class="cx-wcard-field"><span class="cx-scl"><span class="cx-scl-attr">STR</span><span class="cx-scl-g g-d">D</span></span><span class="cx-scl"><span class="cx-scl-attr">DEX</span><span class="cx-scl-g g-d">D</span></span><span class="cx-scl"><span class="cx-scl-attr">FAI</span><span class="cx-scl-g g-d">D</span></span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-skill"></use></svg><span><b>Taker's Flames</b> compétence unique</span></div>
+  <div class="cx-wcard-line"><span class="cx-muted">Rend 4 % des PV max + 40 à chaque mort proche</span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-stone"></use></svg><span>Pierres sombres, +10</span><span class="cx-rel cx-rel-est"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg>Estimation (haute)</span></div>
+  <div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-map"></use></svg><span>Échange de Remembrance — Remembrance de Rykard, Finger Reader Enia, Roundtable Hold</span></div>
+  <div class="cx-row tight"><span class="cx-flag is-alert" title="Vous renoncez aux autres objets de cet échange"><svg class="cx-i" aria-hidden="true"><use href="#i-trade"></use></svg>Remembrance</span></div>
+  <div class="cx-wcard-acts">
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm cx-wcard-pin" aria-label="Épingler à Ma liste" aria-pressed="false"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Comparer"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Voir les alternatives"><svg class="cx-i" aria-hidden="true"><use href="#i-swap"></use></svg></button>
+    <button class="cx-btn cx-btn-ghost cx-btn-sm cx-btn-why"><svg class="cx-i sm" aria-hidden="true"><use href="#i-help"></use></svg>Pourquoi ?</button>
+  </div>
+</article>
+</div><p class="cx-muted" style="font-size:12px">Scores : <span class="cx-mq">valeur de maquette</span></p></div>
+
+</body>
+</html>

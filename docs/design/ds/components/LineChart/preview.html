@@ -1,0 +1,33 @@
+<!-- @dsCard group="Visualisation" height=330 subtitle="Évolution par niveau d’amélioration" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>LineChart</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol></svg>
+<div class="pv" style="max-width:640px">
+<div class="cx-legend"><span><span class="cx-legend-key" style="background:var(--cat-1)"></span>Standard</span><span><span class="cx-legend-key" style="background:var(--cat-2)"></span>Keen</span><span><span class="cx-legend-key" style="background:var(--cat-3)"></span>Cold</span><span><span class="cx-legend-key" style="background:var(--cat-4)"></span>Blood</span><span class="cx-mq">valeur de maquette</span></div>
+<svg class="cx-chart" viewBox="0 0 600 220" width="100%" role="img" aria-label="Attaque physique par niveau et affinité (valeurs de maquette)">
+<line class="grid" x1="40" x2="590" y1="20" y2="20"></line><line class="grid" x1="40" x2="590" y1="80" y2="80"></line><line class="grid" x1="40" x2="590" y1="140" y2="140"></line><line class="axis" x1="40" x2="590" y1="190" y2="190"></line>
+<text x="34" y="24" text-anchor="end">300</text><text x="34" y="84" text-anchor="end">200</text><text x="34" y="144" text-anchor="end">100</text><text x="40" y="208">+0</text><text x="315" y="208" text-anchor="middle">+12</text><text x="590" y="208" text-anchor="end">+25</text>
+<path class="series" style="stroke:var(--cat-1)" d="M40 121 C 200 92, 400 60, 590 33"></path>
+<path class="series" style="stroke:var(--cat-2)" d="M40 126 C 200 100, 400 72, 590 47"></path>
+<path class="series" style="stroke:var(--cat-3)" d="M40 136 C 200 115, 400 92, 590 72"></path>
+<path class="series" style="stroke:var(--cat-4)" d="M40 131 C 200 108, 400 84, 590 60"></path>
+<line x1="400" x2="400" y1="20" y2="190" style="stroke:var(--ink-3);stroke-width:1"></line><circle class="dot" cx="400" cy="60" r="4.5" style="fill:var(--cat-1)"></circle>
+</svg>
+<div class="cx-tip" style="align-self:flex-start"><span class="cx-tip-body is-open" style="position:static;transform:none"><b>+18, Standard</b> : 246 (base +0 : 115) <span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span></span></div>
+</div>
+
+</body>
+</html>

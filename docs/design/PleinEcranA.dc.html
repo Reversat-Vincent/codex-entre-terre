@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Armes recommandées, plein écran — Codex de l'Entre-terre</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/codex/tokens.css">
+<link rel="stylesheet" href="ds/codex/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400">
+<style>
+body{margin:0}
+.p-root{min-height:100vh;display:flex;flex-direction:column}
+.p-fs-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-3);padding:var(--space-5) var(--space-6) var(--space-4);border-bottom:1px solid var(--line);background:var(--surface)}
+.p-crumb{display:flex;align-items:center;gap:6px;margin-bottom:4px;color:var(--ink-3);font-size:12px;line-height:16px}
+.p-fs-body{flex:1 1 auto;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5) var(--space-6) var(--space-6);min-width:0}
+.p-toolbar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--space-3) var(--space-4);padding:var(--space-3) var(--space-4);border:1px solid var(--line-strong);border-radius:var(--radius-l);background:var(--surface)}
+.p-field{display:grid;gap:4px}
+.p-field>span,.p-field>label{color:var(--ink-3);font:600 12px/16px var(--font-sans)}
+.p-q{display:flex;align-items:center;gap:6px;height:var(--size-controle);padding:0 var(--space-2);border:1px solid var(--control-border);border-radius:var(--radius-s);background:var(--surface-sunken);color:var(--ink-3)}
+.p-q input{width:180px;height:28px;border:0;background:transparent;color:var(--ink);outline:none;font-size:13px}
+.p-split{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--space-5)}
+.p-tablecol{flex:999 1 640px;min-width:0;display:grid;gap:var(--space-2)}
+.p-detail td{padding:0 10px 12px;background:var(--gold-wash)}
+.p-detail:hover td{background:var(--gold-wash)}
+.p-name{min-width:210px}
+.p-chips.v{max-width:150px}
+.cx-tbl td{vertical-align:middle}
+.p-sub{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin-top:2px;color:var(--ink-3);font-size:12px;line-height:16px}
+.p-chips{display:flex;flex-wrap:wrap;gap:4px}
+.p-stage{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.p-stage i{display:inline-block;width:8px;height:8px;transform:rotate(45deg);border:1.5px solid var(--control-border);background:var(--surface)}
+.p-stage.is-past i,.p-stage.is-now i{border-color:var(--gold);background:var(--gold)}
+.p-stage.is-now{color:var(--gold-text);font-weight:600}
+.p-where{min-width:180px;max-width:220px;font-size:12px;line-height:16px;color:var(--ink-2)}
+.p-acts{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}
+.p-dim td{opacity:.5}
+.p-count{color:var(--ink-3);font-size:12px;line-height:16px;margin-left:auto;align-self:center}
+.cx-score-bar>span,.cx-bd-bar>span{transition:width .15s ease}
+@media (prefers-reduced-motion:reduce){.cx-score-bar>span,.cx-bd-bar>span{transition:none}}
+@media (max-width:1100px){.p-side{max-width:none;position:static}}
+</style>
+</helmet>
+<div class="cx p-root {{rootCls}}" data-theme="{{theme}}">
+<svg width="0" height="0" style="position: absolute; overflow: hidden" aria-hidden="true" focusable="false"><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol><symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></symbol><symbol id="i-chev-u" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"></path></symbol><symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4.5 7.5L8 4l3.5 3.5"></path><path d="M12.5 16.5L16 20l3.5-3.5"></path></symbol><symbol id="i-info" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 11v5.5"></path><path d="M12 7.8h.01" stroke-width="2.4"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-help" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.5"></path><path d="M12 16.7h.01" stroke-width="2.4"></path></symbol><symbol id="i-min" viewBox="0 0 24 24"><path d="M9 4v5H4"></path><path d="M15 4v5h5"></path><path d="M9 20v-5H4"></path><path d="M15 20v-5h5"></path></symbol><symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"></path></symbol><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13"></path><path d="M15 5l3 3-3 3"></path><path d="M19 16H6"></path><path d="M9 13l-3 3 3 3"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"></path><path d="M12 7.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path></symbol><symbol id="i-weight" viewBox="0 0 24 24"><path d="M9 7.5a3 3 0 1 1 6 0"></path><path d="M5.5 9h13l1.5 11H4z"></path></symbol><symbol id="i-stone" viewBox="0 0 24 24"><path d="M7 5h10l3 5-8 10-8-10z"></path><path d="M4 10h16"></path><path d="M10 5l-1.5 5L12 20l3.5-10L14 5"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M4.5 20c1.2-3.5 4-5.5 7.5-5.5s6.3 2 7.5 5.5"></path></symbol><symbol id="i-npc" viewBox="0 0 24 24"><path d="M12 3.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M6 20.5v-3a6 6 0 0 1 12 0v3"></path><path d="M9.5 20.5v-3"></path></symbol><symbol id="i-trade" viewBox="0 0 24 24"><path d="M12 3l6.5 9-6.5 9-6.5-9z"></path><path d="M12 9.5v5"></path></symbol><symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 4v10"></path><path d="M7.5 9.5L12 14l4.5-4.5"></path><path d="M5 19.5h14"></path></symbol><symbol id="i-start" viewBox="0 0 24 24"><path d="M5 20.5V4"></path><path d="M5 4.5h12l-3 3.5 3 3.5H5"></path></symbol><symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M12 2.5v2"></path><path d="M12 19.5v2"></path><path d="M2.5 12h2"></path><path d="M19.5 12h2"></path><path d="M5.3 5.3l1.4 1.4"></path><path d="M17.3 17.3l1.4 1.4"></path><path d="M5.3 18.7l1.4-1.4"></path><path d="M17.3 6.7l1.4-1.4"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol><symbol id="i-s-tp" viewBox="0 0 24 24"><path d="M12 4.5l7.5 7.5-7.5 7.5L4.5 12z"></path></symbol><symbol id="i-d-standard" viewBox="0 0 24 24"><path d="M18.5 5.5L8.2 15.8"></path><path d="M18.5 5.5H15"></path><path d="M18.5 5.5V9"></path><path d="M6 13.5l4.5 4.5"></path><path d="M7.6 16.4L4.5 19.5"></path></symbol><symbol id="i-d-magic" viewBox="0 0 24 24"><path d="M12 3.5l1.9 6.6 6.6 1.9-6.6 1.9L12 20.5l-1.9-6.6L3.5 12l6.6-1.9z"></path></symbol><symbol id="i-d-fire" viewBox="0 0 24 24"><path d="M12 3.5c1 3.5 5.5 5.2 5.5 10a5.5 5.5 0 0 1-11 0c0-2.6 1.5-4 2.6-5.2.3 1.7 1 2.7 2.2 3.2C11 9 10.6 6.2 12 3.5z"></path></symbol><symbol id="i-st-bleed" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.7a6 6 0 0 1-12 0c0-3.3 3-6.7 6-10.7z"></path><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"></path></symbol><symbol id="i-c-straight" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5 14.5l4.5 4.5"></path><path d="M7.5 16.5L18.5 5.5V8.5L9.8 17.2"></path></symbol><symbol id="i-c-greatsword" viewBox="0 0 24 24"><path d="M3.8 20.2L6.6 17.4"></path><path d="M4.6 14.2l5.2 5.2"></path><path d="M7.4 16.6L17.5 6.5"></path><path d="M9.4 18.6L19.5 8.5"></path><path d="M17.5 6.5L20 4l-.5 4.5"></path></symbol><symbol id="i-c-lgs" viewBox="0 0 24 24"><path d="M3.5 20.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M7.8 16.2L20 4"></path><path d="M20 4l-.3 2.8L9.4 17.1"></path></symbol><symbol id="i-c-katana" viewBox="0 0 24 24"><path d="M4 20l2.6-2.6"></path><path d="M5.4 16.2l2.4 2.4"></path><path d="M7.5 16.5C12 13.5 17 9 20 4c-1.5 5.5-6 10.2-10.8 14.1"></path></symbol></svg>
+
+<div class="cx-proto" role="region" aria-label="Commandes du prototype">
+<span>Prototype</span><span class="sep"></span>
+<span>Thème</span>
+<button aria-pressed="{{pDark}}" onClick="{{setDark}}">Sombre</button>
+<button aria-pressed="{{pLight}}" onClick="{{setLight}}">Parchemin</button>
+<span class="sep"></span>
+<button aria-pressed="{{showMock}}" onClick="{{toggleMock}}">Annotations ◆</button>
+<span style="margin-left: auto; font-weight: 400">Mêmes critères que le tableau de bord (profil « Dex / Saignement »). ◆ valeur de maquette.</span>
+</div>
+
+<header class="p-fs-head">
+<div>
+<p class="p-crumb"><a href="Main.dc.html">Tableau de bord</a><svg class="cx-i xs" aria-hidden="true"><use href="#i-chev-r"></use></svg><span>Widget en plein écran</span></p>
+<h1 class="titre-l">Armes recommandées au fil de la partie</h1>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-calc"></use></svg><span>Toutes les armes compatibles avec vos critères. Score sur 100 : adéquation au build, puissance et scaling, accessibilité à votre étape, coût d'amélioration. Valeurs de base à +0.</span><span class="cx-mq">valeur de maquette</span></p>
+</div>
+<a class="cx-btn" href="Main.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-min"></use></svg>Quitter le plein écran<span class="cx-kbd">Échap</span></a>
+</header>
+
+<main class="p-fs-body">
+<div class="cx-row" role="group" aria-label="Critères actifs">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="7"><span class="cx-chip {{c.onCls}}"><span class="k">{{c.k}}</span>{{c.v}}</span></sc-for>
+<a class="cx-btn cx-btn-ghost cx-btn-sm" href="Main.dc.html">Modifier les critères</a>
+</div>
+
+<div class="p-toolbar" role="search" aria-label="Filtrer le tableau">
+<div class="p-field"><label for="fs-q">Nom</label><span class="p-q"><svg class="cx-i sm" aria-hidden="true"><use href="#i-search"></use></svg><input id="fs-q" placeholder="Filtrer par nom ou compétence" value="{{q}}" onChange="{{onQ}}"></span></div>
+<div class="p-field"><span>Étape</span><div class="cx-seg" role="group" aria-label="Étape"><sc-for list="{{stageSeg}}" as="o" hint-placeholder-count="6"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div></div>
+<div class="p-field"><label for="fs-cat">Classe</label><select id="fs-cat" class="cx-select" value="{{cat}}" onChange="{{onCat}}"><option value="">Toutes les classes</option><option value="Katana">Katana</option><option value="Greatsword">Greatsword</option><option value="Light Greatsword">Light Greatsword</option><option value="Straight Sword">Straight Sword</option></select></div>
+<div class="p-field"><span>Amélioration</span><div class="cx-seg" role="group" aria-label="Type d'amélioration"><sc-for list="{{upSeg}}" as="o" hint-placeholder-count="3"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for></div></div>
+<div class="p-field" style="min-width: 230px"><span>Profil</span><button class="cx-toggle" aria-pressed="{{reqOnly}}" onClick="{{toggleReq}}"><span class="cx-toggle-track"><span class="cx-toggle-thumb"></span></span>Prérequis atteints seulement</button></div>
+<span class="p-count">{{countTxt}}</span>
+<sc-if value="{{hasFilters}}" hint-placeholder-val="{{ false }}"><button class="cx-btn cx-btn-ghost cx-btn-sm" onClick="{{clear}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-x"></use></svg>Effacer les filtres</button></sc-if>
+</div>
+
+<div class="p-split">
+<div class="p-tablecol">
+<sc-if value="{{hasRows}}" hint-placeholder-val="{{ true }}">
+<div class="cx-tbl-wrap"><table class="cx-tbl">
+<thead><tr>
+<sc-for list="{{heads}}" as="h" hint-placeholder-count="11">
+<th scope="col" class="{{h.cls}}" aria-sort="{{h.sort}}"><sc-if value="{{h.sortable}}" hint-placeholder-val="{{ true }}"><button class="cx-th-btn" title="Clic : trier. Maj + clic : tri secondaire." onClick="{{h.by}}">{{h.label}}<sc-if value="{{h.sorted}}" hint-placeholder-val="{{ false }}"><svg class="cx-i xs" aria-hidden="true"><use href="{{h.icon}}"></use></svg><span class="cx-sort-rank">{{h.rank}}</span></sc-if></button></sc-if><sc-if value="{{h.plain}}" hint-placeholder-val="{{ false }}"><span>{{h.label}}</span></sc-if></th>
+</sc-for>
+</tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+<tr class="{{r.rowCls}}">
+<td class="num"><span class="cx-score-num cx-mqv" style="font-size: 18px">{{r.score}}</span><span class="cx-score-bar" style="display: block; margin: 4px 0 0 auto"><span style="width: {{r.score}}%"></span></span></td>
+<td class="p-name"><a class="cx-cell-name" href="FicheArme.dc.html">{{r.name}}</a> <span class="cx-badge cx-src-{{r.src}}" title="{{r.srcF}}" aria-label="Source : {{r.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{r.srcI}}"></use></svg>{{r.srcS}}</span><div class="p-sub"><svg class="cx-i sm" aria-hidden="true"><use href="{{r.icon}}"></use></svg><span>{{r.cat}}</span><span>{{r.skill}}, {{r.skillType}}</span></div></td>
+<td><span class="p-stage {{r.stCls}}"><i aria-hidden="true"></i>{{r.stage}}</span></td>
+<td class="num">{{r.wt}}</td>
+<td><div class="p-chips"><sc-for list="{{r.atk}}" as="a" hint-placeholder-count="2"><span class="cx-dt {{a.cls}}" title="{{a.title}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{a.icon}}"></use></svg></span><span class="cx-dt-val">{{a.v}}</span></span></sc-for></div></td>
+<td><div class="p-chips"><sc-for list="{{r.scls}}" as="g" hint-placeholder-count="2"><span class="cx-scl" title="{{g.title}}"><span class="cx-scl-attr">{{g.attr}}</span><span class="cx-scl-g g-{{g.lc}}">{{g.g}}</span></span></sc-for></div></td>
+<td><div class="p-chips"><sc-for list="{{r.reqs}}" as="q" hint-placeholder-count="2"><span class="cx-req {{q.cls}}" title="{{q.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{q.icon}}"></use></svg>{{q.label}}<sc-if value="{{q.miss}}" hint-placeholder-val="{{ false }}"><span class="cx-req-gap">{{q.gap}}</span></sc-if></span></sc-for></div></td>
+<td><sc-if value="{{r.hasSt}}" hint-placeholder-val="{{ true }}"><span class="cx-dt st-bleed"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="#i-st-bleed"></use></svg></span>Saignement <span class="cx-dt-val">{{r.stVal}}</span></span></sc-if><sc-if value="{{r.hasPText}}" hint-placeholder-val="{{ false }}"><span class="cx-muted" style="font-size: 12px">{{r.pText}}</span></sc-if><sc-if value="{{r.noPas}}" hint-placeholder-val="{{ false }}"><span class="cx-muted">Aucun</span></sc-if></td>
+<td><div class="p-chips" style="align-items: center"><span style="white-space: nowrap">{{r.upTxt}}</span><span class="cx-rel {{r.relCls}}" title="{{r.relTitle}}"><svg class="cx-i" aria-hidden="true"><use href="{{r.relIcon}}"></use></svg>{{r.relLabel}}</span></div></td>
+<td class="p-where">{{r.where}}<sc-if value="{{r.hasFlags}}" hint-placeholder-val="{{ false }}"><div class="p-chips" style="margin-top: 4px"><sc-for list="{{r.flags}}" as="f" hint-placeholder-count="1"><span class="cx-flag {{f.cls}}" title="{{f.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{f.icon}}"></use></svg>{{f.label}}</span></sc-for></div></sc-if></td>
+<td><div class="p-acts"><button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{r.pinLabel}}" title="{{r.pinLabel}}" aria-pressed="{{r.pinned}}" onClick="{{r.pin}}"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg></button><button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{r.cmpLabel}}" title="{{r.cmpLabel}}" aria-pressed="{{r.inCmp}}" onClick="{{r.cmp}}"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg></button><button class="cx-btn cx-btn-ghost cx-btn-sm" aria-expanded="{{r.sel}}" onClick="{{r.select}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-help"></use></svg>Pourquoi ?</button></div></td>
+</tr>
+<sc-if value="{{r.sel}}" hint-placeholder-val="{{ false }}">
+<tr class="p-detail"><td colSpan="11">
+<div class="cx-why" role="region" aria-label="{{why.title}}">
+<div class="cx-why-h"><h3 class="titre-s">{{why.title}}</h3><span class="cx-row tight"><a class="cx-btn cx-btn-ghost cx-btn-sm" href="FicheArme.dc.html">Voir la fiche</a><button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Fermer" title="Fermer" onClick="{{closeWhy}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg></button></span></div>
+<div><h4>Score {{why.score}} sur 100 <span class="cx-mq">valeur de maquette</span></h4><div class="cx-breakdown"><sc-for list="{{why.parts}}" as="p" hint-placeholder-count="4"><div class="cx-bd-row"><span>{{p.label}}</span><b>{{p.v}}</b><span class="cx-bd-bar"><span style="width: {{p.pct}}%"></span></span></div></sc-for></div></div>
+<div><h4>Données utilisées</h4><ul class="cx-why-data"><sc-for list="{{why.data}}" as="d" hint-placeholder-count="4"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{d.icon}}"></use></svg><span>{{d.t}}</span></li></sc-for></ul></div>
+<div><h4>Limites</h4><ul class="cx-why-data"><sc-for list="{{why.limits}}" as="d" hint-placeholder-count="2"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{d.icon}}"></use></svg><span>{{d.t}}</span></li></sc-for></ul></div>
+</div>
+</td></tr>
+</sc-if>
+</sc-for>
+</tbody>
+</table></div>
+</sc-if>
+<sc-if value="{{noRows}}" hint-placeholder-val="{{ false }}">
+<div class="cx-empty"><span class="cx-empty-title">Aucune arme ne correspond à ces filtres</span><span>{{emptyTxt}}</span><div class="cx-row"><button class="cx-btn cx-btn-sm" onClick="{{clear}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-x"></use></svg>Effacer les filtres</button><a class="cx-btn cx-btn-ghost cx-btn-sm" href="Main.dc.html">Voir les critères</a></div></div>
+</sc-if>
+<p class="p-hidden" style="color: var(--ink-3); font-size: 12px">Prototype : les 10 armes de l'annexe B. Avec les 335 armes de mêlée, les lignes au-delà de 100 sont virtualisées (34 px, en-tête collant) et le compteur reste visible.</p>
+<sc-if value="{{cmpOn}}" hint-placeholder-val="{{ false }}">
+<div class="cx-note calc" style="align-items: center"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg><span><b>{{cmpTitle}}</b> {{cmpNames}}</span><span class="cx-row tight" style="margin-left: auto"><button class="cx-btn cx-btn-sm" disabled="{{cmpCant}}">Ouvrir le comparateur</button><button class="cx-btn cx-btn-ghost cx-btn-sm" onClick="{{cmpClear}}">Vider</button></span></div>
+</sc-if>
+</div>
+
+</div>
+</main>
+<footer class="cx-footer"><span>Outil de fan non officiel — données : eldenring.wiki.gg (CC BY-SA 4.0)</span><span>Valeurs de base à +0</span></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["sombre","parchemin"],"default":"sombre","section":"Prototype"},"showMock":{"editor":"boolean","default":true,"section":"Prototype"},"$preview":{"width":1440,"height":1500}}'>
+var NBSP = ' ';
+function fD(v) { return (Math.round(v * 10) / 10).toFixed(1).replace('.', ','); }
+function cl(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function loadOf(v) { var x = v <= 8 ? 45 : v <= 25 ? 45 + 27 * (v - 8) / 17 : v <= 60 ? 72 + 48 * (1 - Math.pow(1 - (v - 25) / 35, 1.1)) : 120 + 40 * (v - 60) / 39; return Math.round(x * 10) / 10; }
+var AB = { vig: 'VIG', mnd: 'MND', end: 'END', str: 'STR', dex: 'DEX', int: 'INT', fai: 'FAI', arc: 'ARC' };
+var AF = { str: 'Strength', dex: 'Dexterity', int: 'Intelligence', fai: 'Faith', arc: 'Arcane' };
+var SRC = { base: { s: 'Base', f: 'Base game', i: '#i-s-base' }, sote: { s: 'SotE', f: 'Shadow of the Erdtree (DLC)', i: '#i-s-sote' }, tp: { s: 'TP', f: 'Tarnished Pack (DLC)', i: '#i-s-tp' } };
+var LV = { S: 1, A: 0.85, B: 0.7, C: 0.55, D: 0.4, E: 0.25 };
+var STAGES = ['Début', 'Milieu', 'Fin', 'Fin de jeu', 'DLC'];
+var RS = { 'Limgrave': 0, 'Weeping Peninsula': 0, 'Liurnia of the Lakes': 1, 'Caelid': 1, 'Altus Plateau': 1, 'Mt. Gelmir': 2, 'Mountaintops of the Giants': 2, 'Gravesite Plain': 4 };
+var ATK = { phys: ['Physique', 'dt-standard', '#i-d-standard'], magic: ['Magie', 'dt-magic', '#i-d-magic'], fire: ['Feu', 'dt-fire', '#i-d-fire'] };
+var WEAPONS = [
+  { id: 'uchi', name: 'Uchigatana', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 5.5, atk: { phys: 115 }, scl: { str: 'D', dex: 'D' }, req: { str: 11, dex: 15 }, skill: 'Unsheathe', st: 'aow', pas: { k: 'bleed', v: 45 }, up: 'normal', rel: 'ded', acq: [{ start: 'samurai' }, { m: 'Butin', loc: 'Deathtouched Catacombs', reg: 'Limgrave' }], flags: [] },
+  { id: 'lords', name: "Lordsworn's Greatsword", cat: 'Greatsword', ic: '#i-c-greatsword', src: 'base', wt: 9.0, atk: { phys: 136 }, scl: { str: 'D', dex: 'D' }, req: { str: 16, dex: 10 }, skill: 'Stamp (Upward Cut)', st: 'aow', pas: null, up: 'normal', rel: 'est', conf: 'moyenne', acq: [{ m: 'Butin', loc: 'Gatefront Ruins', reg: 'Limgrave' }], flags: [] },
+  { id: 'clay', name: 'Claymore', cat: 'Greatsword', ic: '#i-c-greatsword', src: 'base', wt: 9.0, atk: { phys: 138 }, scl: { str: 'D', dex: 'D' }, req: { str: 16, dex: 13 }, skill: "Lion's Claw", st: 'aow', pas: null, up: 'normal', rel: 'wiki', acq: [{ m: 'Butin', loc: 'Castle Morne', reg: 'Weeping Peninsula' }], flags: [] },
+  { id: 'moon', name: 'Moonveil', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 6.5, atk: { phys: 73, magic: 87 }, scl: { str: 'E', dex: 'D', int: 'C' }, req: { str: 12, dex: 18, int: 23 }, skill: 'Transient Moonlight', st: 'unique', pas: { k: 'bleed', v: 50 }, up: 'somber', rel: 'est', conf: 'haute', acq: [{ m: 'Butin garanti', who: 'Magma Wyrm', loc: 'Gael Tunnel', reg: 'Caelid' }], flags: ['drop'] },
+  { id: 'sonaf', name: 'Sword of Night and Flame', cat: 'Straight Sword', ic: '#i-c-straight', src: 'base', wt: 4.0, atk: { phys: 87, magic: 56, fire: 56 }, scl: { str: 'E', dex: 'E', int: 'D', fai: 'D' }, req: { str: 12, dex: 12, int: 24, fai: 24 }, skill: 'Night-and-Flame Stance', st: 'unique', pas: null, up: 'somber', rel: 'wiki', acq: [{ m: 'Pièce verrouillée', loc: 'Caria Manor', reg: 'Liurnia of the Lakes' }], flags: [] },
+  { id: 'rob', name: 'Rivers of Blood', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 6.5, atk: { phys: 76, fire: 76 }, scl: { str: 'E', dex: 'D', arc: 'D' }, req: { str: 12, dex: 18, arc: 20 }, skill: 'Corpse Piler', st: 'unique', pas: { k: 'bleed', v: 50 }, up: 'somber', rel: 'wiki', acq: [{ m: 'Vaincre Okina', loc: 'Church of Repose', reg: 'Mountaintops of the Giants' }], flags: ['invader'] },
+  { id: 'blas', name: 'Blasphemous Blade', cat: 'Greatsword', ic: '#i-c-greatsword', src: 'base', wt: 13.5, atk: { phys: 121, fire: 78 }, scl: { str: 'D', dex: 'D', fai: 'D' }, req: { str: 22, dex: 15, fai: 21 }, skill: "Taker's Flames", st: 'unique', pas: { k: 'text', t: 'Rend 4 % des PV max + 40 à chaque mort proche' }, up: 'somber', rel: 'est', conf: 'haute', acq: [{ m: 'Échange de Remembrance', who: 'Remembrance de Rykard', loc: 'Finger Reader Enia, Roundtable Hold', reg: 'Mt. Gelmir', via: true }], flags: ['rem'] },
+  { id: 'milady', name: 'Milady', cat: 'Light Greatsword', ic: '#i-c-lgs', src: 'sote', wt: 6.5, atk: { phys: 116 }, scl: { str: 'D', dex: 'D' }, req: { str: 12, dex: 17 }, skill: 'Impaling Thrust', st: 'aow', pas: null, up: 'normal', rel: 'ded', acq: [{ m: 'Butin', loc: 'Castle Ensis', reg: 'Gravesite Plain' }], flags: [] },
+  { id: 'rellana', name: "Rellana's Twin Blades", cat: 'Light Greatsword', ic: '#i-c-lgs', src: 'sote', wt: 8.0, atk: { phys: 103, magic: 66, fire: 66 }, scl: { str: 'D', dex: 'D', int: 'D', fai: 'D' }, req: { str: 13, dex: 16, int: 16, fai: 16 }, skill: 'Moon-and-Fire Stance', st: 'unique', pas: null, up: 'somber', rel: 'est', conf: 'haute', acq: [{ m: 'Échange de Remembrance', who: 'Remembrance de Rellana', loc: 'Roundtable Hold', reg: 'Gravesite Plain', via: true }], flags: ['rem'] },
+  { id: 'idus', name: 'Idus Sword', cat: 'Light Greatsword', ic: '#i-c-lgs', src: 'tp', wt: 7.0, atk: { phys: 124 }, scl: { str: 'D', dex: 'D' }, req: { str: 10, dex: 15 }, skill: 'Impaling Thrust', st: 'aow', pas: null, up: 'normal', rel: 'ded', acq: [{ start: 'idus' }, { m: 'Butin', loc: 'Laskyar Ruins', reg: 'Liurnia of the Lakes' }], flags: [] }
+];
+var PROFILE = { name: 'Dex / Saignement', origin: 'samurai', originName: 'Samurai', A: { vig: 26, mnd: 11, end: 18, str: 12, dex: 27, int: 9, fai: 8, arc: 10 }, level: 42, weights: { dex: 1, arc: 1 }, archName: 'Dextérité / Arcane', tl: 125, classes: ['Katana', 'Light Greatsword'], hands: 1, status: 'bleed', ratio: 0.7, stage: 1 };
+var ONAME = { samurai: 'Samurai', idus: 'Idus Knight' };
+function stageOf(w) { var b = 9; w.acq.forEach(function (q) { if (q.start) { if (q.start === PROFILE.origin) b = Math.min(b, 0); } else if (RS[q.reg] !== undefined) b = Math.min(b, RS[q.reg]); }); return b === 9 ? 0 : b; }
+function whereTxt(w) { return w.acq.filter(function (q) { return !q.start || q.start === PROFILE.origin; }).map(function (q) { if (q.start) return 'Équipement de départ (' + ONAME[q.start] + ')'; return q.m + (q.who ? ', ' + q.who : '') + ' — ' + q.loc + (q.via ? '' : ', ' + q.reg); }).join(' ; '); }
+function relOf(w) {
+  if (w.rel === 'est') return { cls: 'cx-rel-est', icon: '#i-approx', label: 'Estimation (' + w.conf + ')', title: "Non documenté par le wiki : estimation statistique, confiance " + w.conf + '.' };
+  if (w.rel === 'ded') return { cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki (déduit)', title: "Déduit d'une règle du wiki sur la classe d'arme." };
+  return { cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki', title: 'Documenté sur la page du wiki.' };
+}
+function norm(t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+function score(w) {
+  var P = PROFILE, A = P.A, budget = Math.round(loadOf(A.end) * P.ratio * 0.25 * 10) / 10, st = stageOf(w);
+  var ws = 0, acc = 0; Object.keys(P.weights).forEach(function (k) { ws += P.weights[k]; acc += P.weights[k] * (w.scl[k] ? LV[w.scl[k]] : 0); });
+  var fit = Math.min(25, 50 * (ws ? acc / ws : 0)), pen = 0;
+  Object.keys(w.req).forEach(function (k) { if (!P.weights[k]) { if (w.req[k] > 20) pen += 7; else if (w.req[k] > 10) pen += 4; } });
+  fit -= pen; var bonus = !!w.pas && w.pas.k === P.status; if (bonus) fit += 4; fit += P.classes.indexOf(w.cat) >= 0 ? 2 : -2; fit = cl(Math.round(fit), 0, 25);
+  var tot = 0, sl = 0; Object.keys(w.atk).forEach(function (k) { tot += w.atk[k]; }); Object.keys(w.scl).forEach(function (k) { sl += LV[w.scl[k]]; });
+  var over = w.wt > budget, pow = cl(Math.round(17.5 * Math.min(1, tot / 200) + 7.5 * Math.min(1, sl / 1.6) - (over ? 4 : 0)), 0, 25);
+  var ahead = Math.max(0, st - P.stage), miss = 0, missList = [], reqs = [];
+  Object.keys(w.req).forEach(function (k) { var need = w.req[k], have = A[k], ok = have >= need, gap = ok ? 0 : need - have; miss += gap; if (!ok) missList.push(AB[k] + ' ' + have + ' sur ' + need); reqs.push({ cls: ok ? 'is-ok' : 'is-miss', icon: ok ? '#i-check' : '#i-alert', label: AB[k] + ' ' + need, miss: !ok, gap: '+' + gap + ' ' + AB[k], title: AF[k] + ' : ' + have + ', demandé ' + need }); });
+  var start = w.acq.some(function (q) { return q.start === P.origin; });
+  var ac = cl(Math.round(25 - 4 * ahead - Math.min(9, 0.6 * miss) - (w.flags.indexOf('rem') >= 0 ? 4 : 0) - (w.flags.indexOf('invader') >= 0 ? 1 : 0) + (start ? 2 : 0)), 0, 25);
+  var up = (w.up === 'somber' ? 20 : 16) - (w.rel === 'est' ? 2 : 0);
+  return { fit: fit, pow: pow, ac: ac, up: up, total: fit + pow + ac + up, st: st, ahead: ahead, miss: miss, missList: missList, reqs: reqs, start: start, over: over, budget: budget, tot: tot, pen: pen, bonus: bonus };
+}
+var COLS = [
+  { k: 'score', label: 'Score', cls: 'num', sortable: true },
+  { k: 'name', label: 'Arme', sortable: true },
+  { k: 'stage', label: 'Étape', sortable: true },
+  { k: 'wt', label: 'Poids', cls: 'num', sortable: true },
+  { k: 'atk', label: 'Attaque +0', sortable: true },
+  { k: 'scl', label: 'Scaling' },
+  { k: 'req', label: 'Prérequis' },
+  { k: 'pas', label: 'Effet passif', sortable: true },
+  { k: 'up', label: 'Amélioration' },
+  { k: 'obt', label: 'Obtention' },
+  { k: 'act', label: 'Actions' }
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { theme: null, showMock: null, q: '', stage: -1, cat: '', up: 'all', reqOnly: false, sort: [{ k: 'score', dir: 'desc' }], sel: 'rob', pinned: ['rob', 'uchi'], compare: [] };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var theme = s.theme || this.props.theme || 'sombre';
+    var showMock = s.showMock !== null ? s.showMock : this.props.showMock !== false;
+    var all = WEAPONS.map(function (w) { var x = score(w); x.w = w; return x; });
+    var q = norm(s.q.trim());
+    var list = all.filter(function (x) {
+      if (q && norm(x.w.name + ' ' + x.w.skill).indexOf(q) < 0) return false;
+      if (s.stage >= 0 && x.st !== s.stage) return false;
+      if (s.cat && x.w.cat !== s.cat) return false;
+      if (s.up !== 'all' && x.w.up !== s.up) return false;
+      if (s.reqOnly && x.miss > 0) return false;
+      return true;
+    });
+    var keyOf = function (x, k) { return k === 'score' ? x.total : k === 'name' ? x.w.name : k === 'stage' ? x.st : k === 'wt' ? x.w.wt : k === 'atk' ? x.tot : k === 'pas' ? (x.w.pas && x.w.pas.v ? x.w.pas.v : null) : 0; };
+    list.sort(function (a, b) {
+      for (var i = 0; i < s.sort.length; i++) {
+        var k = s.sort[i].k, d = s.sort[i].dir === 'asc' ? 1 : -1, va = keyOf(a, k), vb = keyOf(b, k);
+        if (va === null && vb === null) continue;
+        if (va === null) return 1;
+        if (vb === null) return -1;
+        if (va < vb) return -d;
+        if (va > vb) return d;
+      }
+      return a.w.name < b.w.name ? -1 : 1;
+    });
+    var heads = COLS.map(function (c) {
+      var idx = -1; s.sort.forEach(function (o, i) { if (o.k === c.k) idx = i; });
+      var dir = idx >= 0 ? s.sort[idx].dir : null;
+      return {
+        label: c.label, cls: c.cls || '', sortable: !!c.sortable, plain: !c.sortable, sorted: idx >= 0, rank: idx + 1, icon: dir === 'asc' ? '#i-chev-u' : '#i-chev-d',
+        sort: idx >= 0 ? (dir === 'asc' ? 'ascending' : 'descending') : undefined,
+        by: function (e) {
+          var cur = self.state.sort.slice(), i2 = -1; cur.forEach(function (o, i) { if (o.k === c.k) i2 = i; });
+          if (e && e.shiftKey) { if (i2 >= 0) cur[i2] = { k: c.k, dir: cur[i2].dir === 'asc' ? 'desc' : 'asc' }; else cur.push({ k: c.k, dir: c.k === 'name' ? 'asc' : 'desc' }); }
+          else { cur = [{ k: c.k, dir: i2 === 0 ? (cur[0].dir === 'asc' ? 'desc' : 'asc') : (c.k === 'name' || c.k === 'stage' ? 'asc' : 'desc') }]; }
+          self.setState({ sort: cur });
+        }
+      };
+    });
+    var rows = list.map(function (x) {
+      var w = x.w, rel = relOf(w), pinned = s.pinned.indexOf(w.id) >= 0, inCmp = s.compare.indexOf(w.id) >= 0, flags = [];
+      if (x.start) flags.push({ cls: '', icon: '#i-start', label: 'Départ Samurai', title: 'Équipement de départ de votre origine' });
+      if (w.flags.indexOf('rem') >= 0) flags.push({ cls: 'is-alert', icon: '#i-trade', label: 'Remembrance', title: 'Échange de Remembrance : vous renoncez aux autres objets de cet échange' });
+      if (w.flags.indexOf('drop') >= 0) flags.push({ cls: '', icon: '#i-drop', label: 'Butin garanti', title: "Butin garanti d'un ennemi unique" });
+      if (w.flags.indexOf('invader') >= 0) flags.push({ cls: '', icon: '#i-npc', label: 'Envahisseur PNJ', title: 'Obtenue en vainquant un envahisseur PNJ' });
+      return {
+        name: w.name, src: w.src, srcS: SRC[w.src].s, srcF: SRC[w.src].f, srcI: SRC[w.src].i, icon: w.ic, cat: w.cat, skill: w.skill, skillType: w.st === 'unique' ? 'compétence unique' : 'Cendre de guerre',
+        score: x.total, stage: STAGES[x.st], stCls: x.st < PROFILE.stage ? 'is-past' : x.st === PROFILE.stage ? 'is-now' : '', wt: fD(w.wt),
+        atk: Object.keys(w.atk).map(function (k) { return { cls: ATK[k][1], icon: ATK[k][2], v: w.atk[k], title: ATK[k][0] + ' ' + w.atk[k] + ' à +0' }; }),
+        scls: ['str', 'dex', 'int', 'fai', 'arc'].filter(function (k) { return w.scl[k]; }).map(function (k) { return { attr: AB[k], g: w.scl[k], lc: w.scl[k].toLowerCase(), title: AF[k] + ' : ' + w.scl[k] + ' à +0' }; }),
+        reqs: x.reqs, hasSt: !!(w.pas && w.pas.k === 'bleed'), stVal: w.pas && w.pas.v ? w.pas.v : '', hasPText: !!(w.pas && w.pas.k === 'text'), pText: w.pas && w.pas.t ? w.pas.t : '', noPas: !w.pas,
+        upTxt: w.up === 'somber' ? 'Sombres, +10' : 'Normales, +25', relCls: rel.cls, relIcon: rel.icon, relLabel: rel.label, relTitle: rel.title,
+        where: whereTxt(w), flags: flags, hasFlags: flags.length > 0,
+        pinned: pinned, pinLabel: pinned ? 'Retirer de Ma liste' : 'Épingler à Ma liste', inCmp: inCmp, cmpLabel: inCmp ? 'Retirer de la comparaison' : 'Comparer',
+        sel: s.sel === w.id, rowCls: s.sel === w.id ? 'is-selected' : '',
+        pin: function () { var p = self.state.pinned.slice(), i = p.indexOf(w.id); if (i >= 0) p.splice(i, 1); else p.push(w.id); self.setState({ pinned: p }); },
+        cmp: function () { var c = self.state.compare.slice(), i = c.indexOf(w.id); if (i >= 0) c.splice(i, 1); else if (c.length < 4) c.push(w.id); self.setState({ compare: c }); },
+        select: function () { self.setState({ sel: self.state.sel === w.id ? null : w.id }); }
+      };
+    });
+    var why = { on: false, off: true, title: '', score: 0, parts: [], data: [], limits: [] };
+    var sx = s.sel ? all.filter(function (x) { return x.w.id === s.sel; })[0] : null;
+    if (sx) {
+      var ww = sx.w, near = all.filter(function (x) { return x.w.id !== ww.id && Math.abs(x.st - sx.st) <= 1; }).sort(function (a, b) { return b.total - a.total; });
+      why = {
+        on: true, off: false, title: 'Pourquoi ' + ww.name + ' ?', score: sx.total,
+        parts: [['Adéquation au build', sx.fit], ['Puissance et scaling', sx.pow], ['Accessibilité à votre étape', sx.ac], ["Coût d'amélioration", sx.up]].map(function (p) { return { label: p[0], v: p[1], pct: p[1] * 4 }; }),
+        data: [
+          { icon: '#i-book', t: 'melee_armaments : scaling ' + Object.keys(ww.scl).map(function (k) { return AB[k] + ' ' + ww.scl[k]; }).join(', ') + ' ; prérequis ' + Object.keys(ww.req).map(function (k) { return AB[k] + ' ' + ww.req[k]; }).join(', ') + (sx.bonus ? ' ; saignement ' + ww.pas.v + ' (statut privilégié, +4)' : '') },
+          { icon: '#i-map', t: 'acquisition : ' + whereTxt(ww) + ' → étape ' + STAGES[sx.st] + (sx.ahead ? ' (' + sx.ahead + " étape d'avance, −" + sx.ahead * 4 + ')' : ' (accessible maintenant)') },
+          { icon: '#i-user', t: 'Profil : ' + (sx.missList.length ? sx.missList.join(', ') : 'tous les prérequis atteints') },
+          { icon: '#i-weight', t: 'Poids ' + fD(ww.wt) + (sx.over ? ' : au-delà du budget de ' + fD(sx.budget) + ' (−4)' : ' : dans le budget de ' + fD(sx.budget)) }
+        ],
+        limits: [{ icon: '#i-info', t: "Score à +0 : ne tient compte ni du niveau d'amélioration ni des Cendres de guerre." }].concat(ww.rel === 'est' ? [{ icon: '#i-approx', t: "Type d'amélioration estimé (confiance " + ww.conf + ") : coût d'amélioration −2." }] : []).concat(sx.pen ? [{ icon: '#i-alert', t: 'Prérequis hors build : −' + sx.pen + ' en adéquation.' }] : []).concat([{ icon: '#i-swap', t: near.length ? 'Alternatives proches : ' + near.slice(0, 2).map(function (x) { return x.w.name + ' (' + x.total + ')'; }).join(', ') + '.' : 'Pas d’alternative à une étape près.' }])
+      };
+    }
+    var seg = function (opts, key, val) { return opts.map(function (o) { return { label: o[1], on: val === o[0], pick: function () { var p = {}; p[key] = o[0]; self.setState(p); } }; }); };
+    var hasFilters = !!s.q || s.stage >= 0 || !!s.cat || s.up !== 'all' || s.reqOnly;
+    var parts = [];
+    if (s.q) parts.push('nom « ' + s.q + ' »'); if (s.stage >= 0) parts.push('étape ' + STAGES[s.stage]); if (s.cat) parts.push('classe ' + s.cat); if (s.up !== 'all') parts.push(s.up === 'somber' ? 'pierres sombres' : 'pierres normales'); if (s.reqOnly) parts.push('prérequis atteints');
+    return {
+      theme: theme, rootCls: showMock ? '' : 'cx-hide-mq', showMock: showMock, pDark: theme === 'sombre', pLight: theme === 'parchemin',
+      setDark: function () { self.setState({ theme: 'sombre' }); }, setLight: function () { self.setState({ theme: 'parchemin' }); }, toggleMock: function () { self.setState({ showMock: !showMock }); },
+      chips: [['Contenu', 'Base, SotE, TP'], ['Origine', 'Samurai'], ['Niveau', '42'], ['Build', 'Dextérité / Arcane → 125', true], ['Style', 'Mêlée, une main'], ['Classes', 'Katana, Light Greatsword'], ['Statut', 'Saignement'], ['Étape', 'Milieu']].map(function (c) { return { k: c[0], v: c[1], onCls: c[2] ? 'is-on' : '' }; }),
+      q: s.q, onQ: function (e) { self.setState({ q: e.target.value }); },
+      stageSeg: seg([[-1, 'Toutes']].concat(STAGES.map(function (n, i) { return [i, n]; })), 'stage', s.stage),
+      cat: s.cat, onCat: function (e) { self.setState({ cat: e.target.value }); },
+      upSeg: seg([['all', 'Toutes'], ['normal', 'Normales'], ['somber', 'Sombres']], 'up', s.up),
+      reqOnly: s.reqOnly, toggleReq: function () { self.setState({ reqOnly: !self.state.reqOnly }); },
+      countTxt: rows.length + (rows.length > 1 ? ' armes' : ' arme') + ' sur ' + all.length, hasFilters: hasFilters,
+      clear: function () { self.setState({ q: '', stage: -1, cat: '', up: 'all', reqOnly: false }); },
+      heads: heads, rows: rows, hasRows: rows.length > 0, noRows: rows.length === 0, emptyTxt: 'Filtres actifs : ' + parts.join(', ') + '.',
+      why: why, closeWhy: function () { self.setState({ sel: null }); },
+      cmpOn: s.compare.length > 0, cmpTitle: s.compare.length + (s.compare.length > 1 ? ' armes à comparer :' : ' arme à comparer :'), cmpNames: s.compare.map(function (id) { return WEAPONS.filter(function (w) { return w.id === id; })[0].name; }).join(', '), cmpCant: s.compare.length < 2, cmpClear: function () { self.setState({ compare: [] }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

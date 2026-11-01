@@ -1,0 +1,36 @@
+<!-- @dsCard group="Visualisation" height=760 subtitle="Frise verticale : choix, alternatives, voie DLC" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>BossTimeline</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); }
+.pv { display: flex; flex-direction: column; gap: 14px; padding: 16px; }
+.pv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pv-k { min-width: 128px; color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
+</style>
+</head>
+<body class="cx">
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-check-c" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M8.2 12.3l2.6 2.6 5-5.2"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 7.5V12l3 2"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol></svg>
+<div class="pv" style="max-width:760px"><ol class="cx-tl">
+<li class="cx-tl-step is-done"><div class="cx-tl-rail"><span class="cx-tl-dot"></span><span class="cx-tl-line"></span></div><div class="cx-tl-body"><div class="cx-tl-label"><b>Étape 1</b> Porteurs de Grande Rune</div>
+ <div class="cx-choice"><div class="cx-choice-head"><span class="cx-choice-title">2 au choix parmi 5</span><span class="cx-status ready"><svg class="cx-i" aria-hidden="true"><use href="#i-check-c"></use></svg>1 sur 2 vaincu</span></div>
+ <div class="cx-choice-grid">
+  <div class="cx-boss is-done"><div><a class="cx-boss-name" href="#">Godrick the Grafted</a><div class="cx-boss-meta">Demi-dieu, Limgrave <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div><div class="cx-sub is-done" style="margin-top:8px"><svg class="cx-i sm" aria-hidden="true"><use href="#i-check"></use></svg><span>Après <b>Margit, the Fell Omen</b></span><span class="cx-muted">vaincu</span></div></div><div class="cx-boss-side"><span class="cx-status done"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>Vaincu</span></div></div>
+  <div class="cx-boss is-next"><div><a class="cx-boss-name" href="#">Rennala, Queen of the Full Moon</a><div class="cx-boss-meta">Légende, Liurnia of the Lakes <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div><div class="cx-sub is-done" style="margin-top:8px"><svg class="cx-i sm" aria-hidden="true"><use href="#i-check"></use></svg><span>Après <b>Red Wolf of Radagon</b></span><span class="cx-muted">vaincu</span></div></div><div class="cx-boss-side"><span class="cx-status limit"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg>Limite</span><div class="cx-gauge limit"><div class="cx-gauge-track"><span class="cx-gauge-fill" style="width:52%"></span><span class="cx-gauge-tick" style="left:63%" title="Niveau recommandé 50"></span></div><div class="cx-gauge-legend"><span>Niv. <b>42</b></span><span>Recommandé <b>50</b></span></div></div></div></div>
+ </div><p class="cx-muted" style="font-size:12px">+ Starscourge Radahn, Rykard, Mohg</p></div></div></li>
+<li class="cx-tl-step"><div class="cx-tl-rail"><span class="cx-tl-dot"></span><span class="cx-tl-line"></span></div><div class="cx-tl-body"><div class="cx-tl-label"><b>Étape 2</b> Accès à Leyndell</div>
+ <div class="cx-or"><div class="cx-boss"><div><a class="cx-boss-name" href="#">Draconic Tree Sentinel</a><div class="cx-boss-meta">Ennemi, Capital Outskirts</div></div></div><span class="cx-or-sep"><span>ou</span></span><div class="cx-boss is-optional"><div><a class="cx-boss-name" href="#">Fia's Champions</a><div class="cx-boss-meta">Deeproot Depths</div></div></div></div></div></li>
+<li class="cx-tl-step"><div class="cx-tl-rail"><span class="cx-tl-dot"></span><span class="cx-tl-line"></span></div><div class="cx-tl-body"><div class="cx-tl-label"><b>Étape 6</b></div>
+ <div class="cx-boss"><div><a class="cx-boss-name" href="#">Godskin Duo</a><div class="cx-boss-meta">Grand ennemi, Crumbling Farum Azula <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div><div class="cx-boss-stats"><span>PV <span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Non documenté</span></span><span>Runes <span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Non documenté</span></span></div></div><div class="cx-boss-side"><span class="cx-status early"><svg class="cx-i" aria-hidden="true"><use href="#i-clock"></use></svg>Trop tôt</span></div></div></div></li>
+<li class="cx-tl-step"><div class="cx-tl-rail"><span class="cx-tl-dot"></span><span class="cx-tl-line"></span></div><div class="cx-tl-body"><div class="cx-tl-label"><b>Étape 8</b></div>
+ <div class="cx-boss"><div><a class="cx-boss-name" href="#">Sir Gideon Ofnir, the All-Knowing</a><div class="cx-boss-meta">Ennemi, Leyndell, Ashen Capital <span class="cx-badge cx-src-base" title="Base game" aria-label="Source : Base game"><svg class="cx-i" aria-hidden="true"><use href="#i-s-base"></use></svg>Base</span></div><div class="cx-boss-stats"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Aucune donnée de combat sur le wiki</span></div></div><div class="cx-boss-side"><span class="cx-status unknown"><svg class="cx-i" aria-hidden="true"><use href="#i-empty"></use></svg>Non estimé</span></div></div></div></li>
+</ol>
+<div class="cx-lane" style="margin-top:8px"><div class="cx-row"><span class="cx-badge cx-src-sote" title="Shadow of the Erdtree (DLC)" aria-label="Source : Shadow of the Erdtree"><svg class="cx-i" aria-hidden="true"><use href="#i-s-sote"></use></svg>SotE</span><span class="cx-choice-title">Voie DLC</span></div><div class="cx-lane-gate"><span><b>Accès au DLC</b> : vaincre Starscourge Radahn et Mohg, Lord of Blood</span><span class="cx-row tight"><span class="cx-status early"><svg class="cx-i" aria-hidden="true"><use href="#i-clock"></use></svg>Radahn à faire</span><span class="cx-status early"><svg class="cx-i" aria-hidden="true"><use href="#i-clock"></use></svg>Mohg à faire</span></span></div></div>
+</div>
+
+</body>
+</html>

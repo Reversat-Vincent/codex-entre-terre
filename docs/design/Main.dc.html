@@ -1,0 +1,1556 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tableau de bord — Codex de l'Entre-terre</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/codex/tokens.css">
+<link rel="stylesheet" href="ds/codex/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400">
+<style>
+body{margin:0}
+.p-root{min-height:100vh}
+.p-body{display:flex;flex-wrap:wrap;align-items:stretch;flex:1 1 auto;min-width:0;position:relative}
+.p-dash{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-6)}
+.p-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--space-3)}
+.p-head-sub{margin-top:2px;color:var(--ink-3);font-size:13px;line-height:18px}
+.p-grid{grid-auto-flow:row dense}
+.p-tall{grid-row:span 2}
+.cx-stage-cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-3);align-items:start;margin-top:var(--space-3)}
+.p-col{display:flex;flex-direction:column;gap:var(--space-3);min-width:0}
+.p-hidden{color:var(--ink-3);font-size:11px;line-height:15px}
+.p-hidden b{color:var(--ink-2)}
+.cx-nav.is-rail .p-navt{display:none}
+.cx-nav.is-rail .cx-brand{padding:2px 0 var(--space-4);justify-content:center}
+.p-navfoot{margin-top:auto;padding-top:var(--space-3);border-top:1px solid var(--line)}
+.p-navbtn{width:100%;border:0;background:transparent;font:inherit;font-weight:600;cursor:pointer}
+.p-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:var(--radius-pill);background:var(--gold-wash);color:var(--gold-text);font:700 11px/1 var(--font-sans);font-variant-numeric:tabular-nums}
+.p-topright{position:relative;display:flex;align-items:center;gap:var(--space-2);margin-left:auto}
+.p-pop{position:absolute;right:0;top:42px;z-index:var(--z-popover);display:grid;gap:var(--space-2);width:360px;padding:var(--space-3);border-radius:var(--radius-m);background:var(--surface-raised);box-shadow:var(--shadow-2)}
+.p-li{display:grid;gap:2px;padding-top:var(--space-2);border-top:1px solid var(--line)}
+.p-got{color:var(--ink-3);text-decoration:line-through}
+.p-chipbtn{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.p-vert{margin-top:var(--space-3);color:var(--ink-3);font:600 12px/16px var(--font-sans);writing-mode:vertical-rl;transform:rotate(180deg)}
+.p-linkbtn{padding:0;border:0;background:none;color:var(--ink);font:inherit;font-weight:600;text-align:left;cursor:pointer}
+.p-linkbtn:hover,.p-linkbtn[aria-pressed="true"]{color:var(--gold-text)}
+.p-small{font-size:12px;color:var(--ink-2)}
+.p-tgt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.p-tgt span{display:flex;justify-content:space-between;padding:3px 6px;border:1px solid var(--gold-line);border-radius:var(--radius-xs);background:var(--gold-wash);color:var(--gold-text);font:700 11px/14px var(--font-sans);font-variant-numeric:tabular-nums}
+.p-tgt span i{font-style:normal;font-weight:600;color:var(--ink-3)}
+.p-checks2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 var(--space-3)}
+.p-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-5);align-items:start}
+.p-bd{display:grid;gap:var(--space-4);min-width:0}
+.p-sec{display:grid;gap:var(--space-2)}
+.p-sec h4{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.p-sec2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-4)}
+.p-abs{display:grid;gap:7px}
+.p-ab{display:grid;grid-template-columns:34px minmax(0,1fr) 96px;align-items:center;gap:var(--space-2);font-size:12px;line-height:16px}
+.p-ab-k{color:var(--ink-2);font-weight:700;text-decoration:none;letter-spacing:.02em}
+.p-ab-track{position:relative;height:8px;border-radius:4px;background:var(--surface-sunken);box-shadow:inset 0 0 0 1px var(--line)}
+.p-ab-fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ink-3)}
+.p-ab-waste{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(135deg,var(--warn) 0 2px,transparent 2px 5px)}
+.p-ab-tgt{position:absolute;top:-4px;bottom:-4px;width:2px;margin-left:-1px;border-radius:1px;background:var(--gold)}
+.p-ab-v{color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.p-waste-sw{background:repeating-linear-gradient(135deg,var(--warn) 0 2px,transparent 2px 5px)}
+.p-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-2)}
+.p-stat{display:grid;gap:2px;padding:var(--space-2);border:1px solid var(--line);border-radius:var(--radius-s);background:var(--surface-raised)}
+.p-stat span{color:var(--ink-3);font-size:11px;line-height:14px}
+.p-stat b{color:var(--ink);font:600 17px/20px var(--font-sans);font-variant-numeric:tabular-nums}
+.p-eq{display:grid;gap:6px}
+.p-eq li{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;line-height:18px}
+.p-mini{margin-left:auto;font-size:15px;line-height:18px}
+.p-prio{display:grid;gap:6px}
+.p-prio li{display:grid;grid-template-columns:20px auto minmax(0,1fr);align-items:baseline;gap:var(--space-2);color:var(--ink-2);font-size:12px;line-height:16px}
+.p-prio li b{color:var(--ink);font-size:13px;font-variant-numeric:tabular-nums}
+.p-prio-n{display:inline-grid;place-items:center;width:18px;height:18px;border:1px solid var(--gold-line);border-radius:var(--radius-xs);background:var(--gold-wash);color:var(--gold-text);font:700 11px/1 var(--font-sans)}
+.p-next{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2) var(--space-3);margin-bottom:var(--space-3);padding:var(--space-2) var(--space-3);border:1px solid var(--gold-line);border-radius:var(--radius-m);background:var(--gold-wash)}
+.p-c{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,330px);gap:var(--space-5);align-items:start}
+.p-choice2{grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
+.cx-or .cx-boss,.cx-lane .cx-boss{grid-template-columns:minmax(0,1fr)}
+.p-alts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--space-2);margin-top:var(--space-2)}
+.p-alt{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);border:1px solid var(--line-strong);border-radius:var(--radius-m);background:var(--surface)}
+.p-upctl{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--space-3)}
+.p-kv{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);color:var(--ink-3);font-size:12px;line-height:16px}
+.p-kv b{display:block;color:var(--ink);font:600 16px/22px var(--font-sans);font-variant-numeric:tabular-nums}
+.p-bars{display:flex;align-items:flex-end;gap:2px;height:64px;border-bottom:1px solid var(--line-strong)}
+.p-bars>span{flex:1 1 0;min-width:2px;border-radius:2px 2px 0 0;background:var(--gold)}
+.p-addwrap{position:relative}
+.p-addmenu{position:absolute;right:0;top:40px;z-index:var(--z-popover);display:grid;gap:2px;width:420px;padding:6px;border-radius:var(--radius-m);background:var(--surface-raised);box-shadow:var(--shadow-2)}
+.p-additem{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px var(--space-3);padding:8px 10px;border-radius:var(--radius-s)}
+.p-additem b{color:var(--ink);font-size:13px;font-weight:600}
+.p-additem small{display:block;color:var(--ink-3);font-size:12px;line-height:16px}
+.cx-wcard-line{flex-wrap:wrap}
+.cx-wcard-line>svg+span{flex:1 1 100px;min-width:0}
+.cx-wcard>.cx-wcard-sub{margin-top:-6px}
+.cx-w-how>svg+span{flex:1 1 260px;min-width:0}
+.cx-boss-tags .cx-null{white-space:normal;font-size:12px}
+.p-stone{white-space:nowrap}
+.p-stone b{margin-right:6px;font-variant-numeric:tabular-nums}
+.cx-widget.p-max{position:fixed;inset:var(--space-6);z-index:var(--z-overlay);overflow:auto;box-shadow:var(--shadow-3)}
+.p-scrim{position:fixed;inset:0;z-index:calc(var(--z-overlay) - 1);background:var(--scrim)}
+.p-toast{position:fixed;right:var(--space-6);bottom:var(--space-6);z-index:var(--z-toast)}
+.cx-score-bar>span,.cx-gauge-fill,.cx-bd-bar>span,.p-ab-fill,.p-ab-waste,.p-bars>span{transition:width .15s ease,height .15s ease,left .15s ease}
+.cx-gauge-tick,.p-ab-tgt{transition:left .15s ease}
+@media (prefers-reduced-motion:reduce){.cx-score-bar>span,.cx-gauge-fill,.cx-bd-bar>span,.p-ab-fill,.p-ab-waste,.p-bars>span,.cx-gauge-tick,.p-ab-tgt{transition:none}}
+@media (max-width:1279px){.cx-nav{flex-basis:var(--size-rail);align-items:center;padding-inline:var(--space-2)}.cx-nav .p-navt{display:none}.cx-nav .cx-nav-item{width:40px;justify-content:center;padding:0}.cx-criteria:not(.is-collapsed){position:absolute;left:0;top:0;z-index:var(--z-overlay);box-shadow:var(--shadow-3)}.p-c,.p-b{grid-template-columns:minmax(0,1fr)}.cx-stage-cols{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+@media (max-width:767px){.cx-app{flex-direction:column}.cx-nav{flex-direction:row;flex-basis:auto;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}.cx-nav-label,.p-navfoot{display:none}.p-dash{padding:var(--space-4)}.cx-criteria:not(.is-collapsed){position:static;flex-basis:100%;box-shadow:none}.p-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.p-sec2{grid-template-columns:minmax(0,1fr)}}
+</style>
+</helmet>
+<div class="cx p-root {{rootCls}}" data-theme="{{theme}}">
+<svg width="0" height="0" style="position: absolute; overflow: hidden" aria-hidden="true" focusable="false"><symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 2.5L21.5 12 12 21.5 2.5 12z"></path><path d="M12 6.5v11"></path><path d="M9.6 12L12 9.6 14.4 12 12 14.4z"></path></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13z"></path><path d="M15.5 15.5L20 20"></path></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></symbol><symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></symbol><symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></symbol><symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></symbol><symbol id="i-chev-u" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M7 3.5h10v17l-5-3.6-5 3.6z"></path></symbol><symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 4v16"></path><path d="M16 4v16"></path><path d="M4.5 7.5L8 4l3.5 3.5"></path><path d="M12.5 16.5L16 20l3.5-3.5"></path></symbol><symbol id="i-info" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 11v5.5"></path><path d="M12 7.8h.01" stroke-width="2.4"></path></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L21 19.5H3z"></path><path d="M12 10v4.5"></path><path d="M12 17.1h.01" stroke-width="2.4"></path></symbol><symbol id="i-help" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.5"></path><path d="M12 16.7h.01" stroke-width="2.4"></path></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6"></path><path d="M20 4l-9 9"></path><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></symbol><symbol id="i-grip" viewBox="0 0 24 24"><path d="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01" stroke-width="2.6"></path></symbol><symbol id="i-more" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01" stroke-width="2.6"></path></symbol><symbol id="i-max" viewBox="0 0 24 24"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></symbol><symbol id="i-min" viewBox="0 0 24 24"><path d="M9 4v5H4"></path><path d="M15 4v5h5"></path><path d="M9 20v-5H4"></path><path d="M15 20v-5h5"></path></symbol><symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M12 2.5v2"></path><path d="M12 19.5v2"></path><path d="M2.5 12h2"></path><path d="M19.5 12h2"></path><path d="M5.3 5.3l1.4 1.4"></path><path d="M17.3 17.3l1.4 1.4"></path><path d="M5.3 18.7l1.4-1.4"></path><path d="M17.3 6.7l1.4-1.4"></path></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10z"></path></symbol><symbol id="i-dash" viewBox="0 0 24 24"><path d="M4 4h7v9H4z"></path><path d="M13 4h7v5h-7z"></path><path d="M13 11h7v9h-7z"></path><path d="M4 15h7v5H4z"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"></path><path d="M12 6.5v14"></path></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M4.5 20c1.2-3.5 4-5.5 7.5-5.5s6.3 2 7.5 5.5"></path></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6h10"></path><path d="M10 12h10"></path><path d="M10 18h10"></path><path d="M4 6l1.2 1.2L7.5 5"></path><path d="M4 12l1.2 1.2L7.5 11"></path><path d="M4 18l1.2 1.2L7.5 17"></path></symbol><symbol id="i-calc" viewBox="0 0 24 24"><path d="M15.5 4.5c-2.4-.6-3.9.4-4.4 2.9L9 18.5c-.5 2.4-1.9 3-3.8 2.5"></path><path d="M7.5 10h7.5"></path></symbol><symbol id="i-approx" viewBox="0 0 24 24"><path d="M5 9.5c2-2 4-2 7 0s5 2 7 0"></path><path d="M5 15.5c2-2 4-2 7 0s5 2 7 0"></path></symbol><symbol id="i-empty" viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15z"></path><path d="M6.7 17.3L17.3 6.7"></path></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13"></path><path d="M15 5l3 3-3 3"></path><path d="M19 16H6"></path><path d="M9 13l-3 3 3 3"></path></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"></path><path d="M8 4v5h7V4"></path><path d="M8 20v-6h8v6"></path></symbol><symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9"></path><path d="M17 7h3"></path><path d="M4 17h3"></path><path d="M11 17h9"></path><path d="M15 5v4"></path><path d="M9 15v4"></path></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 10A8 8 0 0 0 5 7.5"></path><path d="M4.5 4v4h4"></path><path d="M4.5 14A8 8 0 0 0 19 16.5"></path><path d="M19.5 20v-4h-4"></path></symbol><symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M12 7.5V12l3 2"></path></symbol><symbol id="i-check-c" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 0 1 0-17z"></path><path d="M8.2 12.3l2.6 2.6 5-5.2"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"></path><path d="M12 7.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path></symbol><symbol id="i-weight" viewBox="0 0 24 24"><path d="M9 7.5a3 3 0 1 1 6 0"></path><path d="M5.5 9h13l1.5 11H4z"></path></symbol><symbol id="i-stone" viewBox="0 0 24 24"><path d="M7 5h10l3 5-8 10-8-10z"></path><path d="M4 10h16"></path><path d="M10 5l-1.5 5L12 20l3.5-10L14 5"></path></symbol><symbol id="i-rune" viewBox="0 0 24 24"><path d="M12 3.5l6 8.5-6 8.5-6-8.5z"></path><path d="M12 9l2.1 3-2.1 3-2.1-3z"></path></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path></symbol><symbol id="i-key" viewBox="0 0 24 24"><path d="M7.5 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M11.5 12H21"></path><path d="M18 12v3"></path><path d="M15 12v2"></path></symbol><symbol id="i-skill" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"></path></symbol><symbol id="i-npc" viewBox="0 0 24 24"><path d="M12 3.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M6 20.5v-3a6 6 0 0 1 12 0v3"></path><path d="M9.5 20.5v-3"></path></symbol><symbol id="i-origin" viewBox="0 0 24 24"><path d="M6 20.5V8l6-4.5L18 8v12.5"></path><path d="M10 20.5v-5h4v5"></path><path d="M6 12h12"></path></symbol><symbol id="i-boss" viewBox="0 0 24 24"><path d="M4.5 17.5L3 7l5 4 4-6.5 4 6.5 5-4-1.5 10.5z"></path><path d="M4.5 20.5h15"></path></symbol><symbol id="i-trade" viewBox="0 0 24 24"><path d="M12 3l6.5 9-6.5 9-6.5-9z"></path><path d="M12 9.5v5"></path></symbol><symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 4v10"></path><path d="M7.5 9.5L12 14l4.5-4.5"></path><path d="M5 19.5h14"></path></symbol><symbol id="i-start" viewBox="0 0 24 24"><path d="M5 20.5V4"></path><path d="M5 4.5h12l-3 3.5 3 3.5H5"></path></symbol><symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v9H6z"></path><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></symbol><symbol id="i-s-base" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></symbol><symbol id="i-s-sote" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 1 0 14a7 7 0 0 1 0-14z"></path><path d="M12 5a7 7 0 0 0 0 14z" stroke-width="1.6" fill="currentColor"></path></symbol><symbol id="i-s-tp" viewBox="0 0 24 24"><path d="M12 4.5l7.5 7.5-7.5 7.5L4.5 12z"></path></symbol><symbol id="i-d-standard" viewBox="0 0 24 24"><path d="M18.5 5.5L8.2 15.8"></path><path d="M18.5 5.5H15"></path><path d="M18.5 5.5V9"></path><path d="M6 13.5l4.5 4.5"></path><path d="M7.6 16.4L4.5 19.5"></path></symbol><symbol id="i-d-strike" viewBox="0 0 24 24"><path d="M14 3.5l6.5 6.5-3 3-6.5-6.5z"></path><path d="M12.8 8.7L4.3 17.2a1.6 1.6 0 0 0 2.3 2.3l8.5-8.5"></path></symbol><symbol id="i-d-slash" viewBox="0 0 24 24"><path d="M4 18.5C9 17.5 14.5 13 18 5"></path><path d="M8 20.5c5-1.5 9.5-5.5 12-12"></path></symbol><symbol id="i-d-pierce" viewBox="0 0 24 24"><path d="M4.5 19.5L19 5"></path><path d="M12.5 5H19v6.5"></path><path d="M4.5 15.5l4 4"></path></symbol><symbol id="i-d-magic" viewBox="0 0 24 24"><path d="M12 3.5l1.9 6.6 6.6 1.9-6.6 1.9L12 20.5l-1.9-6.6L3.5 12l6.6-1.9z"></path></symbol><symbol id="i-d-fire" viewBox="0 0 24 24"><path d="M12 3.5c1 3.5 5.5 5.2 5.5 10a5.5 5.5 0 0 1-11 0c0-2.6 1.5-4 2.6-5.2.3 1.7 1 2.7 2.2 3.2C11 9 10.6 6.2 12 3.5z"></path></symbol><symbol id="i-d-lightning" viewBox="0 0 24 24"><path d="M13 3L5.5 13.5H12L10.5 21l8-11H12z"></path></symbol><symbol id="i-d-holy" viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 1 0 7a3.5 3.5 0 0 1 0-7z"></path><path d="M12 3v2.5"></path><path d="M12 18.5V21"></path><path d="M3 12h2.5"></path><path d="M18.5 12H21"></path><path d="M5.6 5.6l1.8 1.8"></path><path d="M16.6 16.6l1.8 1.8"></path><path d="M5.6 18.4l1.8-1.8"></path><path d="M16.6 7.4l1.8-1.8"></path></symbol><symbol id="i-st-bleed" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.7a6 6 0 0 1-12 0c0-3.3 3-6.7 6-10.7z"></path><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"></path></symbol><symbol id="i-st-frost" viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M4.2 7.5l15.6 9"></path><path d="M4.2 16.5l15.6-9"></path><path d="M9.5 4.5L12 7l2.5-2.5"></path><path d="M9.5 19.5L12 17l2.5 2.5"></path></symbol><symbol id="i-st-poison" viewBox="0 0 24 24"><path d="M8.5 11a4 4 0 1 1 0 8a4 4 0 0 1 0-8z"></path><path d="M16.5 4.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path><path d="M17 13.5a2 2 0 1 1 0 4a2 2 0 0 1 0-4z"></path></symbol><symbol id="i-st-rot" viewBox="0 0 24 24"><path d="M12 10a2 2 0 1 1 0 4a2 2 0 0 1 0-4z"></path><path d="M12 10c-1.5-3-1-5.5 0-6.5 1 1 1.5 3.5 0 6.5z"></path><path d="M14 12c3-1.5 5.5-1 6.5 0-1 1-3.5 1.5-6.5 0z"></path><path d="M12 14c1.5 3 1 5.5 0 6.5-1-1-1.5-3.5 0-6.5z"></path><path d="M10 12c-3 1.5-5.5 1-6.5 0 1-1 3.5-1.5 6.5 0z"></path></symbol><symbol id="i-st-sleep" viewBox="0 0 24 24"><path d="M4 10.5c2.5 3.5 13.5 3.5 16 0"></path><path d="M7 13.5L5.5 15.5"></path><path d="M12 14.6V17"></path><path d="M17 13.5l1.5 2"></path><path d="M15 4.5h3.5L15 8h3.5"></path></symbol><symbol id="i-st-madness" viewBox="0 0 24 24"><path d="M3.5 13S7 7.5 12 7.5 20.5 13 20.5 13 17 18.5 12 18.5 3.5 13 3.5 13z"></path><path d="M12 10.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z"></path><path d="M12 3v2"></path><path d="M7 4l1 1.6"></path><path d="M17 4l-1 1.6"></path></symbol><symbol id="i-st-death" viewBox="0 0 24 24"><path d="M12 3.5a7 7 0 0 0-7 7c0 2.6 1.3 4.2 3 5.2V19.5h8v-3.8c1.7-1 3-2.6 3-5.2a7 7 0 0 0-7-7z"></path><path d="M9.3 10.5h.01M14.7 10.5h.01" stroke-width="2.6"></path><path d="M10.5 19.5v-2"></path><path d="M13.5 19.5v-2"></path></symbol><symbol id="i-c-dagger" viewBox="0 0 24 24"><path d="M7.5 16.5L4.5 19.5"></path><path d="M6 14l4 4"></path><path d="M8.2 15.8L15 9l2.5-4.5L13 7z"></path></symbol><symbol id="i-c-straight" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5 14.5l4.5 4.5"></path><path d="M7.5 16.5L18.5 5.5V8.5L9.8 17.2"></path></symbol><symbol id="i-c-greatsword" viewBox="0 0 24 24"><path d="M3.8 20.2L6.6 17.4"></path><path d="M4.6 14.2l5.2 5.2"></path><path d="M7.4 16.6L17.5 6.5"></path><path d="M9.4 18.6L19.5 8.5"></path><path d="M17.5 6.5L20 4l-.5 4.5"></path></symbol><symbol id="i-c-lgs" viewBox="0 0 24 24"><path d="M3.5 20.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M7.8 16.2L20 4"></path><path d="M20 4l-.3 2.8L9.4 17.1"></path></symbol><symbol id="i-c-katana" viewBox="0 0 24 24"><path d="M4 20l2.6-2.6"></path><path d="M5.4 16.2l2.4 2.4"></path><path d="M7.5 16.5C12 13.5 17 9 20 4c-1.5 5.5-6 10.2-10.8 14.1"></path></symbol><symbol id="i-c-curved" viewBox="0 0 24 24"><path d="M4.5 19.5L7 17"></path><path d="M5.5 15.5l3 3"></path><path d="M8 16c5-1.5 9.5-5.5 11-11.5C15 9 11 12 8 16z"></path></symbol><symbol id="i-c-axe" viewBox="0 0 24 24"><path d="M5 20L15.5 9.5"></path><path d="M13 5c3 0 6 3 6 6l-3.5 1.5-4-4z"></path></symbol><symbol id="i-c-hammer" viewBox="0 0 24 24"><path d="M5 20l8.5-8.5"></path><path d="M11.5 6.5l6 6 3-3-6-6z"></path></symbol><symbol id="i-c-spear" viewBox="0 0 24 24"><path d="M4 20L16.5 7.5"></path><path d="M16.5 7.5L20.5 3.5l-1 4.5-3.5 1z"></path></symbol><symbol id="i-c-halberd" viewBox="0 0 24 24"><path d="M4 20L18 6"></path><path d="M18 6l2.5-2.5"></path><path d="M13.5 6.5c2.7-1.6 5.3.3 5 3.6l-2.4-.6z"></path></symbol><symbol id="i-c-bow" viewBox="0 0 24 24"><path d="M6 4c7 1.5 12.5 7 14 14"></path><path d="M6 4l14 14"></path><path d="M5 9.5L6 4l5.5-1"></path></symbol><symbol id="i-c-staff" viewBox="0 0 24 24"><path d="M5 20L14.5 10.5"></path><path d="M17 4a3 3 0 1 1 0 6a3 3 0 0 1 0-6z"></path></symbol><symbol id="i-c-seal" viewBox="0 0 24 24"><path d="M12 3.5a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11z"></path><path d="M12 14.5v6"></path><path d="M12 6.5l2.5 2.5-2.5 2.5L9.5 9z"></path></symbol><symbol id="i-c-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M12 3v18"></path></symbol></svg>
+
+<div class="cx-proto" role="region" aria-label="Commandes du prototype">
+<span>Prototype</span>
+<span class="sep"></span>
+<span>Thème</span>
+<button aria-pressed="{{pDark}}" onClick="{{setDark}}">Sombre</button>
+<button aria-pressed="{{pLight}}" onClick="{{setLight}}">Parchemin</button>
+<span class="sep"></span>
+<span>Données</span>
+<button aria-pressed="{{pReady}}" onClick="{{setReady}}">Chargées</button>
+<button aria-pressed="{{pLoading}}" onClick="{{setLoading}}">Premier chargement</button>
+<button aria-pressed="{{pError}}" onClick="{{setError}}">Fichier illisible</button>
+<span class="sep"></span>
+<button aria-pressed="{{showMock}}" onClick="{{toggleMock}}">Annotations ◆</button>
+<span style="margin-left: auto; font-weight: 400">◆ valeur de maquette (calcul du prototype). Armes, origines et boss : données réelles de l'annexe B.</span>
+</div>
+
+<div class="cx-app">
+<nav class="cx-nav {{navCls}}" aria-label="Navigation principale">
+<a class="cx-brand" href="Main.dc.html" title="Codex de l'Entre-terre"><svg class="cx-mark" aria-hidden="true"><use href="#i-mark"></use></svg><span class="cx-brand-name p-navt">Codex de l'Entre-terre</span></a>
+<a class="cx-nav-item is-active" href="Main.dc.html" aria-current="page" title="Tableau de bord"><svg class="cx-i" aria-hidden="true"><use href="#i-dash"></use></svg><span class="p-navt">Tableau de bord</span></a>
+<div class="cx-nav-label p-navt">Explorer</div>
+<sc-for list="{{navItems}}" as="n" hint-placeholder-count="11">
+<a class="cx-nav-item" href="{{n.href}}" title="{{n.label}}"><svg class="cx-i" aria-hidden="true"><use href="{{n.icon}}"></use></svg><span class="p-navt">{{n.label}}</span><span class="cx-nav-count p-navt">{{n.count}}</span></a>
+</sc-for>
+<div class="cx-nav-label p-navt">Outils</div>
+<sc-for list="{{navTools}}" as="n" hint-placeholder-count="4">
+<a class="cx-nav-item" href="{{n.href}}" title="{{n.label}}"><svg class="cx-i" aria-hidden="true"><use href="{{n.icon}}"></use></svg><span class="p-navt">{{n.label}}</span><span class="cx-nav-count p-navt">{{n.count}}</span></a>
+</sc-for>
+<div class="p-navfoot">
+<button class="cx-nav-item p-navbtn" aria-expanded="{{navExpanded}}" aria-label="{{navToggleLabel}}" title="{{navToggleLabel}}" onClick="{{toggleNav}}"><svg class="cx-i" aria-hidden="true"><use href="{{navToggleIcon}}"></use></svg><span class="p-navt">Replier le menu</span></button>
+</div>
+</nav>
+
+<div class="cx-main">
+<header class="cx-topbar">
+<a class="cx-search" href="Recherche.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-search"></use></svg><span>Rechercher une arme, un boss, un lieu…</span><span class="cx-kbd">Ctrl K</span></a>
+<div class="p-topright">
+<button class="cx-btn cx-btn-ghost" aria-expanded="{{listOpen}}" onClick="{{toggleList}}"><svg class="cx-i" aria-hidden="true"><use href="#i-list"></use></svg>Ma liste<span class="p-count">{{pinCount}}</span></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon" aria-label="{{themeLabel}}" title="{{themeLabel}}" onClick="{{toggleTheme}}"><svg class="cx-i" aria-hidden="true"><use href="{{themeIcon}}"></use></svg></button>
+<a class="cx-btn cx-btn-ghost" href="#profil"><svg class="cx-i" aria-hidden="true"><use href="#i-user"></use></svg>{{profileName}}</a>
+<sc-if value="{{listOpen}}" hint-placeholder-val="{{ false }}">
+<div class="p-pop" role="dialog" aria-label="Ma liste">
+<div class="cx-row" style="justify-content: space-between"><span class="titre-s">Ma liste</span><span class="cx-muted" style="font-size: 12px">{{gotTxt}}</span></div>
+<sc-for list="{{myList}}" as="m" hint-placeholder-count="2">
+<div class="p-li"><label class="cx-check"><input type="checkbox" checked="{{m.got}}" onChange="{{m.toggle}}"> <span class="{{m.nameCls}}">{{m.name}}</span><span class="cx-check-meta">{{m.stage}}</span></label><span class="cx-muted" style="font-size: 12px; line-height: 16px">{{m.where}}</span></div>
+</sc-for>
+<sc-if value="{{listEmpty}}" hint-placeholder-val="{{ false }}"><div class="cx-empty"><span class="cx-empty-title">Ma liste est vide</span><span>Épinglez une arme depuis une carte pour la retrouver ici.</span></div></sc-if>
+</div>
+</sc-if>
+</div>
+</header>
+
+<div class="p-body">
+<aside class="cx-criteria {{critCls}}" aria-label="Critères du tableau de bord">
+<sc-if value="{{critOpen}}" hint-placeholder-val="{{ true }}">
+<div class="cx-crit-head">
+<span class="cx-crit-title"><svg class="cx-i" aria-hidden="true"><use href="#i-sliders"></use></svg>Critères</span>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Replier le panneau de critères" title="Replier le panneau" onClick="{{toggleCrit}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-l"></use></svg></button>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Profil <small>enregistré sur cet appareil</small></h3>
+<div class="cx-row" style="flex-wrap: nowrap">
+<select class="cx-select" style="flex: 1 1 auto" aria-label="Profil enregistré" value="{{profileId}}" onChange="{{onProfile}}">
+<option value="dex">Dex / Saignement</option>
+<option value="mage">Mage pur NG+</option>
+<option value="foi">Foi / Force</option>
+</select>
+<button class="cx-btn cx-btn-icon" aria-label="Enregistrer le profil" title="Enregistrer le profil" onClick="{{saveProfile}}"><svg class="cx-i" aria-hidden="true"><use href="#i-save"></use></svg></button>
+</div>
+<sc-if value="{{dirty}}" hint-placeholder-val="{{ false }}"><span class="p-hidden">Modifié depuis le dernier enregistrement.</span></sc-if>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Contenu <small>armes du prototype</small></h3>
+<sc-for list="{{contentRows}}" as="c" hint-placeholder-count="3">
+<label class="cx-check"><input type="checkbox" checked="{{c.on}}" onChange="{{c.toggle}}"> <span class="cx-badge cx-src-{{c.k}}" title="{{c.full}}" aria-label="Source : {{c.full}}"><svg class="cx-i" aria-hidden="true"><use href="{{c.icon}}"></use></svg>{{c.short}}</span> {{c.label}}<span class="cx-check-meta">{{c.count}}</span></label>
+</sc-for>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Personnage <small>niveau {{level}}</small></h3>
+<div class="cx-crit-field">
+<label for="crit-origin">Origine</label>
+<select id="crit-origin" class="cx-select" value="{{originVal}}" onChange="{{onOrigin}}">
+<option value="auto">Automatique (la mieux classée)</option>
+<option value="vagabond">Vagabond</option>
+<option value="warrior">Warrior</option>
+<option value="hero">Hero</option>
+<option value="bandit">Bandit</option>
+<option value="astrologer">Astrologer</option>
+<option value="prophet">Prophet</option>
+<option value="samurai">Samurai</option>
+<option value="prisoner">Prisoner</option>
+<option value="confessor">Confessor</option>
+<option value="wretch">Wretch</option>
+<option value="idus">Idus Knight (Tarnished Pack)</option>
+<option value="heavy">Heavy Knight (Tarnished Pack)</option>
+</select>
+<sc-if value="{{originAuto}}" hint-placeholder-val="{{ false }}"><span class="p-hidden">Origine retenue : <b>{{originEffName}}</b> (rang 1 du widget B).</span></sc-if>
+</div>
+<div class="cx-crit-grid2">
+<sc-for list="{{steppers}}" as="t" hint-placeholder-count="8">
+<div class="cx-stepper">
+<span class="cx-stepper-name"><abbr class="cx-stepper-abbr" title="{{t.full}}" style="text-decoration: none">{{t.abbr}}</abbr></span>
+<span class="cx-stepper-ctl"><button aria-label="Diminuer {{t.full}}" title="Maj : −5" disabled="{{t.minD}}" onClick="{{t.dec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">{{t.v}}</span><button aria-label="Augmenter {{t.full}}" title="Maj : +5" disabled="{{t.maxD}}" onClick="{{t.inc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span>
+</div>
+</sc-for>
+</div>
+<div class="cx-crit-derived">Niveau <b>{{level}}</b><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span class="cx-muted">somme des attributs − 79</span></div>
+<div class="cx-hr"></div>
+<div class="cx-crit-field">
+<label for="crit-arch">Build cible</label>
+<select id="crit-arch" class="cx-select" value="{{archVal}}" onChange="{{onArch}}">
+<option value="">Aucun : déduit des attributs actuels</option>
+<option value="str">Force</option>
+<option value="dex">Dextérité</option>
+<option value="qual">Qualité (Force et Dextérité)</option>
+<option value="int">Intelligence</option>
+<option value="fai">Foi</option>
+<option value="arc">Arcane</option>
+<option value="dexarc">Dextérité / Arcane</option>
+<option value="intdex">Intelligence / Dextérité</option>
+<option value="intfai">Intelligence / Foi</option>
+<option value="strfai">Force / Foi</option>
+</select>
+</div>
+<sc-if value="{{hasTarget}}" hint-placeholder-val="{{ true }}">
+<div class="cx-stepper is-target">
+<span class="cx-stepper-name"><span class="cx-stepper-abbr">Niveau cible</span></span>
+<span class="cx-stepper-ctl"><button aria-label="Diminuer le niveau cible" onClick="{{tlDec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">{{tlv}}</span><button aria-label="Augmenter le niveau cible" onClick="{{tlInc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span>
+</div>
+<div class="p-tgt" aria-label="Attributs cibles calculés">
+<sc-for list="{{tgtGrid}}" as="g" hint-placeholder-count="8"><span title="{{g.title}}"><i>{{g.k}}</i>{{g.v}}</span></sc-for>
+</div>
+<div class="cx-crit-derived"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span class="cx-muted">répartition de l'archétype au niveau cible</span></div>
+</sc-if>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Style de jeu</h3>
+<div class="cx-seg full" role="group" aria-label="Style de jeu">
+<sc-for list="{{styleSeg}}" as="o" hint-placeholder-count="4"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+<div class="cx-crit-field">
+<span>Classes d'armes préférées</span>
+<div class="cx-row tight">
+<sc-for list="{{classChips}}" as="c" hint-placeholder-count="8"><button class="cx-chip" aria-pressed="{{c.on}}" onClick="{{c.pick}}"><svg class="cx-i sm" aria-hidden="true"><use href="{{c.icon}}"></use></svg>{{c.label}}</button></sc-for>
+</div>
+<button class="cx-facet-more">Voir les 41 classes</button>
+</div>
+<div class="cx-seg full" role="group" aria-label="Prise en main">
+<sc-for list="{{handsSeg}}" as="o" hint-placeholder-count="2"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+<div class="cx-crit-field">
+<span>Effet de statut privilégié</span>
+<div class="cx-row tight">
+<sc-for list="{{statusChips}}" as="c" hint-placeholder-count="7"><button class="cx-chip {{c.cls}}" aria-pressed="{{c.on}}" onClick="{{c.pick}}"><sc-if value="{{c.hasIcon}}" hint-placeholder-val="{{ true }}"><span class="cx-tint"><svg class="cx-i sm" aria-hidden="true"><use href="{{c.icon}}"></use></svg></span></sc-if>{{c.label}}</button></sc-for>
+</div>
+</div>
+<div class="cx-crit-field">
+<span>Limite de charge d'équipement</span>
+<div class="cx-seg full" role="group" aria-label="Limite de charge">
+<sc-for list="{{loadSeg}}" as="o" hint-placeholder-count="3"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+<div class="cx-crit-derived">Charge max <b>{{eqLoadTxt}}</b>, seuil {{loadPct}}, budget par arme <b>{{budgetTxt}}</b><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span></div>
+</div>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Progression</h3>
+<div class="cx-seg full" role="group" aria-label="Mode de progression">
+<sc-for list="{{progSeg}}" as="o" hint-placeholder-count="3"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+<sc-if value="{{progStage}}" hint-placeholder-val="{{ false }}">
+<div class="cx-seg full" role="group" aria-label="Étape actuelle">
+<sc-for list="{{stageSeg}}" as="o" hint-placeholder-count="5"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{progBoss}}" hint-placeholder-val="{{ true }}">
+<div class="p-checks2">
+<sc-for list="{{bossChecks}}" as="c" hint-placeholder-count="18"><label class="cx-check" title="{{c.full}}"><input type="checkbox" checked="{{c.on}}" onChange="{{c.toggle}}"> {{c.label}}</label></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{progRegion}}" hint-placeholder-val="{{ false }}">
+<div>
+<sc-for list="{{regionChecks}}" as="c" hint-placeholder-count="10"><label class="cx-check"><input type="checkbox" checked="{{c.on}}" onChange="{{c.toggle}}"> {{c.label}}<span class="cx-check-meta">{{c.stage}}</span></label></sc-for>
+</div>
+</sc-if>
+<div class="cx-crit-derived">Étape retenue <b>{{stageName}}</b><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span class="cx-muted">{{stageWhy}}</span></div>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Contraintes d'obtention</h3>
+<div>
+<sc-for list="{{constraints}}" as="c" hint-placeholder-count="3"><button class="cx-toggle" aria-pressed="{{c.on}}" onClick="{{c.toggle}}"><span class="cx-toggle-track"><span class="cx-toggle-thumb"></span></span><span>{{c.label}}</span><span class="cx-check-meta">{{c.count}}</span></button></sc-for>
+</div>
+<div class="cx-crit-field">
+<span>Pierres de forge préférées</span>
+<div class="cx-seg full" role="group" aria-label="Pierres préférées">
+<sc-for list="{{stoneSeg}}" as="o" hint-placeholder-count="3"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+</div>
+</div>
+
+<div class="cx-crit-sec">
+<h3>Fiabilité</h3>
+<button class="cx-toggle" aria-pressed="{{inclEst}}" onClick="{{toggleEst}}"><span class="cx-toggle-track"><span class="cx-toggle-thumb"></span></span><span>Inclure les valeurs estimées</span><span class="cx-rel cx-rel-est" style="margin-left: auto"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg>{{estCount}}</span></button>
+<span class="p-hidden">Armes dont le type d'amélioration n'est pas documenté par le wiki.</span>
+</div>
+
+<div class="cx-row" style="padding: 16px">
+<button class="cx-btn cx-btn-ghost" onClick="{{resetAll}}"><svg class="cx-i" aria-hidden="true"><use href="#i-refresh"></use></svg>Réinitialiser</button>
+<button class="cx-btn cx-btn-primary" style="margin-left: auto" onClick="{{saveProfile}}"><svg class="cx-i" aria-hidden="true"><use href="#i-save"></use></svg>Enregistrer le profil</button>
+</div>
+</sc-if>
+<sc-if value="{{critClosed}}" hint-placeholder-val="{{ false }}">
+<button class="cx-btn cx-btn-ghost cx-btn-icon" style="margin-top: 16px" aria-label="Déplier le panneau de critères" title="Critères" onClick="{{toggleCrit}}"><svg class="cx-i" aria-hidden="true"><use href="#i-sliders"></use></svg></button>
+<span class="p-vert">Critères</span>
+</sc-if>
+</aside>
+
+<main class="p-dash" id="contenu">
+<div class="p-head">
+<div>
+<h1 class="titre-l">Tableau de bord</h1>
+<p class="p-head-sub">{{headSub}}</p>
+</div>
+<div class="cx-row">
+<div class="p-addwrap">
+<button class="cx-btn" aria-expanded="{{addOpen}}" onClick="{{toggleAdd}}"><svg class="cx-i" aria-hidden="true"><use href="#i-plus"></use></svg>Ajouter un widget</button>
+<sc-if value="{{addOpen}}" hint-placeholder-val="{{ false }}">
+<div class="p-addmenu" role="menu" aria-label="Widgets disponibles">
+<sc-for list="{{addItems}}" as="w" hint-placeholder-count="11">
+<div class="p-additem"><div><b>{{w.t}}</b><small>{{w.d}}</small></div><button class="cx-btn cx-btn-sm" role="menuitem" disabled="{{w.on}}" onClick="{{w.add}}">{{w.btn}}</button></div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<button class="cx-btn cx-btn-ghost" onClick="{{resetLayout}}"><svg class="cx-i" aria-hidden="true"><use href="#i-refresh"></use></svg>Réinitialiser la disposition</button>
+</div>
+</div>
+
+<div class="cx-row" role="group" aria-label="Critères actifs">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="8">
+<span class="cx-chip {{c.onCls}}"><button class="p-chipbtn" title="Modifier dans le panneau de critères" onClick="{{openCrit}}"><span class="k">{{c.k}}</span>{{c.v}}</button><sc-if value="{{c.x}}" hint-placeholder-val="{{ false }}"><button class="cx-chip-x" aria-label="Retirer : {{c.k}}" onClick="{{c.rm}}"><svg class="cx-i xs" aria-hidden="true"><use href="#i-x"></use></svg></button></sc-if></span>
+</sc-for>
+<button class="cx-btn cx-btn-ghost cx-btn-sm" onClick="{{resetAll}}">Tout réinitialiser</button>
+</div>
+
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+<div class="cx-loading" aria-busy="true"><div class="cx-row" style="justify-content: space-between"><span class="ui-fort">Premier chargement des données</span><span class="cx-muted cx-num">11 fichiers sur 18</span></div><div class="cx-progress"><span style="width: 61%"></span></div><span class="cx-muted" style="font-size: 12px">Lecture de bosses.json. Chaque widget s'affiche dès que ses fichiers sont lus ; les données restent ensuite dans le navigateur.</span></div>
+</sc-if>
+
+<div class="cx-dash-grid p-grid">
+
+<sc-if value="{{wA.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-12 {{wA.maxCls}}" style="order: {{wA.order}}" aria-labelledby="wa-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wa-t">Armes recommandées au fil de la partie</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-calc"></use></svg><span>Score sur 100 : adéquation au build, puissance et scaling, accessibilité à votre étape, coût d'amélioration. Étape déduite des régions d'obtention.</span><span class="cx-mq">valeur de maquette</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wA.colLabel}}" title="{{wA.colLabel}}" onClick="{{wA.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wA.colIcon}}"></use></svg></button>
+<a class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" href="PleinEcranA.dc.html" aria-label="Plein écran" title="Plein écran"><svg class="cx-i" aria-hidden="true"><use href="#i-max"></use></svg></a>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wA.menuOpen}}" onClick="{{wA.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wA.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wA.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wA.colIcon}}"></use></svg>{{wA.colLabel}}</button>
+<a class="cx-menu-item" role="menuitem" href="PleinEcranA.dc.html"><svg class="cx-i" aria-hidden="true"><use href="#i-max"></use></svg>Plein écran</a>
+<button role="menuitem" disabled="{{wA.isFirst}}" onClick="{{wA.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wA.isLast}}" onClick="{{wA.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wA.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wA.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+<div class="cx-stage-cols" aria-busy="true"><div class="cx-loading"><span class="cx-skel" style="height: 18px; width: 70%"></span><span class="cx-skel" style="height: 12px; width: 90%"></span><span class="cx-skel" style="height: 12px; width: 60%"></span></div><div class="cx-loading"><span class="cx-skel" style="height: 18px; width: 70%"></span><span class="cx-skel" style="height: 12px; width: 90%"></span><span class="cx-skel" style="height: 12px; width: 60%"></span></div><div class="cx-loading"><span class="cx-skel" style="height: 18px; width: 70%"></span><span class="cx-skel" style="height: 12px; width: 90%"></span></div><div class="cx-loading"><span class="cx-skel" style="height: 18px; width: 70%"></span><span class="cx-skel" style="height: 12px; width: 60%"></span></div><div class="cx-loading"><span class="cx-skel" style="height: 18px; width: 70%"></span><span class="cx-skel" style="height: 12px; width: 90%"></span></div></div>
+</sc-if>
+<sc-if value="{{notLoading}}" hint-placeholder-val="{{ true }}">
+<div class="cx-thread" role="list" aria-label="Étapes de progression">
+<sc-for list="{{thread}}" as="t" hint-placeholder-count="5">
+<div class="cx-thread-stage {{t.cls}}" role="listitem" aria-current="{{t.cur}}"><span class="cx-thread-dot"></span><span style="padding-left: 18px">{{t.name}} <span class="cx-thread-regions">{{t.regions}}</span></span></div>
+</sc-for>
+</div>
+<div class="cx-stage-cols">
+<sc-for list="{{cols}}" as="col" hint-placeholder-count="5">
+<div class="p-col" role="group" aria-label="{{col.aria}}">
+<sc-for list="{{col.weapons}}" as="w" hint-placeholder-count="3">
+<article class="cx-wcard {{w.cardCls}}">
+<div class="cx-wcard-head">
+<div><a class="cx-wcard-name" href="FicheArme.dc.html">{{w.name}}</a></div>
+<div class="cx-score" title="Score de recommandation, calculé (valeur de maquette)"><span class="cx-score-num cx-mqv">{{w.score}}</span><span class="cx-score-bar"><span style="width: {{w.score}}%"></span></span></div>
+</div>
+<div class="cx-wcard-sub"><svg class="cx-i sm" aria-hidden="true"><use href="{{w.icon}}"></use></svg><span>{{w.cat}}</span><span title="Poids"><svg class="cx-i xs" aria-hidden="true"><use href="#i-weight"></use></svg> {{w.wtTxt}}</span><span class="cx-badge cx-src-{{w.src}}" title="{{w.srcF}}" aria-label="Source : {{w.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{w.srcI}}"></use></svg>{{w.srcS}}</span></div>
+<div class="cx-wcard-field" aria-label="Prérequis comparés à votre profil">
+<sc-for list="{{w.reqs}}" as="r" hint-placeholder-count="2"><span class="cx-req {{r.cls}}" title="{{r.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{r.icon}}"></use></svg>{{r.label}}<sc-if value="{{r.h2}}" hint-placeholder-val="{{ false }}"><span class="cx-req-2h">2M</span></sc-if><sc-if value="{{r.miss}}" hint-placeholder-val="{{ false }}"><span class="cx-req-gap">{{r.gap}}</span></sc-if></span></sc-for>
+</div>
+<div class="cx-wcard-field" aria-label="Scaling à +0">
+<sc-for list="{{w.scls}}" as="g" hint-placeholder-count="2"><span class="cx-scl" title="{{g.title}}"><span class="cx-scl-attr">{{g.attr}}</span><span class="cx-scl-g g-{{g.lc}}">{{g.g}}</span></span></sc-for>
+</div>
+<div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-skill"></use></svg><span><b>{{w.skill}}</b> {{w.skillType}}</span></div>
+<sc-if value="{{w.hasSt}}" hint-placeholder-val="{{ true }}"><div class="cx-wcard-line"><span class="cx-dt {{w.stCls}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{w.stIcon}}"></use></svg></span>{{w.stLabel}} <span class="cx-dt-val">{{w.stVal}}</span></span></div></sc-if>
+<sc-if value="{{w.hasPText}}" hint-placeholder-val="{{ false }}"><div class="cx-wcard-line"><span class="cx-muted">{{w.pText}}</span></div></sc-if>
+<div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-stone"></use></svg><span>{{w.upTxt}}</span><span class="cx-rel {{w.relCls}}" title="{{w.relTitle}}"><svg class="cx-i" aria-hidden="true"><use href="{{w.relIcon}}"></use></svg>{{w.relLabel}}</span></div>
+<div class="cx-wcard-line"><svg class="cx-i sm" aria-hidden="true"><use href="#i-map"></use></svg><span>{{w.where}}</span></div>
+<sc-if value="{{w.hasFlags}}" hint-placeholder-val="{{ false }}"><div class="cx-row tight"><sc-for list="{{w.flags}}" as="f" hint-placeholder-count="1"><span class="cx-flag {{f.cls}}" title="{{f.title}}"><svg class="cx-i" aria-hidden="true"><use href="{{f.icon}}"></use></svg>{{f.label}}</span></sc-for></div></sc-if>
+<div class="cx-wcard-acts">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm cx-wcard-pin" aria-label="{{w.pinLabel}}" title="{{w.pinLabel}}" aria-pressed="{{w.pinned}}" onClick="{{w.pin}}"><svg class="cx-i" aria-hidden="true"><use href="#i-pin"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{w.cmpLabel}}" title="{{w.cmpLabel}}" aria-pressed="{{w.inCmp}}" onClick="{{w.cmp}}"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Voir les alternatives" title="Voir les alternatives" onClick="{{w.alts}}"><svg class="cx-i" aria-hidden="true"><use href="#i-swap"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-sm cx-btn-why" aria-expanded="{{w.whyOpen}}" onClick="{{w.why}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-help"></use></svg>Pourquoi ?</button>
+</div>
+</article>
+</sc-for>
+<sc-if value="{{col.empty}}" hint-placeholder-val="{{ false }}">
+<div class="cx-empty"><span class="cx-empty-title">{{col.eTitle}}</span><span>{{col.eText}}</span><sc-if value="{{col.eHasAct}}" hint-placeholder-val="{{ false }}"><button class="cx-btn cx-btn-sm" onClick="{{col.eAct}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg>{{col.eActLabel}}</button></sc-if><sc-if value="{{col.eLink}}" hint-placeholder-val="{{ false }}"><a class="cx-btn cx-btn-ghost cx-btn-sm" href="PleinEcranA.dc.html">Voir toutes les armes</a></sc-if></div>
+</sc-if>
+<sc-if value="{{col.hasHidden}}" hint-placeholder-val="{{ false }}"><p class="p-hidden">{{col.hiddenTxt}}</p></sc-if>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{why.on}}" hint-placeholder-val="{{ false }}">
+<div class="cx-why" style="margin-top: 16px" role="region" aria-label="{{why.title}}">
+<div class="cx-why-h"><h3 class="titre-s">{{why.title}}</h3><button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Fermer" title="Fermer" onClick="{{closeWhy}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg></button></div>
+<sc-if value="{{why.isWhy}}" hint-placeholder-val="{{ true }}">
+<div><h4>Score {{why.score}} sur 100 <span class="cx-mq">valeur de maquette</span></h4><div class="cx-breakdown"><sc-for list="{{why.parts}}" as="p" hint-placeholder-count="4"><div class="cx-bd-row"><span>{{p.label}}</span><b>{{p.v}}</b><span class="cx-bd-bar"><span style="width: {{p.pct}}%"></span></span></div></sc-for></div></div>
+<div><h4>Données utilisées</h4><ul class="cx-why-data"><sc-for list="{{why.data}}" as="d" hint-placeholder-count="4"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{d.icon}}"></use></svg><span>{{d.t}}</span></li></sc-for></ul></div>
+<div><h4>Limites</h4><ul class="cx-why-data"><sc-for list="{{why.limits}}" as="d" hint-placeholder-count="2"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{d.icon}}"></use></svg><span>{{d.t}}</span></li></sc-for></ul></div>
+</sc-if>
+<sc-if value="{{why.isAlts}}" hint-placeholder-val="{{ false }}">
+<div style="grid-column: 1 / -1"><h4>Armes proches pour votre build : même étape ou étape voisine, triées par score</h4>
+<div class="p-alts"><sc-for list="{{why.alts}}" as="x" hint-placeholder-count="4"><div class="p-alt"><div><a class="cx-wcard-name" style="font-size: 16px" href="FicheArme.dc.html">{{x.name}}</a><div class="cx-wcard-sub"><span>{{x.cat}}</span><span>étape {{x.stage}}</span><span class="cx-badge cx-src-{{x.src}}" title="{{x.srcF}}" aria-label="Source : {{x.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{x.srcI}}"></use></svg>{{x.srcS}}</span></div></div><span class="cx-score-num cx-mqv">{{x.score}}</span><button class="cx-btn cx-btn-ghost cx-btn-sm" onClick="{{x.why}}">Pourquoi ?</button></div></sc-for></div>
+<sc-if value="{{why.noAlts}}" hint-placeholder-val="{{ false }}"><p class="cx-muted" style="font-size: 12px">Aucune autre arme ne correspond à vos critères.</p></sc-if>
+</div>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{cmp.on}}" hint-placeholder-val="{{ false }}">
+<div class="cx-note calc" style="margin-top: 12px; align-items: center"><svg class="cx-i" aria-hidden="true"><use href="#i-compare"></use></svg><span><b>{{cmp.title}}</b> {{cmp.names}}</span><span class="cx-row tight" style="margin-left: auto"><button class="cx-btn cx-btn-sm" disabled="{{cmp.cant}}" title="{{cmp.hint}}">Ouvrir le comparateur</button><button class="cx-btn cx-btn-ghost cx-btn-sm" onClick="{{cmp.clear}}">Vider</button></span></div>
+</sc-if>
+</sc-if>
+</div>
+<div class="cx-w-foot"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span>Recalculé à chaque changement de critère</span><span>{{aFoot}}</span><span style="margin-left: auto">Prototype : les 10 armes de l'annexe B (335 dans melee_armaments)</span></div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{wB.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-12 {{wB.maxCls}}" style="order: {{wB.order}}" aria-labelledby="wb-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wb-t">Configuration de départ optimale</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-calc"></use></svg><span>Niveau pour la cible = somme des maxima (départ, cible) − 79. Points gaspillés = attributs de départ au-delà de la cible. {{bHowTarget}}</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wB.colLabel}}" title="{{wB.colLabel}}" onClick="{{wB.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wB.colIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wB.maxLabel}}" title="{{wB.maxLabel}}" onClick="{{wB.toggleMax}}"><svg class="cx-i" aria-hidden="true"><use href="{{wB.maxIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wB.menuOpen}}" onClick="{{wB.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wB.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wB.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wB.colIcon}}"></use></svg>{{wB.colLabel}}</button>
+<button role="menuitem" disabled="{{wB.isFirst}}" onClick="{{wB.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wB.isLast}}" onClick="{{wB.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wB.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wB.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}"><div class="cx-loading" aria-busy="true"><span class="cx-skel" style="height: 18px; width: 30%"></span><span class="cx-skel" style="height: 12px; width: 80%"></span><span class="cx-skel" style="height: 12px; width: 65%"></span><span class="cx-skel" style="height: 12px; width: 72%"></span></div></sc-if>
+<sc-if value="{{bNoTarget}}" hint-placeholder-val="{{ false }}">
+<div class="cx-empty"><span class="cx-empty-title">Aucun build cible</span><span>Le classement compare les attributs de départ des 12 origines à un build cible.</span><button class="cx-btn cx-btn-sm" onClick="{{setDefaultArch}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg>Choisir Dextérité / Arcane, niveau 125</button></div>
+</sc-if>
+<sc-if value="{{bShow}}" hint-placeholder-val="{{ true }}">
+<div class="p-b">
+<div>
+<div class="cx-tbl-wrap"><table class="cx-tbl">
+<thead><tr><th scope="col" class="num">Rang</th><th scope="col">Origine</th><th scope="col" class="num">Niv. de départ</th><th scope="col" class="num" aria-sort="ascending">Niv. pour la cible</th><th scope="col" class="num">Points gaspillés</th></tr></thead>
+<tbody>
+<sc-for list="{{bRows}}" as="o" hint-placeholder-count="12">
+<tr class="{{o.rowCls}}"><td class="num">{{o.rank}}</td><td><button class="p-linkbtn" aria-pressed="{{o.sel}}" onClick="{{o.pick}}">{{o.name}}</button> <span class="cx-badge cx-src-{{o.src}}" title="{{o.srcF}}" aria-label="Source : {{o.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{o.srcI}}"></use></svg>{{o.srcS}}</span><sc-if value="{{o.top}}" hint-placeholder-val="{{ false }}"> <span class="cx-status ready"><svg class="cx-i" aria-hidden="true"><use href="#i-check-c"></use></svg>Recommandée</span></sc-if></td><td class="num">{{o.lvl}}</td><td class="num"><b class="cx-mqv">{{o.final}}</b></td><td class="num">{{o.waste}}</td></tr>
+</sc-for>
+</tbody>
+</table></div>
+<sc-if value="{{bTpHidden}}" hint-placeholder-val="{{ false }}"><p class="p-hidden" style="margin-top: 6px">2 origines du Tarnished Pack masquées : contenu désactivé dans vos critères.</p></sc-if>
+</div>
+<div class="p-bd">
+<div class="cx-row" style="justify-content: space-between; align-items: baseline"><h3 class="titre-m">{{bSel.name}}</h3><span class="cx-muted">Niveau de départ {{bSel.lvl}}, {{bSel.rankTxt}}</span></div>
+<div class="cx-note calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg><span>{{bSel.explain}}</span></div>
+<div class="p-sec">
+<h4 class="cx-label">Attributs de départ et build cible</h4>
+<div class="p-abs">
+<sc-for list="{{bSel.attrs}}" as="a" hint-placeholder-count="8">
+<div class="p-ab"><abbr class="p-ab-k" title="{{a.full}}">{{a.k}}</abbr><span class="p-ab-track"><span class="p-ab-fill" style="width: {{a.fillPct}}%"></span><sc-if value="{{a.hasWaste}}" hint-placeholder-val="{{ false }}"><span class="p-ab-waste" style="left: {{a.tgtPct}}%; width: {{a.wastePct}}%"></span></sc-if><span class="p-ab-tgt" style="left: {{a.tgtPct}}%" title="Cible {{a.tgt}}"></span></span><span class="p-ab-v">{{a.vTxt}}</span></div>
+</sc-for>
+</div>
+<div class="cx-legend"><span><span class="cx-legend-key" style="background: var(--ink-3)"></span>Départ</span><span><span class="cx-legend-key" style="width: 3px; height: 12px; vertical-align: -2px; background: var(--gold)"></span>Cible {{archName}}</span><span><span class="cx-swatch p-waste-sw"></span> Points gaspillés</span></div>
+</div>
+<div class="p-sec">
+<h4 class="cx-label">Statistiques dérivées au départ <span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span class="cx-mq">valeur de maquette</span></h4>
+<div class="p-stats"><sc-for list="{{bSel.stats}}" as="x" hint-placeholder-count="5"><div class="p-stat"><span>{{x.k}}</span><b>{{x.v}}</b></div></sc-for></div>
+</div>
+<div class="p-sec2">
+<div class="p-sec"><h4 class="cx-label">Équipement de départ</h4><ul class="p-eq"><sc-for list="{{bSel.eq}}" as="e" hint-placeholder-count="3"><li><svg class="cx-i sm" aria-hidden="true"><use href="{{e.icon}}"></use></svg><span>{{e.name}}</span><sc-if value="{{e.rec}}" hint-placeholder-val="{{ false }}"><span class="cx-flag" title="Arme recommandée par le widget A"><svg class="cx-i" aria-hidden="true"><use href="#i-check"></use></svg>Recommandée</span></sc-if></li></sc-for></ul></div>
+<div class="p-sec"><h4 class="cx-label">Premières armes recommandées</h4><ul class="p-eq"><sc-for list="{{bEarly}}" as="e" hint-placeholder-count="3"><li><a href="FicheArme.dc.html">{{e.name}}</a><span class="cx-muted">{{e.cat}}</span><span class="cx-score-num p-mini cx-mqv">{{e.score}}</span></li></sc-for></ul><span class="p-hidden">Étape Début du widget A.</span></div>
+</div>
+<div class="p-sec">
+<h4 class="cx-label">Priorités de montée de niveau, depuis votre niveau {{level}} <span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span class="cx-mq">valeur de maquette</span></h4>
+<ol class="p-prio"><sc-for list="{{prio}}" as="p" hint-placeholder-count="5"><li><span class="p-prio-n">{{p.n}}</span><b>{{p.k}} {{p.from}} → {{p.to}}</b><span>{{p.why}}</span></li></sc-for></ol>
+<span class="p-hidden">{{prioSum}}</span>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+<div class="cx-w-foot"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span>12 origines : 10 du jeu de base, 2 du Tarnished Pack</span><span>Égalité départagée par les attributs utiles au build et l'arme de départ</span></div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{wC.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-12 {{wC.maxCls}}" style="order: {{wC.order}}" aria-labelledby="wc-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wc-t">Ordre des boss de l'histoire principale</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-calc"></use></svg><span>Ordre du wiki. Niveau minimum recommandé estimé d'après les PV, les runes NG et la position dans la progression ; Prêt, Limite (8 niveaux ou moins) ou Trop tôt.</span><span class="cx-mq">valeur de maquette</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wC.colLabel}}" title="{{wC.colLabel}}" onClick="{{wC.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wC.colIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wC.maxLabel}}" title="{{wC.maxLabel}}" onClick="{{wC.toggleMax}}"><svg class="cx-i" aria-hidden="true"><use href="{{wC.maxIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wC.menuOpen}}" onClick="{{wC.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wC.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wC.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wC.colIcon}}"></use></svg>{{wC.colLabel}}</button>
+<button role="menuitem" disabled="{{wC.isFirst}}" onClick="{{wC.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wC.isLast}}" onClick="{{wC.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wC.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wC.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}"><div class="cx-loading" aria-busy="true"><span class="cx-skel" style="height: 18px; width: 40%"></span><span class="cx-skel" style="height: 60px; width: 100%"></span><span class="cx-skel" style="height: 60px; width: 100%"></span></div></sc-if>
+<sc-if value="{{errored}}" hint-placeholder-val="{{ false }}"><div class="cx-note warn"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg><span><b>Impossible de lire bosses.json.</b> Rechargez la page. Si l'erreur persiste, le fichier est peut-être incomplet : réinstallez les données.</span></div></sc-if>
+<sc-if value="{{bossOk}}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{hasNext}}" hint-placeholder-val="{{ true }}">
+<div class="p-next"><span class="cx-label">Prochain boss</span><a class="cx-boss-name" href="FicheBoss.dc.html">{{next.name}}</a><span class="cx-status {{next.cls}}"><svg class="cx-i" aria-hidden="true"><use href="{{next.icon}}"></use></svg>{{next.label}}</span><span class="cx-muted">Votre niveau {{level}}, recommandé <b class="cx-mqv">{{next.rec}}</b></span></div>
+</sc-if>
+<div class="p-c">
+<ol class="cx-tl">
+<sc-for list="{{tl}}" as="st" hint-placeholder-count="11">
+<li class="cx-tl-step {{st.cls}}">
+<div class="cx-tl-rail"><span class="cx-tl-dot"></span><span class="cx-tl-line"></span></div>
+<div class="cx-tl-body">
+<div class="cx-tl-label"><b>Étape {{st.n}}</b> {{st.lb}}</div>
+<div class="{{st.boxCls}}">
+<sc-if value="{{st.isChoice}}" hint-placeholder-val="{{ false }}"><div class="cx-choice-head"><span class="cx-choice-title">{{st.title}}</span><span class="cx-status {{st.cntCls}}"><svg class="cx-i" aria-hidden="true"><use href="{{st.cntIcon}}"></use></svg>{{st.cntTxt}}</span></div></sc-if>
+<div class="{{st.gridCls}}">
+<sc-for list="{{st.bosses}}" as="b" hint-placeholder-count="1">
+<sc-if value="{{b.sep}}" hint-placeholder-val="{{ false }}"><span class="cx-or-sep" aria-label="ou"><span>ou</span></span></sc-if>
+<div class="cx-boss {{b.cls}}">
+<div>
+<a class="cx-boss-name" href="FicheBoss.dc.html">{{b.name}}</a>
+<div class="cx-boss-meta"><sc-if value="{{b.hasSub}}" hint-placeholder-val="{{ false }}"><span>{{b.sub}},</span></sc-if><sc-if value="{{b.hasRank}}" hint-placeholder-val="{{ true }}"><span>{{b.rank}},</span></sc-if><span>{{b.locTxt}}</span><span class="cx-badge cx-src-{{b.src}}" title="{{b.srcF}}" aria-label="Source : {{b.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{b.srcI}}"></use></svg>{{b.srcS}}</span><sc-if value="{{b.gr}}" hint-placeholder-val="{{ false }}"><span class="cx-flag" title="Porteur de Grande Rune"><svg class="cx-i" aria-hidden="true"><use href="#i-rune"></use></svg>Grande Rune</span></sc-if><sc-if value="{{b.rem}}" hint-placeholder-val="{{ false }}"><span class="cx-flag" title="Laisse une Remembrance"><svg class="cx-i" aria-hidden="true"><use href="#i-trade"></use></svg>Remembrance</span></sc-if></div>
+<sc-if value="{{b.cb}}" hint-placeholder-val="{{ true }}">
+<div class="cx-boss-stats"><span>PV <sc-if value="{{b.hpOk}}" hint-placeholder-val="{{ true }}"><b>{{b.hpTxt}}</b></sc-if><sc-if value="{{b.hpNull}}" hint-placeholder-val="{{ false }}"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Non documenté</span></sc-if></span><span>Runes <sc-if value="{{b.ruOk}}" hint-placeholder-val="{{ true }}"><b>{{b.ruTxt}}</b></sc-if><sc-if value="{{b.ruNull}}" hint-placeholder-val="{{ false }}"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Non documenté</span></sc-if></span><sc-if value="{{b.hasEnc2}}" hint-placeholder-val="{{ false }}"><span class="cx-muted">{{b.enc2}}</span></sc-if></div>
+<div class="cx-boss-tags">
+<sc-for list="{{b.weak}}" as="x" hint-placeholder-count="2"><span class="cx-dt {{x.cls}}" title="{{x.title}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{x.icon}}"></use></svg></span>{{x.label}} <span class="cx-dt-val">{{x.val}}</span></span></sc-for>
+<sc-for list="{{b.imm}}" as="x" hint-placeholder-count="1"><span class="cx-dt is-immune {{x.cls}}" title="{{x.title}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{x.icon}}"></use></svg></span>{{x.label}}</span></sc-for>
+<sc-if value="{{b.weakNull}}" hint-placeholder-val="{{ false }}"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Faiblesses et immunités non documentées</span></sc-if>
+</div>
+</sc-if>
+<sc-if value="{{b.noCb}}" hint-placeholder-val="{{ false }}"><div class="cx-boss-stats"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Aucune donnée de combat sur le wiki</span></div></sc-if>
+<sc-if value="{{b.light}}" hint-placeholder-val="{{ false }}"><div class="cx-boss-stats"><span class="cx-muted">Statistiques sur la fiche du boss</span></div></sc-if>
+<sc-for list="{{b.pre}}" as="p" hint-placeholder-count="1"><div class="cx-sub {{p.cls}}" style="margin-top: 8px"><svg class="cx-i sm" aria-hidden="true"><use href="{{p.icon}}"></use></svg><span>Après <b>{{p.name}}</b></span><button class="p-linkbtn p-small" aria-pressed="{{p.done}}" title="Basculer vaincu / à faire" onClick="{{p.toggle}}">{{p.state}}</button></div></sc-for>
+</div>
+<div class="cx-boss-side">
+<sc-if value="{{b.notDone}}" hint-placeholder-val="{{ true }}"><span class="cx-status {{b.st.cls}}"><svg class="cx-i" aria-hidden="true"><use href="{{b.st.icon}}"></use></svg>{{b.st.label}}</span></sc-if>
+<sc-if value="{{b.gauge}}" hint-placeholder-val="{{ true }}"><div class="cx-gauge {{b.gCls}}"><div class="cx-gauge-track"><span class="cx-gauge-fill" style="width: {{b.gFill}}%"></span><span class="cx-gauge-tick" style="left: {{b.gTick}}%" title="Niveau recommandé {{b.rec}}"></span></div><div class="cx-gauge-legend"><span>Niv. <b>{{level}}</b></span><span>Recommandé <b class="cx-mqv">{{b.rec}}</b></span></div></div></sc-if>
+<sc-if value="{{b.recPos}}" hint-placeholder-val="{{ false }}"><span class="p-hidden">Estimé d'après la position seule : PV non documentés.</span></sc-if>
+<sc-if value="{{b.noCb}}" hint-placeholder-val="{{ false }}"><span class="p-hidden">Aucune donnée de combat : pas de recommandation.</span></sc-if>
+<label class="cx-boss-check"><input type="checkbox" checked="{{b.done}}" onChange="{{b.toggle}}"> Vaincu</label>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</li>
+</sc-for>
+</ol>
+
+<aside class="cx-lane" aria-label="Voie DLC">
+<div class="cx-row"><span class="cx-badge cx-src-sote" title="Shadow of the Erdtree (DLC)" aria-label="Source : Shadow of the Erdtree"><svg class="cx-i" aria-hidden="true"><use href="#i-s-sote"></use></svg>SotE</span><span class="cx-choice-title">Voie DLC</span></div>
+<sc-if value="{{laneOff}}" hint-placeholder-val="{{ false }}">
+<div class="cx-empty"><span class="cx-empty-title">Shadow of the Erdtree est désactivé</span><span>Activez le DLC dans Contenu pour afficher sa voie.</span><button class="cx-btn cx-btn-sm" onClick="{{enableSote}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg>Activer Shadow of the Erdtree</button></div>
+</sc-if>
+<sc-if value="{{laneOn}}" hint-placeholder-val="{{ true }}">
+<div class="cx-lane-gate"><span><b>Accès au DLC</b> : vaincre Starscourge Radahn et Mohg, Lord of Blood.</span><span class="cx-row tight"><sc-for list="{{gate}}" as="g" hint-placeholder-count="2"><span class="cx-status {{g.cls}}"><svg class="cx-i" aria-hidden="true"><use href="{{g.icon}}"></use></svg>{{g.label}}</span></sc-for></span></div>
+<ol class="cx-tl">
+<sc-for list="{{lane}}" as="b" hint-placeholder-count="3">
+<li class="cx-tl-step {{b.stepCls}}">
+<div class="cx-tl-rail"><span class="cx-tl-dot"></span><span class="cx-tl-line"></span></div>
+<div class="cx-tl-body">
+<div class="cx-tl-label"><b>DLC {{b.k}}</b> {{b.loc}}</div>
+<div class="cx-boss {{b.cls}}">
+<div>
+<a class="cx-boss-name" href="FicheBoss.dc.html">{{b.name}}</a>
+<div class="cx-boss-meta"><span>{{b.rank}}</span><span class="cx-badge cx-src-{{b.src}}" title="{{b.srcF}}" aria-label="Source : {{b.srcF}}"><svg class="cx-i" aria-hidden="true"><use href="{{b.srcI}}"></use></svg>{{b.srcS}}</span><sc-if value="{{b.rem}}" hint-placeholder-val="{{ true }}"><span class="cx-flag" title="Laisse une Remembrance"><svg class="cx-i" aria-hidden="true"><use href="#i-trade"></use></svg>Remembrance</span></sc-if></div>
+<div class="cx-boss-stats"><span>PV <b>{{b.hpTxt}}</b></span><span>Runes <b>{{b.ruTxt}}</b></span></div>
+<div class="cx-boss-tags">
+<sc-for list="{{b.weak}}" as="x" hint-placeholder-count="2"><span class="cx-dt {{x.cls}}" title="{{x.title}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{x.icon}}"></use></svg></span>{{x.label}} <span class="cx-dt-val">{{x.val}}</span></span></sc-for>
+<sc-for list="{{b.imm}}" as="x" hint-placeholder-count="2"><span class="cx-dt is-immune {{x.cls}}" title="{{x.title}}"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{x.icon}}"></use></svg></span>{{x.label}}</span></sc-for>
+<sc-if value="{{b.weakNull}}" hint-placeholder-val="{{ false }}"><span class="cx-null"><svg class="cx-i sm" aria-hidden="true"><use href="#i-empty"></use></svg> Faiblesses non documentées</span></sc-if>
+</div>
+</div>
+<div class="cx-boss-side">
+<sc-if value="{{b.notDone}}" hint-placeholder-val="{{ true }}"><span class="cx-status {{b.st.cls}}"><svg class="cx-i" aria-hidden="true"><use href="{{b.st.icon}}"></use></svg>{{b.st.label}}</span></sc-if>
+<sc-if value="{{b.gauge}}" hint-placeholder-val="{{ true }}"><div class="cx-gauge {{b.gCls}}"><div class="cx-gauge-track"><span class="cx-gauge-fill" style="width: {{b.gFill}}%"></span><span class="cx-gauge-tick" style="left: {{b.gTick}}%" title="Niveau recommandé {{b.rec}}"></span></div><div class="cx-gauge-legend"><span>Niv. <b>{{level}}</b></span><span>Recommandé <b class="cx-mqv">{{b.rec}}</b></span></div></div></sc-if>
+<span class="p-hidden">Bénédiction de l'Arbre-Ombre recommandée : <b class="cx-mqv">{{b.bless}}</b></span>
+<sc-if value="{{b.locked}}" hint-placeholder-val="{{ true }}"><span class="p-hidden"><svg class="cx-i xs" aria-hidden="true"><use href="#i-lock"></use></svg> Accès verrouillé tant que Radahn et Mohg ne sont pas vaincus.</span></sc-if>
+<label class="cx-boss-check"><input type="checkbox" checked="{{b.done}}" onChange="{{b.toggle}}"> Vaincu</label>
+</div>
+</div>
+</div>
+</li>
+</sc-for>
+</ol>
+</sc-if>
+</aside>
+</div>
+</sc-if>
+</div>
+<div class="cx-w-foot"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span>Cocher « Vaincu » met à jour la progression</span><span>{{cFoot}}</span></div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{wD1.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-12 {{wD1.maxCls}}" style="order: {{wD1.order}}" aria-labelledby="wd1-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wd1-t">Matrice des faiblesses des boss</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-book"></use></svg><span>Absorption de chaque type de dégâts en % (damage_negation_percent), immunités aux statuts (status_resistance). Plus la valeur est basse, plus le boss est vulnérable.</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wD1.colLabel}}" title="{{wD1.colLabel}}" onClick="{{wD1.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD1.colIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wD1.maxLabel}}" title="{{wD1.maxLabel}}" onClick="{{wD1.toggleMax}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD1.maxIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wD1.menuOpen}}" onClick="{{wD1.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wD1.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wD1.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD1.colIcon}}"></use></svg>{{wD1.colLabel}}</button>
+<button role="menuitem" disabled="{{wD1.isFirst}}" onClick="{{wD1.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wD1.isLast}}" onClick="{{wD1.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wD1.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wD1.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<sc-if value="{{loading}}" hint-placeholder-val="{{ false }}"><div class="cx-loading" aria-busy="true"><span class="cx-skel" style="height: 160px; width: 100%"></span></div></sc-if>
+<sc-if value="{{errored}}" hint-placeholder-val="{{ false }}"><div class="cx-note warn"><svg class="cx-i" aria-hidden="true"><use href="#i-alert"></use></svg><span><b>Impossible de lire bosses.json.</b> La matrice reviendra après le rechargement des données.</span></div></sc-if>
+<sc-if value="{{bossOk}}" hint-placeholder-val="{{ true }}">
+<p class="cx-muted" style="font-size: 12px; margin-bottom: 8px">Cliquez sur un type de dégâts pour classer les boss du plus vulnérable au plus résistant ; un second clic rétablit l'ordre de l'histoire. Boss vaincus atténués.</p>
+<div class="cx-heat-wrap"><table class="cx-heat">
+<thead><tr><th scope="col" style="text-align: left">Boss</th>
+<sc-for list="{{hHead}}" as="h" hint-placeholder-count="8"><th scope="col" aria-sort="{{h.sort}}"><button class="cx-th-btn" title="{{h.title}}" onClick="{{h.by}}"><span class="cx-heat-col dt-{{h.k}}"><svg class="cx-i" aria-hidden="true"><use href="{{h.icon}}"></use></svg><span>{{h.abbr}}</span></span></button></th></sc-for>
+<th scope="col" style="text-align: left">Immunités</th></tr></thead>
+<tbody>
+<sc-for list="{{hRows}}" as="r" hint-placeholder-count="19"><tr class="{{r.cls}}"><th class="row-h" scope="row"><a href="FicheBoss.dc.html">{{r.short}}</a><small>{{r.reg}}</small></th><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="8"><td class="cell {{c.cls}}" title="{{c.title}}">{{c.txt}}</td></sc-for><td class="imm"><sc-for list="{{r.imm}}" as="x" hint-placeholder-count="1"><span class="cx-dt is-immune {{x.cls}}" title="{{x.title}}" style="margin-right: 3px"><span class="cx-dt-ic"><svg class="cx-i" aria-hidden="true"><use href="{{x.icon}}"></use></svg></span>{{x.label}}</span></sc-for><sc-if value="{{r.immNull}}" hint-placeholder-val="{{ false }}"><span class="cx-null">Non documenté</span></sc-if></td></tr></sc-for>
+</tbody>
+</table></div>
+<div class="cx-heat-legend" style="margin-top: 10px"><span>Absorption en %</span><span class="cx-heat-scale"><span class="h-w2">−10</span><span class="h-w1">0</span><span class="h-n">10</span><span class="h-r1">20</span><span class="h-r2">40</span><span class="h-r3">80</span><span class="h-null">—</span></span><span>Faiblesse ← → résistance ; hachures : non documenté</span><span>Hors faiblesses de l'annexe B : <span class="cx-mq">valeur de maquette</span></span></div>
+<div class="cx-note partial" style="margin-top: 10px"><svg class="cx-i" aria-hidden="true"><use href="#i-empty"></use></svg><span><b>Données partielles.</b> {{heatPartial}}</span></div>
+</sc-if>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{wD2.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-7 p-tall {{wD2.maxCls}}" style="order: {{wD2.order}}" aria-labelledby="wd2-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wd2-t">Plan d'amélioration</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-calc"></use></svg><span>Pierres normales : 2, 4 puis 6 pierres par palier de trois niveaux, +25 avec une pierre ancienne. Pierres sombres : une par niveau, +10 avec une pierre ancienne.</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wD2.colLabel}}" title="{{wD2.colLabel}}" onClick="{{wD2.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD2.colIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wD2.maxLabel}}" title="{{wD2.maxLabel}}" onClick="{{wD2.toggleMax}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD2.maxIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wD2.menuOpen}}" onClick="{{wD2.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wD2.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wD2.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD2.colIcon}}"></use></svg>{{wD2.colLabel}}</button>
+<button role="menuitem" disabled="{{wD2.isFirst}}" onClick="{{wD2.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wD2.isLast}}" onClick="{{wD2.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wD2.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wD2.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<div class="p-upctl">
+<div class="cx-crit-field" style="flex: 1 1 220px"><label for="up-w">Arme</label>
+<select id="up-w" class="cx-select" value="{{upW}}" onChange="{{onUpW}}">
+<option value="uchi">Uchigatana</option>
+<option value="lords">Lordsworn's Greatsword</option>
+<option value="clay">Claymore</option>
+<option value="moon">Moonveil</option>
+<option value="sonaf">Sword of Night and Flame</option>
+<option value="rob">Rivers of Blood</option>
+<option value="blas">Blasphemous Blade</option>
+<option value="milady">Milady</option>
+<option value="rellana">Rellana's Twin Blades</option>
+<option value="idus">Idus Sword</option>
+</select></div>
+<div class="cx-crit-field"><span>Niveau actuel</span><span class="cx-stepper-ctl"><button aria-label="Diminuer le niveau actuel" disabled="{{up.fromMin}}" onClick="{{up.fromDec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">+{{up.from}}</span><button aria-label="Augmenter le niveau actuel" disabled="{{up.fromMax}}" onClick="{{up.fromInc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span></div>
+<div class="cx-crit-field"><span>Objectif</span><span class="cx-stepper-ctl"><button aria-label="Diminuer l'objectif" disabled="{{up.toMin}}" onClick="{{up.toDec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">+{{up.to}}</span><button aria-label="Augmenter l'objectif" disabled="{{up.toMax}}" onClick="{{up.toInc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span></div>
+</div>
+<div class="cx-row" style="margin-top: 12px"><span class="ui-fort">{{up.summary}}</span><span class="cx-rel {{up.relCls}}" title="{{up.relTitle}}"><svg class="cx-i" aria-hidden="true"><use href="{{up.relIcon}}"></use></svg>{{up.relLabel}}</span></div>
+<sc-if value="{{up.isEst}}" hint-placeholder-val="{{ false }}"><div class="cx-note est" style="margin-top: 8px"><svg class="cx-i" aria-hidden="true"><use href="#i-approx"></use></svg><span><b>Plan basé sur une estimation.</b> {{up.estTxt}}</span></div></sc-if>
+<div class="cx-tbl-wrap" style="margin-top: 12px"><table class="cx-tbl">
+<thead><tr><th scope="col">Pierres à réunir</th><th scope="col">Achat illimité <span class="cx-mq">lieux : valeur de maquette</span></th><th scope="col">Disponibilité</th></tr></thead>
+<tbody>
+<sc-for list="{{up.rows}}" as="r" hint-placeholder-count="6"><tr><td class="p-stone"><b>{{r.q}}</b><span class="cx-cell-name">{{r.name}}</span></td><td><sc-if value="{{r.hasBB}}" hint-placeholder-val="{{ true }}"><span>{{r.bbName}}</span><span class="cx-palette-s">{{r.bbWhere}}</span></sc-if><sc-if value="{{r.noBB}}" hint-placeholder-val="{{ false }}"><span class="cx-muted">Ne s'achète pas en quantité illimitée</span></sc-if></td><td><span class="cx-status {{r.stCls}}"><svg class="cx-i" aria-hidden="true"><use href="{{r.stIcon}}"></use></svg>{{r.stLabel}}</span></td></tr></sc-for>
+</tbody>
+</table></div>
+<p class="cx-muted" style="font-size: 12px; margin-top: 8px">{{up.buyTxt}}</p>
+</div>
+<div class="cx-w-foot"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span>Disponibilité comparée à votre étape ({{stageName}})</span></div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{wD5.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-5 {{wD5.maxCls}}" style="order: {{wD5.order}}" aria-labelledby="wd5-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wd5-t">Calculateur de runes</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-calc"></use></svg><span>Somme des coûts de niveau, formule de la table officielle (niveaux 1 à 713).</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wD5.colLabel}}" title="{{wD5.colLabel}}" onClick="{{wD5.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD5.colIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wD5.menuOpen}}" onClick="{{wD5.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wD5.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wD5.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD5.colIcon}}"></use></svg>{{wD5.colLabel}}</button>
+<button role="menuitem" disabled="{{wD5.isFirst}}" onClick="{{wD5.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wD5.isLast}}" onClick="{{wD5.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wD5.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wD5.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<div class="cx-seg full" role="group" aria-label="Niveau visé">
+<sc-for list="{{rSeg}}" as="o" hint-placeholder-count="3"><button aria-pressed="{{o.on}}" onClick="{{o.pick}}">{{o.label}}</button></sc-for>
+</div>
+<sc-if value="{{rCustom}}" hint-placeholder-val="{{ false }}">
+<div class="cx-row" style="margin-top: 8px"><span class="cx-label">Niveau visé</span><span class="cx-stepper-ctl"><button aria-label="Diminuer de 5 niveaux" onClick="{{rDec}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-minus"></use></svg></button><span class="cx-stepper-val">{{rTarget}}</span><button aria-label="Augmenter de 5 niveaux" onClick="{{rInc}}"><svg class="cx-i sm" aria-hidden="true"><use href="#i-plus"></use></svg></button></span></div>
+</sc-if>
+<div style="margin-top: 14px"><div class="chiffre-xl cx-num">{{rTotal}}</div><p class="cx-muted">runes pour passer du niveau {{level}} au niveau {{rTarget}}</p></div>
+<div class="p-kv" style="margin-top: 12px"><span>Niveaux à gagner<b>{{rCount}}</b></span><span>Prochain niveau<b>{{rNext}}</b></span><span>Dernier niveau<b>{{rLast}}</b></span></div>
+<div class="p-bars" role="img" aria-label="{{rAria}}" style="margin-top: 14px"><sc-for list="{{rBars}}" as="x" hint-placeholder-count="12"><span style="height: {{x.h}}%" title="{{x.t}}"></span></sc-for></div>
+<div class="cx-row" style="justify-content: space-between; margin-top: 4px"><span class="cx-muted cx-num" style="font-size: 11px">Coût par niveau, niv. {{level}}</span><span class="cx-muted cx-num" style="font-size: 11px">niv. {{rLastLv}}</span></div>
+</div>
+<div class="cx-w-foot"><span class="cx-rel cx-rel-calc"><svg class="cx-i" aria-hidden="true"><use href="#i-calc"></use></svg>Calculé</span><span>La table officielle du fichier mechanics fait foi en cas d'écart</span></div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{wD8.on}}" hint-placeholder-val="{{ true }}">
+<section class="cx-widget span-5 {{wD8.maxCls}}" style="order: {{wD8.order}}" aria-labelledby="wd8-t">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles">
+<h2 class="cx-w-title" id="wd8-t">Couverture des données</h2>
+<p class="cx-w-how"><svg class="cx-i sm" aria-hidden="true"><use href="#i-book"></use></svg><span>Part documentée par le wiki, estimée ou absente, champ par champ.</span></p>
+</div>
+<div class="cx-w-actions">
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="{{wD8.colLabel}}" title="{{wD8.colLabel}}" onClick="{{wD8.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD8.colIcon}}"></use></svg></button>
+<button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Plus d'actions" title="Plus d'actions" aria-expanded="{{wD8.menuOpen}}" onClick="{{wD8.toggleMenu}}"><svg class="cx-i" aria-hidden="true"><use href="#i-more"></use></svg></button>
+</div>
+</div>
+<sc-if value="{{wD8.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cx-menu" role="menu">
+<button role="menuitem" onClick="{{wD8.toggleCollapse}}"><svg class="cx-i" aria-hidden="true"><use href="{{wD8.colIcon}}"></use></svg>{{wD8.colLabel}}</button>
+<button role="menuitem" disabled="{{wD8.isFirst}}" onClick="{{wD8.up}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-u"></use></svg>Déplacer vers le haut</button>
+<button role="menuitem" disabled="{{wD8.isLast}}" onClick="{{wD8.down}}"><svg class="cx-i" aria-hidden="true"><use href="#i-chev-d"></use></svg>Déplacer vers le bas</button>
+<hr>
+<button role="menuitem" onClick="{{wD8.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg>Retirer du tableau de bord</button>
+</div>
+</sc-if>
+<sc-if value="{{wD8.open}}" hint-placeholder-val="{{ true }}">
+<div class="cx-w-body">
+<div class="cx-cov">
+<sc-for list="{{cov}}" as="c" hint-placeholder-count="5">
+<div class="cx-cov-row"><span>{{c.label}}</span><span><b class="{{c.mockCls}}" title="{{c.mockTxt}}">{{c.key}}</b></span><div class="cx-cov-bar" role="img" aria-label="{{c.aria}}"><sc-for list="{{c.segs}}" as="g" hint-placeholder-count="2"><span class="{{g.cls}}" style="width: {{g.w}}%"></span></sc-for></div></div>
+</sc-for>
+</div>
+<div class="cx-legend" style="margin-top: 12px"><span><span class="cx-swatch p-doc"></span> Documenté (wiki)</span><span><span class="cx-swatch p-est"></span> Estimé</span><span><span class="cx-swatch p-null"></span> Non documenté</span></div>
+<p class="p-hidden" style="margin-top: 8px">Lignes 2 à 4 : décompte réel de l'annexe B. Ligne 1 : 150 sur 335 est réel, la répartition entre estimés et absents est une <span class="cx-mq">valeur de maquette</span>, comme la ligne 5.</p>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-for list="{{phs}}" as="p" hint-placeholder-count="0">
+<section class="cx-widget {{p.span}}" style="order: {{p.order}}" aria-label="{{p.t}}">
+<div class="cx-w-head">
+<span class="cx-w-grip" title="Glisser pour réordonner"><svg class="cx-i" aria-hidden="true"><use href="#i-grip"></use></svg></span>
+<div class="cx-w-titles"><h2 class="cx-w-title">{{p.t}}</h2><p class="cx-w-how">{{p.d}}</p></div>
+<div class="cx-w-actions"><button class="cx-btn cx-btn-ghost cx-btn-icon cx-btn-sm" aria-label="Retirer du tableau de bord" title="Retirer du tableau de bord" onClick="{{p.remove}}"><svg class="cx-i" aria-hidden="true"><use href="#i-x"></use></svg></button></div>
+</div>
+<div class="cx-w-body">
+<div class="cx-loading" aria-busy="true"><span class="cx-skel" style="height: 18px; width: 45%"></span><span class="cx-skel" style="height: 12px; width: 85%"></span><span class="cx-skel" style="height: 12px; width: 70%"></span><div class="cx-row"><span class="cx-skel" style="height: 20px; width: 64px"></span><span class="cx-skel" style="height: 20px; width: 64px"></span></div></div>
+<p class="cx-muted" style="font-size: 12px; margin-top: 8px">Widget prévu par le système modulaire ; sa maquette détaillée n'est pas fournie dans ce prototype.</p>
+</div>
+</section>
+</sc-for>
+
+</div>
+</main>
+</div>
+
+<footer class="cx-footer"><span>Outil de fan non officiel — données : eldenring.wiki.gg (CC BY-SA 4.0)</span><span>18 fichiers JSON, environ 3 250 entrées, état du wiki au 31/10/2026</span></footer>
+</div>
+</div>
+
+<sc-if value="{{anyMax}}" hint-placeholder-val="{{ false }}"><div class="p-scrim" aria-hidden="true"></div></sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+<div class="cx-toast p-toast" role="status"><svg class="cx-i" aria-hidden="true"><use href="{{toastIcon}}"></use></svg><span>{{toastMsg}}</span><sc-if value="{{toastUndo}}" hint-placeholder-val="{{ false }}"><button class="cx-btn cx-btn-ghost cx-btn-sm" onClick="{{undo}}">Annuler</button></sc-if></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["sombre","parchemin"],"default":"sombre","section":"Prototype"},"showMock":{"editor":"boolean","default":true,"section":"Prototype"},"$preview":{"width":1440,"height":5600}}'>
+var NB = ' ', NBSP = ' ', MN = '−';
+function fN(v) { if (v === null || v === undefined) return ''; var neg = v < 0, s = String(Math.round(Math.abs(v))), o = ''; while (s.length > 3) { o = NB + s.slice(-3) + o; s = s.slice(0, -3); } return (neg ? MN : '') + s + o; }
+function fD(v) { return (Math.round(v * 10) / 10).toFixed(1).replace('.', ','); }
+function fP(v) { return (v < 0 ? MN : '') + Math.abs(v) + NBSP + '%'; }
+function cl(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function runeCost(L) { return Math.floor((Math.max(0, L - 11) * 2 + 10) * (L + 81) * (L + 81) / 100) + 1; }
+function hpOf(v) { var x = v <= 25 ? 300 + 500 * Math.pow((v - 1) / 24, 1.5) : v <= 40 ? 800 + 650 * Math.pow((v - 25) / 15, 1.1) : v <= 60 ? 1450 + 450 * (1 - Math.pow(1 - (v - 40) / 20, 1.2)) : 1900 + 200 * (v - 60) / 39; return Math.floor(x); }
+function fpOf(v) { var x = v <= 15 ? 50 + 45 * (v - 1) / 14 : v <= 35 ? 95 + 105 * (v - 15) / 20 : v <= 60 ? 200 + 150 * (1 - Math.pow(1 - (v - 35) / 25, 1.2)) : 350 + 100 * (v - 60) / 39; return Math.floor(x); }
+function stOf(v) { var x = v <= 15 ? 80 + 25 * (v - 1) / 14 : v <= 30 ? 105 + 25 * (v - 15) / 15 : v <= 50 ? 130 + 25 * (v - 30) / 20 : 155 + 15 * (v - 50) / 49; return Math.floor(x); }
+function loadOf(v) { var x = v <= 8 ? 45 : v <= 25 ? 45 + 27 * (v - 8) / 17 : v <= 60 ? 72 + 48 * (1 - Math.pow(1 - (v - 25) / 35, 1.1)) : 120 + 40 * (v - 60) / 39; return Math.round(x * 10) / 10; }
+
+var ATTRS = ['vig', 'mnd', 'end', 'str', 'dex', 'int', 'fai', 'arc'];
+var AB = { vig: 'VIG', mnd: 'MND', end: 'END', str: 'STR', dex: 'DEX', int: 'INT', fai: 'FAI', arc: 'ARC' };
+var AF = { vig: 'Vigor', mnd: 'Mind', end: 'Endurance', str: 'Strength', dex: 'Dexterity', int: 'Intelligence', fai: 'Faith', arc: 'Arcane' };
+var SRC = { base: { s: 'Base', f: 'Base game', i: '#i-s-base' }, sote: { s: 'SotE', f: 'Shadow of the Erdtree (DLC)', i: '#i-s-sote' }, tp: { s: 'TP', f: 'Tarnished Pack (DLC)', i: '#i-s-tp' } };
+var DMG = { standard: ['Standard', 'Std'], strike: ['Frappe', 'Frap.'], slash: ['Tranchant', 'Tran.'], pierce: ['Estoc', 'Estoc'], magic: ['Magie', 'Mag.'], fire: ['Feu', 'Feu'], lightning: ['Foudre', 'Fdr.'], holy: ['Sacré', 'Sacré'] };
+var DK = ['standard', 'strike', 'slash', 'pierce', 'magic', 'fire', 'lightning', 'holy'];
+var ST = { bleed: 'Saignement', frost: 'Givre', poison: 'Poison', rot: 'Putréfaction écarlate', sleep: 'Sommeil', madness: 'Folie', death: 'Mort' };
+var STS = { bleed: 'Saign.', frost: 'Givre', poison: 'Poison', rot: 'Putréf.', sleep: 'Som.', madness: 'Fol.', death: 'Mort' };
+var LV = { S: 1, A: 0.85, B: 0.7, C: 0.55, D: 0.4, E: 0.25 };
+var STAGES = [
+  { name: 'Début', regions: 'Limgrave, Weeping Peninsula' },
+  { name: 'Milieu', regions: 'Liurnia, Caelid, Altus' },
+  { name: 'Fin', regions: 'Leyndell, Mountaintops, Mt. Gelmir' },
+  { name: 'Fin de jeu', regions: 'Farum Azula' },
+  { name: 'DLC', regions: 'Gravesite Plain → Enir-Ilim' }
+];
+var PHR = ['de début de partie', 'de milieu de partie', 'de fin de partie', 'de fin de jeu', 'du DLC'];
+var RS = { 'Limgrave': 0, 'Weeping Peninsula': 0, 'Liurnia of the Lakes': 1, 'Caelid': 1, 'Altus Plateau': 1, 'Mt. Gelmir': 2, 'Leyndell, Royal Capital': 2, 'Mountaintops of the Giants': 2, 'Consecrated Snowfield': 2, 'Siofra River': 2, 'Deeproot Depths': 2, 'Crumbling Farum Azula': 3, 'Leyndell, Ashen Capital': 3, 'Gravesite Plain': 4, 'Shadow Keep': 4, 'Ancient Ruins of Rauh': 4, 'Enir-Ilim': 4 };
+var REGIONS = ['Limgrave', 'Weeping Peninsula', 'Liurnia of the Lakes', 'Caelid', 'Altus Plateau', 'Mt. Gelmir', 'Leyndell, Royal Capital', 'Mountaintops of the Giants', 'Crumbling Farum Azula', 'Gravesite Plain'];
+
+var WEAPONS = [
+  { id: 'uchi', name: 'Uchigatana', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 5.5, atk: { phys: 115 }, scl: { str: 'D', dex: 'D' }, req: { str: 11, dex: 15 }, skill: 'Unsheathe', st: 'aow', pas: { k: 'bleed', v: 45 }, up: 'normal', rel: 'ded', acq: [{ start: 'samurai' }, { m: 'Butin', loc: 'Deathtouched Catacombs', reg: 'Limgrave' }], flags: [] },
+  { id: 'lords', name: "Lordsworn's Greatsword", cat: 'Greatsword', ic: '#i-c-greatsword', src: 'base', wt: 9.0, atk: { phys: 136 }, scl: { str: 'D', dex: 'D' }, req: { str: 16, dex: 10 }, skill: 'Stamp (Upward Cut)', st: 'aow', pas: null, up: 'normal', rel: 'est', conf: 'moyenne', acq: [{ m: 'Butin', loc: 'Gatefront Ruins', reg: 'Limgrave' }], flags: [] },
+  { id: 'clay', name: 'Claymore', cat: 'Greatsword', ic: '#i-c-greatsword', src: 'base', wt: 9.0, atk: { phys: 138 }, scl: { str: 'D', dex: 'D' }, req: { str: 16, dex: 13 }, skill: "Lion's Claw", st: 'aow', pas: null, up: 'normal', rel: 'wiki', acq: [{ m: 'Butin', loc: 'Castle Morne', reg: 'Weeping Peninsula' }], flags: [] },
+  { id: 'moon', name: 'Moonveil', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 6.5, atk: { phys: 73, magic: 87 }, scl: { str: 'E', dex: 'D', int: 'C' }, req: { str: 12, dex: 18, int: 23 }, skill: 'Transient Moonlight', st: 'unique', pas: { k: 'bleed', v: 50 }, up: 'somber', rel: 'est', conf: 'haute', acq: [{ m: 'Butin garanti', who: 'Magma Wyrm', loc: 'Gael Tunnel', reg: 'Caelid' }], flags: ['drop'] },
+  { id: 'sonaf', name: 'Sword of Night and Flame', cat: 'Straight Sword', ic: '#i-c-straight', src: 'base', wt: 4.0, atk: { phys: 87, magic: 56, fire: 56 }, scl: { str: 'E', dex: 'E', int: 'D', fai: 'D' }, req: { str: 12, dex: 12, int: 24, fai: 24 }, skill: 'Night-and-Flame Stance', st: 'unique', pas: null, up: 'somber', rel: 'wiki', acq: [{ m: 'Pièce verrouillée', loc: 'Caria Manor', reg: 'Liurnia of the Lakes' }], flags: [] },
+  { id: 'rob', name: 'Rivers of Blood', cat: 'Katana', ic: '#i-c-katana', src: 'base', wt: 6.5, atk: { phys: 76, fire: 76 }, scl: { str: 'E', dex: 'D', arc: 'D' }, req: { str: 12, dex: 18, arc: 20 }, skill: 'Corpse Piler', st: 'unique', pas: { k: 'bleed', v: 50 }, up: 'somber', rel: 'wiki', acq: [{ m: 'Vaincre Okina', loc: 'Church of Repose', reg: 'Mountaintops of the Giants' }], flags: ['invader'] },
+  { id: 'blas', name: 'Blasphemous Blade', cat: 'Greatsword', ic: '#i-c-greatsword', src: 'base', wt: 13.5, atk: { phys: 121, fire: 78 }, scl: { str: 'D', dex: 'D', fai: 'D' }, req: { str: 22, dex: 15, fai: 21 }, skill: "Taker's Flames", st: 'unique', pas: { k: 'text', t: 'Rend 4 % des PV max + 40 à chaque mort proche' }, up: 'somber', rel: 'est', conf: 'haute', acq: [{ m: 'Échange de Remembrance', who: 'Remembrance de Rykard', loc: 'Finger Reader Enia, Roundtable Hold', reg: 'Mt. Gelmir', via: true }], flags: ['rem'] },
+  { id: 'milady', name: 'Milady', cat: 'Light Greatsword', ic: '#i-c-lgs', src: 'sote', wt: 6.5, atk: { phys: 116 }, scl: { str: 'D', dex: 'D' }, req: { str: 12, dex: 17 }, skill: 'Impaling Thrust', st: 'aow', pas: null, up: 'normal', rel: 'ded', acq: [{ m: 'Butin', loc: 'Castle Ensis', reg: 'Gravesite Plain' }], flags: [] },
+  { id: 'rellana', name: "Rellana's Twin Blades", cat: 'Light Greatsword', ic: '#i-c-lgs', src: 'sote', wt: 8.0, atk: { phys: 103, magic: 66, fire: 66 }, scl: { str: 'D', dex: 'D', int: 'D', fai: 'D' }, req: { str: 13, dex: 16, int: 16, fai: 16 }, skill: 'Moon-and-Fire Stance', st: 'unique', pas: null, up: 'somber', rel: 'est', conf: 'haute', acq: [{ m: 'Échange de Remembrance', who: 'Remembrance de Rellana', loc: 'Roundtable Hold', reg: 'Gravesite Plain', via: true }], flags: ['rem'] },
+  { id: 'idus', name: 'Idus Sword', cat: 'Light Greatsword', ic: '#i-c-lgs', src: 'tp', wt: 7.0, atk: { phys: 124 }, scl: { str: 'D', dex: 'D' }, req: { str: 10, dex: 15 }, skill: 'Impaling Thrust', st: 'aow', pas: null, up: 'normal', rel: 'ded', acq: [{ start: 'idus' }, { m: 'Butin', loc: 'Laskyar Ruins', reg: 'Liurnia of the Lakes' }], flags: [] }
+];
+var WMAP = {}; WEAPONS.forEach(function (w) { WMAP[w.id] = w; });
+
+var ORIGINS = [
+  { id: 'vagabond', name: 'Vagabond', src: 'base', lvl: 9, a: [15, 10, 11, 14, 13, 9, 9, 7], eq: ['Longsword', 'Halberd', 'Heater Shield'], poise: 51 },
+  { id: 'warrior', name: 'Warrior', src: 'base', lvl: 8, a: [11, 12, 11, 10, 16, 10, 8, 9], eq: ['Scimitar ×2', 'Riveted Wooden Shield'], poise: 26 },
+  { id: 'hero', name: 'Hero', src: 'base', lvl: 7, a: [14, 9, 12, 16, 9, 7, 8, 11], eq: ['Battle Axe', 'Large Leather Shield'], poise: 34 },
+  { id: 'bandit', name: 'Bandit', src: 'base', lvl: 5, a: [10, 11, 10, 9, 13, 9, 8, 14], eq: ['Great Knife', 'Shortbow', 'Buckler'], poise: 21 },
+  { id: 'astrologer', name: 'Astrologer', src: 'base', lvl: 6, a: [9, 15, 9, 8, 12, 16, 7, 9], eq: ["Astrologer's Staff", 'Short Sword', 'Scripture Wooden Shield'], poise: 14 },
+  { id: 'prophet', name: 'Prophet', src: 'base', lvl: 7, a: [10, 14, 8, 11, 10, 7, 16, 10], eq: ['Finger Seal', 'Short Spear', 'Rickety Shield'], poise: 17 },
+  { id: 'samurai', name: 'Samurai', src: 'base', lvl: 9, a: [12, 11, 13, 12, 15, 9, 8, 8], eq: ['Uchigatana', 'Red Thorn Roundshield', 'Longbow'], poise: 32 },
+  { id: 'prisoner', name: 'Prisoner', src: 'base', lvl: 9, a: [11, 12, 11, 11, 14, 14, 6, 9], eq: ['Glintstone Staff', 'Estoc', 'Rift Shield'], poise: 23 },
+  { id: 'confessor', name: 'Confessor', src: 'base', lvl: 10, a: [10, 13, 10, 12, 12, 9, 14, 9], eq: ['Finger Seal', 'Broadsword', 'Blue Crest Heater Shield'], poise: 34 },
+  { id: 'wretch', name: 'Wretch', src: 'base', lvl: 1, a: [10, 10, 10, 10, 10, 10, 10, 10], eq: ['Club'], poise: 0 },
+  { id: 'idus', name: 'Idus Knight', src: 'tp', lvl: 7, a: [10, 12, 11, 13, 15, 8, 11, 6], eq: ['Idus Sword', 'Silver Grooved Shield'], poise: 30 },
+  { id: 'heavy', name: 'Heavy Knight', src: 'tp', lvl: 10, a: [14, 8, 17, 15, 11, 7, 8, 9], eq: ['Hefty Scimitar'], poise: 45 }
+];
+var OMAP = {}; ORIGINS.forEach(function (o) { OMAP[o.id] = o; });
+
+var ARCH = {
+  str: { name: 'Force', w: { str: 1, dex: 0.2 }, t: [60, 15, 31, 80, 16, 9, 9, 9] },
+  dex: { name: 'Dextérité', w: { dex: 1, str: 0.3 }, t: [60, 15, 30, 16, 80, 9, 9, 10] },
+  qual: { name: 'Qualité', w: { str: 1, dex: 1 }, t: [58, 14, 28, 55, 55, 7, 6, 6] },
+  int: { name: 'Intelligence', w: { int: 1, dex: 0.2 }, t: [50, 38, 18, 12, 18, 80, 7, 6] },
+  fai: { name: 'Foi', w: { fai: 1, str: 0.3 }, t: [50, 35, 20, 16, 12, 7, 80, 9] },
+  arc: { name: 'Arcane', w: { arc: 1, dex: 0.4 }, t: [55, 25, 25, 12, 30, 9, 13, 60] },
+  dexarc: { name: 'Dextérité / Arcane', w: { dex: 1, arc: 1 }, t: [60, 15, 25, 14, 50, 9, 8, 48] },
+  intdex: { name: 'Intelligence / Dextérité', w: { int: 1, dex: 1 }, t: [55, 25, 20, 12, 45, 55, 8, 9] },
+  intfai: { name: 'Intelligence / Foi', w: { int: 1, fai: 1 }, t: [50, 30, 18, 12, 12, 50, 50, 7] },
+  strfai: { name: 'Force / Foi', w: { str: 1, fai: 1 }, t: [55, 20, 25, 55, 15, 7, 45, 7] }
+};
+var FLOOR = [9, 8, 8, 8, 9, 7, 6, 6];
+function targetFor(id, L) {
+  var t = ARCH[id].t, S = L + 79, k = (S - 61) / 168;
+  var raw = t.map(function (v, i) { return FLOOR[i] + (v - FLOOR[i]) * k; });
+  var base = raw.map(function (v) { return Math.floor(v); });
+  var rem = S - base.reduce(function (a, b) { return a + b; }, 0);
+  var ord = raw.map(function (v, i) { return [v - Math.floor(v), i]; }).sort(function (a, b) { return b[0] - a[0]; });
+  for (var j = 0; j < rem && j < ord.length; j++) base[ord[j][1]] += 1;
+  return base.map(function (v) { return cl(v, 1, 99); });
+}
+function autoW(A) {
+  var w = {}, any = false;
+  ['str', 'dex', 'int', 'fai', 'arc'].forEach(function (k) { if (A[k] > 12) { w[k] = A[k] - 10; any = true; } });
+  if (!any) w.str = 1;
+  var m = 0; Object.keys(w).forEach(function (k) { m = Math.max(m, w[k]); });
+  Object.keys(w).forEach(function (k) { w[k] = Math.round(w[k] / m * 100) / 100; });
+  return w;
+}
+
+var PROFILES = {
+  dex: { name: 'Dex / Saignement', origin: 'samurai', a: [26, 11, 18, 12, 27, 9, 8, 10], arch: 'dexarc', tl: 125, style: 'melee', classes: ['Katana', 'Light Greatsword'], hands: 1, status: 'bleed', load: 'mid', prog: 'boss', stage: 1, defeated: ['margit', 'godrick', 'redwolf'], regions: ['Limgrave', 'Weeping Peninsula', 'Liurnia of the Lakes'], exRem: false, exRand: false, exQuest: false, stone: 'any', est: true, content: { base: true, sote: true, tp: true } },
+  mage: { name: 'Mage pur NG+', origin: 'astrologer', a: [40, 35, 15, 8, 14, 60, 7, 9], arch: 'int', tl: 150, style: 'magic', classes: ['Katana', 'Straight Sword'], hands: 1, status: 'none', load: 'light', prog: 'stage', stage: 0, defeated: [], regions: ['Limgrave'], exRem: false, exRand: true, exQuest: false, stone: 'somber', est: true, content: { base: true, sote: true, tp: false } },
+  foi: { name: 'Foi / Force', origin: 'confessor', a: [30, 16, 20, 22, 13, 9, 21, 9], arch: 'strfai', tl: 125, style: 'melee', classes: ['Greatsword'], hands: 2, status: 'none', load: 'heavy', prog: 'boss', stage: 1, defeated: ['margit', 'godrick', 'redwolf', 'rennala'], regions: ['Limgrave', 'Weeping Peninsula', 'Liurnia of the Lakes', 'Caelid'], exRem: false, exRand: false, exQuest: false, stone: 'any', est: false, content: { base: true, sote: true, tp: true } }
+};
+
+var BOSSES = {
+  margit: { n: 'Margit, the Fell Omen', sh: 'Margit', rk: 'Grand ennemi', loc: 'Stormveil Castle', reg: 'Limgrave', src: 'base', hp: [4174], ru: 12000, weak: [['slash', -10], ['fire', 0]], imm: ['sleep', 'madness', 'death'], cb: true, rec: 22, stg: 0, enc2: '2ᵉ rencontre : Capital Outskirts' },
+  godrick: { n: 'Godrick the Grafted', sh: 'Godrick', rk: 'Demi-dieu', loc: 'Stormveil Castle', reg: 'Limgrave', src: 'base', hp: [6080], ru: 20000, rem: true, gr: true, weak: [['pierce', 0], ['slash', 0]], imm: ['madness'], cb: true, rec: 30, stg: 0, pre: 'margit' },
+  redwolf: { n: 'Red Wolf of Radagon', sh: 'Red Wolf', rk: null, loc: 'Academy of Raya Lucaria', reg: 'Liurnia of the Lakes', src: 'base', light: true, rec: 36, stg: 1 },
+  rennala: { n: 'Rennala, Queen of the Full Moon', sh: 'Rennala', rk: 'Légende', loc: 'Academy of Raya Lucaria', reg: 'Liurnia of the Lakes', src: 'base', hp: [3493, 4097], ru: 40000, rem: true, gr: true, weak: [['pierce', -10], ['slash', -10]], imm: ['sleep', 'madness'], cb: true, rec: 50, stg: 1, pre: 'redwolf' },
+  radahn: { n: 'Starscourge Radahn', sh: 'Radahn', rk: 'Demi-dieu', loc: 'Wailing Dunes', reg: 'Caelid', src: 'base', hp: [9572], ru: 70000, rem: true, gr: true, weak: [['pierce', 0], ['slash', 10]], imm: ['madness'], cb: true, rec: 62, stg: 1 },
+  rykard: { n: 'Rykard, Lord of Blasphemy', sh: 'Rykard', rk: 'Demi-dieu', loc: 'Volcano Manor', reg: 'Mt. Gelmir', src: 'base', hp: [30439, 59174], ru: 130000, rem: true, gr: true, weak: [['pierce', 10], ['slash', 10]], imm: ['madness'], cb: true, rec: 70, stg: 2 },
+  mohg: { n: 'Mohg, Lord of Blood', sh: 'Mohg', rk: 'Demi-dieu', loc: 'Mohgwyn Palace', reg: 'Siofra River', src: 'base', hp: [18389], ru: 420000, rem: true, gr: true, weak: null, imm: null, cb: true, rec: 90, stg: 2 },
+  dts: { n: 'Draconic Tree Sentinel', sh: 'Draconic Tree Sentinel', rk: 'Ennemi', loc: 'Capital Outskirts', reg: 'Altus Plateau', src: 'base', hp: [8398], ru: 50000, weak: null, imm: null, cb: true, rec: 65, stg: 1 },
+  fia: { n: "Fia's Champions", sh: "Fia's Champions", rk: null, loc: 'Deeproot Depths', reg: 'Deeproot Depths', src: 'base', light: true, rec: 72, stg: 2 },
+  gshade: { n: 'Godfrey, First Elden Lord', sh: 'Godfrey (ombre dorée)', sub: 'ombre dorée', rk: 'Grand ennemi', loc: 'Leyndell, Royal Capital', reg: 'Leyndell, Royal Capital', src: 'base', hp: [7099], ru: 80000, weak: null, imm: null, cb: true, rec: 75, stg: 2 },
+  morgott: { n: 'Morgott, the Omen King', sh: 'Morgott', rk: 'Demi-dieu', loc: 'Leyndell, Royal Capital', reg: 'Leyndell, Royal Capital', src: 'base', hp: [10399], ru: 120000, rem: true, weak: [['slash', -10], ['fire', 0]], imm: ['madness'], cb: true, rec: 80, stg: 2 },
+  firegiant: { n: 'Fire Giant', sh: 'Fire Giant', rk: 'Légende', loc: 'Flame Peak', reg: 'Mountaintops of the Giants', src: 'base', hp: [43263], ru: 180000, rem: true, weak: [['slash', -10], ['lightning', 0]], imm: ['madness'], cb: true, rec: 88, stg: 2 },
+  godskin: { n: 'Godskin Duo', sh: 'Godskin Duo', rk: 'Grand ennemi', loc: 'Crumbling Farum Azula', reg: 'Crumbling Farum Azula', src: 'base', hp: null, ru: null, weak: null, imm: null, cb: true, rec: 95, recPos: true, stg: 3 },
+  maliketh: { n: 'Maliketh, the Black Blade', sh: 'Maliketh', rk: 'Légende', loc: 'Crumbling Farum Azula', reg: 'Crumbling Farum Azula', src: 'base', hp: [10620], ru: 220000, rem: true, weak: [['pierce', 35], ['slash', 35]], imm: ['madness'], cb: true, rec: 102, stg: 3 },
+  gideon: { n: 'Sir Gideon Ofnir, the All-Knowing', sh: 'Sir Gideon Ofnir', rk: 'Ennemi', loc: "Avant l'entrée de l'Erdtree", reg: 'Leyndell, Ashen Capital', src: 'base', cb: false, rec: null, stg: 3 },
+  hoarah: { n: 'Godfrey / Hoarah Loux', sh: 'Godfrey / Hoarah Loux', rk: 'Légende', loc: 'Leyndell, Ashen Capital', reg: 'Leyndell, Ashen Capital', src: 'base', hp: [21903], ru: 300000, rem: true, weak: null, imm: null, cb: true, rec: 110, stg: 3 },
+  radagon: { n: 'Radagon of the Golden Order', sh: 'Radagon', rk: 'Dieu', loc: "Intérieur de l'Erdtree", reg: 'Leyndell, Ashen Capital', src: 'base', hp: [13339], ru: 500000, ruNote: 'après Elden Beast', weak: null, imm: null, cb: true, rec: 118, stg: 3 },
+  beast: { n: 'Elden Beast', sh: 'Elden Beast', rk: 'Dieu', loc: "Intérieur de l'Erdtree", reg: 'Leyndell, Ashen Capital', src: 'base', hp: [22127], ru: 500000, rem: true, weak: [['pierce', 10], ['slash', 10]], imm: ['poison', 'rot', 'bleed', 'frost', 'sleep', 'madness'], cb: true, rec: 120, stg: 3 },
+  messmer: { n: 'Messmer the Impaler', sh: 'Messmer', rk: 'Demi-dieu', loc: 'Shadow Keep', reg: 'Shadow Keep', src: 'sote', hp: [38981], ru: 400000, rem: true, weak: null, imm: null, cb: true, rec: 125, bless: 9, stg: 4 },
+  romina: { n: 'Romina, Saint of the Bud', sh: 'Romina', rk: 'Légende', loc: 'Ancient Ruins of Rauh', reg: 'Ancient Ruins of Rauh', src: 'sote', hp: [35798], ru: 380000, rem: true, weak: null, imm: null, cb: true, rec: 130, bless: 12, stg: 4 },
+  pcr: { n: 'Promised Consort Radahn', sh: 'Promised Consort Radahn', rk: 'Dieu', loc: 'Enir-Ilim', reg: 'Enir-Ilim', src: 'sote', hp: [46134, 29987], ru: 500000, rem: true, weak: [['holy', 0], ['pierce', 20]], imm: ['sleep', 'madness'], cb: true, rec: 150, bless: 18, stg: 4 }
+};
+var ABS = {
+  margit: [10, 10, -10, 10, 20, 0, 20, 40], godrick: [10, 10, 0, 0, 20, 20, 20, 40], rennala: [0, 0, -10, -10, 40, 20, 20, 20],
+  radahn: [20, 20, 10, 0, 30, 30, 30, 40], rykard: [20, 20, 10, 10, 40, 80, 20, 40], morgott: [10, 10, -10, 10, 20, 0, 20, 40],
+  firegiant: [10, 10, -10, 10, 20, 60, 0, 20], maliketh: [40, 40, 35, 35, 40, 40, 40, 80], beast: [20, 20, 10, 10, 40, 40, 40, 80],
+  pcr: [30, 30, 30, 20, 30, 30, 30, 0]
+};
+var STORY = [
+  { n: 1, lb: 'Porteurs de Grande Rune', kind: 'choice', need: 2, ids: ['godrick', 'rennala', 'radahn', 'rykard', 'mohg'] },
+  { n: 2, lb: 'Accès à Leyndell', kind: 'or', need: 1, ids: ['dts', 'fia'] },
+  { n: 3, lb: 'Leyndell, Royal Capital', kind: 'one', need: 1, ids: ['gshade'] },
+  { n: 4, lb: 'Leyndell, Royal Capital', kind: 'one', need: 1, ids: ['morgott'] },
+  { n: 5, lb: 'Mountaintops of the Giants', kind: 'one', need: 1, ids: ['firegiant'] },
+  { n: 6, lb: 'Crumbling Farum Azula', kind: 'one', need: 1, ids: ['godskin'] },
+  { n: 7, lb: 'Crumbling Farum Azula', kind: 'one', need: 1, ids: ['maliketh'] },
+  { n: 8, lb: 'Leyndell, Ashen Capital', kind: 'one', need: 1, ids: ['gideon'] },
+  { n: 9, lb: 'Leyndell, Ashen Capital', kind: 'one', need: 1, ids: ['hoarah'] },
+  { n: 10, lb: "Intérieur de l'Erdtree", kind: 'one', need: 1, ids: ['radagon'] },
+  { n: 11, lb: "Intérieur de l'Erdtree", kind: 'one', need: 1, ids: ['beast'] }
+];
+var DLC = ['messmer', 'romina', 'pcr'];
+var HORDER = ['margit', 'godrick', 'rennala', 'radahn', 'rykard', 'mohg', 'dts', 'gshade', 'morgott', 'firegiant', 'godskin', 'maliketh', 'gideon', 'hoarah', 'radagon', 'beast', 'messmer', 'romina', 'pcr'];
+var CHECK_BOSSES = ['margit', 'godrick', 'redwolf', 'rennala', 'radahn', 'rykard', 'mohg', 'dts', 'fia', 'gshade', 'morgott', 'firegiant', 'godskin', 'maliketh', 'gideon', 'hoarah', 'radagon', 'beast', 'messmer', 'romina', 'pcr'];
+var SHORTREG = { 'Liurnia of the Lakes': 'Liurnia', 'Mountaintops of the Giants': 'Mountaintops', 'Crumbling Farum Azula': 'Farum Azula', 'Leyndell, Royal Capital': 'Leyndell', 'Leyndell, Ashen Capital': 'Leyndell (cendres)', 'Altus Plateau': 'Altus', 'Siofra River': 'Siofra', 'Ancient Ruins of Rauh': 'Rauh' };
+var BB = {
+  normal: [null,
+    { name: "Smithing-Stone Miner's Bell Bearing [1]", loc: 'Raya Lucaria Crystal Tunnel', reg: 'Liurnia of the Lakes', st: 1 },
+    { name: "Smithing-Stone Miner's Bell Bearing [2]", loc: 'Sealed Tunnel', reg: 'Altus Plateau', st: 1 },
+    { name: "Smithing-Stone Miner's Bell Bearing [3]", loc: 'Zamor Ruins', reg: 'Mountaintops of the Giants', st: 2 },
+    { name: "Smithing-Stone Miner's Bell Bearing [4]", loc: 'Crumbling Farum Azula', reg: 'Crumbling Farum Azula', st: 3 }],
+  somber: [null,
+    { name: "Somberstone Miner's Bell Bearing [1]", loc: 'Sellia Crystal Tunnel', reg: 'Caelid', st: 1 },
+    { name: "Somberstone Miner's Bell Bearing [2]", loc: 'Old Altus Tunnel', reg: 'Altus Plateau', st: 1 },
+    { name: "Somberstone Miner's Bell Bearing [3]", loc: 'Volcano Manor', reg: 'Mt. Gelmir', st: 2 },
+    { name: "Somberstone Miner's Bell Bearing [4]", loc: 'Consecrated Snowfield', reg: 'Consecrated Snowfield', st: 2 },
+    { name: "Somberstone Miner's Bell Bearing [5]", loc: 'Crumbling Farum Azula', reg: 'Crumbling Farum Azula', st: 3 }]
+};
+var CATALOG = [
+  { id: 'A', t: 'Armes recommandées au fil de la partie', d: 'Armes adaptées au build, par étape de progression.' },
+  { id: 'B', t: 'Configuration de départ optimale', d: 'Classement des 12 origines pour le build cible.' },
+  { id: 'C', t: 'Ordre des boss et niveau recommandé', d: "Frise de l'histoire principale et voie DLC." },
+  { id: 'D1', t: 'Matrice des faiblesses des boss', d: 'Absorption par type de dégâts et immunités.' },
+  { id: 'D2', t: "Plan d'amélioration", d: 'Pierres à réunir et Bell Bearings utiles.' },
+  { id: 'D3', t: 'Butin par région pour mon build', d: 'Où explorer ensuite : armes, talismans, sorts, armures.', span: 'span-12' },
+  { id: 'D4', t: 'Équipement complémentaire', d: 'Talismans, Cendres de guerre, sorts, esprits, armures.', span: 'span-12' },
+  { id: 'D5', t: 'Calculateur de runes', d: 'Runes nécessaires pour un niveau cible (1 à 713).' },
+  { id: 'D6', t: "Bénédiction de l'Arbre-Ombre", d: 'Fragments collectés et bonus de dégâts (DLC).', span: 'span-6' },
+  { id: 'D7', t: 'Quêtes et marchands', d: 'PNJ importants, inventaires utiles, objets manquables.', span: 'span-6' },
+  { id: 'D8', t: 'Couverture des données', d: 'Part documentée, estimée ou absente.' }
+];
+var DEFAULT_ORDER = ['A', 'B', 'C', 'D1', 'D2', 'D5', 'D8'];
+var CLASSES = [['Katana', '#i-c-katana'], ['Greatsword', '#i-c-greatsword'], ['Light Greatsword', '#i-c-lgs'], ['Straight Sword', '#i-c-straight'], ['Curved Sword', '#i-c-curved'], ['Dagger', '#i-c-dagger'], ['Spear', '#i-c-spear'], ['Halberd', '#i-c-halberd']];
+
+function visibility(w, s) {
+  if (!s.content[w.src]) return { ok: false, why: 'content' };
+  if (s.style === 'ranged') return { ok: false, why: 'style' };
+  if (s.style === 'magic' && !(w.scl.int || w.scl.fai)) return { ok: false, why: 'style' };
+  if (s.exRem && w.flags.indexOf('rem') >= 0) return { ok: false, why: 'rem' };
+  if (s.exRand && w.flags.indexOf('rand') >= 0) return { ok: false, why: 'rand' };
+  if (s.exQuest && w.flags.indexOf('quest') >= 0) return { ok: false, why: 'quest' };
+  if (!s.est && w.rel === 'est') return { ok: false, why: 'est' };
+  return { ok: true, why: '' };
+}
+function wStage(w, originEff) {
+  var best = 9;
+  w.acq.forEach(function (q) {
+    if (q.start) { if (q.start === originEff) best = Math.min(best, 0); }
+    else if (RS[q.reg] !== undefined) best = Math.min(best, RS[q.reg]);
+  });
+  return best === 9 ? 0 : best;
+}
+function whereTxt(w, originEff) {
+  return w.acq.filter(function (q) { return !q.start || q.start === originEff; }).map(function (q) {
+    if (q.start) return 'Équipement de départ (' + OMAP[q.start].name + ')';
+    return q.m + (q.who ? ', ' + q.who : '') + ' — ' + q.loc + (q.via ? '' : ', ' + q.reg);
+  }).join(' ; ');
+}
+function relOf(w) {
+  if (w.rel === 'est') return { cls: 'cx-rel-est', icon: '#i-approx', label: 'Estimation (' + w.conf + ')', title: "Type d'amélioration non documenté par le wiki : estimation statistique, confiance " + w.conf + '.' };
+  if (w.rel === 'ded') return { cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki (déduit)', title: "Déduit d'une règle du wiki sur la classe d'arme." };
+  return { cls: 'cx-rel-wiki', icon: '#i-book', label: 'Wiki', title: 'Documenté sur la page du wiki.' };
+}
+function sclChips(w) {
+  return ['str', 'dex', 'int', 'fai', 'arc'].filter(function (k) { return w.scl[k]; }).map(function (k) { return { attr: AB[k], g: w.scl[k], lc: w.scl[k].toLowerCase(), title: AF[k] + ' : ' + w.scl[k] + ' à +0' }; });
+}
+function readiness(b, dn, lvl) {
+  if (dn) return { cls: 'done', icon: '#i-check', label: 'Vaincu' };
+  if (!b.rec) return { cls: 'unknown', icon: '#i-empty', label: 'Non estimé' };
+  if (lvl >= b.rec) return { cls: 'ready', icon: '#i-check-c', label: 'Prêt' };
+  if (lvl >= b.rec - 8) return { cls: 'limit', icon: '#i-alert', label: 'Limite' };
+  return { cls: 'early', icon: '#i-clock', label: 'Trop tôt' };
+}
+function stepDone(st, def) { var c = st.ids.filter(function (id) { return def[id]; }).length; return c >= st.need; }
+function nextBoss(def) {
+  for (var i = 0; i < STORY.length; i++) {
+    var st = STORY[i];
+    if (stepDone(st, def)) continue;
+    var cands = st.ids.filter(function (id) { return !def[id]; }).map(function (id) { var b = BOSSES[id]; return b.pre && !def[b.pre] ? b.pre : id; });
+    cands.sort(function (a, b) { return (BOSSES[a].rec || 999) - (BOSSES[b].rec || 999); });
+    return { step: i, id: cands[0] };
+  }
+  return null;
+}
+function heatCls(v) { return v <= -10 ? 'h-w2' : v <= 5 ? 'h-w1' : v <= 15 ? 'h-n' : v <= 30 ? 'h-r1' : v <= 50 ? 'h-r2' : 'h-r3'; }
+function eqIcon(n) {
+  if (/Shield|Buckler/.test(n)) return '#i-c-shield';
+  if (/Staff/.test(n)) return '#i-c-staff';
+  if (/Seal/.test(n)) return '#i-c-seal';
+  if (/bow|Bow/.test(n)) return '#i-c-bow';
+  if (/Spear/.test(n)) return '#i-c-spear';
+  if (/Halberd/.test(n)) return '#i-c-halberd';
+  if (/Axe/.test(n)) return '#i-c-axe';
+  if (/Club/.test(n)) return '#i-c-hammer';
+  if (/Knife/.test(n)) return '#i-c-dagger';
+  if (/Scimitar/.test(n)) return '#i-c-curved';
+  if (/Uchigatana/.test(n)) return '#i-c-katana';
+  if (/Idus/.test(n)) return '#i-c-lgs';
+  return '#i-c-straight';
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = Object.assign(this.prof('dex'), {
+      profileId: 'dex', dirty: false, theme: null, showMock: null, dataState: 'ready',
+      navRail: true, critOpen: true, listOpen: false, addOpen: false,
+      order: DEFAULT_ORDER.slice(), collapsed: {}, maxed: null, menuFor: null,
+      pinned: ['rob', 'uchi'], got: ['uchi'], compare: [], why: null, whyMode: 'why',
+      bSel: null, heatSort: null, upW: 'uchi', upFrom: 6, upTo: 25, runeMode: 'boss', runeCustom: 60, toast: null
+    });
+    this._t = null;
+  }
+  componentWillUnmount() { if (this._t) clearTimeout(this._t); }
+  prof(id) {
+    var p = PROFILES[id];
+    return { origin: p.origin, a: p.a.slice(), arch: p.arch, tl: p.tl, style: p.style, classes: p.classes.slice(), hands: p.hands, status: p.status, load: p.load, prog: p.prog, stage: p.stage, defeated: p.defeated.slice(), regions: p.regions.slice(), exRem: p.exRem, exRand: p.exRand, exQuest: p.exQuest, stone: p.stone, est: p.est, content: Object.assign({}, p.content) };
+  }
+  upd(p) { this.setState(Object.assign({ dirty: true }, p)); }
+  notify(msg, icon, undo) {
+    var self = this;
+    if (this._t) clearTimeout(this._t);
+    this.setState({ toast: { msg: msg, icon: icon || '#i-check', undo: undo || null } });
+    this._t = setTimeout(function () { self.setState({ toast: null }); }, 5000);
+  }
+  stepA(i, d, min) { var a = this.state.a.slice(); a[i] = cl(a[i] + d, min, 99); this.upd({ a: a }); }
+  setOrigin(id) {
+    var a = this.state.a.slice();
+    if (id !== 'auto') { var o = OMAP[id]; a = a.map(function (v, i) { return Math.max(v, o.a[i]); }); }
+    this.upd({ origin: id, a: a });
+  }
+  togglePin(id) {
+    var self = this, prev = this.state.pinned.slice(), p = prev.slice(), i = p.indexOf(id);
+    if (i >= 0) p.splice(i, 1); else p.push(id);
+    this.setState({ pinned: p });
+    this.notify(i >= 0 ? 'Retiré de Ma liste' : 'Épinglé à Ma liste', '#i-pin', function () { self.setState({ pinned: prev, toast: null }); });
+  }
+  toggleCmp(id) {
+    var c = this.state.compare.slice(), i = c.indexOf(id);
+    if (i >= 0) c.splice(i, 1);
+    else { if (c.length >= 4) { this.notify('Comparer : 4 armes au maximum', '#i-alert'); return; } c.push(id); }
+    this.setState({ compare: c });
+  }
+  openWhy(id, mode) { var s = this.state; this.setState({ why: s.why === id && s.whyMode === mode ? null : id, whyMode: mode }); }
+  toggleBoss(id) { var d = this.state.defeated.slice(), i = d.indexOf(id); if (i >= 0) d.splice(i, 1); else d.push(id); this.upd({ defeated: d, prog: 'boss' }); }
+  move(id, dir) { var o = this.state.order.slice(), i = o.indexOf(id), j = i + dir; if (i < 0 || j < 0 || j >= o.length) return; o[i] = o[j]; o[j] = id; this.setState({ order: o, menuFor: null }); }
+  removeW(id) {
+    var self = this, prev = this.state.order.slice();
+    this.setState({ order: prev.filter(function (x) { return x !== id; }), menuFor: null, maxed: null });
+    this.notify('Widget retiré du tableau de bord', '#i-x', function () { self.setState({ order: prev, toast: null }); });
+  }
+  addW(id) { var o = this.state.order.slice(); if (o.indexOf(id) < 0) o.push(id); this.setState({ order: o, addOpen: false }); this.notify('Widget ajouté au tableau de bord', '#i-plus'); }
+  loadProfile(id) { this.setState(Object.assign(this.prof(id), { profileId: id, dirty: false, why: null, bSel: null })); this.notify('Profil « ' + PROFILES[id].name + ' » chargé', '#i-user'); }
+
+  scoreAll(originEff, stageIdx, A, weights, budget) {
+    var s = this.state;
+    return WEAPONS.map(function (w) {
+      var vis = visibility(w, s), st = wStage(w, originEff);
+      var ws = 0, acc = 0;
+      Object.keys(weights).forEach(function (k) { ws += weights[k]; acc += weights[k] * (w.scl[k] ? LV[w.scl[k]] : 0); });
+      var fit = Math.min(25, 50 * (ws ? acc / ws : 0)), pen = 0;
+      Object.keys(w.req).forEach(function (k) { if (!weights[k]) { if (w.req[k] > 20) pen += 7; else if (w.req[k] > 10) pen += 4; } });
+      fit -= pen;
+      var bonusSt = s.status !== 'none' && !!w.pas && w.pas.k === s.status;
+      if (bonusSt) fit += 4;
+      if (s.classes.length) fit += s.classes.indexOf(w.cat) >= 0 ? 2 : -2;
+      fit = cl(Math.round(fit), 0, 25);
+      var tot = 0, sl = 0;
+      Object.keys(w.atk).forEach(function (k) { tot += w.atk[k]; });
+      Object.keys(w.scl).forEach(function (k) { sl += LV[w.scl[k]]; });
+      var over = w.wt > budget;
+      var pow = cl(Math.round(17.5 * Math.min(1, tot / 200) + 7.5 * Math.min(1, sl / 1.6) - (over ? 4 : 0)), 0, 25);
+      var ahead = Math.max(0, st - stageIdx), miss = 0, missList = [], reqs = [];
+      Object.keys(w.req).forEach(function (k) {
+        var need = w.req[k], have = A[k], two = k === 'str' && s.hands === 2, eff = two ? Math.floor(have * 1.5) : have, ok = eff >= need, gap = 0;
+        if (!ok) { gap = two ? Math.ceil(need / 1.5) - have : need - have; miss += gap; missList.push(AB[k] + ' ' + have + ' sur ' + need); }
+        reqs.push({ cls: ok ? 'is-ok' : 'is-miss', icon: ok ? '#i-check' : '#i-alert', label: AB[k] + ' ' + need, h2: two && have < need && ok, miss: !ok, gap: '+' + gap + ' ' + AB[k], title: AF[k] + ' : ' + have + (two ? ' (×1,5 à deux mains : ' + eff + ')' : '') + ', demandé ' + need });
+      });
+      var start = !!originEff && w.acq.some(function (q) { return q.start === originEff; });
+      var ac = cl(Math.round(25 - 4 * ahead - Math.min(9, 0.6 * miss) - (w.flags.indexOf('rem') >= 0 ? 4 : 0) - (w.flags.indexOf('invader') >= 0 ? 1 : 0) + (start ? 2 : 0)), 0, 25);
+      var up = w.up === 'somber' ? 20 : 16;
+      if (s.stone !== 'any') up += s.stone === w.up ? 5 : -6;
+      if (w.rel === 'est') up -= 2;
+      up = cl(up, 0, 25);
+      return { w: w, id: w.id, vis: vis.ok, hideWhy: vis.why, st: st, fit: fit, pow: pow, ac: ac, up: up, total: fit + pow + ac + up, reqs: reqs, miss: miss, missList: missList, start: start, ahead: ahead, over: over, bonusSt: bonusSt, pen: pen, tot: tot };
+    });
+  }
+  rankOrigins(tgt, weights, recNames) {
+    var s = this.state;
+    return ORIGINS.filter(function (o) { return s.content[o.src]; }).map(function (o) {
+      var fl = 0, ws = 0, ef = 0;
+      o.a.forEach(function (v, i) { fl += Math.max(v, tgt[i]); ws += Math.max(0, v - tgt[i]); if (weights[ATTRS[i]]) ef += v; });
+      var bw = o.eq.filter(function (n) { return recNames.indexOf(n) >= 0; });
+      if (bw.length) ef += 5;
+      return { o: o, final: fl - 79, waste: ws, early: ef, bw: bw };
+    }).sort(function (x, y) { return x.final - y.final || x.waste - y.waste || y.early - x.early || (x.o.name < y.o.name ? -1 : 1); });
+  }
+  emptyFor(i, all, hidden) {
+    var self = this, s = this.state;
+    if (!all.length) return { title: 'Aucune arme ' + PHR[i] + ' ne correspond à vos critères', text: "Aucune des 10 armes du prototype ne s'obtient à cette étape (" + STAGES[i].regions + ').', link: true };
+    var c = {}; hidden.forEach(function (x) { c[x.hideWhy] = (c[x.hideWhy] || 0) + 1; });
+    var why = Object.keys(c).sort(function (a, b) { return c[b] - c[a]; })[0], n = hidden.length;
+    if (why === 'content') {
+      var src = hidden[0].w.src, nm = SRC[src].f.replace(' (DLC)', '');
+      return { title: nm + ' est désactivé', text: (n > 1 ? 'Les ' + n + ' armes de cette étape viennent' : "L'arme de cette étape vient") + ' de ce contenu.', actLabel: 'Activer ' + nm, act: function () { var ct = Object.assign({}, self.state.content); ct[src] = true; self.upd({ content: ct }); } };
+    }
+    var base = { title: 'Aucune arme ' + PHR[i] + ' ne correspond à vos critères', text: 'Vos critères retirent ' + (n > 1 ? 'les ' + n + ' armes' : "l'arme") + ' de cette étape.' };
+    if (why === 'rem') { base.actLabel = 'Inclure les échanges de Remembrance'; base.act = function () { self.upd({ exRem: false }); }; }
+    else if (why === 'est') { base.actLabel = 'Inclure les valeurs estimées'; base.act = function () { self.upd({ est: true }); }; }
+    else if (why === 'style') { base.actLabel = 'Revenir au style Mêlée'; base.act = function () { self.upd({ style: 'melee' }); }; }
+    else { base.actLabel = 'Voir les critères'; base.act = function () { self.setState({ critOpen: true }); }; }
+    return base;
+  }
+  card(x, topId, originEff) {
+    var self = this, s = this.state, w = x.w, pinned = s.pinned.indexOf(w.id) >= 0, inCmp = s.compare.indexOf(w.id) >= 0, rel = relOf(w), flags = [];
+    if (x.start) flags.push({ cls: '', icon: '#i-start', label: 'Départ ' + OMAP[originEff].name, title: 'Équipement de départ de votre origine' });
+    if (w.flags.indexOf('rem') >= 0) flags.push({ cls: 'is-alert', icon: '#i-trade', label: 'Remembrance', title: 'Échange de Remembrance : vous renoncez aux autres objets de cet échange' });
+    if (w.flags.indexOf('drop') >= 0) flags.push({ cls: '', icon: '#i-drop', label: 'Butin garanti', title: "Butin garanti d'un ennemi unique" });
+    if (w.flags.indexOf('invader') >= 0) flags.push({ cls: '', icon: '#i-npc', label: 'Envahisseur PNJ', title: 'Obtenue en vainquant un envahisseur PNJ' });
+    var hasSt = !!(w.pas && w.pas.k !== 'text');
+    return {
+      id: w.id, name: w.name, cat: w.cat, icon: w.ic, wtTxt: fD(w.wt), src: w.src, srcS: SRC[w.src].s, srcF: SRC[w.src].f, srcI: SRC[w.src].i,
+      score: x.total, cardCls: (w.id === topId ? 'is-top ' : '') + (pinned ? 'is-pinned' : ''),
+      reqs: x.reqs, scls: sclChips(w), skill: w.skill, skillType: w.st === 'unique' ? 'compétence unique' : 'Cendre de guerre',
+      hasSt: hasSt, stCls: hasSt ? 'st-' + w.pas.k : '', stIcon: hasSt ? '#i-st-' + w.pas.k : '', stLabel: hasSt ? ST[w.pas.k] : '', stVal: hasSt ? w.pas.v : '',
+      hasPText: !!(w.pas && w.pas.k === 'text'), pText: w.pas && w.pas.k === 'text' ? w.pas.t : '',
+      upTxt: w.up === 'somber' ? 'Pierres sombres, +10' : 'Pierres normales, +25', relCls: rel.cls, relIcon: rel.icon, relLabel: rel.label, relTitle: rel.title,
+      where: whereTxt(w, originEff), flags: flags, hasFlags: flags.length > 0,
+      pinned: pinned, pinLabel: pinned ? 'Retirer de Ma liste' : 'Épingler à Ma liste', inCmp: inCmp, cmpLabel: inCmp ? 'Retirer de la comparaison' : 'Comparer',
+      whyOpen: s.why === w.id,
+      pin: function () { self.togglePin(w.id); }, cmp: function () { self.toggleCmp(w.id); },
+      alts: function () { self.openWhy(w.id, 'alts'); }, why: function () { self.openWhy(w.id, 'why'); }
+    };
+  }
+  node(id, def, lvl, o) {
+    var self = this, b = BOSSES[id], dn = !!def[id], r = readiness(b, dn, lvl);
+    var max = b.rec ? Math.max(b.rec + 30, lvl + 12, 60) : 60;
+    return {
+      id: id, name: b.n, sub: b.sub || '', hasSub: !!b.sub, rank: b.rk || '', hasRank: !!b.rk, loc: b.loc, locTxt: b.loc === b.reg ? b.reg : b.loc + ', ' + b.reg,
+      src: b.src, srcS: SRC[b.src].s, srcF: SRC[b.src].f, srcI: SRC[b.src].i, rem: !!b.rem, gr: !!b.gr,
+      light: !!b.light, cb: b.cb === true, noCb: b.cb === false,
+      hpOk: !!b.hp, hpTxt: b.hp ? b.hp.map(fN).join(' + ') + (b.hp.length > 1 ? ' (' + b.hp.length + ' phases)' : '') : '', hpNull: !b.hp,
+      ruOk: !!b.ru, ruTxt: b.ru ? fN(b.ru) + (b.ruNote ? ' ' + b.ruNote : '') : '', ruNull: !b.ru,
+      weak: (b.weak || []).map(function (x) { return { cls: 'dt-' + x[0], icon: '#i-d-' + x[0], label: DMG[x[0]][0], val: fP(x[1]), title: 'Absorption ' + DMG[x[0]][0] + ' : ' + fP(x[1]) + ' (la plus faible)' }; }),
+      weakNull: !b.weak, imm: (b.imm || []).map(function (k) { return { cls: 'st-' + k, icon: '#i-st-' + k, label: ST[k], title: 'Immunisé : ' + ST[k] }; }),
+      st: r, notDone: !dn, gauge: !dn && !!b.rec, gCls: r.cls, gFill: cl(lvl / max * 100, 0, 100), gTick: b.rec ? b.rec / max * 100 : 0, rec: b.rec, recPos: !!b.recPos && !dn, bless: b.bless || '',
+      cls: (dn ? 'is-done ' : '') + (o.next ? 'is-next ' : '') + (o.optional ? 'is-optional' : ''),
+      done: dn, toggle: function () { self.toggleBoss(id); }, sep: !!o.sep,
+      pre: b.pre ? [{ name: BOSSES[b.pre].n, done: !!def[b.pre], cls: def[b.pre] ? 'is-done' : '', icon: def[b.pre] ? '#i-check' : '#i-clock', state: def[b.pre] ? 'vaincu' : 'à faire', toggle: function () { self.toggleBoss(b.pre); } }] : [],
+      enc2: b.enc2 || '', hasEnc2: !!b.enc2
+    };
+  }
+  wv(id) {
+    var self = this, s = this.state, idx = s.order.indexOf(id), col = !!s.collapsed[id], menu = s.menuFor === id, mx = s.maxed === id;
+    return {
+      on: idx >= 0, open: idx >= 0 && !col, order: idx, colLabel: col ? 'Déplier' : 'Réduire', colIcon: col ? '#i-chev-d' : '#i-chev-u',
+      menuOpen: menu, maxCls: mx ? 'p-max' : '', maxLabel: mx ? 'Quitter le plein écran' : 'Plein écran', maxIcon: mx ? '#i-min' : '#i-max',
+      isFirst: idx <= 0, isLast: idx >= s.order.length - 1,
+      toggleCollapse: function () { var c = Object.assign({}, self.state.collapsed); c[id] = !c[id]; self.setState({ collapsed: c, menuFor: null }); },
+      toggleMenu: function () { self.setState({ menuFor: menu ? null : id }); },
+      toggleMax: function () { self.setState({ maxed: mx ? null : id, menuFor: null }); },
+      up: function () { self.move(id, -1); }, down: function () { self.move(id, 1); }, remove: function () { self.removeW(id); }
+    };
+  }
+
+  renderVals() {
+    var self = this, s = this.state;
+    var theme = s.theme || this.props.theme || 'sombre';
+    var showMock = s.showMock !== null ? s.showMock : this.props.showMock !== false;
+    var loading = s.dataState === 'loading', errored = s.dataState === 'error';
+    var A = {}; ATTRS.forEach(function (k, i) { A[k] = s.a[i]; });
+    var level = s.a.reduce(function (x, y) { return x + y; }, 0) - 79;
+    var weights = s.arch ? ARCH[s.arch].w : autoW(A);
+    var tgt = s.arch ? targetFor(s.arch, s.tl) : null;
+    var def = {}; s.defeated.forEach(function (id) { def[id] = true; });
+    var nb = nextBoss(def);
+    var stageIdx = s.prog === 'stage' ? s.stage : s.prog === 'region' ? s.regions.reduce(function (m, r) { return Math.max(m, RS[r] || 0); }, 0) : (nb ? BOSSES[nb.id].stg : 3);
+    var stageWhy = s.prog === 'stage' ? 'choisie' : s.prog === 'region' ? "d'après les régions atteintes" : (nb ? "région du prochain boss : " + BOSSES[nb.id].sh : 'histoire terminée');
+    var eqLoad = loadOf(A.end), ratio = s.load === 'light' ? 0.3 : s.load === 'heavy' ? 1 : 0.7, budget = Math.round(eqLoad * ratio * 0.25 * 10) / 10;
+    var originEff = s.origin === 'auto' ? null : s.origin;
+    var W = this.scoreAll(originEff, stageIdx, A, weights, budget);
+    var recNames = W.filter(function (x) { return x.vis; }).map(function (x) { return x.w.name; });
+    var ranking = tgt ? this.rankOrigins(tgt, weights, recNames) : [];
+    if (s.origin === 'auto' && ranking.length) { originEff = ranking[0].o.id; W = this.scoreAll(originEff, stageIdx, A, weights, budget); }
+    var minA = originEff ? OMAP[originEff].a : [1, 1, 1, 1, 1, 1, 1, 1];
+    var byScore = function (a, b) { return b.total - a.total || (a.w.name < b.w.name ? -1 : 1); };
+    var vis = W.filter(function (x) { return x.vis; }).sort(byScore);
+    var topId = vis.length ? vis[0].id : null;
+
+    var cols = STAGES.map(function (stg, i) {
+      var all = W.filter(function (x) { return x.st === i; });
+      var shown = all.filter(function (x) { return x.vis; }).sort(byScore).slice(0, 5);
+      var hidden = all.filter(function (x) { return !x.vis; });
+      var e = shown.length ? null : self.emptyFor(i, all, hidden);
+      return {
+        aria: 'Étape ' + stg.name, weapons: shown.map(function (x) { return self.card(x, topId, originEff); }),
+        empty: !shown.length, eTitle: e ? e.title : '', eText: e ? e.text : '', eHasAct: !!(e && e.act), eAct: e ? e.act : null, eActLabel: e ? e.actLabel : '', eLink: !!(e && e.link),
+        hasHidden: hidden.length > 0 && shown.length > 0, hiddenTxt: hidden.length + (hidden.length > 1 ? ' armes masquées' : ' arme masquée') + ' par vos critères'
+      };
+    });
+    var thread = STAGES.map(function (stg, i) { return { name: stg.name, regions: stg.regions, cls: i < stageIdx ? 'is-past' : i === stageIdx ? 'is-now' : '', cur: i === stageIdx ? 'step' : undefined }; });
+    var hiddenAll = W.filter(function (x) { return !x.vis; }).length;
+    var aFoot = vis.length + (vis.length > 1 ? ' armes recommandées' : ' arme recommandée') + (hiddenAll ? ', ' + hiddenAll + ' masquée' + (hiddenAll > 1 ? 's' : '') + ' par vos critères' : '');
+
+    var why = { on: false, isWhy: false, isAlts: false, title: '', score: 0, parts: [], data: [], limits: [], alts: [], noAlts: false };
+    var wx = s.why ? W.filter(function (x) { return x.id === s.why; })[0] : null;
+    if (wx) {
+      var ww = wx.w, others = vis.filter(function (x) { return x.id !== ww.id; });
+      var near = others.slice().sort(function (a, b) { return Math.abs(a.st - wx.st) - Math.abs(b.st - wx.st) || b.total - a.total; }).filter(function (x) { return Math.abs(x.st - wx.st) <= 1; });
+      why.on = true; why.score = wx.total;
+      if (s.whyMode === 'alts') {
+        why.isAlts = true; why.title = 'Alternatives à ' + ww.name;
+        why.alts = near.slice(0, 4).map(function (x) { return { name: x.w.name, cat: x.w.cat, stage: STAGES[x.st].name, src: x.w.src, srcS: SRC[x.w.src].s, srcF: SRC[x.w.src].f, srcI: SRC[x.w.src].i, score: x.total, why: function () { self.openWhy(x.id, 'why'); } }; });
+        why.noAlts = why.alts.length === 0;
+      } else {
+        why.isWhy = true; why.title = 'Pourquoi ' + ww.name + ' ?';
+        why.parts = [['Adéquation au build', wx.fit], ['Puissance et scaling', wx.pow], ['Accessibilité à votre étape', wx.ac], ["Coût d'amélioration", wx.up]].map(function (p) { return { label: p[0], v: p[1], pct: p[1] * 4 }; });
+        var sclTxt = sclChips(ww).map(function (g) { return g.attr + ' ' + g.g; }).join(', ');
+        var reqTxt = Object.keys(ww.req).map(function (k) { return AB[k] + ' ' + ww.req[k]; }).join(', ');
+        var pasTxt = ww.pas ? (ww.pas.k === 'text' ? ww.pas.t : ST[ww.pas.k] + ' ' + ww.pas.v) : 'aucun effet passif';
+        why.data = [
+          { icon: '#i-book', t: 'melee_armaments : scaling ' + sclTxt + ' ; prérequis ' + reqTxt + ' ; ' + pasTxt + (wx.bonusSt ? ' (statut privilégié, +4)' : '') },
+          { icon: '#i-map', t: 'acquisition : ' + whereTxt(ww, originEff) + ' → étape ' + STAGES[wx.st].name + (wx.ahead ? ' (' + wx.ahead + ' étape' + (wx.ahead > 1 ? 's' : '') + " d'avance, −" + wx.ahead * 4 + ')' : ' (accessible maintenant)') },
+          { icon: '#i-user', t: 'Profil : ' + (wx.missList.length ? wx.missList.join(', ') : 'tous les prérequis atteints') + (s.hands === 2 ? ', à deux mains' : '') },
+          { icon: '#i-weight', t: 'Poids ' + fD(ww.wt) + (wx.over ? ' : au-delà du budget de ' + fD(budget) + ' (−4)' : ' : dans le budget de ' + fD(budget)) }
+        ];
+        why.limits = [{ icon: '#i-info', t: "Score à +0 : ne tient compte ni du niveau d'amélioration ni des Cendres de guerre." }];
+        if (ww.rel === 'est') why.limits.push({ icon: '#i-approx', t: "Type d'amélioration estimé (confiance " + ww.conf + ') : coût d’amélioration −2.' });
+        if (wx.pen) why.limits.push({ icon: '#i-alert', t: 'Prérequis hors build : −' + wx.pen + ' en adéquation.' });
+        why.limits.push({ icon: '#i-swap', t: near.length ? 'Alternatives proches : ' + near.slice(0, 2).map(function (x) { return x.w.name + ' (' + x.total + ')'; }).join(', ') + '.' : 'Pas d’alternative à une étape près.' });
+      }
+    }
+    var cmpNames = s.compare.map(function (id) { return WMAP[id].name; });
+    var cmp = { on: s.compare.length > 0, title: s.compare.length + (s.compare.length > 1 ? ' armes à comparer :' : ' arme à comparer :'), names: cmpNames.join(', '), cant: s.compare.length < 2, hint: s.compare.length < 2 ? 'Ajoutez au moins 2 armes' : 'Comparer côte à côte', clear: function () { self.setState({ compare: [] }); } };
+
+    var bShow = !!tgt && !loading;
+    var bSelId = s.bSel && ranking.some(function (r) { return r.o.id === s.bSel; }) ? s.bSel : (ranking[0] ? ranking[0].o.id : null);
+    var bRows = ranking.map(function (r, i) { return { rank: i + 1, name: r.o.name, src: r.o.src, srcS: SRC[r.o.src].s, srcF: SRC[r.o.src].f, srcI: SRC[r.o.src].i, lvl: r.o.lvl, final: r.final, waste: r.waste, top: i === 0, sel: r.o.id === bSelId, rowCls: r.o.id === bSelId ? 'is-selected' : '', pick: function () { self.setState({ bSel: r.o.id }); } }; });
+    var bSel = { name: '', lvl: '', rankTxt: '', explain: '', attrs: [], stats: [], eq: [] }, bEarly = [], prio = [], prioSum = '';
+    if (bShow && ranking.length) {
+      var ri = 0; ranking.forEach(function (r, i) { if (r.o.id === bSelId) ri = i; });
+      var R = ranking[ri], r0 = ranking[0], r1 = ranking[1], o = R.o, ex;
+      if (ri === 0) {
+        ex = o.name + ' atteint la cible au niveau ' + R.final + ' avec ' + (R.waste ? R.waste + (R.waste > 1 ? ' points gaspillés' : ' point gaspillé') : 'aucun point gaspillé') + '.';
+        if (r1 && r1.final === R.final && r1.waste === R.waste) ex += ' À égalité avec ' + r1.o.name + (R.bw.length ? ' : son équipement de départ contient ' + R.bw[0] + ', une arme recommandée.' : ' : ses attributs de départ servent davantage le build.');
+        else if (r1) ex += ' ' + r1.o.name + ' suit au niveau ' + r1.final + '.';
+      } else {
+        var wl = []; o.a.forEach(function (v, i) { if (v > tgt[i]) wl.push(AB[ATTRS[i]] + ' +' + (v - tgt[i])); });
+        var dl = R.final - r0.final;
+        ex = o.name + ' atteint la cible au niveau ' + R.final + ', soit ' + dl + (dl > 1 ? ' niveaux' : ' niveau') + ' de plus que ' + r0.o.name + (wl.length ? ' ; points gaspillés : ' + wl.join(', ') + '.' : '.');
+      }
+      var mx = Math.max(60, Math.ceil(Math.max.apply(null, tgt.concat(o.a)) / 10) * 10);
+      bSel = {
+        name: o.name, lvl: o.lvl, rankTxt: 'rang ' + (ri + 1) + ' sur ' + ranking.length, explain: ex,
+        attrs: ATTRS.map(function (k, i) { var v = o.a[i], t = tgt[i]; return { k: AB[k], full: AF[k], fillPct: v / mx * 100, tgtPct: t / mx * 100, hasWaste: v > t, wastePct: Math.max(0, v - t) / mx * 100, tgt: t, vTxt: v > t ? v + ' (cible ' + t + ')' : v + ' → ' + t }; }),
+        stats: [{ k: 'PV', v: fN(hpOf(o.a[0])) }, { k: 'FP', v: fN(fpOf(o.a[1])) }, { k: 'Endurance', v: fN(stOf(o.a[2])) }, { k: 'Charge max', v: fD(loadOf(o.a[2])) }, { k: 'Équilibre', v: String(o.poise) }],
+        eq: o.eq.map(function (n) { return { name: n, icon: eqIcon(n), rec: recNames.indexOf(n) >= 0 }; })
+      };
+      bEarly = cols[0].weapons.slice(0, 3).map(function (c) { return { name: c.name, cat: c.cat, score: c.score }; });
+    }
+    if (tgt) {
+      var cur = s.a.slice(), list = [];
+      var push = function (k, to, whyTxt) { var i = ATTRS.indexOf(k); to = Math.min(99, to); if (cur[i] < to) { list.push({ k: AB[k], from: cur[i], to: to, why: whyTxt }); cur[i] = to; } };
+      push('vig', Math.min(tgt[0], 40), 'Survie : 40 VIG avant la fin du milieu de partie');
+      if (vis.length) Object.keys(vis[0].w.req).forEach(function (k) { var need = vis[0].w.req[k]; if (k === 'str' && s.hands === 2) need = Math.ceil(need / 1.5); push(k, need, 'Prérequis de ' + vis[0].w.name + ', votre meilleure arme'); });
+      var wk = Object.keys(weights).sort(function (a, b) { return weights[b] - weights[a]; });
+      wk.forEach(function (k) { push(k, Math.min(tgt[ATTRS.indexOf(k)], 40), 'Attribut principal du build'); });
+      push('end', Math.min(tgt[2], 25), 'Endurance et charge');
+      wk.forEach(function (k) { push(k, Math.min(tgt[ATTRS.indexOf(k)], 60), 'Vers la cible du build'); });
+      push('vig', tgt[0], 'Cible du build');
+      prio = list.slice(0, 5).map(function (p, i) { return { n: i + 1, k: p.k, from: p.from, to: p.to, why: p.why }; });
+      var gain = prio.reduce(function (a, p) { return a + p.to - p.from; }, 0), rr = 0;
+      for (var L = level; L < level + gain; L++) rr += runeCost(L);
+      prioSum = gain ? 'Ces ' + prio.length + ' étapes : +' + gain + ' niveaux (' + level + ' → ' + (level + gain) + '), ' + fN(rr) + ' runes.' : 'Le profil atteint déjà la cible.';
+    }
+
+    var bossOk = !loading && !errored;
+    var tl = STORY.map(function (st, i) {
+      var done = stepDone(st, def), isNext = !!nb && nb.step === i, cnt = st.ids.filter(function (id) { return def[id]; }).length;
+      return {
+        n: st.n, lb: st.lb, cls: done ? 'is-done' : isNext ? 'is-next' : '',
+        isChoice: st.kind === 'choice', boxCls: st.kind === 'choice' ? 'cx-choice' : '', gridCls: st.kind === 'choice' ? 'cx-choice-grid p-choice2' : st.kind === 'or' ? 'cx-or' : '',
+        title: st.kind === 'choice' ? st.need + ' au choix parmi ' + st.ids.length : '', cntTxt: cnt + ' sur ' + st.need + (cnt > 1 ? ' vaincus' : ' vaincu'), cntCls: done ? 'ready' : 'done', cntIcon: done ? '#i-check-c' : '#i-check',
+        bosses: st.ids.map(function (id, j) { return self.node(id, def, level, { sep: st.kind === 'or' && j === 1, next: isNext && (nb.id === id || BOSSES[id].pre === nb.id), optional: done && !def[id] }); })
+      };
+    });
+    var next = { name: '', cls: '', icon: '', label: '', rec: '' };
+    if (nb) { var nbB = BOSSES[nb.id], rr2 = readiness(nbB, false, level); next = { name: nbB.n, cls: rr2.cls, icon: rr2.icon, label: rr2.label, rec: nbB.rec }; }
+    var gateOk = !!(def.radahn && def.mohg);
+    var gate = [['radahn', 'Radahn'], ['mohg', 'Mohg']].map(function (g) { var d = !!def[g[0]]; return { cls: d ? 'ready' : 'early', icon: d ? '#i-check-c' : '#i-clock', label: g[1] + (d ? ' vaincu' : ' à faire') }; });
+    var dlcNext = null; DLC.forEach(function (id) { if (!dlcNext && !def[id]) dlcNext = id; });
+    var lane = DLC.map(function (id, j) { var n = self.node(id, def, level, { next: gateOk && dlcNext === id, optional: false }); n.k = j + 1; n.stepCls = def[id] ? 'is-done' : gateOk && dlcNext === id ? 'is-next' : ''; n.locked = !gateOk; return n; });
+    var doneCount = s.defeated.filter(function (id) { return HORDER.indexOf(id) >= 0; }).length;
+    var cFoot = doneCount + ' boss vaincu' + (doneCount > 1 ? 's' : '') + ' sur ' + HORDER.length + ' suivis';
+
+    var hHead = DK.map(function (k, i) { return { k: k, icon: '#i-d-' + k, abbr: DMG[k][1], title: DMG[k][0] + ' : classer par vulnérabilité', sort: s.heatSort === i ? 'ascending' : 'none', by: function () { self.setState({ heatSort: self.state.heatSort === i ? null : i }); } }; });
+    var hRows = HORDER.filter(function (id) { return s.content.sote || BOSSES[id].src !== 'sote'; }).map(function (id) {
+      var b = BOSSES[id], abs = ABS[id] || null;
+      return {
+        abs: abs, short: b.sh, reg: SHORTREG[b.reg] || b.reg, cls: def[id] ? 'is-done' : '',
+        cells: DK.map(function (k, i) {
+          if (!abs) return { cls: 'h-null', txt: '—', title: b.sh + ' — ' + DMG[k][0] + ' : ' + (b.cb === false ? 'aucune donnée de combat sur le wiki' : 'non documenté par le wiki') };
+          var v = abs[i];
+          return { cls: heatCls(v), txt: v < 0 ? MN + Math.abs(v) : String(v), title: b.sh + ' — ' + DMG[k][0] + ' : ' + fP(v) + (v <= 5 ? ' (faiblesse)' : v > 30 ? ' (résistance)' : '') };
+        }),
+        imm: (b.imm || []).map(function (k) { return { cls: 'st-' + k, icon: '#i-st-' + k, label: STS[k], title: 'Immunisé : ' + ST[k] }; }), immNull: !b.imm
+      };
+    });
+    if (s.heatSort !== null) hRows.sort(function (x, y) { if (!x.abs && !y.abs) return 0; if (!x.abs) return 1; if (!y.abs) return -1; return x.abs[s.heatSort] - y.abs[s.heatSort]; });
+    var nullRows = hRows.filter(function (r) { return !r.abs; }).length;
+    var heatPartial = nullRows + ' boss sur ' + hRows.length + " n'ont pas d'absorption documentée par le wiki : leurs lignes sont hachurées et classées en dernier.";
+
+    var uw = WMAP[s.upW], somber = uw.up === 'somber', maxL = somber ? 10 : 25;
+    var uFrom = cl(s.upFrom, 0, maxL - 1), uTo = cl(s.upTo, uFrom + 1, maxL);
+    var need = [], idx = {};
+    var add = function (name, q, bb) { if (idx[name] === undefined) { idx[name] = need.length; need.push({ name: name, q: 0, bb: bb }); } need[idx[name]].q += q; };
+    for (var n = uFrom + 1; n <= uTo; n++) {
+      if (!somber) { if (n === 25) add('Ancient Dragon Smithing Stone', 1, 0); else { var tier = Math.ceil(n / 3); add('Smithing Stone [' + tier + ']', [2, 4, 6][(n - 1) % 3], Math.ceil(tier / 2)); } }
+      else { if (n === 10) add('Somber Ancient Dragon Smithing Stone', 1, 0); else add('Somber Smithing Stone [' + n + ']', 1, n === 9 ? 5 : Math.ceil(n / 2)); }
+    }
+    var bbList = somber ? BB.somber : BB.normal, totalQ = 0, buyQ = 0;
+    var upRows = need.map(function (r) {
+      var bb = r.bb ? bbList[r.bb] : null, ok = !!bb && bb.st <= stageIdx;
+      totalQ += r.q; if (ok) buyQ += r.q;
+      return { name: r.name, q: '×' + r.q, hasBB: !!bb, noBB: !bb, bbName: bb ? bb.name : '', bbWhere: bb ? bb.loc + (bb.loc === bb.reg ? '' : ', ' + bb.reg) + ' — étape ' + STAGES[bb.st].name : '', stCls: bb ? (ok ? 'ready' : 'early') : 'unknown', stIcon: bb ? (ok ? '#i-check-c' : '#i-clock') : '#i-lock', stLabel: bb ? (ok ? 'Accessible' : 'Étape ' + STAGES[bb.st].name) : 'Rare' };
+    });
+    var urel = relOf(uw);
+    var up = {
+      from: uFrom, to: uTo, fromMin: uFrom <= 0, fromMax: uFrom >= uTo - 1, toMin: uTo <= uFrom + 1, toMax: uTo >= maxL,
+      fromDec: function () { self.setState({ upFrom: uFrom - 1 }); }, fromInc: function () { self.setState({ upFrom: uFrom + 1 }); },
+      toDec: function () { self.setState({ upTo: uTo - 1 }); }, toInc: function () { self.setState({ upTo: uTo + 1 }); },
+      summary: uw.name + ' : de +' + uFrom + ' à +' + uTo + ', ' + totalQ + ' pierre' + (totalQ > 1 ? 's' : '') + (somber ? ' sombres' : ' de forge'),
+      relCls: urel.cls, relIcon: urel.icon, relLabel: urel.label, relTitle: urel.title, isEst: uw.rel === 'est',
+      estTxt: "Le type d'amélioration de " + uw.name + ' n’est pas documenté (estimation : ' + (somber ? 'pierres sombres' : 'pierres normales') + ', confiance ' + uw.conf + ').',
+      rows: upRows, buyTxt: buyQ + ' pierre' + (buyQ > 1 ? 's' : '') + ' sur ' + totalQ + ' achetable' + (buyQ > 1 ? 's' : '') + ' en quantité illimitée à votre étape. Les pierres anciennes ne s’achètent pas en quantité illimitée.'
+    };
+
+    var nbRec = nb ? BOSSES[nb.id].rec : null;
+    var rTarget = s.runeMode === 'boss' ? (nbRec && nbRec > level ? nbRec : level + 10) : s.runeMode === 'build' ? (s.tl > level ? s.tl : level + 10) : Math.max(level + 1, s.runeCustom);
+    rTarget = Math.min(713, rTarget);
+    var costs = []; for (var Lv = level; Lv < rTarget; Lv++) costs.push(runeCost(Lv));
+    var rTot = costs.reduce(function (a, b) { return a + b; }, 0), cmax = costs.length ? costs[costs.length - 1] : 1;
+    var nbBars = Math.min(36, costs.length), per = costs.length / Math.max(1, nbBars), rBars = [];
+    for (var bi = 0; bi < nbBars; bi++) { var seg = costs.slice(Math.floor(bi * per), Math.floor((bi + 1) * per)); var avg = seg.reduce(function (a, b) { return a + b; }, 0) / Math.max(1, seg.length); rBars.push({ h: Math.max(3, avg / cmax * 100), t: 'Niv. ' + (level + Math.floor(bi * per)) + ' : ' + fN(Math.round(avg)) + ' runes' }); }
+    var rSeg = [['boss', 'Prochain boss'], ['build', 'Build cible'], ['custom', 'Autre']].map(function (o) { return { label: o[1], on: s.runeMode === o[0], pick: function () { self.setState({ runeMode: o[0] }); } }; });
+
+    var cov = [
+      { label: "Type d'amélioration, armes de mêlée", key: '150 sur 335 documentés', mockCls: 'cx-mqv', mockTxt: 'Répartition estimés / absents : valeur de maquette', aria: '150 documentés, 172 estimés, 13 non documentés', segs: [{ cls: 'p-doc', w: 44.8 }, { cls: 'p-est', w: 51.3 }, { cls: 'p-null', w: 3.9 }] },
+      { label: "Type d'amélioration, 10 armes du prototype", key: '6 sur 10 documentés', mockCls: '', mockTxt: "Décompte de l'annexe B : 3 wiki, 3 déduits, 4 estimés", aria: '6 documentés dont 3 déduits, 4 estimés', segs: [{ cls: 'p-doc', w: 60 }, { cls: 'p-est', w: 40 }] },
+      { label: "PV des boss de l'histoire (annexe B3)", key: '17 sur 19 documentés', mockCls: '', mockTxt: "Décompte de l'annexe B", aria: '17 documentés, 2 non documentés', segs: [{ cls: 'p-doc', w: 89.5 }, { cls: 'p-null', w: 10.5 }] },
+      { label: "Faiblesses des boss de l'histoire (annexe B3)", key: '10 sur 19 documentées', mockCls: '', mockTxt: "Décompte de l'annexe B", aria: '10 documentées, 9 non documentées', segs: [{ cls: 'p-doc', w: 52.6 }, { cls: 'p-null', w: 47.4 }] },
+      { label: 'PV des boss, tous les combats', key: '281 sur 301 documentés', mockCls: 'cx-mqv', mockTxt: 'Valeur de maquette', aria: '281 documentés, 20 non documentés', segs: [{ cls: 'p-doc', w: 93.4 }, { cls: 'p-null', w: 6.6 }] }
+    ];
+
+    var STYLE = { melee: 'Mêlée', ranged: 'Distance', magic: 'Magie', hybrid: 'Hybride' };
+    var contentTxt = ['base', 'sote', 'tp'].filter(function (k) { return s.content[k]; }).map(function (k) { return SRC[k].s; }).join(', ') || 'aucun';
+    var chips = [
+      { k: 'Contenu', v: contentTxt, x: false },
+      { k: 'Origine', v: originEff ? OMAP[originEff].name + (s.origin === 'auto' ? ' (auto)' : '') : 'automatique', x: s.origin !== 'auto', rm: function () { self.upd({ origin: 'auto' }); } },
+      { k: 'Niveau', v: String(level), x: false }
+    ];
+    if (s.arch) chips.push({ k: 'Build', v: ARCH[s.arch].name + ' → ' + s.tl, x: true, on: true, rm: function () { self.upd({ arch: '' }); } });
+    chips.push({ k: 'Style', v: STYLE[s.style] + ', ' + (s.hands === 2 ? 'deux mains' : 'une main'), x: false });
+    if (s.classes.length) chips.push({ k: 'Classes', v: s.classes.join(', '), x: true, rm: function () { self.upd({ classes: [] }); } });
+    if (s.status !== 'none') chips.push({ k: 'Statut', v: ST[s.status], x: true, rm: function () { self.upd({ status: 'none' }); } });
+    chips.push({ k: 'Étape', v: STAGES[stageIdx].name, x: false });
+    if (s.exRem) chips.push({ k: 'Exclusion', v: 'Remembrance', x: true, rm: function () { self.upd({ exRem: false }); } });
+    if (s.exRand) chips.push({ k: 'Exclusion', v: 'butin aléatoire', x: true, rm: function () { self.upd({ exRand: false }); } });
+    if (s.exQuest) chips.push({ k: 'Exclusion', v: 'quêtes de PNJ', x: true, rm: function () { self.upd({ exQuest: false }); } });
+    if (s.stone !== 'any') chips.push({ k: 'Pierres', v: s.stone === 'normal' ? 'normales' : 'sombres', x: true, rm: function () { self.upd({ stone: 'any' }); } });
+    if (!s.est) chips.push({ k: 'Fiabilité', v: 'sans estimations', x: true, rm: function () { self.upd({ est: true }); } });
+    chips = chips.map(function (c) { return { k: c.k, v: c.v, x: !!c.x, onCls: c.on ? 'is-on' : '', rm: c.rm || null }; });
+
+    var cnt = function (src) { return WEAPONS.filter(function (w) { return w.src === src; }).length; };
+    var contentRows = [['base', 'Jeu de base'], ['sote', 'Shadow of the Erdtree'], ['tp', 'Tarnished Pack']].map(function (r) {
+      return { k: r[0], label: r[1], short: SRC[r[0]].s, full: SRC[r[0]].f, icon: SRC[r[0]].i, on: !!s.content[r[0]], count: cnt(r[0]) + (cnt(r[0]) > 1 ? ' armes' : ' arme'), toggle: function () { var ct = Object.assign({}, self.state.content); ct[r[0]] = !ct[r[0]]; self.upd({ content: ct }); } };
+    });
+    var steppers = ATTRS.map(function (k, i) {
+      return { abbr: AB[k], full: AF[k], v: s.a[i], minD: s.a[i] <= minA[i], maxD: s.a[i] >= 99, dec: function (e) { self.stepA(i, e && e.shiftKey ? -5 : -1, minA[i]); }, inc: function (e) { self.stepA(i, e && e.shiftKey ? 5 : 1, minA[i]); } };
+    });
+    var tgtGrid = tgt ? ATTRS.map(function (k, i) { return { k: AB[k], v: tgt[i], title: AF[k] + ' cible : ' + tgt[i] + ' (actuel ' + s.a[i] + ')' }; }) : [];
+    var seg = function (list, key, val, cb) { return list.map(function (o) { return { label: o[1], on: val === o[0], pick: function () { var p = {}; p[key] = o[0]; if (cb) cb(p); self.upd(p); } }; }); };
+    var styleSeg = seg([['melee', 'Mêlée'], ['ranged', 'Distance'], ['magic', 'Magie'], ['hybrid', 'Hybride']], 'style', s.style);
+    var handsSeg = seg([[1, 'Une main'], [2, 'Deux mains']], 'hands', s.hands);
+    var loadSeg = seg([['light', 'Légère'], ['mid', 'Moyenne'], ['heavy', 'Lourde']], 'load', s.load);
+    var progSeg = seg([['stage', 'Étape'], ['boss', 'Boss'], ['region', 'Régions']], 'prog', s.prog);
+    var stageSeg = STAGES.map(function (stg, i) { return { label: stg.name, on: s.stage === i, pick: function () { self.upd({ stage: i }); } }; });
+    var stoneSeg = seg([['any', 'Indifférent'], ['normal', 'Normales'], ['somber', 'Sombres']], 'stone', s.stone);
+    var classChips = CLASSES.map(function (c) { var on = s.classes.indexOf(c[0]) >= 0; return { label: c[0], icon: c[1], on: on, pick: function () { var l = self.state.classes.slice(), i = l.indexOf(c[0]); if (i >= 0) l.splice(i, 1); else l.push(c[0]); self.upd({ classes: l }); } }; });
+    var statusChips = [['none', 'Aucun'], ['bleed', 'Saignement'], ['frost', 'Givre'], ['poison', 'Poison'], ['rot', 'Putréfaction'], ['sleep', 'Sommeil'], ['madness', 'Folie']].map(function (o) { return { label: o[1], cls: o[0] === 'none' ? '' : 'st-' + o[0], hasIcon: o[0] !== 'none', icon: '#i-st-' + o[0], on: s.status === o[0], pick: function () { self.upd({ status: o[0] }); } }; });
+    var bossChecks = CHECK_BOSSES.filter(function (id) { return s.content.sote || BOSSES[id].src !== 'sote'; }).map(function (id) { return { label: BOSSES[id].sh, full: BOSSES[id].n, on: !!def[id], toggle: function () { self.toggleBoss(id); } }; });
+    var regionChecks = REGIONS.map(function (r) { var on = s.regions.indexOf(r) >= 0; return { label: r, stage: STAGES[RS[r]].name, on: on, toggle: function () { var l = self.state.regions.slice(), i = l.indexOf(r); if (i >= 0) l.splice(i, 1); else l.push(r); self.upd({ regions: l, prog: 'region' }); } }; });
+    var countFlag = function (f) { return WEAPONS.filter(function (w) { return w.flags.indexOf(f) >= 0; }).length; };
+    var constraints = [['exRem', 'Exclure les échanges de Remembrance', countFlag('rem')], ['exRand', 'Exclure les butins aléatoires à farmer', countFlag('rand')], ['exQuest', 'Exclure les objets de quêtes de PNJ', countFlag('quest')]].map(function (c) { return { label: c[1], count: String(c[2]), on: !!s[c[0]], toggle: function () { var p = {}; p[c[0]] = !self.state[c[0]]; self.upd(p); } }; });
+
+    var myList = s.pinned.map(function (id) { var w = WMAP[id], x = W.filter(function (y) { return y.id === id; })[0], got = s.got.indexOf(id) >= 0; return { name: w.name, got: got, nameCls: got ? 'p-got' : '', stage: STAGES[x.st].name, where: whereTxt(w, originEff), toggle: function () { var g = self.state.got.slice(), i = g.indexOf(id); if (i >= 0) g.splice(i, 1); else g.push(id); self.setState({ got: g }); } }; });
+    var gotN = s.pinned.filter(function (id) { return s.got.indexOf(id) >= 0; }).length;
+
+    var navItems = [['Armes', '#i-c-greatsword', '487', 'Catalogue.dc.html'], ['Cendres de guerre', '#i-skill', '116', '#'], ['Armures', '#i-shield', '704', '#'], ['Talismans', '#i-rune', '154', '#'], ['Sorts', '#i-d-magic', '213', '#'], ['Esprits', '#i-d-holy', '84', '#'], ['Objets', '#i-key', '833', '#'], ['Boss', '#i-boss', '133', 'FicheBoss.dc.html'], ['Lieux', '#i-map', '315', '#'], ['PNJ', '#i-npc', '114', '#'], ['Origines', '#i-origin', '12', '#']].map(function (n) { return { label: n[0], icon: n[1], count: n[2], href: n[3] }; });
+    var navTools = [['Comparateur', '#i-compare', s.compare.length ? String(s.compare.length) : ''], ['Mécaniques', '#i-book', '88'], ['Ma liste', '#i-list', String(s.pinned.length)], ['Profil', '#i-user', '']].map(function (n) { return { label: n[0], icon: n[1], count: n[2], href: '#' }; });
+
+    var addItems = CATALOG.map(function (c) { var on = s.order.indexOf(c.id) >= 0; return { t: c.t, d: c.d, on: on, btn: on ? 'Affiché' : 'Ajouter', add: function () { self.addW(c.id); } }; });
+    var phs = CATALOG.filter(function (c) { return c.span && s.order.indexOf(c.id) >= 0; }).map(function (c) { return { t: c.t, d: c.d, span: c.span, order: s.order.indexOf(c.id), remove: function () { self.removeW(c.id); } }; });
+    var tst = s.toast;
+
+    return {
+      theme: theme, rootCls: showMock ? '' : 'cx-hide-mq', showMock: showMock,
+      pDark: theme === 'sombre', pLight: theme === 'parchemin', pReady: s.dataState === 'ready', pLoading: loading, pError: errored,
+      setDark: function () { self.setState({ theme: 'sombre' }); }, setLight: function () { self.setState({ theme: 'parchemin' }); },
+      setReady: function () { self.setState({ dataState: 'ready' }); }, setLoading: function () { self.setState({ dataState: 'loading' }); }, setError: function () { self.setState({ dataState: 'error' }); },
+      toggleMock: function () { self.setState({ showMock: !showMock }); },
+      toggleTheme: function () { self.setState({ theme: theme === 'sombre' ? 'parchemin' : 'sombre' }); },
+      themeLabel: theme === 'sombre' ? 'Passer au thème parchemin' : 'Passer au thème sombre', themeIcon: theme === 'sombre' ? '#i-sun' : '#i-moon',
+      navCls: s.navRail ? 'is-rail' : '', navExpanded: !s.navRail, navToggleLabel: s.navRail ? 'Déplier le menu' : 'Replier le menu', navToggleIcon: s.navRail ? '#i-chev-r' : '#i-chev-l',
+      toggleNav: function () { self.setState({ navRail: !self.state.navRail }); }, navItems: navItems, navTools: navTools,
+      listOpen: s.listOpen, toggleList: function () { self.setState({ listOpen: !self.state.listOpen }); }, pinCount: s.pinned.length, myList: myList, listEmpty: myList.length === 0, gotTxt: gotN + ' récupérée' + (gotN > 1 ? 's' : '') + ' sur ' + s.pinned.length,
+      profileName: PROFILES[s.profileId].name, profileId: s.profileId, onProfile: function (e) { self.loadProfile(e.target.value); },
+      saveProfile: function () { self.setState({ dirty: false }); self.notify('Profil « ' + PROFILES[self.state.profileId].name + ' » enregistré', '#i-save'); },
+      resetAll: function () { var prev = Object.assign({}, self.state); self.setState(Object.assign(self.prof(self.state.profileId), { dirty: false })); self.notify('Critères réinitialisés', '#i-refresh', function () { self.setState(Object.assign(prev, { toast: null })); }); },
+      dirty: s.dirty, critOpen: s.critOpen, critClosed: !s.critOpen, critCls: s.critOpen ? '' : 'is-collapsed',
+      toggleCrit: function () { self.setState({ critOpen: !self.state.critOpen }); }, openCrit: function () { self.setState({ critOpen: true }); },
+      contentRows: contentRows, level: level, originVal: s.origin, onOrigin: function (e) { self.setOrigin(e.target.value); }, originAuto: s.origin === 'auto', originEffName: originEff ? OMAP[originEff].name : '',
+      steppers: steppers, archVal: s.arch || '', onArch: function (e) { self.upd({ arch: e.target.value }); }, hasTarget: !!tgt, tlv: s.tl,
+      tlDec: function () { self.upd({ tl: Math.max(20, self.state.tl - 5) }); }, tlInc: function () { self.upd({ tl: Math.min(250, self.state.tl + 5) }); }, tgtGrid: tgtGrid,
+      styleSeg: styleSeg, classChips: classChips, handsSeg: handsSeg, statusChips: statusChips, loadSeg: loadSeg, eqLoadTxt: fD(eqLoad), budgetTxt: fD(budget), loadPct: Math.round(ratio * 100) + ' %',
+      progSeg: progSeg, progStage: s.prog === 'stage', progBoss: s.prog === 'boss', progRegion: s.prog === 'region', stageSeg: stageSeg, bossChecks: bossChecks, regionChecks: regionChecks,
+      stageName: STAGES[stageIdx].name, stageWhy: stageWhy, constraints: constraints, stoneSeg: stoneSeg, inclEst: s.est, toggleEst: function () { self.upd({ est: !self.state.est }); },
+      estCount: WEAPONS.filter(function (w) { return w.rel === 'est'; }).length,
+      headSub: 'Profil « ' + PROFILES[s.profileId].name + ' » : ' + (originEff ? OMAP[originEff].name : 'origine automatique') + ', niveau ' + level + ', étape ' + STAGES[stageIdx].name + '. Données du wiki au 31/10/2026.',
+      addOpen: s.addOpen, toggleAdd: function () { self.setState({ addOpen: !self.state.addOpen }); }, addItems: addItems,
+      resetLayout: function () { self.setState({ order: DEFAULT_ORDER.slice(), collapsed: {}, maxed: null, menuFor: null }); self.notify('Disposition réinitialisée', '#i-refresh'); },
+      chips: chips, loading: loading, notLoading: !loading, errored: errored, bossOk: bossOk,
+      wA: this.wv('A'), wB: this.wv('B'), wC: this.wv('C'), wD1: this.wv('D1'), wD2: this.wv('D2'), wD5: this.wv('D5'), wD8: this.wv('D8'), phs: phs,
+      anyMax: !!s.maxed && s.order.indexOf(s.maxed) >= 0,
+      thread: thread, cols: cols, why: why, closeWhy: function () { self.setState({ why: null }); }, cmp: cmp, aFoot: aFoot,
+      bHowTarget: tgt ? 'Cible : ' + ARCH[s.arch].name + ', niveau ' + s.tl + '.' : '', bNoTarget: !tgt && !loading, bShow: bShow, bRows: bRows, bSel: bSel, bEarly: bEarly,
+      bTpHidden: !s.content.tp, archName: s.arch ? ARCH[s.arch].name : '', prio: prio, prioSum: prioSum,
+      setDefaultArch: function () { self.upd({ arch: 'dexarc', tl: 125 }); },
+      hasNext: !!nb, next: next, tl: tl, laneOn: !!s.content.sote, laneOff: !s.content.sote, gate: gate, lane: lane, cFoot: cFoot,
+      enableSote: function () { var ct = Object.assign({}, self.state.content); ct.sote = true; self.upd({ content: ct }); },
+      hHead: hHead, hRows: hRows, heatPartial: heatPartial,
+      upW: s.upW, onUpW: function (e) { var w = WMAP[e.target.value]; self.setState({ upW: e.target.value, upFrom: 0, upTo: w.up === 'somber' ? 10 : 25 }); }, up: up,
+      rSeg: rSeg, rCustom: s.runeMode === 'custom', rTarget: rTarget, rTotal: fN(rTot), rCount: String(costs.length), rNext: costs.length ? fN(costs[0]) : '—', rLast: costs.length ? fN(costs[costs.length - 1]) : '—', rLastLv: rTarget - 1, rBars: rBars,
+      rAria: 'Coût en runes de chaque niveau, de ' + level + ' à ' + (rTarget - 1) + ' : de ' + (costs.length ? fN(costs[0]) : '0') + ' à ' + (costs.length ? fN(costs[costs.length - 1]) : '0') + ' runes',
+      rDec: function () { self.setState({ runeCustom: Math.max(level + 1, rTarget - 5) }); }, rInc: function () { self.setState({ runeCustom: Math.min(713, rTarget + 5) }); },
+      cov: cov,
+      toastOn: !!tst, toastMsg: tst ? tst.msg : '', toastIcon: tst ? tst.icon : '#i-check', toastUndo: !!(tst && tst.undo), undo: function () { if (self.state.toast && self.state.toast.undo) self.state.toast.undo(); }
+    };
+  }
+}
+</script>
+</body>
+</html>
