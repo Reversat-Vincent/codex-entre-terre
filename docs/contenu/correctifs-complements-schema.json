@@ -1,0 +1,207 @@
+[
+ {
+  "op": "set",
+  "file": "melee_armaments.json",
+  "entry": "Great Épée",
+  "path": "upgrade.tables.Standard",
+  "path_segments": [
+   "upgrade",
+   "tables",
+   "Standard"
+  ],
+  "old": {
+   "+0": {
+    "attack": {
+     "physical": 124,
+     "magic": 0,
+     "fire": 0,
+     "lightning": 0,
+     "holy": 0
+    },
+    "critical": 100,
+    "scaling": {
+     "str": {
+      "grade": "D",
+      "coef": null
+     },
+     "dex": {
+      "grade": "D",
+      "coef": null
+     }
+    },
+    "guard": {
+     "physical": 52.0,
+     "magic": 36.0,
+     "fire": 36.0,
+     "lightning": 36.0,
+     "holy": 36.0,
+     "boost": 31
+    }
+   },
+   "+25": {
+    "attack": {
+     "physical": 303,
+     "magic": 0,
+     "fire": 0,
+     "lightning": 0,
+     "holy": 0
+    },
+    "critical": 100,
+    "scaling": {
+     "str": {
+      "grade": "D",
+      "coef": 0.57
+     },
+     "dex": {
+      "grade": "C",
+      "coef": 0.7
+     }
+    },
+    "guard": {
+     "physical": 52.0,
+     "magic": 36.0,
+     "fire": 36.0,
+     "lightning": 36.0,
+     "holy": 36.0,
+     "boost": 37
+    },
+    "upgrade_cost_runes": 2262
+   }
+  },
+  "new": {
+   "+0": {
+    "attack": {
+     "physical": 124,
+     "magic": 0,
+     "fire": 0,
+     "lightning": 0,
+     "holy": 0
+    },
+    "critical": 100,
+    "scaling": {
+     "str": {
+      "grade": "D",
+      "coef": null
+     },
+     "dex": {
+      "grade": "D",
+      "coef": null
+     }
+    },
+    "guard": {
+     "physical": 52.0,
+     "magic": 36.0,
+     "fire": 36.0,
+     "lightning": 36.0,
+     "holy": 36.0,
+     "boost": 31
+    }
+   },
+   "+1": {
+    "upgrade_cost_runes": 390
+   },
+   "+2": {
+    "upgrade_cost_runes": 468
+   },
+   "+3": {
+    "upgrade_cost_runes": 546
+   },
+   "+4": {
+    "upgrade_cost_runes": 624
+   },
+   "+5": {
+    "upgrade_cost_runes": 702
+   },
+   "+6": {
+    "upgrade_cost_runes": 780
+   },
+   "+7": {
+    "upgrade_cost_runes": 858
+   },
+   "+8": {
+    "upgrade_cost_runes": 936
+   },
+   "+9": {
+    "upgrade_cost_runes": 1013
+   },
+   "+10": {
+    "upgrade_cost_runes": 1092
+   },
+   "+11": {
+    "upgrade_cost_runes": 1170
+   },
+   "+12": {
+    "upgrade_cost_runes": 1248
+   },
+   "+13": {
+    "upgrade_cost_runes": 1326
+   },
+   "+14": {
+    "upgrade_cost_runes": 1404
+   },
+   "+15": {
+    "upgrade_cost_runes": 1482
+   },
+   "+16": {
+    "upgrade_cost_runes": 1560
+   },
+   "+17": {
+    "upgrade_cost_runes": 1637
+   },
+   "+18": {
+    "upgrade_cost_runes": 1716
+   },
+   "+19": {
+    "upgrade_cost_runes": 1794
+   },
+   "+20": {
+    "upgrade_cost_runes": 1872
+   },
+   "+21": {
+    "upgrade_cost_runes": 1950
+   },
+   "+22": {
+    "upgrade_cost_runes": 2027
+   },
+   "+23": {
+    "upgrade_cost_runes": 2106
+   },
+   "+24": {
+    "upgrade_cost_runes": 2184
+   },
+   "+25": {
+    "attack": {
+     "physical": 303,
+     "magic": 0,
+     "fire": 0,
+     "lightning": 0,
+     "holy": 0
+    },
+    "critical": 100,
+    "scaling": {
+     "str": {
+      "grade": "D",
+      "coef": 0.57
+     },
+     "dex": {
+      "grade": "C",
+      "coef": 0.7
+     }
+    },
+    "guard": {
+     "physical": 52.0,
+     "magic": 36.0,
+     "fire": 36.0,
+     "lightning": 36.0,
+     "holy": 36.0,
+     "boost": 37
+    },
+    "upgrade_cost_runes": 2262
+   }
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Great_%C3%89p%C3%A9e%2FUpgrade",
+  "reason": "Sous-page Great Épée/Upgrade (modèle Weapon Upgrade (Affinity), data_source 1.16) : coût en runes de +1 à +24. Tous les autres champs de la sous-page (+0 Standard, +25 des 13 affinités, 32 coefficients) sont déjà dans data/ et identiques.",
+  "decision": "D29",
+  "requires": "Schema change: upgradeLevelSchema.attack (src/data/types/weapon.ts) is required, but the sub-page gives only upgrade_cost_runes for +1 to +24."
+ }
+]
