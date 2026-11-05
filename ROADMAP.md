@@ -86,7 +86,8 @@
   - [ ] 6.1 Ma liste et comparateur — dev-interface (en cours)
   - [x] 6.2a Mécaniques (sommaire, article) et composants `WikiText` et `WikiTable` — dev-interface (lancée tôt, indépendante)
     > Note : 652 tests. Acceptés : colonne `Increments` recopiée retirée à l'affichage ; case absente d'un tableau irrégulier laissée vide (écart de structure, pas un `null`) ; sommaire repliable sur tablette, faute de largeur à côté du rail. Toute vue qui affiche un texte du wiki appelle `ensure(['search-index'])` pour les liens. `.cx-input` est à ajouter au CSS global (`base.css`) lors d'une prochaine tâche d'interface.
-  - [ ] 6.2b Profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface (en cours)
+  - [x] 6.2b Profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface
+    > Note : vérifié dans Chromium : aller-retour export puis import, 4 imports invalides refusés sans modification, import annulé (aussi après rechargement). À reprendre en 4.5 : `resetCatalogs()` du store (ajouté en 2.12) au lieu de la réhydratation, titre d'onglet « Mon profil » (`meta.title`), tests de `profileModel.ts`. Icônes « télécharger » et « corbeille » absentes du sprite : remplacées par des icônes existantes.
 - [ ] 7. Hors ligne et finitions
   - [x] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant) — commit `9f07106`
     > Note : précache de 72 entrées (9,5 Mio) ; 99 tests e2e. Restent : test export/import (`fixme`, page Profil en 6.2) ; message de nouvelle version non testé de bout en bout (deux versions à servir), à voir en vérification ; le nom de la marque se coupe sur deux lignes dans la navigation à 1440 px ; redondances à retirer (`declare const __APP_VERSION__` de `src/stores/app.ts` en 2.8, `tests/vue-shim.d.ts` en 3.2).
