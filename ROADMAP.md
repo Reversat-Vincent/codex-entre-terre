@@ -43,7 +43,8 @@
     > Note : 33 armes récupèrent une région ; une acquisition à plusieurs lieux garde son champ `region` comme groupe à part (hypothèse prudente acceptée).
   - [x] 2.6 Vérification anticipée du socle (données, persistance, moteur) — verif-masse, contenu-jeu → `docs/contenu/verification-socle.md`
     > Note : conformes : runes (713 lignes), statistiques dérivées, deux mains, origines, 21 niveaux recommandés de la frise, puissance d'attaque. 4 constats majeurs et des mineurs, arbitrés en D39 ; corrections en 2.10 et 2.11.
-  - [ ] 2.10 Correctifs de données L1 à L6, L8, L9 (Crumbling Farum Azula, lieux mal extraits, Carian Regal Scepter) — dev-donnees
+  - [x] 2.10 Correctifs de données L1 à L6, L8, L9 (Crumbling Farum Azula, lieux mal extraits, Carian Regal Scepter) — dev-donnees
+    > Note : appliqués et consignés ; fixtures inchangées ; un test du moteur attend l'entrée de `REGION_PARENT` (2.11).
   - [ ] 2.11 Corrections du moteur (S1 à S6 de `verification-socle.md`, lien de Crumbling Farum Azula dans `REGION_PARENT`), textes de `calculs.md` à jour, revue des `?? 0` (dont `score.ts:384` contre D18), commentaires des aides de tests, getter `weaponsAgainst(encounterKey)` du store `analysis` — dev-logique (après 2.10)
     > Note : verif-masse rendu (11 contrôles réussis sur 14) ; retenus, mineurs : commentaires des aides de tests, revue des `?? 0` du moteur (`score.ts:384` à confronter à D18). Écartés : 213 noms non résolus (limite connue, D10), CRLF de la copie de travail (dépôt en LF). Corrections à regrouper avec celles de contenu-jeu, plus le getter `weaponsAgainst(encounterKey)` du store `analysis` pour la fiche boss.
   - [x] 2.7a Composants de données : `CxScalingChips`, `CxRequirementChips`, `CxDamageChip`, `CxCoverageBar`, `CxReadinessGauge`, `CxProgressThread`, `CxAbsorptionHeatmap`, `CxLineChart`, `CxDataTable` et `useVirtualList`, `CxFacetFilters`, `CxCriteriaChips`, adaptateur `Calc<T>` de `CxValue`, alignement des types de `labels.ts` — dev-interface — commit `b1e5e0b`
@@ -58,11 +59,12 @@
   - [x] 3.2 Critères : panneau desktop, tiroir tablette, feuille mobile (« Voir N armes »), puces de critères, profils enregistrés ; liens externes branchés dans `App.vue` ; `.cx-chip` et `.cx-scrim` dédoublonnés ; `tests/vue-shim.d.ts` retiré — dev-interface — commit `36bcf80`
     > Note : arbitrages en D38. « Pourquoi ? » des valeurs calculées du panneau ajouté en 4.1.
 - [ ] 4. Tableau de bord
-  - [ ] 4.1 Grille de widgets (disposition, réordonner, réduire, retirer, ajouter, plein écran) et `DashboardView` ; pause des notifications au survol et au focus dans `CxToastHost` (API du store en 2.8) — dev-interface
+  - [x] 4.1 Grille de widgets (disposition, réordonner, réduire, retirer, ajouter, plein écran) et `DashboardView` ; pause des notifications au survol et au focus dans `CxToastHost` (API du store en 2.8) — dev-interface — commit `d2dbcf1`
+    > Note : contrat d'un corps de widget dans `src/widgets/types.ts`. Arbitrages en D40.
   - [ ] 4.2 Widget A et sa vue plein écran — dev-interface
   - [ ] 4.3 Widget B (origine optimale) et widget C (frise des boss) — dev-interface
   - [ ] 4.4 Matrice des faiblesses, plan d'amélioration, calculateur de runes, couverture des données — dev-interface
-  - [ ] 4.5 Widget « Rendement des attributs » (D23) : courbes PV, FP, endurance et charge par niveau d'attribut, gain du point suivant, paliers de rendement, position du profil — dev-logique (calcul), dev-interface (widget)
+  - [ ] 4.5 Widget « Rendement des attributs » (D23) : courbes PV, FP, endurance et charge par niveau d'attribut, gain du point suivant, paliers publiés (D39), position du profil — dev-interface (calcul fait en 2.5 et 2.11) ; avec les finitions : `CxWidgetShell` (ligne « comment c'est calculé » qui passe sous l'icône, boutons qui écrasent le titre sur mobile), `.cx-input` dans le CSS global, règles `.cx-status` dédoublonnées (`CxReadinessStatus`, `CxReadinessGauge`)
 - [ ] 5. Explorateur
   - [ ] 5.1 Vue générique des 17 catalogues (tableau et grille, facettes, colonnes, état vide), catalogue des armes en référence ; inclut le catalogue des boss (ancienne 5.3b) — dev-interface
   - [ ] 5.2 Fiche arme — dev-interface
@@ -139,5 +141,6 @@
     - S6 : adéquation précoce des origines pondérée par les poids du build.
   - **Écartés** : la contradiction du coût en FP de Gelmir's Fury, propre au wiki. 22 reste la bonne valeur à classer pour « 22 (4) ».
   - par : chef de projet
+- D40 · 2026-11-05 · Arbitrages de la grille du tableau de bord : titre puis puces, comme le design ; le plan d'amélioration n'occupe qu'une rangée (rangées 7 + 5 puis 7 + 5 avec le rendement des attributs) ; poignée de glisser masquée sur mobile (le menu « Déplacer » suffit) ; un widget réduit ne charge aucun fichier ; pas de « Réessayer » dans le bandeau « Données partielles » (recharger la page) — par : chef de projet
 
 ## Vérifications
