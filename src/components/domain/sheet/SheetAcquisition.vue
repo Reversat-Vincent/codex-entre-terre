@@ -6,6 +6,7 @@ import CxIcon from '../../ds/CxIcon.vue'
 import CxValue from '../../ds/CxValue.vue'
 import WikiInline from '../WikiInline.vue'
 import WikiText from '../WikiText.vue'
+import SheetInvaderDrop from './SheetInvaderDrop.vue'
 import SheetSection from './SheetSection.vue'
 import { acquisitionViews } from './sheetModel.ts'
 import type { AcquisitionSource } from './sheetModel.ts'
@@ -14,6 +15,7 @@ import type { AcquisitionSource } from './sheetModel.ts'
  * Obtention d'une entrée. La méthode, le lieu et les détails sont des données du wiki (anglais, tels quels) ; un lieu, un PNJ ou un objet cité devient un
  * lien vers sa fiche seulement si c'est exactement le nom d'une entité (`WikiInline`, `WikiText`). La région du wiki est affichée telle quelle ; à défaut,
  * la région déduite par la préparation des données est signalée comme telle. Une valeur absente s'affiche « Non documenté ».
+ * Si un PNJ envahisseur lâche cet élément (`derived.invaderDrop`), le bloc « Butin d'un PNJ envahisseur » renvoie à la fiche du boss.
  */
 const props = defineProps<{
   entry: AcquisitionSource
@@ -93,6 +95,10 @@ const items = computed(() => acquisitionViews(props.entry))
         </div>
       </li>
     </ul>
+    <SheetInvaderDrop
+      v-if="entry.derived.invaderDrop.length > 0"
+      :drops="entry.derived.invaderDrop"
+    />
   </SheetSection>
 </template>
 

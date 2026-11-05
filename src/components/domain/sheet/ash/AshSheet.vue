@@ -1,4 +1,4 @@
-<!-- Contenu de la fiche d'une cendre de guerre chargée : en-tête, alertes, affinité et coût, effet, compatibilité, obtention, notes et patchs. -->
+<!-- Contenu de la fiche d'une cendre de guerre chargée : en-tête, alertes, affinité et coût, effet, compatibilité, obtention et notes. -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { AshOfWarEntry } from '../../../../data/types/ashesOfWar.ts'
@@ -64,7 +64,7 @@ const facts = computed(() => ashFacts(props.ash))
       />
       <SheetNotes
         :notes="ash.notes"
-        :patches="undefined"
+        :with-patches="false"
         :entity-ref="ref"
         :link-kinds="['ash', 'weapon', 'boss']"
       />

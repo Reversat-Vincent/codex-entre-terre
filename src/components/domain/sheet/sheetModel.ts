@@ -1,6 +1,7 @@
 // Modèle des fiches communes (cendres de guerre, armures, talismans, sorts, esprits) : obtentions, alertes de qualité, paragraphes de description,
 // notation de coût du wiki « X (Y) », noms de vendeurs et sections annexes. Fonctions pures, sans état ni accès aux données chargées.
 
+import type { RouteLocationRaw } from 'vue-router'
 import type { EntityKind } from '../../../data/datasets.ts'
 import type { Acquisition, AcquisitionDerived, WikiSection } from '../../../data/types/common.ts'
 
@@ -23,6 +24,13 @@ export interface SheetFact {
   readonly linkKinds?: readonly EntityKind[]
   /** Le texte est une liste de noms séparés par « / » ou « or » (vendeurs) : chaque nom est relié séparément. */
   readonly nameList?: boolean
+}
+
+/** Maillon du fil d'Ariane entre le catalogue et le nom : libellé, et destination s'il mène quelque part (région parente, type d'objet). */
+export interface SheetCrumb {
+  readonly label: string
+  /** Destination du maillon ; absente : simple texte. */
+  readonly to?: RouteLocationRaw
 }
 
 // ─── Obtention ─────────────────────────────────────────────────────────────────
@@ -198,6 +206,48 @@ export function splitNames(text: string): string[] {
     .split(/\s+\/\s+|\s+or\s+/)
     .map((n) => n.trim())
     .filter((n) => n !== '')
+}
+
+/** Un nom d'objet ou d'équipement cité par le wiki, avec la quantité qui l'accompagne (« Thin Beast Bones x3 »). */
+export interface NameEntry {
+  /** Nom, sans la quantité ni le marqueur de puce. */
+  readonly name: string
+  /** Quantité écrite après le nom (`x3`) ; `null` : aucune. */
+  readonly count: number | null
+}
+
+/**
+ * Lit un nom avec sa quantité.
+ * @param text Une entrée : « Thin Beast Bones x3 », « * Poisonbloom x1 », « Flask of Crimson Tears ».
+ * @returns Le nom nettoyé de son éventuelle puce `*` et la quantité (`x3`) ; seule la quantité est retirée, un `+7` ou un crochet fait partie du nom
+ *   (« Smithing Stone [3] », « Crimson Seed Talisman +1 » sont des noms d'objets).
+ */
+export function parseNameEntry(text: string): NameEntry {
+  const clean = text.trim().replace(/^[*•]\s*/, '')
+  const counted = /^(.*\S)\s+[x×](\d+)$/i.exec(clean)
+  return counted ? { name: counted[1]!.trim(), count: Number(counted[2]) } : { name: clean, count: null }
+}
+
+/**
+ * Découpe une liste de noms écrite sur une cellule : une entrée par ligne ou après un point-virgule (« A x3; B x2 », une puce par ligne).
+ * @param text Texte du wiki (champ d'infobox ou cellule de tableau).
+ * @returns Les entrées non vides, dans l'ordre.
+ */
+export function splitNameEntries(text: string): NameEntry[] {
+  return text
+    .split(/[\n;]+/)
+    .map((part) => part.trim())
+    .filter((part) => part !== '' && part !== '*')
+    .map(parseNameEntry)
+}
+
+/**
+ * Entrées d'une liste de noms déjà séparés (butin, sites de grâce, équipement de départ).
+ * @param names Noms, tels que dans data/.
+ * @returns Une entrée par nom non vide.
+ */
+export function toNameEntries(names: readonly string[]): NameEntry[] {
+  return names.filter((n) => n.trim() !== '').map(parseNameEntry)
 }
 
 /**

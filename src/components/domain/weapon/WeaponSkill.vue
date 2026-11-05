@@ -6,10 +6,11 @@ import type { WeaponEntry } from '../../../data/types/weapon.ts'
 import CxDamageChip from '../../ds/CxDamageChip.vue'
 import CxIcon from '../../ds/CxIcon.vue'
 import CxValue from '../../ds/CxValue.vue'
+import { parseSkillCost } from '../../../ui/skillCost.ts'
+import type { SkillCost } from '../../../ui/skillCost.ts'
 import WikiText from '../WikiText.vue'
 import WeaponSection from './WeaponSection.vue'
-import { parseSkillCost, skillTypeLabel } from './weaponModel.ts'
-import type { SkillCost } from './weaponModel.ts'
+import { skillTypeLabel } from './weaponModel.ts'
 
 /**
  * Compétence de l'arme et effets passifs. Le nom, la description et les effets sont des données du wiki : ils restent en anglais, tels quels.

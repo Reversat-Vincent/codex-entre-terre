@@ -1,17 +1,19 @@
 // Genres de fiche couverts par les composants communs `sheet/` : jeu de données, route du catalogue, libellés et icône de chaque genre.
 // Les libellés sont du texte d'interface (français) ; les noms d'entités restent ceux des données.
 
-import { DATASETS } from '../../../data/datasets.ts'
+import { DATASETS, datasetsOfKind } from '../../../data/datasets.ts'
 import type { DatasetKey, EntityKind } from '../../../data/datasets.ts'
 
-/** Genres qui utilisent les composants de fiche communs (les autres fiches s'y ajouteront : objets, lieux, PNJ, origines). */
-export type SheetKind = Extract<EntityKind, 'ash' | 'armor' | 'talisman' | 'spell' | 'spirit'>
+/** Genres qui utilisent les composants de fiche communs : cendres, armures, talismans, sorts, esprits, objets, lieux, PNJ et origines. */
+export type SheetKind = Extract<EntityKind, 'ash' | 'armor' | 'talisman' | 'spell' | 'spirit' | 'item' | 'location' | 'npc' | 'origin'>
 
 /** Description d'un genre de fiche. */
 export interface SheetKindInfo {
   readonly kind: SheetKind
-  /** Jeu de données qui contient les entrées de ce genre. */
+  /** Jeu de données principal du genre (le premier du registre ; les objets en ont cinq, voir `datasets`). */
   readonly dataset: DatasetKey
+  /** Tous les jeux de données qui contiennent des entrées de ce genre : l'identifiant d'une fiche ne dit pas dans lequel se trouve l'entrée. */
+  readonly datasets: readonly DatasetKey[]
   /** Nom de la route du catalogue (`DATASETS[dataset].routes.list`). */
   readonly listRoute: string
   /** Libellé du catalogue (fil d'Ariane). */
@@ -37,6 +39,7 @@ export interface SheetKindInfo {
  * @param missingTitle Titre de l'état « introuvable ».
  * @param backLabel Libellé du lien de retour.
  * @param errorTitle Titre de l'état d'erreur.
+ * @param listLabel Libellé du catalogue quand il diffère de celui du jeu de données principal (les objets : « Objets », et non « Outils »).
  * @returns La description du genre.
  */
 function info(
@@ -47,12 +50,14 @@ function info(
   missingTitle: string,
   backLabel: string,
   errorTitle: string,
+  listLabel: string = DATASETS[dataset].label,
 ): SheetKindInfo {
   return {
     kind,
     dataset,
+    datasets: datasetsOfKind(kind),
     listRoute: DATASETS[dataset].routes.list,
-    listLabel: DATASETS[dataset].label,
+    listLabel,
     singular,
     icon,
     missingTitle,
@@ -68,4 +73,8 @@ export const SHEET_KINDS: Readonly<Record<SheetKind, SheetKindInfo>> = {
   talisman: info('talisman', 'talismans', 'Talisman', 'heart', 'Ce talisman n’existe pas dans les données.', 'Voir tous les talismans', 'Impossible de lire les talismans.'),
   spell: info('spell', 'spells', 'Sort', 'book', 'Ce sort n’existe pas dans les données.', 'Voir tous les sorts', 'Impossible de lire les sorts.'),
   spirit: info('spirit', 'spirit_ashes', 'Cendre d’esprit', 'npc', 'Cette cendre d’esprit n’existe pas dans les données.', 'Voir toutes les cendres d’esprit', 'Impossible de lire les cendres d’esprit.'),
+  item: info('item', 'tools', 'Objet', 'key', 'Cet objet n’existe pas dans les données.', 'Voir tous les objets', 'Impossible de lire les objets.', 'Objets'),
+  location: info('location', 'locations', 'Lieu', 'map', 'Ce lieu n’existe pas dans les données.', 'Voir tous les lieux', 'Impossible de lire les lieux.'),
+  npc: info('npc', 'npcs', 'PNJ', 'npc', 'Ce PNJ n’existe pas dans les données.', 'Voir tous les PNJ', 'Impossible de lire les PNJ.'),
+  origin: info('origin', 'origins', 'Origine', 'origin', 'Cette origine n’existe pas dans les données.', 'Voir toutes les origines', 'Impossible de lire les origines.'),
 }

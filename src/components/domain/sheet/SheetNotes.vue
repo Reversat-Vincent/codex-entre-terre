@@ -11,16 +11,20 @@ import SheetSection from './SheetSection.vue'
  * Notes de la page du wiki (puces, `→` pour les niveaux imbriqués) et historique des patchs (version, note officielle, explication de la communauté).
  * Textes en anglais, tels que dans `data/` ; aucune interprétation. Sans note ou sans patch, la section dit « Non documenté » plutôt que de disparaître.
  * Un patch dont la forme n'est pas celle du schéma (clé de texte au lieu de `version`, cas d'une cendre d'esprit) est lu avec ses champs à plat.
+ * Un genre dont le schéma ne prévoit pas `patch_notes` (cendres de guerre, outils, munitions…) passe `withPatches` à faux : la section est alors masquée,
+ * au lieu d'annoncer « Non documenté » pour un champ qui n'existe pas dans ce genre.
  */
-defineProps<{
+withDefaults(defineProps<{
   notes: readonly string[] | undefined
   /** `patch_notes` de l'entrée ; les valeurs inattendues sont affichées sans la version. */
-  patches: readonly (PatchNote | Readonly<Record<string, string>>)[] | undefined
+  patches?: readonly (PatchNote | Readonly<Record<string, string>>)[] | undefined
+  /** Le schéma du genre prévoit un historique de patchs ; faux : la section « Historique des patchs » est masquée. */
+  withPatches?: boolean
   /** Référence de l'entité décrite : jamais liée à elle-même. */
   entityRef: EntityRef
   /** Genres préférés pour relier les noms cités. */
   linkKinds?: readonly EntityKind[]
-}>()
+}>(), { patches: undefined, withPatches: true, linkKinds: () => [] })
 
 /**
  * Lit un patch quelle que soit sa forme.
@@ -51,7 +55,10 @@ function readPatch(p: PatchNote | Readonly<Record<string, string>>): { version: 
       </p>
     </SheetSection>
 
-    <SheetSection title="Historique des patchs">
+    <SheetSection
+      v-if="withPatches"
+      title="Historique des patchs"
+    >
       <dl
         v-if="patches && patches.length > 0"
         class="sh-patch"

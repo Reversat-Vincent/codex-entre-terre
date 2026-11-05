@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import type { WeaponEntry } from '../../../data/types/weapon.ts'
 import CxIcon from '../../ds/CxIcon.vue'
 import CxValue from '../../ds/CxValue.vue'
+import SheetInvaderDrop from '../sheet/SheetInvaderDrop.vue'
 import WikiInline from '../WikiInline.vue'
 import WikiText from '../WikiText.vue'
 import WeaponSection from './WeaponSection.vue'
@@ -13,6 +14,7 @@ import { acquisitionViews } from './weaponModel.ts'
  * Obtention de l'arme. La méthode, le lieu et les détails sont des données du wiki (anglais, tels quels) ; un lieu ou un nom cité devient un lien vers sa
  * fiche seulement si c'est exactement le nom d'une entité (`WikiInline`, `WikiText`). La région du wiki est affichée telle quelle ; à défaut, la région déduite
  * par la préparation des données est signalée comme telle. Une valeur absente s'affiche « Non documenté ».
+ * Si un PNJ envahisseur lâche l'arme (`derived.invaderDrop`), un bloc renvoie à la fiche du boss.
  */
 const props = defineProps<{
   weapon: WeaponEntry
@@ -88,6 +90,10 @@ const skip = computed(() => `weapon:${props.weapon.id}` as const)
         </div>
       </li>
     </ul>
+    <SheetInvaderDrop
+      v-if="weapon.derived.invaderDrop.length > 0"
+      :drops="weapon.derived.invaderDrop"
+    />
   </WeaponSection>
 </template>
 

@@ -9,6 +9,7 @@ import CxNote from '../../ds/CxNote.vue'
 import CxSkeleton from '../../ds/CxSkeleton.vue'
 import { SHEET_KINDS } from './sheetKinds.ts'
 import type { SheetKind } from './sheetKinds.ts'
+import type { SheetCrumb } from './sheetModel.ts'
 import type { SheetView } from './useSheetEntry.ts'
 
 /**
@@ -21,8 +22,10 @@ const props = defineProps<{
   view: SheetView
   /** Nom de l'entité, une fois connue (dernier maillon du fil d'Ariane). */
   name?: string | null
-  /** Catégorie de l'entité (donnée du wiki, affichée telle quelle) ; absente : pas de maillon. */
+  /** Catégorie de l'entité (donnée du wiki, affichée telle quelle) ; absente : pas de maillon. Ignorée si `trail` est donné. */
   category?: string | null
+  /** Maillons entre le catalogue et le nom (hiérarchie de régions d'un lieu, type et catégorie d'un objet) ; remplace la catégorie. */
+  trail?: readonly SheetCrumb[]
   /** Fichiers en échec, nommés dans le message d'erreur. */
   failed?: readonly FailedFile[]
 }>()
@@ -59,7 +62,25 @@ const info = computed(() => SHEET_KINDS[props.kind])
       <RouterLink :to="{ name: info.listRoute }">
         {{ info.listLabel }}
       </RouterLink>
-      <template v-if="view === 'ready' && category && category !== info.listLabel">
+      <template v-if="view === 'ready' && trail">
+        <template
+          v-for="(crumb, i) in trail"
+          :key="i"
+        >
+          <CxIcon
+            name="chev-r"
+            size="xs"
+          />
+          <RouterLink
+            v-if="crumb.to"
+            :to="crumb.to"
+          >
+            {{ crumb.label }}
+          </RouterLink>
+          <span v-else>{{ crumb.label }}</span>
+        </template>
+      </template>
+      <template v-else-if="view === 'ready' && category && category !== info.listLabel">
         <CxIcon
           name="chev-r"
           size="xs"

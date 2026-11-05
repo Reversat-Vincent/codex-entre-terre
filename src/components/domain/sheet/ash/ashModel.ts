@@ -2,7 +2,7 @@
 
 import type { AshOfWarEntry } from '../../../../data/types/ashesOfWar.ts'
 import { WEAPON_CLASS_ICONS } from '../../../../ui/labels.ts'
-import { parseSkillCost } from '../../weapon/weaponModel.ts'
+import { parseSkillCost } from '../../../../ui/skillCost.ts'
 import { acquisitionAlert, acquisitionViews, missingFieldsAlert, presentAlerts } from '../sheetModel.ts'
 import type { SheetAlert, SheetFact } from '../sheetModel.ts'
 
