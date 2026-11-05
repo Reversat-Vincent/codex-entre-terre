@@ -68,7 +68,8 @@
 - [ ] 5. Explorateur
   - [ ] 5.1 Vue générique des 17 catalogues (tableau et grille, facettes, colonnes, état vide), catalogue des armes en référence ; inclut le catalogue des boss (ancienne 5.3b) — dev-interface
   - [ ] 5.2 Fiche arme — dev-interface
-  - [ ] 5.3a Fiche boss (onglets de rencontre, tuiles, absorption, statuts, butin, « Pour votre profil ») — dev-interface (lancée tôt, indépendante des catalogues ; attend le getter `weaponsAgainst(encounterKey)` du store `analysis`)
+  - [x] 5.3a Fiche boss (onglets de rencontre, tuiles, absorption, statuts, butin, « Pour votre profil ») — dev-interface — commit `ee957d0`
+    > Note : le bloc « armes efficaces » attend le getter `weaponsAgainst(encounterKey)` (2.11) ; lecture provisoire par `as unknown` dans `bossSheetModel.ts`, à typer ensuite. Arbitrages en D41.
   - [x] 5.3b Catalogue des boss — fusionné dans 5.1
   - [ ] 5.4 Autres catalogues et fiches : cendres, armures, talismans, sorts, esprits, objets, lieux, PNJ, origines — dev-interface
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
@@ -142,5 +143,6 @@
   - **Écartés** : la contradiction du coût en FP de Gelmir's Fury, propre au wiki. 22 reste la bonne valeur à classer pour « 22 (4) ».
   - par : chef de projet
 - D40 · 2026-11-05 · Arbitrages de la grille du tableau de bord : titre puis puces, comme le design ; le plan d'amélioration n'occupe qu'une rangée (rangées 7 + 5 puis 7 + 5 avec le rendement des attributs) ; poignée de glisser masquée sur mobile (le menu « Déplacer » suffit) ; un widget réduit ne charge aucun fichier ; pas de « Réessayer » dans le bandeau « Données partielles » (recharger la page) — par : chef de projet
+- D41 · 2026-11-05 · Arbitrages de la fiche boss : Margit a une seule rencontre dans les données (deux valeurs de PV et de runes séparées par « / ») au lieu des deux onglets du design, on suit les données ; « Faiblesse » marque une absorption strictement négative (dégâts amplifiés), tandis que les suggestions d'armes suivent les types les moins absorbés (`bestDamageTypes`) ; ajouts « Non estimé » avec « Pourquoi ? », « Autres données du wiki », « Dans l'histoire » ; pas de bloc « Qualité des données » (badges déjà posés sur chaque valeur) ; `?rencontre=` porte l'identifiant de rencontre. Des commandes d'un sous-agent ont été arrêtées faute de mémoire : pas plus de six sous-agents à la fois tant que plusieurs lancent Chromium et des serveurs de prévisualisation — par : chef de projet
 
 ## Vérifications
