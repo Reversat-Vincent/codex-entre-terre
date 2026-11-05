@@ -25,7 +25,8 @@
     > Note : 1 585 opérations vérifiées ; arbitrages en D34.
   - [x] 1.6b Application des correctifs 1.6a, `data/CHANGELOG.md`, `data/README.md`, nouvelle préparation ; `normalizeText` décompose les ligatures (`œ` → `oe`, `æ` → `ae`) sans changer d'identifiant — dev-donnees
     > Note : type d'amélioration de 487 armes : 429 wiki, 51 déduit, 4 estimation, 2 `null`, 1 non améliorable ; 138 pages de boss, 314 combats. Fixtures non régénérées (le moteur s'en sert) : tâche 2.8.
-  - [ ] 2.8 Régénération des fixtures (`node scripts/data/fixtures.ts`) et adaptation des tests qui en dépendent (`upgradePlan` 3, `facets` 11, `attackPower` à revoir) ; table de bénédiction lue dans `tables` (sans `mechanics` pour la frise) ; pause des notifications au survol et au focus dans le store `toasts` ; commentaire de `ActionEffect` (`usePreferencesStore`) ; retrait de `declare const __APP_VERSION__` dans `src/stores/app.ts` — dev-logique (après 2.5b)
+  - [x] 2.8 Régénération des fixtures (`node scripts/data/fixtures.ts`) et adaptation des tests qui en dépendent (`upgradePlan` 3, `facets` 11, `attackPower` à revoir) ; table de bénédiction lue dans `tables` (sans `mechanics` pour la frise) ; pause des notifications au survol et au focus dans le store `toasts` ; commentaire de `ActionEffect` (`usePreferencesStore`) ; retrait de `declare const __APP_VERSION__` dans `src/stores/app.ts` — dev-logique (après 2.5b) — commit `c8ef158`
+    > Note : 582 tests ; cas d'estimation conservés sur des armes du Tarnished Pack. À corriger avec les suites de 2.6 : `calculs.md` (ligne 148 environ) dit encore que la bénédiction est lue dans `mechanics.json`. L'interface appellera `resume` seulement quand survol et focus sont tous deux terminés.
 - [ ] 2. Socle logique et composants de base
   - [x] 2.1 Styles et composants de base : `tokens.css` sans maquette, polices, `base.css`, sprite, `CxIcon`, `CxButton`, badges, `CxValue`, `CxEntityName`, `CxWikiLink`, `CxTooltip`, contrôles de formulaire, états, `CxWidgetShell`, `CxTabs`, `CxDialog`, `CxSheet`, `CxMenu`, `format.ts`, `labels.ts`, `breakpoints.ts`, composables d'interface — dev-interface — commit `c8988eb`
     > Note : à brancher par la coquille (3.1) : styles `tokens.css`, `fonts.css`, `base.css` dans `main.ts`, `<IconSprite />` dans `App.vue`, `data-theme` avant le montage. Les unions de `labels.ts` (`AttributeKey`…) sont à aligner sur `src/data/keys.ts` en 2.7. Interactions non testées au clavier ni au clic : à voir en vérification.
@@ -62,7 +63,8 @@
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [ ] 6.1 Ma liste et comparateur — dev-interface
-  - [ ] 6.2 Mécaniques (sommaire, article) et profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface
+  - [ ] 6.2a Mécaniques (sommaire, article) et composants `WikiText` et `WikiTable` — dev-interface (lancée tôt, indépendante)
+  - [ ] 6.2b Profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface
 - [ ] 7. Hors ligne et finitions
   - [x] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant) — commit `9f07106`
     > Note : précache de 72 entrées (9,5 Mio) ; 99 tests e2e. Restent : test export/import (`fixme`, page Profil en 6.2) ; message de nouvelle version non testé de bout en bout (deux versions à servir), à voir en vérification ; le nom de la marque se coupe sur deux lignes dans la navigation à 1440 px ; redondances à retirer (`declare const __APP_VERSION__` de `src/stores/app.ts` en 2.8, `tests/vue-shim.d.ts` en 3.2).
