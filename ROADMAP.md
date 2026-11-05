@@ -61,7 +61,8 @@
   - [ ] 6.1 Ma liste et comparateur — dev-interface
   - [ ] 6.2 Mécaniques (sommaire, article) et profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface
 - [ ] 7. Hors ligne et finitions
-  - [ ] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant)
+  - [x] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant) — commit `9f07106`
+    > Note : précache de 72 entrées (9,5 Mio) ; 99 tests e2e. Restent : test export/import (`fixme`, page Profil en 6.2) ; message de nouvelle version non testé de bout en bout (deux versions à servir), à voir en vérification ; le nom de la marque se coupe sur deux lignes dans la navigation à 1440 px ; redondances à retirer (`declare const __APP_VERSION__` de `src/stores/app.ts` en 2.8, `tests/vue-shim.d.ts` en 3.2).
   - [ ] 7.2 Mises en page tablette et passe responsive — dev-interface
   - [ ] 7.3 README à jour (présentation, publication) — chef de projet
 - [ ] 8. Boucle de vérification
