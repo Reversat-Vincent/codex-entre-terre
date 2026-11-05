@@ -9,6 +9,7 @@
   },
   "scripts": {
     "data": "node scripts/prepare-data.ts",
+    "icons": "node scripts/icons.ts",
     "dev": "npm run data && vite",
     "build": "npm run data && vite build",
     "preview": "vite preview",
@@ -16,6 +17,7 @@
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.tests.json",
     "e2e": "playwright test",
+    "e2e:screens": "playwright test screens.spec.ts",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build && npm run e2e"
   },
   "dependencies": {

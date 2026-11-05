@@ -5,6 +5,8 @@ const PORT = 4173
 
 export default defineConfig({
   testDir: 'tests/e2e',
+  // Vérifie que dist/ est compilé avant de lancer les tests.
+  globalSetup: './tests/e2e/global-setup.ts',
   outputDir: '.cache/playwright/results',
   reporter: [['list'], ['html', { outputFolder: '.cache/playwright/report', open: 'never' }]],
   use: {
