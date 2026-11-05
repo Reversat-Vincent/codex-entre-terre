@@ -41,7 +41,10 @@
     > Note : 567 tests. Arbitrages en D37. Codes ajoutés, à écrire dans `explainText.ts` (2.7b), y compris `LABEL_CODES`.
   - [x] 2.5b Régions déduites lieu par lieu (le retrait des régions parentes ne s'applique pas entre deux lieux distincts d'une même acquisition) ; table de bénédiction ajoutée à `tables` — dev-donnees — commit `0ec7161`
     > Note : 33 armes récupèrent une région ; une acquisition à plusieurs lieux garde son champ `region` comme groupe à part (hypothèse prudente acceptée).
-  - [ ] 2.6 Vérification anticipée du socle (données, persistance, moteur) — verif-masse, contenu-jeu
+  - [x] 2.6 Vérification anticipée du socle (données, persistance, moteur) — verif-masse, contenu-jeu → `docs/contenu/verification-socle.md`
+    > Note : conformes : runes (713 lignes), statistiques dérivées, deux mains, origines, 21 niveaux recommandés de la frise, puissance d'attaque. 4 constats majeurs et des mineurs, arbitrés en D39 ; corrections en 2.10 et 2.11.
+  - [ ] 2.10 Correctifs de données L1 à L6, L8, L9 (Crumbling Farum Azula, lieux mal extraits, Carian Regal Scepter) — dev-donnees
+  - [ ] 2.11 Corrections du moteur (S1 à S6 de `verification-socle.md`, lien de Crumbling Farum Azula dans `REGION_PARENT`), textes de `calculs.md` à jour, revue des `?? 0` (dont `score.ts:384` contre D18), commentaires des aides de tests, getter `weaponsAgainst(encounterKey)` du store `analysis` — dev-logique (après 2.10)
     > Note : verif-masse rendu (11 contrôles réussis sur 14) ; retenus, mineurs : commentaires des aides de tests, revue des `?? 0` du moteur (`score.ts:384` à confronter à D18). Écartés : 213 noms non résolus (limite connue, D10), CRLF de la copie de travail (dépôt en LF). Corrections à regrouper avec celles de contenu-jeu, plus le getter `weaponsAgainst(encounterKey)` du store `analysis` pour la fiche boss.
   - [x] 2.7a Composants de données : `CxScalingChips`, `CxRequirementChips`, `CxDamageChip`, `CxCoverageBar`, `CxReadinessGauge`, `CxProgressThread`, `CxAbsorptionHeatmap`, `CxLineChart`, `CxDataTable` et `useVirtualList`, `CxFacetFilters`, `CxCriteriaChips`, adaptateur `Calc<T>` de `CxValue`, alignement des types de `labels.ts` — dev-interface — commit `b1e5e0b`
     > Note : arbitrages en D35. Composants jamais rendus dans un navigateur : à voir aux captures.
@@ -69,7 +72,8 @@
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [ ] 6.1 Ma liste et comparateur — dev-interface
-  - [ ] 6.2a Mécaniques (sommaire, article) et composants `WikiText` et `WikiTable` — dev-interface (lancée tôt, indépendante)
+  - [x] 6.2a Mécaniques (sommaire, article) et composants `WikiText` et `WikiTable` — dev-interface (lancée tôt, indépendante)
+    > Note : 652 tests. Acceptés : colonne `Increments` recopiée retirée à l'affichage ; case absente d'un tableau irrégulier laissée vide (écart de structure, pas un `null`) ; sommaire repliable sur tablette, faute de largeur à côté du rail. Toute vue qui affiche un texte du wiki appelle `ensure(['search-index'])` pour les liens. `.cx-input` est à ajouter au CSS global (`base.css`) lors d'une prochaine tâche d'interface.
   - [ ] 6.2b Profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface
 - [ ] 7. Hors ligne et finitions
   - [x] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant) — commit `9f07106`
@@ -125,5 +129,15 @@
 - D36 · 2026-11-05 · Arbitrages de la coquille : champ de recherche de la barre supérieure en bouton qui ouvre la palette ; thème en bouton-icône ; pied de page « Données extraites du wiki le JJ/MM/AAAA », sans les compteurs du prototype ; 8 résultats par groupe quand un filtre de type est actif dans la palette ; import lancé depuis la page Profil, qui porte la confirmation. Les notifications avec action se mettront en pause au survol et au focus (store en 2.8, hôte en 3.2), pour l'accessibilité. Les règles `.cx-chip` et `.cx-scrim`, définies deux fois, sont à dédoublonner en 3.2 — par : chef de projet
 - D37 · 2026-11-05 · Arbitrages du moteur complet : le retrait des régions parentes se fait lieu par lieu, jamais entre deux lieux distincts d'une même acquisition (Great Omenkiller Cleaver : Perfumer's Grotto garde l'Altus Plateau, donc Milieu, comme le prévoit `decisions-progression.md` § 1.5) ; table de bénédiction ajoutée à `tables` (« 12 (Softcap) » lu 12) pour que la frise ne charge pas `mechanics` ; build cible badgé Calculé (gabarit de conception, pas estimation) ; score badgé Estimation quand le type d'amélioration est estimé ; exclusions selon l'indicateur de l'arme ; armes qui départagent les origines = colonnes du widget A ; adresses Fextralife (`Interactive_Map`, `Game_Progress_Route`, `Walkthrough`) non vérifiables par Claude, à cliquer par le développeur à la vérification — par : chef de projet
 - D38 · 2026-11-05 · Arbitrages du panneau de critères : « Voir N armes » compte les armes recommandées affichées par le widget A (au plus 5 par étape) ; régions atteintes tirées des entrées de type « Region » de `locations` ; liste des boss vaincus = nœuds de la frise ; niveau cible par pas de 5 ; compteur par contrainte du prototype omis. Un sous-agent ayant manipulé l'index git (sans dommage), la règle commune des quatre sous-agents de développement nomme désormais `add`, `rm`, `mv` et `restore` parmi les opérations interdites — par : chef de projet
+- D39 · 2026-11-05 · Suites de la vérification anticipée du socle (`verification-socle.md`), toutes retenues :
+  - **Données** : L1 (région de Crumbling Farum Azula, qui était une formule de l'infobox : Maliketh, Godskin Duo et leurs armes reviennent en Fin de jeu) ; L2 à L6 et L8 (lieux mal extraits) ; L9 (Carian Regal Scepter obtenu par échange, pas achetable).
+  - **Moteur** :
+    - S1 et S2 : surcharges d'étape pour des conditions de quête documentées (Clinging Bone en Milieu, Spiraltree Seal en DLC, sous-zone Enir-Ilim).
+    - S3 : candidats « magie » selon les poids du build (Staves pour l'Intelligence, Sacred Seals pour la Foi, les deux pour un build hybride ou sans poids), ce qui précise D7.
+    - S4 : courbe de scaling choisie selon l'affinité de l'arme (non physique pour Fire, Flame Art, Lightning, Sacred, Magic, Cold, Blood et Poison, dégâts physiques compris).
+    - S5 : paliers de rendement publiés par le wiki (PV 40 et 60 ; FP 50 et 60 ; endurance 15, 30 et 50 ; charge 25 et 60) au lieu des paliers déduits.
+    - S6 : adéquation précoce des origines pondérée par les poids du build.
+  - **Écartés** : la contradiction du coût en FP de Gelmir's Fury, propre au wiki. 22 reste la bonne valeur à classer pour « 22 (4) ».
+  - par : chef de projet
 
 ## Vérifications
