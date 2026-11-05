@@ -19,6 +19,10 @@ describe('slug', () => {
   it('renvoie une chaîne vide sans lettre ni chiffre', () => {
     expect(slug("'—'")).toBe('')
   })
+
+  it('ne décompose pas les ligatures : les identifiants stockés ne changent pas (aucun titre de data/ n’en contient)', () => {
+    expect(slug('Cœur')).toBe('c-ur')
+  })
 })
 
 describe('normalizeText', () => {
@@ -26,5 +30,12 @@ describe('normalizeText', () => {
     expect(normalizeText('Jolán, Swordhand')).toBe('jolan swordhand')
     expect(normalizeText("Miquella's Haligtree")).toBe('miquellas haligtree')
     expect(normalizeText('Ash of War: Black Flame Tornado')).toBe('ash of war black flame tornado')
+  })
+
+  it('décompose les ligatures œ, æ et ß', () => {
+    expect(normalizeText('Cœur')).toBe('coeur')
+    expect(normalizeText('ŒUVRE')).toBe('oeuvre')
+    expect(normalizeText('Ærial')).toBe('aerial')
+    expect(normalizeText('Straße')).toBe('strasse')
   })
 })

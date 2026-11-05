@@ -12696,7 +12696,7 @@
       "summary_tables": [
         [
           {
-            "All Whetblades": "ER Icon Key Item Whetstone Knife.png|Whetstone; Knife\nER Icon Key Item Whetblade Iron.png|Iron; Whetblade\nER Icon Key Item Whetblade Glintstone.png|Glintstone; Whetblade\nER Icon Key Item Whetblade Red-Hot.png|Red-Hot; Whetblade\nER Icon Key Item Whetblade Sanctified.png|Sanctified; Whetblade\nER Icon Key Item Whetblade Black.png|Black; Whetblade"
+            "All Whetblades": "Whetstone Knife\nIron Whetblade\nGlintstone Whetblade\nRed-Hot Whetblade\nSanctified Whetblade\nBlack Whetblade"
           }
         ]
       ],
@@ -12716,7 +12716,7 @@
       "summary_tables": [
         [
           [
-            "ER Icon smithing stone 1.png|Smithing Stone 1|link=Smithing Stone 1\nER Icon smithing stone 2.png|Smithing Stone 2|link=Smithing Stone 2\nER Icon smithing stone 3.png|Smithing Stone 3|link=Smithing Stone 3\nER Icon smithing stone 4.png|Smithing Stone 4|link=Smithing Stone 4\nER Icon smithing stone 5.png|Smithing Stone 5|link=Smithing Stone 5\n\nER Icon smithing stone 6.png|Smithing Stone 6|link=Smithing Stone 6\nER Icon smithing stone 7.png|Smithing Stone 7|link=Smithing Stone 7\nER Icon smithing stone 8.png|Smithing Stone 8|link=Smithing Stone 8\nER Icon smithing stone ancient dragon.png|Ancient Dragon Smithing Stone|link=Ancient Dragon Smithing Stone"
+            "Smithing Stone 1\nSmithing Stone 2\nSmithing Stone 3\nSmithing Stone 4\nSmithing Stone 5\nSmithing Stone 6\nSmithing Stone 7\nSmithing Stone 8\nAncient Dragon Smithing Stone"
           ]
         ]
       ],
@@ -12736,7 +12736,7 @@
       "summary_tables": [
         [
           {
-            "Somber Smithing Stones": "ER Icon somber smithing stone 1.png|Somber Smithing Stone 1|link=Somber Smithing Stone 1\nER Icon somber smithing stone 2.png|Somber Smithing Stone 2|link=Somber Smithing Stone 2\nER Icon somber smithing stone 3.png|Somber Smithing Stone 3|link=Somber Smithing Stone 3\nER Icon somber smithing stone 4.png|Somber Smithing Stone 4|link=Somber Smithing Stone 4\nER Icon somber smithing stone 5.png|Somber Smithing Stone 5|link=Somber Smithing Stone 5\n\nER Icon somber smithing stone 6.png|Somber Smithing Stone 6|link=Somber Smithing Stone 6\nER Icon somber smithing stone 7.png|Somber Smithing Stone 7|link=Somber Smithing Stone 7\nER Icon somber smithing stone 8.png|Somber Smithing Stone 8|link=Somber Smithing Stone 8\nER Icon somber smithing stone 9.png|Somber Smithing Stone 9|link=Somber Smithing Stone 9\nER Icon somber smithing stone ancient dragon.png|Somber Ancient Dragon Smithing Stone|link=Somber Ancient Dragon Smithing Stone"
+            "Somber Smithing Stones": "Somber Smithing Stone 1\nSomber Smithing Stone 2\nSomber Smithing Stone 3\nSomber Smithing Stone 4\nSomber Smithing Stone 5\nSomber Smithing Stone 6\nSomber Smithing Stone 7\nSomber Smithing Stone 8\nSomber Smithing Stone 9\nSomber Ancient Dragon Smithing Stone"
           }
         ]
       ],
@@ -14215,67 +14215,67 @@
           "tables": [
             [
               [
-                "ER Icon ash of war Stamp (Upward Cut).png|Skill:; Stamp (Upward Cut)|link=Skill: Stamp (Upward Cut)\nER Icon ash of war Stamp (Sweep).png|Skill:; Stamp (Sweep)|link=Skill: Stamp (Sweep)\nER Icon ash of war Wild Strikes.png|Skill:; Wild Strikes|link=Skill: Wild Strikes\nER Icon ash of war Lion's Claw.png|Skill:; Lion's Claw|link=Skill: Lion's Claw\nER Icon Ash of War Savage Lion's Claw.png|Skill:; Savage Lion's Claw; Shadow of the Erdtree|link=Skill: Savage Lion's Claw\nER Icon ash of war Cragblade.png|Skill:; Cragblade|link=Skill: Cragblade\nER Icon Ash of War Spinning Gravity Thrust.png|Skill:; Spinning Gravity Thrust; Shadow of the Erdtree|link=Skill: Spinning Gravity Thrust\n\nER Icon ash of war Kick.png|Skill:; Kick|link=Skill: Kick\nER Icon ash of war Endure.png|Skill:; Endure|link=Skill: Endure\nER Icon ash of war Ground Slam.png|Skill:; Ground Slam|link=Skill: Ground Slam\nER Icon ash of war Earthshaker.png|Skill:; Earthshaker|link=Skill: Earthshaker\nER Icon ash of war Hoarah Loux's Earthshaker.png|Skill:; Hoarah Loux's; Earthshaker|link=Skill: Hoarah Loux's Earthshaker\n\nER Icon ash of war War Cry.png|Skill:; War Cry|link=Skill: War Cry\nER Icon ash of war Barbaric Roar.png|Skill:; Barbaric Roar|link=Skill: Barbaric Roar\nER Icon ash of war Braggart's Roar.png|Skill:; Braggart's Roar|link=Skill: Braggart's Roar\nER Icon ash of war Troll's Roar.png|Skill:; Troll's Roar|link=Skill: Troll's Roar"
+                "Skill: Stamp (Upward Cut)\nSkill: Stamp (Sweep)\nSkill: Wild Strikes\nSkill: Lion's Claw\nSkill: Savage Lion's Claw (Shadow of the Erdtree)\nSkill: Cragblade\nSkill: Spinning Gravity Thrust (Shadow of the Erdtree)\nSkill: Kick\nSkill: Endure\nSkill: Ground Slam\nSkill: Earthshaker\nSkill: Hoarah Loux's Earthshaker\nSkill: War Cry\nSkill: Barbaric Roar\nSkill: Braggart's Roar\nSkill: Troll's Roar"
               ]
             ],
             [
               [
-                "ER Icon ash of war Spinning Slash.png|Skill:; Spinning Slash|link=Skill: Spinning Slash\nER Icon ash of war Impaling Thrust.png|Skill:; Impaling Thrust|link=Skill: Impaling Thrust\nER Icon Ash of War Blind Spot.png|Skill:; Blind Spot; Shadow of the Erdtree|link=Skill: Blind Spot\nER Icon Ash of War Swift Slash.png|Skill:; Swift Slash; Shadow of the Erdtree|link=Skill: Swift Slash\nER Icon ash of war Piercing Fang.png|Skill:; Piercing Fang|link=Skill: Piercing Fang\nER Icon ash of war Repeating Thrust.png|Skill:; Repeating Thrust|link=Skill: Repeating Thrust\nER Icon ash of war Double Slash.png|Skill:; Double Slash|link=Skill: Double Slash\n\nER Icon ash of war Sword Dance.png|Skill:; Sword Dance|link=Skill: Sword Dance\nER Icon ash of war Unsheathe.png|Skill:; Unsheathe|link=Skill: Unsheathe\nER Icon Ash of War Overhead Stance.png|Skill:; Overhead Stance; Shadow of the Erdtree|link=Skill: Overhead Stance\nER Icon ash of war Quickstep.png|Skill:; Quickstep|link=Skill: Quickstep\nER Icon ash of war Bloodhound's Step.png|Skill:; Bloodhound's Step|link=Skill: Bloodhound's Step\nER Icon ash of war Raptor of the Mists.png|Skill:; Raptor of the Mists|link=Skill: Raptor of the Mists\n\nER Icon ash of war Beast's Roar.png|Skill:; Beast's Roar|link=Skill: Beast's Roar\nER Icon Ash of War Savage Claws.png|Skill:; Savage Claws; Shadow of the Erdtree|link=Skill: Savage Claws\nER Icon Ash of War Raging Beast.png|Skill:; Raging Beast; Shadow of the Erdtree|link=Skill: Raging Beast\nER Icon Ash of War Piercing Throw.png|Skill:; Piercing Throw; Shadow of the Erdtree|link=Skill: Piercing Throw\nER Icon Ash of War Scattershot Throw.png|Skill:; Scattershot Throw; Shadow of the Erdtree|link=Skill: Scattershot Throw"
+                "Skill: Spinning Slash\nSkill: Impaling Thrust\nSkill: Blind Spot (Shadow of the Erdtree)\nSkill: Swift Slash (Shadow of the Erdtree)\nSkill: Piercing Fang\nSkill: Repeating Thrust\nSkill: Double Slash\nSkill: Sword Dance\nSkill: Unsheathe\nSkill: Overhead Stance (Shadow of the Erdtree)\nSkill: Quickstep\nSkill: Bloodhound's Step\nSkill: Raptor of the Mists\nSkill: Beast's Roar\nSkill: Savage Claws (Shadow of the Erdtree)\nSkill: Raging Beast (Shadow of the Erdtree)\nSkill: Piercing Throw (Shadow of the Erdtree)\nSkill: Scattershot Throw (Shadow of the Erdtree)"
               ]
             ],
             [
               [
-                "ER Icon ash of war Square Off.png|Skill:; Square Off|link=Skill: Square Off\nER Icon Ash of War Wing Stance.png|Skill:; Wing Stance; Shadow of the Erdtree|link=Skill: Wing Stance\nER Icon ash of war Charge Forth.png|Skill:; Charge Forth|link=Skill: Charge Forth\nER Icon ash of war Spinning Strikes.png|Skill:; Spinning Strikes|link=Skill: Spinning Strikes\nER Icon ash of war Giant Hunt.png|Skill:; Giant Hunt|link=Skill: Giant Hunt\nER Icon ash of war Storm Blade.png|Skill:; Storm Blade|link=Skill: Storm Blade\n\nER Icon ash of war Storm Assault.png|Skill:; Storm Assault|link=Skill: Storm Assault\nER Icon ash of war Stormcaller.png|Skill:; Stormcaller|link=Skill: Stormcaller\nER Icon ash of war Storm Stomp.png|Skill:; Storm Stomp|link=Skill: Storm Stomp\nER Icon ash of war Vacuum Slice.png|Skill:; Vacuum Slice|link=Skill: Vacuum Slice\nER Icon ash of war Phantom Slash.png|Skill:; Phantom Slash|link=Skill: Phantom Slash\nER Icon ash of war Determination.png|Skill:; Determination|link=Skill: Determination\n\nER Icon ash of war Royal Knight's Resolve.png|Skill:; Royal Knight's; Resolve|link=Skill: Royal Knight's Resolve"
+                "Skill: Square Off\nSkill: Wing Stance (Shadow of the Erdtree)\nSkill: Charge Forth\nSkill: Spinning Strikes\nSkill: Giant Hunt\nSkill: Storm Blade\nSkill: Storm Assault\nSkill: Stormcaller\nSkill: Storm Stomp\nSkill: Vacuum Slice\nSkill: Phantom Slash\nSkill: Determination\nSkill: Royal Knight's Resolve"
               ]
             ],
             [
               [
-                "ER Icon ash of war Glintstone Pebble.png|Skill:; Glintstone Pebble|link=Skill: Glintstone Pebble\nER Icon ash of war Glintblade Phalanx.png|Skill:; Glintblade Phalanx|link=Skill: Glintblade Phalanx\nER Icon ash of war Carian Greatsword.png|Skill:; Carian Greatsword|link=Skill: Carian Greatsword\nER Icon ash of war Carian Grandeur.png|Skill:; Carian Grandeur|link=Skill: Carian Grandeur\nER Icon Ash of War Carian Sovereignty.png|Skill:; Carian Sovereignty; Shadow of the Erdtree|link=Skill: Carian Sovereignty\n\nER Icon ash of war Spinning Weapon.png|Skill:; Spinning Weapon|link=Skill: Spinning Weapon\n\nER Icon ash of war Loretta's Slash.png|Skill:; Loretta's Slash|link=Skill: Loretta's Slash\nER Icon ash of war Gravitas.png|Skill:; Gravitas|link=Skill: Gravitas\nER Icon ash of war Waves of Darkness.png|Skill:; Waves of Darkness|link=Skill: Waves of Darkness"
+                "Skill: Glintstone Pebble\nSkill: Glintblade Phalanx\nSkill: Carian Greatsword\nSkill: Carian Grandeur\nSkill: Carian Sovereignty (Shadow of the Erdtree)\nSkill: Spinning Weapon\nSkill: Loretta's Slash\nSkill: Gravitas\nSkill: Waves of Darkness"
               ]
             ],
             [
               [
-                "ER Icon ash of war Flaming Strike.png|Skill:; Flaming Strike|link=Skill: Flaming Strike\nER Icon ash of war Flame of the Redmanes.png|Skill:; Flame of the; Redmanes|link=Skill: Flame of the Redmanes\nER Icon ash of war Eruption.png|Skill:; Eruption|link=Skill: Eruption\nER Icon ash of war Prelate's Charge.png|Skill:; Prelate's Charge|link=Skill: Prelate's Charge\nER Icon ash of war Black Flame Tornado.png|Skill:; Black Flame Tornado|link=Skill: Black Flame Tornado\n\nER Icon Ash of War Flame Skewer.png|Skill:; Flame Skewer; Shadow of the Erdtree|link=Skill: Flame Skewer\nER Icon Ash of War Flame Spear.png|Skill:; Flame Spear; Shadow of the Erdtree|link=Skill: Flame Spear\n\nER Icon ash of war Thunderbolt.png|Skill:; Thunderbolt|link=Skill: Thunderbolt\nER Icon ash of war Lightning Slash.png|Skill:; Lightning Slash|link=Skill: Lightning Slash\nER Icon Ash of War Blinkbolt.png|Skill:; Blinkbolt; Shadow of the Erdtree|link=Skill: Blinkbolt\nER Icon ash of war Lightning Ram.png|Skill:; Lightning Ram|link=Skill: Lightning Ram"
+                "Skill: Flaming Strike\nSkill: Flame of the Redmanes\nSkill: Eruption\nSkill: Prelate's Charge\nSkill: Black Flame Tornado\nSkill: Flame Skewer (Shadow of the Erdtree)\nSkill: Flame Spear (Shadow of the Erdtree)\nSkill: Thunderbolt\nSkill: Lightning Slash\nSkill: Blinkbolt (Shadow of the Erdtree)\nSkill: Lightning Ram"
               ]
             ],
             [
               [
-                "ER Icon ash of war Sacred Blade.png|Skill:; Sacred Blade|link=Skill: Sacred Blade\nER Icon ash of war Prayerful Strike.png|Skill:; Prayerful Strike|link=Skill: Prayerful Strike\nER Icon ash of war Sacred Ring of Light.png|Skill:; Sacred Ring of Light|link=Skill: Sacred Ring of Light\nER Icon ash of war Sacred Order.png|Skill:; Sacred Order|link=Skill: Sacred Order\nER Icon ash of war Shared Order.png|Skill:; Shared Order|link=Skill: Shared Order\n\nER Icon ash of war Golden Land.png|Skill:; Golden Land|link=Skill: Golden Land\nER Icon ash of war Golden Slam.png|Skill:; Golden Slam|link=Skill: Golden Slam\nER Icon ash of war Golden Vow.png|Skill:; Golden Vow|link=Skill: Golden Vow\nER Icon ash of war Vow of the Indomitable.png|Skill:; Vow of the Indomitable|link=Skill: Vow of the Indomitable\nER Icon ash of war Holy Ground.png|Skill:; Holy Ground|link=Skill: Holy Ground\n\nER Icon Ash of War Aspects of the Crucible Wings.png|Skill:; Aspects of the Crucible: Wings; Shadow of the Erdtree|link=Skill: Aspects of the Crucible: Wings"
+                "Skill: Sacred Blade\nSkill: Prayerful Strike\nSkill: Sacred Ring of Light\nSkill: Sacred Order\nSkill: Shared Order\nSkill: Golden Land\nSkill: Golden Slam\nSkill: Golden Vow\nSkill: Vow of the Indomitable\nSkill: Holy Ground\nSkill: Aspects of the Crucible: Wings (Shadow of the Erdtree)"
               ]
             ],
             [
               [
-                "ER Icon ash of war Poisonous Mist.png|Skill:; Poisonous Mist|link=Skill: Poisonous Mist\nER Icon ash of war Poison Moth Flight.png|Skill:; Poison Moth Flight|link=Skill: Poison Moth Flight\nER Icon Ash of War The Poison Flower Blooms Twice.png|Skill:; The Poison Flower; Blooms Twice; Shadow of the Erdtree|link=Skill: The Poison Flower Blooms Twice\n\nER Icon ash of war Blood Blade.png|Skill:; Blood Blade|link=Skill: Blood Blade\nER Icon ash of war Bloody Slash.png|Skill:; Bloody Slash|link=Skill: Bloody Slash\nER Icon ash of war Blood Tax.png|Skill:; Blood Tax|link=Skill: Blood Tax\nER Icon ash of war Seppuku.png|Skill:; Seppuku|link=Skill: Seppuku\n\nER Icon ash of war Ice Spear.png|Skill:; Ice Spear|link=Skill: Ice Spear\nER Icon ash of war Chilling Mist.png|Skill:; Chilling Mist|link=Skill: Chilling Mist\nER Icon Ash of War Ghostflame Call.png|Skill:; Ghostflame Call; Shadow of the Erdtree|link=Skill: Ghostflame Call\nER Icon ash of war Hoarfrost Stomp.png|Skill:; Hoarfrost Stomp|link=Skill: Hoarfrost Stomp\nER Icon Ash of War Divine Beast Frost Stomp.png|Skill:; Divine Beast; Frost Stomp; Shadow of the Erdtree|link=Skill: Divine Beast Frost Stomp"
+                "Skill: Poisonous Mist\nSkill: Poison Moth Flight\nSkill: The Poison Flower Blooms Twice (Shadow of the Erdtree)\nSkill: Blood Blade\nSkill: Bloody Slash\nSkill: Blood Tax\nSkill: Seppuku\nSkill: Ice Spear\nSkill: Chilling Mist\nSkill: Ghostflame Call (Shadow of the Erdtree)\nSkill: Hoarfrost Stomp\nSkill: Divine Beast Frost Stomp (Shadow of the Erdtree)"
               ]
             ],
             [
               [
-                "ER Icon ash of war Spectral Lance.png|Skill:; Spectral Lance|link=Skill: Spectral Lance\nER Icon ash of war Lifesteal Fist.png|Skill:; Lifesteal Fist|link=Skill: Lifesteal Fist\nER Icon ash of war White Shadow's Lure.png|Skill:; White Shadow's Lure|link=Skill: White Shadow's Lure\nER Icon ash of war Assassin's Gambit.png|Skill:; Assassin's Gambit|link=Skill: Assassin's Gambit\nER Icon Ash of War Shriek of Sorrow.png|Skill:; Shriek of Sorrow; Shadow of the Erdtree|link=Skill: Shriek of Sorrow"
+                "Skill: Spectral Lance\nSkill: Lifesteal Fist\nSkill: White Shadow's Lure\nSkill: Assassin's Gambit\nSkill: Shriek of Sorrow (Shadow of the Erdtree)"
               ]
             ],
             [
               [
-                "ER Icon Ash of War Palm Blast.png|Skill:; Palm Blast; Shadow of the Erdtree|link=Skill: Palm Blast\nER Icon Ash of War Dryleaf Whirlwind.png|Skill:; Dryleaf Whirlwind; Shadow of the Erdtree|link=Skill: Dryleaf Whirlwind\nER Icon Ash of War Wall of Sparks.png|Skill:; Wall of Sparks; Shadow of the Erdtree|link=Skill: Wall of Sparks\nER Icon Ash of War Rolling Sparks.png|Skill:; Rolling Sparks; Shadow of the Erdtree|link=Skill: Rolling Sparks"
+                "Skill: Palm Blast (Shadow of the Erdtree)\nSkill: Dryleaf Whirlwind (Shadow of the Erdtree)\nSkill: Wall of Sparks (Shadow of the Erdtree)\nSkill: Rolling Sparks (Shadow of the Erdtree)"
               ]
             ],
             [
               [
-                "ER Icon ash of war Mighty Shot.png|Skill:; Mighty Shot|link=Skill: Mighty Shot\nER Icon ash of war Through and Through.png|Skill:; Through and Through|link=Skill: Through and Through\nER Icon Ash of War Igon's Drake Hunt.png|Skill:; Igon's Drake Hunt; Shadow of the Erdtree|link=Skill: Igon's Drake Hunt\nER Icon ash of war Barrage.png|Skill:; Barrage|link=Skill: Barrage\nER Icon ash of war Sky Shot.png|Skill:; Sky Shot|link=Skill: Sky Shot\nER Icon ash of war Enchanted Shot.png|Skill:; Enchanted Shot|link=Skill: Enchanted Shot\n\nER Icon ash of war Rain of Arrows.png|Skill:; Rain of Arrows|link=Skill: Rain of Arrows"
+                "Skill: Mighty Shot\nSkill: Through and Through\nSkill: Igon's Drake Hunt (Shadow of the Erdtree)\nSkill: Barrage\nSkill: Sky Shot\nSkill: Enchanted Shot\nSkill: Rain of Arrows"
               ]
             ],
             [
               [
-                "ER Icon ash of war Parry.png|Skill:; Parry|link=Skill: Parry\nER Icon ash of war Golden Parry.png|Skill:; Golden Parry|link=Skill: Golden Parry\nER Icon ash of war Storm Wall.png|Skill:; Storm Wall|link=Skill: Storm Wall\nER Icon ash of war Shield Bash.png|Skill:; Shield Bash|link=Skill: Shield Bash\nER Icon ash of war Shield Crash.png|Skill:; Shield Crash|link=Skill: Shield Crash\n\nER Icon ash of war Barricade Shield.png|Skill:; Barricade Shield|link=Skill: Barricade Shield\nER Icon ash of war Thops's Barrier.png|Skill:; Thops's Barrier|link=Skill: Thops's Barrier\nER Icon ash of war Carian Retaliation.png|Skill:; Carian Retaliation|link=Skill: Carian Retaliation\nER Icon Ash of War Shield Strike.png|Skill:; Shield Strike; Shadow of the Erdtree|link=Skill: Shield Strike\nER Icon ash of war No Skill.png|Skill:; No Skill|link=Skill: No Skill"
+                "Skill: Parry\nSkill: Golden Parry\nSkill: Storm Wall\nSkill: Shield Bash\nSkill: Shield Crash\nSkill: Barricade Shield\nSkill: Thops's Barrier\nSkill: Carian Retaliation\nSkill: Shield Strike (Shadow of the Erdtree)\nSkill: No Skill"
               ]
             ],
             [
               [
-                "ER Icon weapon Flail.png|Skill:; Spinning Chain|link=Skill: Spinning Chain\nER Icon weapon Torch.png|Skill:; Torch Attack|link=Skill: Torch Attack\nER Icon weapon Steel-Wire Torch.png|Skill:; Firebreather|link=Skill: Firebreather\nER Icon shield Buckler.png|Skill:; Buckler Parry|link=Skill: Buckler Parry"
+                "Skill: Spinning Chain\nSkill: Torch Attack\nSkill: Firebreather\nSkill: Buckler Parry"
               ]
             ],
             [
               [
-                "ER Icon weapon Glintstone Kris.png|Unique Skill:; Glintstone Dart|link=Unique Skill: Glintstone Dart\nER Icon weapon Reduvia.png|Unique Skill:; Reduvia Blood Blade|link=Unique Skill: Reduvia Blood Blade\nER Icon weapon Blade of Calling.png|Unique Skill:; Blade of Gold|link=Unique Skill: Blade of Gold\nER Icon weapon Black Knife.png|Unique Skill:; Blade of Death|link=Unique Skill: Blade of Death\n\nER Icon weapon Ornamental Straight Sword.png|Unique Skill:; Golden Tempering|link=Unique Skill: Golden Tempering\nER Icon weapon Golden Epitaph.png|Unique Skill:; Last Rites|link=Unique Skill: Last Rites\nER Icon weapon Sword of St Trina.png|Unique Skill:; Mists of Slumber|link=Unique Skill: Mists of Slumber\nER Icon Weapon Velvet Sword of St. Trina.png|Unique Skill:; Mists of Eternal Sleep; Shadow of the Erdtree|link=Unique Skill: Mists of Eternal Sleep\nER Icon weapon Regalia of Eochaid.png|Unique Skill:; Eochaid's Dancing Blade|link=Unique Skill: Eochaid's Dancing Blade\nER Icon weapon Coded Sword.png|Unique Skill:; Unblockable Blade|link=Unique Skill: Unblockable Blade\nER Icon weapon Sword of Night and Flame.png|Unique Skill:; Night-and-Flame Stance|link=Unique Skill: Night-and-Flame Stance\nER Icon Weapon Sword of Light.png|Unique Skill:; Light; Shadow of the Erdtree|link=Unique Skill: Light\nER Icon Weapon Sword of Darkness.png|Unique Skill:; Darkness; Shadow of the Erdtree|link=Unique Skill: Darkness\n\nER Icon Weapon Leda's Sword.png|Unique Skill:; Needle Piercer; Shadow of the Erdtree|link=Unique Skill: Needle Piercer\nER Icon Weapon Rellana's Twin Blades.png|Unique Skill:; Moon-and-Fire Stance; Shadow of the Erdtree|link=Unique Skill: Moon-and-Fire Stance\n\nER Icon weapon Gargoyle's Blackblade.png|Unique Skill:; Corpse Wax Cutter|link=Unique Skill: Corpse Wax Cutter\nER Icon weapon Sword of Milos.png|Unique Skill:; Shriek of Milos|link=Unique Skill: Shriek of Milos\nER Icon weapon Marais Executioner's Sword.png|Unique Skill:; Eochaid's Dancing Blade|link=Unique Skill: Eochaid's Dancing Blade\nER Icon Weapon Greatsword of Solitude.png|Unique Skill:; Solitary Moon Slash; Shadow of the Erdtree|link=Unique Skill: Solitary Moon Slash\nER Icon weapon Ordovis's Greatsword.png|Unique Skill:; Ordovis's Vortex|link=Unique Skill: Ordovis's Vortex\nER Icon weapon Alabaster Lord's Sword.png|Unique Skill:; Alabaster Lords' Pull|link=Unique Skill: Alabaster Lords' Pull\nER Icon weapon Death's Poker.png|Unique Skill:; Ghostflame Ignition|link=Unique Skill: Ghostflame Ignition\nER Icon weapon Helphen's Steeple.png|Unique Skill:; Ruinous Ghostflame|link=Unique Skill: Ruinous Ghostflame\nER Icon weapon Blasphemous Blade.png|Unique Skill:; Taker's Flames|link=Unique Skill: Taker's Flames\nER Icon weapon Golden Order Greatsword.png|Unique Skill:; Establish Order|link=Unique Skill: Establish Order\nER Icon weapon Dark Moon Greatsword.png|Unique Skill:; Moonlight Greatsword|link=Unique Skill: Moonlight Greatsword\nER Icon Weapon Greatsword of Damnation.png|Unique Skill:; Golden Crux; Shadow of the Erdtree|link=Unique Skill: Golden Crux\nER Icon weapon Sacred Relic Sword.png|Unique Skill:; Wave of Gold|link=Unique Skill: Wave of Gold\n\nER Icon weapon Troll Knight's Sword.png|Unique Skill:; Tremendous Phalanx; Shadow of the Erdtree|link=Unique Skill: Tremendous Phalanx\nER Icon weapon Royal Greatsword.png|Unique Skill:; Wolf's Assault|link=Unique Skill: Wolf's Assault\nER Icon weapon Grafted Blade Greatsword.png|Unique Skill:; Oath of Vengeance|link=Unique Skill: Oath of Vengeance\nER Icon weapon Ruins Greatsword.png|Unique Skill:; Wave of Destruction|link=Unique Skill: Wave of Destruction\nER Icon Weapon Ancient Meteoric Ore Greatsword.png|Unique Skill:; White Light Charge; Shadow of the Erdtree|link=Unique Skill: White Light Charge\nER Icon weapon Starscourge Greatsword.png|Unique Skill:; Starcaller Cry|link=Unique Skill: Starcaller Cry\nER Icon Weapon Greatsword of Radahn.png|Unique Skill:; Promised Consort; Shadow of the Erdtree|link=Unique Skill: Promised Consort\nER Icon Weapon Greatsword of Radahn.png|Unique Skill:; Lightspeed Slash; Shadow of the Erdtree|link=Unique Skill: Lightspeed Slash\nER Icon weapon Godslayer's Greatsword.png|Unique Skill:; The Queen's Black Flame|link=Unique Skill: The Queen's Black Flame\nER Icon weapon Maliketh's Black Blade.png|Unique Skill:; Destined Death|link=Unique Skill: Destined Death\n\nER Icon weapon Bloody Helice.png|Unique Skill:; Dynast's Finesse|link=Unique Skill: Dynast's Finesse\nER Icon weapon Dragon King's Cragblade.png|Unique Skill:; Thundercloud Form|link=Unique Skill: Thundercloud Form\n\nER Icon weapon Magma Blade.png|Unique Skill:; Magma Shower|link=Unique Skill: Magma Shower\nER Icon Weapon Spirit Sword.png|Unique Skill:; Rancor Slash; Shadow of the Erdtree|link=Unique Skill: Rancor Slash\nER Icon weapon Nox Flowing Sword.png|Unique Skill:; Flowing Form|link=Unique Skill: Flowing Form\nER Icon weapon Wing of Astel.png|Unique Skill:; Nebula|link=Unique Skill: Nebula\nER Icon Weapon Falx.png|Unique Skill:; Revenger's Blade; Shadow of the Erdtree|link=Unique Skill: Revenger's Blade\nER Icon Weapon Dancing Blade of Ranah.png|Unique Skill:; Unending Dance; Shadow of the Erdtree|link=Unique Skill: Unending Dance\nER Icon Weapon Horned Warrior's Sword.png|Unique Skill:; Horn Calling; Shadow of the Erdtree|link=Unique Skill: Horn Calling\nER Icon weapon Eclipse Shotel.png|Unique Skill:; Death Flare|link=Unique Skill: Death Flare\n\nER Icon weapon Bloodhound's Fang.png|Unique Skill:; Bloodhound's Finesse|link=Unique Skill: Bloodhound's Finesse\nER Icon weapon Onyx Lord's Greatsword.png|Unique Skill:; Onyx Lord's Repulsion|link=Unique Skill: Onyx Lord's Repulsion\nER Icon weapon Zamor Curved Sword.png|Unique Skill:; Zamor Ice Storm|link=Unique Skill: Zamor Ice Storm\nER Icon weapon Magma Wyrm's Scalesword.png|Unique Skill:; Magma Guillotine|link=Unique Skill: Magma Guillotine\nER Icon Weapon Horned Warrior's Greatsword.png|Unique Skill:; Horn Calling: Storm; Shadow of the Erdtree|link=Unique Skill: Horn Calling: Storm\nER Icon weapon Morgott's Cursed Sword.png|Unique Skill:; Cursed-Blood Slice|link=Unique Skill: Cursed-Blood Slice\n\nER Icon Weapon Curseblade's Cirque.png|Unique Skill:; Deadly Dance; Shadow of the Erdtree|link=Unique Skill: Deadly Dance\n\nER Icon weapon Moonveil.png|Unique Skill:; Transient Moonlight|link=Unique Skill: Transient Moonlight\nER Icon Weapon Sword of Night.png|Unique Skill:; Witching Hour Slash; Shadow of the Erdtree|link=Unique Skill: Witching Hour Slash\nER Icon weapon Rivers of Blood.png|Unique Skill:; Corpse Piler|link=Unique Skill: Corpse Piler\nER Icon weapon Dragonscale Blade.png|Unique Skill:; Ice Lightning Sword|link=Unique Skill: Ice Lightning Sword\nER Icon Weapon Star-Lined Sword.png|Unique Skill:; Onze's Line of Stars; Shadow of the Erdtree|link=Unique Skill: Onze's Line of Stars\nER Icon weapon Hand of Malenia.png|Unique Skill:; Waterfowl Dance|link=Unique Skill: Waterfowl Dance\n\nER Icon Weapon Dragon-Hunter's Great Katana.png|Unique Skill:; Dragonwound Slash; Shadow of the Erdtree|link=Unique Skill: Dragonwound Slash\nER Icon Weapon Rakshasa's Great Katana.png|Unique Skill:; Weed Cutter; Shadow of the Erdtree|link=Unique Skill: Weed Cutter\n\nER Icon weapon Eleonora's Poleblade.png|Unique Skill:; Bloodblade Dance|link=Unique Skill: Bloodblade Dance\nER Icon Weapon Euporia.png|Unique Skill:; Euporia Vortex; Shadow of the Erdtree|link=Unique Skill: Euporia Vortex\n\nER Icon Weapon Forked-Tongue Hatchet.png|Unique Skill:; Dragonform Flame; Shadow of the Erdtree|link=Unique Skill: Dragonform Flame\nER Icon weapon Stormhawk Axe.png|Unique Skill:; Thunderstorm|link=Unique Skill: Thunderstorm\nER Icon weapon Rosus' Axe.png|Unique Skill:; Rosus's Summons|link=Unique Skill: Rosus's Summons\nER Icon Weapon Death Knight's Twin Axes.png|Unique Skill:; Blinkbolt: Twinaxe; Shadow of the Erdtree|link=Unique Skill: Blinkbolt: Twinaxe\n\nER Icon weapon Butchering Knife.png|Unique Skill:; Hone Blade; Shadow of the Erdtree|link=Unique Skill: Hone Blade\nER Icon Weapon Death Knight's Longhaft Axe.png|Unique Skill:; Blinkbolt:; Long-hafted Axe; Shadow of the Erdtree|link=Unique Skill: Blinkbolt: Long-hafted Axe\nER Icon weapon Winged Greathorn.png|Unique Skill:; Soul Stifler|link=Unique Skill: Soul Stifler\nER Icon weapon Axe of Godrick.png|Unique Skill:; I Command Thee, Kneel!|link=Unique Skill: I Command Thee, Kneel!\nER Icon Weapon Putrescence Cleaver.png|Unique Skill:; Spinning Guillotine; Shadow of the Erdtree|link=Unique Skill: Spinning Guillotine\n\nER Icon weapon Envoy's Horn.png|Unique Skill:; Oracular Bubble|link=Unique Skill: Oracular Bubble\nER Icon weapon Nox Flowing Hammer.png|Unique Skill:; Flowing Form|link=Unique Skill: Flowing Form\nER Icon weapon Ringed Finger.png|Unique Skill:; Claw Flick|link=Unique Skill: Claw Flick\nER Icon weapon Scepter of the All-Knowing.png|Unique Skill:; Knowledge Above All|link=Unique Skill: Knowledge Above All\nER Icon Weapon Flowerstone Gavel.png|Unique Skill:; Flower Dragonbolt; Shadow of the Erdtree|link=Unique Skill: Flower Dragonbolt\nER Icon weapon Marika's Hammer.png|Unique Skill:; Gold Breaker|link=Unique Skill: Gold Breaker\n\nER Icon weapon Family Heads.png|Unique Skill:; Familial Rancor|link=Unique Skill: Familial Rancor\nER Icon Weapon Serpent Flail.png|Unique Skill:; Flare, O Serpent; Shadow of the Erdtree|link=Unique Skill: Flare, O Serpent\nER Icon weapon Bastard's Stars.png|Unique Skill:; Nebula|link=Unique Skill: Nebula\n\nER Icon weapon Envoy's Long Horn.png|Unique Skill:; Bubble Shower|link=Unique Skill: Bubble Shower\nER Icon weapon Cranial Vessel Candlestand.png|Unique Skill:; Surge of Faith|link=Unique Skill: Surge of Faith\nER Icon weapon Beastclaw Greathammer.png|Unique Skill:; Regal Beastclaw|link=Unique Skill: Regal Beastclaw\nER Icon weapon Devourer's Scepter.png|Unique Skill:; Devourer of Worlds|link=Unique Skill: Devourer of Worlds\n\nER Icon weapon Watchdog's Staff.png|Unique Skill:; Sorcery of the Crozier|link=Unique Skill: Sorcery of the Crozier\nER Icon weapon Staff of the Avatar.png|Unique Skill:; Erdtree Slam|link=Unique Skill: Erdtree Slam\nER Icon weapon Rotten Staff.png|Unique Skill:; Erdtree Slam|link=Unique Skill: Erdtree Slam\nER Icon weapon Envoy's Greathorn.png|Unique Skill:; Great Oracular Bubble|link=Unique Skill: Great Oracular Bubble\nER Icon weapon Ghiza's Wheel.png|Unique Skill:; Spinning Wheel|link=Unique Skill: Spinning Wheel\nER Icon weapon Fallingstar Beast Jaw.png|Unique Skill:; Gravity Bolt|link=Unique Skill: Gravity Bolt\nER Icon Weapon Anvil Hammer.png|Unique Skill:; Smithing Art Spears; Shadow of the Erdtree|link=Unique Skill: Smithing Art Spears\nER Icon Weapon Devonia's Hammer.png|Unique Skill:; Devonia's Vortex; Shadow of the Erdtree|link=Unique Skill: Devonia's Vortex\nER Icon weapon Axe of Godfrey.png|Unique Skill:; Regal Roar|link=Unique Skill: Regal Roar\nER Icon Weapon Shadow Sunflower Blossom.png|Unique Skill:; Shadow Sunflower Headbutt; Shadow of the Erdtree|link=Unique Skill: Shadow Sunflower Headbutt\nER Icon Weapon Gazing Finger.png|Unique Skill:; Kowtower's Resentment; Shadow of the Erdtree|link=Unique Skill: Kowtower's Resentment\n\nER Icon weapon Cleanrot Spear.png|Unique Skill:; Sacred Phalanx|link=Unique Skill: Sacred Phalanx\nER Icon weapon Death Ritual Spear.png|Unique Skill:; Spearcall Ritual|link=Unique Skill: Spearcall Ritual\nER Icon weapon Bolt of Gransax.png|Unique Skill:; Ancient Lightning Spear|link=Unique Skill: Ancient Lightning Spear\n\nER Icon weapon Serpent-Hunter.png|Unique Skill:; Great-Serpent Hunt|link=Unique Skill: Great-Serpent Hunt\nER Icon weapon Siluria's Tree.png|Unique Skill:; Siluria's Woe|link=Unique Skill: Siluria's Woe\nER Icon weapon Vyke's War Spear.png|Unique Skill:; Frenzyflame Thrust|link=Unique Skill: Frenzyflame Thrust\nER Icon Weapon Barbed Staff-Spear.png|Unique Skill:; Jori's Inquisition; Shadow of the Erdtree|link=Unique Skill: Jori's Inquisition\nER Icon Weapon Bloodfiend's Sacred Spear.png|Unique Skill:; Bloodfiend's Bloodboon; Shadow of the Erdtree|link=Unique Skill: Bloodfiend's Bloodboon\nER Icon weapon Mohgwyn's Sacred Spear.png|Unique Skill:; Bloodboon Ritual|link=Unique Skill: Bloodboon Ritual\nER Icon Weapon Spear of the Impaler.png|Unique Skill:; Messmer's Assault; Shadow of the Erdtree|link=Unique Skill: Messmer's Assault\n\nER Icon weapon Dragon Halberd.png|Skill:; Spinning Slash; (Ice Lightning)|link=Skill: Spinning Slash#Ice Lightning\nER Icon weapon Commander's Standard.png|Unique Skill:; Rallying Standard|link=Unique Skill: Rallying Standard\nER Icon Weapon Spirit Glaive.png|Unique Skill:; Rancor Slash; Shadow of the Erdtree|link=Unique Skill: Rancor Slash\nER Icon Weapon Poleblade of the Bud.png|Unique Skill:; Romina's Purification; Shadow of the Erdtree|link=Unique Skill: Romina's Purification\n\nER Icon weapon Halo Scythe.png|Unique Skill:; Miquella's Ring of Light|link=Unique Skill: Miquella's Ring of Light\nER Icon weapon Winged Scythe.png|Unique Skill:; Angel's Wings|link=Unique Skill: Angel's Wings\nER Icon Weapon Obsidian Lamina.png|Unique Skill:; Dynastic Sickleplay; Shadow of the Erdtree|link=Unique Skill: Dynastic Sickleplay\n\nER Icon Weapon Tooth Whip.png|Unique Skill:; Painful Strike; Shadow of the Erdtree|link=Unique Skill: Painful Strike\nER Icon weapon Magma Whip Candlestick.png|Unique Skill:; Sea of Magma|link=Unique Skill: Sea of Magma\nER Icon weapon Giant's Red Braid.png|Unique Skill:; Flame Dance|link=Unique Skill: Flame Dance\n\nER Icon weapon Veteran's Prosthesis.png|Unique Skill:; Storm Kick|link=Unique Skill: Storm Kick\nER Icon weapon Cipher Pata.png|Unique Skill:; Unblockable Blade|link=Unique Skill: Unblockable Blade\nER Icon Weapon Poisoned Hand.png|Unique Skill:; Poison Spear-Hand Strike; Shadow of the Erdtree|link=Unique Skill: Poison Spear-Hand Strike\nER Icon Weapon Madding Hand.png|Unique Skill:; Madding Spear-Hand Strike; Shadow of the Erdtree|link=Unique Skill: Madding Spear-Hand Strike\nER Icon Weapon Thiollier's Hidden Needle.png|Unique Skill:; Sleep Evermore; Shadow of the Erdtree|link=Unique Skill: Sleep Evermore\nER Icon weapon Grafted Dragon.png|Unique Skill:; Bear Witness!|link=Unique Skill: Bear Witness!\n\nER Icon Weapon Red Bear's Claw.png|Unique Skill:; Red Bear Hunt; Shadow of the Erdtree|link=Unique Skill: Red Bear Hunt\n\nER Icon Weapon Deadly Poison Perfume Bottle.png|Unique Skill:; Deadly Poison Spray; Shadow of the Erdtree|link=Unique Skill: Deadly Poison Spray\n\nER Icon Weapon Bone Bow.png|Unique Skill:; Rancor Shot; Shadow of the Erdtree|link=Unique Skill: Rancor Shot\n\nER Icon Weapon Ansbach's Longbow.png|Unique Skill:; Fan Shot; Shadow of the Erdtree|link=Unique Skill: Fan Shot\n\nER Icon weapon Lion Greatbow.png|Unique Skill:; Radahn's Rain|link=Unique Skill: Radahn's Rain\n\nER Icon Weapon Repeating Crossbow.png|Unique Skill:; Repeating Fire; Shadow of the Erdtree|link=Unique Skill: Repeating Fire\n\nER Icon weapon Carian Regal Scepter.png|Unique Skill:; Spinning Weapon|link=Unique Skill: Spinning Weapon\n\nER Icon weapon St. Trina's Torch.png|Unique Skill:; Fires of Slumber|link=Unique Skill: Fires of Slumber\nER Icon Weapon Nanaya's Torch.png|Unique Skill:; Feeble Lord's; Frenzied Flame; Shadow of the Erdtree|link=Unique Skill: Feeble Lord's Frenzied Flame\nER Icon Weapon Lamenting Visage.png|Unique Skill:; Blindfold of Happiness; Shadow of the Erdtree|link=Unique Skill: Blindfold of Happiness\n\nER Icon shield Coil Shield.png|Unique Skill:; Viper Bite|link=Unique Skill: Viper Bite\nER Icon Shield Smithscript Shield.png|Unique Skill:; Discus Hurl; Shadow of the Erdtree|link=Unique Skill: Discus Hurl\nER Icon Shield Shield of Night.png|Unique Skill:; Revenge of the Night; Shadow of the Erdtree|link=Unique Skill: Revenge of the Night\n\nER Icon Shield Golden Lion Shield.png|Unique Skill:; Roaring Bash; Shadow of the Erdtree|link=Unique Skill: Roaring Bash\n\nER Icon shield Erdtree Greatshield.png|Unique Skill:; Golden Retaliation|link=Unique Skill: Golden Retaliation\nER Icon shield Jellyfish Shield.png|Unique Skill:; Contagious Fury|link=Unique Skill: Contagious Fury\nER Icon shield Visage Shield.png|Unique Skill:; Tongues of Fire|link=Unique Skill: Tongues of Fire\nER Icon shield One-Eyed Shield.png|Unique Skill:; Flame Spit|link=Unique Skill: Flame Spit\nER Icon Shield Verdigris Greatshield.png|Unique Skill:; Moore's Charge; Shadow of the Erdtree|link=Unique Skill: Moore's Charge"
+                "Unique Skill: Glintstone Dart\nUnique Skill: Reduvia Blood Blade\nUnique Skill: Blade of Gold\nUnique Skill: Blade of Death\nUnique Skill: Golden Tempering\nUnique Skill: Last Rites\nUnique Skill: Mists of Slumber\nUnique Skill: Mists of Eternal Sleep (Shadow of the Erdtree)\nUnique Skill: Eochaid's Dancing Blade\nUnique Skill: Unblockable Blade\nUnique Skill: Night-and-Flame Stance\nUnique Skill: Light (Shadow of the Erdtree)\nUnique Skill: Darkness (Shadow of the Erdtree)\nUnique Skill: Needle Piercer (Shadow of the Erdtree)\nUnique Skill: Moon-and-Fire Stance (Shadow of the Erdtree)\nUnique Skill: Corpse Wax Cutter\nUnique Skill: Shriek of Milos\nUnique Skill: Eochaid's Dancing Blade\nUnique Skill: Solitary Moon Slash (Shadow of the Erdtree)\nUnique Skill: Ordovis's Vortex\nUnique Skill: Alabaster Lords' Pull\nUnique Skill: Ghostflame Ignition\nUnique Skill: Ruinous Ghostflame\nUnique Skill: Taker's Flames\nUnique Skill: Establish Order\nUnique Skill: Moonlight Greatsword\nUnique Skill: Golden Crux (Shadow of the Erdtree)\nUnique Skill: Wave of Gold\nUnique Skill: Tremendous Phalanx (Shadow of the Erdtree)\nUnique Skill: Wolf's Assault\nUnique Skill: Oath of Vengeance\nUnique Skill: Wave of Destruction\nUnique Skill: White Light Charge (Shadow of the Erdtree)\nUnique Skill: Starcaller Cry\nUnique Skill: Promised Consort (Shadow of the Erdtree)\nUnique Skill: Lightspeed Slash (Shadow of the Erdtree)\nUnique Skill: The Queen's Black Flame\nUnique Skill: Destined Death\nUnique Skill: Dynast's Finesse\nUnique Skill: Thundercloud Form\nUnique Skill: Magma Shower\nUnique Skill: Rancor Slash (Shadow of the Erdtree)\nUnique Skill: Flowing Form\nUnique Skill: Nebula\nUnique Skill: Revenger's Blade (Shadow of the Erdtree)\nUnique Skill: Unending Dance (Shadow of the Erdtree)\nUnique Skill: Horn Calling (Shadow of the Erdtree)\nUnique Skill: Death Flare\nUnique Skill: Bloodhound's Finesse\nUnique Skill: Onyx Lord's Repulsion\nUnique Skill: Zamor Ice Storm\nUnique Skill: Magma Guillotine\nUnique Skill: Horn Calling: Storm (Shadow of the Erdtree)\nUnique Skill: Cursed-Blood Slice\nUnique Skill: Deadly Dance (Shadow of the Erdtree)\nUnique Skill: Transient Moonlight\nUnique Skill: Witching Hour Slash (Shadow of the Erdtree)\nUnique Skill: Corpse Piler\nUnique Skill: Ice Lightning Sword\nUnique Skill: Onze's Line of Stars (Shadow of the Erdtree)\nUnique Skill: Waterfowl Dance\nUnique Skill: Dragonwound Slash (Shadow of the Erdtree)\nUnique Skill: Weed Cutter (Shadow of the Erdtree)\nUnique Skill: Bloodblade Dance\nUnique Skill: Euporia Vortex (Shadow of the Erdtree)\nUnique Skill: Dragonform Flame (Shadow of the Erdtree)\nUnique Skill: Thunderstorm\nUnique Skill: Rosus's Summons\nUnique Skill: Blinkbolt: Twinaxe (Shadow of the Erdtree)\nUnique Skill: Hone Blade (Shadow of the Erdtree)\nUnique Skill: Blinkbolt: Long-hafted Axe (Shadow of the Erdtree)\nUnique Skill: Soul Stifler\nUnique Skill: I Command Thee, Kneel!\nUnique Skill: Spinning Guillotine (Shadow of the Erdtree)\nUnique Skill: Oracular Bubble\nUnique Skill: Flowing Form\nUnique Skill: Claw Flick\nUnique Skill: Knowledge Above All\nUnique Skill: Flower Dragonbolt (Shadow of the Erdtree)\nUnique Skill: Gold Breaker\nUnique Skill: Familial Rancor\nUnique Skill: Flare, O Serpent (Shadow of the Erdtree)\nUnique Skill: Nebula\nUnique Skill: Bubble Shower\nUnique Skill: Surge of Faith\nUnique Skill: Regal Beastclaw\nUnique Skill: Devourer of Worlds\nUnique Skill: Sorcery of the Crozier\nUnique Skill: Erdtree Slam\nUnique Skill: Erdtree Slam\nUnique Skill: Great Oracular Bubble\nUnique Skill: Spinning Wheel\nUnique Skill: Gravity Bolt\nUnique Skill: Smithing Art Spears (Shadow of the Erdtree)\nUnique Skill: Devonia's Vortex (Shadow of the Erdtree)\nUnique Skill: Regal Roar\nUnique Skill: Shadow Sunflower Headbutt (Shadow of the Erdtree)\nUnique Skill: Kowtower's Resentment (Shadow of the Erdtree)\nUnique Skill: Sacred Phalanx\nUnique Skill: Spearcall Ritual\nUnique Skill: Ancient Lightning Spear\nUnique Skill: Great-Serpent Hunt\nUnique Skill: Siluria's Woe\nUnique Skill: Frenzyflame Thrust\nUnique Skill: Jori's Inquisition (Shadow of the Erdtree)\nUnique Skill: Bloodfiend's Bloodboon (Shadow of the Erdtree)\nUnique Skill: Bloodboon Ritual\nUnique Skill: Messmer's Assault (Shadow of the Erdtree)\nSkill: Spinning Slash (Ice Lightning)\nUnique Skill: Rallying Standard\nUnique Skill: Rancor Slash (Shadow of the Erdtree)\nUnique Skill: Romina's Purification (Shadow of the Erdtree)\nUnique Skill: Miquella's Ring of Light\nUnique Skill: Angel's Wings\nUnique Skill: Dynastic Sickleplay (Shadow of the Erdtree)\nUnique Skill: Painful Strike (Shadow of the Erdtree)\nUnique Skill: Sea of Magma\nUnique Skill: Flame Dance\nUnique Skill: Storm Kick\nUnique Skill: Unblockable Blade\nUnique Skill: Poison Spear-Hand Strike (Shadow of the Erdtree)\nUnique Skill: Madding Spear-Hand Strike (Shadow of the Erdtree)\nUnique Skill: Sleep Evermore (Shadow of the Erdtree)\nUnique Skill: Bear Witness!\nUnique Skill: Red Bear Hunt (Shadow of the Erdtree)\nUnique Skill: Deadly Poison Spray (Shadow of the Erdtree)\nUnique Skill: Rancor Shot (Shadow of the Erdtree)\nUnique Skill: Fan Shot (Shadow of the Erdtree)\nUnique Skill: Radahn's Rain\nUnique Skill: Repeating Fire (Shadow of the Erdtree)\nUnique Skill: Spinning Weapon\nUnique Skill: Fires of Slumber\nUnique Skill: Feeble Lord's Frenzied Flame (Shadow of the Erdtree)\nUnique Skill: Blindfold of Happiness (Shadow of the Erdtree)\nUnique Skill: Viper Bite\nUnique Skill: Discus Hurl (Shadow of the Erdtree)\nUnique Skill: Revenge of the Night (Shadow of the Erdtree)\nUnique Skill: Roaring Bash (Shadow of the Erdtree)\nUnique Skill: Golden Retaliation\nUnique Skill: Contagious Fury\nUnique Skill: Tongues of Fire\nUnique Skill: Flame Spit\nUnique Skill: Moore's Charge (Shadow of the Erdtree)"
               ]
             ]
           ]
@@ -14385,7 +14385,7 @@
           "tables": [
             [
               [
-                "ER Icon Weapon Smithscript Dagger.png|Smithscript Dagger; Shadow of the Erdtree|link=Smithscript Dagger\nER Icon weapon Ornamental Straight Sword.png|Ornamental Straight Sword|link=Ornamental Straight Sword\nER Icon Weapon Rellana's Twin Blades.png|Rellana's Twin Blades; Shadow of the Erdtree|link=Rellana's Twin Blades\nER Icon weapon Starscourge Greatsword.png|Starscourge Greatsword|link=Starscourge Greatsword\nER Icon Weapon Greatsword of Radahn.png|Greatsword of; Radahn (Lord); Shadow of the Erdtree|link=Greatsword of Radahn (Lord)\nER Icon Weapon Greatsword of Radahn.png|Greatsword of; Radahn (Light); Shadow of the Erdtree|link=Greatsword of Radahn (Light)\nER Icon Weapon Falx.png|Falx; Shadow of the Erdtree|link=Falx\nER Icon Weapon Dancing Blade of Ranah.png|Dancing Blade; of Ranah; Shadow of the Erdtree|link=Dancing Blade of Ranah\nER Icon Weapon Horned Warrior's Sword.png|Horned Warrior's Sword; Shadow of the Erdtree|link=Horned Warrior's Sword\n\nER Icon Weapon Backhand Blade.png|Backhand Blade; Shadow of the Erdtree|link=Backhand Blade\nER Icon Weapon Smithscript Cirque.png|Smithscript Cirque; Shadow of the Erdtree|link=Smithscript Cirque\nER Icon Weapon Curseblade's Cirque.png|Curseblade's Cirque; Shadow of the Erdtree|link=Curseblade's Cirque\nER Icon Weapon Death Knight's Twin Axes.png|Death Knight's; Twin Axes; Shadow of the Erdtree|link=Death Knight's Twin Axes\n<!--ER Detailed Appearance Tattoo-Mark 1.png|Unarmed|link=Unarmed\nER Icon weapon Caestus.png|Caestus|link=Caestus\nER Icon weapon Spiked Caestus.png|Spiked Caestus|link=Spiked Caestus\nER Icon weapon Katar.png|Katar|link=Katar\nER Icon Weapon Pata.png|Pata; Shadow of the Erdtree|link=Pata\nER Icon weapon Iron Ball.png|Iron Ball|link=Iron Ball\nER Icon weapon Star Fist.png|Star Fist|link=Star Fist\n\nER Icon weapon Clinging Bone.png|Clinging Bone|link=Clinging Bone\nER Icon weapon Veteran's Prosthesis.png|Veteran's; Prosthesis|link=Veteran's Prosthesis\nER Icon weapon Cipher Pata.png|Cipher Pata|link=Cipher Pata\nER Icon Weapon Poisoned Hand.png|Poisoned Hand; Shadow of the Erdtree|link=Poisoned Hand\nER Icon Weapon Madding Hand.png|Madding Hand; Shadow of the Erdtree|link=Madding Hand (weapon)\nER Icon Weapon Thiollier's Hidden Needle.png|Thiollier's; Hidden Needle; Shadow of the Erdtree|link=Thiollier's Hidden Needle\nER Icon Weapon Golem Fist.png|Golem Fist; Shadow of the Erdtree|link=Golem Fist\nER Icon Weapon Dryleaf Arts.png|Dryleaf Arts; Shadow of the Erdtree|link=Dryleaf Arts\nER Icon Weapon Dane's Footwork.png|Dane's Footwork; Shadow of the Erdtree|link=Dane's Footwork\nER Icon weapon Hookclaws.png|Hookclaws|link=Hookclaws\nER Icon weapon Bloodhound Claws.png|Bloodhound Claws|link=Bloodhound Claws\nER Icon weapon Venomous Fang.png|Venomous Fang|link=Venomous Fang\nER Icon weapon Raptor Talons.png|Raptor Talons|link=Raptor Talons\nER Icon Weapon Claws of Night.png|Claws of Night; Shadow of the Erdtree|link=Claws of Night\nER Icon Weapon Beast Claw.png|Beast Claw; Shadow of the Erdtree|link=Beast Claw (weapon)\nER Icon Weapon Red Bear's Claw.png|Red Bear's Claw; Shadow of the Erdtree|link=Red Bear's Claw\nER Icon Weapon Firespark Perfume Bottle.png|Firespark; Perfume Bottle; Shadow of the Erdtree|link=Firespark Perfume Bottle\nER Icon Weapon Lightning Perfume Bottle.png|Lightning; Perfume Bottle; Shadow of the Erdtree|link=Lightning Perfume Bottle\nER Icon Weapon Chilling Perfume Bottle.png|Chilling; Perfume Bottle; Shadow of the Erdtree|link=Chilling Perfume Bottle\nER Icon Weapon Frenzyflame Perfume Bottle.png|Frenzyflame; Perfume Bottle; Shadow of the Erdtree|link=Frenzyflame Perfume Bottle\nER Icon Weapon Deadly Poison Perfume Bottle.png|Deadly Poison; Perfume Bottle; Shadow of the Erdtree|link=Deadly Poison Perfume Bottle"
+                "Smithscript Dagger (Shadow of the Erdtree)\nOrnamental Straight Sword\nRellana's Twin Blades (Shadow of the Erdtree)\nStarscourge Greatsword\nGreatsword of Radahn (Lord) (Shadow of the Erdtree)\nGreatsword of Radahn (Light) (Shadow of the Erdtree)\nFalx (Shadow of the Erdtree)\nDancing Blade of Ranah (Shadow of the Erdtree)\nHorned Warrior's Sword (Shadow of the Erdtree)\nBackhand Blade (Shadow of the Erdtree)\nSmithscript Cirque (Shadow of the Erdtree)\nCurseblade's Cirque (Shadow of the Erdtree)\nDeath Knight's Twin Axes (Shadow of the Erdtree)\nUnarmed\nCaestus\nSpiked Caestus\nKatar\nPata (Shadow of the Erdtree)\nIron Ball\nStar Fist\nClinging Bone\nVeteran's Prosthesis\nCipher Pata\nPoisoned Hand (Shadow of the Erdtree)\nMadding Hand (Shadow of the Erdtree)\nThiollier's Hidden Needle (Shadow of the Erdtree)\nGolem Fist (Shadow of the Erdtree)\nDryleaf Arts (Shadow of the Erdtree)\nDane's Footwork (Shadow of the Erdtree)\nHookclaws\nBloodhound Claws\nVenomous Fang\nRaptor Talons\nClaws of Night (Shadow of the Erdtree)\nBeast Claw (Shadow of the Erdtree)\nRed Bear's Claw (Shadow of the Erdtree)\nFirespark Perfume Bottle (Shadow of the Erdtree)\nLightning Perfume Bottle (Shadow of the Erdtree)\nChilling Perfume Bottle (Shadow of the Erdtree)\nFrenzyflame Perfume Bottle (Shadow of the Erdtree)\nDeadly Poison Perfume Bottle (Shadow of the Erdtree)"
               ]
             ]
           ]
@@ -16356,177 +16356,177 @@
           "tables": [
             [
               [
-                "ER Site of Grace Table of Lost Grace.png|Table of Lost Grace"
+                "Table of Lost Grace"
               ]
             ],
             [
               [
-                "ER Site of Grace First Step.png|The First Step\nER Site of Grace Church of Elleh.png|Church of Elleh\nER Site of Grace Gatefront.png|Gatefront\nER Site of Grace Waypoint Ruins Cellar 2.png|Waypoint Ruins Cellar\nER Site of Grace Artist's Shack.png|Artist's Shack\n\nER Site of Grace Third Church of Marika.png|Third Church of Marika\nER Site of Grace Fort Haight West.png|Fort Haight West\nER Site of Grace Agheel Lake South.png|Agheel Lake South\nER Site of Grace Agheel Lake North.png|Agheel Lake North\nER Site of Grace Church of Dragon Communion.png|Church of Dragon Communion\n\nER Site of Grace Seaside Ruins.png|Seaside Ruins\nER Site of Grace Mistwood Outskirts.png|Mistwood Outskirts\nER Site of Grace Murkwater Coast.png|Murkwater Coast\nER Site of Grace Summonwater Village Outskirts.png|Summonwater Village Outskirts\nER Site of Grace Stormfoot Catacombs.png|Stormfoot Catacombs\n\nER Site of Grace Murkwater Catacombs.png|Murkwater Catacombs\nER Site of Grace Groveside Cave.png|Groveside Cave\nER Site of Grace Coastal Cave.png|Coastal Cave\nER Site of Grace Murkwater Cave.png|Murkwater Cave\nER Site of Grace Highroad Cave.png|Highroad Cave\n\nER Site of Grace Limgrave Tunnels.png|Limgrave Tunnels"
+                "The First Step\nChurch of Elleh\nGatefront\nWaypoint Ruins Cellar\nArtist's Shack\nThird Church of Marika\nFort Haight West\nAgheel Lake South\nAgheel Lake North\nChurch of Dragon Communion\nSeaside Ruins\nMistwood Outskirts\nMurkwater Coast\nSummonwater Village Outskirts\nStormfoot Catacombs\nMurkwater Catacombs\nGroveside Cave\nCoastal Cave\nMurkwater Cave\nHighroad Cave\nLimgrave Tunnels"
               ]
             ],
             [
               [
-                "ER Site of Grace Cave of Knowledge.png|Cave of Knowledge\nER Site of Grace Stranded Graveyard.png|Stranded Graveyard"
+                "Cave of Knowledge\nStranded Graveyard"
               ]
             ],
             [
               [
-                "ER Site of Grace Stormhill Shack.png|Stormhill Shack\nER Site of Grace Castleward Tunnel.png|Castleward Tunnel\nER Site of Grace Margit, the Fell Omen.png|Margit, the Fell Omen\nER Site of Grace Warmaster's Shack.png|Warmaster's Shack\nER Site of Grace Saintsbridge.png|Saintsbridge\n\nER Site of Grace Deathtouched Catacombs.png|Deathtouched Catacombs\nER Site of Grace Limgrave Tower Bridge.png|Limgrave Tower Bridge\nER Site of Grace Divine Tower of Limgrave.png|Divine Tower of Limgrave"
+                "Stormhill Shack\nCastleward Tunnel\nMargit, the Fell Omen\nWarmaster's Shack\nSaintsbridge\nDeathtouched Catacombs\nLimgrave Tower Bridge\nDivine Tower of Limgrave"
               ]
             ],
             [
               [
-                "ER Site of Grace Church of Pilgrimage.png|Church of Pilgrimage\nER Site of Grace Castle Morne Rampart.png|Castle Morne Rampart\nER Site of Grace Tombsward.png|Tombsward\nER Site of Grace South of the Lookout Tower.png|South of the Lookout Tower\nER Site of Grace Ailing Village Outskirts.png|Ailing Village Outskirts\nER Site of Grace Beside the Crater-Pocked Glade.png|Beside the Crater-Pocked Glade\n\nER Site of Grace Isolated Merchant's Shack 1.png|Isolated Merchant's Shack\nER Site of Grace Fourth Church of Marika.png|Fourth Church of Marika\nER Site of Grace Bridge of Sacrifice.png|Bridge of Sacrifice\nER Site of Grace Castle Morne Lift.png|Castle Morne Lift\nER Site of Grace Behind the Castle.png|Behind the Castle\n\nER Site of Grace Beside the Rampart Gaol.png|Beside the Rampart Gaol\nER Site of Grace Morne Moangrave.png|Morne Moangrave\nER Site of Grace Impaler's Catacombs.png|Impaler's Catacombs\nER Site of Grace Tombsward Catacombs.png|Tombsward Catacombs\nER Site of Grace Earthbore Cave.png|Earthbore Cave\n\nER Site of Grace Tombsward Cave.png|Tombsward Cave\nER Site of Grace Morne Tunnel.png|Morne Tunnel"
+                "Church of Pilgrimage\nCastle Morne Rampart\nTombsward\nSouth of the Lookout Tower\nAiling Village Outskirts\nBeside the Crater-Pocked Glade\nIsolated Merchant's Shack\nFourth Church of Marika\nBridge of Sacrifice\nCastle Morne Lift\nBehind the Castle\nBeside the Rampart Gaol\nMorne Moangrave\nImpaler's Catacombs\nTombsward Catacombs\nEarthbore Cave\nTombsward Cave\nMorne Tunnel"
               ]
             ],
             [
               [
-                "ER Site of Grace Stormveil Main Gate.png|Stormveil Main Gate\nER Site of Grace Gateside Chamber.png|Gateside Chamber\nER Site of Grace Stormveil Cliffside.png|Stormveil Cliffside\nER Site of Grace Rampart Tower.png|Rampart Tower\nER Site of Grace Liftside Chamber.png|Liftside Chamber\nER Site of Grace Secluded Cell.png|Secluded Cell\nER Site of Grace Godrick the Grafted.png|Godrick the Grafted"
+                "Stormveil Main Gate\nGateside Chamber\nStormveil Cliffside\nRampart Tower\nLiftside Chamber\nSecluded Cell\nGodrick the Grafted"
               ]
             ],
             [
               [
-                "ER Site of Grace Lake-Facing Cliffs.png|Lake-Facing Cliffs\nER Site of Grace Liurnia Lake Shore.png|Liurnia Lake Shore\nER Site of Grace Laskyar Ruins.png|Laskyar Ruins\nER Site of Grace Scenic Isle.png|Scenic Isle\nER Site of Grace Academy Gate Town.png|Academy Gate Town\nER Site of Grace South Raya Lucaria Gate.png|South Raya Lucaria Gate\nER Site of Grace Main Academy Gate.png|Main Academy Gate\nER Site of Grace Liurnia Highway South.png|Liurnia Highway South\nER Site of Grace Liurnia Highway North.png|Liurnia Highway North\nER Site of Grace Gate Town Bridge.png|Gate Town Bridge\nER Site of Grace Artist's Shack (Liurnia).png|Artist's Shack\nER Site of Grace Eastern Liurnia Lake Shore.png|Eastern Liurnia Lake Shore\nER Site of Grace Jarburg.png|Jarburg\nER Site of Grace Ranni's Chamber.png|Ranni's Chamber\nER Site of Grace Eastern Tableland.png|Eastern Tableland\nER Site of Grace Cathedral of Vows.png|Church of Vows\nER Site of Grace Ruined Labyrinth.png|Ruined Labyrinth\nER Site of Grace Mausoleum Compound.png|Mausoleum Compound\nER Site of Grace Slumbering Wolf's Shack.png|Slumbering Wolf's Shack\nER Site of Grace Boilprawn Shack.png|Boilprawn Shack\nER Site of Grace Fallen Ruins on the Lake.png|Fallen Ruins of the Lake\nER Site of Grace Folly on the Lake.png|Folly on the Lake\nER Site of Grace Village of the Albinaurics.png|Village of the Albinaurics\nER Site of Grace Converted Tower.png|Converted Tower\nER Site of Grace Revenger's Shack.png|Revenger's Shack\nER Site of Grace Temple Quarter.png|Temple Quarter\nER Site of Grace Crystalline Woods.png|Crystalline Woods\nER Site of Grace Foot of the Four Belfries.png|Foot of the Four Belfries\nER Site of Grace The Four Belfries.png|The Four Belfries\nER Site of Grace Sorcerer's Isle.png|Sorcerer's Isle\nER Site of Grace East Gate Bridge Trestle.png|East Gate Bridge Trestle\nER Site of Grace Gate Town North.png|Gate Town North\nER Site of Grace Northern Liurnia Lake Shore.png|Northern Liurnia Lake Shore\nER Site of Grace Road to the Manor.png|Road to the Manor\nER Site of Grace Main Caria Manor Gate.png|Main Caria Manor Gate\nER Site of Grace Manor Upper Level.png|Manor Upper Level\nER Site of Grace Manor Lower Level.png|Manor Lower Level\nER Site of Grace Royal Moongazing Grounds.png|Royal Moongazing Grounds\nER Site of Grace Ranni's Rise.png|Ranni's Rise\nER Site of Grace Behind Caria Manor.png|Behind Caria Manor\nER Site of Grace The Ravine.png|The Ravine\nER Site of Grace Ravine-Veiled Village.png|Ravine-Veiled Village\nER Site of Grace Cliffbottom Catacombs.png|Cliffbottom Catacombs\nER Site of Grace Road's End Catacombs.png|Road's End Catacombs\nER Site of Grace Black Knife Catacombs.png|Black Knife Catacombs\nER Site of Grace Stillwater Cave.png|Stillwater Cave\nER Site of Grace Lakeside Crystal Cave.png|Lakeside Crystal Cave\nER Site of Grace Academy Crystal Cave.png|Academy Crystal Cave\nER Site of Grace Raya Lucaria Crystal Tunnel.png|Raya Lucaria Crystal Tunnel\nER Site of Grace Study Hall Entrance.png|Study Hall Entrance\nER Site of Grace Liurnia Tower Bridge.png|Liurnia Tower Bridge\nER Site of Grace Divine Tower of Liurnia.png|Divine Tower of Liurnia"
+                "Lake-Facing Cliffs\nLiurnia Lake Shore\nLaskyar Ruins\nScenic Isle\nAcademy Gate Town\nSouth Raya Lucaria Gate\nMain Academy Gate\nLiurnia Highway South\nLiurnia Highway North\nGate Town Bridge\nArtist's Shack\nEastern Liurnia Lake Shore\nJarburg\nRanni's Chamber\nEastern Tableland\nChurch of Vows\nRuined Labyrinth\nMausoleum Compound\nSlumbering Wolf's Shack\nBoilprawn Shack\nFallen Ruins of the Lake\nFolly on the Lake\nVillage of the Albinaurics\nConverted Tower\nRevenger's Shack\nTemple Quarter\nCrystalline Woods\nFoot of the Four Belfries\nThe Four Belfries\nSorcerer's Isle\nEast Gate Bridge Trestle\nGate Town North\nNorthern Liurnia Lake Shore\nRoad to the Manor\nMain Caria Manor Gate\nManor Upper Level\nManor Lower Level\nRoyal Moongazing Grounds\nRanni's Rise\nBehind Caria Manor\nThe Ravine\nRavine-Veiled Village\nCliffbottom Catacombs\nRoad's End Catacombs\nBlack Knife Catacombs\nStillwater Cave\nLakeside Crystal Cave\nAcademy Crystal Cave\nRaya Lucaria Crystal Tunnel\nStudy Hall Entrance\nLiurnia Tower Bridge\nDivine Tower of Liurnia"
               ]
             ],
             [
               [
-                "ER Site of Grace East Raya Lucaria Gate.png|East Raya Lucaria Gate\nER Site of Grace Bellum Church.png|Bellum Church\nER Site of Grace Grand Lift of Dectus.png|Grand Lift of Dectus\nER Site of Grace Frenzied Flame Village Outskirts.png|Frenzied Flame Village Outskirts\nER Site of Grace Church of Inhibition.png|Church of Inhibition"
+                "East Raya Lucaria Gate\nBellum Church\nGrand Lift of Dectus\nFrenzied Flame Village Outskirts\nChurch of Inhibition"
               ]
             ],
             [
               [
-                "ER Site of Grace Ruin-Strewn Precipice.png|Ruin-Strewn Precipice\nER Site of Grace Ruin-Strewn Precipice Overlook.png|Ruin-Strewn Precipice Overlook\nER Site of Grace Magma Wyrm Makar.png|Magma Wyrm Makar"
+                "Ruin-Strewn Precipice\nRuin-Strewn Precipice Overlook\nMagma Wyrm Makar"
               ]
             ],
             [
               [
-                "ER Site of Grace Moonlight Altar.png|Moonlight Altar\nER Site of Grace Cathedral of Manus Celes.png|Cathedral of Manus Celes\nER Site of Grace Altar South.png|Altar South"
+                "Moonlight Altar\nCathedral of Manus Celes\nAltar South"
               ]
             ],
             [
               [
-                "ER Site of Grace Church of the Cuckoo.png|Church of the Cuckoo\nER Site of Grace Schoolhouse Classroom.png|Schoolhouse Classroom\nER Site of Grace Debate Parlor.png|Debate Parlor\nER Site of Grace Raya Lucaria Grand Library.png|Raya Lucaria Grand Library"
+                "Church of the Cuckoo\nSchoolhouse Classroom\nDebate Parlor\nRaya Lucaria Grand Library"
               ]
             ],
             [
               [
-                "ER Site of Grace Abandoned Coffin.png|Abandoned Coffin\nER Site of Grace Erdtree-Gazing Hill.png|Erdtree-Gazing Hill\nER Site of Grace Altus Plateau.png|Altus Plateau\nER Site of Grace Altus Highway Junction.png|Altus Highway Junction\nER Site of Grace Forest-Spanning Greatbridge.png|Forest-Spanning Greatbridge\nER Site of Grace Bower of Bounty.png|Bower of Bounty\nER Site of Grace Windmill Village.png|Windmill Village\nER Site of Grace Windmill Heights.png|Windmill Heights\nER Site of Grace Road of Iniquity Side Path.png|Road of Iniquity Side Path\nER Site of Grace Rampartside Path.png|Rampartside Path\nER Site of Grace Shaded Castle Ramparts.png|Shaded Castle Ramparts\nER Site of Grace Shaded Castle Inner Gate.png|Shaded Castle Inner Gate\nER Site of Grace Castellan's Hall.png|Castellan's Hall\nER Site of Grace Unsightly Catacombs.png|Unsightly Catacombs\nER Site of Grace Sainted Hero's Grave.png|Sainted Hero's Grave\nER Site of Grace Sage's Cave.png|Sage's Cave\nER Site of Grace Perfumer's Grotto.png|Perfumer's Grotto\nER Site of Grace Old Altus Tunnel.png|Old Altus Tunnel\nER Site of Grace Altus Tunnel.png|Altus Tunnel"
+                "Abandoned Coffin\nErdtree-Gazing Hill\nAltus Plateau\nAltus Highway Junction\nForest-Spanning Greatbridge\nBower of Bounty\nWindmill Village\nWindmill Heights\nRoad of Iniquity Side Path\nRampartside Path\nShaded Castle Ramparts\nShaded Castle Inner Gate\nCastellan's Hall\nUnsightly Catacombs\nSainted Hero's Grave\nSage's Cave\nPerfumer's Grotto\nOld Altus Tunnel\nAltus Tunnel"
               ]
             ],
             [
               [
-                "ER Site of Grace Bridge of Iniquity.png|Bridge of Iniquity\nER Site of Grace First Mt Gelmir Campsite.png|First Mt.Gelmir Campsite\nER Site of Grace Ninth Mt Gelmir Campsite.png|Ninth Mt. Gelmir Campsite\nER Site of Grace Road of Iniquity.png|Road of Iniquity\nER Site of Grace Seethewater River.png|Seethewater River\nER Site of Grace Seethewater Terminus.png|Seethewater Terminus\nER Site of Grace Craftsman's Shack.png|Craftsman's Shack\nER Site of Grace Primeval Sorcerer Azur.png|Primeval Sorcerer Azur\nER Site of Grace Wyndham Catacombs.png|Wyndham Catacombs\nER Site of Grace Gelmir Hero's Grave.png|Gelmir Hero's Grave\nER Site of Grace Seethewater Cave.png|Seethewater Cave\nER Site of Grace Volcano Cave.png|Volcano Cave"
+                "Bridge of Iniquity\nFirst Mt.Gelmir Campsite\nNinth Mt. Gelmir Campsite\nRoad of Iniquity\nSeethewater River\nSeethewater Terminus\nCraftsman's Shack\nPrimeval Sorcerer Azur\nWyndham Catacombs\nGelmir Hero's Grave\nSeethewater Cave\nVolcano Cave"
               ]
             ],
             [
               [
-                "ER Site of Grace Outer Wall Phantom Tree.png|Outer Wall Phantom Tree\nER Site of Grace Minor Erdtree Church.png|Minor Erdtree Church\nER Site of Grace Outer Wall Battleground.png|Outer Wall Battleground\nER Site of Grace Hermit Merchant's Shack.png|Hermit Merchant's Shack\nER Site of Grace Capital Rampart.png|Capital Rampart\nER Site of Grace Auriza Side Tomb.png|Auriza Side Tomb\nER Site of Grace Auriza Hero's Grave.png|Auriza Hero's Grave\nER Site of Grace Sealed Tunnel.png|Sealed Tunnel\nER Site of Grace Divine Tower of West Altus- Gate.png|Divine Tower of West Altus: Gate\nER Site of Grace Divine Tower of West Altus.png|Divine Tower of West Altus"
+                "Outer Wall Phantom Tree\nMinor Erdtree Church\nOuter Wall Battleground\nHermit Merchant's Shack\nCapital Rampart\nAuriza Side Tomb\nAuriza Hero's Grave\nSealed Tunnel\nDivine Tower of West Altus: Gate\nDivine Tower of West Altus"
               ]
             ],
             [
               [
-                "ER Site of Grace Volcano Manor.png|Volcano Manor\nER Site of Grace Prison Town Church.png|Prison Town Church\nER Site of Grace Temple of Eiglay.png|Temple of Eiglay\nER Site of Grace Guest Hall.png|Guest Hall\nER Site of Grace Audience Pathway.png|Audience Pathway\nER Site of Grace Abductor Virgin.png|Abductor Virgin\nER Site of Grace Subterranean Inquisition Chamber.png|Subterranean Inquisition Chamber\nER Site of Grace Rykard, Lord of Blasphemy.png|Rykard, Lord of Blasphemy"
+                "Volcano Manor\nPrison Town Church\nTemple of Eiglay\nGuest Hall\nAudience Pathway\nAbductor Virgin\nSubterranean Inquisition Chamber\nRykard, Lord of Blasphemy"
               ]
             ],
             [
               [
-                "ER Site of Grace Erdtree Sanctuary.png|Erdtree Sanctuary\nER Site of Grace East Capital Rampart.png|East Capital Rampart\nER Site of Grace Lower Capital Church.png|Lower Capital Church\nER Site of Grace Avenue Balcony.png|Avenue Balcony\nER Site of Grace West Capital Rampart.png|West Capital Rampart\n\nER Site of Grace Queen's Bedchamber.png|Queen's Bedchamber\nER Site of Grace Fortified Manor, First Floor.png|Fortified Manor, First Floor\nER Site of Grace Divine Bridge.png|Divine Bridge\nER Site of Grace Elden Throne.png|Elden Throne"
+                "Erdtree Sanctuary\nEast Capital Rampart\nLower Capital Church\nAvenue Balcony\nWest Capital Rampart\nQueen's Bedchamber\nFortified Manor, First Floor\nDivine Bridge\nElden Throne"
               ]
             ],
             [
               [
-                "ER Site of Grace Underground Roadside.png|Underground Roadside\nER Site of Grace Forsaken Depths.png|Forsaken Depths\nER Site of Grace Leyndell Catacombs.png|Leyndell Catacombs\nER Site of Grace Frenzied Flame Proscription.png|Frenzied Flame Proscription\nER Site of Grace Cathedral of the Forsaken.png|Cathedral of the Forsaken"
+                "Underground Roadside\nForsaken Depths\nLeyndell Catacombs\nFrenzied Flame Proscription\nCathedral of the Forsaken"
               ]
             ],
             [
               [
-                "ER Site of Grace Ashen Capital East Capital Rampart.png|East Capital Rampart\nER Site of Grace Ashen Capital Leyndell, Capital of Ash.png|Leyndell, Capital of Ash\nER Site of Grace Ashen Capital Erdtree Sanctuary.png|Erdtree Sanctuary\nER Site of Grace Ashen Capital Queen's Bedchamber.png|Queen's Bedchamber\nER Site of Grace Ashen Capital Divine Bridge.png|Divine Bridge\n\nER Site of Grace Ashen Capital Elden Throne.png|Elden Throne\nER Site of Grace Ashen Capital Fractured Marika.png|Fractured Marika"
+                "East Capital Rampart\nLeyndell, Capital of Ash\nErdtree Sanctuary\nQueen's Bedchamber\nDivine Bridge\nElden Throne\nFractured Marika"
               ]
             ],
             [
               [
-                "ER Smoldering Church Grace.png|Smoldering Church\nER Rotview Balcony.png|Rotview Balcony\nER Caelem Ruins Grace.png|Caelem Ruins\nER Fort Gael North Grace.png|Fort Gael North\nER Site of Grace Smoldering Wall.png|Smoldering Wall\nER Site of Grace Caelid Highway South.png|Caelid Highway South\nER Cathedral of Dragon Communion Grace.png|Cathedral of Dragon Communion\nER Site of Grace Southern Aeonia Swamp Bank.png|Southern Aeonia Swamp Bank\nER Sellia Backstreets Grace.png|Sellia Backstreets\nER Sellia Under-Stair Grace.png|Sellia Under-Stair\nER Chair-Crypt of Sellia Grace.png|Chair-Crypt of Sellia\nER Church of the Plague Grace.png|Church of the Plague\nER Deep Siofra Well Grace.png|Deep Siofra Well\nER Site of Grace Impassable Greatbridge.png|Impassable Greatbridge\nER Chamber Outside the Plaza Grace.png|Chamber Outside the Plaza\nER Site of Grace Redmane Castle Plaza.png|Redmane Castle Plaza\nER Starscourge Radahn Grace.png|Starscourge Radahn\nER Minor Erdtree Catacombs Grace.png|Minor Erdtree Catacombs\nER Caelid Catacombs Grace.png|Caelid Catacombs\nER War-Dead Catacombs Grace.png|War-Dead Catacombs\nER Abandoned Cave Grace.png|Abandoned Cave\nER Gaol Cave Grace.png|Gaol Cave\nER Gael Tunnel Grace.png|Gael Tunnel\nER Rear Gael Tunnel Entrance Grace.png|Rear Gael Tunnel Entrance\nER Sellia Crystal Tunnel Grace.png|Sellia Crystal Tunnel"
+                "Smoldering Church\nRotview Balcony\nCaelem Ruins\nFort Gael North\nSmoldering Wall\nCaelid Highway South\nCathedral of Dragon Communion\nSouthern Aeonia Swamp Bank\nSellia Backstreets\nSellia Under-Stair\nChair-Crypt of Sellia\nChurch of the Plague\nDeep Siofra Well\nImpassable Greatbridge\nChamber Outside the Plaza\nRedmane Castle Plaza\nStarscourge Radahn\nMinor Erdtree Catacombs\nCaelid Catacombs\nWar-Dead Catacombs\nAbandoned Cave\nGaol Cave\nGael Tunnel\nRear Gael Tunnel Entrance\nSellia Crystal Tunnel"
               ]
             ],
             [
               [
-                "ER Site of Grace Aeonia Swamp Shore.png|Aeonia Swamp Shore\nER Site of Grace Astray from Caelid Highway North.png|Astray from Caelid Highway North\nER Site of Grace Heart of Aeonia.png|Heart of Aeonia\nER Site of Grace Inner Aeonia.png|Inner Aeonia"
+                "Aeonia Swamp Shore\nAstray from Caelid Highway North\nHeart of Aeonia\nInner Aeonia"
               ]
             ],
             [
               [
-                "ER Site of Grace Dragonbarrow West.png|Dragonbarrow West\nER Isolated Merchant's Shack (Dragonbarrow) Site of Grace.png|Isolated Merchant's Shack (Dragonbarrow)\nER Fort Faroth Grace.png|Fort Faroth\nER Site of Grace Dragonbarrow Fork.png|Dragonbarrow Fork\nER Lenne's Rise Grace.png|Lenne's Rise\nER Site of Grace Farum Greatbridge.png|Farum Greatbridge\nER Bestial Sanctum Grace.png|Bestial Sanctum\nER Sellia Hideaway Site of Grace.png|Sellia Hideaway\nER Dragonbarrow Cave Grace.png|Dragonbarrow Cave\nER Divine Tower of Caelid Center Grace.png|Divine Tower of Caelid: Center\nER Divine Tower of Caelid Basement Grace.png|Divine Tower of Caelid: Basement\nER Site of Grace Isolated Divine Tower.png|Isolated Divine Tower"
+                "Dragonbarrow West\nIsolated Merchant's Shack (Dragonbarrow)\nFort Faroth\nDragonbarrow Fork\nLenne's Rise\nFarum Greatbridge\nBestial Sanctum\nSellia Hideaway\nDragonbarrow Cave\nDivine Tower of Caelid: Center\nDivine Tower of Caelid: Basement\nIsolated Divine Tower"
               ]
             ],
             [
               [
-                "ER Site of Grace Forbidden Lands.png|Forbidden Lands\nER Site of Grace Grand Lift of Rold.png|Grand Lift of Rold\nER Site of Grace Hidden Path to the Haligtree.png|Hidden Path to the Haligtree\nER Site of Grace Divine Tower of East Altus Gate.png|Divine Tower of East Altus: Gate\nER Site of Grace Divine Tower of East Altus.png|Divine Tower of East Altus"
+                "Forbidden Lands\nGrand Lift of Rold\nHidden Path to the Haligtree\nDivine Tower of East Altus: Gate\nDivine Tower of East Altus"
               ]
             ],
             [
               [
-                "ER Site of Grace Zamor Ruins.png|Zamor Ruins\nER Site of Grace Ancient Snow Valley Ruins.png|Ancient Snow Valley Ruins\nER Site of Grace Freezing Lake.png|Freezing Lake\nER Site of Grace First Church of Marika.png|First Church of Marika\nER Site of Grace Whiteridge Road.png|Whiteridge Road\nER Site of Grace Snow Valley Ruins Overlook.png|Snow Valley Ruins Overlook\nER Site of Grace Castle Sol Main Gate.png|Castle Sol Main Gate\nER Site of Grace Church of the Eclipse.png|Church of the Eclipse\nER Site of Grace Castle Sol Rooftop.png|Castle Sol Rooftop\nER Site of Grace Spiritcaller Cave.png|Spiritcaller Cave"
+                "Zamor Ruins\nAncient Snow Valley Ruins\nFreezing Lake\nFirst Church of Marika\nWhiteridge Road\nSnow Valley Ruins Overlook\nCastle Sol Main Gate\nChurch of the Eclipse\nCastle Sol Rooftop\nSpiritcaller Cave"
               ]
             ],
             [
               [
-                "ER Site of Grace Giants' Gravepost.png|Giants' Gravepost\nER Site of Grace Church of Repose.png|Church of Repose\nER Site of Grace Foot of the Forge.png|Foot of the Forge\nER Site of Grace Fire Giant.png|Fire Giant\nER Site of Grace Forge of the Giants.png|Forge of the Giants\nER Site of Grace Giants' Mountaintops Catacombs.png|Giants' Mountaintop Catacombs\nER Site of Grace Giant-Conquering Hero's Grave.png|Giant-Conquering Hero's Grave"
+                "Giants' Gravepost\nChurch of Repose\nFoot of the Forge\nFire Giant\nForge of the Giants\nGiants' Mountaintop Catacombs\nGiant-Conquering Hero's Grave"
               ]
             ],
             [
               [
-                "ER Site of Grace Consecrated Snowfield.png|Consecrated Snowfield\nER Site of Grace Inner Consecrated Snowfield.png|Inner Consecrated Snowfield\nER Site of Grace Ordina Liturgical Town Day.png|Ordina Liturgical Town\nER Site of Grace Apostate Derelict.png|Apostate Derelict\nER Site of Grace Consecrated Snowfield Catacombs.png|Consecrated Snowfield Catacombs\nER Site of Grace Cave of the Forlorn.png|Cave of the Forlorn\nER Site of Grace Yelough Anix Tunnel.png|Yelough Anix Tunnel"
+                "Consecrated Snowfield\nInner Consecrated Snowfield\nOrdina Liturgical Town\nApostate Derelict\nConsecrated Snowfield Catacombs\nCave of the Forlorn\nYelough Anix Tunnel"
               ]
             ],
             [
               [
-                "ER Site of Grace Haligtree Canopy.png|Haligtree Canopy\nER Site of Grace Haligtree Town.png|Haligtree Town\nER Site of Grace Haligtree Town Plaza.png|Haligtree Town Plaza\nER Site of Grace Haligtree Promenade.png|Haligtree Promenade"
+                "Haligtree Canopy\nHaligtree Town\nHaligtree Town Plaza\nHaligtree Promenade"
               ]
             ],
             [
               [
-                "ER Site of Grace Prayer Room.png|Prayer Room\nER Site of Grace Elphael Inner Wall.png|Elphael Inner Wall\nER Site of Grace Drainage Channel.png|Drainage Channel\nER Site of Grace Haligtree Roots.png|Haligtree Roots\nER Site of Grace Malenia, Goddess of Rot.png|Malenia, Goddess of Rot"
+                "Prayer Room\nElphael Inner Wall\nDrainage Channel\nHaligtree Roots\nMalenia, Goddess of Rot"
               ]
             ],
             [
               [
-                "ER Site of Grace Ainsel River Well Depths.png|Ainsel River Well Depths\nER Site of Grace Ainsel River Sluice Gate.png|Ainsel River Sluice Gate\nER Site of Grace Ainsel River Downstream.png|Ainsel River Downstream\nER Site of Grace Dragonkin Soldier of Nokstella.png|Dragonkin Soldier of Nokstella\nER Site of Grace Astel, Naturalborn of the Void.png|Astel, Naturalborn of the Void"
+                "Ainsel River Well Depths\nAinsel River Sluice Gate\nAinsel River Downstream\nDragonkin Soldier of Nokstella\nAstel, Naturalborn of the Void"
               ]
             ],
             [
               [
-                "ER Site of Grace Ainsel River Main.png|Ainsel River Main\nER Site of Grace Nokstella, Eternal City.png|Nokstella, Eternal City\nER Site of Grace Nokstella Waterfall Basin.png|Nokstella Waterfall Basin"
+                "Ainsel River Main\nNokstella, Eternal City\nNokstella Waterfall Basin"
               ]
             ],
             [
               [
-                "ER Site of Grace Lake of Rot Shoreside.png|Lake of Rot Shoreside\nER Site of Grace Grand Cloister.png|Grand Cloister"
+                "Lake of Rot Shoreside\nGrand Cloister"
               ]
             ],
             [
               [
-                "ER Site of Grace Nokron, Eternal City.png|Nokron, Eternal City\nER Site of Grace Mimic Tear.png|Mimic Tear\nER Site of Grace Ancestral Woods.png|Ancestral Woods\nER Site of Grace Night's Sacred Ground.png|Night's Sacred Ground\nER Site of Grace Aqueduct-Facing Cliffs.png|Aqueduct-Facing Cliffs"
+                "Nokron, Eternal City\nMimic Tear\nAncestral Woods\nNight's Sacred Ground\nAqueduct-Facing Cliffs"
               ]
             ],
             [
               [
-                "ER Site of Grace Siofra River Well Depths.png|Siofra River Well Depths\nER Site of Grace Siofra River Bank.png|Siofra River Bank\nER Site of Grace Worshippers' Woods.png|Worshippers' Woods\nER Site of Grace Below the Well.png|Below the Well"
+                "Siofra River Well Depths\nSiofra River Bank\nWorshippers' Woods\nBelow the Well"
               ]
             ],
             [
               [
-                "ER Site of Grace Palace Approach Ledge-Road.png|Palace Approach Ledge-Road\nER Site of Grace Dynasty Mausoleum Entrance.png|Dynasty Mausoleum Entrance\nER Site of Grace Dynasty Mausoleum Midpoint.png|Dynasty Mausoleum Midpoint\nER Site of Grace Cocoon of the Empyrean.png|Cocoon of the Empyrean"
+                "Palace Approach Ledge-Road\nDynasty Mausoleum Entrance\nDynasty Mausoleum Midpoint\nCocoon of the Empyrean"
               ]
             ],
             [
               [
-                "ER Site of Grace Root-Facing Cliffs.png|Root-Facing Cliffs\nER Site of Grace Great Waterfall Crest.png|Great Waterfall Crest\nER Site of Grace Deeproot Depths.png|Deeproot Depths\nER Site of Grace The Nameless Eternal City.png|The Nameless Eternal City\nER Site of Grace Across the Roots.png|Across the Roots\nER Site of Grace Prince of Death's Throne.png|Prince of Death's Throne"
+                "Root-Facing Cliffs\nGreat Waterfall Crest\nDeeproot Depths\nThe Nameless Eternal City\nAcross the Roots\nPrince of Death's Throne"
               ]
             ],
             [
               [
-                "ER Site of Grace Crumbling Beast Grave.png|Crumbling Beast Grave\nER Site of Grace Crumbling Beast Grave Depths.png|Crumbling Beast Grave Depths\nER Site of Grace Tempest-Facing Balcony.png|Tempest-Facing Balcony\nER Site of Grace Dragon Temple.png|Dragon Temple\nER Site of Grace Dragon Temple Transept.png|Dragon Temple Transept\n\nER Site of Grace Dragon Temple Altar.png|Dragon Temple Altar\nER Site of Grace Dragon Temple Lift.png|Dragon Temple Lift\nER Site of Grace Dragon Temple Rooftop.png|Dragon Temple Rooftop\nER Site of Grace Beside the Great Bridge.png|Beside the Great Bridge\nER Site of Grace Dragonlord Placidusax.png|Dragonlord Placidusax\n\nER Site of Grace Maliketh, the Black Blade.png|Maliketh, the Black Blade"
+                "Crumbling Beast Grave\nCrumbling Beast Grave Depths\nTempest-Facing Balcony\nDragon Temple\nDragon Temple Transept\nDragon Temple Altar\nDragon Temple Lift\nDragon Temple Rooftop\nBeside the Great Bridge\nDragonlord Placidusax\nMaliketh, the Black Blade"
               ]
             ]
           ]
@@ -16556,92 +16556,92 @@
           "tables": [
             [
               [
-                "ER Site of Grace Gravesite Plain 2.png|Gravesite Plain\nER Site of Grace Scorched Ruins.png|Scorched Ruins\nER Site of Grace Three-Path Cross.png|Three-Path Cross\nER Site of Grace Greatbridge, North.png|Greatbridge, North\nER Site of Grace Main Gate Cross.png|Main Gate Cross\n\nER Site of Grace Cliffroad Terminus.png|Cliffroad Terminus\nER Site of Grace Castle Front.png|Castle Front\nER Site of Grace Pillar Path Cross.png|Pillar Path Cross\nER Site of Grace Pillar Path Waypoint.png|Pillar Path Waypoint\nER Site of Grace Ellac River Cave.png|Ellac River Cave\n\nER Site of Grace Ellac River Downstream.png|Ellac River Downstream\nER Site of Grace Fog Rift Catacombs.png|Fog Rift Catacombs\nER Site of Grace Belurat Gaol.png|Belurat Gaol\nER Site of Grace Ruined Forge Lava Intake.png|Ruined Forge Lava Intake\nER Site of Grace Rivermouth Cave.png|Rivermouth Cave\n\nER Site of Grace Dragon's Pit.png|Dragon's Pit\nER Site of Grace Dragon's Pit Terminus.png|Dragon's Pit Terminus"
+                "Gravesite Plain\nScorched Ruins\nThree-Path Cross\nGreatbridge, North\nMain Gate Cross\nCliffroad Terminus\nCastle Front\nPillar Path Cross\nPillar Path Waypoint\nEllac River Cave\nEllac River Downstream\nFog Rift Catacombs\nBelurat Gaol\nRuined Forge Lava Intake\nRivermouth Cave\nDragon's Pit\nDragon's Pit Terminus"
               ]
             ],
             [
               [
-                "ER Site of Grace Castle Ensis Checkpoint.png|Castle Ensis Checkpoint\nER Site of Grace Castle-Lord's Chamber.png|Castle-Lord's Chamber\nER Site of Grace Ensis Moongazing Grounds.png|Ensis Moongazing Grounds"
+                "Castle Ensis Checkpoint\nCastle-Lord's Chamber\nEnsis Moongazing Grounds"
               ]
             ],
             [
               [
-                "ER Site of Grace Cerulean Coast.png|Cerulean Coast\nER Site of Grace Cerulean Coast West.png|Cerulean Coast West\nER Site of Grace Cerulean Coast Cross.png|Cerulean Coast Cross\nER Site of Grace The Fissure.png|The Fissure\nER Site of Grace Finger Ruins of Rhia.png|Finger Ruins of Rhia"
+                "Cerulean Coast\nCerulean Coast West\nCerulean Coast Cross\nThe Fissure\nFinger Ruins of Rhia"
               ]
             ],
             [
               [
-                "ER Site of Grace Charo's Hidden Grave.png|Charo's Hidden Grave\nER Site of Grace Lamenter's Gaol.png|Lamenter's Gaol"
+                "Charo's Hidden Grave\nLamenter's Gaol"
               ]
             ],
             [
               [
-                "ER Site of Grace Stone Coffin Fissure.png|Stone Coffin Fissure\nER Site of Grace Fissure Cross.png|Fissure Cross\nER Site of Grace Fissure Waypoint.png|Fissure Waypoint\nER Site of Grace Fissure Depths.png|Fissure Depths\nER Site of Grace Garden of Deep Purple.png|Garden of Deep Purple"
+                "Stone Coffin Fissure\nFissure Cross\nFissure Waypoint\nFissure Depths\nGarden of Deep Purple"
               ]
             ],
             [
               [
-                "ER Site of Grace Grand Altar of Dragon Communion.png|Grand Altar of Dragon Communion\nER Site of Grace Foot of the Jagged Peak.png|Foot of the Jagged Peak"
+                "Grand Altar of Dragon Communion\nFoot of the Jagged Peak"
               ]
             ],
             [
               [
-                "ER Site of Grace Jagged Peak Mountainside.png|Jagged Peak Mountainside\nER Site of Grace Jagged Peak Summit.png|Jagged Peak Summit\nER Site of Grace Rest of the Dread Dragon.png|Rest of the Dread Dragon"
+                "Jagged Peak Mountainside\nJagged Peak Summit\nRest of the Dread Dragon"
               ]
             ],
             [
               [
-                "ER Site of Grace Belurat, Tower Settlement.png|Belurat, Tower Settlement\nER Site of Grace Small Private Altar.png|Small Private Altar\nER Site of Grace Stagefront.png|Stagefront\nER Site of Grace Theatre of the Divine Beast.png|Theatre of the Divine Beast"
+                "Belurat, Tower Settlement\nSmall Private Altar\nStagefront\nTheatre of the Divine Beast"
               ]
             ],
             [
               [
-                "ER Site of Grace Enir-Ilim Outer Wall.png|Enir-Ilim: Outer Wall\nER Site of Grace First Rise.png|First Rise\nER Site of Grace Spiral Rise.png|Spiral Rise\nER Site of Grace Cleansing Chamber Anteroom.png|Cleansing Chamber Anteroom\nER Site of Grace Divine Gate Front Staircase.png|Divine Gate Front Staircase\n\nER Site of Grace Gate of Divinity.png|Gate of Divinity"
+                "Enir-Ilim: Outer Wall\nFirst Rise\nSpiral Rise\nCleansing Chamber Anteroom\nDivine Gate Front Staircase\nGate of Divinity"
               ]
             ],
             [
               [
-                "ER Site of Grace Viaduct Minor Tower.png|Viaduct Minor Tower\nER Site of Grace Rauh Ancient Ruins, East.png|Rauh Ancient Ruins, East\nER Site of Grace Rauh Ancient Ruins, West.png|Rauh Ancient Ruins, West\nER Site of Grace Ancient Ruins, Grand Stairway.png|Ancient Ruins, Grand Stairway\nER Site of Grace Church of the Bud, Main Entrance.png|Church of the Bud, Main Entrance\n\nER Site of Grace Church of the Bud.png|Church of the Bud"
+                "Viaduct Minor Tower\nRauh Ancient Ruins, East\nRauh Ancient Ruins, West\nAncient Ruins, Grand Stairway\nChurch of the Bud, Main Entrance\nChurch of the Bud"
               ]
             ],
             [
               [
-                "ER Site of Grace Ancient Ruins Base.png|Ancient Ruins Base\nER Site of Grace Temple Town Ruins.png|Temple Town Ruins\nER Site of Grace Ravine North.png|Ravine North\nER Site of Grace Scorpion River Catacombs.png|Scorpion River Catacombs\nER Site of Grace Taylew's Ruined Forge.png|Taylew's Ruined Forge"
+                "Ancient Ruins Base\nTemple Town Ruins\nRavine North\nScorpion River Catacombs\nTaylew's Ruined Forge"
               ]
             ],
             [
               [
-                "ER Site of Grace Highroad Cross.png|Highroad Cross\nER Site of Grace Scadu Altus, West.png|Scadu Altus, West\nER Site of Grace Moorth Ruins.png|Moorth Ruins\nER Site of Grace Moorth Highway, South.png|Moorth Highway, South\nER Site of Grace Fort of Reprimand.png|Fort of Reprimand\nER Site of Grace Behind the Fort of Reprimand.png|Behind the Fort of Reprimand\n\nER Site of Grace Scaduview Cross.png|Scaduview Cross\nER Site of Grace Bonny Village.png|Bonny Village\nER Site of Grace Bridge Leading to the Village.png|Bridge Leading to the Village\nER Site of Grace Church District Highroad.png|Church District Highroad\nER Site of Grace Cathedral of Manus Metyr.png|Cathedral of Manus Metyr\n\nER Site of Grace Finger Birthing Grounds.png|Finger Birthing Grounds\nER Site of Grace Castle Watering Hole.png|Castle Watering Hole\nER Site of Grace Recluses' River Upstream.png|Recluses' River Upstream\nER Site of Grace Recluses' River Downstream.png|Recluses' River Downstream\nER Site of Grace Darklight Catacombs.png|Darklight Catacombs\n\nER Site of Grace Bonny Gaol.png|Bonny Gaol\nER Site of Grace Ruined Forge of Starfall Past.png|Ruined Forge of Starfall Past"
+                "Highroad Cross\nScadu Altus, West\nMoorth Ruins\nMoorth Highway, South\nFort of Reprimand\nBehind the Fort of Reprimand\nScaduview Cross\nBonny Village\nBridge Leading to the Village\nChurch District Highroad\nCathedral of Manus Metyr\nFinger Birthing Grounds\nCastle Watering Hole\nRecluses' River Upstream\nRecluses' River Downstream\nDarklight Catacombs\nBonny Gaol\nRuined Forge of Starfall Past"
               ]
             ],
             [
               [
-                "ER Site of Grace Forsaken Graveyard.png|Forsaken Graveyard\nER Site of Grace Woodland Trail.png|Woodland Trail\nER Site of Grace Church Ruins.png|Church Ruins\nER Site of Grace Abyssal Woods.png|Abyssal Woods\nER Site of Grace Divided Falls.png|Divided Falls"
+                "Forsaken Graveyard\nWoodland Trail\nChurch Ruins\nAbyssal Woods\nDivided Falls"
               ]
             ],
             [
               [
-                "ER Site of Grace Manse Hall.png|Manse Hall\nER Site of Grace Midra's Library.png|Midra's Library\nER Site of Grace Second Floor Chamber.png|Second Floor Chamber\nER Site of Grace Discussion Chamber.png|Discussion Chamber"
+                "Manse Hall\nMidra's Library\nSecond Floor Chamber\nDiscussion Chamber"
               ]
             ],
             [
               [
-                "ER Site of Grace Shadow Keep Main Gate.png|Shadow Keep Main Gate\nER Site of Grace Main Gate Plaza.png|Main Gate Plaza"
+                "Shadow Keep Main Gate\nMain Gate Plaza"
               ]
             ],
             [
               [
-                "ER Site of Grace Church District Entrance.png|Church District Entrance\nER Site of Grace Sunken Chapel.png|Sunken Chapel\nER Site of Grace Tree-Worship Passage.png|Tree-Worship Passage\nER Site of Grace Tree-Worship Sanctum.png|Tree-Worship Sanctum"
+                "Church District Entrance\nSunken Chapel\nTree-Worship Passage\nTree-Worship Sanctum"
               ]
             ],
             [
               [
-                "ER Site of Grace Storehouse, First Floor.png|Storehouse, First Floor\nER Site of Grace Storehouse, Fourth Floor.png|Storehouse, Fourth Floor\nER Site of Grace Storehouse, Seventh Floor.png|Storehouse, Seventh Floor\nER Site of Grace Dark Chamber Entrance.png|Dark Chamber Entrance\nER Site of Grace Storehouse, Back Section.png|Storehouse, Back Section\n\nER Site of Grace Storehouse, Loft.png|Storehouse, Loft\nER Site of Grace West Rampart.png|West Rampart\nER Site of Grace Messmer's Dark Chamber.png|Messmer's Dark Chamber"
+                "Storehouse, First Floor\nStorehouse, Fourth Floor\nStorehouse, Seventh Floor\nDark Chamber Entrance\nStorehouse, Back Section\nStorehouse, Loft\nWest Rampart\nMessmer's Dark Chamber"
               ]
             ],
             [
               [
-                "ER Site of Grace Scaduview.png|Scaduview\nER Site of Grace Shadow Keep, Black Gate.png|Shadow Keep, Black Gate\nER Site of Grace Scadutree Base.png|Scadutree Base\nER Site of Grace Hinterland.png|Hinterland\nER Site of Grace Hinterland Bridge.png|Hinterland Bridge\n\nER Site of Grace Fingerstone Hill.png|Fingerstone Hill"
+                "Scaduview\nShadow Keep, Black Gate\nScadutree Base\nHinterland\nHinterland Bridge\nFingerstone Hill"
               ]
             ]
           ]

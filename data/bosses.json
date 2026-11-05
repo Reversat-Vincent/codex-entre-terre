@@ -7,16 +7,16 @@
       "https://eldenring.wiki.gg/wiki/Category:Bosses"
     ],
     "retrieved": "2026-10-31",
-    "boss_pages": 133,
-    "encounters": 302,
+    "boss_pages": 138,
+    "encounters": 314,
     "counts_by_source": {
-      "Base game": 78,
+      "Base game": 83,
       "Base game + Shadow of the Erdtree": 14,
       "Shadow of the Erdtree": 41
     },
     "encounters_by_source": {
-      "Base game": 251,
-      "Shadow of the Erdtree": 46,
+      "Base game": 261,
+      "Shadow of the Erdtree": 48,
       "Base game + Shadow of the Erdtree": 5
     },
     "counts_by_tier": {
@@ -25,7 +25,7 @@
       "Legends": 18,
       "Gods": 3,
       "Demigods": 8,
-      "Invaders and other minibosses": 14
+      "Invaders and other minibosses": 19
     },
     "flag_lists_from_bosses_page": {
       "mandatory_base_game": [
@@ -97,7 +97,7 @@
     ],
     "field_notes": {
       "source": "Per encounter: from the encounter location (wiki Navbox Locations: Realm of Shadow regions = 'Shadow of the Erdtree'), else from the boss navbox (Navbox Bosses vs Navbox Bosses Shadow). Page-level source = union of its encounters.",
-      "tier": "Group of the wiki boss navbox (matches the in-game victory banner: God / Demigod / Legend / Great Enemy / Enemy; plus invaders & minibosses).",
+      "tier": "Group of the wiki boss navbox (matches the in-game victory banner: God / Demigod / Legend / Great Enemy / Enemy; plus invaders & minibosses). The 5 NPC-invader pages added on 2026-11-05 (Anastasia, Tarnished-Eater; Mad Tongue Alberich; Moongrum, Carian Knight; Maleigh Marais, Shaded Castle Castellan; Millicent's Sisters) are in neither navbox, so their tier 'Invaders and other minibosses' is deduced from the page itself (NPC invader), not read from a navbox group.",
       "flags": "From the wiki 'Bosses' page: mandatory_base_game, required_to_access_dlc, mandatory_dlc, shardbearer, remembrance_base_game, remembrance_dlc.",
       "encounters": "One per Infobox Boss / Infobox Enemy with HP, runes or drops (a page can describe several fights / locations).",
       "hp / runes": "Text as on the wiki (may list several locations or NG+ values); *_values = all numbers found in it.",
@@ -308,6 +308,48 @@
             "Gravity Well (Academy of Raya Lucaria)",
             "Alabaster Lord's Sword (Lake of Rot or Yelough Anix Tunnel)"
           ]
+        }
+      ]
+    },
+    {
+      "name": "Anastasia, Tarnished-Eater",
+      "wiki_page": "Anastasia, Tarnished-Eater",
+      "url": "https://eldenring.wiki.gg/wiki/Anastasia,_Tarnished-Eater",
+      "source": "Base game",
+      "tier": [
+        "Invaders and other minibosses"
+      ],
+      "flags": [],
+      "summary": "Anastasia, Tarnished-Eater is an NPC invader in Elden Ring.",
+      "encounters": [
+        {
+          "name": "Anastasia, Tarnished-Eater",
+          "type": "Invader",
+          "location": "Caelid; Mt. Gelmir; Consecrated Snowfield",
+          "regions": [
+            "Caelid",
+            "Altus Plateau",
+            "Mountaintops of the Giants",
+            "Mt. Gelmir",
+            "Consecrated Snowfield"
+          ],
+          "source": "Base game",
+          "hp": "1,515-4,370",
+          "hp_values": [
+            1515,
+            4370
+          ],
+          "runes": "2,531-19,634",
+          "runes_values": [
+            2531,
+            19634
+          ],
+          "drops": [
+            "Sacred Scorpion Charm",
+            "Butchering Knife",
+            "Somber Ancient Dragon Smithing Stone"
+          ],
+          "spirit_ashes_allowed": false
         }
       ]
     },
@@ -2899,10 +2941,7 @@
           ],
           "drops": [
             "Fia's Mist"
-          ],
-          "other_infobox_fields": {
-            "og pic": "Eldenringfiachampions.jpg"
-          }
+          ]
         },
         {
           "name": "Fia's Champions – Fia's Champion",
@@ -4323,6 +4362,62 @@
       ]
     },
     {
+      "name": "Mad Tongue Alberich",
+      "wiki_page": "Mad Tongue Alberich",
+      "url": "https://eldenring.wiki.gg/wiki/Mad_Tongue_Alberich",
+      "source": "Base game",
+      "tier": [
+        "Invaders and other minibosses"
+      ],
+      "flags": [],
+      "summary": "Mad Tongue Alberich is an NPC invader in Elden Ring.",
+      "encounters": [
+        {
+          "name": "Mad Tongue Alberich",
+          "location": "Roundtable Hold",
+          "regions": [
+            "Roundtable Hold"
+          ],
+          "source": "Base game",
+          "hp": "2,387",
+          "hp_values": [
+            2387
+          ],
+          "runes": "1,562",
+          "runes_values": [
+            1562
+          ],
+          "drops": [
+            "Furlcalling Finger Remedy x1",
+            "Taunter's Tongue"
+          ],
+          "damage_negation_percent": {
+            "standard": 0,
+            "strike": 0,
+            "slash": 0,
+            "pierce": 0,
+            "magic": 0,
+            "fire": 0,
+            "lightning": -25,
+            "holy": 0
+          },
+          "status_resistance": {
+            "poison": 103,
+            "scarlet_rot": 103,
+            "blood_loss": 103,
+            "frostbite": 103,
+            "sleep": "Immune",
+            "madness": "Immune",
+            "death_blight": "Immune"
+          }
+        }
+      ],
+      "fight_notes": [
+        "[Notes]",
+        "A corpse holding Alberich's Set can be found on the first floor of the Fortified Manor, in the same hall where Alberich invades in Roundtable Hold."
+      ]
+    },
+    {
       "name": "Magma Wyrm",
       "wiki_page": "Magma Wyrm",
       "url": "https://eldenring.wiki.gg/wiki/Magma_Wyrm",
@@ -4456,6 +4551,38 @@
         "An ancient troll warrior and hero of the war against the Giants, who became a Magma Wyrm after partaking in Dragon Communion. It is encountered at the eastern end of the frozen river in Consecrated Snowfield, north-east of the Inner Consecrated Snowfield Site of Grace.",
         "Its attacks can inflict damage on the Crabs and Land Octopus nearby, which will cause them to aggro against it.",
         "After defeating this boss, Theodorix's Magma can be obtained at the Cathedral of Dragon Communion in Caelid for 2 Dragon Hearts."
+      ]
+    },
+    {
+      "name": "Maleigh Marais, Shaded Castle Castellan",
+      "wiki_page": "Maleigh Marais, Shaded Castle Castellan",
+      "url": "https://eldenring.wiki.gg/wiki/Maleigh_Marais,_Shaded_Castle_Castellan",
+      "source": "Base game",
+      "tier": [
+        "Invaders and other minibosses"
+      ],
+      "flags": [],
+      "summary": "Maleigh Marais, Shaded Castle Castellan is a hostile NPC in Elden Ring.",
+      "encounters": [
+        {
+          "name": "Maleigh Marais, Shaded Castle Castellan",
+          "location": "West of the Shaded Castle",
+          "regions": [
+            "Altus Plateau"
+          ],
+          "source": "Base game",
+          "hp": "1,717",
+          "hp_values": [
+            1717
+          ],
+          "runes": "4,800",
+          "runes_values": [
+            4800
+          ],
+          "drops": [
+            "Antspur Rapier, Marais Mask, Marais Robe"
+          ]
+        }
       ]
     },
     {
@@ -4777,6 +4904,201 @@
       ]
     },
     {
+      "name": "Millicent's Sisters",
+      "wiki_page": "Millicent's Sisters",
+      "url": "https://eldenring.wiki.gg/wiki/Millicent's_Sisters",
+      "source": "Base game",
+      "tier": [
+        "Invaders and other minibosses"
+      ],
+      "flags": [],
+      "summary": "Millicent's sisters are adopted daughters of Sage Gowry and siblings of Millicent. These red haired girls once sprouted as buds from the Scarlet Aeonia found within the heart of Caelid. They all wear the Traveler's Set and use weapons and skills associated with either aspects of their inadvertent mother Malenia, both her role as the unalloyed blade of Miquella and her looming transformation into the goddess of rot. They all seek to aid their adoptive father in cultivating Millicent into a scarlet valkyrie.",
+      "encounters": [
+        {
+          "name": "Millicent's Sisters",
+          "type": "Adversaries (optional); Cooperators (optional)",
+          "location": "Swamp of Aeonia (Polyanna); Elphael, Brace of the Haligtree",
+          "regions": [
+            "Caelid",
+            "Miquella's Haligtree",
+            "Elphael, Brace of the Haligtree"
+          ],
+          "source": "Base game",
+          "hp": null,
+          "hp_values": [],
+          "runes": "18,932",
+          "runes_values": [
+            18932
+          ],
+          "drops": [
+            "Rotten Winged Sword Insignia"
+          ]
+        },
+        {
+          "name": "Millicent's Sisters – Polyanna, Youngest Sister",
+          "variant": "Polyanna, Youngest Sister",
+          "location": "Swamp of Aeonia; Elphael, Brace of the Haligtree",
+          "regions": [
+            "Caelid",
+            "Miquella's Haligtree",
+            "Elphael, Brace of the Haligtree"
+          ],
+          "source": "Base game",
+          "hp": "5533",
+          "hp_values": [
+            5533
+          ],
+          "runes": null,
+          "runes_values": [],
+          "drops": [],
+          "poise": 100,
+          "other_infobox_fields": {
+            "level": 18,
+            "attributes": "----",
+            "vigor": 22,
+            "mind": 9,
+            "endurance": 11,
+            "strength": 10,
+            "dexterity": 20,
+            "intelligence": 2,
+            "faith": 20,
+            "arcane": 6,
+            "base_stats": "----",
+            "resistance_poison": 236,
+            "resistance_scarlet_rot": 236,
+            "resistance_blood_loss": 202,
+            "resistance_frostbite": 202,
+            "resistance_sleep": 284,
+            "resistance_madness": 284,
+            "resistance_death": 220
+          }
+        },
+        {
+          "name": "Millicent's Sisters – Amy, Third Sister",
+          "variant": "Amy, Third Sister",
+          "location": "Elphael, Brace of the Haligtree",
+          "regions": [
+            "Miquella's Haligtree",
+            "Elphael, Brace of the Haligtree"
+          ],
+          "source": "Base game",
+          "hp": "5533",
+          "hp_values": [
+            5533
+          ],
+          "runes": null,
+          "runes_values": [],
+          "drops": [],
+          "poise": 100,
+          "other_infobox_fields": {
+            "level": 18,
+            "attributes": "----",
+            "vigor": 22,
+            "mind": 9,
+            "endurance": 11,
+            "strength": 14,
+            "dexterity": 19,
+            "intelligence": 6,
+            "faith": 10,
+            "arcane": 6,
+            "base_stats": "----",
+            "resistance_poison": 236,
+            "resistance_scarlet_rot": 236,
+            "resistance_blood_loss": 202,
+            "resistance_frostbite": 202,
+            "resistance_sleep": 284,
+            "resistance_madness": 284
+          }
+        },
+        {
+          "name": "Millicent's Sisters – Maureen, Second Sister",
+          "variant": "Maureen, Second Sister",
+          "location": "Elphael, Brace of the Haligtree",
+          "regions": [
+            "Miquella's Haligtree",
+            "Elphael, Brace of the Haligtree"
+          ],
+          "source": "Base game",
+          "hp": "5533",
+          "hp_values": [
+            5533
+          ],
+          "runes": null,
+          "runes_values": [],
+          "drops": [],
+          "poise": 100,
+          "other_infobox_fields": {
+            "level": 18,
+            "attributes": "----",
+            "vigor": 22,
+            "mind": 9,
+            "endurance": 17,
+            "strength": 16,
+            "dexterity": 14,
+            "intelligence": 6,
+            "faith": 5,
+            "arcane": 8,
+            "base_stats": "----",
+            "resistance_poison": 236,
+            "resistance_scarlet_rot": 236,
+            "resistance_blood_loss": 202,
+            "resistance_frostbite": 202,
+            "resistance_sleep": 284,
+            "resistance_madness": 284,
+            "resistance_death": 225
+          }
+        },
+        {
+          "name": "Millicent's Sisters – Mary, Eldest Sister",
+          "variant": "Mary, Eldest Sister",
+          "location": "Elphael, Brace of the Haligtree",
+          "regions": [
+            "Miquella's Haligtree",
+            "Elphael, Brace of the Haligtree"
+          ],
+          "source": "Base game",
+          "hp": "5681",
+          "hp_values": [
+            5681
+          ],
+          "runes": null,
+          "runes_values": [],
+          "drops": [],
+          "poise": 100,
+          "other_infobox_fields": {
+            "level": 18,
+            "attributes": "----",
+            "vigor": 22,
+            "mind": 11,
+            "endurance": 11,
+            "strength": 13,
+            "dexterity": 16,
+            "intelligence": 5,
+            "faith": 15,
+            "arcane": 8,
+            "base_stats": "----",
+            "resistance_poison": 236,
+            "resistance_scarlet_rot": 236,
+            "resistance_blood_loss": 202,
+            "resistance_frostbite": 202,
+            "resistance_sleep": 284,
+            "resistance_madness": 284
+          }
+        }
+      ],
+      "fight_notes": [
+        "[Notes]",
+        "Maureen's Treespear is unique and impossible to replicate by the player as it has Charge Forth. Instead the version the player has access to cannot be infused with Ashes of War and it has Sacred Order as it's default skill.",
+        "It's possible to infer that Millicent may be the fourth sister to sprout from the Heart of Aeonia due to the fact that Polyanna is still present in Caelid at the start of the questline while her older sisters are comparatively absent, due to them likely having a head start on their journey to the Haligtree as they would have been born earlier than both Millicent and Polyanna.",
+        "Since Malenia and Millicent can both blossom into giant flowers on death, it brings into question the large flower found in a chamber near the Haligtree Roots site of grace. It is unclear whether this is an earlier bloom from Malenia herself, as a copy of the Traveler's Set that can be found next to it may imply it is from one of the four sisters. However considering how much higher Gowry seems to value what Millicent's potential flower is likely going to be compared to her sisters, it may be from a sister we haven't heard of before.",
+        "[Etymology]",
+        "Polyanna is derived from a combination of the names Polly (which in of itself has roots from the name Mary) and can mean \"sea\" and Anna (Derived from the Hebrew name Hannah, meaning \"grace\").",
+        "→ \"Polyanna\" has also been historically used as noun to describe an excessively cheerful or optimistic person. Stemming from the name of a character created by US writer of children's stories, Eleanor Hodgman Porter.",
+        "Amy stems from French and means \"beloved\" or \"well-loved\". It's derived from the Latin word \"amare\" which in of itself means \"to love\".",
+        "Maureen and Mary's names both stem from the same Hebrew name Miriam. It can translate to \"drop of the sea\", \"bitterness\", \"beloved\" and \"wish for a child\"."
+      ]
+    },
+    {
       "name": "Miranda Blossom",
       "wiki_page": "Miranda Blossom",
       "url": "https://eldenring.wiki.gg/wiki/Miranda_Blossom",
@@ -4811,20 +5133,24 @@
             "relationship_adversary": "hostile",
             "base_stats": "----",
             "damage_negation": "----",
-            "negation_standard": 0,
-            "negation_strike": 35,
-            "negation_slash": -40,
-            "negation_pierce": 0,
-            "negation_magic": 0,
-            "negation_fire": -40,
-            "negation_lightning": -40,
-            "negation_holy": 40,
-            "resistance": "----",
-            "negation_poison": "1093 ~ 1235",
-            "negation_scarlet_rot": "508 ~ 574",
-            "negation_blood_loss": "508 ~ 574",
-            "negation_frostbite": "127 ~ 143",
-            "negation_sleep": "226 ~ 255"
+            "resistance": "----"
+          },
+          "damage_negation_percent": {
+            "standard": 0,
+            "strike": 35,
+            "slash": -40,
+            "pierce": 0,
+            "magic": 0,
+            "fire": -40,
+            "lightning": -40,
+            "holy": 40
+          },
+          "status_resistance": {
+            "poison": "1093 ~ 1235",
+            "scarlet_rot": "508 ~ 574",
+            "blood_loss": "508 ~ 574",
+            "frostbite": "127 ~ 143",
+            "sleep": "226 ~ 255"
           }
         },
         {
@@ -5322,6 +5648,43 @@
         "The arena is reasonably wide and open, with some gravestones on each side that act as obstacles. During phase 2, many of Mohg's attacks will cover large areas in fire.",
         "[Notes]",
         "Upon release, Mohg, Lord of Blood could easily be defeated by jumping into the arena from the side instead of entering through the fog wall. This would prevent his cutscene from playing, leaving him completely immobile and unable to attack. This was patched in version 1.03.3."
+      ]
+    },
+    {
+      "name": "Moongrum, Carian Knight",
+      "wiki_page": "Moongrum, Carian Knight",
+      "url": "https://eldenring.wiki.gg/wiki/Moongrum,_Carian_Knight",
+      "source": "Base game",
+      "tier": [
+        "Invaders and other minibosses"
+      ],
+      "flags": [],
+      "summary": "Moongrum, Carian Knight is a hostile NPC in Elden Ring.",
+      "encounters": [
+        {
+          "name": "Moongrum, Carian Knight",
+          "location": "Liurnia of the Lakes",
+          "regions": [
+            "Liurnia of the Lakes"
+          ],
+          "source": "Base game",
+          "hp": "1831",
+          "hp_values": [
+            1831
+          ],
+          "runes": "3000",
+          "runes_values": [
+            3000
+          ],
+          "drops": [
+            "Carian Knight's Shield"
+          ]
+        }
+      ],
+      "fight_notes": [
+        "[Strategies]",
+        "Running past him to send the elevator up and then either baiting him to swing his sword or pushing him with strong attacks with heavy foward momentum down the shaft is a quick and effective tactic.",
+        "Be careful when he keeps his shield raised, as it means he's ready to parry any incoming attack."
       ]
     },
     {
@@ -5935,15 +6298,15 @@
           ],
           "drops": [],
           "poise": 65,
-          "other_infobox_fields": {
-            "negation_standard": 10,
-            "negation_strike": 10,
-            "negation_slash": 10,
-            "negation_pierce": 10,
-            "negation_magic": 20,
-            "negation_fire": 20,
-            "negation_lightning": 20,
-            "negation_holy": 20
+          "damage_negation_percent": {
+            "standard": 10,
+            "strike": 10,
+            "slash": 10,
+            "pierce": 10,
+            "magic": 20,
+            "fire": 20,
+            "lightning": 20,
+            "holy": 20
           }
         },
         {
@@ -6053,24 +6416,41 @@
     },
     {
       "name": "Perfumer Tricia",
-      "wiki_page": "Perfumer Tricia",
-      "url": "https://eldenring.wiki.gg/wiki/Perfumer_Tricia",
+      "wiki_page": "Perfumer",
+      "url": "https://eldenring.wiki.gg/wiki/Perfumer",
       "source": "Base game",
       "tier": [
         "Enemies"
       ],
       "flags": [],
-      "summary": "Perfumer Tricia is a spirit ash in Elden Ring.",
-      "encounters": [],
-      "encounter_data_note": "No HP/runes/drops infobox on the wiki page.",
+      "summary": "Perfumer is an enemy in Elden Ring.",
+      "encounters": [
+        {
+          "name": "Perfumer Tricia",
+          "variant": "Perfumer Tricia",
+          "location": "Unsightly Catacombs",
+          "regions": [
+            "Altus Plateau"
+          ],
+          "source": "Base game",
+          "hp": "989",
+          "hp_values": [
+            989
+          ],
+          "runes": "9,400",
+          "runes_values": [
+            9400
+          ],
+          "drops": [
+            "Perfumer Tricia"
+          ]
+        }
+      ],
       "fight_notes": [
-        "[Notes]",
-        "Upgraded with Ghost Glovewort.",
-        "Summons a Perfumer to provide support.",
-        "Deals Fire damage.",
-        "Uses the long-lasting Perfumer-variant of Uplifting Aromatic, providing an Aura Buff that increases all damage dealt by 10% for 60 seconds, and reapplies a 90% damage reduction shield bubble (similar to Opaline Bubbletear) against the next hit as long as the mist remains.",
-        "→ Though the damage buff doesn't stack with either variant of Golden Vow or the Shared Order skill, the shield stacks with anything and everything.",
-        "A potent support summons due to the damage buff and the shield bubble, the latter which will also help her live longer. She can also spread Fire damage over a wide area, potentially briefly staggering enemies, though it will quickly fall short in damage as enemy defences increase."
+        "[Bosses]",
+        "[Background]",
+        "A perfumer who dedicated her efforts to treating Misbegotten, Omen, and all those seen as impure. She remained with them as they died, ensuring that they passed peacefully and without pain, not unlike the origins of the deathbed companions.",
+        "Tricia is fought alongside a Misbegotten Warrior, which she provides support for."
       ]
     },
     {
@@ -8214,7 +8594,28 @@
       "flags": [],
       "character_location": "Cathedral of Manus Metyr",
       "summary": "Count Ymir, High Priest, later known as Ymir, Mother of Fingers, is a character in Shadow of the Erdtree.",
-      "encounters": [],
+      "encounters": [
+        {
+          "name": "Count Ymir, High Priest",
+          "location": "Cathedral of Manus Metyr",
+          "regions": [
+            "Scadu Altus"
+          ],
+          "source": "Shadow of the Erdtree",
+          "hp": "11,147",
+          "hp_values": [
+            11147
+          ],
+          "runes": "210,000",
+          "runes_values": [
+            210000
+          ],
+          "drops": [
+            "High Priest Set",
+            "Ymir's Bell Bearing"
+          ]
+        }
+      ],
       "encounter_data_note": "No HP/runes/drops infobox on the wiki page.",
       "fight_notes": [
         "At the end of his questline, Ymir can be fought. He will use spells from the Finger-Weavers and spawn 3 Fingercreepers from time to time.",
@@ -9833,6 +10234,24 @@
       ]
     },
     {
+      "name": "Jolán, Swordhand of Night",
+      "wiki_page": "Jolán, Swordhand of Night",
+      "url": "https://eldenring.wiki.gg/wiki/Jolán,_Swordhand_of_Night",
+      "source": "Shadow of the Erdtree",
+      "tier": [
+        "Invaders and other minibosses"
+      ],
+      "flags": [],
+      "summary": "Jolán, Swordhand of Night is a character in Shadow of the Erdtree.",
+      "encounters": [],
+      "encounter_data_note": "No HP/runes/drops infobox on the wiki page.",
+      "fight_notes": [
+        "[Notes]",
+        "As shown by Zullie the Witch's video about the face data for DLC NPCs, her face is extremely similar to her sister Anna's face. The only major differences is that Jolán has darker skin and hair while Anna has pale skin and hair, and Anna also has clawmark scars going over her face (see gallery)."
+      ],
+      "character_location": "Cathedral of Manus Metyr"
+    },
+    {
       "name": "Jori, Elder Inquisitor",
       "wiki_page": "Jori, Elder Inquisitor",
       "url": "https://eldenring.wiki.gg/wiki/Jori,_Elder_Inquisitor",
@@ -10148,25 +10567,39 @@
     },
     {
       "name": "Madding Hand",
-      "wiki_page": "Madding Hand",
-      "url": "https://eldenring.wiki.gg/wiki/Madding_Hand",
+      "wiki_page": "Madding Hand (NPC)",
+      "url": "https://eldenring.wiki.gg/wiki/Madding_Hand_(NPC)",
       "source": "Shadow of the Erdtree",
       "tier": [
         "Invaders and other minibosses"
       ],
       "flags": [],
-      "summary": "Madding Hand is a melee armament in Shadow of the Erdtree.",
-      "encounters": [],
-      "encounter_data_note": "No HP/runes/drops infobox on the wiki page.",
+      "summary": "Madding Hand is a hostile character in Shadow of the Erdtree. He is an unmarked optional boss encountered in the Abyssal Woods.",
+      "encounters": [
+        {
+          "name": "Madding Hand",
+          "location": "Abyssal Woods",
+          "regions": [
+            "Scadu Altus",
+            "Abyssal Woods"
+          ],
+          "source": "Shadow of the Erdtree",
+          "hp": null,
+          "hp_values": [],
+          "runes": null,
+          "runes_values": [],
+          "drops": [
+            "Madding Hand"
+          ],
+          "other_infobox_fields": {
+            "race": "Hornsent",
+            "affiliation": "Frenzied Flame"
+          }
+        }
+      ],
       "fight_notes": [
         "[Notes]",
-        "The Madding Hand's Unique Skill, Madding Spear-Hand Strike, deals 250 Madness build-up on hit, which can usually instantly inflict Madness on another Tarnished unless they have high Focus.",
-        "When Madness is inflicted within the general vicinity (7 meters) of user while they have the Madding Hand in an active weapon slot, they will receive a +7.5% (+5% in PvP) increase to their Attack Power for 30 seconds.",
-        "→ This buff stacks with the Aged One's Exultation and the Black Dumpling.",
-        "→ This buff activates even if the player doesn't meet the stat requirements for the weapon.",
-        "The Madding Hand shares the same heavy attacks with the Iron Ball and the Star Fist.",
-        "Increasing Strength and Dexterity will increase both the Physical and Fire Attack Power; increasing Intelligence and Faith will only increase the Fire Attack Power.",
-        "The Madness build-up is flat; it will not increase past 55 no matter the weapon level or stat investment."
+        "Madding Hand's attacks cause buildup of Madness."
       ]
     },
     {
@@ -11255,19 +11688,6 @@
         "[Notes]",
         "Interact with the puppet of Anna in Rabbath's Rise while holding Swordhand of Night Jolán's Ashes to toggle Jolán and Anna."
       ]
-    },
-    {
-      "name": "Swordhand of Night Jolán",
-      "wiki_page": "Swordhand of Night Jolán",
-      "url": "https://eldenring.wiki.gg/wiki/Swordhand_of_Night_Jolán",
-      "source": "Shadow of the Erdtree",
-      "tier": [
-        "Invaders and other minibosses"
-      ],
-      "flags": [],
-      "summary": "Swordhand of Night Jolán is a spirit ash in Elden Ring: Shadow of the Erdtree.",
-      "encounters": [],
-      "encounter_data_note": "No HP/runes/drops infobox on the wiki page."
     },
     {
       "name": "Thiollier",

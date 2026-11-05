@@ -23,7 +23,7 @@
       "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
       "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
       "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
-      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
       "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
       "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
       "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
@@ -41,7 +41,8 @@
       "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted).",
       "effects_details": "Content of the page's 'Effects' section (e.g. which spells a seal boosts and by how much).",
       "upgrade.material = 'Not upgradeable'": "The wiki states the weapon cannot be reinforced (max_level 0).",
-      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules)."
+      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
     },
     "class_rules": {
       "Bows": {
@@ -112,13 +113,14 @@
       }
     },
     "upgrade_path_documentation": {
-      "documented_by_wiki": 21,
-      "undocumented": 42,
-      "undocumented_with_estimate": 2
+      "documented_by_wiki": 63,
+      "undocumented": 0,
+      "undocumented_with_estimate": 0
     },
     "wiki_inconsistencies_flagged": [
       "Lion Greatbow"
-    ]
+    ],
+    "material_inconsistencies_flagged": []
   },
   "weapons": [
     {
@@ -228,12 +230,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Light Bows)",
+        "changeability_info_source": "wiki (class page: Light Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:",
         "tables": {
           "Standard": {
@@ -368,12 +370,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Light Bows)",
+        "changeability_info_source": "wiki (class page: Light Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:"
       },
       "notes": [
@@ -475,12 +477,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Light Bows)",
+        "changeability_info_source": "wiki (class page: Light Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:"
       },
       "notes": [
@@ -578,12 +580,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Light Bows)",
+        "changeability_info_source": "wiki (class page: Light Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:"
       },
       "notes": [
@@ -674,12 +676,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Light Bows)",
+        "changeability_info_source": "wiki (class page: Light Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:"
       },
       "notes": [
@@ -767,12 +769,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Light Bows)",
+        "changeability_info_source": "wiki (class page: Light Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -900,12 +902,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Bows)",
+        "changeability_info_source": "wiki (class page: Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:"
       },
       "notes": [
@@ -1093,12 +1095,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Bows)",
+        "changeability_info_source": "wiki (class page: Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:"
       },
       "notes": [
@@ -1194,12 +1196,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Bows)",
+        "changeability_info_source": "wiki (class page: Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -1299,12 +1301,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Bows)",
+        "changeability_info_source": "wiki (class page: Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:"
       },
       "notes": [
@@ -2104,12 +2106,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Bows)",
+        "changeability_info_source": "wiki (class page: Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:"
       },
       "notes": [
@@ -2204,12 +2206,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": false,
-        "changeability_info_source": "wiki (class page: Bows)",
+        "changeability_info_source": "wiki (class page: Bows) + wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:"
       },
       "notes": [
@@ -3676,9 +3678,9 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Crossbows)",
@@ -3772,9 +3774,9 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Crossbows)",
@@ -3881,9 +3883,9 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Crossbows)",
@@ -3975,9 +3977,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Crossbows)",
@@ -4782,9 +4784,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Crossbows)",
@@ -5121,9 +5123,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (text) + wiki (class page: Ballistas)",
@@ -5718,12 +5720,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill.",
         "tables": {
           "Standard": {
@@ -5886,12 +5888,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill.",
         "tables": {
           "Standard": {
@@ -6075,12 +6077,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6168,12 +6170,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6250,12 +6252,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill.",
         "tables": {
           "Standard": {
@@ -6536,12 +6538,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6622,12 +6624,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6706,12 +6708,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6807,12 +6809,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6895,12 +6897,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -6992,12 +6994,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -7080,12 +7082,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -7261,12 +7263,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -7483,12 +7485,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -7570,12 +7572,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -7662,12 +7664,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -7755,12 +7757,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill."
       },
       "notes": [
@@ -9264,9 +9266,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",
@@ -10203,9 +10205,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",
@@ -10287,9 +10289,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",
@@ -10372,9 +10374,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",
@@ -10459,9 +10461,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",
@@ -11489,9 +11491,9 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",
@@ -11576,9 +11578,9 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": false,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (class page: Sacred Seals)",

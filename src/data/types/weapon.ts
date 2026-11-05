@@ -214,6 +214,8 @@ export const weaponMetaSchema = obj({
   ),
   upgrade_path_documentation: obj({ documented_by_wiki: num, undocumented: num, undocumented_with_estimate: num }),
   wiki_inconsistencies_flagged: arr(str),
+  // Matériau tiré d'une page de liste mais contredit par la page de l'arme (D34) ; la valeur de la liste est gardée.
+  material_inconsistencies_flagged: arr(obj({ name: str, reason: str, url: wikiUrl })),
 })
 
 /** Métadonnées d'un fichier d'armes. */
@@ -238,11 +240,19 @@ export interface DerivedUpgrade {
   readonly basis?: string
 }
 
-/** Champ signalé incohérent par le wiki lui-même ; `reference` indique la valeur qui fait foi. */
+/**
+ * Champ signalé incohérent par le wiki lui-même ; `reference` indique la valeur qui fait foi.
+ * - `upgrade.tables` : les valeurs de l'infobox (`attack_power`, `scaling`…) font foi (`tables_consistent_with_infobox === false`).
+ * - `upgrade.material` : la valeur de la page de liste (« Armaments by Bolstering Material ») est gardée,
+ *   la page de l'arme dit autre chose (`metadata.material_inconsistencies_flagged`) ; `reason` et `url` viennent de cette clé.
+ */
 export interface Inconsistency {
-  readonly field: 'upgrade.tables'
-  /** Les valeurs de l'infobox (`attack_power`, `scaling`…) font foi (`tables_consistent_with_infobox === false`). */
-  readonly reference: 'infobox'
+  readonly field: 'upgrade.tables' | 'upgrade.material'
+  readonly reference: 'infobox' | 'list'
+  /** Raison de l'incohérence, en anglais comme le wiki (seulement pour `upgrade.material`). */
+  readonly reason?: string
+  /** Page du wiki qui porte l'incohérence (seulement pour `upgrade.material`). */
+  readonly url?: string
 }
 
 /** Champs dérivés d'une arme. */

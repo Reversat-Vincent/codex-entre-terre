@@ -23,7 +23,8 @@ describe('identifiants des données préparées', () => {
     const bosses = prepared().datasets.bosses
     const keys = bosses.entries.flatMap((b) => [...b.derived.encounters.map((e) => e.key), ...(b.derived.pageKey ? [b.derived.pageKey] : [])])
     expect(new Set(keys).size).toBe(keys.length)
-    expect(bosses.entries.filter((b) => b.derived.pageKey !== null)).toHaveLength(15)
+    // 15 pages sans combat avant D29 ; 12 depuis (Count Ymir, Perfumer Tricia et Madding Hand ont reçu une rencontre).
+    expect(bosses.entries.filter((b) => b.derived.pageKey !== null)).toHaveLength(12)
   })
 
   it('identifient Sir Gideon Ofnir par sa rencontre (correctif C1)', () => {

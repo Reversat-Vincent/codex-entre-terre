@@ -47,7 +47,7 @@
       "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
       "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
       "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
-      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
       "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
       "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
       "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
@@ -62,12 +62,13 @@
       "compatible_ashes_of_war": "Only on the few pages that list them.",
       "range": "Bow/crossbow/ballista range as shown in the infobox (in-game 'Range' value).",
       "sorcery_scaling / incantation_scaling": "Catalysts: base spell power at +0 from the infobox (Sorcery Scaling for staves, Incantation Scaling for seals).",
-      "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted)."
+      "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
     },
     "upgrade_path_documentation": {
-      "documented_by_wiki": 150,
-      "undocumented": 185,
-      "undocumented_with_estimate": 185
+      "documented_by_wiki": 331,
+      "undocumented": 4,
+      "undocumented_with_estimate": 4
     },
     "wiki_inconsistencies_flagged": [
       "Fire Knight's Shortsword",
@@ -99,6 +100,13 @@
       "Golden Halberd",
       "Hookclaws",
       "Claws of Night"
+    ],
+    "material_inconsistencies_flagged": [
+      {
+        "name": "Carian Sorcery Sword",
+        "reason": "upgrade.material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept.",
+        "url": "https://eldenring.wiki.gg/wiki/Carian_Sorcery_Sword"
+      }
     ]
   },
   "weapons": [
@@ -10271,12 +10279,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -18942,12 +18950,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -19042,12 +19050,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -19163,9 +19171,9 @@
         "material": "Smithing Stones",
         "max_level": 25,
         "material_info_source": "wiki (upgrade table max level)",
-        "ash_of_war_changeable": null,
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -20708,12 +20716,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -21749,12 +21757,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -22320,12 +22328,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -22428,12 +22436,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -22531,12 +22539,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -23963,12 +23971,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -24067,12 +24075,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -25358,12 +25366,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -26190,12 +26198,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -26720,12 +26728,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -29118,12 +29126,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -29227,12 +29235,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -29332,12 +29340,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -30087,12 +30095,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -30258,12 +30266,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -30432,12 +30440,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -30536,12 +30544,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -30644,12 +30652,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -31203,12 +31211,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -31928,12 +31936,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -32137,12 +32145,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -32794,12 +32802,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -32966,12 +32974,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -33125,12 +33133,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -33233,12 +33241,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -33770,12 +33778,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -33874,12 +33882,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -33976,12 +33984,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -34082,12 +34090,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -34187,12 +34195,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -34287,12 +34295,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -35747,12 +35755,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -35856,12 +35864,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -35956,12 +35964,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -36266,12 +36274,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -36557,12 +36565,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -37579,12 +37587,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -38171,12 +38179,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -38956,12 +38964,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -39085,12 +39093,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -39306,12 +39314,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -39415,12 +39423,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -40006,12 +40014,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -40981,12 +40989,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -41087,12 +41095,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -41740,12 +41748,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -41843,12 +41851,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -42534,12 +42542,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -42925,12 +42933,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -44238,9 +44246,9 @@
         "material": "Smithing Stones",
         "max_level": 25,
         "material_info_source": "wiki (text)",
-        "ash_of_war_changeable": null,
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)"
       },
       "notes": [
         "The Unique Skill: Dragonform Flame is a slow, sweeping, short-ranged Fire attack with minimal use cases.",
@@ -44345,12 +44353,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -44453,12 +44461,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -44663,12 +44671,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -44771,12 +44779,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -44937,9 +44945,9 @@
         "material": "Smithing Stones",
         "max_level": 25,
         "material_info_source": "wiki (text)",
-        "ash_of_war_changeable": null,
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "notes": [
           "Upgraded with regular Smithing Stones."
         ],
@@ -45100,12 +45108,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -45207,12 +45215,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -45312,12 +45320,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -46006,12 +46014,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -46105,12 +46113,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -46206,12 +46214,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -46309,12 +46317,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -46415,12 +46423,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -46524,12 +46532,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -46625,12 +46633,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -46825,12 +46833,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -46929,12 +46937,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -47028,12 +47036,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -47127,12 +47135,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -47226,12 +47234,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -47324,12 +47332,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -47427,12 +47435,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -47529,12 +47537,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -48133,12 +48141,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -48341,12 +48349,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -48546,12 +48554,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -48652,12 +48660,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -48972,12 +48980,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -49186,12 +49194,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -49288,12 +49296,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -49388,12 +49396,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -49488,12 +49496,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -49595,12 +49603,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -49701,12 +49709,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -49817,12 +49825,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -49920,12 +49928,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -51632,12 +51640,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -51735,12 +51743,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -51831,12 +51839,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -51928,12 +51936,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -52084,12 +52092,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -52225,12 +52233,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -52324,12 +52332,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -52421,12 +52429,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -52528,12 +52536,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -52718,12 +52726,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -52811,12 +52819,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -52910,12 +52918,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -53003,12 +53011,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -53187,12 +53195,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -53282,12 +53290,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -53381,12 +53389,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -53482,12 +53490,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -53640,12 +53648,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -53728,12 +53736,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -53823,12 +53831,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -53913,12 +53921,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -54008,12 +54016,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -54109,9 +54117,9 @@
         "material": "Smithing Stones",
         "max_level": 25,
         "material_info_source": "wiki (text)",
-        "ash_of_war_changeable": null,
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)"
       },
       "notes": [
         "Upgraded with Smithing Stones.",
@@ -54201,12 +54209,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "tables": {
           "Standard": {
             "+0": {
@@ -55271,12 +55279,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -56254,12 +56262,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -56348,12 +56356,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -56445,12 +56453,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -56540,12 +56548,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -56640,12 +56648,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -56755,12 +56763,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -56907,12 +56915,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -57013,12 +57021,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -57177,12 +57185,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -57326,12 +57334,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -57483,12 +57491,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -57581,12 +57589,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -57738,12 +57746,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -57835,12 +57843,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -57943,12 +57951,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -58042,12 +58050,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -58126,12 +58134,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -58448,12 +58456,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -58539,12 +58547,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -58633,12 +58641,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -58725,12 +58733,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -58816,12 +58824,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -59373,12 +59381,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -59706,12 +59714,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -59887,12 +59895,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -59990,12 +59998,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -60089,12 +60097,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -61610,12 +61618,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -61700,12 +61708,12 @@
         "starting_equipment"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -61847,12 +61855,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -62076,12 +62084,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62171,12 +62179,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62264,12 +62272,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62362,12 +62370,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62457,12 +62465,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -62613,12 +62621,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62711,12 +62719,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62810,12 +62818,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -62907,12 +62915,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -63009,12 +63017,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "buffable": true,
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
@@ -63102,12 +63110,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "tables": {
           "Standard": {
             "+0": {
@@ -63271,12 +63279,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -63794,12 +63802,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -63888,12 +63896,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -64459,12 +64467,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -64623,12 +64631,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -64720,12 +64728,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -64818,12 +64826,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "tables": {
           "Standard": {
             "+0": {
@@ -64993,12 +65001,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -65090,12 +65098,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -65254,12 +65262,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -65459,12 +65467,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": "Somber Smithing Stones",
-        "max_level": 10,
-        "material_info_source": "wiki (text)",
-        "ash_of_war_changeable": false,
-        "affinity_changeable": false,
-        "changeability_info_source": "wiki rule (Ashes of War cannot be applied to weapons upgraded with Somber Smithing Stones)"
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": true,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + wiki (text)"
       },
       "notes": [
         "The damage formula when inflicting Blood Loss on a non-Blood-infused Hoslow's Petal Whip is (10.5% + 200) instead of the typical (10.5% + 100). This makes Hoslow's Petal Whip the only weapon in the game to deal extra damage when inflicting Bleed without being a Somber weapon or needing the Blood Affinity.",
@@ -65983,12 +65991,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -66555,12 +66563,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -66720,12 +66728,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -67007,12 +67015,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -67115,12 +67123,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -67215,12 +67223,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -67315,12 +67323,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -67413,12 +67421,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "tables": {
           "Standard": {
             "+0": {
@@ -67572,12 +67580,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -68205,12 +68213,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -68312,12 +68320,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -68432,12 +68440,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "tables": {
           "Standard": {
             "+0": {
@@ -68605,12 +68613,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -68704,12 +68712,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -68805,12 +68813,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "tables": {
           "Standard": {
             "+0": {
@@ -68964,12 +68972,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -69064,12 +69072,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -69171,12 +69179,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -69774,12 +69782,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "buffable": true,
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",

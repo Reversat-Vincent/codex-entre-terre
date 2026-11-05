@@ -1913,12 +1913,12 @@
         "tables": [
           [
             {
-              "Pots": "ER Icon pot fire.png|; Fire Pot\nER Icon pot oil.png|; Oil Pot\nER Icon pot magic.png|; Magic Pot\nER Icon pot lightning.png|; Lightning Pot\nER Icon pot holy water.png|; Holy Water Pot\nER Icon pot poison.png|; Poison Pot\nER Icon pot fetid.png|; Fetid Pot\nER Icon pot swarm.png|; Swarm Pot\nER Icon pot sleep.png|; Sleep Pot\nER Icon pot volcano.png|; Volcano Pot\nER Icon pot rancor.png|; Rancor Pot"
+              "Pots": "Fire Pot\nOil Pot\nMagic Pot\nLightning Pot\nHoly Water Pot\nPoison Pot\nFetid Pot\nSwarm Pot\nSleep Pot\nVolcano Pot\nRancor Pot"
             }
           ],
           [
             {
-              "Roped Pots": "ER Icon pot roped fire.png|; Roped Fire Pot\nER Icon pot roped oil.png|; Roped Oil Pot\nER Icon pot roped magic.png|; Roped Magic Pot\nER Icon pot roped lightning.png|; Roped Lightning Pot\nER Icon pot roped holy water.png|; Roped Holy Water Pot\nER Icon pot roped poison.png|; Roped Poison Pot\nER Icon pot roped fetid.png|; Roped Fetid Pot\nER Icon pot roped swarm.png|; Roped Fly Pot\n\nER Icon pot roped volcano.png|; Roped Volcano Pot"
+              "Roped Pots": "Roped Fire Pot\nRoped Oil Pot\nRoped Magic Pot\nRoped Lightning Pot\nRoped Holy Water Pot\nRoped Poison Pot\nRoped Fetid Pot\nRoped Fly Pot\nRoped Volcano Pot"
             }
           ]
         ]
@@ -1949,7 +1949,7 @@
       "effect_tables": [
         [
           {
-            "Pots": "ER Icon pot redmane fire.png|; Redmane Fire Pot\nER Icon pot giantsflame fire.png|; Giantsflame Fire Pot\nER Icon pot academy magic.png|; Academy Magic Pot\nER Icon pot ancient dragonbolt.png|; Ancient Dragonbolt Pot\nER Icon pot sacred order.png|; Sacred Order Pot\nER Icon pot rot.png|; Rot Pot\nER Icon pot freezing.png|; Freezing Pot\nER Icon pot cursed-blood.png|; Cursed-Blood Pot\nER Icon pot alluring.png|; Alluring Pot\nER Icon pot beastlure.png|; Beastlure Pot\nER Icon pot albinauric.png|; Albinauric Pot"
+            "Pots": "Redmane Fire Pot\nGiantsflame Fire Pot\nAcademy Magic Pot\nAncient Dragonbolt Pot\nSacred Order Pot\nRot Pot\nFreezing Pot\nCursed-Blood Pot\nAlluring Pot\nBeastlure Pot\nAlbinauric Pot"
           }
         ]
       ],
@@ -2073,7 +2073,7 @@
         "tables": [
           [
             {
-              "Perfumes": "ER Icon Tool Spark Aromatic.png|Spark Aromatic\nER Icon Tool Uplifting Aromatic.png|Uplifting Aromatic\nER Icon Tool Poison Spraymist.png|Poison Spraymist\nER Icon Tool Acid Spraymist.png|Acid Spraymist\nER Icon Tool Bloodboil Aromatic.png|Bloodboil Aromatic\nER Icon Tool Ironjar Aromatic.png|Ironjar Aromatic"
+              "Perfumes": "Spark Aromatic\nUplifting Aromatic\nPoison Spraymist\nAcid Spraymist\nBloodboil Aromatic\nIronjar Aromatic"
             }
           ]
         ]

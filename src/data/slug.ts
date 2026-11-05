@@ -21,17 +21,24 @@ export function slug(text: string): string {
 
 /**
  * Normalise un texte pour la recherche (docs/architecture.md § 8) : NFD, diacritiques retirés, minuscules,
- * apostrophes supprimées, tout autre signe remplacé par une espace, espaces multiples réduites.
+ * ligatures décomposées (`œ` → `oe`, `æ` → `ae`, `ß` → `ss`), apostrophes supprimées, tout autre signe remplacé par une espace,
+ * espaces multiples réduites.
  * Utilisée pour le champ `norm` de l'index de recherche ; la recherche doit appliquer la même fonction à la requête.
+ * Les ligatures sont décomposées ici parce que NFD ne les touche pas : sans cela « Cœur » deviendrait « c ur ».
+ * `slug` n'est pas changée (les identifiants stockés en dépendent) ; aucun titre de `data/` ne contient `œ`, `æ` ou `ß`.
  * @param text Texte d'origine.
  * @returns Le texte normalisé, sans espace de bord.
  * @example normalizeText("Jolán, Swordhand") === "jolan swordhand"
+ * @example normalizeText("Cœur") === "coeur"
  */
 export function normalizeText(text: string): string {
   return text
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae')
+    .replace(/ß/g, 'ss')
     .replace(/['’]/g, '')
     .replace(/[^a-z0-9]+/g, ' ')
     .trim()

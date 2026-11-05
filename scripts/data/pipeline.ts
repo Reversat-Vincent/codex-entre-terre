@@ -23,7 +23,7 @@ import type { OriginRaw } from '../../src/data/types/origins.ts'
 import { validate } from '../../src/data/types/schema.ts'
 import type { SearchDoc } from '../../src/data/types/searchIndex.ts'
 import type { CalcTables } from '../../src/data/types/tables.ts'
-import type { WeaponRaw } from '../../src/data/types/weapon.ts'
+import type { WeaponMeta, WeaponRaw } from '../../src/data/types/weapon.ts'
 import { extractCalcTables } from './calcTables.ts'
 import { assertNoFailures, bump, emptyReport } from './checks.ts'
 import type { DataReport } from './checks.ts'
@@ -143,6 +143,18 @@ export function prepareAll(raw: Readonly<Record<DatasetKey, RawDataset>>): Prepa
   }
   assertNoFailures(`scaling.<attr>.coef des tableaux d'amélioration ≤ ${MAX_SCALING_COEF}`, coefFailures)
 
+  // 4b. Chaque arme de `material_inconsistencies_flagged` existe, une seule fois, dans son fichier et a un matériau documenté.
+  const flagFailures: string[] = []
+  for (const key of WEAPON_KEYS) {
+    const weapons = entriesOf<WeaponRaw>(key)
+    for (const flag of metaOf<WeaponMeta>(key).material_inconsistencies_flagged) {
+      const found = weapons.filter((w) => w.name === flag.name)
+      if (found.length !== 1) flagFailures.push(`${key} : « ${flag.name} » trouvée ${found.length} fois`)
+      else if (found[0]?.upgrade.material == null) flagFailures.push(`${key} : « ${flag.name} » signalée mais son upgrade.material est null`)
+    }
+  }
+  assertNoFailures('armes de material_inconsistencies_flagged présentes, avec un matériau documenté', flagFailures)
+
   // 5. Σ attributs − 79 = level pour chaque origine (méthode « Origine optimale » de calculs.md).
   const originFailures: string[] = []
   for (const o of entriesOf<OriginRaw>('origins')) {
@@ -219,7 +231,7 @@ export function prepareAll(raw: Readonly<Record<DatasetKey, RawDataset>>): Prepa
       }
       if (info.kind === 'weapon') {
         derived.upgrade = deriveUpgrade(e as unknown as WeaponRaw)
-        derived.inconsistent = deriveInconsistent(e as unknown as WeaponRaw)
+        derived.inconsistent = deriveInconsistent(e as unknown as WeaponRaw, metaOf<WeaponMeta>(key).material_inconsistencies_flagged)
       }
       if (key === 'key_items') derived.alsoListedIn = merged.alsoListedIn[n] ?? []
       if (key === 'bosses') {
