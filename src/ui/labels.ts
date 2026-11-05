@@ -1,9 +1,12 @@
 // Libellés français de l'interface pour les clés de données : attributs, types de dégâts, statuts, sources, étapes, fiabilité.
 // Les noms d'objets, de boss et de lieux ne passent jamais par ici : ce sont des données, affichées telles quelles en anglais.
-// Les types d'union ci-dessous suivent l'architecture (§ 5.1, § 5.3) ; ils seront alignés sur ceux du moteur et de `src/data/types/` quand ceux-ci existeront.
+// Les clés d'attribut, de dégâts et de statut sont celles de `src/data/keys.ts` (réexportées ici) ; la fiabilité et la confiance d'une estimation
+// sont celles de `src/engine/types.ts`. Ce module ne redéfinit aucun type de données : il ajoute les libellés français.
 
-/** Clé courte d'un attribut du personnage, dans l'ordre d'affichage du panneau de critères. */
-export type AttributeKey = 'vig' | 'mnd' | 'end' | 'str' | 'dex' | 'int' | 'fai' | 'arc'
+import type { AttributeKey, DamageKey, NegationKey, StatusKey } from '../data/keys.ts'
+import type { Confidence, Reliability } from '../engine/types.ts'
+
+export type { AttributeKey, DamageKey, NegationKey, StatusKey }
 
 /** Libellés d'un attribut : abréviation anglaise (comme dans les données) et nom complet (info-bulle, panneau de critères). */
 export interface AttributeLabel {
@@ -13,8 +16,8 @@ export interface AttributeLabel {
   name: string
 }
 
-/** Attributs dans l'ordre du jeu. */
-export const ATTRIBUTE_KEYS: readonly AttributeKey[] = ['vig', 'mnd', 'end', 'str', 'dex', 'int', 'fai', 'arc']
+/** Attributs dans l'ordre du jeu (réexport de `src/data/keys.ts`). */
+export { ATTRIBUTE_KEYS } from '../data/keys.ts'
 
 /** Libellés des huit attributs. */
 export const ATTRIBUTE_LABELS: Readonly<Record<AttributeKey, AttributeLabel>> = {
@@ -48,11 +51,14 @@ export const ATTRIBUTE_BY_DATA_KEY: Readonly<Record<string, AttributeKey>> = {
   arc: 'arc',
 }
 
-/** Clé d'un type de dégâts ou d'absorption (clés de `data/` en minuscules). `physical` est le total physique des armes. */
-export type DamageKey = 'physical' | 'standard' | 'strike' | 'slash' | 'pierce' | 'magic' | 'fire' | 'lightning' | 'holy'
+/**
+ * Clé d'un type de dégâts d'une arme (`DamageKey`, dont `physical`, le total physique) ou d'absorption d'un boss (`NegationKey` :
+ * `standard`, `strike`, `slash`, `pierce` et les quatre éléments).
+ */
+export type DamageLabelKey = DamageKey | NegationKey
 
 /** Libellés français des types de dégâts (README du design system, composant DamageStatusChip) ; « Physique » est le total des armes. */
-export const DAMAGE_LABELS: Readonly<Record<DamageKey, string>> = {
+export const DAMAGE_LABELS: Readonly<Record<DamageLabelKey, string>> = {
   physical: 'Physique',
   standard: 'Standard',
   strike: 'Frappe',
@@ -65,7 +71,7 @@ export const DAMAGE_LABELS: Readonly<Record<DamageKey, string>> = {
 }
 
 /** Icônes du sprite pour les types de dégâts (`CxIcon name=…`) ; `physical` n'a pas d'icône dédiée dans le sprite. */
-export const DAMAGE_ICONS: Readonly<Partial<Record<DamageKey, string>>> = {
+export const DAMAGE_ICONS: Readonly<Partial<Record<DamageLabelKey, string>>> = {
   standard: 'd-standard',
   strike: 'd-strike',
   slash: 'd-slash',
@@ -76,11 +82,11 @@ export const DAMAGE_ICONS: Readonly<Partial<Record<DamageKey, string>>> = {
   holy: 'd-holy',
 }
 
-/** Clé d'un statut (suit les classes `st-*` et les icônes `i-st-*` du design system). */
-export type StatusKey = 'bleed' | 'frost' | 'poison' | 'rot' | 'sleep' | 'madness' | 'death'
+/** Clé de style d'un statut dans le design system (classes `st-*`, variables `--st-*`) ; la clé de données correspondante est `StatusKey`. */
+export type StatusStyleKey = 'bleed' | 'frost' | 'poison' | 'rot' | 'sleep' | 'madness' | 'death'
 
-/** Libellés français des statuts (README du design system, composant DamageStatusChip). */
-export const STATUS_LABELS: Readonly<Record<StatusKey, string>> = {
+/** Libellés français des statuts (README du design system, composant DamageStatusChip), par clé de style (voir `STATUS_BY_DATA_KEY`). */
+export const STATUS_LABELS: Readonly<Record<StatusStyleKey, string>> = {
   bleed: 'Saignement',
   frost: 'Givre',
   poison: 'Poison',
@@ -90,8 +96,8 @@ export const STATUS_LABELS: Readonly<Record<StatusKey, string>> = {
   death: 'Mort',
 }
 
-/** Clés de statut de `data/` (`status_buildup`) vers la clé du design system. */
-export const STATUS_BY_DATA_KEY: Readonly<Record<string, StatusKey>> = {
+/** Clés de statut de `data/` (`status_buildup`, `status_resistance`) vers la clé de style du design system. */
+export const STATUS_BY_DATA_KEY: Readonly<Record<StatusKey, StatusStyleKey>> = {
   blood_loss: 'bleed',
   frostbite: 'frost',
   poison: 'poison',
@@ -144,8 +150,8 @@ export const STAGE_LABELS: Readonly<Record<StageKey, string>> = {
   dlc: 'DLC',
 }
 
-/** Niveaux de fiabilité d'une valeur (architecture § 5.1) : du fait du wiki au calcul de l'application. */
-export type ReliabilityKey = 'wiki' | 'deduced' | 'estimate' | 'null' | 'inconsistent' | 'calculated'
+/** Niveaux de fiabilité d'une valeur (architecture § 5.1) : du fait du wiki au calcul de l'application ; alias de `Reliability` du moteur. */
+export type ReliabilityKey = Reliability
 
 /** Libellés français de la fiabilité ; l'estimation reçoit sa confiance en suffixe (voir `ESTIMATE_CONFIDENCE_LABELS`). */
 export const RELIABILITY_LABELS: Readonly<Record<ReliabilityKey, string>> = {
@@ -157,11 +163,35 @@ export const RELIABILITY_LABELS: Readonly<Record<ReliabilityKey, string>> = {
   calculated: 'Calculé',
 }
 
-/** Confiance d'une estimation. */
-export type EstimateConfidence = 'high' | 'medium'
+/** Confiance d'une estimation ; alias de `Confidence` du moteur. */
+export type EstimateConfidence = Confidence
 
 /** Libellés de la confiance d'une estimation, entre parenthèses dans le badge : « Estimation (haute) ». */
 export const ESTIMATE_CONFIDENCE_LABELS: Readonly<Record<EstimateConfidence, string>> = {
   high: 'haute',
   medium: 'moyenne',
+}
+
+/** Abréviations françaises des types de dégâts, pour les en-têtes de colonne étroits (matrice des faiblesses) ; le libellé complet va en info-bulle. */
+export const DAMAGE_SHORT_LABELS: Readonly<Record<DamageLabelKey, string>> = {
+  physical: 'Phys.',
+  standard: 'Std',
+  strike: 'Frap.',
+  slash: 'Tran.',
+  pierce: 'Estoc',
+  magic: 'Mag.',
+  fire: 'Feu',
+  lightning: 'Fou.',
+  holy: 'Sacré',
+}
+
+/** Abréviations françaises des statuts, par clé de style, pour les puces étroites (immunités de la matrice des faiblesses). */
+export const STATUS_SHORT_LABELS: Readonly<Record<StatusStyleKey, string>> = {
+  bleed: 'Sai.',
+  frost: 'Giv.',
+  poison: 'Poi.',
+  rot: 'Put.',
+  sleep: 'Som.',
+  madness: 'Fol.',
+  death: 'Mort',
 }
