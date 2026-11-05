@@ -154,9 +154,11 @@ Widgets (`src/widgets/registry.ts`) : `requires` (liste, ou fonction `(criteria)
 
 | Widget | `requires` | `enhancedBy` |
 |---|---|---|
-| A `weapons-by-stage` | `origins`, `bosses` + fichiers des candidats (`score.ts`) : mêlée → `melee_armaments`, distance ou magie → `ranged_weapons_catalysts`, hybride → les deux, `shields_torches` si une classe préférée en relève | — |
-| B `optimal-origin` | `origins`, `tables` | fichiers d'armes |
-| C `boss-order`, D1 `weakness-matrix` | `bosses` | — |
+| A `weapons-by-stage` | `origins`, `bosses`, `tables` + fichiers des candidats (`score.ts`) : mêlée → `melee_armaments`, distance ou magie → `ranged_weapons_catalysts`, hybride → les deux, `shields_torches` si une classe préférée en relève | — |
+| B `optimal-origin` | `origins`, `tables` | fichiers d'armes, `bosses` |
+| C `boss-order` | `bosses`, `tables` (M2, table de bénédiction) | — |
+| D1 `weakness-matrix` | `bosses` | — |
+| `attribute-yield` | `tables` | — |
 | D2 `upgrade-plan` | fichiers d'armes, `key_items` | — |
 | D5 `rune-calculator` | `tables` | `bosses` |
 | D8 `data-coverage` | fichiers d'armes, `bosses` | — |
@@ -196,12 +198,12 @@ interface Calc<T> { value: T | null; estimate: { confidence: 'high' | 'medium' }
 | `origins.ts` | `rankOrigins(origins, target, ctx): Calc<OriginRank>[]` (`finalLevel`, `wastedPoints`, `earlyFit`) ; `effectiveOrigin(choice, ranking)` | Origine optimale |
 | `derivedStats.ts` | `derivedStats(attrs, tables): Calc<{ hp; fp; stamina; equipLoad }>` (tables, jamais `origins[].base_stats` : anomalie Heavy Knight) ; l'équilibre reste une donnée | Statistiques dérivées |
 | `timeline.ts` | `buildTimeline(bosses, progress, cfg): TimelineView` (étapes, « N parmi M », « ou », prérequis boss ou textuels, voie DLC et « ordre libre », prochain boss) | Frise (D13) |
-| `bossLevel.ts` | `recommendedLevel(boss, encounter \| null, position, cfg): Calc<{ level; scadutree? }>` ; `readiness(level, rec, defeated)` → `ready` (≥ rec), `limit` (≥ rec − 8), `early`, `defeated`, `unknown` (aucune rencontre) ; `gaugeMax` = `max(rec + 30, level + 12, 60)` | Niveau recommandé (M3, D14) |
+| `bossLevel.ts`, `encounters.ts` | `recommendedLevel(key: EncounterKey, ctx): Calc<{ level; scadutree? }>` (index des rencontres par clé dans `encounters.ts` ; nœuds de frise avec `levelKey`, `excludeRunes`, `labelParams`, étape tirée des régions de la rencontre) ; `readiness(level, rec, defeated)` → `ready` (≥ rec), `limit` (≥ rec − 8), `early`, `defeated`, `unknown` (aucune rencontre) ; `gaugeMax` = `max(rec + 30, level + 12, 60)` | Niveau recommandé (M3, D14) |
 | `runes.ts` | `runeCost(level, tables)`, `runesBetween(from, to, tables)` : `Calc<number>` lus dans la table 1–713 ; la formule entière n'existe que dans les tests | Coût en runes |
 | `upgradePlan.ts` | `upgradePlan(w, from, to, bellBearings, ctx): Calc<UpgradePlan>` (pierres par palier, pierres anciennes, Bell Bearings et leur étape) ; `null` si type inconnu ou « Not upgradeable » | Plan d'amélioration |
 | `weakness.ts` | `bestDamageTypes(enc, n)`, `immunities(enc)`, `absorptionBand(v)` (seuils d'AbsorptionHeatmap) | lecture de données |
 | `attackPower.ts` | `attackPower(w, affinity, level, attrs, hands, cfg): Calc<AttackBreakdown> \| { unavailable: string }`. Mode `estimate` : base au niveau choisi depuis `upgrade.tables` (interpolée sinon, badge Estimation ; infobox à +0 si `derived.inconsistent`), −40 % par type lié à un prérequis non atteint, bonus de scaling seulement si les coefficients existent (43 armes), sinon « non calculable ». Mode `published` : valeur du tableau si documentée, sinon `unavailable`. Aucun autre module ne dépend du détail | Hypothèse C3 |
-| `coverage.ts` | `coverage(data, timelineCfg): CoverageRow[]` (documenté, estimé, non documenté, par source) | Couverture |
+| `coverage.ts` | `coverage(data, timelineCfg): Calc<CoverageRow[]>` (documenté, estimé, non documenté, par source) | Couverture |
 | `attributeYield.ts` | `attributeYield(attrs, tables): Calc<YieldCurve[]>` : pour Vigor, Mind et Endurance, valeur par niveau 1–99 (PV, FP, endurance, charge), gain du point suivant, paliers où le gain baisse, position du profil (D23) | Statistiques dérivées |
 | `methods.ts`, `codes.ts` | identifiant et section de `calculs.md` de chaque `MethodId` ; liste unique des codes de composantes et de limites (les textes sont dans `src/ui/explainText.ts`) | — |
 | `readiness.ts` | préparation et jauge, réexportées par `bossLevel.ts` ; `checkRequirements` (avec explication) s'ajoute à `compareRequirements` ; les fonctions qui citent un fichier reçoivent `ctx.file` | D32 |
