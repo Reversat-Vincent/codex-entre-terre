@@ -161,3 +161,126 @@ describe('armes efficaces contre une rencontre (fiche boss)', () => {
     expect(new Set(analysis.candidates.map((c) => c.weapon.category))).toEqual(new Set(['Staves']))
   })
 })
+
+describe('getters des fiches, des catalogues et des widgets (2.12)', () => {
+  const MARGIT = 'margit-the-fell-omen/margit-the-fell-omen'
+  const VAGABOND = { vig: 15, mnd: 10, end: 11, str: 14, dex: 13, int: 9, fai: 9, arc: 7 }
+
+  /** Référence d'une arme chargée, par son nom exact. */
+  function weaponRef(name: string): `weapon:${string}` {
+    const data = useDataStore()
+    for (const key of ['melee_armaments', 'ranged_weapons_catalysts', 'shields_torches'] as const) {
+      const w = data.dataset(key)?.entries.find((x) => x.name === name)
+      if (w !== undefined) return `weapon:${w.id}`
+    }
+    throw new Error(`arme ${name} absente`)
+  }
+
+  it('derivedOf : statistiques d’un jeu d’attributs quelconque (Astrologer, calculs.md) ; null sans tables', async () => {
+    const { analysis } = await setup()
+    expect(analysis.derivedOf({ vig: 9, mnd: 15, end: 9 })?.value).toEqual({ hp: 396, fp: 95, stamina: 94, equipLoad: 46.6 })
+    setActivePinia(createPinia())
+    const bare = await setup(['origins'])
+    expect(bare.analysis.derivedOf({ vig: 9, mnd: 15, end: 9 })).toBeNull()
+  })
+
+  it('encounters : index des rencontres par clé ; null sans bosses', async () => {
+    const { analysis } = await setup()
+    expect(analysis.encounters?.byKey.get(MARGIT)?.boss.id).toBe('margit-the-fell-omen')
+    setActivePinia(createPinia())
+    expect((await setup(['origins'])).analysis.encounters).toBeNull()
+  })
+
+  it('weaponCalcs : puissance d’attaque et prérequis du profil (Longsword +0, STR et DEX 20 → 141) ; mémoïsé ; null si inconnue', async () => {
+    const { analysis, criteria } = await setup()
+    criteria.set({ character: { attributes: { ...VAGABOND, str: 20, dex: 20 } } })
+    const ref = weaponRef('Longsword')
+    const calcs = analysis.weaponCalcs(ref, 0, 'Standard', 'one')
+    expect(calcs !== null && 'value' in calcs.attack ? calcs.attack.value?.total : undefined).toBe(141)
+    expect(calcs?.requirements.value?.allMet).toBe(true)
+    expect(analysis.weaponCalcs(ref, 0, 'Standard', 'one')).toBe(calcs)
+    expect(analysis.weaponCalcs('weapon:absente', 0, 'Standard', 'one')).toBeNull()
+  })
+
+  it('scoreOf : score définitif d’une candidate ; arme masquée ou hors style signalée ; « Non classé » sans total', async () => {
+    const { analysis, criteria } = await setup(['origins', 'bosses', 'tables', 'melee_armaments', 'ranged_weapons_catalysts'])
+    const longsword = weaponRef('Longsword')
+    expect(analysis.scoreOf(longsword)).toBe(analysis.scored.find((s) => s.candidate.ref === longsword)?.score)
+    // Arc hors du style « mêlée » : score calculé, limite de style.
+    const bow = analysis.scoreOf(weaponRef('Shortbow'))
+    expect(bow?.value?.total).not.toBeNull()
+    expect(bow?.explanation.limits).toContainEqual({ code: 'weapon-outside-style' })
+    // Échange de Remembrance exclu par les critères.
+    criteria.set({ constraints: { excludeRemembrance: true } })
+    const blade = analysis.scoreOf(weaponRef('Blasphemous Blade'))
+    expect(blade?.explanation.limits).toContainEqual({ code: 'weapon-hidden-remembrance' })
+    expect(blade?.value?.total).not.toBeNull()
+    // Broadsword n'a que des équipements de départ : sans origine retenue, « Non classé », sans total (D18).
+    expect(analysis.scoreOf(weaponRef('Broadsword'))?.value?.total).toBeNull()
+    expect(analysis.scoreOf('weapon:absente')).toBeNull()
+  })
+
+  it('requirementsOf : arme (maniement des critères) et sort ; null pour une autre entité', async () => {
+    const { analysis, criteria, data } = await setup(['origins', 'bosses', 'tables', 'melee_armaments', 'spells'])
+    criteria.set({ style: { hands: 2 }, character: { attributes: { ...VAGABOND } } })
+    const greatsword = analysis.requirementsOf(weaponRef('Greatsword'))
+    expect(greatsword?.value?.checks.find((c) => c.attr === 'str')).toMatchObject({ actual: 14, effective: 21, twoHandApplied: true })
+    const spell = data.dataset('spells')!.entries.find((s) => s.requirements.int > 0)!
+    const r = analysis.requirementsOf(`spell:${spell.id}`)
+    expect(r?.value?.checks.find((c) => c.attr === 'int')?.required).toBe(spell.requirements.int)
+    expect(r?.explanation.inputs[0]?.file).toBe('spells')
+    expect(analysis.requirementsOf('boss:margit-the-fell-omen')).toBeNull()
+  })
+
+  it('levelUpPriorities : 4 au plus, Vigor au palier 40 ; sans build cible, règles 1 et 2 seulement', async () => {
+    const { analysis, criteria } = await setup()
+    criteria.set({ character: { attributes: { ...VAGABOND } } })
+    const bare = analysis.levelUpPriorities
+    expect(bare.explanation.method).toBe('level-up-priorities')
+    expect(bare.value?.every((p) => p.reason !== 'priority-build-target')).toBe(true)
+    expect(bare.value).toContainEqual(expect.objectContaining({ attr: 'vig', target: 40, reason: 'priority-vigor-soft-cap' }))
+    expect(bare.explanation.limits.map((l) => l.code)).toContain('priorities-no-target')
+    criteria.set({ target: { archetype: 'str', level: 150 } })
+    const withTarget = analysis.levelUpPriorities.value ?? []
+    expect(withTarget).toHaveLength(4)
+    expect(withTarget.map((p) => p.reason)).toContain('priority-build-target')
+    expect(new Set(withTarget.map((p) => p.attr)).size).toBe(withTarget.length)
+  })
+
+  it('runeCostsBetween : coût de chaque niveau (9 à 40 = 134 856) ; null sans tables', async () => {
+    const { analysis } = await setup()
+    const r = analysis.runeCostsBetween(9, 40)
+    expect(r?.value?.reduce((s, c) => s + c.cost, 0)).toBe(134856)
+    expect(r?.value?.[0]?.level).toBe(9)
+    setActivePinia(createPinia())
+    expect((await setup(['origins'])).analysis.runeCostsBetween(9, 40)).toBeNull()
+  })
+
+  it('weaknessRows : frise (11 sur 21, DLC activé) et toutes les rencontres ; vaincus atténués ; null sans bosses', async () => {
+    const { analysis, criteria } = await setup()
+    criteria.toggleDefeated(MARGIT)
+    const timeline = analysis.weaknessRows('timeline')
+    expect(timeline?.rows).toHaveLength(11)
+    expect(timeline?.total).toBe(21)
+    expect(timeline?.rows[0]).toMatchObject({ id: 'margit', bossId: 'margit-the-fell-omen', done: true })
+    const all = analysis.weaknessRows('all')
+    expect(all?.rows.length).toBeGreaterThan(11)
+    expect(all?.rows.find((r) => r.id === MARGIT)?.done).toBe(true)
+    setActivePinia(createPinia())
+    const bare = (await setup(['origins'])).analysis
+    expect(bare.weaknessRows('timeline')).toBeNull()
+    expect(bare.weaknessRows('all')).toBeNull()
+  })
+
+  it('stageOf : étape de toute entité à acquisitions, hors style et filtres ; null pour une autre entité', async () => {
+    const { analysis, data } = await setup(['origins', 'bosses', 'tables', 'melee_armaments', 'ranged_weapons_catalysts', 'armor'])
+    const longsword = weaponRef('Longsword')
+    expect(analysis.stageOf(longsword)).toEqual(analysis.scored.find((s) => s.candidate.ref === longsword)?.stage)
+    expect(analysis.stageOf(weaponRef('Shortbow'))?.value?.stage).toBeDefined()
+    expect(analysis.stageOf(weaponRef('Blasphemous Blade'))?.value).toMatchObject({ stage: 'late', basis: 'remembrance' })
+    const armor = data.dataset('armor')!.entries[0]!
+    expect(analysis.stageOf(`armor:${armor.id}`)?.explanation.method).toBe('stage')
+    expect(analysis.stageOf('boss:margit-the-fell-omen')).toBeNull()
+    expect(analysis.stageOf('armor:absente')).toBeNull()
+  })
+})

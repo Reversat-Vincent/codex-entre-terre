@@ -66,6 +66,8 @@ Chaque composante est arrondie à l'entier le plus proche puis bornée à 0–25
 
 Filtres appliqués avant le score, dans cet ordre (la première raison qui s'applique est comptée) : contenus désactivés (Shadow of the Erdtree, Tarnished Pack), exclusions lues dans `acquisition_flags` (Remembrance : `remembrance_weapon` ou table des Remembrances ; butin aléatoire : `random_enemy_drop` ; quête : `npc_or_quest_related`), estimations exclues si la fiabilité l'impose (`derived.upgrade.reliability = estimate`). Une exclusion porte sur l'indicateur de l'arme, même si elle a d'autres acquisitions [conception, prototype]. Les armes masquées sont comptées par raison et restent affichables grisées en plein écran.
 
+Consultée hors du widget A (fiche arme, comparateur ; getter `scoreOf` du store `analysis`), une arme masquée par un filtre ou hors du style choisi reçoit le même score, calculé avec l'origine retenue ; le « Pourquoi ? » donne la raison qui l'écarte des recommandations (limite). Une arme « Non classé » reste sans score (D18).
+
 ### Armes efficaces contre une rencontre
 Fiche boss, « Pour votre profil » (getter `weaponsAgainst(clé de rencontre)` du store `analysis`, fonction `weaponsAgainst` de `weakness.ts`) [conception] :
 - Faiblesses : les **2** types de dégâts les moins absorbés par la rencontre (`damage_negation_percent`, ex æquo dans l'ordre standard, frappe, tranchant, perforant, magie, feu, foudre, sacré), autant qu'un nœud de la frise en affiche (`WEAKNESS_WEAPONS.bestTypes`, `weights.ts`).
@@ -130,6 +132,20 @@ Quand un archétype est choisi, les attributs cibles du niveau cible `L` se déd
 - Poids automatiques `autoW(attributs du profil)`, sans archétype : pour chacun de STR, DEX, INT, FAI, ARC dont la valeur dépasse 12, poids = valeur − 10 ; si aucun ne dépasse 12, poids STR = 1. Tous les poids sont ensuite divisés par le plus grand et arrondis à deux décimales (`round(p / max × 100) / 100`, demi vers le haut).
 - Le gabarit est un choix de conception du prototype, pas une donnée du jeu : la cible porte le badge Calculé (pas Estimation) et une limite le rappelle. Le niveau calculé reste `Σ attributs − 79`. Au-delà du niveau où un attribut atteindrait 99, la borne s'applique et la somme n'atteint plus `L + 79` (limite affichée).
 
+## Priorités de montée de niveau
+
+Widget B (brief § 5.2 B), décision D42 [conception]. Où placer les prochains points d'attributs, dans cet ordre :
+
+1. **Prérequis de l'arme** : les prérequis non atteints de la meilleure arme recommandée de l'étape courante (la mieux notée de la colonne du widget A, quel que soit l'ordre d'affichage de la colonne DLC), dans l'ordre STR, DEX, INT, FAI, ARC. Valeur visée en points réels, selon « Prérequis comparés au profil » : à deux mains, la Force réelle qui donne la Force effective demandée [wiki].
+2. **Vigor** jusqu'au premier palier publié, **40** ([Vigor](https://eldenring.wiki.gg/wiki/Vigor), voir « Rendement des attributs ») [wiki], si elle est en dessous.
+3. **Build cible** : pour chaque autre attribut, `écart = max(0, cible − actuel)` multiplié par son poids (« Build cible ») ; VIG, MND et END, qu'aucun archétype ne pondère, reçoivent le poids **0,5** ; les autres attributs hors build, 0. Priorités par produit décroissant, ex æquo dans l'ordre des attributs, valeur visée = attribut cible.
+
+- Un attribut n'apparaît qu'une fois, retenu par la première règle qui s'applique (Vigor visée à 40 par la règle 2, puis à sa cible quand 40 est atteint).
+- **4** priorités au plus, chacune avec l'attribut, sa valeur actuelle, la valeur visée et sa raison (code de composante). Sans build cible, seules les règles 1 et 2 s'appliquent (limite affichée). Sans arme recommandée à l'étape, la règle 1 ne donne rien (limite affichée).
+- Badge Calculé et « Pourquoi ? ». La liste hérite de l'estimation du score de l'arme quand la règle 1 retient un de ses prérequis : le choix de l'arme en dépend.
+- Réglages : `LEVEL_UP_PRIORITIES` de `config/weights.ts` (4 priorités, poids 0,5, attributs VIG, MND, END) ; palier de Vigor : `PUBLISHED_SOFT_CAPS` de `config/softCaps.ts`.
+- Cas de test : profil Vagabond (VIG 15, MND 10, END 11, STR 14, DEX 13 ; `origins.json`), build `str` au niveau 150 (cible VIG 60, MND 15, END 31, STR 80), meilleure arme de l'étape demandant STR 20 (cas fictif) → STR 20 (prérequis) ; VIG 40 (palier) ; STR déjà retenue, puis END 31 (écart 20 × 0,5 = 10), MND 15 (écart 5 × 0,5 = 2,5) ; DEX (écart 3 × 0,2 = 0,6) n'entre pas, la liste étant pleine.
+
 ## Niveau recommandé d'un boss et préparation
 
 Le wiki ne publie aucun niveau recommandé par boss. Le niveau est une **estimation** [estimation] ; il suit la méthode M3 ci-dessous. Ses repères du wiki : [wiki] « Level 120 (+/- 10) » pour finir le jeu, la plupart des joueurs entre 150 et 170 ; le guide attend au moins 60 à Dragonbarrow et environ 100 aux Mountaintops of the Giants. Les PV sont affichés dans la fiche mais **n'entrent pas dans le calcul** : ils ne suivent pas la progression (Sir Gideon Ofnir, 6 226 PV, vaut Godrick, 6 080 ; Rykard phase 1, 30 439, dépasse Elden Beast, 22 127).
@@ -187,6 +203,7 @@ La frise suit la page Bosses du wiki (section « Mandatory bosses »), dans l'or
 
 - La table officielle (niveaux 1 à 713) du fichier `mechanics` (sujet `Level`, `summary_tables[0]`, colonne `Runes to next`) **fait foi** : c'est elle que lit le moteur. Ne pas utiliser la colonne `Cost increase` (ligne 713 fausse).
 - Pour passer du niveau L au niveau L + 1 (1 ≤ L ≤ 712), la formule en arithmétique entière sert de **test de cohérence** : `k = max(0, 2 × (L − 11)) + 10`, coût = `floor(k × (L + 81)² / 100) + 1`. C'est l'écriture exacte de `x = max(0, (L + 81 − 92) × 0,02)`, `floor((x + 0,1) × (L + 81)²) + 1`. Évaluée en virgule flottante, cette dernière perd 1 rune sur 17 niveaux (209, 224, 234, 249, 274, 299, 309, 324, 374, 399, 429, 454, 479, 504, 529, 654, 679). Le wiki ne publie pas la formule : elle reproduit sans écart les 713 lignes de la table.
+- Le calculateur peut détailler le coût de chaque niveau de la plage (getter `runeCostsBetween(de, à)`) : ce sont les lignes lues, sans autre calcul ; leur somme est le total.
 - Les totaux additionnent les coûts niveau par niveau et tiennent dans un entier JavaScript sûr (1 692 566 842 au plus). Le plafond de 713 niveaux n'est pas confirmé par le wiki (non vérifiable).
 - Cas de test : coût(1) = 673 · coût(11) = 847 · coût(12) = 1 038 · coût(150) = 153 680 · coût(209) = 341 447 · coût(679) = 7 774 497 · coût(712) = 8 879 348 · total de 9 à 10 = 811 · total de 9 à 40 = 134 856 · total de 1 à 150 = 7 112 459 · total de 1 à 713 = 1 692 566 842.
 

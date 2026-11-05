@@ -75,7 +75,7 @@ interface Pipeline {
  * Store des catalogues.
  * État : un `CatalogUiState` par catalogue (`stateOf(clé)`).
  * Actions : `toggleFilter(clé, facette, valeur)`, `removeFilter(clé, facette, valeur)`, `clearFilters(clé)`, `setIncludeEstimates(clé, oui)`, `setSearch(clé, texte)`,
- * `sortBy(clé, colonne, additif)` (clic ou Maj + clic), `resetSort(clé)`, `setPage(clé, page)`, `reset(clé)`, `ensure(clé)` (charge les fichiers du catalogue).
+ * `sortBy(clé, colonne, additif)` (clic ou Maj + clic), `setSort(clé, critères)` (liste émise par un tableau ou « Trier par »), `resetSort(clé)`, `setPage(clé, page)`, `reset(clé)`, `ensure(clé)` (charge les fichiers du catalogue).
  * Tout changement de filtre, de recherche, de tri ou d'estimations ramène à la page 1.
  * Getters (fonctions de la clé) : `status`, `total`, `matches`, `rows` (filtrées et triées), `page` (filtrées, triées, paginées), `facets` (avec compteurs),
  * `estimates`, `hidden`, `chips`, `suggestions`.
@@ -200,6 +200,25 @@ export const useCatalogsStore = defineStore('catalogs', () => {
     patch(key, { sort: toggleSort(stateOf(key).sort, column, additive) })
   }
 
+  /**
+   * Remplace tous les critères de tri (tri émis par `CxDataTable`, choix de « Trier par » avec son sens). Les critères sur une colonne inconnue
+   * du catalogue, de sens invalide ou en double (le premier compte) sont écartés ; une liste vide après ce tri revient au tri par défaut,
+   * pour que le catalogue garde un ordre stable plutôt que l'ordre des fichiers.
+   * @param key Catalogue.
+   * @param keys Critères, principal en premier.
+   */
+  function setSort(key: CatalogKey, keys: readonly SortKey[]): void {
+    const columns = CATALOG_SPECS[key].columns
+    const seen = new Set<string>()
+    const valid: SortKey[] = []
+    for (const k of keys) {
+      if (!Object.hasOwn(columns, k.column) || (k.direction !== 'asc' && k.direction !== 'desc') || seen.has(k.column)) continue
+      seen.add(k.column)
+      valid.push({ column: k.column, direction: k.direction })
+    }
+    patch(key, { sort: valid.length === 0 ? DEFAULT_SORT : valid })
+  }
+
   /** Revient au tri par défaut (nom, croissant). */
   function resetSort(key: CatalogKey): void {
     patch(key, { sort: DEFAULT_SORT })
@@ -282,6 +301,7 @@ export const useCatalogsStore = defineStore('catalogs', () => {
     setIncludeEstimates,
     setSearch,
     sortBy,
+    setSort,
     resetSort,
     setPage,
     reset,

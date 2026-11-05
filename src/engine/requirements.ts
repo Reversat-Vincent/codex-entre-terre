@@ -3,6 +3,7 @@
 
 import { WEAPON_ATTRIBUTE_KEYS } from '../data/keys.ts'
 import type { WeaponAttributeKey } from '../data/keys.ts'
+import type { SpellEntry } from '../data/types/spells.ts'
 import type { WeaponEntry } from '../data/types/weapon.ts'
 import { TWO_HANDED } from './config/twoHanded.ts'
 import type { TwoHandedConfig } from './config/twoHanded.ts'
@@ -157,4 +158,29 @@ export function checkRequirements(
   if (mode === 'none' && hands === 'two') limits.push({ code: 'two-hand-no-stance' })
   if (cfg.bonusExceptions.includes(w.id)) limits.push({ code: 'two-hand-bonus-exception' })
   return makeCalc('requirements', { mode, checks, allMet: checks.every((c) => c.met) }, { components, inputs, limits })
+}
+
+/** Champs de sort lus par la comparaison des prérequis (INT, FAI, ARC ; 0 = aucun prérequis). */
+export type RequirementSpell = Pick<SpellEntry, 'id' | 'requirements'>
+
+/** Catégorie fictive donnée à un sort pour la comparaison : hors des listes de `twoHanded.ts`, elle ne déclenche aucune exception. */
+const SPELL_CATEGORY = 'Spell'
+
+/**
+ * Prérequis d'un sort comparés au profil, avec explication (calculs.md, « Prérequis comparés au profil ») : même règle `attribut ≥ prérequis`
+ * que pour une arme ; un sort n'a ni prérequis de Force ni posture, la Force effective à deux mains ne s'applique donc jamais.
+ * @param spell Sort (`requirements.int`, `.fai`, `.arc`).
+ * @param attrs Attributs du profil.
+ * @returns Les comparaisons des prérequis non nuls (ordre INT, FAI, ARC), mode `optional` sans effet ; jamais estimé (données du wiki).
+ */
+export function checkSpellRequirements(spell: RequirementSpell, attrs: Attributes): Calc<RequirementsResult> {
+  const { int, fai, arc } = spell.requirements
+  const checks = compareRequirements({ id: spell.id, category: SPELL_CATEGORY, requirements: { str: 0, dex: 0, int, fai, arc } }, attrs, 'one')
+  const components: ExplanationComponent[] = checks.map((c) => ({
+    code: 'requirement',
+    value: c.gap,
+    params: { attr: c.attr, required: c.required, actual: c.actual, effective: c.effective },
+  }))
+  const inputs: DataRef[] = checks.map((c) => ({ file: 'spells', entry: spell.id, field: `requirements.${c.attr}`, value: c.required, reliability: 'wiki' }))
+  return makeCalc('requirements', { mode: 'optional', checks, allMet: checks.every((c) => c.met) }, { components, inputs })
 }

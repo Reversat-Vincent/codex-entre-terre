@@ -1,18 +1,19 @@
 // Lecture des faiblesses d'une rencontre : types de dégâts les moins absorbés, immunités aux statuts, bande de la matrice des faiblesses,
-// et armes candidates qui exploitent ces faiblesses (fiche boss).
+// armes candidates qui exploitent ces faiblesses (fiche boss) et lignes de la matrice des faiblesses (widget D1).
 // Les trois lectures de données suivent le README `docs/design/ds/components/AbsorptionHeatmap/README.md` ; la sélection d'armes suit
 // docs/design/ds/calculs.md, « Armes efficaces contre une rencontre » (configuration : config/weights.ts, `WEAKNESS_WEAPONS`).
 
 import type { EntityRef } from '../data/datasets.ts'
 import { NEGATION_KEYS, STATUS_KEYS } from '../data/keys.ts'
 import type { NegationKey, StatusKey } from '../data/keys.ts'
-import type { Encounter } from '../data/types/bosses.ts'
+import type { BossEntry, Encounter } from '../data/types/bosses.ts'
 import type { WeaponEntry } from '../data/types/weapon.ts'
 import { WEAKNESS_WEAPONS } from './config/weights.ts'
-import type { EncounterRef } from './encounters.ts'
+import type { EncounterIndex, EncounterRef } from './encounters.ts'
 import type { RequirementCheck } from './requirements.ts'
 import { byScore } from './score.ts'
 import type { ScoredWeapon, WeaponScore } from './score.ts'
+import type { TimelineBossView, TimelineView } from './timeline.ts'
 import { makeCalc, mergeEstimates, nullCalc } from './types.ts'
 import type { Calc, DataRef, ExplanationComponent } from './types.ts'
 
@@ -165,4 +166,127 @@ export function weaponsAgainst(
     inputs,
     limits: [{ code: 'weakness-weapons-base-values' }],
   })
+}
+
+/**
+ * Ligne de la matrice des faiblesses (forme de `HeatmapRow` de `CxAbsorptionHeatmap`, sans l'adresse de la fiche : le moteur ne connaît
+ * pas le routeur ; l'interface la construit avec `bossId` et `encounterId`, pour ouvrir la fiche sur la rencontre par `?rencontre=`).
+ */
+export interface WeaknessRow {
+  /** Identifiant unique de la ligne : nœud de la frise (tableau de bord) ou clé de rencontre (plein écran). */
+  readonly id: string
+  /** Nom de la rencontre, en anglais comme dans les données. */
+  readonly name: string
+  /** Lieu de la rencontre ; absent si `location` vaut `null`. */
+  readonly subtitle?: string
+  readonly bossId: string
+  /** Identifiant de la rencontre dans sa page (partie de la clé après `/`). */
+  readonly encounterId: string
+  /** Rencontre vaincue : ligne atténuée. */
+  readonly done: boolean
+  /** Absorption en % par type (toujours documentée : une rencontre sans absorption n'est pas une ligne). */
+  readonly negation: Readonly<Record<NegationKey, number>>
+  /** Statuts immunisés (`immunities`), `null` si les résistances ne sont pas documentées. */
+  readonly immunities: readonly StatusKey[] | null
+}
+
+/** Lignes de la matrice et nombre de boss ou de rencontres examinés (avec ou sans données d'absorption). */
+export interface WeaknessRows {
+  readonly rows: readonly WeaknessRow[]
+  readonly total: number
+}
+
+/**
+ * Ligne d'une rencontre, si son absorption est documentée (lecture de données, sans calcul).
+ * @param id Identifiant de la ligne.
+ * @param bossId Page de boss.
+ * @param encounter Rencontre.
+ * @param encounterId Identifiant de la rencontre dans sa page.
+ * @param done Rencontre vaincue.
+ * @returns La ligne, ou `null` sans `damage_negation_percent`.
+ */
+function weaknessRowOf(id: string, bossId: string, encounter: Encounter, encounterId: string, done: boolean): WeaknessRow | null {
+  const negation = encounter.damage_negation_percent
+  if (negation === undefined) return null
+  return {
+    id,
+    name: encounter.name,
+    ...(encounter.location === null ? {} : { subtitle: encounter.location }),
+    bossId,
+    encounterId,
+    done,
+    negation,
+    immunities: immunities(encounter),
+  }
+}
+
+/**
+ * Boss de la frise dans l'ordre de lecture : prérequis boss avant leur nœud, puis la voie DLC si elle est activée, sans doublon
+ * (les boss qui ouvrent le DLC sont déjà des nœuds de l'histoire).
+ * @param timeline Frise.
+ * @returns Les boss à examiner.
+ */
+function timelineBossesInOrder(timeline: TimelineView): TimelineBossView[] {
+  const out: TimelineBossView[] = []
+  const push = (node: TimelineBossView): void => {
+    if (!out.some((o) => o.id === node.id)) out.push(node)
+  }
+  for (const step of timeline.steps) {
+    for (const node of step.nodes) {
+      for (const prereq of node.prereqs) if (prereq.kind === 'boss') push(prereq.node)
+      push(node)
+    }
+  }
+  if (timeline.dlc.enabled) for (const node of timeline.dlc.nodes) push(node)
+  return out
+}
+
+/**
+ * Lignes de la matrice du tableau de bord (calculs.md, « Frise des boss » : seuls les nœuds dont l'absorption est documentée l'affichent,
+ * 11 sur 21) : rencontre `levelKey` de chaque boss de la frise, dans l'ordre de la frise ; un boss vaincu est atténué.
+ * @param timeline Frise courante.
+ * @param index Index des rencontres.
+ * @returns Les lignes documentées et le nombre de boss de la frise examinés.
+ */
+export function timelineWeaknessRows(timeline: TimelineView, index: EncounterIndex): WeaknessRows {
+  const nodes = timelineBossesInOrder(timeline)
+  const rows: WeaknessRow[] = []
+  for (const node of nodes) {
+    const ref = index.byKey.get(node.levelKey)
+    if (ref === undefined || ref.encounter === null) continue
+    // La clé de rencontre est `bossId/encounterId` (architecture § 3.3).
+    const encounterId = node.levelKey.slice(node.levelKey.indexOf('/') + 1)
+    const row = weaknessRowOf(node.id, ref.boss.id, ref.encounter, encounterId, node.defeated)
+    if (row !== null) rows.push(row)
+  }
+  return { rows, total: nodes.length }
+}
+
+/**
+ * Lignes de la matrice en plein écran : toutes les rencontres de `bosses.json` dont l'absorption est documentée, dans l'ordre des données,
+ * sauf celles d'un contenu désactivé (Shadow of the Erdtree, Tarnished Pack).
+ * @param bosses Pages de boss.
+ * @param defeated Clés des rencontres vaincues.
+ * @param content Contenus activés.
+ * @returns Les lignes documentées et le nombre de rencontres examinées (contenu activé, avec ou sans données).
+ */
+export function allWeaknessRows(
+  bosses: readonly BossEntry[],
+  defeated: ReadonlySet<string>,
+  content: { readonly sote: boolean; readonly tp: boolean },
+): WeaknessRows {
+  const rows: WeaknessRow[] = []
+  let total = 0
+  for (const boss of bosses) {
+    boss.encounters.forEach((encounter, i) => {
+      if (encounter.source === 'Shadow of the Erdtree' && !content.sote) return
+      if (encounter.source === 'Tarnished Pack' && !content.tp) return
+      const identity = boss.derived.encounters[i]
+      if (identity === undefined) return
+      total++
+      const row = weaknessRowOf(identity.key, boss.id, encounter, identity.id, defeated.has(identity.key))
+      if (row !== null) rows.push(row)
+    })
+  }
+  return { rows, total }
 }

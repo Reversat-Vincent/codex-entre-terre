@@ -234,6 +234,27 @@ describe('tri', () => {
     expect(catalogs.stateOf('weapons:melee').sort).toEqual([{ column: 'name', direction: 'asc' }])
   })
 
+  it('setSort : remplace les critères ; colonnes inconnues, sens invalides et doublons écartés ; liste vide → tri par défaut ; page 1', async () => {
+    const { catalogs } = await setup()
+    catalogs.setPage('weapons:melee', 3)
+    catalogs.setSort('weapons:melee', [
+      { column: 'weight', direction: 'desc' },
+      { column: 'inconnue', direction: 'asc' },
+      { column: 'name', direction: 'sideways' as 'asc' },
+      { column: 'weight', direction: 'asc' },
+      { column: 'name', direction: 'asc' },
+    ])
+    expect(catalogs.stateOf('weapons:melee').sort).toEqual([
+      { column: 'weight', direction: 'desc' },
+      { column: 'name', direction: 'asc' },
+    ])
+    expect(catalogs.stateOf('weapons:melee').page).toBe(1)
+    const weights = catalogs.rows('weapons:melee').map((r) => (r as unknown as { weight: number }).weight)
+    expect(weights).toEqual([...weights].sort((a, b) => b - a))
+    catalogs.setSort('weapons:melee', [{ column: 'inconnue', direction: 'asc' }])
+    expect(catalogs.stateOf('weapons:melee').sort).toEqual([{ column: 'name', direction: 'asc' }])
+  })
+
   it('trie sur les prérequis, les lettres de scaling et le rang des boss', async () => {
     const { catalogs } = await setup()
     catalogs.sortBy('weapons:melee', 'req-int')

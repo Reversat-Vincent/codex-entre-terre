@@ -5,9 +5,18 @@ import { describe, expect, it } from 'vitest'
 import { candidateWeapons, catalystCaps, filterWeapons, hiddenReason, scoreWeapon } from '../../../src/engine/score.ts'
 import type { ScoredWeapon } from '../../../src/engine/score.ts'
 import { entryStage } from '../../../src/engine/stage.ts'
-import { absorptionBand, bestDamageTypes, immunities, weaponDamageTypes, weaponsAgainst } from '../../../src/engine/weakness.ts'
+import { buildTimeline } from '../../../src/engine/timeline.ts'
+import {
+  absorptionBand,
+  allWeaknessRows,
+  bestDamageTypes,
+  immunities,
+  timelineWeaknessRows,
+  weaponDamageTypes,
+  weaponsAgainst,
+} from '../../../src/engine/weakness.ts'
 import { attrs, boss } from './helpers.ts'
-import { candidate, encounters, weaponData } from './prepared.ts'
+import { candidate, data, encounters, weaponData } from './prepared.ts'
 
 describe('absorptionBand', () => {
   it.each([
@@ -132,5 +141,36 @@ describe('armes efficaces contre une rencontre', () => {
     const r = weaponsAgainst(encounters().byKey.get('margit-the-fell-omen/margit-the-fell-omen'), scored, { bestTypes: 8, max: 1000 })
     expect((r.value ?? []).length).toBeGreaterThan(5)
     for (const w of r.value ?? []) expect(unclassified).not.toContain(w.ref)
+  })
+})
+
+describe('lignes de la matrice des faiblesses', () => {
+  const MARGIT = 'margit-the-fell-omen/margit-the-fell-omen'
+  // calculs.md, « Frise des boss » : 11 nœuds documentés sur 21 (DLC activé).
+  const WITH_DLC = { rows: 11, total: 21 }
+
+  it('tableau de bord : boss de la frise documentés, dans l’ordre de la frise ; vaincus atténués', () => {
+    const t = buildTimeline(encounters(), [MARGIT], { dlcEnabled: true })
+    const r = timelineWeaknessRows(t, encounters())
+    expect(r.rows.length).toBe(WITH_DLC.rows)
+    expect(r.total).toBe(WITH_DLC.total)
+    const margit = r.rows[0]
+    expect(margit).toMatchObject({ id: 'margit', bossId: 'margit-the-fell-omen', encounterId: 'margit-the-fell-omen', done: true })
+    expect(margit?.negation.slash).toBe(-10)
+    expect(r.rows.slice(1).every((row) => !row.done)).toBe(true)
+    // Sans DLC, la voie DLC n'est pas lue.
+    const base = timelineWeaknessRows(buildTimeline(encounters(), [], { dlcEnabled: false }), encounters())
+    expect(base.total).toBeLessThan(r.total)
+  })
+
+  it('plein écran : toutes les rencontres documentées du contenu activé, clé de rencontre comme identifiant', () => {
+    const bosses = data().datasets.bosses.entries
+    const all = allWeaknessRows(bosses, new Set([MARGIT]), { sote: true, tp: true })
+    const noDlc = allWeaknessRows(bosses, new Set(), { sote: false, tp: false })
+    expect(all.rows.length).toBeGreaterThan(noDlc.rows.length)
+    expect(all.total).toBeGreaterThanOrEqual(all.rows.length)
+    expect(all.rows.find((row) => row.id === MARGIT)).toMatchObject({ bossId: 'margit-the-fell-omen', done: true })
+    expect(all.rows.every((row) => row.negation !== undefined)).toBe(true)
+    expect(noDlc.rows.some((row) => row.immunities === null || Array.isArray(row.immunities))).toBe(true)
   })
 })

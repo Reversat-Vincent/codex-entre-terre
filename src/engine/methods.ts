@@ -27,6 +27,7 @@ export const METHODS: Readonly<Record<MethodId, MethodInfo>> = {
   level: { id: 'level', section: 'Origine optimale' },
   coverage: { id: 'coverage', section: 'Couverture des données' },
   'attribute-yield': { id: 'attribute-yield', section: 'Rendement des attributs' },
+  'level-up-priorities': { id: 'level-up-priorities', section: 'Priorités de montée de niveau' },
 }
 
 /**

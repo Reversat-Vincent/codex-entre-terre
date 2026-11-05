@@ -30,7 +30,7 @@ const copyColumns = (columns: Record<string, string[]>): Record<string, string[]
 /**
  * Store des préférences.
  * Actions : `setTheme`, `toggleTheme`, `setNavRail`, `setCriteriaCollapsed`, `setCatalogView(catalogue, vue)`, `setCatalogColumns(catalogue, colonnes)`,
- * `snapshot()` et `hydrate(slice)` pour la persistance. Getter `viewOf(catalogue)` : affichage mémorisé du catalogue, tableau par défaut (D32).
+ * `resetCatalogs()`, `snapshot()` et `hydrate(slice)` pour la persistance. Getter `viewOf(catalogue)` : affichage mémorisé du catalogue, tableau par défaut (D32).
  * Tout changement de thème est reporté sur `<html data-theme>`.
  */
 export const usePreferencesStore = defineStore('preferences', () => {
@@ -64,6 +64,14 @@ export const usePreferencesStore = defineStore('preferences', () => {
     if (catalog === '__proto__') return
     catalogColumns.value = { ...catalogColumns.value, [catalog]: [...columns] }
   }
+  /**
+   * Oublie l'affichage et les colonnes choisis pour tous les catalogues : chacun revient à ses valeurs par défaut (tableau, colonnes par défaut
+   * du registre). Le thème, le rail et le panneau de critères ne changent pas ; la persistance enregistre l'état vidé comme tout autre changement.
+   */
+  function resetCatalogs(): void {
+    catalogView.value = {}
+    catalogColumns.value = {}
+  }
 
   function snapshot(): PreferencesSlice {
     return {
@@ -83,5 +91,5 @@ export const usePreferencesStore = defineStore('preferences', () => {
     catalogColumns.value = copyColumns(slice.catalogColumns)
   }
 
-  return { theme, navRail, criteriaCollapsed, catalogView, catalogColumns, viewOf, setTheme, toggleTheme, setNavRail, setCriteriaCollapsed, setCatalogView, setCatalogColumns, snapshot, hydrate }
+  return { theme, navRail, criteriaCollapsed, catalogView, catalogColumns, viewOf, setTheme, toggleTheme, setNavRail, setCriteriaCollapsed, setCatalogView, setCatalogColumns, resetCatalogs, snapshot, hydrate }
 })

@@ -17,6 +17,7 @@ import {
   scoreWeapon,
   weaponFilesFor,
   widenSuggestions,
+  withVisibilityLimits,
 } from '../../../src/engine/score.ts'
 import type { CandidateWeapon, ScoreContext, ScoredWeapon } from '../../../src/engine/score.ts'
 import { entryStage } from '../../../src/engine/stage.ts'
@@ -229,5 +230,30 @@ describe('recommandations par étape', () => {
       { reason: 'style', count: 3 },
     ])
     expect(widenSuggestions(rec.columns[0]!)).toEqual([])
+  })
+})
+
+describe('withVisibilityLimits', () => {
+  const ctx: ScoreContext = {
+    weights: { str: 1 },
+    attrs: attrs(),
+    hands: 'one',
+    status: null,
+    classes: [],
+    stonePreference: 'none',
+    playerStage: 'early',
+    budget: null,
+    catalystCaps: {},
+    stage: entryStage(candidate('Club').weapon, { ref: candidate('Club').ref, file: 'melee_armaments', encounters: encounters(), startingArmaments: null }),
+    startingBonus: false,
+  }
+
+  it('score inchangé ; raison de masquage et style signalés par des limites', () => {
+    const score = scoreWeapon(candidate('Club'), ctx)
+    expect(withVisibilityLimits(score, null, true)).toBe(score)
+    const out = withVisibilityLimits(score, 'remembrance', false)
+    expect(out.value).toBe(score.value)
+    expect(out.explanation.limits.slice(-2)).toEqual([{ code: 'weapon-outside-style' }, { code: 'weapon-hidden-remembrance' }])
+    expect(score.explanation.limits).not.toContainEqual({ code: 'weapon-outside-style' })
   })
 })

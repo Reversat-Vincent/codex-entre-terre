@@ -1,7 +1,7 @@
 // Pondérations et seuils du moteur : valeurs du prototype (`docs/design/Main.dc.html`), regroupées ici et décrites dans `docs/design/ds/calculs.md`.
 // Toute modification d'une valeur se reporte dans calculs.md (docs/architecture.md § 5.3). Aucune valeur de ce fichier n'est un fait du jeu.
 
-import type { Grade } from '../../data/keys.ts'
+import type { AttributeKey, Grade } from '../../data/keys.ts'
 
 /** Plafond de chacune des quatre composantes du score (calculs.md, « Score de recommandation d'une arme », « Quatre composantes de 0 à 25 »). */
 export const SCORE_COMPONENT_MAX = 25
@@ -148,3 +148,14 @@ export const ATTRIBUTE_YIELD = {
   dropRatio: 0.75,
   roundingSteps: 2,
 } as const
+
+/**
+ * Priorités de montée de niveau (calculs.md, « Priorités de montée de niveau », D42) [conception] : `max` priorités au plus ; dans la règle 3,
+ * poids `survivalWeight` pour les attributs de `survivalAttributes` que l'archétype ne pondère pas (aucun archétype ne les pondère aujourd'hui),
+ * poids 0 pour les autres attributs hors build. Le palier de Vigor de la règle 2 est le premier palier publié (`PUBLISHED_SOFT_CAPS.hp`).
+ */
+export const LEVEL_UP_PRIORITIES = {
+  max: 4,
+  survivalWeight: 0.5,
+  survivalAttributes: ['vig', 'mnd', 'end'],
+} as const satisfies { readonly max: number; readonly survivalWeight: number; readonly survivalAttributes: readonly AttributeKey[] }

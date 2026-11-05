@@ -93,6 +93,10 @@ export const COMPONENT_CODES = [
   // Rendement des attributs.
   'yield-next-gain',
   'yield-soft-cap',
+  // Priorités de montée de niveau (D42) : une composante par priorité, dont le code est la raison.
+  'priority-weapon-requirement',
+  'priority-vigor-soft-cap',
+  'priority-build-target',
 ] as const
 
 /** Code d'une composante d'explication. */
@@ -184,6 +188,21 @@ export const LIMIT_CODES = [
   'weakness-weapons-base-values',
   // Rendement des attributs.
   'soft-caps-published',
+  // Score d'une arme hors des critères (getter `scoreOf`) : raison qui la masque ou l'écarte du widget A.
+  'weapon-hidden-content-sote',
+  'weapon-hidden-content-tp',
+  'weapon-hidden-remembrance',
+  'weapon-hidden-random-drop',
+  'weapon-hidden-quest',
+  'weapon-hidden-estimate',
+  'weapon-outside-style',
+  // Priorités de montée de niveau (D42).
+  'priorities-no-weapon',
+  'priorities-no-target',
+  'priorities-two-handed-strength',
+  'priorities-survival-weight',
+  'priorities-truncated',
+  'priorities-design-method',
 ] as const
 
 /** Code d'une limite d'explication. */

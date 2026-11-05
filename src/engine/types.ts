@@ -27,6 +27,7 @@ export type MethodId =
   | 'level'
   | 'coverage'
   | 'attribute-yield'
+  | 'level-up-priorities'
 
 /** Confiance d'une estimation, reprise de `upgrade.estimate_if_undocumented.confidence` ou fixée par la méthode. */
 export type Confidence = 'high' | 'medium'

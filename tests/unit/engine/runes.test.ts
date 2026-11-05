@@ -1,7 +1,7 @@
 // Tests du coût en runes : lecture de la table 1–713, cas de calculs.md et verification-calculs.md § 1, formule entière = table (cohérence).
 
 import { describe, expect, it } from 'vitest'
-import { runeCost, runesBetween } from '../../../src/engine/runes.ts'
+import { runeCost, runeCostsBetween, runesBetween } from '../../../src/engine/runes.ts'
 import { tables } from './helpers.ts'
 
 /** Formule entière de calculs.md, qui n'existe que dans les tests : k = max(0, 2 × (L − 11)) + 10, coût = floor(k × (L + 81)² / 100) + 1. */
@@ -72,5 +72,27 @@ describe('runesBetween', () => {
   it('refuse un niveau hors de la table', () => {
     expect(runesBetween(0, 10, t).value).toBeNull()
     expect(runesBetween(1, 715, t).value).toBeNull()
+  })
+})
+
+describe('runeCostsBetween', () => {
+  const t = tables()
+
+  it('un coût par niveau, lu dans la table ; leur somme est le total (9 à 40 = 134 856)', () => {
+    const r = runeCostsBetween(9, 40, t)
+    expect(r.explanation.method).toBe('rune-cost')
+    expect(r.value).toHaveLength(31)
+    expect(r.value?.[0]).toEqual({ level: 9, cost: runeCost(9, t).value })
+    expect(r.value?.at(-1)?.level).toBe(39)
+    expect(r.value?.reduce((s, c) => s + c.cost, 0)).toBe(134856)
+    expect(r.explanation.components).toContainEqual({ code: 'runes-total', value: 134856 })
+  })
+
+  it('plage vide, inversée ou hors table : liste vide, ou null avec la limite', () => {
+    expect(runeCostsBetween(10, 10, t).value).toEqual([])
+    const inverted = runeCostsBetween(40, 9, t)
+    expect(inverted.value).toBeNull()
+    expect(inverted.explanation.limits.at(-1)?.code).toBe('invalid-range')
+    expect(runeCostsBetween(1, 715, t).explanation.limits.at(-1)?.code).toBe('level-out-of-table')
   })
 })

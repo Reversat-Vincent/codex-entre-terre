@@ -99,3 +99,34 @@ export function runesBetween(from: number, to: number, tables: CalcTables): Calc
     limits: capLimit(tables, to),
   })
 }
+
+/** Coût d'un niveau : runes pour passer de `level` à `level + 1`. */
+export interface LevelRuneCost {
+  readonly level: number
+  readonly cost: number
+}
+
+/**
+ * Coût de chaque niveau entre `from` et `to` (calculs.md, « Coût en runes d'un niveau » : colonne `Runes to next` de la table officielle,
+ * un coût par niveau de `from` à `to − 1`), pour le détail du calculateur de runes. Mêmes contrôles et mêmes limites que `runesBetween`,
+ * dont le total est la somme de ces coûts.
+ * @param from Niveau actuel.
+ * @param to Niveau visé (`to ≥ from`) ; `to = from` donne une liste vide.
+ * @param tables Tables de calcul (`levelCosts`).
+ * @returns Les coûts dans l'ordre croissant des niveaux ; `null` avec `invalid-range` si `to < from`, ou `level-out-of-table` si un niveau manque.
+ */
+export function runeCostsBetween(from: number, to: number, tables: CalcTables): Calc<LevelRuneCost[]> {
+  const total = runesBetween(from, to, tables)
+  if (total.value === null) {
+    return { value: null, estimate: null, explanation: total.explanation }
+  }
+  const costs: LevelRuneCost[] = []
+  for (let l = from; l < to; l++) {
+    // `runesBetween` a vérifié que chaque ligne de `from` à `to − 1` existe.
+    const row = rowOf(tables, l)
+    if (row !== undefined) costs.push({ level: l, cost: row.runesToNext })
+  }
+  // L'explication est celle du total (niveaux de départ et visé, total, ligne de table lue) : une composante par niveau rendrait le
+  // « Pourquoi ? » illisible (jusqu'à 713 lignes), et la liste elle-même est déjà le détail.
+  return makeCalc('rune-cost', costs, total.explanation)
+}

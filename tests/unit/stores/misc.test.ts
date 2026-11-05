@@ -129,6 +129,22 @@ describe('preferences', () => {
     expect(p.viewOf('weapons')).toBe('table')
     expect(p.viewOf('spells')).toBe('grid')
   })
+
+  it('resetCatalogs : vide la vue et les colonnes de tous les catalogues, sans toucher au reste', () => {
+    const p = usePreferencesStore()
+    p.setTheme('parchemin')
+    p.setCriteriaCollapsed(true)
+    p.setCatalogView('weapons', 'grid')
+    p.setCatalogColumns('weapons', ['name', 'weight'])
+    p.setCatalogColumns('spells', ['name'])
+    p.resetCatalogs()
+    const snap = p.snapshot()
+    expect(snap.catalogView).toEqual({})
+    expect(snap.catalogColumns).toEqual({})
+    expect(p.viewOf('weapons')).toBe('table')
+    expect(snap.theme).toBe('parchemin')
+    expect(snap.criteriaCollapsed).toBe(true)
+  })
 })
 
 describe('toasts', () => {

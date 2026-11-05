@@ -7,6 +7,7 @@ import { WEAPON_ATTRIBUTE_KEYS } from '../data/keys.ts'
 import type { StatusKey } from '../data/keys.ts'
 import type { CalcTables } from '../data/types/tables.ts'
 import type { WeaponEntry } from '../data/types/weapon.ts'
+import type { LimitCode } from './codes.ts'
 import { REMEMBRANCES } from './config/remembrances.ts'
 import { STAGE_IDS, stageIndex } from './config/stages.ts'
 import type { StageId } from './config/stages.ts'
@@ -575,4 +576,31 @@ export function widenSuggestions(column: StageColumn, otherStyleCount = 0, min: 
   const out: WidenSuggestion[] = HIDDEN_REASONS.map((reason) => ({ reason, count: column.hidden[reason] ?? 0 }))
   out.push({ reason: 'style', count: otherStyleCount })
   return out.filter((s) => s.count > 0).sort((a, b) => b.count - a.count)
+}
+
+/** Limite qui signale chaque raison de masquage dans le score d'une arme consultée hors du widget A (getter `scoreOf`). */
+const HIDDEN_LIMIT: Readonly<Record<HiddenReason, LimitCode>> = {
+  'content-sote': 'weapon-hidden-content-sote',
+  'content-tp': 'weapon-hidden-content-tp',
+  remembrance: 'weapon-hidden-remembrance',
+  'random-drop': 'weapon-hidden-random-drop',
+  quest: 'weapon-hidden-quest',
+  estimate: 'weapon-hidden-estimate',
+}
+
+/**
+ * Signale dans l'explication d'un score qu'une arme n'est pas recommandable avec les critères courants (calculs.md, « Score de
+ * recommandation d'une arme », filtres et candidats) : masquée par un filtre, ou hors du style choisi. Le score lui-même ne change pas ;
+ * une arme « Non classé » reste sans score (D18).
+ * @param score Score calculé.
+ * @param hidden Raison qui masque l'arme, ou `null`.
+ * @param inStyle Vrai si l'arme est candidate pour le style choisi.
+ * @returns Le score inchangé s'il n'y a rien à signaler, sinon une copie dont les limites portent les raisons.
+ */
+export function withVisibilityLimits(score: Calc<WeaponScore>, hidden: HiddenReason | null, inStyle: boolean): Calc<WeaponScore> {
+  const extra: ExplanationLimit[] = []
+  if (!inStyle) extra.push({ code: 'weapon-outside-style' })
+  if (hidden !== null) extra.push({ code: HIDDEN_LIMIT[hidden] })
+  if (extra.length === 0) return score
+  return { ...score, explanation: { ...score.explanation, limits: [...score.explanation.limits, ...extra] } }
 }

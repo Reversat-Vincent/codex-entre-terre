@@ -4,9 +4,13 @@
 
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
-import type { EntityRef } from '../data/datasets.ts'
+import { DATASETS } from '../data/datasets.ts'
+import type { DatasetKey, EntityRef } from '../data/datasets.ts'
 import type { OriginEntry } from '../data/types/origins.ts'
+import type { SpellEntry } from '../data/types/spells.ts'
 import type { WeaponEntry } from '../data/types/weapon.ts'
+import { attackPower } from '../engine/attackPower.ts'
+import type { AttackPowerResult } from '../engine/attackPower.ts'
 import { attributeYield } from '../engine/attributeYield.ts'
 import { bossLevelContext, gaugeMax, readBlessingTable, readiness, recommendedLevel } from '../engine/bossLevel.ts'
 import type { BossLevel, ReadinessId } from '../engine/bossLevel.ts'
@@ -14,11 +18,18 @@ import type { StageId } from '../engine/config/stages.ts'
 import { UPGRADE } from '../engine/config/upgrade.ts'
 import { coverage } from '../engine/coverage.ts'
 import { derivedStats } from '../engine/derivedStats.ts'
+import type { DerivedStats, DerivedStatsInput } from '../engine/derivedStats.ts'
 import { indexEncounters } from '../engine/encounters.ts'
+import type { EncounterIndex } from '../engine/encounters.ts'
 import { levelOf } from '../engine/level.ts'
+import { bestWeaponOfStage, levelUpPriorities } from '../engine/levelUp.ts'
+import type { LevelUpPriority } from '../engine/levelUp.ts'
 import { effectiveOrigin, rankOrigins, startingArmamentNames } from '../engine/origins.ts'
 import type { OriginRank } from '../engine/origins.ts'
-import { runesBetween } from '../engine/runes.ts'
+import { checkRequirements, checkSpellRequirements } from '../engine/requirements.ts'
+import type { RequirementsResult } from '../engine/requirements.ts'
+import { runeCostsBetween, runesBetween } from '../engine/runes.ts'
+import type { LevelRuneCost } from '../engine/runes.ts'
 import {
   alternatives,
   candidateWeapons,
@@ -29,18 +40,19 @@ import {
   recommendByStage,
   scoreWeapon,
   widenSuggestions,
+  withVisibilityLimits,
 } from '../engine/score.ts'
-import type { CandidateWeapon, ScoredWeapon, StageRecommendations, WeaponData, WidenSuggestion } from '../engine/score.ts'
+import type { CandidateWeapon, ScoredWeapon, StageRecommendations, WeaponData, WeaponScore, WidenSuggestion } from '../engine/score.ts'
 import { currentStage, encounterStage, entryStage } from '../engine/stage.ts'
-import type { StageInfo } from '../engine/stage.ts'
+import type { StageEntry, StageInfo } from '../engine/stage.ts'
 import { buildWeights, targetAttributes } from '../engine/target.ts'
 import { buildTimeline } from '../engine/timeline.ts'
 import type { TimelineView } from '../engine/timeline.ts'
 import type { Attributes, Calc, Hands, WeaponFileKey } from '../engine/types.ts'
 import { upgradePlan } from '../engine/upgradePlan.ts'
 import type { UpgradePlan } from '../engine/upgradePlan.ts'
-import { weaponsAgainst } from '../engine/weakness.ts'
-import type { WeaknessWeapon } from '../engine/weakness.ts'
+import { allWeaknessRows, timelineWeaknessRows, weaponsAgainst } from '../engine/weakness.ts'
+import type { WeaknessRows, WeaknessWeapon } from '../engine/weakness.ts'
 import type { StatusKey } from '../data/keys.ts'
 import type { Criteria, StonePreference, StyleMode } from '../persistence/model.ts'
 import type { CriteriaPatch } from './criteria.ts'
@@ -73,6 +85,34 @@ export interface OriginPipeline {
   readonly rescored: boolean
 }
 
+/** Jeux de données dont les entrées ont des acquisitions, donc une étape (calculs.md, « Étape de progression d'une arme »). */
+const ACQUISITION_DATASETS = [
+  'melee_armaments',
+  'ranged_weapons_catalysts',
+  'shields_torches',
+  'ashes_of_war',
+  'armor',
+  'talismans',
+  'spells',
+  'spirit_ashes',
+  'tools',
+  'upgrade_materials',
+  'key_items',
+  'crafting_materials',
+  'ammunition',
+] as const satisfies readonly DatasetKey[]
+
+/** Puissance d'attaque et prérequis d'une arme pour le profil courant (fiche arme). */
+export interface WeaponCalcs {
+  /** Puissance d'attaque estimée (calculs.md, « Puissance d'attaque calculée (Estimation) »), ou la raison pour laquelle elle ne l'est pas. */
+  readonly attack: AttackPowerResult
+  /** Prérequis comparés au profil (calculs.md, « Prérequis comparés au profil »), avec leur explication. */
+  readonly requirements: Calc<RequirementsResult>
+}
+
+/** Portée des lignes de la matrice des faiblesses : boss de la frise (tableau de bord) ou toutes les rencontres (plein écran). */
+export type WeaknessScope = 'timeline' | 'all'
+
 /** Préparation face à une rencontre, avec l'échelle de la jauge. */
 export interface BossReadiness {
   readonly level: Calc<BossLevel>
@@ -85,7 +125,9 @@ export interface BossReadiness {
  * Getters : `level`, `weights`, `target`, `derived`, `attributeYield`, `bossLevel(clé)`, `bossReadiness(clé)`, `timeline`, `nextBoss`,
  * `stage`, `budget`, `candidates`, `filtered`, `preliminary`, `originRanking`, `effectiveOrigin`, `pipeline`, `scored`, `recommendations`,
  * `alternativesOf(ref)`, `widen(stage)`, `weaponsAgainst(clé de rencontre)`, `coverage`, `chips`, `runesTo(niveau)`, `upgradePlanFor(ref, de, à)`,
- * `bellBearingStages`.
+ * `bellBearingStages`, `encounters`, `derivedOf(attributs)`, `weaponCalcs(ref, niveau, affinité, maniement)`, `scoreOf(ref)`, `requirementsOf(ref)`,
+ * `levelUpPriorities`, `runeCostsBetween(de, à)`, `weaknessRows(portée)`, `stageOf(ref)`.
+ * Les getters à paramètres sont des fonctions mémoïsées : le cache se vide quand les critères ou les fichiers chargés changent.
  * Aucun effet : chaque getter se recalcule quand les critères ou les fichiers chargés changent.
  */
 export const useAnalysisStore = defineStore('analysis', () => {
@@ -96,7 +138,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
 
   const tables = computed(() => data.file('tables')?.tables ?? null)
   const bosses = computed(() => data.dataset('bosses')?.entries ?? null)
-  const encounters = computed(() => (bosses.value === null ? null : indexEncounters(bosses.value)))
+  const encounters = computed((): EncounterIndex | null => (bosses.value === null ? null : indexEncounters(bosses.value)))
 
   // Personnage et build cible.
   const level = computed(() => levelOf(attrs.value))
@@ -104,6 +146,13 @@ export const useAnalysisStore = defineStore('analysis', () => {
   const target = computed(() => targetAttributes(c.value.target.archetype, c.value.target.level, attrs.value))
   const derived = computed(() => (tables.value === null ? null : derivedStats(attrs.value, tables.value)))
   const yieldCurves = computed(() => (tables.value === null ? null : attributeYield(attrs.value, tables.value)))
+  /**
+   * Statistiques dérivées d'un jeu d'attributs quelconque (origine affichée par le widget B ; calculs.md, « Statistiques dérivées »).
+   * `null` tant que le fichier `tables` n'est pas chargé.
+   */
+  const derivedOf = computed(() => (attributes: DerivedStatsInput): Calc<DerivedStats> | null =>
+    tables.value === null ? null : derivedStats(attributes, tables.value),
+  )
 
   // Niveau recommandé, frise et étape courante.
   const blessingTable = computed(() => readBlessingTable(tables.value ?? undefined))
@@ -167,6 +216,15 @@ export const useAnalysisStore = defineStore('analysis', () => {
   const candidates = computed(() => candidateWeapons(weaponData.value, c.value.style, weights.value.weights))
   const filtered = computed(() => filterWeapons(candidates.value, c.value))
   const caps = computed(() => catalystCaps(weaponData.value))
+  const criteriaHands = computed((): Hands => (c.value.style.hands === 2 ? 'two' : 'one'))
+  /** Toutes les armes chargées par référence, quel que soit le style (fiches, catalogues, `scoreOf`). */
+  const weaponByRef = computed((): ReadonlyMap<EntityRef, CandidateWeapon> => {
+    const out = new Map<EntityRef, CandidateWeapon>()
+    for (const file of ['melee_armaments', 'ranged_weapons_catalysts', 'shields_torches'] as const) {
+      for (const weapon of weaponData.value[file] ?? []) out.set(`weapon:${weapon.id}`, { file, weapon, ref: `weapon:${weapon.id}` })
+    }
+    return out
+  })
   const budget = computed(() => loadBudget(attrs.value.end, c.value.style.load, tables.value))
 
   // Origines (contenu activé : les origines du Tarnished Pack seulement si ce contenu est coché).
@@ -178,37 +236,52 @@ export const useAnalysisStore = defineStore('analysis', () => {
   const chosenOrigin = computed((): EntityRef | null => (c.value.character.origin === 'auto' ? null : `origin:${c.value.character.origin}`))
 
   /**
+   * Noms des armes de départ d'une origine retenue.
+   * @param origin Origine retenue, ou `null`.
+   * @returns Les noms, ou `null` sans origine.
+   */
+  function startingOf(origin: EntityRef | null): ReadonlySet<string> | null {
+    const o = originById(origin)
+    return o === null ? null : new Set(startingArmamentNames(o))
+  }
+
+  /**
+   * Évalue une arme pour les critères courants (étape, puis score ; calculs.md, « Score de recommandation d'une arme (0–100) »).
+   * @param candidate Arme et son fichier.
+   * @param starting Armes de départ de l'origine retenue (bonus d'accessibilité, étape des armes de départ), ou `null`.
+   * @returns L'arme évaluée, avec la raison qui la masque.
+   */
+  function scoreOne(candidate: CandidateWeapon, starting: ReadonlySet<string> | null): ScoredWeapon {
+    const st: Calc<StageInfo> = entryStage(candidate.weapon, {
+      ref: candidate.ref,
+      file: candidate.file,
+      encounters: encounters.value,
+      startingArmaments: starting,
+    })
+    const score = scoreWeapon(candidate, {
+      weights: weights.value.weights,
+      attrs: attrs.value,
+      hands: criteriaHands.value,
+      status: c.value.style.status,
+      classes: c.value.style.classes,
+      stonePreference: c.value.constraints.stonePreference,
+      playerStage: stage.value.value ?? 'early',
+      budget: budget.value.value,
+      catalystCaps: caps.value,
+      stage: st,
+      startingBonus: starting?.has(candidate.weapon.name) ?? false,
+    })
+    return { candidate, stage: st, score, hidden: hiddenReason(candidate, c.value) }
+  }
+
+  /**
    * Évalue tous les candidats pour une origine retenue (bonus d'équipement de départ, étape des armes de départ).
    * @param origin Origine retenue, ou `null` (scores sans bonus d'origine).
    * @returns Les armes évaluées.
    */
   function scoreAll(origin: EntityRef | null): ScoredWeapon[] {
-    const o = originById(origin)
-    const starting = o === null ? null : new Set(startingArmamentNames(o))
-    const hands: Hands = c.value.style.hands === 2 ? 'two' : 'one'
-    const playerStage = stage.value.value ?? 'early'
-    return candidates.value.map((candidate: CandidateWeapon): ScoredWeapon => {
-      const st: Calc<StageInfo> = entryStage(candidate.weapon, {
-        ref: candidate.ref,
-        file: candidate.file,
-        encounters: encounters.value,
-        startingArmaments: starting,
-      })
-      const score = scoreWeapon(candidate, {
-        weights: weights.value.weights,
-        attrs: attrs.value,
-        hands,
-        status: c.value.style.status,
-        classes: c.value.style.classes,
-        stonePreference: c.value.constraints.stonePreference,
-        playerStage,
-        budget: budget.value.value,
-        catalystCaps: caps.value,
-        stage: st,
-        startingBonus: starting?.has(candidate.weapon.name) ?? false,
-      })
-      return { candidate, stage: st, score, hidden: hiddenReason(candidate, c.value) }
-    })
+    const starting = startingOf(origin)
+    return candidates.value.map((candidate) => scoreOne(candidate, starting))
   }
 
   // § 5.4, étape 1 : scores sans bonus d'origine (ou avec l'origine choisie, qui ne dépend pas du classement).
@@ -266,12 +339,157 @@ export const useAnalysisStore = defineStore('analysis', () => {
     return weaponsAgainst(encounters.value.byKey.get(encounterKey), scored.value)
   })
 
+  /**
+   * Score d'une arme pour les critères courants, même hors du style choisi ou masquée par un filtre (fiche arme, comparateur ; calculs.md,
+   * « Score de recommandation d'une arme (0–100) »). Une arme candidate reprend son score définitif ; une autre est évaluée avec l'origine
+   * retenue. Les exclusions et le style sont signalés par des limites (`weapon-hidden-*`, `weapon-outside-style`) ; une arme « Non classé »
+   * reste sans total (D18). `null` si l'arme n'est pas dans un fichier chargé.
+   */
+  const scoreOf = computed(() => {
+    const scoredByRef = new Map(scored.value.map((s) => [s.candidate.ref, s]))
+    const starting = startingOf(effective.value)
+    // Lus ici, et non dans la fonction rendue, pour que le cache se vide à chaque changement de ce qu'utilise `scoreOne` : `scored` ne les lit
+    // pas tous quand aucune arme du style n'est chargée, et un fichier d'armes hors du style peut se charger après coup.
+    const all = weaponByRef.value
+    void [c.value, weights.value, stage.value, budget.value, caps.value, encounters.value]
+    const cache = new Map<EntityRef, Calc<WeaponScore>>()
+    return (ref: EntityRef): Calc<WeaponScore> | null => {
+      const hit = cache.get(ref)
+      if (hit !== undefined) return hit
+      const inStyle = scoredByRef.get(ref)
+      const candidate = inStyle?.candidate ?? all.get(ref)
+      if (candidate === undefined) return null
+      const s = inStyle ?? scoreOne(candidate, starting)
+      const out = withVisibilityLimits(s.score, s.hidden, inStyle !== undefined)
+      cache.set(ref, out)
+      return out
+    }
+  })
+
+  /** Entrées à acquisitions chargées, par référence, avec leur fichier. */
+  const acquisitionByRef = computed((): ReadonlyMap<EntityRef, { readonly file: DatasetKey; readonly entry: StageEntry }> => {
+    const out = new Map<EntityRef, { file: DatasetKey; entry: StageEntry }>()
+    for (const file of ACQUISITION_DATASETS) {
+      const kind = DATASETS[file].kind
+      for (const entry of data.dataset(file)?.entries ?? []) out.set(`${kind}:${entry.id}`, { file, entry })
+    }
+    return out
+  })
+
+  /**
+   * Étape de toute entité qui a des acquisitions (arme, armure, talisman, sort, cendre de guerre, cendre d'esprit, objet), sous-zone DLC
+   * comprise, indépendamment du style choisi et des filtres (Ma liste, comparateur ; calculs.md, « Étape de progression d'une arme »).
+   * Mêmes règles et même contexte que le widget A : index des rencontres, armes de départ de l'origine retenue. `null` pour une autre
+   * entité ou si son fichier n'est pas chargé ; valeur `null` (« Non classé ») avec sa limite si aucune règle ne donne d'étape.
+   */
+  const stageOf = computed(() => {
+    const entries = acquisitionByRef.value
+    const index = encounters.value
+    const starting = startingOf(effective.value)
+    const cache = new Map<EntityRef, Calc<StageInfo>>()
+    return (ref: EntityRef): Calc<StageInfo> | null => {
+      const hit = cache.get(ref)
+      if (hit !== undefined) return hit
+      const found = entries.get(ref)
+      if (found === undefined) return null
+      const out = entryStage(found.entry, { ref, file: found.file, encounters: index, startingArmaments: starting })
+      cache.set(ref, out)
+      return out
+    }
+  })
+
+  /**
+   * Puissance d'attaque estimée et prérequis d'une arme pour les attributs du profil (fiche arme ; calculs.md, « Puissance d'attaque calculée
+   * (Estimation) » et « Prérequis comparés au profil »). Le maniement est celui que la fiche transmet au moteur (posture imposée comprise) ;
+   * le moteur applique lui-même les exceptions de `twoHanded.ts`. `null` si l'arme n'est pas dans un fichier chargé.
+   */
+  const weaponCalcs = computed(() => {
+    const profile = attrs.value
+    const byRef = weaponByRef.value
+    const cache = new Map<string, WeaponCalcs>()
+    return (ref: EntityRef, level: number, affinity: string, hands: Hands): WeaponCalcs | null => {
+      const key = `${ref}|${level}|${affinity}|${hands}`
+      const hit = cache.get(key)
+      if (hit !== undefined) return hit
+      const candidate = byRef.get(ref)
+      if (candidate === undefined) return null
+      const ctx = { file: candidate.file }
+      const out: WeaponCalcs = {
+        attack: attackPower(candidate.weapon, affinity, level, profile, hands, ctx),
+        requirements: checkRequirements(candidate.weapon, profile, hands, ctx),
+      }
+      cache.set(key, out)
+      return out
+    }
+  })
+
+  /** Sorts chargés par référence. */
+  const spellByRef = computed((): ReadonlyMap<EntityRef, SpellEntry> => new Map((data.dataset('spells')?.entries ?? []).map((s) => [`spell:${s.id}`, s])))
+
+  /**
+   * Prérequis d'une arme ou d'un sort comparés au profil (catalogues, comparateur ; calculs.md, « Prérequis comparés au profil ») : une arme
+   * avec le maniement des critères (Force effective à deux mains selon `twoHanded.ts`), un sort sans posture. `null` pour une autre entité
+   * ou si son fichier n'est pas chargé.
+   */
+  const requirementsOf = computed(() => {
+    const profile = attrs.value
+    const hands = criteriaHands.value
+    const weapons = weaponByRef.value
+    const spells = spellByRef.value
+    const cache = new Map<EntityRef, Calc<RequirementsResult>>()
+    return (ref: EntityRef): Calc<RequirementsResult> | null => {
+      const hit = cache.get(ref)
+      if (hit !== undefined) return hit
+      const weapon = weapons.get(ref)
+      const spell = weapon === undefined ? spells.get(ref) : undefined
+      const out =
+        weapon !== undefined
+          ? checkRequirements(weapon.weapon, profile, hands, { file: weapon.file })
+          : spell !== undefined
+            ? checkSpellRequirements(spell, profile)
+            : null
+      if (out !== null) cache.set(ref, out)
+      return out
+    }
+  })
+
+  // Priorités de montée de niveau (widget B, D42) : meilleure arme de l'étape courante, palier de Vigor, écart pondéré au build cible.
+  const levelUp = computed(
+    (): Calc<LevelUpPriority[]> =>
+      levelUpPriorities({
+        attrs: attrs.value,
+        weapon: bestWeaponOfStage(recommendations.value, stage.value.value),
+        target: target.value,
+        weights: weights.value.weights,
+      }),
+  )
+
+  /**
+   * Lignes de la matrice des faiblesses (widget D1) : `timeline` pour les boss de la frise documentés (tableau de bord, `null` tant que la
+   * frise n'est pas construite), `all` pour toutes les rencontres documentées du contenu activé (plein écran, `null` sans `bosses`).
+   * Les lignes n'ont pas d'adresse : l'interface la construit avec `bossId` et `encounterId`.
+   */
+  const weaknessTimeline = computed((): WeaknessRows | null =>
+    timeline.value === null || encounters.value === null ? null : timelineWeaknessRows(timeline.value, encounters.value),
+  )
+  const weaknessAll = computed((): WeaknessRows | null =>
+    bosses.value === null ? null : allWeaknessRows(bosses.value, defeated.value, c.value.content),
+  )
+  const weaknessRows = computed(() => (scope: WeaknessScope): WeaknessRows | null => (scope === 'timeline' ? weaknessTimeline.value : weaknessAll.value))
+
   // Couverture, runes, plan d'amélioration.
   const coverageRows = computed(() => coverage({ weapons: weaponData.value, bosses: bosses.value }))
   const runesTo = computed(() => (to: number) => {
     const from = level.value.value
     return tables.value === null || from === null ? null : runesBetween(from, to, tables.value)
   })
+  /**
+   * Coût de chaque niveau de `from` à `to − 1`, lu dans la table officielle (calculateur de runes ; calculs.md, « Coût en runes d'un niveau »).
+   * `null` tant que le fichier `tables` n'est pas chargé ; plage invalide ou hors table : valeur `null` avec sa limite.
+   */
+  const runeCostsBetweenOf = computed(() => (from: number, to: number): Calc<LevelRuneCost[]> | null =>
+    tables.value === null ? null : runeCostsBetween(from, to, tables.value),
+  )
   const upgradePlanFor = computed(() => (ref: EntityRef, from: number, to: number): Calc<UpgradePlan> | null => {
     for (const file of ['melee_armaments', 'ranged_weapons_catalysts', 'shields_torches'] as const) {
       const w = weaponData.value[file]?.find((x) => `weapon:${x.id}` === ref)
@@ -340,5 +558,14 @@ export const useAnalysisStore = defineStore('analysis', () => {
     runesTo,
     upgradePlanFor,
     bellBearingStages,
+    encounters,
+    derivedOf,
+    weaponCalcs,
+    scoreOf,
+    requirementsOf,
+    levelUpPriorities: levelUp,
+    runeCostsBetween: runeCostsBetweenOf,
+    weaknessRows,
+    stageOf,
   }
 })

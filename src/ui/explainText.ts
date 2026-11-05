@@ -282,6 +282,10 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   // Rendement des attributs.
   'yield-next-gain': c((p) => `Gain du point suivant pour ${p('stat')}, à ${p('points')} points`, 'decimal'),
   'yield-soft-cap': c((p) => `Palier de ${p('stat')} : le gain moyen par point passe de ${p('before')} à ${p('after')}, à partir de`),
+  // Priorités de montée de niveau (D42) : la valeur est l'attribut visé. Textes minimaux, à relire par l'interface.
+  'priority-weapon-requirement': c((p) => `${p('attr')} à monter pour atteindre le prérequis de la meilleure arme de votre étape (actuel ${p('actual')}) : viser`),
+  'priority-vigor-soft-cap': c((p) => `${p('attr')} à monter jusqu'au premier palier publié (actuel ${p('actual')}) : viser`),
+  'priority-build-target': c((p) => `${p('attr')} à rapprocher de la cible du build (actuel ${p('actual')}, écart ${p('points')}, poids ${p('weight')}) : viser`),
 }
 
 /** Mise en forme d'une valeur de composante selon son format. */
@@ -438,6 +442,22 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'weakness-weapons-base-values': () => "Types de dégâts lus à +0 : ni l'affinité, ni les Cendres de guerre, ni les sorts ne sont comptés.",
   /** Rendement des attributs : les paliers sont ceux publiés par le wiki (D39), les gains viennent des tables. */
   'soft-caps-published': () => 'Paliers de rendement publiés par le wiki ; les gains moyens autour de chaque palier sont lus dans les tables.',
+  // Score d'une arme hors des critères.
+  'weapon-hidden-content-sote': () => 'Arme de Shadow of the Erdtree, contenu désactivé dans vos critères : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-content-tp': () => 'Arme du Tarnished Pack, contenu désactivé dans vos critères : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-remembrance': () => 'Échange de Remembrance, exclu par vos critères : cette arme ne figure pas dans les recommandations.',
+  'weapon-hidden-random-drop': () => 'Butin aléatoire, exclu par vos critères : cette arme ne figure pas dans les recommandations.',
+  'weapon-hidden-quest': () => 'Arme liée à une quête, exclue par vos critères : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-estimate': () => "Type d'amélioration estimé, estimations exclues par vos critères : cette arme ne figure pas dans les recommandations.",
+  'weapon-outside-style': () => 'Arme hors du style de jeu choisi : score calculé pour information, elle ne figure pas dans les recommandations.',
+  // Priorités de montée de niveau.
+  'priorities-no-weapon': () => "Aucune arme recommandée à votre étape : pas de prérequis d'arme parmi les priorités.",
+  'priorities-no-target': () => "Aucun build cible : seuls les prérequis d'arme et le palier de Vigor sont proposés.",
+  'priorities-two-handed-strength': () => "Force visée en Force réelle, l'arme étant maniée à deux mains (Force × 1,5).",
+  'priorities-survival-weight': (p) => `Vigor, Mind et Endurance, que l'archétype ne pondère pas, comptent avec un poids de ${p('weight')}.`,
+  'priorities-truncated': (p) => `Seules les ${p('max')} premières priorités sont affichées.`,
+  /** Priorités de montée de niveau : l'ordre des règles est un choix de conception (D42). */
+  'priorities-design-method': () => "Ordre des priorités choisi par le projet (prérequis, palier de Vigor, écart au build) : ce n'est pas une règle du jeu.",
 }
 
 /**
@@ -587,6 +607,11 @@ const METHOD_SUMMARIES: Readonly<Record<MethodId, { readonly title: string; read
   coverage: {
     title: 'Couverture des données',
     summary: 'Simple décompte, champ par champ, des valeurs documentées par le wiki, déduites, estimées ou absentes dans les données chargées',
+  },
+  'level-up-priorities': {
+    title: 'Priorités de montée de niveau',
+    summary:
+      "Les points vont d'abord aux prérequis de la meilleure arme de votre étape, puis à la Vigor jusqu'à 40, puis aux attributs les plus éloignés de la cible du build, selon leur poids",
   },
   'attribute-yield': {
     title: 'Rendement des attributs',

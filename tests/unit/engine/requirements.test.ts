@@ -4,6 +4,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   checkRequirements,
+  checkSpellRequirements,
   compareRequirements,
   twoHandMode,
   twoHandedStrength,
@@ -100,5 +101,19 @@ describe('checkRequirements', () => {
       reliability: 'wiki',
     })
     expect(c.explanation.limits).toContainEqual({ code: 'two-hand-always', params: { category: 'Greatbows' } })
+  })
+})
+
+describe('checkSpellRequirements', () => {
+  it('INT, FAI, ARC non nuls comparés au profil, sans Force effective ; données de `spells`', () => {
+    const r = checkSpellRequirements({ id: 'test-spell', requirements: { int: 0, fai: 25, arc: 12 } }, attrs({ fai: 30 }))
+    expect(r.explanation.method).toBe('requirements')
+    expect(r.value?.checks.map((c) => [c.attr, c.required, c.met, c.gap, c.twoHandApplied])).toEqual([
+      ['fai', 25, true, 0, false],
+      ['arc', 12, false, 2, false],
+    ])
+    expect(r.value?.allMet).toBe(false)
+    expect(r.explanation.inputs).toContainEqual({ file: 'spells', entry: 'test-spell', field: 'requirements.arc', value: 12, reliability: 'wiki' })
+    expect(r.estimate).toBeNull()
   })
 })
