@@ -404,7 +404,7 @@ export function spellCatalog(options: SpellCatalogOptions): CatalogDef<SpellRow>
 }
 
 /** Rangs de boss, du plus élevé au moins élevé (noms de la navbox du wiki, affichés tels quels). */
-const BOSS_TIER_ORDER = ['Gods', 'Demigods', 'Legends', 'Great Enemies', 'Enemies', 'Invaders and other minibosses'] as const
+export const BOSS_TIER_ORDER = ['Gods', 'Demigods', 'Legends', 'Great Enemies', 'Enemies', 'Invaders and other minibosses'] as const
 
 /** Indicateurs `flags` qui rendent un boss obligatoire (jeu de base, extension, accès à l'extension). */
 const MANDATORY_FLAGS: ReadonlySet<string> = new Set(['mandatory_base_game', 'mandatory_dlc', 'required_to_access_dlc'])
