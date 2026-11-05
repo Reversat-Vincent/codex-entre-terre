@@ -4,6 +4,10 @@
 // sont celles de `src/engine/types.ts`. Ce module ne redéfinit aucun type de données : il ajoute les libellés français.
 
 import type { AttributeKey, DamageKey, NegationKey, StatusKey } from '../data/keys.ts'
+import { STAGE_IDS } from '../engine/config/stages.ts'
+import type { DlcZone, StageId } from '../engine/config/stages.ts'
+import { LOAD_TARGETS } from '../engine/config/weights.ts'
+import type { LoadTarget } from '../engine/config/weights.ts'
 import type { Confidence, Reliability } from '../engine/types.ts'
 
 export type { AttributeKey, DamageKey, NegationKey, StatusKey }
@@ -135,19 +139,39 @@ export const SOURCE_BOTH_LABEL: Readonly<{ title: string; aria: string }> = {
   aria: 'Source : Base game et Shadow of the Erdtree',
 }
 
-/** Identifiant d'étape de partie (architecture § 5.3 : `early mid late endgame dlc`). */
-export type StageKey = 'early' | 'mid' | 'late' | 'endgame' | 'dlc'
+/**
+ * Identifiant d'étape de partie : seule définition du projet, dans `src/engine/config/stages.ts` (D32) ; `StageKey` en est un alias conservé
+ * pour les composants qui l'importaient d'ici.
+ */
+export type StageKey = StageId
 
-/** Étapes dans l'ordre de la progression. */
-export const STAGE_KEYS: readonly StageKey[] = ['early', 'mid', 'late', 'endgame', 'dlc']
+/** Étapes dans l'ordre de la progression (réexport de `STAGE_IDS`). */
+export const STAGE_KEYS: readonly StageId[] = STAGE_IDS
 
 /** Libellés français des étapes. */
-export const STAGE_LABELS: Readonly<Record<StageKey, string>> = {
+export const STAGE_LABELS: Readonly<Record<StageId, string>> = {
   early: 'Début',
   mid: 'Milieu',
   late: 'Fin',
   endgame: 'Fin de jeu',
   dlc: 'DLC',
+}
+
+/** Libellés français des sous-zones du DLC (clé de tri de la colonne DLC, pas une étape : calculs.md, « Étape de progression d'une arme »). */
+export const DLC_ZONE_LABELS: Readonly<Record<DlcZone, string>> = {
+  entry: 'Entrée',
+  core: 'Cœur',
+  'enir-ilim': 'Enir-Ilim',
+}
+
+/** Charges visées (réexport de `LOAD_TARGETS` de `src/engine/config/weights.ts`) : `light`, `mid`, `heavy` ; jamais `medium`. */
+export const LOAD_KEYS: readonly LoadTarget[] = LOAD_TARGETS
+
+/** Libellés français de la charge visée (critère « Charge », budget de poids d'une arme). */
+export const LOAD_LABELS: Readonly<Record<LoadTarget, string>> = {
+  light: 'Légère',
+  mid: 'Moyenne',
+  heavy: 'Lourde',
 }
 
 /** Niveaux de fiabilité d'une valeur (architecture § 5.1) : du fait du wiki au calcul de l'application ; alias de `Reliability` du moteur. */
@@ -194,4 +218,44 @@ export const STATUS_SHORT_LABELS: Readonly<Record<StatusStyleKey, string>> = {
   sleep: 'Som.',
   madness: 'Fol.',
   death: 'Mort',
+}
+
+/**
+ * Icône du sprite de chaque classe d'arme (`category` de `data/`) ; une classe sans icône dans le sprite (Fists, Claws, Whips, Twinblades…) n'en a pas.
+ * Regroupement de conception : le sprite ne compte que 15 familles pour 42 classes.
+ */
+export const WEAPON_CLASS_ICONS: Readonly<Record<string, string>> = {
+  Daggers: 'c-dagger',
+  'Straight Swords': 'c-straight',
+  'Thrusting Swords': 'c-straight',
+  'Heavy Thrusting Swords': 'c-straight',
+  Greatswords: 'c-greatsword',
+  'Colossal Swords': 'c-greatsword',
+  'Light Greatswords': 'c-lgs',
+  Katanas: 'c-katana',
+  'Great Katanas': 'c-katana',
+  'Curved Swords': 'c-curved',
+  'Curved Greatswords': 'c-curved',
+  Axes: 'c-axe',
+  Greataxes: 'c-axe',
+  Hammers: 'c-hammer',
+  'Great Hammers': 'c-hammer',
+  Flails: 'c-hammer',
+  'Colossal Weapons': 'c-hammer',
+  Spears: 'c-spear',
+  'Great Spears': 'c-spear',
+  Halberds: 'c-halberd',
+  Reapers: 'c-halberd',
+  'Light Bows': 'c-bow',
+  Bows: 'c-bow',
+  Greatbows: 'c-bow',
+  Crossbows: 'c-bow',
+  Ballistas: 'c-bow',
+  Staves: 'c-staff',
+  'Sacred Seals': 'c-seal',
+  'Small Shields': 'c-shield',
+  'Medium Shields': 'c-shield',
+  Greatshields: 'c-shield',
+  'Thrusting Shields': 'c-shield',
+  Torches: 'c-torch',
 }
