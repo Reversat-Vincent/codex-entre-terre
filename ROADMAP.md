@@ -42,6 +42,7 @@
   - [x] 2.5b Régions déduites lieu par lieu (le retrait des régions parentes ne s'applique pas entre deux lieux distincts d'une même acquisition) ; table de bénédiction ajoutée à `tables` — dev-donnees — commit `0ec7161`
     > Note : 33 armes récupèrent une région ; une acquisition à plusieurs lieux garde son champ `region` comme groupe à part (hypothèse prudente acceptée).
   - [ ] 2.6 Vérification anticipée du socle (données, persistance, moteur) — verif-masse, contenu-jeu
+    > Note : verif-masse rendu (11 contrôles réussis sur 14) ; retenus, mineurs : commentaires des aides de tests, revue des `?? 0` du moteur (`score.ts:384` à confronter à D18). Écartés : 213 noms non résolus (limite connue, D10), CRLF de la copie de travail (dépôt en LF). Corrections à regrouper avec celles de contenu-jeu, plus le getter `weaponsAgainst(encounterKey)` du store `analysis` pour la fiche boss.
   - [x] 2.7a Composants de données : `CxScalingChips`, `CxRequirementChips`, `CxDamageChip`, `CxCoverageBar`, `CxReadinessGauge`, `CxProgressThread`, `CxAbsorptionHeatmap`, `CxLineChart`, `CxDataTable` et `useVirtualList`, `CxFacetFilters`, `CxCriteriaChips`, adaptateur `Calc<T>` de `CxValue`, alignement des types de `labels.ts` — dev-interface — commit `b1e5e0b`
     > Note : arbitrages en D35. Composants jamais rendus dans un navigateur : à voir aux captures.
   - [x] 2.7b Composants liés au moteur complet : `explainText.ts` (tous les codes, dont `LABEL_CODES`) et `CxWhyPanel`, `CxWeaponCard`, `CxBossTimeline` ; `labels.ts` importe `StageId` et `LoadTarget` du moteur (charge `mid`, pas `medium`) — dev-interface
@@ -50,7 +51,8 @@
 - [ ] 3. Coquille et navigation
   - [x] 3.1 Coquille : `App.vue`, routes, navigation latérale et rail, barre supérieure, barre d'onglets, pied de page, progression du chargement, bandeau de stockage, message de mise à jour, notifications, thème, palette de recherche, page introuvable — dev-interface — commit `062e931`
     > Note : vérifiée dans le navigateur (aucune erreur, aucune requête externe). Raccords à brancher : liens externes (`resources` d'`AppSideNav`, `wikiSearchUrl` de la palette) dans `App.vue` après 2.5 ; `CriteriaSlot` à remplacer en 3.2. Arbitrages en D36.
-  - [ ] 3.2 Critères : panneau desktop, tiroir tablette, feuille mobile (« Voir N armes »), puces de critères, profils enregistrés ; liens externes branchés dans `App.vue` ; `.cx-chip` et `.cx-scrim` dédoublonnés ; `tests/vue-shim.d.ts` retiré — dev-interface
+  - [x] 3.2 Critères : panneau desktop, tiroir tablette, feuille mobile (« Voir N armes »), puces de critères, profils enregistrés ; liens externes branchés dans `App.vue` ; `.cx-chip` et `.cx-scrim` dédoublonnés ; `tests/vue-shim.d.ts` retiré — dev-interface — commit `36bcf80`
+    > Note : arbitrages en D38. « Pourquoi ? » des valeurs calculées du panneau ajouté en 4.1.
 - [ ] 4. Tableau de bord
   - [ ] 4.1 Grille de widgets (disposition, réordonner, réduire, retirer, ajouter, plein écran) et `DashboardView` ; pause des notifications au survol et au focus dans `CxToastHost` (API du store en 2.8) — dev-interface
   - [ ] 4.2 Widget A et sa vue plein écran — dev-interface
@@ -60,7 +62,8 @@
 - [ ] 5. Explorateur
   - [ ] 5.1 Catalogue générique et catalogue des armes (trois familles) — dev-interface
   - [ ] 5.2 Fiche arme — dev-interface
-  - [ ] 5.3 Fiche boss et catalogue des boss — dev-interface
+  - [ ] 5.3a Fiche boss (onglets de rencontre, tuiles, absorption, statuts, butin, « Pour votre profil ») — dev-interface (lancée tôt, indépendante des catalogues ; attend le getter `weaponsAgainst(encounterKey)` du store `analysis`)
+  - [ ] 5.3b Catalogue des boss — dev-interface (avec 5.4)
   - [ ] 5.4 Autres catalogues et fiches : cendres, armures, talismans, sorts, esprits, objets, lieux, PNJ, origines — dev-interface
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
@@ -120,5 +123,6 @@
 - D35 · 2026-11-05 · Arbitrages des composants de données : pagination intégrée à `CxDataTable` (pas de `CxPagination` séparé), zone défilante de 70vh par défaut réglable ; ajouts `CxChip`, `CxFilterChips`, `CxCalcValue`, `src/ui/chart.ts` ; dans `labels.ts`, `StatusKey` = clé de données et `StatusStyleKey` = clé de style ; abréviations de dégâts et de statuts proposées par l'interface (seules « Som. » et « Fol. » viennent du design), à relire en vérification ; liens de la heatmap fournis par l'appelant (`router.resolve`) ; curseur « Niveau affiché » et bascule Courbe/Tableau du graphique, demandés par `spec-weapon` — par : chef de projet
 - D36 · 2026-11-05 · Arbitrages de la coquille : champ de recherche de la barre supérieure en bouton qui ouvre la palette ; thème en bouton-icône ; pied de page « Données extraites du wiki le JJ/MM/AAAA », sans les compteurs du prototype ; 8 résultats par groupe quand un filtre de type est actif dans la palette ; import lancé depuis la page Profil, qui porte la confirmation. Les notifications avec action se mettront en pause au survol et au focus (store en 2.8, hôte en 3.2), pour l'accessibilité. Les règles `.cx-chip` et `.cx-scrim`, définies deux fois, sont à dédoublonner en 3.2 — par : chef de projet
 - D37 · 2026-11-05 · Arbitrages du moteur complet : le retrait des régions parentes se fait lieu par lieu, jamais entre deux lieux distincts d'une même acquisition (Great Omenkiller Cleaver : Perfumer's Grotto garde l'Altus Plateau, donc Milieu, comme le prévoit `decisions-progression.md` § 1.5) ; table de bénédiction ajoutée à `tables` (« 12 (Softcap) » lu 12) pour que la frise ne charge pas `mechanics` ; build cible badgé Calculé (gabarit de conception, pas estimation) ; score badgé Estimation quand le type d'amélioration est estimé ; exclusions selon l'indicateur de l'arme ; armes qui départagent les origines = colonnes du widget A ; adresses Fextralife (`Interactive_Map`, `Game_Progress_Route`, `Walkthrough`) non vérifiables par Claude, à cliquer par le développeur à la vérification — par : chef de projet
+- D38 · 2026-11-05 · Arbitrages du panneau de critères : « Voir N armes » compte les armes recommandées affichées par le widget A (au plus 5 par étape) ; régions atteintes tirées des entrées de type « Region » de `locations` ; liste des boss vaincus = nœuds de la frise ; niveau cible par pas de 5 ; compteur par contrainte du prototype omis. Un sous-agent ayant manipulé l'index git (sans dommage), la règle commune des quatre sous-agents de développement nomme désormais `add`, `rm`, `mv` et `restore` parmi les opérations interdites — par : chef de projet
 
 ## Vérifications
