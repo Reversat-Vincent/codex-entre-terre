@@ -740,6 +740,9 @@
       "passive_effects": [
         "Causes frost buildup (65)"
       ],
+      "status_buildup": {
+        "frostbite": 65
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "Metal torch that burns with cold ghostflame. Tool of the Fallen Hawks who prowl the underground rivers.\n\nWhen the band's last embers were used up in their long search, they began to burn the bones of their fellows, acquiring the cold ghostflame, but sealing their fate as dwellers of the underground for all eternity.",

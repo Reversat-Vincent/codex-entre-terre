@@ -1151,3 +1151,19 @@ Décision D39 (correctifs de données issus de la vérification du socle) ; just
 | L9 | `ranged_weapons_catalysts.json` | Carian Regal Scepter | `acquisition[0].method` / `acquisition_flags` | `"Purchase"` / `["remembrance_weapon", "purchasable"]` | `"Trade"` / `["remembrance_weapon"]` | https://eldenring.wiki.gg/wiki/Carian_Regal_Scepter | D39 | 2026-11-05 |
 
 L8 est une **déduction**, non un fait écrit par le wiki : Dragon Temple Rooftop et Beside the Great Bridge sont des sites de grâce de Crumbling Farum Azula dans `locations.json`. L9 : l'intertitre « Purchase » de la page est erroné, le texte décrit un échange.
+
+## 2026-11-05 (D44)
+
+Décision D44 (accumulations de statut absentes) ; justifications : `docs/contenu/correctifs-statuts.md` et `docs/contenu/correctifs-statuts.json`. Neuf ajouts de la clé `status_buildup`, absente avant (ancienne valeur : clé absente), placée après `passive_effects` comme dans les autres armes. Le texte de `passive_effects` ne change pas. Pour les entrées marquées « page de liste », la page de l'arme dit seulement « Causes ... buildup » sans chiffre : la valeur vient du tableau Weapons de la page de statut du wiki.
+
+| # | Fichier | Entrée | Champ | Ancienne valeur | Nouvelle valeur | Page wiki | Décision | Date |
+|---|---|---|---|---|---|---|---|---|
+| S1 | `melee_armaments.json` | Spiked Club | `status_buildup` | (absent) | `{"blood_loss": 50}` | https://eldenring.wiki.gg/wiki/Spiked_Club ; https://eldenring.wiki.gg/wiki/Blood_Loss (page de liste) | D44 | 2026-11-05 |
+| S2 | `melee_armaments.json` | Cross-Naginata | `status_buildup` | (absent) | `{"blood_loss": 50}` | https://eldenring.wiki.gg/wiki/Cross-Naginata ; https://eldenring.wiki.gg/wiki/Blood_Loss (page de liste) | D44 | 2026-11-05 |
+| S3 | `melee_armaments.json` | Halo Scythe | `status_buildup` | (absent) | `{"blood_loss": 55}` | https://eldenring.wiki.gg/wiki/Halo_Scythe ; https://eldenring.wiki.gg/wiki/Blood_Loss (page de liste) | D44 | 2026-11-05 |
+| S4 | `melee_armaments.json` | Hookclaws | `status_buildup` | (absent) | `{"blood_loss": 60}` | https://eldenring.wiki.gg/wiki/Hookclaws ; https://eldenring.wiki.gg/wiki/Blood_Loss (valeur 60 sur la page de l'arme) | D44 | 2026-11-05 |
+| S5 | `melee_armaments.json` | Bloodhound Claws | `status_buildup` | (absent) | `{"blood_loss": 60}` | https://eldenring.wiki.gg/wiki/Bloodhound_Claws ; https://eldenring.wiki.gg/wiki/Blood_Loss (page de liste) | D44 | 2026-11-05 |
+| S6 | `melee_armaments.json` | Death's Poker | `status_buildup` | (absent) | `{"frostbite": 65}` | https://eldenring.wiki.gg/wiki/Death%27s_Poker ; https://eldenring.wiki.gg/wiki/Frostbite (valeur 65 sur la page de l'arme) | D44 | 2026-11-05 |
+| S7 | `melee_armaments.json` | Chilling Perfume Bottle | `status_buildup` | (absent) | `{"frostbite": 60}` | https://eldenring.wiki.gg/wiki/Chilling_Perfume_Bottle ; https://eldenring.wiki.gg/wiki/Frostbite (valeur 60 sur la page de l'arme) | D44 | 2026-11-05 |
+| S8 | `ranged_weapons_catalysts.json` | Rotten Crystal Staff | `status_buildup` | (absent) | `{"scarlet_rot": 50}` | https://eldenring.wiki.gg/wiki/Rotten_Crystal_Staff ; https://eldenring.wiki.gg/wiki/Scarlet_Rot (page de liste) | D44 | 2026-11-05 |
+| S9 | `shields_torches.json` | Ghostflame Torch | `status_buildup` | (absent) | `{"frostbite": 65}` | https://eldenring.wiki.gg/wiki/Ghostflame_Torch ; https://eldenring.wiki.gg/wiki/Frostbite (valeur 65 sur la page de l'arme) | D44 | 2026-11-05 |

@@ -7241,6 +7241,9 @@
         "Boosts Crystalian sorcery",
         "Causes slight scarlet rot buildup"
       ],
+      "status_buildup": {
+        "scarlet_rot": 50
+      },
       "buy_price": null,
       "sell_price": 200,
       "description": "Staff fashioned from pure crystal; a deed impossible for a human. It festers with scarlet rot.\n\nEnhances Crystalian sorceries.",

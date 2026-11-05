@@ -23647,6 +23647,9 @@
       "passive_effects": [
         "Causes frost buildup (65)"
       ],
+      "status_buildup": {
+        "frostbite": 65
+      },
       "buy_price": null,
       "sell_price": 200,
       "description": "Barbed rod carried by Deathbirds.\n\nThe birds are graveyard fire keepers; it is said they rake out the ashen remains of the dead from their kilns.",
@@ -48321,6 +48324,9 @@
       "passive_effects": [
         "Causes blood loss buildup"
       ],
+      "status_buildup": {
+        "blood_loss": 50
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "A club with beast fangs wrapped around the striking end. The uneven spread of fangs causes blood loss.\n\nGiven only to the toughest of demi-humans, this weapon is a badge of honor. Or so the demi-humans believe.",
@@ -57730,6 +57736,9 @@
       "passive_effects": [
         "Causes blood loss buildup"
       ],
+      "status_buildup": {
+        "blood_loss": 50
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "Weapon consisting of a three-pronged blade affixed to a long pole. The long central blade closely resembles a katana.\n\nA weapon of the Land of Reeds, known for its ability to be wielded as a spear while still being capable of performing slashing attacks.",
@@ -64712,6 +64721,9 @@
       "passive_effects": [
         "Causes blood loss buildup"
       ],
+      "status_buildup": {
+        "blood_loss": 55
+      },
       "buy_price": null,
       "sell_price": 200,
       "description": "War scythe of the Cleanrot Knights who fought alongside Malenia, Blade of Miquella.\n\nThis was the weapon of commanders in Malenia's army, and the half-halo blade deals holy damage.\n\nUnique Skill: Miquella's Ring of Light\n\nSummon Miquella's shining halo and fire it forwards. Can be fired in rapid succession.",
@@ -68795,6 +68807,9 @@
       "passive_effects": [
         "Causes blood loss buildup"
       ],
+      "status_buildup": {
+        "blood_loss": 60
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "Weapon worn on the fist comprised of sharp parallel blades favored by those who lurk in the dark. Lacerations cause blood loss with great effect.\n\nClaw weapons come in pairs, and two-handing this weapon will equip it to both hands.",
@@ -68954,6 +68969,9 @@
       "passive_effects": [
         "Causes blood loss buildup"
       ],
+      "status_buildup": {
+        "blood_loss": 60
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "Large curved claws used by Bloodhound Knights.\n\nThe curve allows the weapon to slip through an enemy's guard.",
@@ -70105,6 +70123,9 @@
       "passive_effects": [
         "Causes frost buildup (60)"
       ],
+      "status_buildup": {
+        "frostbite": 60
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "Perfume bottle remade into a weapon by perfumers of the realm of shadow.\n\nAttacks release perfumed powder, producing an icy chill.\n\nFrom time to time, perfumers set out on journeys to pursue new aromatics and flower gardens.",
