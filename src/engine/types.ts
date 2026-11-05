@@ -26,6 +26,7 @@ export type MethodId =
   | 'attack-power'
   | 'level'
   | 'coverage'
+  | 'attribute-yield'
 
 /** Confiance d'une estimation, reprise de `upgrade.estimate_if_undocumented.confidence` ou fixée par la méthode. */
 export type Confidence = 'high' | 'medium'

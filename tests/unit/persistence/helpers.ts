@@ -11,9 +11,14 @@ export function sampleState(): PersistedState {
   const criteria = defaultCriteria()
   criteria.character.origin = 'auto'
   criteria.character.attributes.vig = 40
-  criteria.target = { archetype: null, level: 713 }
-  criteria.style.status = null
-  criteria.progress.defeated.push('rennala-queen-of-the-full-moon/rennala-queen-of-the-full-moon-phase-1')
+  criteria.style.status = 'blood_loss'
+  criteria.target = { archetype: 'str', level: 713 }
+  criteria.progress.defeated = [
+    'margit-the-fell-omen/margit-the-fell-omen',
+    'godrick-the-grafted/godrick-the-grafted-phase-1',
+    'red-wolf-of-radagon/red-wolf-of-radagon',
+    'rennala-queen-of-the-full-moon/rennala-queen-of-the-full-moon-phase-1',
+  ]
   const other = defaultCriteria()
   other.style.mode = 'magic'
   other.style.hands = 2
@@ -32,7 +37,7 @@ export function sampleState(): PersistedState {
       { ref: 'boss:margit-the-fell-omen', addedAt: '2026-11-01T10:01:00.000Z', done: false },
     ],
     layout,
-    preferences: { ...defaultPreferences(), theme: 'parchemin', navRail: 'rail', catalogColumns: { weapons: ['name', 'weight'] } },
+    preferences: { ...defaultPreferences(), theme: 'parchemin', navRail: 'rail', catalogView: { weapons: 'grid' }, catalogColumns: { weapons: ['name', 'weight'] } },
     recentSearches: ['moonveil', 'jolan'],
   }
 }

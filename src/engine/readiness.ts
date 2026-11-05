@@ -1,6 +1,6 @@
 // Préparation du joueur face à un boss et échelle de la jauge niveau / niveau recommandé.
 // Méthode : docs/design/ds/calculs.md, « Préparation et jauge » ; seuils : config/weights.ts (`READINESS`, `GAUGE`).
-// Le niveau recommandé lui-même (M1, M2, M3) viendra de `bossLevel.ts`, écrit par une tâche suivante, qui pourra réexporter ces fonctions.
+// Le niveau recommandé lui-même (M1, M2, M3) vient de `bossLevel.ts`, qui réexporte ces fonctions.
 
 import { GAUGE, READINESS } from './config/weights.ts'
 import { makeCalc } from './types.ts'

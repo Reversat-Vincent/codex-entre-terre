@@ -9,7 +9,7 @@ import { isWidgetId } from '../widgets/ids.ts'
 import type { WidgetId } from '../widgets/ids.ts'
 import { CURRENT_SCHEMA } from './schema.ts'
 import { CATALOG_VIEWS, LIMITS, LOADS, NAV_RAIL_MODES, PROGRESS_MODES, STAGE_IDS, STONE_PREFERENCES, STYLE_MODES, THEMES } from './model.ts'
-import type { Attributes, Criteria, LayoutSlice, PersistedState, PinRecord, PreferencesSlice, ProfileRecord, ProfilesSlice, Result, ValidationIssue } from './model.ts'
+import type { Attributes, CatalogView, Criteria, LayoutSlice, PersistedState, PinRecord, PreferencesSlice, ProfileRecord, ProfilesSlice, Result, ValidationIssue } from './model.ts'
 
 /** Nombre maximal d'écarts conservés : au-delà, le fichier est de toute façon refusé. */
 const MAX_ISSUES = 50
@@ -298,13 +298,38 @@ function readLayout(v: unknown, path: string, ctx: Ctx): LayoutSlice | null {
   return { order, hidden, collapsed, collapsedMobile }
 }
 
+/** Affichage par catalogue (D32) : objet borné, clés non vides de 200 caractères au plus, valeurs `table` ou `grid`. */
+function readCatalogViews(v: unknown, path: string, ctx: Ctx): Record<string, CatalogView> | null {
+  const rec = readRecord(v, path, ctx)
+  if (!rec) return null
+  const keys = Object.keys(rec)
+  if (keys.length > LIMITS.maxCatalogs) {
+    fail(ctx, path, `trop de catalogues (${keys.length}, ${LIMITS.maxCatalogs} au plus)`)
+    return null
+  }
+  const out: Record<string, CatalogView> = {}
+  let ok = true
+  for (const key of keys) {
+    if (key === '__proto__') continue
+    if (key.length > LIMITS.maxString || key.length === 0) {
+      fail(ctx, path, 'nom de catalogue invalide')
+      ok = false
+      continue
+    }
+    const view = readEnum(rec[key], `${path}[${JSON.stringify(key)}]`, ctx, CATALOG_VIEWS)
+    if (view) out[key] = view
+    else ok = false
+  }
+  return ok ? out : null
+}
+
 function readPreferences(v: unknown, path: string, ctx: Ctx): PreferencesSlice | null {
   const rec = readRecord(v, path, ctx)
   if (!rec) return null
   const theme = readEnum(own(rec, 'theme'), `${path}.theme`, ctx, THEMES)
   const navRail = readEnum(own(rec, 'navRail'), `${path}.navRail`, ctx, NAV_RAIL_MODES)
   const criteriaCollapsed = readBool(own(rec, 'criteriaCollapsed'), `${path}.criteriaCollapsed`, ctx)
-  const catalogView = readEnum(own(rec, 'catalogView'), `${path}.catalogView`, ctx, CATALOG_VIEWS)
+  const catalogView = readCatalogViews(own(rec, 'catalogView'), `${path}.catalogView`, ctx)
 
   let catalogColumns: Record<string, string[]> | null = null
   const colsRec = readRecord(own(rec, 'catalogColumns'), `${path}.catalogColumns`, ctx)

@@ -4,12 +4,14 @@
 import type { EntityRef } from '../data/datasets.ts'
 import type { AttributeKey, StatusKey } from '../data/keys.ts'
 import type { WidgetId } from '../widgets/ids.ts'
+import { STAGE_IDS } from '../engine/config/stages.ts'
+import type { StageId } from '../engine/config/stages.ts'
+import { LOAD_TARGETS } from '../engine/config/weights.ts'
+import type { LoadTarget } from '../engine/config/weights.ts'
 
-/** Étapes de progression (`config/stages.ts` du moteur les reprendra : docs/architecture.md § 5.3). */
-export const STAGE_IDS = ['early', 'mid', 'late', 'endgame', 'dlc'] as const
-
-/** Étape de progression. */
-export type StageId = (typeof STAGE_IDS)[number]
+// Étapes et charges sont définies une seule fois, dans la configuration du moteur (D32) ; la persistance les valide avec ces listes.
+export { STAGE_IDS }
+export type { StageId }
 
 /** Identifiant d'origine (`origins[].id`, slug) ou `auto` (rang 1 du classement). Un identifiant absent des données est toléré. */
 export type OriginId = string
@@ -25,10 +27,10 @@ export const STYLE_MODES = ['melee', 'ranged', 'magic', 'hybrid'] as const
 /** Mode de style de jeu. */
 export type StyleMode = (typeof STYLE_MODES)[number]
 
-/** Charges d'équipement visées. */
-export const LOADS = ['light', 'mid', 'heavy'] as const
+/** Charges d'équipement visées (`LOAD_TARGETS` du moteur). */
+export const LOADS = LOAD_TARGETS
 /** Charge d'équipement visée. */
-export type Load = (typeof LOADS)[number]
+export type Load = LoadTarget
 
 /** Modes de saisie de la progression. */
 export const PROGRESS_MODES = ['stage', 'boss', 'region'] as const
@@ -105,7 +107,8 @@ export interface PreferencesSlice {
   theme: Theme
   navRail: NavRailMode
   criteriaCollapsed: boolean
-  catalogView: CatalogView
+  /** Affichage choisi par catalogue (clé de catalogue → tableau ou grille) ; un catalogue absent s'affiche en tableau (D32). */
+  catalogView: Record<string, CatalogView>
   /** Colonnes choisies par catalogue (clé de catalogue → identifiants de colonnes). */
   catalogColumns: Record<string, string[]>
 }

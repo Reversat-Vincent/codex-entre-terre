@@ -130,6 +130,9 @@ describe('bornes', () => {
     expect(bad((d) => (d.state.layout.order = ['inconnu']))).toContain('document.state.layout.order[0]')
     expect(bad((d) => (d.state.layout.hidden = ['boss-order']))).toContain('document.state.layout.hidden')
     expect(bad((d) => (d.state.preferences.theme = 'rose'))).toContain('document.state.preferences.theme')
+    expect(bad((d) => (d.state.preferences.catalogView = 'table'))).toContain('document.state.preferences.catalogView')
+    expect(bad((d) => (d.state.preferences.catalogView = { weapons: 'mosaic' }))).toContain('document.state.preferences.catalogView["weapons"]')
+    expect(bad((d) => (d.state.criteria.style.load = 'medium'))).toContain('document.state.criteria.style.load')
     expect(bad((d) => (d.state.recentSearches = Array.from({ length: 9 }, (_, i) => `r${i}`)))).toContain('document.state.recentSearches')
   })
 

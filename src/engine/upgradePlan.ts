@@ -1,6 +1,6 @@
 // Plan d'amélioration d'une arme : pierres par niveau et par palier, pierre ancienne, Bell Bearings utiles.
 // Méthode : docs/design/ds/calculs.md, « Plan d'amélioration » ; matériaux et Bell Bearings : config/upgrade.ts.
-// L'étape de progression des Bell Bearings sera ajoutée par la tâche qui écrit `stage.ts`.
+// L'étape de progression des Bell Bearings se lit avec `entryStage` (stage.ts) ; le store `analysis` l'expose (`bellBearingStages`).
 
 import type { WeaponEntry } from '../data/types/weapon.ts'
 import { UPGRADE } from './config/upgrade.ts'

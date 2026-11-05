@@ -85,16 +85,19 @@ export const GAUGE = {
   minimum: 60,
 } as const
 
-/** Charge visée par le joueur (critère du panneau ; noms des options à confirmer avec le store des critères). */
-export type LoadTarget = 'light' | 'medium' | 'heavy'
+/** Charges visées par le joueur, dans l'ordre du sélecteur ; source unique, reprise par les critères (`persistence/model.ts`, D32). */
+export const LOAD_TARGETS = ['light', 'mid', 'heavy'] as const
+
+/** Charge visée par le joueur : légère, moyenne, lourde. */
+export type LoadTarget = (typeof LOAD_TARGETS)[number]
 
 /**
- * Budget de poids d'une arme (calculs.md, « Score de recommandation d'une arme », point 2, « budget de poids issu de la limite de charge ») :
+ * Budget de poids d'une arme (calculs.md, « Score de recommandation d'une arme », « Budget de charge ») :
  * `arrondi(charge × ratio × part, 1 décimale)`, prototype `Main.dc.html` (docs/architecture.md § 5.3).
  */
 export const LOAD_BUDGET = {
   /** Ratio de la charge maximale visé selon la charge choisie. */
-  ratios: { light: 0.3, medium: 0.7, heavy: 1 } satisfies Readonly<Record<LoadTarget, number>>,
+  ratios: { light: 0.3, mid: 0.7, heavy: 1 } satisfies Readonly<Record<LoadTarget, number>>,
   /** Part de la charge retenue pour l'arme. */
   weaponShare: 0.25,
 } as const
@@ -105,4 +108,31 @@ export const LOAD_BUDGET = {
  */
 export const ORIGIN_RANKING = {
   recommendedWeaponBonus: 5,
+} as const
+
+/**
+ * Recommandations du widget A (calculs.md, « Score de recommandation d'une arme », « Recommandations par étape ») : 3 à 5 armes par étape,
+ * alternatives prises à une étape d'écart au plus, valeurs du prototype.
+ */
+export const RECOMMENDATIONS = {
+  /** Armes affichées par colonne d'étape, au plus. */
+  perStageMax: 5,
+  /** En dessous de ce nombre, la colonne propose un élargissement. */
+  perStageMin: 3,
+  /** Alternatives proposées pour une arme. */
+  alternatives: 4,
+  /** Écart d'étapes maximal d'une alternative. */
+  alternativesStageSpan: 1,
+} as const
+
+/**
+ * Paliers de rendement des attributs (calculs.md, « Rendement des attributs ») [conception] : un palier est un point où le gain moyen
+ * des `window` points suivants tombe à `dropRatio` fois celui des `window` points précédents ou moins, et baisse d'au moins
+ * deux pas d'arrondi de la table divisés par `window` (pour ignorer l'alternance des arrondis). Dans une suite de points consécutifs
+ * qui remplissent ces conditions, le point de plus forte baisse est retenu. Les paliers eux-mêmes sont déduits des tables, jamais codés.
+ */
+export const ATTRIBUTE_YIELD = {
+  window: 5,
+  dropRatio: 0.75,
+  roundingSteps: 2,
 } as const

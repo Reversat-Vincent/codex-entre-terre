@@ -18,31 +18,22 @@ export type CriteriaPatch = {
 }
 
 /**
- * Critères par défaut : l'état initial du prototype (`docs/design/Main.dc.html`, profil « Dex / Saignement »).
- * Les noms de l'interface du prototype sont remplacés par les identifiants des données : origine `samurai`, catégories d'armes `Katanas`
- * et `Light Greatswords` (champ `category`), boss vaincus Margit, Godrick et Red Wolf of Radagon en clés de rencontre, statut `blood_loss`.
- * Les valeurs sont celles du prototype, pas des faits du jeu.
+ * Critères par défaut d'un nouvel utilisateur, neutres plutôt que le profil de démonstration du prototype (D31) : jeu de base et
+ * Shadow of the Erdtree, sans Tarnished Pack ; origine automatique ; attributs à 10 (niveau 1) ; pas de build cible (état vide du
+ * widget B), niveau cible 150 ; mêlée, aucune classe préférée, une main, aucun statut, charge moyenne ; progression par étape, Début,
+ * aucun boss vaincu ; aucune contrainte ; estimations incluses.
  * @returns Un objet neuf à chaque appel.
  */
 export function defaultCriteria(): Criteria {
   return {
-    content: { base: true, sote: true, tp: true },
+    content: { base: true, sote: true, tp: false },
     character: {
-      origin: 'samurai',
-      attributes: { vig: 26, mnd: 11, end: 18, str: 12, dex: 27, int: 9, fai: 8, arc: 10 },
+      origin: 'auto',
+      attributes: { vig: 10, mnd: 10, end: 10, str: 10, dex: 10, int: 10, fai: 10, arc: 10 },
     },
-    target: { archetype: 'dexarc', level: 125 },
-    style: { mode: 'melee', classes: ['Katanas', 'Light Greatswords'], hands: 1, status: 'blood_loss', load: 'mid' },
-    progress: {
-      mode: 'boss',
-      stage: 'mid',
-      regions: ['Limgrave', 'Weeping Peninsula', 'Liurnia of the Lakes'],
-      defeated: [
-        'margit-the-fell-omen/margit-the-fell-omen',
-        'godrick-the-grafted/godrick-the-grafted-phase-1',
-        'red-wolf-of-radagon/red-wolf-of-radagon',
-      ],
-    },
+    target: { archetype: null, level: 150 },
+    style: { mode: 'melee', classes: [], hands: 1, status: null, load: 'mid' },
+    progress: { mode: 'stage', stage: 'early', regions: [], defeated: [] },
     constraints: { excludeRemembrance: false, excludeRandomDrop: false, excludeQuest: false, stonePreference: 'none' },
     reliability: { includeEstimates: true },
   }

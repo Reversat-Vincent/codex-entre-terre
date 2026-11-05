@@ -44,6 +44,53 @@ export const COMPONENT_CODES = [
   'recommended-level',
   'limit-margin',
   'gauge-max',
+  // Étape de progression.
+  'stage-index',
+  // Niveau recommandé d'un boss (M1, M2, M3, DLC, bénédiction).
+  'zone-tier',
+  'm1',
+  'runes',
+  'rune-anchor',
+  'm2',
+  'm3',
+  'dlc-entry-source',
+  'dlc-entry-level',
+  'blessing-fragments',
+  'blessing-level',
+  'blessing-max-level',
+  // Build cible.
+  'target-level',
+  'target-attribute',
+  // Budget de charge.
+  'load-ratio',
+  'weapon-share',
+  'load-budget',
+  // Score de recommandation : composantes et détail.
+  'score-fit',
+  'scaling-mean',
+  'off-build-penalty',
+  'status-bonus',
+  'class-bonus',
+  'score-power',
+  'base-power',
+  'scaling-sum',
+  'overweight-penalty',
+  'score-access',
+  'stages-ahead',
+  'missing-points',
+  'remembrance-penalty',
+  'invader-penalty',
+  'starting-bonus',
+  'score-upgrade',
+  'upgrade-base',
+  'stone-preference',
+  'estimate-penalty',
+  'score-total',
+  // Couverture des données.
+  'coverage-documented',
+  // Rendement des attributs.
+  'yield-next-gain',
+  'yield-soft-cap',
 ] as const
 
 /** Code d'une composante d'explication. */
@@ -98,7 +145,95 @@ export const LIMIT_CODES = [
   'infobox-base',
   // Préparation et jauge.
   'boss-not-estimated',
+  // Étape de progression.
+  'encounter-missing',
+  'stage-unclassified',
+  'stage-from-regions-mentioned',
+  'remembrance-encounter-unavailable',
+  'remembrance-encounter-missing',
+  'dlc-unlocated',
+  'region-unknown',
+  'no-region-reached',
+  'timeline-unavailable',
+  'stage-from-next-boss',
+  'story-complete',
+  'next-boss-stage-unknown',
+  // Niveau recommandé d'un boss.
+  'tier-missing',
+  'runes-missing',
+  'runes-excluded',
+  'runes-beyond-table',
+  'hp-not-used',
+  'dlc-entry-level-used',
+  'blessing-table-unavailable',
+  // Build cible.
+  'no-archetype',
+  'template-design-choice',
+  'target-capped',
+  'target-below-current',
+  // Score de recommandation.
+  'score-base-values',
+  'load-budget-unavailable',
+  'spell-power-missing',
+  // Rendement des attributs.
+  'soft-caps-deduced',
 ] as const
 
 /** Code d'une limite d'explication. */
 export type LimitCode = (typeof LIMIT_CODES)[number]
+
+/**
+ * Codes de libellés renvoyés par la configuration et les modules sans `Explanation` : étapes et prérequis de la frise, lignes de couverture,
+ * titres et descriptions des widgets, liens externes. Leurs textes sont dans `src/ui/explainText.ts`, comme ceux des explications.
+ */
+export const LABEL_CODES = [
+  // Frise des boss (config/timeline.ts).
+  'timeline-step-shardbearers',
+  'timeline-step-leyndell-access',
+  'timeline-step-place',
+  'timeline-step-erdtree',
+  'prereq-radahn-jerren',
+  'prereq-rykard-tanith-or-godskin-noble',
+  'prereq-mohg-varre-or-snowfield',
+  'prereq-messmers-kindling',
+  // Couverture des données (coverage.ts).
+  'coverage-upgrade-melee',
+  'coverage-upgrade-ranged',
+  'coverage-upgrade-shields',
+  'coverage-timeline-hp',
+  'coverage-timeline-runes',
+  'coverage-timeline-negation',
+  'coverage-encounters-hp',
+  'coverage-encounters-negation',
+  // Widgets (src/widgets/registry.ts) : titre et ligne « comment c'est calculé ».
+  'widget-title-weapons-by-stage',
+  'widget-how-weapons-by-stage',
+  'widget-title-optimal-origin',
+  'widget-how-optimal-origin',
+  'widget-title-boss-order',
+  'widget-how-boss-order',
+  'widget-title-weakness-matrix',
+  'widget-how-weakness-matrix',
+  'widget-title-upgrade-plan',
+  'widget-how-upgrade-plan',
+  'widget-title-rune-calculator',
+  'widget-how-rune-calculator',
+  'widget-title-attribute-yield',
+  'widget-how-attribute-yield',
+  'widget-title-data-coverage',
+  'widget-how-data-coverage',
+  // Liens externes (src/data/externalLinks.ts).
+  'link-wiki',
+  'link-fextralife-search',
+  'link-map-wiki-gg',
+  'link-map-fextralife',
+  'link-guide-elden-ring-guide',
+  'link-guide-recommended-level',
+  'link-guide-walkthrough-wiki-gg',
+  'link-guide-progress-route',
+  'link-guide-walkthrough-fextralife',
+  'link-wiki-search',
+] as const
+
+/** Code d'un libellé. */
+export type LabelCode = (typeof LABEL_CODES)[number]

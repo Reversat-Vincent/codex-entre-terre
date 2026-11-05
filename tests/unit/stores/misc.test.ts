@@ -115,6 +115,20 @@ describe('preferences', () => {
     p.setCatalogColumns('__proto__', ['polluted'])
     expect(Object.keys(p.catalogColumns)).toEqual(['weapons'])
   })
+
+  it('catalogView : mémorisé par catalogue, tableau par défaut (D32)', () => {
+    const p = usePreferencesStore()
+    expect(p.viewOf('weapons')).toBe('table')
+    p.setCatalogView('weapons', 'grid')
+    expect(p.viewOf('weapons')).toBe('grid')
+    expect(p.viewOf('armors')).toBe('table')
+    expect(p.viewOf('toString')).toBe('table')
+    p.setCatalogView('__proto__', 'grid')
+    expect(p.snapshot().catalogView).toEqual({ weapons: 'grid' })
+    p.hydrate({ ...p.snapshot(), catalogView: { spells: 'grid' } })
+    expect(p.viewOf('weapons')).toBe('table')
+    expect(p.viewOf('spells')).toBe('grid')
+  })
 })
 
 describe('toasts', () => {

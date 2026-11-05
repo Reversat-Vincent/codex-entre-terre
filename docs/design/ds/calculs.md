@@ -25,15 +25,22 @@ Règles de résolution, appliquées dans cet ordre à une arme :
    On retire les valeurs qui sont la région parente d'une autre valeur de la liste (`locations.json`), pour garder la **région la plus précise** (exemple : `Mt. Gelmir` + `Volcano Manor` → `Volcano Manor`), puis on retient l'étape la plus précoce parmi les valeurs restantes.
 3. **Plusieurs acquisitions** : on retient la plus précoce.
 4. **Repli** `regions_mentioned`, si aucune acquisition ne donne d'étape : même traitement (régions parentes retirées, étape la plus précoce). `Altus Plateau` est ignoré quand le texte d'acquisition ne contient « Altus » que dans « Scadu Altus » (défaut d'extraction signalé : correctif C6 de `decisions-progression.md`).
-5. **Étiquette DLC** : `source = "Shadow of the Erdtree"` impose l'étape DLC. Sans sous-zone trouvée, l'arme est « DLC non localisé ».
+5. **Étiquette DLC** : `source = "Shadow of the Erdtree"` impose l'étape DLC. Sans sous-zone trouvée, l'arme est « DLC non localisé », triée en fin de colonne DLC (D18).
 6. `Roundtable Hold` compte comme Début. Les échanges de Remembrance passent par la règle 1.
-7. Un équipement de départ compte pour l'origine choisie seulement : une arme qui n'a que des équipements de départ est rattachée à l'origine. Les autres cas restent **Non classé** (badge Non documenté) : l'arme est hors des colonnes (3 à 5 armes affichées par étape) et reste visible dans le tableau plein écran.
+7. Un équipement de départ compte pour l'origine retenue seulement, comme une acquisition de Début : une arme qui n'a que des équipements de départ (Broadsword, Halberd) est rattachée à l'origine qui la donne. Les autres cas restent **Non classé** (badge Non documenté) : l'arme est hors des colonnes (3 à 5 armes affichées par étape), n'a pas de score (D18) et reste visible dans le tableau plein écran.
+
+Les régions des objets sont celles du champ dérivé `derived.regions` (régions parentes déjà retirées par la préparation des données). Pour une rencontre de boss, le moteur retire lui-même les régions parentes de `encounters[].regions` avec une copie de la hiérarchie de `locations.json` (`REGION_PARENT` de `stages.ts`, contrôlée par un test).
+
+### Étape courante du joueur
+- Mode « Étape » : l'étape choisie.
+- Mode « Régions atteintes » : l'étape la plus avancée des régions cochées (Début si aucune n'est dans la table).
+- Mode « Boss vaincus » : l'étape de la rencontre du prochain boss de la frise (règle 2 appliquée à ses `regions`, voir « Frise des boss ») ; l'histoire finie, Fin de jeu, ou DLC si le DLC est activé et sa voie terminée.
 
 Avec les données du 31/10/2026 [estimation du référent contenu] : 464 armes sur 487 reçoivent une étape par ces règles, contre 192 au plus avec `acquisition[].region` seul.
 
 ### Remembrances
 - Les armes et objets obtenus par échange de Remembrance sont reliés à leur boss par une **table explicite**, `src/engine/config/remembrances.ts` (§ 2.2 de `decisions-progression.md`) : objet → Remembrance → boss → rencontre. Elle couvre 52 objets et 25 Remembrances ; un test contrôle que chaque référence existe dans `data/`.
-- Étape du boss : règle 2 appliquée aux `encounters[].regions` de la rencontre. Une exception : Elden Beast a `regions = []`, il est forcé à Fin de jeu.
+- Étape du boss : règle 2 appliquée aux `encounters[].regions` de la rencontre. Elden Beast, qui avait `regions = []`, a reçu `Altus Plateau` et `Leyndell, Ashen Capital` par le correctif C4 (`data/CHANGELOG.md`) : il tombe en Fin de jeu sans exception.
 - Exemple : Blasphemous Blade → Remembrance of the Blasphemous → Rykard, Lord of Blasphemy → `Mt. Gelmir` + `Volcano Manor` → Volcano Manor → **Fin**.
 - Étapes des Remembrances [conception] : Début, Godrick · Milieu, Regal Ancestor Spirit, Astel, Lichdragon Fortissax, Rennala, Starscourge Radahn · Fin, Fire Giant, Rykard, Morgott · Fin de jeu, Mohg, Malenia, Maliketh, Godfrey (Hoarah Loux), Placidusax, Elden Beast · DLC, les 10 autres (sous-zones : Entrée pour Divine Beast Dancing Lion, Rellana et Putrescent Knight ; Cœur pour Commander Gaius, Scadutree Avatar, Romina, Midra, Metyr et Messmer ; Enir-Ilim pour Promised Consort Radahn).
 
@@ -41,18 +48,29 @@ Avec les données du 31/10/2026 [estimation du référent contenu] : 464 armes s
 
 Quatre composantes de 0 à 25, arrondies puis additionnées.
 
-1. **Adéquation au build** : moyenne pondérée des lettres de scaling (S = 1 ; A = 0,85 ; B = 0,7 ; C = 0,55 ; D = 0,4 ; E = 0,25) selon les poids de l'archétype, ramenée sur 25 (une moyenne de 0,5 vaut 25). Les lettres sont celles de `scaling`, c'est-à-dire à +0 en affinité Standard ; elles ne reflètent ni le niveau d'amélioration ni l'affinité choisie. Ces poids sont une pondération du score, pas les coefficients du jeu. Pénalité de 4 par attribut hors build requis au-delà de 10, de 7 au-delà de 20. Bonus de 4 si l'effet passif correspond au statut privilégié, de 2 si la classe est préférée (−2 sinon, quand une préférence existe).
-2. **Puissance et scaling** : 70 % sur la puissance à +0, 30 % sur la somme des lettres de scaling (plafond 1,6). −4 si l'arme dépasse le budget de poids issu de la limite de charge.
+1. **Adéquation au build** : moyenne pondérée des lettres de scaling (S = 1 ; A = 0,85 ; B = 0,7 ; C = 0,55 ; D = 0,4 ; E = 0,25 ; pas de scaling = 0) selon les poids de l'archétype (ou les poids automatiques, voir « Build cible »), ramenée sur 25 (une moyenne de 0,5 vaut 25), plafonnée à 25. Les lettres sont celles de `scaling`, c'est-à-dire à +0 en affinité Standard ; elles ne reflètent ni le niveau d'amélioration ni l'affinité choisie. Ces poids sont une pondération du score, pas les coefficients du jeu. Pénalité de 4 par attribut hors build (poids nul) dont le prérequis dépasse 10, de 7 s'il dépasse 20. Bonus de 4 si l'effet passif correspond au statut privilégié (`status_buildup` de ce statut non nul), de 2 si la classe (`category`) est préférée (−2 sinon, quand une préférence existe).
+2. **Puissance et scaling** : `25 × 0,7 × min(1, puissance / plafond) + 25 × 0,3 × min(1, Σ lettres / 1,6)`, −4 si l'arme dépasse le budget de poids (voir « Budget de charge » ; sans table de charge, pas de malus et une limite est affichée).
    - Armes de mêlée, à distance, boucliers : attaque de base totale à +0 (plafond 200).
-   - Catalyseurs (Staves, Sacred Seals) : puissance de sort à +0 (`sorcery_scaling` pour les Staves, `incantation_scaling` pour les Sacred Seals), car leur attaque physique est faible et ne dit rien de leur valeur. Plafond = maximum observé dans `data/` pour ce champ (162 et 137 au 31/10/2026), calculé au chargement.
-3. **Accessibilité** : 25, moins 4 par étape d'avance sur l'étape du joueur, moins 0,6 par point d'attribut manquant (plafond 9), moins 4 pour un échange de Remembrance, moins 1 pour un butin de PNJ envahisseur, plus 2 si l'arme est l'équipement de départ de l'origine choisie.
+   - Catalyseurs (Staves, Sacred Seals) : puissance de sort à +0 (`sorcery_scaling` pour les Staves, `incantation_scaling` pour les Sacred Seals), car leur attaque physique est faible et ne dit rien de leur valeur. Plafond par catégorie (D18) = maximum observé dans les données chargées pour ce champ et cette catégorie (162 pour les Staves, 137 pour les Sacred Seals au 31/10/2026), calculé au chargement. Le Staff of the Great Beyond, qui a aussi une puissance d'incantation, est lu sur `sorcery_scaling` comme les autres Staves. Une puissance de sort `null` rend la composante `null` (et le total), jamais 0.
+3. **Accessibilité** : 25, moins 4 par étape d'avance sur l'étape du joueur, moins 0,6 par point d'attribut manquant (plafond 9 ; points manquants = somme des écarts de « Prérequis comparés au profil », à deux mains en Force réelle), moins 4 pour un échange de Remembrance, moins 1 pour un butin de PNJ envahisseur, plus 2 si l'arme est l'équipement de départ de l'origine retenue. Une arme **Non classé** n'a pas d'étape : la composante vaut `null`, le total aussi ; l'arme est triée en dernier et visible seulement en plein écran (D18).
    - **Butin de PNJ envahisseur** : l'arme figure dans les `drops` d'une rencontre d'un boss dont le rang (`tier`) contient `Invaders and other minibosses`. Champ dérivé `invaderDrop`, calculé au chargement (aucun indicateur de ce type dans `acquisition_flags`).
    - **Équipement de départ de l'origine choisie** : jointure entre le nom de l'arme et `origins.json`, `starting_equipment` de l'origine (`acquisition_flags.starting_equipment` ne dit pas de quelle origine il s'agit).
 4. **Coût d'amélioration** : 20 pour des pierres sombres (+10, une pierre par niveau), 16 pour des pierres normales (+25). Préférence de pierres : +5 pour le type préféré, −6 pour l'autre. −2 quand le type d'amélioration est une estimation. Cas sans type : type non documenté et sans estimation → **14**, sans préférence de pierres ; arme non améliorable (`"Not upgradeable"`) → **8**.
 
-**Candidats selon le style de jeu** (`weaponPools.ts`) : mêlée → armes de mêlée ; distance → Light Bows, Bows, Greatbows, Crossbows, Ballistas ; magie → Staves et Sacred Seals ; hybride → tout. Les boucliers et les torches ne sont candidats que si leur classe est préférée.
+Chaque composante est arrondie à l'entier le plus proche puis bornée à 0–25. Le score est calculé à +0 : il ne tient compte ni du niveau d'amélioration ni des Cendres de guerre. Il hérite du badge Estimation quand le type d'amélioration est une estimation.
 
-Filtres appliqués avant le score : contenus désactivés, exclusions (Remembrance, butin aléatoire, quête), estimations exclues si la fiabilité l'impose.
+**Candidats selon le style de jeu** (`weaponPools.ts`) : mêlée → armes de mêlée ; distance → Light Bows, Bows, Greatbows, Crossbows, Ballistas ; magie → Staves et Sacred Seals ; hybride → armes de mêlée et tout le fichier des armes à distance et catalyseurs. Les boucliers et les torches ne sont candidats que si leur classe est préférée, quel que soit le style.
+
+Filtres appliqués avant le score, dans cet ordre (la première raison qui s'applique est comptée) : contenus désactivés (Shadow of the Erdtree, Tarnished Pack), exclusions lues dans `acquisition_flags` (Remembrance : `remembrance_weapon` ou table des Remembrances ; butin aléatoire : `random_enemy_drop` ; quête : `npc_or_quest_related`), estimations exclues si la fiabilité l'impose (`derived.upgrade.reliability = estimate`). Une exclusion porte sur l'indicateur de l'arme, même si elle a d'autres acquisitions [conception, prototype]. Les armes masquées sont comptées par raison et restent affichables grisées en plein écran.
+
+### Budget de charge
+- Budget de poids d'une arme = `arrondi(charge × ratio × 0,25, 1 décimale)`, où la charge est lue dans la table Endurance → charge d'équipement (voir « Statistiques dérivées ») pour l'Endurance du profil, et le ratio vaut 0,3 (charge légère), 0,7 (moyenne) ou 1 (lourde) [conception, prototype].
+- Exemple : Endurance 25 (charge 72,0), charge moyenne → `arrondi(72,0 × 0,7 × 0,25)` = 12,6.
+
+### Recommandations par étape
+- Chaque colonne d'étape affiche les 5 meilleures armes visibles de l'étape (score décroissant, puis nom) ; la colonne DLC ordonne ensuite ces 5 armes par sous-zone (Entrée, Cœur, Enir-Ilim, puis « DLC non localisé ») et par score.
+- Sous 3 armes, la colonne propose les élargissements les plus efficaces : pour chaque raison de masquage (contenu, Remembrance, butin aléatoire, quête, estimations) et pour le style (armes de l'étape hors du style choisi, parmi les fichiers chargés), le nombre d'armes qu'il ferait apparaître, du plus grand au plus petit.
+- Alternatives à une arme : les armes visibles à une étape d'écart au plus, de la plus proche en étape à la plus lointaine, puis par score ; 4 au plus [conception, prototype].
 
 ## Prérequis comparés au profil
 
@@ -68,7 +86,10 @@ Filtres appliqués avant le score : contenus désactivés, exclusions (Remembran
 - Niveau final pour une cible : `Σ max(attribut de départ, attribut cible) − 79` (toutes les origines vérifient niveau = somme des attributs − 79).
 - Points gaspillés : `Σ max(0, attribut de départ − attribut cible)`.
 - Identité : niveau final = `(Σ attributs cibles − 79)` + points gaspillés. Les points gaspillés ne départagent donc jamais deux origines pour une même cible : ils restent affichés, mais ne sont pas un critère de tri.
-- Tri : niveau final croissant, puis adéquation précoce (attributs utiles au build dès le départ, bonus si l'équipement de départ contient une arme recommandée).
+- Tri : niveau final croissant, puis adéquation précoce décroissante, puis nom.
+- **Adéquation précoce** [conception, prototype] : somme des attributs de départ dont le poids du build est non nul, plus 5 si l'équipement de départ (`starting_equipment.Armaments`, quantités retirées) contient une arme recommandée, c'est-à-dire l'une des armes affichées dans les colonnes du widget A par les scores préliminaires.
+- **Ordre d'évaluation** (architecture § 5.4) : scores des armes sans bonus d'origine (ou avec l'origine choisie si elle n'est pas « Automatique ») → classement des origines, départagé par ces armes recommandées → origine retenue (rang 1 en mode « Automatique ») → scores définitifs avec le bonus d'équipement de départ de l'origine retenue. Le « Pourquoi ? » du classement le mentionne.
+- Seules les origines des contenus activés sont classées (Idus Knight et Heavy Knight demandent le Tarnished Pack).
 - Préconditions : chaque attribut cible est compris entre 1 et 99 ; un attribut ne descend jamais sous sa valeur de départ.
 - Cas de test (ordre VIG, MND, END, STR, DEX, INT, FAI, ARC ; résultat : niveau final, points gaspillés) :
   - A : 40, 10, 20, 14, 13, 9, 9, 7 → Vagabond (43, 0) ; Heavy Knight (46, 3) ; Samurai (47, 4) ; Wretch (48, 5) ; Prophet et Astrologer (57, 14).
@@ -96,7 +117,7 @@ Quand un archétype est choisi, les attributs cibles du niveau cible `L` se déd
 - Plancher `FLOOR` = 9, 8, 8, 8, 9, 7, 6, 6 (somme 61, soit un total de 61 points d'attributs).
 - Répartition `targetFor(archétype, L)` : `S = L + 79` (somme des attributs), `k = (S − 61) / 168`. Valeur brute de chaque attribut : `FLOOR[i] + (gabarit[i] − FLOOR[i]) × k`. Chaque brute est arrondie à l'entier inférieur ; le reste `S − Σ parties entières` est distribué, un point chacun, aux attributs de plus grande partie fractionnaire (tri décroissant, ex æquo dans l'ordre des attributs). Résultat borné à 1–99. Au niveau 150, `k = 1` et la cible est le gabarit.
 - Poids automatiques `autoW(attributs du profil)`, sans archétype : pour chacun de STR, DEX, INT, FAI, ARC dont la valeur dépasse 12, poids = valeur − 10 ; si aucun ne dépasse 12, poids STR = 1. Tous les poids sont ensuite divisés par le plus grand et arrondis à deux décimales (`round(p / max × 100) / 100`, demi vers le haut).
-- Estimation : le gabarit est un choix de conception du prototype, pas une donnée du jeu. Le niveau calculé reste `Σ attributs − 79`.
+- Le gabarit est un choix de conception du prototype, pas une donnée du jeu : la cible porte le badge Calculé (pas Estimation) et une limite le rappelle. Le niveau calculé reste `Σ attributs − 79`. Au-delà du niveau où un attribut atteindrait 99, la borne s'applique et la somme n'atteint plus `L + 79` (limite affichée).
 
 ## Niveau recommandé d'un boss et préparation
 
@@ -106,6 +127,7 @@ Le wiki ne publie aucun niveau recommandé par boss. Le niveau est une **estimat
 - Entrée : palier de la zone de la rencontre dans le tableau « Enemy "Leveling" System » de la page Recommended Level by Location (T1 à T21), tiré d'une table de configuration (`src/engine/config/bossLevel.ts`).
 - Ancres, interpolation linéaire entre elles, résultat arrondi à l'entier le plus proche (0,5 vers le haut) : T1 = 10 [conception : niveau maximal d'une origine] ; T13 = 60 [wiki + déduction : minimum du guide à Dragonbarrow] ; T15 = 100 [wiki : guide, Mountaintops] ; T18 = 120 [wiki + déduction : niveau moyen de fin de jeu]. Au-delà de T18, la pente du dernier segment est prolongée (+6,67 par palier).
 - Paliers des boss de la frise : faits du wiki : Godrick T5, Rykard T13, Mohg T19, Godfrey (Golden Shade) et Morgott T12, Fire Giant T15, Sir Gideon Ofnir et Hoarah Loux T17 · déductions : Margit T4, Radagon et Elden Beast T18, Maliketh T16 · choix (plus bas palier quand il y en a plusieurs) : Red Wolf of Radagon et Rennala T7, Starscourge Radahn T10, Godskin Duo T15 · région parente : Draconic Tree Sentinel T11 · sans palier : Fia's Champions et boss du DLC.
+- Autres rencontres (fiche boss) : palier de la région la plus précise de `encounters[].regions` dans la table des zones de `bossLevel.ts`, sinon celui de sa région parente ; le plus bas quand plusieurs régions en ont un ; sans palier, M1 n'existe pas.
 - Limites : aucun palier pour le DLC, Deeproot Depths, Weeping Peninsula, Raya Lucaria, Capital Outskirts, Forbidden Lands ; ambiguïtés de zone ; saut de 60 à 100 entre T13 et T15 (T13 est un minimum, T15 un niveau « around »).
 
 ### M2 : runes NG
@@ -115,19 +137,22 @@ Le wiki ne publie aucun niveau recommandé par boss. Le niveau est une **estimat
 
 ### M3 : hybride (méthode retenue)
 - Niveau = `arrondi((M1 + M2) / 2)` (0,5 vers le haut) si les deux existent ; sinon celle qui existe ; **Non estimé** sans l'une ni l'autre (rencontre absente de `data/`). Le « Pourquoi ? » donne M1, M2 et leurs données.
-- Cas de test (M1 / M2 → M3) : Margit 23 / 18 → 21 · Godrick 27 / 24 → 26 · Red Wolf 35 / 19 → 27 · Rennala 35 / 34 → 35 · Radahn 48 / 46 → 47 · Rykard 60 / 64 → 62 · Mohg 127 / 111 → 119 · Draconic Tree Sentinel 52 / 39 → 46 · Fia's Champions — / 34 → 34 · Godfrey (Golden Shade) 56 / 50 → 53 · Morgott 56 / 61 → 59 · Fire Giant 100 / 75 → 88 · Godskin Duo 100 / — → 100 (PV et runes `null`) · Maliketh 107 / 83 → 95 · Sir Gideon Ofnir 113 / — → Non estimé (aucune rencontre dans `data/`) · Godfrey (Hoarah Loux) 113 / 96 → 105 · Radagon 120 / — → 120 · Elden Beast 120 / 120 → 120.
+- M2 lit la première valeur de `runes_values` (combat principal : Limgrave pour Margit).
+- Cas de test (M1 / M2 → M3) : Margit 23 / 18 → 21 · Godrick 27 / 24 → 26 · Red Wolf 35 / 19 → 27 · Rennala 35 / 34 → 35 · Radahn 48 / 46 → 47 · Rykard 60 / 64 → 62 · Mohg 127 / 111 → 119 · Draconic Tree Sentinel 52 / 39 → 46 · Fia's Champions — / 34 → 34 · Godfrey (Golden Shade) 56 / 50 → 53 · Morgott 56 / 61 → 59 · Fire Giant 100 / 75 → 88 · Godskin Duo 100 / 73 → 87 (runes 170 000 depuis le correctif C2, PV toujours `null`) · Maliketh 107 / 83 → 95 · Sir Gideon Ofnir 113 / 69 → 91 (rencontre ajoutée par le correctif C1) · Godfrey (Hoarah Loux) 113 / 96 → 105 · Radagon 120 / — → 120 · Elden Beast 120 / 120 → 120.
+- Le cas « Non estimé » reste celui d'une rencontre absente de `data/`, ou sans palier ni runes.
 
 ### Boss du DLC
 - Niveau recommandé : **niveau d'entrée du DLC**, le plus haut des M3 de Starscourge Radahn et de Mohg, Lord of Blood (le DLC exige ces deux boss) : **119** avec les données actuelles, pour tous les boss du DLC. [wiki] La difficulté du DLC est portée par la bénédiction (« regardless of your level »).
 - **Bénédiction de l'Arbre-Ombre recommandée** [estimation, méthode B2] : le wiki recommande environ 13 fragments pour Messmer (« more or less »), seule ancre disponible. Fragments recommandés = `arrondi(13 × fragments du chemin / 33)`, où le chemin compte les fragments des zones principales [conception] : Entrée = Gravesite Plain, 10 ; Cœur = Gravesite Plain + Scadu Altus + Shadow Keep, 33 ; Enir-Ilim = Cœur + Rauh Base + Ancient Ruins of Rauh + Enir-Ilim, 42. Les zones annexes (Cerulean Coast, Charo's Hidden Grave, Stone Coffin Fissure, Jagged Peak, Abyssal Woods) sont exclues.
   - Entrée : `arrondi(13 × 10 / 33)` = **4** fragments · Cœur : **13** · Enir-Ilim : **17**.
-  - Le niveau de bénédiction est lu dans la table de bénédiction de `mechanics.json` (sujet `Scadutree Fragment`, « Total Fragments Required ») : le plus haut niveau dont le total requis est inférieur ou égal au nombre de fragments (13 → niveau 7, 17 → niveau 9, 4 → niveau 2).
+  - Le niveau de bénédiction est lu dans la table de bénédiction de `mechanics.json` (sujet `Scadutree Fragment`, section « Scadutree Blessing Level », colonne « Total Fragments Required ») : le plus haut niveau dont le total requis est inférieur ou égal au nombre de fragments (13 → niveau 7, 17 → niveau 9, 4 → niveau 2). Tant que le fichier `mechanics` n'est pas chargé, les fragments sont affichés sans niveau.
+  - Sous-zone d'une rencontre du DLC : la plus précoce de ses régions les plus précises (Messmer : Shadow Keep → Cœur ; Romina : Ancient Ruins of Rauh → Cœur ; Promised Consort Radahn : Enir-Ilim ; Rellana : Castle Ensis → Entrée). La recommandation est simplifiée par sous-zone (D14) : Romina reçoit celle du Cœur (13 fragments, niveau 7).
   - Le panneau « Pourquoi ? » affiche aussi le maximum atteignable avec tous les fragments du chemin (niveaux 14, 16 et 17 pour Messmer, Romina et Promised Consort Radahn, tel que calculé sur le chemin complet).
 - La bénédiction n'entre pas dans la préparation, qui ne porte que sur le niveau.
 
 ### Préparation et jauge
 - Préparation : **Prêt** si niveau ≥ recommandé ; **Limite** si niveau ≥ recommandé − 8 ; **Trop tôt** sinon ; **Non estimé** si le boss n'a pas de données de combat.
-- Jauge : échelle de 0 à `max(recommandé + 30, niveau + 12, 60)`.
+- Jauge : échelle de 0 à `max(recommandé + 30, niveau + 12, 60)`. Sans niveau recommandé (« Non estimé »), l'échelle vaut `max(niveau + 12, 60)` pour que le repère du joueur reste visible, et aucun repère de recommandation n'est tracé.
 
 ## Frise des boss
 
@@ -142,7 +167,8 @@ La frise suit la page Bosses du wiki (section « Mandatory bosses »), dans l'or
    Les sous-nœuds textuels ne reçoivent aucun calcul de niveau.
 2. **Draconic Tree Sentinel ou Fia's Champions** (« ou ») : le Sentinel peut être contourné par le portail du trône du Prince de la Mort, à Deeproot Depths. Entrée retenue pour le Sentinel : la rencontre de Capital Outskirts, pas celle de Farum Azula.
 3. Godfrey (Golden Shade) · 4. Morgott · 5. Fire Giant · 6. Godskin Duo · 7. Maliketh · 8. Sir Gideon Ofnir · 9. Godfrey (Hoarah Loux) · 10. Radagon · 11. Elden Beast. Chaque nœud suit l'ordre de progression des lieux (Morgott ouvre les Mountaintops, Fire Giant ouvre Farum Azula, etc.).
-- Points de données : Margit utilise la première valeur de ses PV et de ses runes (Limgrave) ; la seconde est le combat de Capital Outskirts. Sir Gideon Ofnir n'a aucune rencontre dans `data/` et Godskin Duo n'a ni PV ni runes : leur niveau est « Non estimé » ou calculé par la position seule (voir les cas de test de M3). Mohg a deux rencontres : `Mohg, Lord of Blood – Phase 1`, pas `Mohg, the Omen`. Les rangs (`tier`) sont l'union des groupes de la page : ils ne permettent pas d'attribuer un rang par rencontre pour Godfrey et Mohg.
+- Points de données : Margit utilise la première valeur de ses PV et de ses runes (Limgrave) ; la seconde est le combat de Capital Outskirts. Sir Gideon Ofnir a une rencontre depuis le correctif C1 ; Godskin Duo n'a pas de PV mais des runes depuis le correctif C2 (voir les cas de test de M3). Rennala : l'une ou l'autre phase cochée vaut le nœud ; le niveau lit la phase 2 (runes). Promised Consort Radahn : idem, le niveau lit la seconde rencontre. Mohg a deux rencontres : `Mohg, Lord of Blood – Phase 1`, pas `Mohg, the Omen`. Les rangs (`tier`) sont l'union des groupes de la page : ils ne permettent pas d'attribuer un rang par rencontre pour Godfrey et Mohg.
+- **Prochain boss** : dans la première étape non terminée, les nœuds non vaincus, chacun remplacé par son prérequis boss s'il n'est pas vaincu, du plus bas niveau recommandé au plus haut (non estimés en dernier, puis ordre de la frise) ; l'histoire terminée et le DLC activé, le premier nœud non vaincu de la voie DLC (Messmer et Romina départagés de la même façon).
 - **Voie DLC** : ouverte par Starscourge Radahn et Mohg, Lord of Blood (le DLC en dépend). Puis Messmer the Impaler et Romina, Saint of the Bud, avec la mention « ordre libre » (le wiki exige les deux mais n'impose pas d'ordre entre eux), puis Promised Consort Radahn, accessible une fois l'arbre-sceau brûlé avec la Messmer's Kindling. Rellana est optionnelle.
 - Matrice des faiblesses : seuls les nœuds dont l'absorption et les résistances sont documentées peuvent l'afficher (11 sur 21).
 
@@ -168,6 +194,19 @@ PV, FP, endurance et charge d'équipement de base se lisent directement dans les
 - Exemples : Vigor 15 → 522 PV ; Mind 10 → 78 FP ; Endurance 25 → 121 d'endurance et 72,0 de charge.
 - Cas de test : Vigor 15 / 40 / 60 / 99 → 522 / 1 450 / 1 900 / 2 100 PV · Mind 10 / 50 / 99 → 78 / 300 / 450 FP · Endurance 8 / 15 / 60 / 99 → endurance 92 / 105 / 158 / 170, charge 45,0 / 56,1 / 120,0 / 160,0 · Astrologer (9 / 15 / 9) → 396 PV, 95 FP, 94 d'endurance, 46,6 de charge · Samurai (12 / 11 / 13) → 455 PV, 82 FP, 101 d'endurance, 52,9 de charge.
 - Les valeurs ne comptent ni les talismans, ni les Great Runes, ni le Physick, ni l'armure. L'équilibre dépend de l'armure et reste une valeur de données, pas un calcul.
+
+### Rendement des attributs
+Widget « Rendement des attributs » (D23) : pour Vigor (PV), Mind (FP) et Endurance (endurance et charge), les tables 1–99 ci-dessus, sans formule.
+- Gain du point suivant : `valeur(p + 1) − valeur(p)`, arrondi à la précision de la table ; `null` au point 99.
+- **Paliers où le gain baisse**, déduits des tables et jamais codés [conception] : pour chaque point p, gain moyen avant `(valeur(p) − valeur(p − 5)) / 5` et après `(valeur(p + 5) − valeur(p)) / 5`. Le point est candidat si le gain après vaut au plus 0,75 fois le gain avant et lui est inférieur d'au moins deux pas d'arrondi de la table divisés par 5 (un pas = 1 pour les tables entières, 0,1 pour la charge), ce qui écarte l'alternance des arrondis. Dans une suite de candidats consécutifs, le point de plus forte baisse est retenu. Seuils dans `config/weights.ts` (`ATTRIBUTE_YIELD`).
+- Résultat avec les tables actuelles : PV 40 et 60 ; FP 60 ; endurance 30 et 50 ; charge 25 et 60.
+- Position du profil : valeur et gain du point suivant à l'attribut du profil.
+
+## Couverture des données
+Widget D8 : part de chaque champ documentée par le wiki, déduite, estimée ou non documentée, avec le décompte par étiquette de source. Simple décompte des données chargées, sans pondération.
+- Type d'amélioration, par fichier d'armes (`derived.upgrade.reliability`) : `wiki` et « non améliorable » = documenté ; `deduced` = déduit ; `estimate` = estimé ; `null` = non documenté.
+- PV, runes et absorption des rencontres de la frise (rencontre qui porte le niveau de chaque nœud de `timeline.ts`, prérequis boss compris) : documenté si `hp_values` ou `runes_values` n'est pas vide, ou si `damage_negation_percent` est présent ; non documenté sinon, ou si la rencontre manque.
+- PV et absorption de toutes les rencontres de `bosses.json`, mêmes règles.
 
 ## Puissance d'attaque calculée (Estimation)
 

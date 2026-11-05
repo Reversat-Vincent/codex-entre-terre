@@ -25,8 +25,8 @@ export const METHODS: Readonly<Record<MethodId, MethodInfo>> = {
   'attack-power': { id: 'attack-power', section: "Puissance d'attaque calculée (Estimation)" },
   // Le niveau d'un jeu d'attributs (Σ − 79) est énoncé dans la section « Origine optimale ».
   level: { id: 'level', section: 'Origine optimale' },
-  // La couverture des données n'a pas encore de section dans calculs.md (signalé au chef de projet).
-  coverage: { id: 'coverage', section: null },
+  coverage: { id: 'coverage', section: 'Couverture des données' },
+  'attribute-yield': { id: 'attribute-yield', section: 'Rendement des attributs' },
 }
 
 /**

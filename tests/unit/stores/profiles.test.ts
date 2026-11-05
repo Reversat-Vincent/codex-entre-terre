@@ -28,7 +28,7 @@ describe('profils', () => {
     expect(profiles.dirty).toBe(false)
     criteria.setAttribute('dex', 40)
     expect(profiles.dirty).toBe(true)
-    expect(profiles.items[0]?.criteria.character.attributes.dex).toBe(27)
+    expect(profiles.items[0]?.criteria.character.attributes.dex).toBe(10)
   })
 
   it('save met à jour le profil actif ; sans profil actif il refuse', () => {
@@ -64,7 +64,7 @@ describe('profils', () => {
     const id = profiles.items[0]!.id
     criteria.setAttribute('vig', 50)
     expect(profiles.load(id)).toBe(true)
-    expect(criteria.criteria.character.attributes.vig).toBe(26)
+    expect(criteria.criteria.character.attributes.vig).toBe(10)
     undoLast()
     expect(criteria.criteria.character.attributes.vig).toBe(50)
     expect(profiles.load('absent')).toBe(false)
@@ -100,11 +100,15 @@ describe('profils', () => {
 })
 
 describe('critères', () => {
-  it('valeurs par défaut : celles du prototype', () => {
+  it('valeurs par défaut : neutres (D31)', () => {
     const c = defaultCriteria()
-    expect(c.character.attributes).toEqual({ vig: 26, mnd: 11, end: 18, str: 12, dex: 27, int: 9, fai: 8, arc: 10 })
-    expect(c.target).toEqual({ archetype: 'dexarc', level: 125 })
-    expect(c.progress.defeated).toHaveLength(3)
+    expect(c.content).toEqual({ base: true, sote: true, tp: false })
+    expect(c.character).toEqual({ origin: 'auto', attributes: { vig: 10, mnd: 10, end: 10, str: 10, dex: 10, int: 10, fai: 10, arc: 10 } })
+    expect(c.target).toEqual({ archetype: null, level: 150 })
+    expect(c.style).toEqual({ mode: 'melee', classes: [], hands: 1, status: null, load: 'mid' })
+    expect(c.progress).toEqual({ mode: 'stage', stage: 'early', regions: [], defeated: [] })
+    expect(c.constraints).toEqual({ excludeRemembrance: false, excludeRandomDrop: false, excludeQuest: false, stonePreference: 'none' })
+    expect(c.reliability).toEqual({ includeEstimates: true })
     expect(c).toEqual(cloneCriteria(c))
   })
 
@@ -122,13 +126,12 @@ describe('critères', () => {
 
   it('toggleDefeated passe la progression en mode « boss »', () => {
     const criteria = useCriteriaStore()
-    criteria.set({ progress: { mode: 'stage' } })
     criteria.toggleDefeated('rennala-queen-of-the-full-moon/rennala-queen-of-the-full-moon-phase-1')
     expect(criteria.criteria.progress.mode).toBe('boss')
-    expect(criteria.criteria.progress.defeated).toHaveLength(4)
     criteria.toggleDefeated('margit-the-fell-omen/margit-the-fell-omen')
-    expect(criteria.criteria.progress.defeated).toHaveLength(3)
-    expect(criteria.criteria.progress.defeated).not.toContain('margit-the-fell-omen/margit-the-fell-omen')
+    expect(criteria.criteria.progress.defeated).toHaveLength(2)
+    criteria.toggleDefeated('margit-the-fell-omen/margit-the-fell-omen')
+    expect(criteria.criteria.progress.defeated).toEqual(['rennala-queen-of-the-full-moon/rennala-queen-of-the-full-moon-phase-1'])
   })
 
   it('reset revient au profil actif, ou aux valeurs par défaut, avec Annuler', () => {
