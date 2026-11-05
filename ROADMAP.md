@@ -64,14 +64,17 @@
   - [ ] 4.2 Widget A et sa vue plein écran — dev-interface
   - [ ] 4.3 Widget B (origine optimale) et widget C (frise des boss) — dev-interface
   - [ ] 4.4 Matrice des faiblesses, plan d'amélioration, calculateur de runes, couverture des données — dev-interface
-  - [ ] 4.5 Widget « Rendement des attributs » (D23) : courbes PV, FP, endurance et charge par niveau d'attribut, gain du point suivant, paliers publiés (D39), position du profil — dev-interface (calcul fait en 2.5 et 2.11) ; avec les finitions : `CxWidgetShell` (ligne « comment c'est calculé » qui passe sous l'icône, boutons qui écrasent le titre sur mobile), `.cx-input` dans le CSS global, règles `.cx-status` dédoublonnées (`CxReadinessStatus`, `CxReadinessGauge`)
+  - [ ] 4.5 Widget « Rendement des attributs » (D23) : courbes PV, FP, endurance et charge par niveau d'attribut, gain du point suivant, paliers publiés (D39), position du profil — dev-interface (calcul fait en 2.5 et 2.11) ; avec les finitions : `CxWidgetShell` (ligne « comment c'est calculé » qui passe sous l'icône, boutons qui écrasent le titre sur mobile), `.cx-input` dans le CSS global, règles `.cx-status` dédoublonnées (`CxReadinessStatus`, `CxReadinessGauge`) ; textes des codes `AttackUnavailableCode` déplacés dans `explainText.ts` ; `formatDate` dans `format.ts` ; fiche arme et fiche boss branchées sur les getters de 2.12 ; tests de `weaponModel.ts`
 - [ ] 5. Explorateur
   - [ ] 5.1 Vue générique des 17 catalogues (tableau et grille, facettes, colonnes, état vide), catalogue des armes en référence ; inclut le catalogue des boss (ancienne 5.3b) — dev-interface
-  - [ ] 5.2 Fiche arme — dev-interface
+  - [x] 5.2 Fiche arme — dev-interface
+    > Note : vérifiée dans Chromium. Écarts acceptés : sélecteur « Affinité du calcul » ; coût d'amélioration calculé par le plan du moteur ; réticule après déplacement du curseur ; une courbe par type de dégâts pour les tableaux à une affinité (aucune arme multi-affinités n'a plus de 2 niveaux documentés). À reprendre en 2.12 et 4.5.
+  - [ ] 2.12 Getters du store `analysis` pour les fiches : `weaponCalcs(ref, level, affinity, hands)` (puissance d'attaque et prérequis, sortis de `useWeaponSheet.ts`) et `scoreOf(ref)` indépendant du style ; typage de `weaponsAgainst` lu par la fiche boss — dev-logique (après 2.11), puis branchement côté interface en 4.5
   - [x] 5.3a Fiche boss (onglets de rencontre, tuiles, absorption, statuts, butin, « Pour votre profil ») — dev-interface — commit `ee957d0`
     > Note : le bloc « armes efficaces » attend le getter `weaponsAgainst(encounterKey)` (2.11) ; lecture provisoire par `as unknown` dans `bossSheetModel.ts`, à typer ensuite. Arbitrages en D41.
   - [x] 5.3b Catalogue des boss — fusionné dans 5.1
-  - [ ] 5.4 Autres catalogues et fiches : cendres, armures, talismans, sorts, esprits, objets, lieux, PNJ, origines — dev-interface
+  - [ ] 5.4a Fiches cendres, armures, talismans, sorts, esprits, et composants de fiche communs (`src/components/domain/sheet/`) — dev-interface
+  - [ ] 5.4b Fiches objets, lieux (fil d'Ariane de région, sites de grâce, boss, PNJ, butin), PNJ (boutique en tableau, quête en liste à cocher), origines — dev-interface (après 5.4a)
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [ ] 6.1 Ma liste et comparateur — dev-interface
