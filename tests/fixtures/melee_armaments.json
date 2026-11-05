@@ -51,7 +51,7 @@
       "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
       "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
       "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
-      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
       "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
       "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
       "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
@@ -66,12 +66,13 @@
       "compatible_ashes_of_war": "Only on the few pages that list them.",
       "range": "Bow/crossbow/ballista range as shown in the infobox (in-game 'Range' value).",
       "sorcery_scaling / incantation_scaling": "Catalysts: base spell power at +0 from the infobox (Sorcery Scaling for staves, Incantation Scaling for seals).",
-      "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted)."
+      "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
     },
     "upgrade_path_documentation": {
-      "documented_by_wiki": 150,
-      "undocumented": 185,
-      "undocumented_with_estimate": 185
+      "documented_by_wiki": 331,
+      "undocumented": 4,
+      "undocumented_with_estimate": 4
     },
     "wiki_inconsistencies_flagged": [
       "Fire Knight's Shortsword",
@@ -103,6 +104,13 @@
       "Golden Halberd",
       "Hookclaws",
       "Claws of Night"
+    ],
+    "material_inconsistencies_flagged": [
+      {
+        "name": "Carian Sorcery Sword",
+        "reason": "upgrade.material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept.",
+        "url": "https://eldenring.wiki.gg/wiki/Carian_Sorcery_Sword"
+      }
     ]
   },
   "transforms": [
@@ -2363,168 +2371,6 @@
       }
     },
     {
-      "name": "Smithscript Dagger",
-      "wiki_page": "Smithscript Dagger",
-      "url": "https://eldenring.wiki.gg/wiki/Smithscript_Dagger",
-      "category": "Throwing Blades",
-      "weapon_type": "Throwing Blade",
-      "source": "Shadow of the Erdtree",
-      "japanese_name": "流紋の短剣 (Ryūmon no Tanken)",
-      "attack_type": [
-        "Standard",
-        "Pierce"
-      ],
-      "skill": {
-        "name": "Piercing Throw",
-        "type": "Ash of War skill",
-        "ash_of_war_available": true,
-        "fp_cost": "9",
-        "description": "Throw armament with a powerful spin, causing it to bore through foes. When using this skill, the armament can be thrown further than normal and also pierce through enemies",
-        "attack_type": "Pierce",
-        "stamina_cost_wiki": "15 (- -)",
-        "default_affinity": "Keen",
-        "properties": {
-          "hold": false,
-          "charge": false,
-          "follow_up": false,
-          "combo": false,
-          "channel": false,
-          "parryable": false
-        },
-        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Piercing_Throw"
-      },
-      "weight": 1.5,
-      "attack_power": {
-        "physical": 67,
-        "magic": 0,
-        "fire": 0,
-        "lightning": 0,
-        "holy": 0,
-        "critical": 100
-      },
-      "guarded_damage_negation": {
-        "physical": 35,
-        "magic": 20,
-        "fire": 20,
-        "lightning": 20,
-        "holy": 20,
-        "guard_boost": 15
-      },
-      "scaling": {
-        "str": "E",
-        "dex": "C",
-        "int": "E",
-        "fai": "E",
-        "arc": null
-      },
-      "requirements": {
-        "str": 5,
-        "dex": 11,
-        "int": 11,
-        "fai": 11,
-        "arc": 0
-      },
-      "passive_effects": [],
-      "buy_price": null,
-      "sell_price": 500,
-      "description": "Dagger engraved with a smithscript.\n\nReduced mass enhances the effects of the smithing arts, allowing this weapon to function as a throwing dagger for all attacks.\n\nOnce thrown, the dagger instantly reappears in the wielder's hand.",
-      "acquisition": [
-        {
-          "method": "Loot",
-          "location": "Ruined Forge Lava Intake",
-          "region": "Gravesite Plain",
-          "details": [
-            "Proceed normally through the dungeon until you reach the lever that moves the lava pipe and then drop down to the floor below. The dagger can be found on a body behind a Golem Smith."
-          ]
-        }
-      ],
-      "regions_mentioned": [
-        "Gravesite Plain"
-      ],
-      "acquisition_flags": [],
-      "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
-        "estimate_if_undocumented": {
-          "material": "Smithing Stones",
-          "ash_of_war_changeable": true,
-          "confidence": "medium",
-          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
-        }
-      },
-      "notes": [
-        "Though subpar as a standalone weapon due to low damage and Status Effect build-up, the Smithscript Dagger is an excellent offhand weapon due to its very low weight, quick attacks, and decent range that lets it inflict small amounts of chip damage on opponents and potentially keep Status Effect build-up and Stance damage from decaying.",
-        "→ The available Ashes of War are better of selected from with the same criteria, with more utiliy-based skills such as Endure, Kick, Parry, or Quickstep fitting better than anything dependent on the weapon's Attack Power.",
-        "Every attack except for its Critical Attacks are throwing attacks, meaning this weapon benefits alot from the Smithing Talisman +10% damage boost.",
-        "→ The thrown attacks also partially benefit from the Arrow's Reach Talisman as while their range isn't increased the damage falloff experienced at longer ranges is decreased.",
-        "All different light attacks have an extremely low Damage Level value of 0 (No Stagger) and therefore are extremely bad at interrupting opponents, with one of the most notable conseqeuences being that it cannot break the bubbles that protect the Juvenile Scholars during Rennala, Queen of the Full Moon's first phase instead just killing them.",
-        "→ All different heavy attacks do at the very least a Damage Level value of 1 (Short Stagger), or 2 (Moderate Stagger) for the charged heavy attacks, meaning it is at least possible to interrupt these things with the correct attacks.",
-        "→ Note that this is not the same as dealing no Poise or Stance damage, even if the Weapon Class has the lowest possible base value of 2 for both of these."
-      ],
-      "patch_notes": [
-        {
-          "version": "1.17 (General balance adjustment)",
-          "official_notes": "Increased critical hit power.",
-          "community_notes": "This is referring to the raw attack power of the critical hit and not the modifier; the critical hit modifier is still 100.\nMore specifically the innate multiplier for these attacks increased by 15-40% (from 220% to 280% for backstabs, from 300% to 420% for ripostes, from 420% to 483% for small PvE foes, and from 280% to?% for ripostes against large PvE foes)."
-        },
-        {
-          "version": "1.14 (General balance adjustment)",
-          "official_notes": "Extended the Smithscript Dagger’s throwing attacks range.",
-          "community_notes": "With this update the non-skill attacks have a range roughly four times the original range."
-        },
-        {
-          "version": "1.12.3 (General balance adjustment)",
-          "official_notes": "Extended the throwing attacks range for the following weapons: Smithscript Dagger / Smithscript Cirque.",
-          "community_notes": "Prior to this update the range of the non-skill attacks was extremely short, roughly 2 character lengths.\nAfter the update the range is slightly longer, roughly 3 character lengths."
-        }
-      ],
-      "id": "smithscript-dagger",
-      "derived": {
-        "displayName": "Smithscript Dagger",
-        "regions": {
-          "acquisitions": [
-            {
-              "index": 0,
-              "starting": false,
-              "values": [
-                {
-                  "value": "Gravesite Plain",
-                  "from": "location",
-                  "raw": "Ruined Forge Lava Intake",
-                  "rule": "location",
-                  "residue": false,
-                  "known": true
-                }
-              ],
-              "parentsRemoved": [],
-              "unresolved": []
-            }
-          ],
-          "fallback": null,
-          "basis": "acquisition",
-          "values": [
-            "Gravesite Plain"
-          ]
-        },
-        "methods": [
-          "loot"
-        ],
-        "invaderDrop": [],
-        "upgrade": {
-          "material": "Smithing Stones",
-          "maxLevel": 25,
-          "reliability": "estimate",
-          "confidence": "medium",
-          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
-        },
-        "inconsistent": []
-      }
-    },
-    {
       "name": "Longsword",
       "wiki_page": "Longsword",
       "url": "https://eldenring.wiki.gg/wiki/Longsword",
@@ -3470,84 +3316,86 @@
       }
     },
     {
-      "name": "Leda's Sword",
-      "wiki_page": "Leda's Sword",
-      "url": "https://eldenring.wiki.gg/wiki/Leda%27s_Sword",
-      "category": "Light Greatswords",
-      "weapon_type": "Light Greatsword",
-      "source": "Shadow of the Erdtree",
-      "japanese_name": "レダの剣 (Reda no Ken)",
+      "name": "Leontiel's Greatsword",
+      "wiki_page": "Leontiel's Greatsword",
+      "url": "https://eldenring.wiki.gg/wiki/Leontiel%27s_Greatsword",
+      "category": "Greatswords",
+      "weapon_type": "Greatsword",
+      "source": "Tarnished Pack",
+      "japanese_name": "レオティエルの大剣 (Reotieru no Daiken)",
       "attack_type": [
         "Standard",
         "Pierce"
       ],
       "skill": {
-        "name": "Needle Piercer",
+        "name": "Muleta",
         "type": "Unique Skill",
         "ash_of_war_available": false,
-        "fp_cost": "19",
-        "description": "Skill of Needle Knight Leda. Generates ten gold needles which pierce their target all at once. Those pierced are purged of all ailments and special effects alike.",
-        "attack_type": "Standard, Pierce, and Holy",
-        "stamina_cost_wiki": "36 (- -)",
+        "fp_cost": "- (10 13)",
+        "description": "Hold out a red cloth in front, inviting enemies to attack. Use normal or strong attack to gracefully dodge incoming attacks then pivot to offense. Can be charged to increase power of strong attack. Also, additional input allows for a follow-up attack.",
+        "attack_type": "Standard",
+        "stamina_cost_wiki": "- (30 30/40+30)",
         "properties": {
-          "hold": false,
-          "charge": false,
-          "follow_up": false,
+          "hold": true,
+          "follow_up": true,
           "combo": false,
           "channel": false,
           "parryable": true
         },
-        "wiki_url": "https://eldenring.wiki.gg/wiki/Unique_Skill:_Needle_Piercer"
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Unique_Skill:_Muleta"
       },
-      "weight": 7.5,
+      "weight": 9.5,
       "attack_power": {
-        "physical": 101,
+        "physical": 130,
         "magic": 0,
         "fire": 0,
         "lightning": 0,
-        "holy": 65,
+        "holy": 0,
         "critical": 100
       },
       "guarded_damage_negation": {
         "physical": 63,
-        "magic": 32,
-        "fire": 32,
-        "lightning": 30,
-        "holy": 46,
-        "guard_boost": 35
+        "magic": 33,
+        "fire": 33,
+        "lightning": 33,
+        "holy": 33,
+        "guard_boost": 44
       },
       "scaling": {
         "str": "E",
         "dex": "C",
         "int": null,
-        "fai": "D",
+        "fai": null,
         "arc": null
       },
       "requirements": {
-        "str": 11,
-        "dex": 22,
+        "str": 13,
+        "dex": 26,
         "int": 0,
-        "fai": 19,
+        "fai": 0,
         "arc": 0
       },
       "passive_effects": [],
       "buy_price": null,
-      "sell_price": 1000,
-      "description": "Light greatsword with gold inlaid. Weapon of Leda, the Needle Knight. Deals holy damage.\n\nThough polished to a mirror sheen, this blade still reeks with the stench of crusted blood that lingers from the cull of her knightly comrades.",
+      "sell_price": null,
+      "description": "The knight Leontiel's favored weapon - a greatsword whose blade is wrapped in leather at the base.\n\nSaid to have been wielded by a proud order of orthodox knights long ago, weapons of this ilk demand high dexterity.",
       "acquisition": [
         {
-          "method": "Guaranteed drop",
-          "location": "Enir-Ilim",
-          "region": null,
+          "method": "Guaranteed Drop",
+          "location": "Wailing Dunes",
+          "region": "Caelid",
           "details": [
-            "Received after defeating Leda and her allies in their boss fight near the top of Enir-Ilim."
+            "Received after defeating Knight Leontiel after she invades in the Wailing Dunes Tarnished Pack.",
+            "→ Starscourge Radahn must be defeated prior, then she will invade near the entrance to War-Dead Catacombs in the northern part of the area."
           ]
         }
       ],
       "regions_mentioned": [
-        "Enir-Ilim"
+        "Caelid"
       ],
-      "acquisition_flags": [],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
       "upgrade": {
         "material": null,
         "max_level": null,
@@ -3563,12 +3411,18 @@
         }
       },
       "notes": [
-        "Hitting a foe with the innate skill, Needle Piercer, will purge them of any active Status Effects and Buffs.",
-        "While the weapon scales with several stats, it's only really Dexterity that is useful for increasing its Attack Power due to the other two stats having much weaker scalings (Strength and Faith) and working off the weaker Holy Attack Power instead of the stronger Physical Attack Power (Faith only)."
+        "Muleta is a unique stance skill that has the user hold up their Muleta in a provoking manner; performing a light attack dodges to the left with a horizontal slash, and performing a heavy attack dodges to the right for a chargeable thrust, an additional heavy input dodges to the right again for an upwards thrust that launches smaller enemies into the air.",
+        "→ The dodges with Muleta have i-frames.",
+        "→ All of the attacks of the skill deal Standard damage.",
+        "→ Godfrey Icon boosts the damage of Muleta's charged heavy attack.",
+        "Uses a unique, more vertical two-handed light attack moveset derived from Dark Souls 2's Mirrah Greatsword and shared with the Knight's Greatsword, Banished Knight's Greatsword, and the Inseparable Sword.",
+        "→ Shares unique thrusting heavy attacks with the Claymore, Lizard Greatsword Shadow of the Erdtree, and the Greatsword of Damnation Shadow of the Erdtree.",
+        "→ Also shares a unique thrusting rolling attack with the Claymore and the Greatsword of Damnation Shadow of the Erdtree.",
+        "This weapon makes fantastic use of the Rellana's Cameo Shadow of the Erdtree due to the skill's already high damage being boosted even further."
       ],
-      "id": "ledas-sword",
+      "id": "leontiels-greatsword",
       "derived": {
-        "displayName": "Leda's Sword",
+        "displayName": "Leontiel's Greatsword",
         "regions": {
           "acquisitions": [
             {
@@ -3576,10 +3430,10 @@
               "starting": false,
               "values": [
                 {
-                  "value": "Enir-Ilim",
+                  "value": "Caelid",
                   "from": "location",
-                  "raw": "Enir-Ilim",
-                  "rule": "known",
+                  "raw": "Wailing Dunes",
+                  "rule": "location",
                   "residue": false,
                   "known": true
                 }
@@ -3591,7 +3445,7 @@
           "fallback": null,
           "basis": "acquisition",
           "values": [
-            "Enir-Ilim"
+            "Caelid"
           ]
         },
         "methods": [
@@ -3693,12 +3547,12 @@
         "remembrance_weapon"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -3751,9 +3605,151 @@
         "upgrade": {
           "material": "Somber Smithing Stones",
           "maxLevel": 10,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Reverse-Bladed Sword",
+      "wiki_page": "Reverse-Bladed Sword",
+      "url": "https://eldenring.wiki.gg/wiki/Reverse-Bladed_Sword",
+      "category": "Backhand Blades",
+      "weapon_type": "Backhand Blade",
+      "source": "Tarnished Pack",
+      "japanese_name": "逆刃の曲剣 (Gyaku Ha no Kyoku Ken)",
+      "attack_type": [
+        "Slash",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Blind Spot",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "9",
+        "description": "Leap into close quarters to take advantage of the enemy's blind spot and gore them from the side. Inputs determine which side you strike from. This attack slips below the opponent's guard.",
+        "attack_type": "Weapon's Secondary Damage Type",
+        "stamina_cost_wiki": "30 (- -)",
+        "default_affinity": "Keen",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Blind_Spot"
+      },
+      "weight": 3,
+      "attack_power": {
+        "physical": 115,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 37,
+        "magic": 28,
+        "fire": 28,
+        "lightning": 28,
+        "holy": 28,
+        "guard_boost": 13
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "D",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 9,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": null,
+      "description": "Curved blade wielded with a backhand grip, said to have originated from the hidden realm of shadow.\n\nThe style of combat associated with this weapon is marked by spinning slashes and gouging thrust attacks.",
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": "Twin Maiden Husks",
+          "region": null,
+          "details": [
+            "Sold by the Twin Maiden Husks at Roundtable Hold for 1,000 Runes. Tarnished Pack"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "upgrade": {
+        "material": null,
+        "max_level": null,
+        "material_info_source": null,
+        "ash_of_war_changeable": null,
+        "affinity_changeable": null,
+        "changeability_info_source": null,
+        "estimate_if_undocumented": {
+          "material": "Smithing Stones",
+          "ash_of_war_changeable": true,
+          "confidence": "medium",
+          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
+        }
+      },
+      "notes": [
+        "When compared to the Backhand Blade, the Reverse-Bladed Sword has higher base damage and lower stat requirements, but has worse scaling, and weighs a tad more. The real advantage of the Reverse-Bladed Sword is being able to obtain a Backhand Blade without having to traverse to the Realm of Shadow.",
+        "→ It also shares the previously unique quality of inflicting Pierce damage with some of its attacks, which the other Backhand Blades don't do.",
+        "→→ More specifically, among the one-handed attacks it's the third attack of the light attack chain and the second hit of the running heavy attack, and among the two-handed/dual-wield attacks it's the first hit of the second attack in the light attack chain, the only hit of the fourth attack in the chain, and the second hit of the fifth attack in the chain, the first hit of the second heavy attack and the first and second hits of the second charged heavy attack, the third and fourth hits of the running heavy attack, the first hit of the backstep light attack and the guard counter, and all Critical Attacks.",
+        "Unlike the Backhand Blade, the Ash of War for the innate Skill: Blind Spot will be very far away from the point of acquisition for this weapon, making it impossible to pair with Affinities without the use of bugs for a long time."
+      ],
+      "id": "reverse-bladed-sword",
+      "derived": {
+        "displayName": "Reverse-Bladed Sword",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Roundtable Hold",
+                  "from": "location",
+                  "raw": "Twin Maiden Husks",
+                  "rule": "npc",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Roundtable Hold"
+          ]
+        },
+        "methods": [
+          "purchase"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
           "reliability": "estimate",
-          "confidence": "high",
-          "basis": "57 of 58 wiki-documented weapons with a Unique Skill use Somber Smithing Stones"
+          "confidence": "medium",
+          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
         },
         "inconsistent": []
       }
@@ -3843,12 +3839,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
           "ash_of_war_changeable": false,
@@ -3899,9 +3895,7 @@
         "upgrade": {
           "material": "Somber Smithing Stones",
           "maxLevel": 10,
-          "reliability": "estimate",
-          "confidence": "high",
-          "basis": "57 of 58 wiki-documented weapons with a Unique Skill use Somber Smithing Stones"
+          "reliability": "wiki"
         },
         "inconsistent": []
       }
@@ -4013,12 +4007,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "estimate_if_undocumented": {
           "material": "Smithing Stones",
           "ash_of_war_changeable": true,
@@ -4065,9 +4059,25 @@
               "starting": false,
               "values": [
                 {
+                  "value": "Limgrave",
+                  "from": "location",
+                  "raw": "Demi-Human Forest Ruins",
+                  "rule": "location",
+                  "residue": false,
+                  "known": true
+                },
+                {
                   "value": "Mt. Gelmir",
                   "from": "location",
                   "raw": "Lakeside Crystal Cave & Liurnia of the Lakes/ Volcano Cave (Mt. Gelmir)",
+                  "rule": "suffix",
+                  "residue": false,
+                  "known": true
+                },
+                {
+                  "value": "Altus Plateau",
+                  "from": "location",
+                  "raw": "Lux Ruins (Altus Plateau)",
                   "rule": "suffix",
                   "residue": false,
                   "known": true
@@ -4089,10 +4099,7 @@
                   "known": true
                 }
               ],
-              "parentsRemoved": [
-                "Limgrave",
-                "Altus Plateau"
-              ],
+              "parentsRemoved": [],
               "unresolved": [
                 "Coastal Cave & Limgrave",
                 "Cerulean Coast Shadow of the Erdtree"
@@ -4104,6 +4111,7 @@
           "values": [
             "Limgrave",
             "Mt. Gelmir",
+            "Altus Plateau",
             "Mountaintops of the Giants",
             "Weeping Peninsula"
           ]
@@ -4117,9 +4125,7 @@
         "upgrade": {
           "material": "Smithing Stones",
           "maxLevel": 25,
-          "reliability": "estimate",
-          "confidence": "medium",
-          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
+          "reliability": "wiki"
         },
         "inconsistent": []
       }

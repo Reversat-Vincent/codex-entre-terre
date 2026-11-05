@@ -37,7 +37,8 @@ describe('registre des widgets', () => {
       for (const f of [...requiredFiles(id, criteria), ...enhancingFiles(id, criteria)]) expect(FILE_KEYS).toContain(f)
       for (const f of enhancingFiles(id, criteria)) expect(requiredFiles(id, criteria)).not.toContain(f)
     }
-    expect(enhancingFiles('boss-order', criteria)).toEqual(['mechanics'])
+    expect(enhancingFiles('boss-order', criteria)).toEqual([])
+    expect(requiredFiles('boss-order', criteria)).toEqual(['bosses', 'tables'])
     expect(requiredFiles('attribute-yield', criteria)).toEqual(['tables'])
   })
 })

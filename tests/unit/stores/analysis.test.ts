@@ -40,7 +40,7 @@ const fetchFn: FetchFn = async (url) => {
   return new Response(texts.get(key)!)
 }
 
-async function setup(keys: FileKey[] = ['origins', 'bosses', 'tables', 'melee_armaments', 'mechanics']) {
+async function setup(keys: FileKey[] = ['origins', 'bosses', 'tables', 'melee_armaments']) {
   const data = useDataStore()
   data.configure({ base: '/', fetchFn })
   await data.ensure(keys)

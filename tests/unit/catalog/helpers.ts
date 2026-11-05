@@ -10,7 +10,7 @@ function entries<T>(name: string): T[] {
   return file.entries
 }
 
-/** Les 14 armes des fixtures : 10 de mêlée, 3 à distance ou catalyseurs, 1 bouclier. */
+/** Les 13 armes des fixtures : 10 de mêlée, 2 à distance ou catalyseurs, 1 bouclier. */
 export function weapons(): WeaponEntry[] {
   return [...entries<WeaponEntry>('melee_armaments'), ...entries<WeaponEntry>('ranged_weapons_catalysts'), ...entries<WeaponEntry>('shields_torches')]
 }

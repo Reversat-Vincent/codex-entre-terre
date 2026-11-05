@@ -26,7 +26,7 @@
       "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
       "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
       "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
-      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
       "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
       "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
       "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
@@ -39,7 +39,8 @@
       "upgrade.buffable": "Only present when the wiki states whether the weapon can be buffed (grease/spells).",
       "patch_notes": "Balance changes listed on the weapon page: game version, official patch note, community explanation.",
       "compatible_ashes_of_war": "Only on the few pages that list them.",
-      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules)."
+      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
     },
     "class_rules": {
       "Thrusting Shields": {
@@ -165,11 +166,12 @@
       }
     },
     "upgrade_path_documentation": {
-      "documented_by_wiki": 7,
-      "undocumented": 82,
-      "undocumented_with_estimate": 8
+      "documented_by_wiki": 87,
+      "undocumented": 2,
+      "undocumented_with_estimate": 0
     },
-    "wiki_inconsistencies_flagged": []
+    "wiki_inconsistencies_flagged": [],
+    "material_inconsistencies_flagged": []
   },
   "transforms": [
     {
@@ -187,37 +189,23 @@
   ],
   "entries": [
     {
-      "name": "Rickety Shield",
-      "wiki_page": "Rickety Shield",
-      "url": "https://eldenring.wiki.gg/wiki/Rickety_Shield",
-      "category": "Small Shields",
-      "weapon_type": "Small Shield",
-      "source": "Base game",
-      "japanese_name": "壊れかけの木盾 (Koware Kake no Kodate)",
+      "name": "Silver Grooved Shield",
+      "wiki_page": "Silver Grooved Shield",
+      "url": "https://eldenring.wiki.gg/wiki/Silver_Grooved_Shield",
+      "category": "Medium Shields",
+      "weapon_type": "Medium Shield",
+      "source": "Tarnished Pack",
       "attack_type": [
         "Strike"
       ],
       "skill": {
-        "name": "Parry",
-        "type": "Ash of War skill",
-        "ash_of_war_available": true,
-        "fp_cost": null,
-        "description": "Use this skill in time with a foe's melee attack to deflect it and break that foe's stance. This provides an opening to perform a critical hit.",
-        "stamina_cost_wiki": "10 (- -)",
-        "default_affinity": "Standard",
-        "properties": {
-          "hold": false,
-          "charge": false,
-          "follow_up": false,
-          "combo": false,
-          "channel": false,
-          "parryable": false
-        },
-        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Parry"
+        "name": null,
+        "type": "No skill",
+        "fp_cost": null
       },
-      "weight": 1,
+      "weight": 3,
       "attack_power": {
-        "physical": 70,
+        "physical": 61,
         "magic": 0,
         "fire": 0,
         "lightning": 0,
@@ -225,59 +213,55 @@
         "critical": 100
       },
       "guarded_damage_negation": {
-        "physical": 74,
-        "magic": 29,
-        "fire": 24,
-        "lightning": 34,
-        "holy": 34,
-        "guard_boost": 46
+        "physical": 100,
+        "magic": 52,
+        "fire": 44,
+        "lightning": 24,
+        "holy": 48,
+        "guard_boost": 50
       },
       "scaling": {
-        "str": "E",
+        "str": "D",
         "dex": null,
         "int": null,
         "fai": null,
         "arc": null
       },
       "requirements": {
-        "str": 8,
-        "dex": 0,
+        "str": 9,
+        "dex": 12,
         "int": 0,
         "fai": 0,
         "arc": 0
       },
       "passive_effects": [],
-      "buy_price": null,
+      "buy_price": 1000,
       "sell_price": 100,
-      "description": "A creaky old wooden shield, circular in shape. Roughly reinforced with vines.\n\nThere are countless other shields available of better make. This piece of scrap isn't worth the effort of equipping.",
+      "description": "A silver shield whose expert craftsmanship compensates for its weight.\n\nThe elegant grooves render a picturesque scene, recalling the faraway Erdtree's principles.\n\nSpread out above shall its many boughs, spread below shall its many roots, till the whole world knows its blessing.",
       "acquisition": [
         {
-          "method": "Equipped",
-          "location": null,
+          "method": "Starting Equipment",
+          "location": "Idus Knight Tarnished Pack",
           "region": null,
           "details": [
-            "One is part of the starting gear for the Prophet class."
+            "The Silver Grooved Shield is a starting weapon for the Idus Knight."
           ]
         },
         {
-          "method": "Drop",
-          "location": "Limgrave/Weeping Peninsula/Liurnia of the Lakes/Mt. Gelmir/Altus Plateau",
+          "method": "Purchase",
+          "location": "Liurnia of the Lakes",
           "region": null,
           "details": [
-            "2% drop chance from sword-and-shield wielding Demi-Humans.",
-            "→ A easy-to-farm group of four can be found in-between the Forest Lookout Tower and the South of the Lookout Tower Site of Grace (south of the former and north of the latter)."
+            "The Silver Grooved Shield can be purchased by a Wandering Merchant by the Bellum Church for 1,000 Runes."
           ]
         }
       ],
       "regions_mentioned": [
-        "Limgrave",
-        "Weeping Peninsula",
-        "Liurnia of the Lakes",
-        "Mt. Gelmir",
-        "Altus Plateau"
+        "Liurnia of the Lakes"
       ],
       "acquisition_flags": [
-        "random_enemy_drop"
+        "starting_equipment",
+        "purchasable"
       ],
       "upgrade": {
         "material": null,
@@ -286,21 +270,15 @@
         "ash_of_war_changeable": null,
         "affinity_changeable": null,
         "changeability_info_source": null,
-        "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
+        "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
-        "Though it's rather awful for blocking, even with the improvements from Patch 1.14, as this is the lightest shield it's an excellent way to carry Ash of War-based shield skills such as Vow of the Indomitable or Carian Retaliation."
+        "The Silver Grooved Shield is one of two round shields to have 100% Physical Guard Damage Negation. The other is the Messmer Soldier Shield, which can be found in the Shadow of the Erdtree DLC.",
+        "This is the lighest Medium Shield with 100% Physical Guard Damage Negation, though it also has the second lowest Guard Boost of them all."
       ],
-      "patch_notes": [
-        {
-          "version": "1.14 (General balance adjustment)",
-          "official_notes": "Increased the damage negation of some shields when blocking physical attacks. Increased the guard strength of some shields.",
-          "community_notes": "Increased the Physical block from 50% to 74% and the non-Physical block percentages by 4% each, and increased the Guard Boost from 25 to 46."
-        }
-      ],
-      "id": "rickety-shield",
+      "id": "silver-grooved-shield",
       "derived": {
-        "displayName": "Rickety Shield",
+        "displayName": "Silver Grooved Shield",
         "regions": {
           "acquisitions": [
             {
@@ -313,55 +291,29 @@
             {
               "index": 1,
               "starting": false,
-              "values": [],
+              "values": [
+                {
+                  "value": "Liurnia of the Lakes",
+                  "from": "location",
+                  "raw": "Liurnia of the Lakes",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
               "parentsRemoved": [],
-              "unresolved": [
-                "Limgrave/Weeping Peninsula/Liurnia of the Lakes/Mt. Gelmir/Altus Plateau"
-              ]
+              "unresolved": []
             }
           ],
-          "fallback": {
-            "values": [
-              {
-                "value": "Weeping Peninsula",
-                "from": "regions_mentioned",
-                "raw": "Weeping Peninsula",
-                "rule": "known",
-                "residue": false,
-                "known": true
-              },
-              {
-                "value": "Liurnia of the Lakes",
-                "from": "regions_mentioned",
-                "raw": "Liurnia of the Lakes",
-                "rule": "known",
-                "residue": false,
-                "known": true
-              },
-              {
-                "value": "Mt. Gelmir",
-                "from": "regions_mentioned",
-                "raw": "Mt. Gelmir",
-                "rule": "known",
-                "residue": false,
-                "known": true
-              }
-            ],
-            "parentsRemoved": [
-              "Limgrave",
-              "Altus Plateau"
-            ]
-          },
-          "basis": "regions_mentioned",
+          "fallback": null,
+          "basis": "acquisition",
           "values": [
-            "Weeping Peninsula",
-            "Liurnia of the Lakes",
-            "Mt. Gelmir"
+            "Liurnia of the Lakes"
           ]
         },
         "methods": [
           "starting",
-          "drop"
+          "purchase"
         ],
         "invaderDrop": [],
         "upgrade": {

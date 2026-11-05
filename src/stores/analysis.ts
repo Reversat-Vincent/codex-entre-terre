@@ -10,7 +10,6 @@ import type { WeaponEntry } from '../data/types/weapon.ts'
 import { attributeYield } from '../engine/attributeYield.ts'
 import { bossLevelContext, gaugeMax, readBlessingTable, readiness, recommendedLevel } from '../engine/bossLevel.ts'
 import type { BossLevel, ReadinessId } from '../engine/bossLevel.ts'
-import { BOSS_LEVEL } from '../engine/config/bossLevel.ts'
 import type { StageId } from '../engine/config/stages.ts'
 import { UPGRADE } from '../engine/config/upgrade.ts'
 import { coverage } from '../engine/coverage.ts'
@@ -104,10 +103,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
   const yieldCurves = computed(() => (tables.value === null ? null : attributeYield(attrs.value, tables.value)))
 
   // Niveau recommandé, frise et étape courante.
-  const blessingTable = computed(() => {
-    const entry = data.dataset('mechanics')?.entries.find((e) => e.id === BOSS_LEVEL.blessing.table.entry)
-    return readBlessingTable(entry)
-  })
+  const blessingTable = computed(() => readBlessingTable(tables.value ?? undefined))
   const bossContext = computed(() =>
     encounters.value === null || tables.value === null ? null : bossLevelContext(encounters.value, tables.value, blessingTable.value),
   )

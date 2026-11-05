@@ -22,9 +22,6 @@ import { useProfilesStore } from './profiles.ts'
 import { useSearchStore } from './search.ts'
 import { useToastsStore } from './toasts.ts'
 
-// Redéclarée ici (même type que dans env.d.ts) pour que les tests, dont le projet TypeScript n'inclut pas env.d.ts, compilent ce module.
-declare const __APP_VERSION__: string
-
 /** Réglages de `boot()`, surtout utiles aux tests ; l'application l'appelle sans argument. */
 export interface BootOptions {
   /** Stockage durable (`undefined` : `localStorage` ; `null` : indisponible). */

@@ -44,17 +44,29 @@ export interface ToastInput {
 /**
  * Store des notifications.
  * `push(input)` ajoute une notification et renvoie son identifiant ; `dismiss(id)` la ferme ; `runAction(id)` exécute son action puis la ferme ;
- * `undoable(message, undo, icon?)` raccourci pour une notification de 5 s avec « Annuler ».
+ * `undoable(message, undo, icon?)` raccourci pour une notification de 5 s avec « Annuler » ;
+ * `pause(id)` arrête le compte à rebours (survol ou focus) et `resume(id)` le reprend avec le temps restant (sans effet si rien n'est en pause).
  */
 export const useToastsStore = defineStore('toasts', () => {
   const items = ref<Toast[]>([])
   const timers = new Map<number, ReturnType<typeof setTimeout>>()
+  /** Instant de disparition prévu des notifications dont le compte à rebours court. */
+  const deadlines = new Map<number, number>()
+  /** Temps restant (ms) des notifications en pause. */
+  const remaining = new Map<number, number>()
   let nextId = 1
+
+  function arm(id: number, ms: number): void {
+    deadlines.set(id, Date.now() + ms)
+    timers.set(id, setTimeout(() => dismiss(id), ms))
+  }
 
   function dismiss(id: number): void {
     const timer = timers.get(id)
     if (timer !== undefined) clearTimeout(timer)
     timers.delete(id)
+    deadlines.delete(id)
+    remaining.delete(id)
     items.value = items.value.filter((t) => t.id !== id)
   }
 
@@ -69,12 +81,29 @@ export const useToastsStore = defineStore('toasts', () => {
       durationMs: input.durationMs ?? (input.action ? UNDO_DURATION_MS : TOAST_DURATION_MS),
     })
     items.value = [...items.value, toast]
-    timers.set(id, setTimeout(() => dismiss(id), toast.durationMs))
+    arm(id, toast.durationMs)
     while (items.value.length > MAX_TOASTS) {
       const oldest = items.value[0]
       if (oldest) dismiss(oldest.id)
     }
     return id
+  }
+
+  function pause(id: number): void {
+    const timer = timers.get(id)
+    const deadline = deadlines.get(id)
+    if (timer === undefined || deadline === undefined) return
+    clearTimeout(timer)
+    timers.delete(id)
+    deadlines.delete(id)
+    remaining.set(id, Math.max(0, deadline - Date.now()))
+  }
+
+  function resume(id: number): void {
+    const left = remaining.get(id)
+    if (left === undefined) return
+    remaining.delete(id)
+    arm(id, left)
   }
 
   function runAction(id: number): void {
@@ -91,5 +120,5 @@ export const useToastsStore = defineStore('toasts', () => {
     for (const t of [...items.value]) dismiss(t.id)
   }
 
-  return { items, push, dismiss, runAction, undoable, clear }
+  return { items, push, dismiss, pause, resume, runAction, undoable, clear }
 })

@@ -32,9 +32,9 @@ describe('étape d’une arme', () => {
       'Gelmir Glintstone Staff', 'Erdtree Seal', 'Coil Shield',
     ]
     for (const n of gelmir) expect(stageOf(n).value?.stage, n).toBe('mid')
-    // Listée en Milieu par decisions-progression.md § 1.5, mais « Perfumer's Grotto / Volcano Manor (Mt. Gelmir) » + `Altus Plateau` forment
-    // une seule acquisition : `Altus Plateau`, parent de Volcano Manor, est retiré (règle 2), d'où Fin (écart signalé au chef de projet).
-    expect(stageOf('Great Omenkiller Cleaver').value?.region).toBe('Volcano Manor')
+    // Listée en Milieu par decisions-progression.md § 1.5 : « Perfumer's Grotto » (Altus Plateau) et « Volcano Manor » sont deux lieux distincts,
+    // la région parente n'est plus retirée entre deux lieux (D37) ; Altus Plateau reste donc, d'où Milieu.
+    expect(stageOf('Great Omenkiller Cleaver').value).toMatchObject({ stage: 'mid', region: 'Altus Plateau' })
     for (const n of ["Ghiza's Wheel", "Inquisitor's Girandole", 'Godskin Stitcher', "Man-Serpent's Shield", 'Serpent-Hunter']) {
       expect(stageOf(n).value?.stage, n).toBe('late')
     }

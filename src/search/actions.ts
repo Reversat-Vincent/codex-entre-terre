@@ -11,7 +11,7 @@ export type ActionEffect =
   | { readonly type: 'navigate'; readonly to: string }
   /** Ouvre le panneau ou le tiroir des critères. */
   | { readonly type: 'open-criteria' }
-  /** Bascule entre le thème sombre et le thème parchemin (`useAppPreferences`). */
+  /** Bascule entre le thème sombre et le thème parchemin (`usePreferencesStore`). */
   | { readonly type: 'toggle-theme' }
   /** Lance l'export du fichier de sauvegarde. */
   | { readonly type: 'export-state' }

@@ -37,12 +37,12 @@ const catalog = weaponCatalog({ meetsRequirements: (r) => reached.has(r) })
 describe('compteurs des facettes d’armes', () => {
   it('sans filtre, compte toutes les lignes', () => {
     const s = computeCatalog(catalog, rows, all)
-    expect(s.rows).toHaveLength(14)
+    expect(s.rows).toHaveLength(13)
     expect(option(s.facets, 'class', 'Daggers').count).toBe(3)
-    expect(option(s.facets, 'class', 'Light Greatswords').count).toBe(2)
-    expect(option(s.facets, 'content', 'Base game').count).toBe(10)
-    expect(option(s.facets, 'content', 'Shadow of the Erdtree').count).toBe(3)
-    expect(option(s.facets, 'content', 'Tarnished Pack').count).toBe(1)
+    expect(option(s.facets, 'class', 'Greatswords').count).toBe(2)
+    expect(option(s.facets, 'content', 'Base game').count).toBe(8)
+    expect(option(s.facets, 'content', 'Shadow of the Erdtree').count).toBe(1)
+    expect(option(s.facets, 'content', 'Tarnished Pack').count).toBe(4)
   })
 
   it('une facette ignore sa propre sélection et applique celles des autres', () => {
@@ -66,8 +66,8 @@ describe('compteurs des facettes d’armes', () => {
     expect(option(s.facets, 'content', 'Shadow of the Erdtree').count).toBe(1)
     // Classe : filtrée par le contenu seul.
     expect(option(s.facets, 'class', 'Daggers').count).toBe(1)
-    expect(option(s.facets, 'class', 'Throwing Blades').count).toBe(1)
-    expect(option(s.facets, 'class', 'Light Greatswords').count).toBe(1)
+    // Les autres classes n'ont aucune arme du DLC dans les fixtures.
+    expect(option(s.facets, 'class', 'Light Greatswords').count).toBe(0)
     expect(option(s.facets, 'class', 'Katanas').count).toBe(0)
   })
 
@@ -81,8 +81,8 @@ describe('compteurs des facettes d’armes', () => {
   it('garde une option à 0 : visible, marquée vide et désactivée', () => {
     const s = computeCatalog(catalog, rows, q([{ facet: 'class', value: 'Daggers' }]))
     const tp = option(s.facets, 'content', 'Tarnished Pack')
-    expect(tp).toMatchObject({ count: 0, total: 1, empty: true, disabled: true, selected: false })
-    const bow = option(s.facets, 'class', 'Light Bows')
+    expect(tp).toMatchObject({ count: 0, total: 4, empty: true, disabled: true, selected: false })
+    const bow = option(s.facets, 'class', 'Bows')
     expect(bow).toMatchObject({ count: 1, empty: false, disabled: false })
   })
 
@@ -101,7 +101,7 @@ describe('compteurs des facettes d’armes', () => {
   it('les options déduites des lignes vont de la plus fréquente à la moins fréquente, « Non documenté » en dernier', () => {
     const s = computeCatalog(catalog, rows, all)
     const regions = values(s.facets, 'region')
-    expect(regions.slice(0, 4)).toEqual(['Caelid', 'Liurnia of the Lakes', 'Roundtable Hold', 'Weeping Peninsula'])
+    expect(regions.slice(0, 3)).toEqual(['Roundtable Hold', 'Caelid', 'Liurnia of the Lakes'])
     expect(regions.at(-1)).toBe(NONE_VALUE)
     expect(option(s.facets, 'region', NONE_VALUE)).toMatchObject({ label: 'Non documenté', count: 1 })
     const totals = s.facets.find((f) => f.id === 'region')?.options.map((o) => o.total) ?? []
@@ -137,7 +137,7 @@ describe('facettes d’armes : valeurs', () => {
     expect(option(s.facets, 'upgrade', 'Smithing Stones').count).toBe(7)
     expect(option(s.facets, 'upgrade', 'Somber Smithing Stones').count).toBe(4)
     expect(option(s.facets, 'upgrade', 'not-upgradeable')).toMatchObject({ label: 'Non améliorable', count: 1 })
-    expect(option(s.facets, 'upgrade', NONE_VALUE)).toMatchObject({ label: 'Non documenté', count: 2 })
+    expect(option(s.facets, 'upgrade', NONE_VALUE)).toMatchObject({ label: 'Non documenté', count: 1 })
   })
 
   it('effet passif : statut d’après status_buildup, autre effet, aucun', () => {
@@ -146,7 +146,7 @@ describe('facettes d’armes : valeurs', () => {
     expect(option(s.facets, 'passive', 'scarlet_rot')).toMatchObject({ label: 'Putréfaction écarlate', count: 1 })
     expect(option(s.facets, 'passive', 'frostbite').count).toBe(0)
     expect(option(s.facets, 'passive', 'other')).toMatchObject({ label: 'Autre effet passif', count: 2 })
-    expect(option(s.facets, 'passive', NONE_VALUE)).toMatchObject({ label: 'Aucun effet passif', count: 10 })
+    expect(option(s.facets, 'passive', NONE_VALUE)).toMatchObject({ label: 'Aucun effet passif', count: 9 })
   })
 
   it('contenu : une source double compte pour ses deux moitiés', () => {
@@ -183,36 +183,38 @@ describe('« Prérequis atteints » : prédicat en paramètre', () => {
     const none = weaponCatalog({ meetsRequirements: () => false })
     expect(filterRows(none, rows, q([{ facet: 'requirements', value: TOGGLE_VALUE }]))).toEqual([])
     const everyone = weaponCatalog({ meetsRequirements: () => true })
-    expect(filterRows(everyone, rows, q([{ facet: 'requirements', value: TOGGLE_VALUE }]))).toHaveLength(14)
+    expect(filterRows(everyone, rows, q([{ facet: 'requirements', value: TOGGLE_VALUE }]))).toHaveLength(13)
   })
 })
 
 describe('« Inclure les estimations » : prédicat en paramètre', () => {
   it('compte les estimations et les retire de tout quand la case est décochée', () => {
     const on = computeCatalog(catalog, rows, all)
-    expect(on.estimates).toEqual({ count: 5, included: true })
-    expect(on.rows).toHaveLength(14)
+    expect(on.estimates).toEqual({ count: 2, included: true })
+    expect(on.rows).toHaveLength(13)
     const off = computeCatalog(catalog, rows, q([], false))
-    expect(off.estimates).toEqual({ count: 5, included: false })
-    expect(off.rows).toHaveLength(9)
+    expect(off.estimates).toEqual({ count: 2, included: false })
+    expect(off.rows).toHaveLength(11)
     expect(off.rows.some((r) => r.derived.upgrade.reliability === 'estimate')).toBe(false)
-    expect(option(off.facets, 'class', 'Katanas').count).toBe(0)
-    expect(option(off.facets, 'class', 'Katanas').total).toBe(1)
-    expect(option(off.facets, 'upgrade', 'Somber Smithing Stones').count).toBe(1)
+    expect(option(off.facets, 'class', 'Backhand Blades').count).toBe(0)
+    expect(option(off.facets, 'class', 'Backhand Blades').total).toBe(1)
+    expect(option(off.facets, 'upgrade', 'Somber Smithing Stones').count).toBe(3)
     expect(option(off.facets, 'upgrade', 'Somber Smithing Stones').total).toBe(4)
   })
 
   it('le nombre d’estimations suit les filtres, case ignorée', () => {
-    const s = computeCatalog(catalog, rows, q([{ facet: 'content', value: 'Shadow of the Erdtree' }], false))
+    const s = computeCatalog(catalog, rows, q([{ facet: 'content', value: 'Tarnished Pack' }], false))
     expect(s.estimates).toEqual({ count: 2, included: false })
-    expect(s.rows).toHaveLength(1)
+    expect(s.rows).toHaveLength(2)
+    const sotE = computeCatalog(catalog, rows, q([{ facet: 'content', value: 'Shadow of the Erdtree' }], false))
+    expect(sotE.estimates).toEqual({ count: 0, included: false })
   })
 
   it('utilise le prédicat reçu plutôt que la fiabilité des données', () => {
     const custom = weaponCatalog({ meetsRequirements: () => true, isEstimate: (r) => r.category === 'Daggers' })
     const s = computeCatalog(custom, rows, q([], false))
     expect(s.estimates?.count).toBe(3)
-    expect(s.rows).toHaveLength(11)
+    expect(s.rows).toHaveLength(10)
   })
 
   it('les catalogues sans prédicat n’ont pas cette option', () => {
@@ -242,10 +244,14 @@ describe('suggestions chiffrées d’un catalogue sans résultat', () => {
       { facet: 'content', value: 'Tarnished Pack' },
       { facet: 'class', value: 'Katanas' },
     ]
+    // Du plus utile au moins utile : retirer « Katanas » rend les 4 Tarnished Pack, retirer le contenu rend le seul katana.
     expect(relaxations(catalog, rows, q(filters))).toEqual([
+      { filter: filters[1], count: 4 },
       { filter: filters[0], count: 1 },
-      { filter: filters[1], count: 1 },
     ])
+    // Avec une troisième classe, retirer « Katanas » ou « Daggers » laisse la liste vide : seul le retrait du contenu est proposé.
+    const three = [...filters, { facet: 'class', value: 'Daggers' }]
+    expect(relaxations(catalog, rows, q(three))).toEqual([{ filter: three[0], count: 4 }])
     expect(relaxations(catalog, rows, q([]))).toEqual([])
   })
 })

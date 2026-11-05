@@ -16,8 +16,7 @@ import {
 import { data, encounters } from './prepared.ts'
 
 const tables = data().tables
-const mechanic = data().datasets.mechanics.entries.find((e) => e.id === 'scadutree-fragment')
-const blessing = readBlessingTable(mechanic)
+const blessing = readBlessingTable(tables)
 const ctx = bossLevelContext(encounters(), tables, blessing)
 
 function m(key: string) {
@@ -86,7 +85,7 @@ describe('DLC : niveau d’entrée et bénédiction', () => {
     }
   })
 
-  it('table de bénédiction lue dans mechanics ; niveau = plus haut total ≤ fragments (D18)', () => {
+  it('table de bénédiction lue dans tables.scadutreeBlessing ; niveau = plus haut total ≤ fragments (D18)', () => {
     expect(blessing).not.toBeNull()
     expect(blessing?.[0]).toEqual({ level: 0, total: 0 })
     expect(blessingLevelFor(4, blessing!)).toBe(2)
@@ -105,7 +104,7 @@ describe('DLC : niveau d’entrée et bénédiction', () => {
     expect(at('rellana-twin-moon-knight/rellana-twin-moon-knight')).toMatchObject({ zone: 'entry', level: 2 })
   })
 
-  it('sans la table de mechanics : fragments sans niveau, limite affichée', () => {
+  it('sans la table de bénédiction : fragments sans niveau, limite affichée', () => {
     const noTable = bossLevelContext(encounters(), tables, null)
     const r = recommendedLevel('messmer-the-impaler/messmer-the-impaler-base-serpent-messmer', noTable)
     expect(r.value?.blessing).toMatchObject({ fragments: 13, level: null })

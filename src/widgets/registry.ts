@@ -42,7 +42,7 @@ const WEAPON_FILES: readonly FileKey[] = ['melee_armaments', 'ranged_weapons_cat
 
 /**
  * Définitions des widgets (architecture § 4 et § 10.3). Écarts signalés : `tables` est requis par le widget A (budget de charge) et
- * par la frise (méthode M2, coût des niveaux) ; `mechanics` complète la frise (table de bénédiction des boss du DLC).
+ * par la frise (méthode M2, coût des niveaux, et table de bénédiction des boss du DLC, `tables.scadutreeBlessing`).
  */
 export const WIDGETS: Readonly<Record<WidgetId, WidgetDef>> = {
   'weapons-by-stage': {
@@ -76,7 +76,7 @@ export const WIDGETS: Readonly<Record<WidgetId, WidgetDef>> = {
     span: 12,
     tall: false,
     requires: ['bosses', 'tables'],
-    enhancedBy: ['mechanics'],
+    enhancedBy: [],
     fullscreen: true,
     collapsedOnMobile: false,
   },

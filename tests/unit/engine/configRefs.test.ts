@@ -66,8 +66,7 @@ describe('timeline.ts et bossLevel.ts', () => {
       expect(encounters().byKey.has(k), k).toBe(true)
     }
     for (const region of Object.keys(BOSS_LEVEL.zoneTier)) expect(KNOWN_REGIONS, region).toContain(region)
-    const mech = data().datasets.mechanics.entries.find((e) => e.id === BOSS_LEVEL.blessing.table.entry)
-    expect(mech?.sections[BOSS_LEVEL.blessing.table.section]?.tables?.[0]).toBeDefined()
+    expect(data().tables.scadutreeBlessing.rows.length).toBeGreaterThan(0)
   })
 })
 

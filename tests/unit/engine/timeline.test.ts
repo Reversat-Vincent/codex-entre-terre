@@ -6,7 +6,7 @@ import { TIMELINE } from '../../../src/engine/config/timeline.ts'
 import { buildTimeline } from '../../../src/engine/timeline.ts'
 import { data, encounters } from './prepared.ts'
 
-const ctx = bossLevelContext(encounters(), data().tables, readBlessingTable(data().datasets.mechanics.entries.find((e) => e.id === 'scadutree-fragment')))
+const ctx = bossLevelContext(encounters(), data().tables, readBlessingTable(data().tables))
 const levelOf = (key: string) => recommendedLevel(key, ctx).value?.level ?? null
 const view = (defeated: string[], dlcEnabled = true) => buildTimeline(encounters(), defeated, { dlcEnabled, levelOf })
 

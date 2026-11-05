@@ -2,7 +2,6 @@
 // et bénédiction de l'Arbre-Ombre recommandée par sous-zone ; réexporte la préparation et la jauge (`readiness.ts`).
 // Méthode : docs/design/ds/calculs.md, « Niveau recommandé d'un boss et préparation » (D14, D18) ; configuration : config/bossLevel.ts.
 
-import type { MechanicEntry } from '../data/types/mechanics.ts'
 import type { CalcTables } from '../data/types/tables.ts'
 import { BOSS_LEVEL } from './config/bossLevel.ts'
 import type { BossLevelConfig, TierBasis } from './config/bossLevel.ts'
@@ -70,7 +69,7 @@ export interface BossLevel {
 export interface BossLevelContext {
   readonly encounters: EncounterIndex
   readonly tables: CalcTables
-  /** Table de bénédiction lue dans `mechanics` ; `null` si ce fichier n'est pas chargé (bénédiction non calculée). */
+  /** Table de bénédiction lue dans `tables.scadutreeBlessing` ; `null` si elle est absente (bénédiction non calculée). */
   readonly blessing: readonly BlessingRow[] | null
   readonly cfg: BossLevelConfig
   /** Niveau d'entrée du DLC (calculé par `bossLevelContext`). */
@@ -201,35 +200,19 @@ export function hybridLevel(ref: EncounterRef, tables: CalcTables, cfg: BossLeve
 }
 
 /**
- * Entier d'une cellule de tableau du wiki : le nombre lui-même, ou l'entier en tête d'un texte annoté (le wiki écrit « 12 (Softcap) »).
- * @param cell Cellule.
- * @returns L'entier, ou `null` si la cellule n'en commence pas par un.
+ * Table de bénédiction lue dans `tables.scadutreeBlessing` (niveau → total cumulé de fragments requis).
+ * @param tables Tables de calcul, ou `undefined` si le fichier `tables` n'est pas chargé.
+ * @returns Les lignes triées par niveau, ou `null` si la table est absente, vide ou illisible.
  */
-function leadingInt(cell: string | number | undefined): number | null {
-  if (typeof cell === 'number') return Number.isInteger(cell) ? cell : null
-  const m = typeof cell === 'string' ? /^\s*(\d+)/.exec(cell) : null
-  return m === null ? null : Number(m[1])
-}
-
-/**
- * Table de bénédiction lue dans la page `Scadutree Fragment` de `mechanics` (section « Scadutree Blessing Level »).
- * @param mechanic Page de mécanique, ou `undefined` si `mechanics` n'est pas chargé.
- * @param cfg Configuration (section et colonnes).
- * @returns Les lignes niveau → total requis, triées, ou `null` si la table est absente ou illisible.
- */
-export function readBlessingTable(mechanic: Pick<MechanicEntry, 'sections'> | undefined, cfg: BossLevelConfig = BOSS_LEVEL): BlessingRow[] | null {
-  const { section, levelColumn, totalColumn } = cfg.blessing.table
-  const table = mechanic?.sections[section]?.tables?.[0]
-  if (table === undefined) return null
+export function readBlessingTable(tables: Pick<CalcTables, 'scadutreeBlessing'> | undefined): BlessingRow[] | null {
+  const source = tables?.scadutreeBlessing?.rows
+  if (source === undefined || source.length === 0) return null
   const rows: BlessingRow[] = []
-  for (const row of table) {
-    if (Array.isArray(row)) return null
-    const level = leadingInt((row as Readonly<Record<string, string | number>>)[levelColumn])
-    const total = leadingInt((row as Readonly<Record<string, string | number>>)[totalColumn])
-    if (level === null || total === null) return null
-    rows.push({ level, total })
+  for (const r of source) {
+    if (!Number.isInteger(r.level) || !Number.isInteger(r.totalFragments)) return null
+    rows.push({ level: r.level, total: r.totalFragments })
   }
-  return rows.length > 0 ? rows.sort((x, y) => x.level - y.level) : null
+  return rows.sort((x, y) => x.level - y.level)
 }
 
 /**
@@ -348,7 +331,7 @@ export function recommendedLevel(key: string, ctx: BossLevelContext): Calc<BossL
     { file: 'bosses', entry: key, field: 'encounters[].regions', value: ref.encounter.regions.join(', '), reliability: 'wiki' },
   ]
   if (ctx.blessing !== null) {
-    inputs.push({ file: 'mechanics', entry: ctx.cfg.blessing.table.entry, field: `sections["${ctx.cfg.blessing.table.section}"].tables[0]`, reliability: 'wiki' })
+    inputs.push({ file: 'tables', entry: 'scadutreeBlessing', field: 'rows[].totalFragments', reliability: 'wiki' })
   }
   const level = ctx.dlcEntry.value
   if (level === null) return nullCalc('boss-level', { code: 'boss-not-estimated' }, { components, inputs, limits })

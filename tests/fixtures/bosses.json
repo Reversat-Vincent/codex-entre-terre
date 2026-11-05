@@ -11,16 +11,16 @@
       "https://eldenring.wiki.gg/wiki/Category:Bosses"
     ],
     "retrieved": "2026-10-31",
-    "boss_pages": 133,
-    "encounters": 302,
+    "boss_pages": 138,
+    "encounters": 314,
     "counts_by_source": {
-      "Base game": 78,
+      "Base game": 83,
       "Base game + Shadow of the Erdtree": 14,
       "Shadow of the Erdtree": 41
     },
     "encounters_by_source": {
-      "Base game": 251,
-      "Shadow of the Erdtree": 46,
+      "Base game": 261,
+      "Shadow of the Erdtree": 48,
       "Base game + Shadow of the Erdtree": 5
     },
     "counts_by_tier": {
@@ -29,7 +29,7 @@
       "Legends": 18,
       "Gods": 3,
       "Demigods": 8,
-      "Invaders and other minibosses": 14
+      "Invaders and other minibosses": 19
     },
     "flag_lists_from_bosses_page": {
       "mandatory_base_game": [
@@ -101,7 +101,7 @@
     ],
     "field_notes": {
       "source": "Per encounter: from the encounter location (wiki Navbox Locations: Realm of Shadow regions = 'Shadow of the Erdtree'), else from the boss navbox (Navbox Bosses vs Navbox Bosses Shadow). Page-level source = union of its encounters.",
-      "tier": "Group of the wiki boss navbox (matches the in-game victory banner: God / Demigod / Legend / Great Enemy / Enemy; plus invaders & minibosses).",
+      "tier": "Group of the wiki boss navbox (matches the in-game victory banner: God / Demigod / Legend / Great Enemy / Enemy; plus invaders & minibosses). The 5 NPC-invader pages added on 2026-11-05 (Anastasia, Tarnished-Eater; Mad Tongue Alberich; Moongrum, Carian Knight; Maleigh Marais, Shaded Castle Castellan; Millicent's Sisters) are in neither navbox, so their tier 'Invaders and other minibosses' is deduced from the page itself (NPC invader), not read from a navbox group.",
       "flags": "From the wiki 'Bosses' page: mandatory_base_game, required_to_access_dlc, mandatory_dlc, shardbearer, remembrance_base_game, remembrance_dlc.",
       "encounters": "One per Infobox Boss / Infobox Enemy with HP, runes or drops (a page can describe several fights / locations).",
       "hp / runes": "Text as on the wiki (may list several locations or NG+ values); *_values = all numbers found in it.",
@@ -116,13 +116,13 @@
     {
       "code": "id",
       "field": "id",
-      "count": 133,
+      "count": 138,
       "note": "Identifiant ajouté : slug(wiki_page)."
     },
     {
       "code": "derived",
       "field": "derived",
-      "count": 133,
+      "count": 138,
       "note": "Champs dérivés ajoutés : displayName, encounters, pageKey."
     }
   ],

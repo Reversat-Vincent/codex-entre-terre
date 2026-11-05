@@ -5930,6 +5930,191 @@
           "value": 160
         }
       ]
+    },
+    "scadutreeBlessing": {
+      "source": {
+        "file": "mechanics",
+        "title": "Scadutree Fragment",
+        "path": "topics[title=\"Scadutree Fragment\"].sections[\"Scadutree Blessing Level\"].tables[0]"
+      },
+      "columns": {
+        "level": "Scadutree Blessing Level",
+        "fragments": "Scadutree Fragments Required",
+        "totalFragments": "Total Fragments Required",
+        "damageDealt": "Damage Dealt Multiplier",
+        "damageReceived": "Damage Received Multiplier",
+        "softcap": "Scadutree Blessing Level"
+      },
+      "rows": [
+        {
+          "level": 0,
+          "fragments": 0,
+          "totalFragments": 0,
+          "damageDealt": 1,
+          "damageReceived": 1,
+          "softcap": false
+        },
+        {
+          "level": 1,
+          "fragments": 1,
+          "totalFragments": 1,
+          "damageDealt": 1.1,
+          "damageReceived": 0.909,
+          "softcap": false
+        },
+        {
+          "level": 2,
+          "fragments": 2,
+          "totalFragments": 3,
+          "damageDealt": 1.2,
+          "damageReceived": 0.833,
+          "softcap": false
+        },
+        {
+          "level": 3,
+          "fragments": 2,
+          "totalFragments": 5,
+          "damageDealt": 1.25,
+          "damageReceived": 0.8,
+          "softcap": false
+        },
+        {
+          "level": 4,
+          "fragments": 2,
+          "totalFragments": 7,
+          "damageDealt": 1.3,
+          "damageReceived": 0.769,
+          "softcap": false
+        },
+        {
+          "level": 5,
+          "fragments": 2,
+          "totalFragments": 9,
+          "damageDealt": 1.35,
+          "damageReceived": 0.74,
+          "softcap": false
+        },
+        {
+          "level": 6,
+          "fragments": 2,
+          "totalFragments": 11,
+          "damageDealt": 1.42,
+          "damageReceived": 0.701,
+          "softcap": false
+        },
+        {
+          "level": 7,
+          "fragments": 2,
+          "totalFragments": 13,
+          "damageDealt": 1.5,
+          "damageReceived": 0.666,
+          "softcap": false
+        },
+        {
+          "level": 8,
+          "fragments": 2,
+          "totalFragments": 15,
+          "damageDealt": 1.55,
+          "damageReceived": 0.645,
+          "softcap": false
+        },
+        {
+          "level": 9,
+          "fragments": 2,
+          "totalFragments": 17,
+          "damageDealt": 1.6,
+          "damageReceived": 0.625,
+          "softcap": false
+        },
+        {
+          "level": 10,
+          "fragments": 3,
+          "totalFragments": 20,
+          "damageDealt": 1.65,
+          "damageReceived": 0.606,
+          "softcap": false
+        },
+        {
+          "level": 11,
+          "fragments": 3,
+          "totalFragments": 23,
+          "damageDealt": 1.75,
+          "damageReceived": 0.571,
+          "softcap": false
+        },
+        {
+          "level": 12,
+          "fragments": 3,
+          "totalFragments": 26,
+          "damageDealt": 1.85,
+          "damageReceived": 0.54,
+          "softcap": true
+        },
+        {
+          "level": 13,
+          "fragments": 3,
+          "totalFragments": 29,
+          "damageDealt": 1.87,
+          "damageReceived": 0.533,
+          "softcap": false
+        },
+        {
+          "level": 14,
+          "fragments": 3,
+          "totalFragments": 32,
+          "damageDealt": 1.9,
+          "damageReceived": 0.526,
+          "softcap": false
+        },
+        {
+          "level": 15,
+          "fragments": 3,
+          "totalFragments": 35,
+          "damageDealt": 1.92,
+          "damageReceived": 0.519,
+          "softcap": false
+        },
+        {
+          "level": 16,
+          "fragments": 3,
+          "totalFragments": 38,
+          "damageDealt": 1.95,
+          "damageReceived": 0.512,
+          "softcap": false
+        },
+        {
+          "level": 17,
+          "fragments": 3,
+          "totalFragments": 41,
+          "damageDealt": 1.97,
+          "damageReceived": 0.506,
+          "softcap": false
+        },
+        {
+          "level": 18,
+          "fragments": 3,
+          "totalFragments": 44,
+          "damageDealt": 2,
+          "damageReceived": 0.5,
+          "softcap": false
+        },
+        {
+          "level": 19,
+          "fragments": 3,
+          "totalFragments": 47,
+          "damageDealt": 2.02,
+          "damageReceived": 0.493,
+          "softcap": false
+        },
+        {
+          "level": 20,
+          "fragments": 3,
+          "totalFragments": 50,
+          "damageDealt": 2.05,
+          "damageReceived": 0.487,
+          "softcap": false
+        }
+      ]
     }
   }
 }

@@ -46,8 +46,6 @@ export interface BlessingConfig {
   readonly anchor: { readonly fragments: number; readonly pathFragments: number }
   /** Fragments des zones principales du chemin jusqu'à chaque sous-zone (page Scadutree Fragment) [conception]. */
   readonly pathFragments: Readonly<Record<DlcZone, number>>
-  /** Table de bénédiction de `mechanics.json` : entrée, section et colonnes lues. */
-  readonly table: { readonly entry: string; readonly section: string; readonly levelColumn: string; readonly totalColumn: string }
 }
 
 /** Valeurs retenues (decisions-progression.md § 4, D14). */
@@ -124,11 +122,5 @@ export const BOSS_LEVEL: BossLevelConfig = {
     // Entrée : Gravesite Plain (10) ; Cœur : + Scadu Altus (12) + Shadow Keep (11) ; Enir-Ilim : + Rauh Base (1) + Ancient Ruins of Rauh (4) + Enir-Ilim (4).
     // Zones annexes exclues : Cerulean Coast, Charo's Hidden Grave, Stone Coffin Fissure, Jagged Peak, Abyssal Woods.
     pathFragments: { entry: 10, core: 33, 'enir-ilim': 42 },
-    table: {
-      entry: 'scadutree-fragment',
-      section: 'Scadutree Blessing Level',
-      levelColumn: 'Scadutree Blessing Level',
-      totalColumn: 'Total Fragments Required',
-    },
   },
 }

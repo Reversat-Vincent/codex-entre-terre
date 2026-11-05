@@ -61,10 +61,23 @@ describe('upgradePlan', () => {
     ])
   })
 
-  it('Club (estimation normale, confiance moyenne) : plan +25 avec badge Estimation', () => {
+  // Club et Moonveil sont désormais documentés (type d'amélioration lu sur le wiki) : l'estimation se teste
+  // sur des armes qui restent sans type (Reverse-bladed Sword, Leontiel’s Greatsword).
+  it('Club et Moonveil, documentés : plan sans estimation', () => {
     const club = weapon('melee_armaments', 'club')
-    expect(upgradeStatus(club)).toBe('estimate')
-    const c = upgradePlan(club, 0, 25, melee)
+    expect(upgradeStatus(club)).toBe('documented')
+    expect(upgradePlan(club, 0, 25, melee).estimate).toBeNull()
+    const moonveil = weapon('melee_armaments', 'moonveil')
+    expect(upgradeStatus(moonveil)).toBe('documented')
+    const c = upgradePlan(moonveil, 0, 10, melee)
+    expect(c.value?.material).toBe('Somber Smithing Stones')
+    expect(c.estimate).toBeNull()
+  })
+
+  it('Reverse-bladed Sword (estimation normale, confiance moyenne) : plan +25 avec badge Estimation', () => {
+    const sword = weapon('melee_armaments', 'reverse-bladed-sword')
+    expect(upgradeStatus(sword)).toBe('estimate')
+    const c = upgradePlan(sword, 0, 25, melee)
     expect(c.value?.material).toBe('Smithing Stones')
     expect(c.value?.totalStones).toBe(96)
     expect(c.estimate).toEqual({ confidence: 'medium' })
@@ -72,14 +85,14 @@ describe('upgradePlan', () => {
     expect(c.explanation.limits).toContainEqual({ code: 'upgrade-type-estimated', params: { confidence: 'medium' } })
   })
 
-  it('Moonveil (estimation sombre, confiance élevée) : plan +10 estimé', () => {
-    const c = upgradePlan(weapon('melee_armaments', 'moonveil'), 0, 10, melee)
+  it('Leontiel’s Greatsword (estimation sombre, confiance élevée) : plan +10 estimé', () => {
+    const c = upgradePlan(weapon('melee_armaments', 'leontiels-greatsword'), 0, 10, melee)
     expect(c.value?.material).toBe('Somber Smithing Stones')
     expect(c.estimate).toEqual({ confidence: 'high' })
   })
 
   it('bouclier sans type ni estimation : « Non documenté », plan non calculé', () => {
-    const shield = weapon('shields_torches', 'rickety-shield')
+    const shield = weapon('shields_torches', 'silver-grooved-shield')
     expect(upgradeStatus(shield)).toBe('undocumented')
     const c = upgradePlan(shield, 0, 1, { file: 'shields_torches' })
     expect(c.value).toBeNull()
