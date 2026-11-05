@@ -24,6 +24,8 @@ import type { PaletteFilter, PaletteRow, PaletteSection } from './commandPalette
 import CxButton from './CxButton.vue'
 import CxIcon from './CxIcon.vue'
 import CxNote from './CxNote.vue'
+import CxChip from './CxChip.vue'
+import CxScrim from './CxScrim.vue'
 import CxSourceBadge from './CxSourceBadge.vue'
 
 /**
@@ -301,10 +303,7 @@ onBeforeUnmount(() => {
       v-if="open"
       class="cx-palette-root"
     >
-      <div
-        class="cx-scrim"
-        @click="close"
-      />
+      <CxScrim @close="close" />
       <div
         ref="panel"
         class="cx-palette"
@@ -355,16 +354,14 @@ onBeforeUnmount(() => {
           role="group"
           aria-label="Filtrer par type"
         >
-          <button
+          <CxChip
             v-for="chip in chips"
             :key="chip.id"
-            type="button"
-            class="cx-chip"
-            :aria-pressed="chip.id === activeFilter"
-            @click="filter = chip.id"
+            :pressed="chip.id === activeFilter"
+            @open="filter = chip.id"
           >
             {{ chip.label }} <span class="cx-muted">{{ formatInt(chip.count) }}</span>
-          </button>
+          </CxChip>
         </div>
 
         <div
@@ -493,7 +490,6 @@ onBeforeUnmount(() => {
 <style>
 /* Règles du design system (bundle.css, « Recherche globale »), complétées pour la surcouche : placement, plein écran mobile, filtres. */
 .cx-palette-root { position: fixed; inset: 0; z-index: var(--z-overlay); display: flex; justify-content: center; align-items: flex-start; padding: 10vh var(--space-4) var(--space-4); }
-.cx-scrim { position: absolute; inset: 0; background: var(--scrim); }
 .cx-palette { position: relative; display: flex; flex-direction: column; width: 720px; max-width: 100%; max-height: 100%; overflow: hidden; border-radius: var(--radius-l); background: var(--surface-raised); box-shadow: var(--shadow-3); }
 .cx-palette:focus { outline: none; }
 .cx-palette-in { flex: none; display: flex; align-items: center; gap: var(--space-3); height: 58px; padding: 0 var(--space-4); border-bottom: 1px solid var(--line); }
@@ -521,12 +517,8 @@ onBeforeUnmount(() => {
 .cx-palette-note-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
 .cx-palette-empty { display: grid; gap: var(--space-1); padding: var(--space-3) var(--space-4); color: var(--ink-2); font-size: 13px; line-height: 18px; }
 .cx-palette-empty b { color: var(--ink); font-weight: 600; }
-/* Touche de clavier et puce de filtre : mêmes règles que le design system (bundle.css). */
+/* Touche de clavier : mêmes règles que le design system (bundle.css) ; la puce de filtre est `CxChip`. */
 .cx-kbd { display: inline-flex; align-items: center; height: 20px; padding: 0 5px; border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: var(--radius-s); background: var(--surface-raised); color: var(--ink-2); font: 600 11px/14px var(--font-sans); }
-.cx-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 var(--space-3); border: 1px solid var(--line-strong); border-radius: var(--radius-pill); background: var(--surface); color: var(--ink); font-size: 12px; line-height: 16px; font-weight: 600; white-space: nowrap; }
-button.cx-chip { cursor: pointer; }
-button.cx-chip:hover { border-color: var(--control-border); background: var(--surface-hover); }
-.cx-chip[aria-pressed="true"] { border-color: var(--gold-line); background: var(--gold-wash); color: var(--gold-text); }
 /* Mobile : plein écran, cibles de 44 px, bouton « Fermer » à la place de la touche Échap. */
 @media (max-width: 767px) {
   .cx-palette-root { padding: 0; }
@@ -536,6 +528,5 @@ button.cx-chip:hover { border-color: var(--control-border); background: var(--su
   .cx-palette-close { display: inline-flex; }
   .cx-palette-in { padding-right: var(--space-2); }
   .cx-palette-filters { flex-wrap: nowrap; overflow-x: auto; }
-  .cx-chip { height: var(--size-cible); }
 }
 </style>

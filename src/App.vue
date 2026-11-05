@@ -15,7 +15,9 @@ import CxCommandPalette from './components/ds/CxCommandPalette.vue'
 import IconSprite from './components/ds/IconSprite.vue'
 import CxToastHost from './components/ds/CxToastHost.vue'
 import { useBreakpoint } from './composables/useBreakpoint.ts'
+import { GUIDE_LINKS, INTERACTIVE_MAPS, wikiSearchUrl } from './data/externalLinks.ts'
 import { hasCriteriaPanel } from './router/meta.ts'
+import { labelText } from './ui/explainText.ts'
 
 /**
  * Racine de l'application (architecture § 10.1). Elle assemble les repères de page (`header`, `nav`, `main`, `footer`), réserve l'emplacement
@@ -27,10 +29,10 @@ const route = useRoute()
 const { isMobile } = useBreakpoint()
 
 /**
- * Liens de la section « Ressources » (carte interactive, guides). PROVISOIRE : vide tant que `src/data/externalLinks.ts` (logique) n'existe pas ;
- * la section n'apparaît pas quand la liste est vide.
+ * Liens de la section « Ressources » : cartes interactives (eldenring.wiki.gg, Fextralife) puis pages de guides, d'après `src/data/externalLinks.ts`.
+ * Constante : les adresses sont fixes et le libellé vient de `labelText` ; `AppSideNav` les ouvre dans un nouvel onglet (`rel="noopener noreferrer"`).
  */
-const resources = ref<readonly ResourceLink[]>([])
+const resources: readonly ResourceLink[] = [...INTERACTIVE_MAPS, ...GUIDE_LINKS].map((link) => ({ label: labelText(link.labelCode), href: link.url }))
 
 const content = ref<HTMLElement | null>(null)
 
@@ -87,7 +89,7 @@ watch(
     <AppTabBar v-if="isMobile" />
   </div>
 
-  <CxCommandPalette />
+  <CxCommandPalette :wiki-search-url="wikiSearchUrl" />
   <CxToastHost />
 </template>
 

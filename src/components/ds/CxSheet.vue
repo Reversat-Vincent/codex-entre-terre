@@ -4,13 +4,14 @@ import { computed, onBeforeUnmount, ref, useId, watch } from 'vue'
 import { useFocusTrap } from '../../composables/useFocusTrap.ts'
 import { useHotkeys } from '../../composables/useHotkeys.ts'
 import CxButton from './CxButton.vue'
+import CxScrim from './CxScrim.vue'
 
 /**
  * Feuille modale (hors design system ; architecture § 10.1) : feuille du bas à 88 % de la hauteur sur mobile
  * (critères, « Voir N armes »), tiroir latéral sur tablette. Le voile, Échap et le bouton « Fermer » ferment ;
  * le focus reste dans la feuille tant qu'elle est ouverte et revient au déclencheur à la fermeture ;
  * le défilement de la page est bloqué pendant l'ouverture. Rendue dans `<body>` (qui porte la classe `cx`).
- * Slots : par défaut (corps défilant), `footer` (actions collées en bas).
+ * Slots : par défaut (corps défilant), `head-actions` (actions de l'en-tête, avant « Fermer »), `footer` (actions collées en bas).
  */
 defineOptions({ inheritAttrs: false })
 
@@ -67,10 +68,7 @@ onBeforeUnmount(unlockScroll)
         class="cx-sheet-root"
         v-bind="$attrs"
       >
-        <div
-          class="cx-scrim"
-          @click="close"
-        />
+        <CxScrim @close="close" />
         <div
           ref="panel"
           class="cx-sheet"
@@ -92,14 +90,17 @@ onBeforeUnmount(unlockScroll)
             >
               {{ title }}
             </h2>
-            <CxButton
-              variant="ghost"
-              size="sm"
-              icon-only
-              icon="x"
-              :label="closeLabel"
-              @click="close"
-            />
+            <span class="cx-sheet-actions">
+              <slot name="head-actions" />
+              <CxButton
+                variant="ghost"
+                size="sm"
+                icon-only
+                icon="x"
+                :label="closeLabel"
+                @click="close"
+              />
+            </span>
           </div>
           <div class="cx-sheet-body">
             <slot />
@@ -118,13 +119,13 @@ onBeforeUnmount(unlockScroll)
 
 <style>
 .cx-sheet-root { position: fixed; inset: 0; z-index: var(--z-overlay); }
-.cx-scrim { position: absolute; inset: 0; background: var(--scrim); }
 .cx-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: var(--z-overlay); display: flex; flex-direction: column; max-height: 88vh; max-height: 88dvh; border-radius: 14px 14px 0 0; background: var(--surface); box-shadow: var(--shadow-3); }
 .cx-sheet.left, .cx-sheet.right { top: 0; width: min(360px, 90vw); max-height: none; border-radius: 0; }
 .cx-sheet.left { right: auto; border-radius: 0 14px 14px 0; }
 .cx-sheet.right { left: auto; border-radius: 14px 0 0 14px; }
 .cx-sheet-grab { flex: none; width: 40px; height: 4px; margin: 8px auto 4px; border-radius: 2px; background: var(--line-strong); }
 .cx-sheet-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line); }
+.cx-sheet-actions { display: flex; align-items: center; gap: var(--space-1); margin-left: auto; }
 .cx-sheet-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .cx-sheet-foot { flex: none; display: flex; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-top: 1px solid var(--line); }
 .cx-sheet:focus { outline: none; }

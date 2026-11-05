@@ -7,7 +7,7 @@ import CxIcon from './CxIcon.vue'
  * Avec `interactive`, le corps de la puce est un vrai `button` (événement `open`) ; avec `removeLabel`, une croix distincte, `button` à part
  * (un bouton ne contient pas un autre bouton), émet `remove`. Mise en avant `active` : fond et filet or.
  */
-defineProps<{
+withDefaults(defineProps<{
   /** Nom du critère (« Origine »), affiché avant la valeur. */
   label?: string
   /** Met la puce en avant (`.is-on`). */
@@ -18,7 +18,20 @@ defineProps<{
   removeLabel?: string
   /** Nom accessible du corps quand il est un bouton, si le texte visible ne suffit pas. */
   openLabel?: string
-}>()
+  /**
+   * Mode « bascule » (filtre, choix multiple) : la puce entière est un `button` avec `aria-pressed`, qui émet `open` au clic.
+   * Absent : la puce n'est pas une bascule. Sans croix dans ce mode.
+   */
+  pressed?: boolean
+}>(), {
+  label: undefined,
+  active: false,
+  interactive: false,
+  removeLabel: undefined,
+  openLabel: undefined,
+  // Sans valeur par défaut explicite, Vue ferait de l'absence d'un booléen « faux » : le mode bascule serait toujours actif.
+  pressed: undefined,
+})
 
 const emit = defineEmits<{
   /** Clic sur le corps de la puce (`interactive`). */
@@ -29,7 +42,17 @@ const emit = defineEmits<{
 </script>
 
 <template>
+  <button
+    v-if="pressed !== undefined"
+    type="button"
+    class="cx-chip is-toggle"
+    :aria-pressed="pressed"
+    @click="emit('open')"
+  >
+    <slot />
+  </button>
   <span
+    v-else
     class="cx-chip"
     :class="{ 'is-on': active, 'is-interactive': interactive }"
   >
@@ -73,7 +96,12 @@ const emit = defineEmits<{
 button.cx-chip-main { cursor: pointer; }
 .cx-chip .k { color: var(--ink-3); font-weight: 600; }
 .cx-chip.is-interactive:hover { border-color: var(--control-border); background: var(--surface-hover); }
+button.cx-chip { cursor: pointer; }
+button.cx-chip:hover { border-color: var(--control-border); background: var(--surface-hover); }
+.cx-chip[aria-pressed="true"] { border-color: var(--gold-line); background: var(--gold-wash); color: var(--gold-text); }
 .cx-chip.is-on { border-color: var(--gold-line); background: var(--gold-wash); color: var(--gold-text); }
 .cx-chip-x { display: grid; place-items: center; width: 18px; height: 18px; margin-right: -6px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink-3); cursor: pointer; }
 .cx-chip-x:hover { background: var(--surface-hover); color: var(--ink); }
+/* Cible tactile de 44 px sous 768 px pour une puce-bascule (seuil en dur, voir src/ui/breakpoints.ts). */
+@media (max-width: 767px) { .cx-chip.is-toggle { height: var(--size-cible); } }
 </style>
