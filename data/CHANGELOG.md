@@ -1134,3 +1134,20 @@ Décision D29, option A confirmée par D34. Le tableau repliable « Minor puzzle
 
 - `patch_notes[1]` (remove) : `{"minor puzzle spoiler": "* Summoning this duo to fight the nearby Imps is one of the ways to solve the puzzle at Albinauric Rise."}` → `null`
 - `notes` (set) : `["Upgraded with Grave Gloveworts.", "Summons two Imps, wielding serrated Forked Hatchets and throw Magic Pots as a ranged attack.", "Deal Standard da…` → `["Upgraded with Grave Gloveworts.", "Summons two Imps, wielding serrated Forked Hatchets and throw Magic Pots as a ranged attack.", "Deal Standard da…`
+
+## 2026-11-05 (D39)
+
+Décision D39 (correctifs de données issus de la vérification du socle) ; justifications : `docs/contenu/verification-socle.md`, section 11, « Données ». Chaque ancienne valeur a été vérifiée avant écriture (0 écart) ; fichiers réécrits par script au format d'origine (indentation 2, `ensure_ascii` désactivé, LF, sans retour à la ligne final). Aucun compte de `metadata` ne change. L7 : pas de correctif de données (surcharge S2 en configuration).
+
+| # | Fichier | Entrée | Champ | Ancienne valeur | Nouvelle valeur | Page wiki | Décision | Date |
+|---|---|---|---|---|---|---|---|---|
+| L1 | `locations.json` | Crumbling Farum Azula | `region` | `"Accessed via Mountaintops of the Giants"` | `"Mountaintops of the Giants"` | https://eldenring.wiki.gg/wiki/Crumbling_Farum_Azula | D39 | 2026-11-05 |
+| L2 | `shields_torches.json` | Perfumer's Shield | `acquisition[0].location` | `"Altus Plateau/Leyndell, Royal Capital/Scadu Altus/Shadow Keep"` | `"Altus Plateau / Leyndell, Royal Capital / Scadu Altus / Shadow Keep"` | https://eldenring.wiki.gg/wiki/Perfumer%27s_Shield | D39 | 2026-11-05 |
+| L3 | `melee_armaments.json` | Prelate's Inferno Crozier | `acquisition[0].method` / `.location` | `null` / `null` | `"Guaranteed drop"` / `"Fort Laiedd"` | https://eldenring.wiki.gg/wiki/Prelate%27s_Inferno_Crozier | D39 | 2026-11-05 |
+| L4 | `melee_armaments.json` | Erdsteel Dagger | `acquisition[0].location` | `null` | `"Fort Haight / Leyndell, Royal Capital"` | https://eldenring.wiki.gg/wiki/Erdsteel_Dagger | D39 | 2026-11-05 |
+| L5 | `melee_armaments.json` | Stone-Sheathed Sword | `acquisition[0].location` | `null` | `"Fog Rift Catacombs / Ruins of Unte / Ancient Ruins of Rauh"` | https://eldenring.wiki.gg/wiki/Stone-Sheathed_Sword | D39 | 2026-11-05 |
+| L6 | `melee_armaments.json` | Anvil Hammer | `acquisition[0].location` | `null` | `"Ruined Forge Lava Intake"` | https://eldenring.wiki.gg/wiki/Anvil_Hammer | D39 | 2026-11-05 |
+| L8 | `key_items.json` | Somberstone Miner's Bell Bearing [5] | `acquisition[0].location` | `null` | `"Crumbling Farum Azula"` | https://eldenring.wiki.gg/wiki/Somberstone_Miner%27s_Bell_Bearing_5 | D39 | 2026-11-05 |
+| L9 | `ranged_weapons_catalysts.json` | Carian Regal Scepter | `acquisition[0].method` / `acquisition_flags` | `"Purchase"` / `["remembrance_weapon", "purchasable"]` | `"Trade"` / `["remembrance_weapon"]` | https://eldenring.wiki.gg/wiki/Carian_Regal_Scepter | D39 | 2026-11-05 |
+
+L8 est une **déduction**, non un fait écrit par le wiki : Dragon Temple Rooftop et Beside the Great Bridge sont des sites de grâce de Crumbling Farum Azula dans `locations.json`. L9 : l'intertitre « Purchase » de la page est erroné, le texte décrit un échange.

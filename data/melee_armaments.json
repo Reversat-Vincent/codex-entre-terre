@@ -4126,7 +4126,7 @@
       "acquisition": [
         {
           "method": null,
-          "location": null,
+          "location": "Fort Haight / Leyndell, Royal Capital",
           "region": null,
           "details": [
             "Received from Kenneth Haight after helping him retake Fort Haight.",
@@ -15609,7 +15609,7 @@
       "acquisition": [
         {
           "method": null,
-          "location": null,
+          "location": "Fog Rift Catacombs / Ruins of Unte / Ancient Ruins of Rauh",
           "region": null,
           "details": [
             "Found at an altar in either Fog Rift Catacombs, Ruins of Unte, or Ancient Ruins of Rauh. Since the altar in Fog Rift Catacombs is the most complicated to reach, it's recommended that the sword is taken there so that the later interactions with altars are less time-consuming.",
@@ -53722,8 +53722,8 @@
       "description": "Colossal hammer with the appearance of roiling flames. Weapon of the Prelates who lead the Fire Monks. Its heft represents the weight of their guardianship.\n\nThe hammer's head is unusually substansial, and strong attacks will fling foes into the air.",
       "acquisition": [
         {
-          "method": null,
-          "location": null,
+          "method": "Guaranteed drop",
+          "location": "Fort Laiedd",
           "region": null,
           "details": [
             "Prelate's Inferno Crozier is dropped by a Fire Prelate in Fort Laiedd, west of the Volcano Manor on Mt. Gelmir. Prelate's Inferno Crozier will only drop one time in each playthrough."
@@ -56252,7 +56252,7 @@
       "acquisition": [
         {
           "method": null,
-          "location": null,
+          "location": "Ruined Forge Lava Intake",
           "region": null,
           "details": [
             "This weapon can be found and obtained at Ruined Forge Lava Intake."

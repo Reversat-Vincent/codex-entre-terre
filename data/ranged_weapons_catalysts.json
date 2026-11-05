@@ -6792,7 +6792,7 @@
       "description": "Magic scepter of Rennala, Queen of the Full Moon. The glintstone is known as a Carian Blue, enhancing full moon sorceries.\n\nOnly those of the highest intelligence may wield this, the finest of all glintstone staves.",
       "acquisition": [
         {
-          "method": "Purchase",
+          "method": "Trade",
           "location": "Roundtable Hold",
           "region": null,
           "details": [
@@ -6805,8 +6805,7 @@
         "Roundtable Hold"
       ],
       "acquisition_flags": [
-        "remembrance_weapon",
-        "purchasable"
+        "remembrance_weapon"
       ],
       "upgrade": {
         "material": "Somber Smithing Stones",
