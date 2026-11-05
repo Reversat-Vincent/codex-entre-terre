@@ -313,6 +313,8 @@ export function weaponCatalog(options: WeaponCatalogOptions): CatalogDef<WeaponR
         fixedOptions: [...statusOptions, { value: 'other', label: 'Autre effet passif' }],
         noneLabel: 'Aucun effet passif',
         values: (r) => {
+          // Statut absent de `status_buildup` = aucune accumulation documentée : test de présence, aucune valeur 0 affichée. Une arme qui ne
+          // décrit son accumulation qu'en texte (Spiked Club, Death's Poker…) tombe sous « Autre effet passif », pas sous « Aucun ».
           const statuses = STATUS_KEYS.filter((k) => (r.status_buildup?.[k] ?? 0) > 0)
           if (statuses.length > 0) return statuses
           return r.passive_effects.length > 0 ? ['other'] : [NONE_VALUE]

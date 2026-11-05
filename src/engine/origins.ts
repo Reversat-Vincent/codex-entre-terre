@@ -1,4 +1,4 @@
-// Classement des origines pour un jeu d'attributs cible : niveau final, points gaspillés, adéquation précoce.
+// Classement des origines pour un jeu d'attributs cible : niveau final, points gaspillés, adéquation précoce pondérée par les poids du build.
 // Méthode : docs/design/ds/calculs.md, « Origine optimale ». Ordre d'évaluation avec le score des armes : docs/architecture.md § 5.4
 // (scores sans bonus d'origine → classement des origines → origine retenue → scores définitifs), orchestré par le store `analysis`.
 
@@ -35,7 +35,7 @@ export interface OriginRank {
   readonly wastedPoints: number
   /** Points gaspillés par attribut (attributs concernés seulement). */
   readonly wastedBy: Readonly<Partial<Record<AttributeKey, number>>>
-  /** Adéquation précoce : somme des attributs de départ utiles au build, plus le bonus d'arme recommandée. */
+  /** Adéquation précoce : somme des attributs de départ pondérés par les poids du build (2 décimales), plus le bonus d'arme recommandée. */
   readonly earlyFit: number
   /** Armes de départ qui figurent parmi les armes recommandées. */
   readonly recommendedStartingWeapons: readonly string[]
@@ -75,7 +75,7 @@ interface Scored {
 /**
  * Classe les origines pour un jeu d'attributs cible (calculs.md, « Origine optimale »).
  * Niveau final `Σ max(départ, cible) − 79` ; points gaspillés `Σ max(0, départ − cible)` ; tri par niveau final croissant, puis adéquation
- * précoce décroissante (prototype : somme des attributs de départ de poids non nul, + bonus si une arme de départ est recommandée), puis nom.
+ * précoce décroissante (`Σ poids × attribut de départ`, D39 S6, + bonus si une arme de départ est recommandée), puis nom.
  * Les points gaspillés ne départagent jamais (identité de calculs.md) : ils restent dans le résultat. Le filtrage des origines par contenu
  * activé (Tarnished Pack…) appartient à l'appelant.
  * @param origins Origines à classer.
@@ -113,13 +113,16 @@ export function rankOrigins(
       const w = Math.max(0, start[k] - targetValue[k])
       wasted += w
       if (w > 0) wastedBy[k] = w
-      if ((ctx.weights[k] ?? 0) !== 0) fit += start[k]
+      // Poids absent = attribut hors build (type `BuildWeights`) : il ne compte pas dans l'adéquation précoce.
+      fit += (ctx.weights[k] ?? 0) * start[k]
       inputs.push({ file: 'origins', entry: o.id, field: `attributes.${k}`, value: start[k], reliability: 'wiki' })
     }
     const recommendedStartingWeapons = startingArmamentNames(o).filter((n) => ctx.recommendedWeapons.has(n))
     const bonus = recommendedStartingWeapons.length > 0 ? ORIGIN_RANKING.recommendedWeaponBonus : 0
     if (bonus > 0) inputs.push({ file: 'origins', entry: o.id, field: 'starting_equipment.Armaments', value: recommendedStartingWeapons.join(', '), reliability: 'wiki' })
     const finalLevel = sum - LEVEL_OFFSET
+    // Arrondi à 2 décimales : les poids en ont deux, l'arrondi n'efface que les restes de la virgule flottante (12 + 15 × 0,2).
+    const earlyFit = Math.round((fit + bonus) * 100) / 100
     return {
       origin: o,
       rank: {
@@ -127,13 +130,13 @@ export function rankOrigins(
         finalLevel,
         wastedPoints: wasted,
         wastedBy,
-        earlyFit: fit + bonus,
+        earlyFit,
         recommendedStartingWeapons,
       },
       components: [
         { code: 'final-level', value: finalLevel },
         { code: 'wasted-points', value: wasted },
-        { code: 'early-fit', value: fit + bonus },
+        { code: 'early-fit', value: earlyFit },
         { code: 'starting-weapon-bonus', value: bonus },
       ],
       inputs,

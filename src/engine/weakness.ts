@@ -1,9 +1,20 @@
-// Lecture des faiblesses d'une rencontre : types de dégâts les moins absorbés, immunités aux statuts, bande de la matrice des faiblesses.
-// Lecture de données, pas une méthode de calculs.md : seuils de bandes du README `docs/design/ds/components/AbsorptionHeatmap/README.md`.
+// Lecture des faiblesses d'une rencontre : types de dégâts les moins absorbés, immunités aux statuts, bande de la matrice des faiblesses,
+// et armes candidates qui exploitent ces faiblesses (fiche boss).
+// Les trois lectures de données suivent le README `docs/design/ds/components/AbsorptionHeatmap/README.md` ; la sélection d'armes suit
+// docs/design/ds/calculs.md, « Armes efficaces contre une rencontre » (configuration : config/weights.ts, `WEAKNESS_WEAPONS`).
 
+import type { EntityRef } from '../data/datasets.ts'
 import { NEGATION_KEYS, STATUS_KEYS } from '../data/keys.ts'
 import type { NegationKey, StatusKey } from '../data/keys.ts'
 import type { Encounter } from '../data/types/bosses.ts'
+import type { WeaponEntry } from '../data/types/weapon.ts'
+import { WEAKNESS_WEAPONS } from './config/weights.ts'
+import type { EncounterRef } from './encounters.ts'
+import type { RequirementCheck } from './requirements.ts'
+import { byScore } from './score.ts'
+import type { ScoredWeapon, WeaponScore } from './score.ts'
+import { makeCalc, mergeEstimates, nullCalc } from './types.ts'
+import type { Calc, DataRef, ExplanationComponent } from './types.ts'
 
 /** Bande de couleur d'une absorption (classes `h-*` d'AbsorptionHeatmap) ; `null` = absorption non documentée (`h-null`). */
 export type AbsorptionBand = 'w2' | 'w1' | 'n' | 'r1' | 'r2' | 'r3' | 'null'
@@ -60,4 +71,98 @@ export function immunities(enc: Pick<Encounter, 'status_resistance'>): StatusKey
   const res = enc.status_resistance
   if (res === undefined) return null
   return STATUS_KEYS.filter((k) => res[k] === 'Immune')
+}
+
+/** Types d'absorption physiques, écrits avec une majuscule dans `attack_type` des armes (`Standard`, `Strike`, `Slash`, `Pierce`). */
+const PHYSICAL_NEGATION_KEYS: readonly NegationKey[] = ['standard', 'strike', 'slash', 'pierce']
+
+/** Types d'absorption élémentaires, mêmes clés que `attack_power`. */
+const ELEMENTAL_NEGATION_KEYS = ['magic', 'fire', 'lightning', 'holy'] as const
+
+/**
+ * Types de dégâts d'une arme dans les clés d'absorption des boss (calculs.md, « Armes efficaces contre une rencontre ») : les types physiques
+ * de `attack_type` si l'attaque physique à +0 est non nulle, et chaque type élémentaire dont l'attaque à +0 est non nulle.
+ * @param w Arme (`attack_power`, `attack_type`).
+ * @returns Les types, dans l'ordre de `NEGATION_KEYS` ; un type physique absent de `attack_type` n'est pas supposé.
+ */
+export function weaponDamageTypes(w: Pick<WeaponEntry, 'attack_power' | 'attack_type'>): NegationKey[] {
+  const physical = w.attack_power.physical > 0 ? w.attack_type.map((t) => t.toLowerCase()) : []
+  return NEGATION_KEYS.filter((k) =>
+    PHYSICAL_NEGATION_KEYS.includes(k) ? physical.includes(k) : (ELEMENTAL_NEGATION_KEYS as readonly string[]).includes(k) && w.attack_power[k as (typeof ELEMENTAL_NEGATION_KEYS)[number]] > 0,
+  )
+}
+
+/** Arme proposée contre une rencontre (forme lue par la fiche boss, `BossWeaponSuggestion`). */
+export interface WeaknessWeapon {
+  readonly ref: EntityRef
+  readonly name: string
+  /** Type de dégâts de l'arme qui exploite la faiblesse (le moins absorbé de ceux qu'elle inflige). */
+  readonly damage: NegationKey
+  /** Absorption de la rencontre pour ce type, en %. */
+  readonly absorption: number
+  /** Attaque de l'arme à +0 pour ce type (attaque physique pour un type physique) ; `null` si non documentée. */
+  readonly attack: number | null
+  /** Prérequis comparés au profil (maniement des critères). */
+  readonly requirements: readonly RequirementCheck[]
+  /** Score de recommandation de l'arme (ordre de la liste). */
+  readonly score: number | null
+}
+
+/**
+ * Armes candidates efficaces contre une rencontre (calculs.md, « Armes efficaces contre une rencontre ») : parmi les armes évaluées pour
+ * les critères courants, visibles et classées (D18 : une arme « Non classé » n'a pas de score et reste hors des suggestions), celles qui
+ * infligent l'un des `bestTypes` types les moins absorbés (`bestDamageTypes`) ; triées par rang de ce type, puis par score ; `max` au plus.
+ * @param ref Rencontre trouvée dans l'index, ou `undefined`.
+ * @param scored Armes évaluées par le store `analysis` (scores définitifs).
+ * @param cfg Nombre de types retenus et d'armes proposées.
+ * @returns La liste ; vide avec la limite `absorption-undocumented` si l'absorption n'est pas documentée (Mohg) ; `null` avec
+ * `encounter-missing` si la rencontre n'existe pas. Hérite de l'estimation des scores des armes retenues.
+ */
+export function weaponsAgainst(
+  ref: EncounterRef | undefined,
+  scored: readonly ScoredWeapon[],
+  cfg: { readonly bestTypes: number; readonly max: number } = WEAKNESS_WEAPONS,
+): Calc<WeaknessWeapon[]> {
+  if (ref === undefined || ref.encounter === null) {
+    return nullCalc('weapon-score', { code: 'encounter-missing', params: { encounter: ref?.key ?? '' } })
+  }
+  const best = bestDamageTypes(ref.encounter, cfg.bestTypes)
+  const inputs: DataRef[] = [{ file: 'bosses', entry: ref.key, field: 'encounters[].damage_negation_percent', value: best === null ? null : 'documented', reliability: best === null ? 'null' : 'wiki' }]
+  if (best === null) return makeCalc('weapon-score', [], { inputs, limits: [{ code: 'absorption-undocumented', params: { encounter: ref.key } }] })
+
+  const rank = (t: NegationKey): number => best.findIndex((b) => b.type === t)
+  const matched: { weapon: ScoredWeapon; score: WeaponScore; damage: NegationKey; rank: number }[] = []
+  for (const s of scored) {
+    const score = s.score.value
+    if (s.hidden !== null || score === null || score.total === null) continue
+    const hit = weaponDamageTypes(s.candidate.weapon)
+      .map((t) => ({ t, r: rank(t) }))
+      .filter((x) => x.r >= 0)
+      .sort((a, b) => a.r - b.r)[0]
+    if (hit !== undefined) matched.push({ weapon: s, score, damage: hit.t, rank: hit.r })
+  }
+  matched.sort((a, b) => a.rank - b.rank || byScore(a.weapon, b.weapon))
+  const kept = matched.slice(0, Math.max(0, cfg.max))
+
+  const value = kept.map(({ weapon, score, damage, rank: r }): WeaknessWeapon => {
+    const w = weapon.candidate.weapon
+    const ap = w.attack_power
+    return {
+      ref: weapon.candidate.ref,
+      name: w.name,
+      damage,
+      absorption: best[r]!.value,
+      attack: PHYSICAL_NEGATION_KEYS.includes(damage) ? ap.physical : ap[damage as (typeof ELEMENTAL_NEGATION_KEYS)[number]],
+      requirements: score.requirements,
+      score: score.total,
+    }
+  })
+  const components: ExplanationComponent[] = best.map((b) => ({ code: 'weakness-absorption', value: b.value, params: { type: b.type } }))
+  for (const k of kept) inputs.push({ file: k.weapon.candidate.file, entry: k.weapon.candidate.weapon.id, field: 'attack_power, attack_type', reliability: 'wiki' })
+  return makeCalc('weapon-score', value, {
+    estimate: mergeEstimates(...kept.map((k) => k.weapon.score.estimate)),
+    components,
+    inputs,
+    limits: [{ code: 'weakness-weapons-base-values' }],
+  })
 }

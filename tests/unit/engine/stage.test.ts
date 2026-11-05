@@ -40,6 +40,28 @@ describe('étape d’une arme', () => {
     }
   })
 
+  it('Crumbling Farum Azula sous Mountaintops of the Giants (D39, L1) : ses Remembrances en Fin de jeu', () => {
+    for (const n of ["Maliketh's Black Blade", "Dragon King's Cragblade"]) {
+      expect(stageOf(n).value, n).toMatchObject({ stage: 'endgame', basis: 'remembrance', region: 'Crumbling Farum Azula' })
+    }
+  })
+
+  it('surcharges d’étape (D39, S1 et S2) : avant toute autre règle, citées dans le « Pourquoi ? »', () => {
+    const bone = stageOf('Clinging Bone')
+    expect(bone.value).toEqual({ stage: 'mid', dlcZone: null, basis: 'override', region: null, remembrance: null })
+    expect(bone.explanation.limits).toEqual([{ code: 'stage-override', params: { stage: 'mid', zone: '' } }])
+    expect(bone.explanation.inputs).toContainEqual({
+      file: 'config',
+      entry: 'stages',
+      field: 'STAGE_OVERRIDES["weapon:clinging-bone"]',
+      value: 'https://eldenring.wiki.gg/wiki/Ensha_of_the_Royal_Remains',
+      reliability: 'deduced',
+    })
+    const seal = stageOf('Spiraltree Seal')
+    expect(seal.value).toMatchObject({ stage: 'dlc', dlcZone: 'enir-ilim', basis: 'override' })
+    expect(seal.explanation.limits).toContainEqual({ code: 'stage-override', params: { stage: 'dlc', zone: 'enir-ilim' } })
+  })
+
   it('Carian Regal Scepter : la Remembrance l’emporte sur l’achat', () => {
     expect(stageOf('Carian Regal Scepter').value).toMatchObject({ stage: 'mid', basis: 'remembrance' })
   })
@@ -74,6 +96,8 @@ describe('étape d’une arme', () => {
     }
     expect(allWeapons()).toHaveLength(487)
     expect(unclassified.filter((n) => n !== 'Broadsword' && n !== 'Halberd')).toHaveLength(19)
+    // calculs.md : 466 armes sur 487 reçoivent une étape sans origine retenue.
+    expect(allWeapons().length - unclassified.length).toBe(466)
     expect(unclassified).toEqual(expect.arrayContaining(['Parrying Dagger', 'Whip', 'Golden Epitaph', 'Broadsword', 'Halberd']))
     // Aucune arme du jeu de base dans le DLC, aucune arme du DLC hors du DLC.
     for (const c of allWeapons()) {
@@ -91,6 +115,9 @@ describe('étape d’une rencontre', () => {
     expect(encounterStage(encounters(), 'margit-the-fell-omen/margit-the-fell-omen').value?.stage).toBe('early')
     expect(encounterStage(encounters(), 'mohg-lord-of-blood/mohg-lord-of-blood-phase-1').value?.stage).toBe('endgame')
     expect(encounterStage(encounters(), 'elden-beast/elden-beast').value?.stage).toBe('endgame')
+    // Crumbling Farum Azula a pour parent Mountaintops of the Giants (D39, L1) : la région la plus précise est Farum Azula, Fin de jeu.
+    expect(encounterStage(encounters(), 'godskin-duo/godskin-duo').value).toMatchObject({ stage: 'endgame', region: 'Crumbling Farum Azula' })
+    expect(encounterStage(encounters(), 'maliketh-the-black-blade/maliketh-the-black-blade').value).toMatchObject({ stage: 'endgame', region: 'Crumbling Farum Azula' })
     expect(encounterStage(encounters(), 'romina-saint-of-the-bud/romina-saint-of-the-bud').value).toMatchObject({ stage: 'dlc', dlcZone: 'core' })
     expect(encounterStage(encounters(), 'inconnu/absent').explanation.limits).toContainEqual({ code: 'encounter-missing', params: { encounter: 'inconnu/absent' } })
   })

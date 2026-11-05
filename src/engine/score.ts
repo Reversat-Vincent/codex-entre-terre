@@ -10,7 +10,7 @@ import type { WeaponEntry } from '../data/types/weapon.ts'
 import { REMEMBRANCES } from './config/remembrances.ts'
 import { STAGE_IDS, stageIndex } from './config/stages.ts'
 import type { StageId } from './config/stages.ts'
-import { CATALYST_POWER_FIELD, SHIELD_CATEGORIES, SHIELD_FILE, STYLE_POOLS } from './config/weaponPools.ts'
+import { CATALYST_POWER_FIELD, MAGIC_CATALYST_ATTRIBUTE, SHIELD_CATEGORIES, SHIELD_FILE, STYLE_POOLS } from './config/weaponPools.ts'
 import type { PlayStyle } from './config/weaponPools.ts'
 import {
   ACCESS_WEIGHTS,
@@ -61,18 +61,40 @@ export function weaponFilesFor(style: StyleInput): WeaponFileKey[] {
 }
 
 /**
- * Armes candidates selon le style (calculs.md, « Candidats selon le style de jeu », D7) : mêlée → armes de mêlée ; distance → Light Bows,
- * Bows, Greatbows, Crossbows, Ballistas ; magie → Staves, Sacred Seals ; hybride → tout ; boucliers et torches si leur catégorie est préférée.
+ * Catégories candidates d'un style (calculs.md, « Candidats selon le style de jeu ») : celles de `STYLE_POOLS` ; pour le style « magie »,
+ * les catalyseurs dont l'attribut a un poids non nul dans le build (Staves pour l'Intelligence, Sacred Seals pour la Foi), ou tous si aucun
+ * de ces attributs ne pèse (D39, S3).
+ * @param mode Style de jeu.
+ * @param weights Poids du build (archétype ou poids automatiques).
+ * @returns Les catégories retenues, ou `null` pour toutes les catégories des fichiers du style.
+ */
+export function styleCategories(mode: PlayStyle, weights: BuildWeights): readonly string[] | null {
+  const categories = STYLE_POOLS[mode].categories
+  if (mode !== 'magic' || categories === null) return categories
+  // Poids absent = attribut hors build (type `BuildWeights`) : il ne retient pas sa catégorie de catalyseur.
+  const weighted = categories.filter((cat) => {
+    const attr = MAGIC_CATALYST_ATTRIBUTE[cat]
+    return attr !== undefined && (weights[attr] ?? 0) > 0
+  })
+  return weighted.length > 0 ? weighted : categories
+}
+
+/**
+ * Armes candidates selon le style (calculs.md, « Candidats selon le style de jeu », D7, D39) : mêlée → armes de mêlée ; distance → Light Bows,
+ * Bows, Greatbows, Crossbows, Ballistas ; magie → Staves et Sacred Seals selon les poids du build (`styleCategories`) ; hybride → tout ;
+ * boucliers et torches si leur catégorie est préférée.
  * @param data Armes chargées, par fichier.
  * @param style Style de jeu.
+ * @param weights Poids du build ; sans poids, le style « magie » garde les deux catégories de catalyseurs.
  * @returns Les candidats, dans l'ordre des fichiers.
  */
-export function candidateWeapons(data: WeaponData, style: StyleInput): CandidateWeapon[] {
+export function candidateWeapons(data: WeaponData, style: StyleInput, weights: BuildWeights = {}): CandidateWeapon[] {
   const pool = STYLE_POOLS[style.mode]
+  const categories = styleCategories(style.mode, weights)
   const out: CandidateWeapon[] = []
   for (const file of pool.files) {
     for (const weapon of data[file] ?? []) {
-      if (pool.categories === null || pool.categories.includes(weapon.category)) out.push({ file, weapon, ref: `weapon:${weapon.id}` })
+      if (categories === null || categories.includes(weapon.category)) out.push({ file, weapon, ref: `weapon:${weapon.id}` })
     }
   }
   for (const weapon of data[SHIELD_FILE] ?? []) {
@@ -164,6 +186,7 @@ export function catalystCaps(data: WeaponData): Readonly<Record<string, number>>
     for (const w of list ?? []) {
       const field = CATALYST_POWER_FIELD[w.category]
       const v = field === undefined ? undefined : w[field]
+      // Premier maximum d'une catégorie : 0 est l'élément neutre du maximum (les puissances de sort sont positives), pas une donnée.
       if (field !== undefined && typeof v === 'number') caps[w.category] = Math.max(caps[w.category] ?? 0, v)
     }
   }
@@ -230,7 +253,11 @@ export interface WeaponScore {
   readonly startingBonus: boolean
 }
 
-/** Valeur de chaque lettre de scaling (pondération du score, pas un coefficient du jeu). */
+/**
+ * Valeur de chaque lettre de scaling (pondération du score, pas un coefficient du jeu). `null` vaut 0 parce que, dans `scaling`, `null` signifie
+ * « pas de scaling » et non « non documenté » (field_notes de data/ ; calculs.md, point 1 : « pas de scaling = 0 »). Une lettre hors de
+ * S à E est refusée par le schéma au chargement : le repli 0 ne sert pas avec des données validées.
+ */
 const gradeValue = (g: string | null): number => (g === null ? 0 : (FIT_WEIGHTS.grade[g as keyof typeof FIT_WEIGHTS.grade] ?? 0))
 
 /**
@@ -253,6 +280,7 @@ function fitComponent(w: WeaponEntry, ctx: ScoreContext, parts: ExplanationCompo
   let ws = 0
   let acc = 0
   for (const k of WEAPON_ATTRIBUTE_KEYS) {
+    // Poids absent = attribut hors build (type `BuildWeights`) : il n'entre pas dans la moyenne pondérée.
     const weight = ctx.weights[k] ?? 0
     if (weight === 0) continue
     ws += weight
@@ -262,11 +290,14 @@ function fitComponent(w: WeaponEntry, ctx: ScoreContext, parts: ExplanationCompo
   const raw = Math.min(SCORE_COMPONENT_MAX, (SCORE_COMPONENT_MAX / FIT_WEIGHTS.meanForMax) * mean)
   let penalty = 0
   for (const k of WEAPON_ATTRIBUTE_KEYS) {
+    // Poids absent ou nul = attribut hors build : c'est sur ces attributs que porte la pénalité de prérequis.
     if ((ctx.weights[k] ?? 0) !== 0) continue
     const req = w.requirements[k]
     if (req > FIT_WEIGHTS.requirementThresholdHigh) penalty += FIT_WEIGHTS.requirementPenaltyHigh
     else if (req > FIT_WEIGHTS.requirementThresholdLow) penalty += FIT_WEIGHTS.requirementPenaltyLow
   }
+  // Bonus seulement si `status_buildup` documente le statut (calculs.md, point 1) : un statut absent n'est pas compté. Limite connue : quelques
+  // armes ne décrivent leur accumulation que dans `passive_effects` (Spiked Club, Death's Poker…), sans `status_buildup` ; elles n'ont pas le bonus.
   const statusBonus = ctx.status !== null && (w.status_buildup?.[ctx.status] ?? 0) > 0 ? FIT_WEIGHTS.passiveStatusBonus : 0
   const classBonus = ctx.classes.length === 0 ? 0 : ctx.classes.includes(w.category) ? FIT_WEIGHTS.preferredClassBonus : -FIT_WEIGHTS.otherClassPenalty
   parts.push(
@@ -374,14 +405,16 @@ export function scoreWeapon(c: CandidateWeapon, ctx: ScoreContext): Calc<WeaponS
   const stage = ctx.stage.value
   const remembrance = isRemembranceWeapon(c)
   const invader = w.derived.invaderDrop.length > 0
-  const ahead = stage === null ? null : stagesAhead(stage.stage, ctx.playerStage)
+  let ahead: number | null = null
   let access: number | null = null
+  // D18 : une arme « Non classé » (étape `null`) n'a ni étapes d'avance ni accessibilité, donc pas de score total ; elle est triée en dernier.
   if (stage === null) limits.push({ code: 'stage-unclassified' })
   else {
     const W = ACCESS_WEIGHTS
+    ahead = stagesAhead(stage.stage, ctx.playerStage)
     access = component(
       W.base -
-        W.perStageAhead * (ahead ?? 0) -
+        W.perStageAhead * ahead -
         Math.min(W.missingPointsCap, W.perMissingPoint * missingPoints) -
         (remembrance ? W.remembrancePenalty : 0) -
         (invader ? W.invaderPenalty : 0) +
@@ -494,6 +527,7 @@ export function recommendByStage(scored: readonly ScoredWeapon[], perStage: numb
       weapons = [...weapons].sort((a, b) => dlcZoneRank(a.stage.value?.dlcZone ?? null) - dlcZoneRank(b.stage.value?.dlcZone ?? null) || byScore(a, b))
     }
     const hidden: Partial<Record<HiddenReason, number>> = {}
+    // Compteur : une raison pas encore rencontrée compte 0 arme.
     for (const s of all) if (s.hidden !== null) hidden[s.hidden] = (hidden[s.hidden] ?? 0) + 1
     return { stage, weapons, visibleCount: shown.length, hidden, hiddenCount: all.length - shown.length }
   })
@@ -537,6 +571,7 @@ export interface WidenSuggestion {
  */
 export function widenSuggestions(column: StageColumn, otherStyleCount = 0, min: number = RECOMMENDATIONS.perStageMin): WidenSuggestion[] {
   if (column.weapons.length >= min) return []
+  // `hidden` ne liste que les raisons rencontrées : une raison absente masque 0 arme.
   const out: WidenSuggestion[] = HIDDEN_REASONS.map((reason) => ({ reason, count: column.hidden[reason] ?? 0 }))
   out.push({ reason: 'style', count: otherStyleCount })
   return out.filter((s) => s.count > 0).sort((a, b) => b.count - a.count)

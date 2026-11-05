@@ -1,10 +1,10 @@
 // Étape de progression d'une arme, d'un objet ou d'une rencontre, et étape courante du joueur selon son mode de progression.
-// Méthode : docs/design/ds/calculs.md, « Étape de progression d'une arme » (règles D10, table des Remembrances D12, étiquette DLC D11 et D18) ;
-// configuration : config/stages.ts, config/remembrances.ts. Les régions des objets viennent de `derived.regions` (préparation des données).
+// Méthode : docs/design/ds/calculs.md, « Étape de progression d'une arme » (règles D10, table des Remembrances D12, étiquette DLC D11 et D18,
+// surcharges d'étape D39) ; configuration : config/stages.ts, config/remembrances.ts. Les régions des objets viennent de `derived.regions` (préparation des données).
 
 import type { DatasetKey, EntityRef } from '../data/datasets.ts'
 import type { AcquisitionDerived, SourceTag } from '../data/types/common.ts'
-import { DLC_SOURCE, DLC_ZONE, DLC_ZONES, REGION_PARENT, REGION_STAGE, STAGE_IDS, stageIndex } from './config/stages.ts'
+import { DLC_SOURCE, DLC_ZONE, DLC_ZONES, REGION_PARENT, REGION_STAGE, STAGE_IDS, STAGE_OVERRIDES, stageIndex } from './config/stages.ts'
 import type { DlcZone, StageId } from './config/stages.ts'
 import { REMEMBRANCES } from './config/remembrances.ts'
 import type { RemembranceLink } from './config/remembrances.ts'
@@ -12,8 +12,8 @@ import type { EncounterIndex } from './encounters.ts'
 import { makeCalc, nullCalc } from './types.ts'
 import type { Calc, DataRef, ExplanationLimit } from './types.ts'
 
-/** Provenance de l'étape : règle de calculs.md qui l'a donnée. */
-export type StageBasis = 'remembrance' | 'acquisition' | 'regions_mentioned' | 'starting' | 'encounter' | 'dlc-label'
+/** Provenance de l'étape : règle de calculs.md qui l'a donnée (`override` = surcharge documentée de config/stages.ts, règle 0). */
+export type StageBasis = 'override' | 'remembrance' | 'acquisition' | 'regions_mentioned' | 'starting' | 'encounter' | 'dlc-label'
 
 /** Étape d'un objet ou d'une rencontre. */
 export interface StageInfo {
@@ -21,7 +21,7 @@ export interface StageInfo {
   /** Sous-zone du DLC (clé de tri) ; `null` hors DLC ou pour « DLC non localisé ». */
   readonly dlcZone: DlcZone | null
   readonly basis: StageBasis
-  /** Région qui a décidé de l'étape (la plus précoce), `null` si l'étape vient de l'étiquette DLC ou de l'équipement de départ. */
+  /** Région qui a décidé de l'étape (la plus précoce), `null` si l'étape vient d'une surcharge, de l'étiquette DLC ou de l'équipement de départ. */
   readonly region: string | null
   /** Rencontre de la Remembrance, quand la règle 1 s'applique. */
   readonly remembrance: RemembranceLink | null
@@ -163,7 +163,8 @@ function applyDlcLabel(info: StageInfo | null, source: SourceTag, limits: Explan
 }
 
 /**
- * Étape d'une arme ou d'un objet (calculs.md, « Étape de progression d'une arme ») : 1. Remembrance (étape de la rencontre de la table) ;
+ * Étape d'une arme ou d'un objet (calculs.md, « Étape de progression d'une arme ») : 0. surcharge documentée (config/stages.ts,
+ * `STAGE_OVERRIDES`, D39), qui passe avant toute autre règle ; 1. Remembrance (étape de la rencontre de la table) ;
  * 2-3. acquisitions, région la plus précise, étape la plus précoce ; 4. repli `regions_mentioned` ; 5. étiquette DLC ; 7. équipement de départ
  * de l'origine retenue = Début. Sinon « Non classé » : valeur `null` avec la limite `stage-unclassified` (hors des colonnes, D10).
  * @param entry Entrée préparée.
@@ -171,6 +172,16 @@ function applyDlcLabel(info: StageInfo | null, source: SourceTag, limits: Explan
  * @returns L'étape et sa provenance, ou `null` (Non classé).
  */
 export function entryStage(entry: StageEntry, ctx: StageContext): Calc<StageInfo> {
+  const override = STAGE_OVERRIDES[ctx.ref]
+  if (override !== undefined) {
+    const params = { stage: override.stage, zone: override.dlcZone ?? '' }
+    return makeCalc<StageInfo>('stage', { stage: override.stage, dlcZone: override.dlcZone, basis: 'override', region: null, remembrance: null }, {
+      components: [{ code: 'stage-index', value: stageIndex(override.stage), params }],
+      // La condition d'obtention est un fait du wiki ; l'étape qui en découle est une déduction (lieu de la condition → étape).
+      inputs: [{ file: 'config', entry: 'stages', field: `STAGE_OVERRIDES["${ctx.ref}"]`, value: override.source, reliability: 'deduced' }],
+      limits: [{ code: 'stage-override', params }],
+    })
+  }
   const limits: ExplanationLimit[] = []
   const inputs: DataRef[] = []
   let info: StageInfo | null = null

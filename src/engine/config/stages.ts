@@ -1,4 +1,5 @@
-// Étapes de progression : identifiants (source unique du projet), table région → étape, sous-zones du DLC et hiérarchie des régions connues.
+// Étapes de progression : identifiants (source unique du projet), table région → étape, sous-zones du DLC, surcharges d'étape documentées
+// et hiérarchie des régions connues.
 // Source : docs/contenu/decisions-progression.md § 1.3 (table complète, option A) et § 1.4 (règles), décisions D10 et D11 ; méthode : calculs.md,
 // « Étape de progression d'une arme ». Les noms sont ceux de data/ ; un test contrôle que chaque valeur est l'une des 79 régions relevées.
 
@@ -158,6 +159,29 @@ export const DLC_ZONE: Readonly<Record<string, DlcZone>> = {
   'Gate of Divinity': 'enir-ilim',
 }
 
+/** Surcharge d'étape d'un objet : étape, sous-zone DLC, et page du wiki qui documente la condition d'obtention. */
+export interface StageOverride {
+  readonly stage: StageId
+  /** Sous-zone du DLC ; `null` hors DLC. */
+  readonly dlcZone: DlcZone | null
+  /** Page du wiki qui justifie l'étape (citée dans le « Pourquoi ? »). */
+  readonly source: string
+}
+
+/**
+ * Surcharges d'étape (décision D39, S1 et S2 de docs/contenu/verification-socle.md ; calculs.md, « Étape de progression d'une arme », règle 0) :
+ * une condition de quête documentée par le wiki rend l'objet obtenable plus tard que son lieu ne l'indique. Appliquées avant toute autre règle.
+ * Les lieux de data/ restent exacts : c'est la condition qui manque aux données, d'où une surcharge plutôt qu'un correctif de données.
+ */
+export const STAGE_OVERRIDES: Readonly<Record<string, StageOverride>> = {
+  // [wiki] « After retrieving the Haligtree Secret Medallion (Right) from Old Albus in the Village of the Albinaurics, or the Haligtree
+  // Secret Medallion (Left) from Castle Sol, Ensha will invade the player. Upon death, he drops the Clinging Bone. »
+  // [déduction] Village of the Albinaurics est en Liurnia of the Lakes (locations.json), donc Milieu au plus tôt.
+  'weapon:clinging-bone': { stage: 'mid', dlcZone: null, source: 'https://eldenring.wiki.gg/wiki/Ensha_of_the_Royal_Remains' },
+  // [wiki] « only acquire this item after having burned the sealing tree past the Church of the Bud » : accès d'Enir-Ilim.
+  'weapon:spiraltree-seal': { stage: 'dlc', dlcZone: 'enir-ilim', source: 'https://eldenring.wiki.gg/wiki/Spiraltree_Seal' },
+}
+
 /**
  * Région parente directe de chaque région connue qui en a une, d'après `locations.json` (`region` sans sa parenthèse).
  * Le moteur ne charge pas `locations` : cette copie sert à garder la région la plus précise des rencontres de boss (`encounters[].regions`,
@@ -192,7 +216,7 @@ export const REGION_PARENT: Readonly<Record<string, string>> = {
   'Subterranean Shunning-Grounds': 'Leyndell, Royal Capital',
   'Volcano Manor': 'Mt. Gelmir',
   'Consecrated Snowfield': 'Mountaintops of the Giants',
-  'Crumbling Farum Azula': 'Accessed via Mountaintops of the Giants',
+  'Crumbling Farum Azula': 'Mountaintops of the Giants',
   'Elphael, Brace of the Haligtree': "Miquella's Haligtree",
   'Leyndell, Ashen Capital': 'Altus Plateau',
   'Mohgwyn Dynasty Mausoleum': 'Mohgwyn Palace',

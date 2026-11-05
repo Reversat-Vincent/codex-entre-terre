@@ -73,6 +73,18 @@ describe('rankOrigins', () => {
     expect(withBonus[0]?.explanation.limits).toContainEqual({ code: 'wasted-points-not-tiebreak' })
   })
 
+  it('adéquation précoce pondérée par les poids du build (D39, S6) : Vagabond devant Samurai pour l’archétype Force', () => {
+    // Gabarit `str` au niveau 150 : les deux origines finissent au niveau 150 sans point gaspillé.
+    const target = ordered([60, 15, 31, 80, 16, 9, 9, 9])
+    const ranks = rankOrigins(origins(), target, { weights: { str: 1, dex: 0.2 }, recommendedWeapons: new Set() })
+    const get = (id: string) => ranks.find((c) => c.value?.origin === id)
+    // Vagabond 14 + 0,2 × 13 = 16,6 ; Samurai 12 + 0,2 × 15 = 15 (la somme brute les mettait à égalité, 27).
+    expect(get('origin:vagabond')?.value).toMatchObject({ finalLevel: 150, earlyFit: 16.6 })
+    expect(get('origin:samurai')?.value).toMatchObject({ finalLevel: 150, earlyFit: 15 })
+    expect(get('origin:vagabond')!.value!.rank).toBeLessThan(get('origin:samurai')!.value!.rank)
+    expect(get('origin:vagabond')?.explanation.components).toContainEqual({ code: 'early-fit', value: 16.6 })
+  })
+
   it('hérite de l’estimation d’une cible calculée', () => {
     const target = makeCalc('target-attributes', ordered([40, 10, 20, 14, 13, 9, 9, 7]), { estimate: { confidence: 'medium' } })
     const [first] = rankOrigins(origins(), target, noFit)

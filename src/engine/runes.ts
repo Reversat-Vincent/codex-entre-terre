@@ -24,6 +24,7 @@ function rowOf(tables: CalcTables, level: number): LevelCostRow | undefined {
  * @returns Le plus haut niveau de départ de la table (713 avec les données actuelles).
  */
 function lastLevel(tables: CalcTables): number {
+  // Table vide : aucun niveau. 0 est sous tout niveau valide (≥ 1), donc chaque appel rend `level-out-of-table` ; ce 0 ne s'affiche jamais.
   return tables.levelCosts.rows.at(-1)?.level ?? 0
 }
 

@@ -275,6 +275,8 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   'stone-preference': c(() => 'Préférence de pierres', 'signed'),
   'estimate-penalty': c(() => "Pénalité d'un type d'amélioration estimé", 'signed'),
   'score-total': c(() => 'Score de recommandation'),
+  // Armes efficaces contre une rencontre.
+  'weakness-absorption': c((p) => `Absorption ${p('type')} de la rencontre (en %)`, 'signed'),
   // Couverture des données.
   'coverage-documented': c((p) => `Documenté par le wiki : ${p('row')}`),
   // Rendement des attributs.
@@ -382,6 +384,7 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   // Puissance d'attaque calculée.
   'estimate-method': () => "Puissance estimée par une méthode approchée : le wiki ne publie pas la formule exacte du jeu.",
   'generic-curve': () => "Le bonus de scaling suit les deux courbes génériques du wiki, pas celles de chaque arme.",
+  'curve-non-physical': () => "Affinité non physique : la courbe « non physique » du wiki s'applique à tous les types de dégâts de l'arme, physique compris.",
   'curve-below-10': (p) => `À ${p('points')} points, sous 10, le wiki ne documente pas la courbe : interpolation proposée entre (1 ; 0) et (10 ; 15).`,
   'curve-above-99': (p) => `À ${p('points')} points, au-delà de 99, la valeur de la courbe à 99 est conservée.`,
   'base-interpolated': (p) => `Base interpolée entre +${p('from')} et +${p('to')} : valeur estimée.`,
@@ -403,6 +406,7 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'encounter-missing': (p) => `La rencontre ${p('encounter')} est absente des données : étape non déterminée.`,
   'stage-unclassified': () => "Aucune région exploitable ne donne d'étape : « Non classé », sans score et hors des colonnes.",
   'stage-from-regions-mentioned': () => "Étape déduite des régions citées dans le texte de l'arme, faute d'acquisition localisée.",
+  'stage-override': (p) => `Étape fixée par une condition d'obtention documentée par le wiki (${p('stage')}${p('zone') === '' ? '' : `, ${p('zone')}`}), avant toute autre règle.`,
   'remembrance-encounter-unavailable': () => "Le fichier des boss n'est pas chargé : l'étape de la Remembrance n'est pas déterminée.",
   'remembrance-encounter-missing': (p) => `La rencontre ${p('encounter')}, liée à cette Remembrance, est absente des données.`,
   'dlc-unlocated': () => "Rencontre ou arme du DLC sans sous-zone connue : classée « DLC non localisé », en fin de colonne.",
@@ -429,8 +433,11 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'score-base-values': () => "Score calculé à +0 : il ne tient compte ni du niveau d'amélioration ni des Cendres de guerre.",
   'load-budget-unavailable': () => "La table de charge n'est pas chargée : le budget de poids est inconnu et aucune pénalité de poids n'est appliquée.",
   'spell-power-missing': (p) => `La puissance de sort de cette arme (${p('field')}) manque dans les données : la composante n'est pas calculée.`,
-  /** Rendement des attributs : les paliers sont une déduction, pas une donnée du wiki. */
-  'soft-caps-deduced': () => 'Les paliers de rendement sont déduits des tables du wiki, et non publiés par lui.',
+  // Armes efficaces contre une rencontre.
+  'absorption-undocumented': () => "L'absorption de cette rencontre n'est pas documentée : aucune arme n'est suggérée.",
+  'weakness-weapons-base-values': () => "Types de dégâts lus à +0 : ni l'affinité, ni les Cendres de guerre, ni les sorts ne sont comptés.",
+  /** Rendement des attributs : les paliers sont ceux publiés par le wiki (D39), les gains viennent des tables. */
+  'soft-caps-published': () => 'Paliers de rendement publiés par le wiki ; les gains moyens autour de chaque palier sont lus dans les tables.',
 }
 
 /**

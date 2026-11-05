@@ -86,6 +86,8 @@ export const COMPONENT_CODES = [
   'stone-preference',
   'estimate-penalty',
   'score-total',
+  // Armes efficaces contre une rencontre (faiblesses).
+  'weakness-absorption',
   // Couverture des données.
   'coverage-documented',
   // Rendement des attributs.
@@ -128,6 +130,7 @@ export const LIMIT_CODES = [
   // Puissance d'attaque calculée.
   'estimate-method',
   'generic-curve',
+  'curve-non-physical',
   'curve-below-10',
   'curve-above-99',
   'base-interpolated',
@@ -149,6 +152,7 @@ export const LIMIT_CODES = [
   'encounter-missing',
   'stage-unclassified',
   'stage-from-regions-mentioned',
+  'stage-override',
   'remembrance-encounter-unavailable',
   'remembrance-encounter-missing',
   'dlc-unlocated',
@@ -175,8 +179,11 @@ export const LIMIT_CODES = [
   'score-base-values',
   'load-budget-unavailable',
   'spell-power-missing',
+  // Armes efficaces contre une rencontre (faiblesses).
+  'absorption-undocumented',
+  'weakness-weapons-base-values',
   // Rendement des attributs.
-  'soft-caps-deduced',
+  'soft-caps-published',
 ] as const
 
 /** Code d'une limite d'explication. */

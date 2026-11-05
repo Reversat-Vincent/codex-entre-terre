@@ -34,6 +34,7 @@ export function distributeTarget(template: readonly number[], level: number, flo
   const floorSum = floor.reduce((a, b) => a + b, 0)
   const templateSum = template.reduce((a, b) => a + b, 0)
   const k = (sum - floorSum) / (templateSum - floorSum)
+  // Gabarit et plancher sont des n-uplets de huit valeurs (config/archetypes.ts) : le repli 0 ne sert qu'au typage strict des indices.
   const raw = template.map((t, i) => (floor[i] ?? 0) + (t - (floor[i] ?? 0)) * k)
   const base = raw.map((v) => Math.floor(v))
   const rest = sum - base.reduce((a, b) => a + b, 0)
@@ -41,6 +42,7 @@ export function distributeTarget(template: readonly number[], level: number, flo
   const order = raw.map((v, i) => ({ frac: v - Math.floor(v), i })).sort((a, b) => b.frac - a.frac)
   for (let j = 0; j < rest && j < order.length; j++) {
     const idx = order[j]!.i
+    // `idx` est un indice de `raw`, donc de `base` (même longueur) : le repli 0 ne sert qu'au typage strict des indices.
     base[idx] = (base[idx] ?? 0) + 1
   }
   return base.map((v) => Math.min(ATTRIBUTE_MAX, Math.max(ATTRIBUTE_MIN, v)))
@@ -101,7 +103,7 @@ export function autoWeights(attrs: Attributes): BuildWeights {
   if (Object.keys(w).length === 0) return { ...AUTO_WEIGHTS.fallback }
   const max = Math.max(...Object.values(w))
   const scale = 10 ** AUTO_WEIGHTS.decimals
-  for (const k of Object.keys(w) as WeaponAttributeKey[]) w[k] = Math.round(((w[k] ?? 0) / max) * scale) / scale
+  for (const [k, v] of Object.entries(w) as [WeaponAttributeKey, number][]) w[k] = Math.round((v / max) * scale) / scale
   return w
 }
 

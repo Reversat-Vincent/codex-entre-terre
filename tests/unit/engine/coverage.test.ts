@@ -2,7 +2,8 @@
 // La couverture du type d'amélioration change avec les compléments de données : les attendus sont recomptés depuis les données, pas codés.
 
 import { describe, expect, it } from 'vitest'
-import { attributeYield, softCaps } from '../../../src/engine/attributeYield.ts'
+import { attributeYield, publishedSoftCaps, softCaps } from '../../../src/engine/attributeYield.ts'
+import { PUBLISHED_SOFT_CAPS } from '../../../src/engine/config/softCaps.ts'
 import { coverage } from '../../../src/engine/coverage.ts'
 import type { WeaponEntry } from '../../../src/data/types/weapon.ts'
 import { attrs, tables } from './helpers.ts'
@@ -57,12 +58,47 @@ describe('couverture', () => {
 })
 
 describe('rendement des attributs (D23)', () => {
-  it('paliers déduits des tables : PV 40 et 60, FP 60, endurance 30 et 50, charge 25 et 60', () => {
+  it('contrôle : paliers déduits des tables (PV 40 et 60, FP 60, endurance 30 et 50, charge 25 et 60), tous publiés par le wiki', () => {
     const t = tables()
-    expect(softCaps(t.hpByVigor.rows).map((c) => c.points)).toEqual([40, 60])
-    expect(softCaps(t.fpByMind.rows).map((c) => c.points)).toEqual([60])
-    expect(softCaps(t.staminaByEndurance.rows).map((c) => c.points)).toEqual([30, 50])
-    expect(softCaps(t.equipLoadByEndurance.rows).map((c) => c.points)).toEqual([25, 60])
+    const deduced = {
+      hp: softCaps(t.hpByVigor.rows).map((c) => c.points),
+      fp: softCaps(t.fpByMind.rows).map((c) => c.points),
+      stamina: softCaps(t.staminaByEndurance.rows).map((c) => c.points),
+      equipLoad: softCaps(t.equipLoadByEndurance.rows).map((c) => c.points),
+    }
+    expect(deduced).toEqual({ hp: [40, 60], fp: [60], stamina: [30, 50], equipLoad: [25, 60] })
+    for (const [stat, points] of Object.entries(deduced)) {
+      for (const p of points) expect(PUBLISHED_SOFT_CAPS[stat as keyof typeof PUBLISHED_SOFT_CAPS].points, stat).toContain(p)
+    }
+  })
+
+  it('paliers affichés = paliers publiés par le wiki (D39, S5), avec les gains moyens lus dans les tables', () => {
+    const y = attributeYield(attrs(), tables())
+    expect(y.value!.map((c) => [c.stat, c.softCaps.map((s) => s.points)])).toEqual([
+      ['hp', [40, 60]],
+      ['fp', [50, 60]],
+      ['stamina', [15, 30, 50]],
+      ['equipLoad', [25, 60]],
+    ])
+    expect(y.explanation.limits).toContainEqual({ code: 'soft-caps-published' })
+    expect(y.explanation.inputs).toContainEqual({
+      file: 'config',
+      entry: 'softCaps',
+      field: 'PUBLISHED_SOFT_CAPS.fp',
+      value: 'https://eldenring.wiki.gg/wiki/Mind',
+      reliability: 'wiki',
+    })
+    // FP : gain moyen 6,4 avant 50 puis 5,6 après (verification-socle.md § 9).
+    const fp50 = y.value![1]!.softCaps[0]!
+    expect([fp50.gainBefore, fp50.gainAfter]).toEqual([6.4, 5.6])
+    for (const c of y.value!) for (const s of c.softCaps) expect(s.gainBefore !== null && s.gainAfter !== null, `${c.stat} ${s.points}`).toBe(true)
+  })
+
+  it('gain non calculable hors de la table : null, jamais 0', () => {
+    expect(publishedSoftCaps(tables().hpByVigor, [3, 97])).toEqual([
+      { points: 3, gainBefore: null, gainAfter: expect.any(Number) },
+      { points: 97, gainBefore: expect.any(Number), gainAfter: null },
+    ])
   })
 
   it('valeur par niveau, gain du point suivant à la précision de la table, position du profil', () => {

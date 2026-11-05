@@ -39,6 +39,8 @@ import type { TimelineView } from '../engine/timeline.ts'
 import type { Attributes, Calc, Hands, WeaponFileKey } from '../engine/types.ts'
 import { upgradePlan } from '../engine/upgradePlan.ts'
 import type { UpgradePlan } from '../engine/upgradePlan.ts'
+import { weaponsAgainst } from '../engine/weakness.ts'
+import type { WeaknessWeapon } from '../engine/weakness.ts'
 import type { StatusKey } from '../data/keys.ts'
 import type { Criteria, StonePreference, StyleMode } from '../persistence/model.ts'
 import type { CriteriaPatch } from './criteria.ts'
@@ -82,7 +84,8 @@ export interface BossReadiness {
  * Store d'analyse.
  * Getters : `level`, `weights`, `target`, `derived`, `attributeYield`, `bossLevel(clé)`, `bossReadiness(clé)`, `timeline`, `nextBoss`,
  * `stage`, `budget`, `candidates`, `filtered`, `preliminary`, `originRanking`, `effectiveOrigin`, `pipeline`, `scored`, `recommendations`,
- * `alternativesOf(ref)`, `widen(stage)`, `coverage`, `chips`, `runesTo(niveau)`, `upgradePlanFor(ref, de, à)`, `bellBearingStages`.
+ * `alternativesOf(ref)`, `widen(stage)`, `weaponsAgainst(clé de rencontre)`, `coverage`, `chips`, `runesTo(niveau)`, `upgradePlanFor(ref, de, à)`,
+ * `bellBearingStages`.
  * Aucun effet : chaque getter se recalcule quand les critères ou les fichiers chargés changent.
  */
 export const useAnalysisStore = defineStore('analysis', () => {
@@ -160,7 +163,8 @@ export const useAnalysisStore = defineStore('analysis', () => {
     }
     return out
   })
-  const candidates = computed(() => candidateWeapons(weaponData.value, c.value.style))
+  // Les poids du build restreignent les catalyseurs du style « magie » (D39, S3).
+  const candidates = computed(() => candidateWeapons(weaponData.value, c.value.style, weights.value.weights))
   const filtered = computed(() => filterWeapons(candidates.value, c.value))
   const caps = computed(() => catalystCaps(weaponData.value))
   const budget = computed(() => loadBudget(attrs.value.end, c.value.style.load, tables.value))
@@ -249,7 +253,17 @@ export const useAnalysisStore = defineStore('analysis', () => {
   })
   const widen = computed(() => (stageId: StageId): WidenSuggestion[] => {
     const column = recommendations.value.columns.find((col) => col.stage === stageId)
+    // `otherStyleByStage` ne compte que les étapes qui ont au moins une arme hors style : une étape absente en a 0.
     return column === undefined ? [] : widenSuggestions(column, otherStyleByStage.value.get(stageId) ?? 0)
+  })
+  /**
+   * Armes candidates efficaces contre une rencontre (fiche boss ; calculs.md, « Armes efficaces contre une rencontre ») : scores définitifs
+   * des critères courants, filtrés par les types les moins absorbés de la rencontre, avec leurs prérequis comparés au profil.
+   * `null` tant que `bosses` ou aucun fichier d'armes n'est chargé ; liste vide avec une limite si l'absorption n'est pas documentée (Mohg).
+   */
+  const weaponsAgainstOf = computed(() => (encounterKey: string): Calc<WeaknessWeapon[]> | null => {
+    if (encounters.value === null || Object.keys(weaponData.value).length === 0) return null
+    return weaponsAgainst(encounters.value.byKey.get(encounterKey), scored.value)
   })
 
   // Couverture, runes, plan d'amélioration.
@@ -320,6 +334,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
     recommendations,
     alternativesOf,
     widen,
+    weaponsAgainst: weaponsAgainstOf,
     coverage: coverageRows,
     chips,
     runesTo,

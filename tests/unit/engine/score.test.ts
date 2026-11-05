@@ -9,6 +9,7 @@ import {
   alternatives,
   candidateWeapons,
   catalystCaps,
+  styleCategories,
   filterWeapons,
   hiddenReason,
   loadBudget,
@@ -144,6 +145,20 @@ describe('candidats et filtres (D7)', () => {
     expect(cats('hybrid').has('Staves') && cats('hybrid').has('Katanas')).toBe(true)
     expect(weaponFilesFor({ mode: 'magic', classes: ['Greatshields'] })).toEqual(['ranged_weapons_catalysts', 'shields_torches'])
     expect(weaponFilesFor({ mode: 'hybrid', classes: [] })).toEqual(['melee_armaments', 'ranged_weapons_catalysts'])
+  })
+
+  it('magie : catalyseurs selon les poids du build (D39, S3)', () => {
+    const d = weaponData()
+    const cats = (weights: Record<string, number>) => [...new Set(candidateWeapons(d, { mode: 'magic', classes: [] }, weights).map((x) => x.weapon.category))].sort()
+    expect(cats({ int: 1, dex: 0.2 })).toEqual(['Staves'])
+    expect(cats({ fai: 1, str: 0.3 })).toEqual(['Sacred Seals'])
+    expect(cats({ int: 1, fai: 1 })).toEqual(['Sacred Seals', 'Staves'])
+    expect(cats({ str: 1 })).toEqual(['Sacred Seals', 'Staves'])
+    expect(cats({})).toEqual(['Sacred Seals', 'Staves'])
+    // Un poids nul ne retient pas sa catégorie ; les autres styles ne dépendent pas des poids.
+    expect(styleCategories('magic', { int: 1, fai: 0 })).toEqual(['Staves'])
+    expect(styleCategories('melee', { int: 1 })).toBeNull()
+    expect(styleCategories('ranged', { fai: 1 })).toEqual(['Light Bows', 'Bows', 'Greatbows', 'Crossbows', 'Ballistas'])
   })
 
   it('contenu, exclusions et estimations', () => {

@@ -10,9 +10,9 @@ import type { NpcRaw } from '../../../src/data/types/npcs.ts'
 import { ARCHETYPES, TARGET_FLOOR, TEMPLATE_LEVEL } from '../../../src/engine/config/archetypes.ts'
 import { BOSS_LEVEL } from '../../../src/engine/config/bossLevel.ts'
 import { REMEMBRANCES, REMEMBRANCE_ENCOUNTERS } from '../../../src/engine/config/remembrances.ts'
-import { DLC_ZONE, REGION_PARENT, REGION_STAGE } from '../../../src/engine/config/stages.ts'
+import { DLC_ZONE, REGION_PARENT, REGION_STAGE, STAGE_OVERRIDES } from '../../../src/engine/config/stages.ts'
 import { TIMELINE, timelineBossRefs } from '../../../src/engine/config/timeline.ts'
-import { CATALYST_POWER_FIELD, SHIELD_CATEGORIES, STYLE_POOLS } from '../../../src/engine/config/weaponPools.ts'
+import { CATALYST_CATEGORIES, CATALYST_POWER_FIELD, MAGIC_CATALYST_ATTRIBUTE, SHIELD_CATEGORIES, STYLE_POOLS } from '../../../src/engine/config/weaponPools.ts'
 import { DATASET_KEYS, DATASETS } from '../../../src/data/datasets.ts'
 import { data, encounters } from './prepared.ts'
 
@@ -34,6 +34,15 @@ describe('stages.ts', () => {
       if (p !== undefined && KNOWN_REGIONS.includes(p)) expected[k] = p
     }
     expect(REGION_PARENT).toEqual(expected)
+  })
+
+  it('surcharges d’étape : objets existants, page du wiki citée, sous-zone seulement en DLC', () => {
+    expect(Object.keys(STAGE_OVERRIDES).sort()).toEqual(['weapon:clinging-bone', 'weapon:spiraltree-seal'])
+    for (const [ref, o] of Object.entries(STAGE_OVERRIDES)) {
+      expect(refs.has(ref), ref).toBe(true)
+      expect(o.source, ref).toMatch(/^https:\/\/eldenring\.wiki\.gg\/wiki\//)
+      expect(o.dlcZone !== null, ref).toBe(o.stage === 'dlc')
+    }
   })
 })
 
@@ -87,6 +96,7 @@ describe('archetypes.ts et weaponPools.ts', () => {
     }
     const shields = new Set(ds.shields_torches.entries.map((w) => w.category))
     expect([...shields].sort()).toEqual([...SHIELD_CATEGORIES].sort())
+    expect(Object.keys(MAGIC_CATALYST_ATTRIBUTE).sort()).toEqual([...CATALYST_CATEGORIES].sort())
     const ranged = ds.ranged_weapons_catalysts.entries
     for (const [cat, field] of Object.entries(CATALYST_POWER_FIELD)) expect(ranged.some((w) => w.category === cat && typeof w[field] === 'number'), cat).toBe(true)
   })

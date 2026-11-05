@@ -3,7 +3,7 @@
 
 import { describe, expect, it } from 'vitest'
 import type { WeaponEntry } from '../../../src/data/types/weapon.ts'
-import { attackPower, scalingCurve } from '../../../src/engine/attackPower.ts'
+import { attackPower, curveFamily, scalingCurve } from '../../../src/engine/attackPower.ts'
 import type { AttackBreakdown, AttackPowerResult } from '../../../src/engine/attackPower.ts'
 import { ATTACK_POWER } from '../../../src/engine/config/attackPower.ts'
 import type { Calc, Hands } from '../../../src/engine/types.ts'
@@ -36,6 +36,19 @@ describe('scalingCurve', () => {
     expect(low.limit).toEqual({ code: 'curve-below-10', params: { points: 5 } })
     expect(scalingCurve(1).value).toBe(0)
     expect(scalingCurve(120)).toEqual({ value: 96, limit: { code: 'curve-above-99', params: { points: 120 } } })
+  })
+
+  it('interpole la courbe non physique du wiki ; sous 10, entre (1 ; 0) et (10 ; 19)', () => {
+    expect(scalingCurve(10, ATTACK_POWER, 'nonPhysical').value).toBe(19)
+    expect(scalingCurve(20, ATTACK_POWER, 'nonPhysical').value).toBe(40)
+    expect(scalingCurve(45, ATTACK_POWER, 'nonPhysical').value).toBeCloseTo(73.25, 10)
+    expect(scalingCurve(99, ATTACK_POWER, 'nonPhysical')).toEqual({ value: 100, limit: null })
+    expect(scalingCurve(5, ATTACK_POWER, 'nonPhysical').value).toBeCloseTo((19 * 4) / 9, 10)
+  })
+
+  it('famille selon l’affinité (D39, S4) : huit affinités non physiques, le reste physique', () => {
+    for (const a of ['Fire', 'Flame Art', 'Lightning', 'Sacred', 'Magic', 'Cold', 'Blood', 'Poison']) expect(curveFamily(a), a).toBe('nonPhysical')
+    for (const a of ['Standard', 'Heavy', 'Keen', 'Quality', 'Occult']) expect(curveFamily(a), a).toBe('physical')
   })
 })
 
@@ -100,13 +113,23 @@ describe('attackPower, Longsword (non-régression)', () => {
     expect(c.value?.types[0]?.curve.str).toBeCloseTo(36.15, 10)
   })
 
-  it('Cold : la magie varie avec INT, le physique avec STR et DEX', () => {
+  it('Cold : la magie varie avec INT, le physique avec STR et DEX, tous deux sur la courbe non physique', () => {
     const c = calc(attackPower(longsword, 'Cold', 0, attrs({ str: 20, dex: 20, int: 20 }), 'one', melee))
     const [phys, magic] = c.value?.types ?? []
-    // 89 × (1 + (0,45 + 0,29) × 0,35) = 112,05 ; 71 × (1 + 0,4 × 0,35) = 80,94.
-    expect(phys).toMatchObject({ type: 'physical', base: 89, status: 'scaled', value: 112 })
-    expect(magic).toMatchObject({ type: 'magic', base: 71, status: 'scaled', value: 80 })
-    expect(c.value?.total).toBe(192)
+    // Courbe non physique à 20 = 40 (point 6, D39) : 89 × (1 + (0,45 + 0,29) × 0,40) = 115,34 ; 71 × (1 + 0,4 × 0,40) = 82,36.
+    expect(phys).toMatchObject({ type: 'physical', base: 89, status: 'scaled', value: 115, curve: { str: 40, dex: 40 } })
+    expect(magic).toMatchObject({ type: 'magic', base: 71, status: 'scaled', value: 82 })
+    expect(c.value?.total).toBe(197)
+    expect(c.explanation.limits).toContainEqual({ code: 'curve-non-physical' })
+    expect(c.explanation.inputs).toContainEqual({ file: 'config', entry: 'attackPower', field: 'curves.nonPhysical', value: 'Cold', reliability: 'wiki' })
+  })
+
+  it('Standard et Occult gardent la courbe physique, sans limite « non physique »', () => {
+    const std = calc(attackPower(longsword, 'Standard', 0, attrs({ str: 20, dex: 20 }), 'one', melee))
+    expect(std.explanation.limits).not.toContainEqual({ code: 'curve-non-physical' })
+    const occult = calc(attackPower(longsword, 'Occult', 0, attrs({ str: 20, dex: 20, arc: 20 }), 'one', melee))
+    expect(occult.value?.types[0]?.curve.str).toBe(35)
+    expect(occult.explanation.limits).not.toContainEqual({ code: 'curve-non-physical' })
   })
 
   it('refuse un niveau au-delà du maximum ou non entier', () => {

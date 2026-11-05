@@ -135,5 +135,29 @@ describe('progression, frise et recommandations', () => {
     expect(analysis.budget.value).toBeNull()
     expect(analysis.recommendations.columns.every((c) => c.weapons.length === 0)).toBe(true)
     expect(analysis.bossLevel('elden-beast/elden-beast')).toBeNull()
+    expect(analysis.weaponsAgainst('margit-the-fell-omen/margit-the-fell-omen')).toBeNull()
+  })
+})
+
+describe('armes efficaces contre une rencontre (fiche boss)', () => {
+  it('candidats des critères courants qui exploitent les faiblesses, avec leurs prérequis ; Mohg sans suggestion', async () => {
+    const { analysis } = await setup()
+    const margit = analysis.weaponsAgainst('margit-the-fell-omen/margit-the-fell-omen')
+    expect(margit?.value?.length).toBeGreaterThan(0)
+    const visible = new Set(analysis.scored.filter((s) => s.hidden === null).map((s) => s.candidate.ref))
+    for (const w of margit?.value ?? []) {
+      expect(visible.has(w.ref), w.name).toBe(true)
+      expect(['slash', 'standard']).toContain(w.damage)
+      expect(w.requirements).toEqual(analysis.scored.find((s) => s.candidate.ref === w.ref)?.score.value?.requirements)
+    }
+    const mohg = analysis.weaponsAgainst('mohg-lord-of-blood/mohg-lord-of-blood-phase-1')
+    expect(mohg?.value).toEqual([])
+    expect(mohg?.explanation.limits[0]?.code).toBe('absorption-undocumented')
+  })
+
+  it('style « magie » d’un build Intelligence : seulement des Staves (D39, S3)', async () => {
+    const { analysis, criteria } = await setup(['origins', 'bosses', 'tables', 'ranged_weapons_catalysts'])
+    criteria.set({ style: { mode: 'magic' }, target: { archetype: 'int', level: 150 } })
+    expect(new Set(analysis.candidates.map((c) => c.weapon.category))).toEqual(new Set(['Staves']))
   })
 })

@@ -103,11 +103,22 @@ export const LOAD_BUDGET = {
 } as const
 
 /**
- * Adéquation précoce du classement des origines (calculs.md, « Origine optimale », « Tri ») : somme des attributs de départ utiles au build
- * (poids non nul), plus ce bonus si l'équipement de départ contient une arme recommandée. Valeur du prototype (`rankOrigins`).
+ * Adéquation précoce du classement des origines (calculs.md, « Origine optimale », « Tri ») : somme des attributs de départ pondérés par
+ * les poids du build (D39, S6 ; le prototype les additionnait sans poids), plus ce bonus si l'équipement de départ contient une arme
+ * recommandée. Valeur du bonus : prototype (`rankOrigins`).
  */
 export const ORIGIN_RANKING = {
   recommendedWeaponBonus: 5,
+} as const
+
+/**
+ * Armes efficaces contre une rencontre (fiche boss ; calculs.md, « Armes efficaces contre une rencontre ») [conception] : types de dégâts
+ * les moins absorbés retenus (`bestTypes`, autant que les faiblesses affichées par un nœud de la frise) et nombre d'armes proposées (`max`,
+ * comme une colonne du widget A).
+ */
+export const WEAKNESS_WEAPONS = {
+  bestTypes: 2,
+  max: 5,
 } as const
 
 /**
@@ -126,10 +137,11 @@ export const RECOMMENDATIONS = {
 } as const
 
 /**
- * Paliers de rendement des attributs (calculs.md, « Rendement des attributs ») [conception] : un palier est un point où le gain moyen
- * des `window` points suivants tombe à `dropRatio` fois celui des `window` points précédents ou moins, et baisse d'au moins
- * deux pas d'arrondi de la table divisés par `window` (pour ignorer l'alternance des arrondis). Dans une suite de points consécutifs
- * qui remplissent ces conditions, le point de plus forte baisse est retenu. Les paliers eux-mêmes sont déduits des tables, jamais codés.
+ * Rendement des attributs (calculs.md, « Rendement des attributs ») [conception] : `window` est la fenêtre des gains moyens affichés
+ * autour de chaque palier publié (config/softCaps.ts). Détection de contrôle des paliers dans les tables : un point où le gain moyen des
+ * `window` points suivants tombe à `dropRatio` fois celui des `window` points précédents ou moins, et baisse d'au moins deux pas
+ * d'arrondi de la table divisés par `window` (pour ignorer l'alternance des arrondis) ; dans une suite de points consécutifs, celui de
+ * plus forte baisse. Depuis D39, les paliers affichés sont ceux du wiki ; la détection ne sert plus que de contrôle (tests).
  */
 export const ATTRIBUTE_YIELD = {
   window: 5,

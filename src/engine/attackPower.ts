@@ -6,7 +6,7 @@ import { DAMAGE_KEYS, WEAPON_ATTRIBUTE_KEYS } from '../data/keys.ts'
 import type { DamageKey, WeaponAttributeKey } from '../data/keys.ts'
 import type { UpgradeAffinityTable, UpgradeLevel, WeaponEntry } from '../data/types/weapon.ts'
 import { ATTACK_POWER } from './config/attackPower.ts'
-import type { AttackPowerConfig, AttackPowerMode } from './config/attackPower.ts'
+import type { AttackPowerConfig, AttackPowerMode, CurveFamily } from './config/attackPower.ts'
 import { TWO_HANDED } from './config/twoHanded.ts'
 import type { TwoHandedConfig } from './config/twoHanded.ts'
 import { twoHandBonusApplies, twoHandMode, twoHandedStrength } from './requirements.ts'
@@ -97,15 +97,31 @@ function floorSafe(x: number): number {
 }
 
 /**
- * Valeur de la courbe générique pour un attribut effectif (calculs.md, point 6) : interpolation linéaire entre les points du wiki ;
- * sous le premier point, entre `curveFloor` et lui ([conception], limite `curve-below-10`) ; au-delà du dernier, valeur du dernier point
- * (non documenté, limite `curve-above-99`).
+ * Famille de courbe d'une affinité (calculs.md, point 6, D39) : « non physique » pour les affinités de `nonPhysicalAffinities`, « physique »
+ * sinon (armes uniques comprises, traitées en Standard [conception]).
+ * @param affinity Affinité (clé de `upgrade.tables`).
+ * @param cfg Configuration.
+ * @returns La famille.
+ */
+export function curveFamily(affinity: string, cfg: AttackPowerConfig = ATTACK_POWER): CurveFamily {
+  return cfg.nonPhysicalAffinities.includes(affinity) ? 'nonPhysical' : 'physical'
+}
+
+/**
+ * Valeur de la courbe générique pour un attribut effectif (calculs.md, point 6) : interpolation linéaire entre les points du wiki de la
+ * famille ; sous le premier point, entre `curveFloor` et lui ([conception], limite `curve-below-10`) ; au-delà du dernier, valeur du dernier
+ * point (non documenté, limite `curve-above-99`).
  * @param attr Attribut effectif.
- * @param cfg Configuration (courbe et point bas).
+ * @param cfg Configuration (courbes et point bas).
+ * @param family Famille de courbe, « physique » par défaut.
  * @returns La valeur de courbe (en %) et la limite éventuelle.
  */
-export function scalingCurve(attr: number, cfg: AttackPowerConfig = ATTACK_POWER): { value: number; limit: ExplanationLimit | null } {
-  const pts = cfg.curve
+export function scalingCurve(
+  attr: number,
+  cfg: AttackPowerConfig = ATTACK_POWER,
+  family: CurveFamily = 'physical',
+): { value: number; limit: ExplanationLimit | null } {
+  const pts = cfg.curves[family]
   const first = pts[0]
   const last = pts.at(-1)
   if (first === undefined || last === undefined) throw new Error('attackPower : courbe vide')
@@ -252,6 +268,8 @@ export function attackPower(
   }
 
   const mode = twoHandMode(w, thCfg)
+  // Point 6 : la courbe dépend de l'affinité de l'arme et s'applique à tous ses types de dégâts.
+  const family = curveFamily(affinity, cfg)
   const bonusApplies = twoHandBonusApplies(mode, hands)
   const effective = {} as Record<WeaponAttributeKey, number>
   for (const a of WEAPON_ATTRIBUTE_KEYS) effective[a] = a === 'str' && bonusApplies ? twoHandedStrength(attrs.str, thCfg) : attrs[a]
@@ -384,7 +402,7 @@ export function attackPower(
         continue
       }
       if (c.interpolated === true) addLimit({ code: 'coef-interpolated' })
-      const k = scalingCurve(effective[a], cfg)
+      const k = scalingCurve(effective[a], cfg, family)
       if (k.limit !== null) addLimit(k.limit)
       coefs[a] = c.value
       curve[a] = k.value
@@ -417,13 +435,16 @@ export function attackPower(
     }
   }
 
-  const total = types.every((x) => x.value !== null) ? types.reduce((s, x) => s + (x.value ?? 0), 0) : null
+  // Un type de base non documentée rend le total `null`, jamais une somme partielle.
+  const values = types.map((x) => x.value)
+  const total = values.every((v): v is number => v !== null) ? values.reduce((s, v) => s + v, 0) : null
   const partial = types.some((x) => x.status === 'no-coef' || x.status === 'undocumented' || x.status === 'exception')
   components.push({ code: 'attack-total', value: total })
   if (cfg.mode === 'estimate') {
     limits.unshift({ code: 'estimate-method' })
     if (anyBonus) addLimit({ code: 'generic-curve' })
-    inputs.push({ file: 'config', entry: 'attackPower', field: 'curve', reliability: 'wiki' })
+    if (anyBonus && family === 'nonPhysical') addLimit({ code: 'curve-non-physical' })
+    inputs.push({ file: 'config', entry: 'attackPower', field: `curves.${family}`, value: affinity, reliability: 'wiki' })
   }
 
   return makeCalc<AttackBreakdown>(
