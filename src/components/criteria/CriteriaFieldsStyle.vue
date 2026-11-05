@@ -14,6 +14,7 @@ import CxChip from '../ds/CxChip.vue'
 import CxIcon from '../ds/CxIcon.vue'
 import CxReliabilityBadge from '../ds/CxReliabilityBadge.vue'
 import CxSegmented from '../ds/CxSegmented.vue'
+import CxWhyPanel from '../ds/CxWhyPanel.vue'
 import type { SegmentedOption } from '../ds/types.ts'
 import { STYLE_LABELS, visibleClasses, weaponClasses } from './criteriaModel.ts'
 import { useCriteriaData } from './useCriteriaData.ts'
@@ -146,6 +147,10 @@ const ratioText = computed(() => formatPercent(LOAD_BUDGET.ratios[c.value.style.
       <span>budget par arme <b>{{ budget.value === null ? 'Non documenté' : formatDecimal(budget.value) }}</b></span>
       <CxReliabilityBadge kind="calculated" />
     </div>
+    <CxWhyPanel
+      :explanation="budget.explanation"
+      :estimate="budget.estimate?.confidence ?? null"
+    />
   </div>
 </template>
 

@@ -9,6 +9,7 @@ import { ATTRIBUTE_KEYS, ATTRIBUTE_LABELS } from '../../ui/labels.ts'
 import type { AttributeKey } from '../../ui/labels.ts'
 import CxAttributeStepper from '../ds/CxAttributeStepper.vue'
 import CxReliabilityBadge from '../ds/CxReliabilityBadge.vue'
+import CxWhyPanel from '../ds/CxWhyPanel.vue'
 import CxSelect from '../ds/CxSelect.vue'
 import CriteriaLevelStepper from './CriteriaLevelStepper.vue'
 import { archetypeOptions, originOptions, raiseToOrigin } from './criteriaModel.ts'
@@ -93,6 +94,10 @@ const levelText = computed(() => (analysis.level.value === null ? 'Non calculé'
     <CxReliabilityBadge kind="calculated" />
     <span class="cx-muted">somme des attributs − 79 ; appui long sur ± : 5 points</span>
   </div>
+  <CxWhyPanel
+    :explanation="analysis.level.explanation"
+    :estimate="analysis.level.estimate?.confidence ?? null"
+  />
   <hr class="cx-crit-hr">
   <div class="cx-crit-field">
     <label :for="idArchetype">Build cible</label>
@@ -120,6 +125,10 @@ const levelText = computed(() => (analysis.level.value === null ? 'Non calculé'
       <CxReliabilityBadge kind="calculated" />
       <span class="cx-muted">répartition de l’archétype au niveau cible</span>
     </div>
+    <CxWhyPanel
+      :explanation="analysis.target.explanation"
+      :estimate="analysis.target.estimate?.confidence ?? null"
+    />
   </template>
 </template>
 

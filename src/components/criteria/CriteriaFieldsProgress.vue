@@ -10,6 +10,7 @@ import { STAGE_LABELS } from '../../ui/labels.ts'
 import CxCheckbox from '../ds/CxCheckbox.vue'
 import CxReliabilityBadge from '../ds/CxReliabilityBadge.vue'
 import CxSegmented from '../ds/CxSegmented.vue'
+import CxWhyPanel from '../ds/CxWhyPanel.vue'
 import type { SegmentedOption } from '../ds/types.ts'
 import { PROGRESS_MODE_LABELS, STAGE_OPTIONS, bossChecklist, keysToToggle, regionChecklist } from './criteriaModel.ts'
 import type { BossCheck } from './criteriaModel.ts'
@@ -116,6 +117,10 @@ const stageWhy = computed(() => {
     <CxReliabilityBadge kind="calculated" />
     <span class="cx-muted">{{ stageWhy }}</span>
   </div>
+  <CxWhyPanel
+    :explanation="analysis.stage.explanation"
+    :estimate="analysis.stage.estimate?.confidence ?? null"
+  />
 </template>
 
 <style>

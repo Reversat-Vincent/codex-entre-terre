@@ -82,4 +82,8 @@ const bodyId = useId()
 .cx-crit-acc small { display: block; color: var(--ink-3); font-size: 12px; line-height: 16px; font-weight: 400; overflow-wrap: anywhere; }
 .cx-crit-acc > .cx-i { margin-left: auto; }
 .cx-crit-sec.is-collapsible > .cx-crit-body { padding-bottom: var(--space-4); }
+/* Le panneau « Pourquoi ? » tient en une colonne : celle des critères fait 304 px, loin des trois colonnes prévues pour un widget. */
+.cx-crit-sec .cx-why { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+.cx-crit-sec .cx-why-wrap { justify-items: start; }
+.cx-crit-sec .cx-why-wrap > .cx-why { justify-self: stretch; }
 </style>
