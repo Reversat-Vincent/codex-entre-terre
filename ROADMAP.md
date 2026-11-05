@@ -25,7 +25,7 @@
     > Note : 1 585 opérations vérifiées ; arbitrages en D34.
   - [x] 1.6b Application des correctifs 1.6a, `data/CHANGELOG.md`, `data/README.md`, nouvelle préparation ; `normalizeText` décompose les ligatures (`œ` → `oe`, `æ` → `ae`) sans changer d'identifiant — dev-donnees
     > Note : type d'amélioration de 487 armes : 429 wiki, 51 déduit, 4 estimation, 2 `null`, 1 non améliorable ; 138 pages de boss, 314 combats. Fixtures non régénérées (le moteur s'en sert) : tâche 2.8.
-  - [ ] 2.8 Régénération des fixtures (`node scripts/data/fixtures.ts`) et adaptation des tests qui en dépendent (`upgradePlan` 3, `facets` 11, `attackPower` à revoir) — dev-logique (après 2.5)
+  - [ ] 2.8 Régénération des fixtures (`node scripts/data/fixtures.ts`) et adaptation des tests qui en dépendent (`upgradePlan` 3, `facets` 11, `attackPower` à revoir) ; pause des notifications au survol et au focus dans le store `toasts` ; commentaire de `ActionEffect` (`usePreferencesStore`) ; retrait des redéclarations locales de `__APP_VERSION__` si 7.1 les rend inutiles — dev-logique (après 2.5)
 - [ ] 2. Socle logique et composants de base
   - [x] 2.1 Styles et composants de base : `tokens.css` sans maquette, polices, `base.css`, sprite, `CxIcon`, `CxButton`, badges, `CxValue`, `CxEntityName`, `CxWikiLink`, `CxTooltip`, contrôles de formulaire, états, `CxWidgetShell`, `CxTabs`, `CxDialog`, `CxSheet`, `CxMenu`, `format.ts`, `labels.ts`, `breakpoints.ts`, composables d'interface — dev-interface — commit `c8988eb`
     > Note : à brancher par la coquille (3.1) : styles `tokens.css`, `fonts.css`, `base.css` dans `main.ts`, `<IconSprite />` dans `App.vue`, `data-theme` avant le montage. Les unions de `labels.ts` (`AttributeKey`…) sont à aligner sur `src/data/keys.ts` en 2.7. Interactions non testées au clavier ni au clic : à voir en vérification.
@@ -42,8 +42,9 @@
     > Note : arbitrages en D35. Composants jamais rendus dans un navigateur : à voir aux captures.
   - [ ] 2.7b Composants liés au moteur complet : `explainText.ts` et `CxWhyPanel`, `CxWeaponCard`, `CxBossTimeline` — dev-interface (après 2.5)
 - [ ] 3. Coquille et navigation
-  - [ ] 3.1 Coquille : `App.vue`, routes, navigation latérale et rail, barre supérieure, barre d'onglets, pied de page, progression du chargement, bandeau de stockage, message de mise à jour, notifications, thème, palette de recherche, page introuvable — dev-interface
-  - [ ] 3.2 Critères : panneau desktop, tiroir tablette, feuille mobile, puces de critères, profils enregistrés — dev-interface
+  - [x] 3.1 Coquille : `App.vue`, routes, navigation latérale et rail, barre supérieure, barre d'onglets, pied de page, progression du chargement, bandeau de stockage, message de mise à jour, notifications, thème, palette de recherche, page introuvable — dev-interface — commit `062e931`
+    > Note : vérifiée dans le navigateur (aucune erreur, aucune requête externe). Raccords à brancher : liens externes (`resources` d'`AppSideNav`, `wikiSearchUrl` de la palette) dans `App.vue` après 2.5 ; `CriteriaSlot` à remplacer en 3.2. Arbitrages en D36.
+  - [ ] 3.2 Critères : panneau desktop, tiroir tablette, feuille mobile (« Voir N armes »), puces de critères, profils enregistrés ; liens externes branchés dans `App.vue` ; pause des notifications dans `CxToastHost` ; `.cx-chip` et `.cx-scrim` dédoublonnés — dev-interface (après 2.5)
 - [ ] 4. Tableau de bord
   - [ ] 4.1 Grille de widgets (disposition, réordonner, réduire, retirer, ajouter, plein écran) et `DashboardView` — dev-interface
   - [ ] 4.2 Widget A et sa vue plein écran — dev-interface
@@ -60,7 +61,7 @@
   - [ ] 6.1 Ma liste et comparateur — dev-interface
   - [ ] 6.2 Mécaniques (sommaire, article) et profil (profils, préférences, stockage, export et import, versions, licences) — dev-interface
 - [ ] 7. Hors ligne et finitions
-  - [ ] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage
+  - [ ] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant)
   - [ ] 7.2 Mises en page tablette et passe responsive — dev-interface
   - [ ] 7.3 README à jour (présentation, publication) — chef de projet
 - [ ] 8. Boucle de vérification
@@ -109,5 +110,6 @@
 - D33 · 2026-11-05 · Reprise automatique après une limite d'usage : une tâche programmée de la session, toutes les heures, relance les sous-agents arrêtés sur une limite et reprend la feuille de route si rien ne tourne (session seulement, expire après 7 jours, à recréer au besoin) — raison : la limite hebdomadaire a suspendu le développement du 1er au 5 novembre — par : développeur
 - D34 · 2026-11-05 · Arbitrages des correctifs de compléments : Great Épée non appliquée (seuls les coûts en runes manquaient, inutilisés) ; Fanged Imp Ashes : le tableau « Minor puzzle spoiler » passe de `patch_notes` à `notes` ; Carian Sorcery Sword : matériau de la liste, incohérence portée par une clé structurée `material_inconsistencies_flagged` des métadonnées (pas `wiki_inconsistencies_flagged`, réservée aux tableaux), reprise dans `derived.inconsistent` ; Perfumer Tricia : seule son infobox ; les 5 pages d'envahisseurs ajoutées reçoivent le rang `Invaders and other minibosses`, déduction notée dans `field_notes` ; `affinity_changeable` à `false` pour les 95 armes Somber qui l'ont à `null`, déduction de la règle du wiki notée dans sa provenance ; restes d'images `ER Site of Grace …png` et `og pic` nettoyés comme les autres ; identifiants changés (`perfumer`, `madding-hand-npc`, `jolan-swordhand-of-night`) sans migration, rien n'étant publié — par : chef de projet
 - D35 · 2026-11-05 · Arbitrages des composants de données : pagination intégrée à `CxDataTable` (pas de `CxPagination` séparé), zone défilante de 70vh par défaut réglable ; ajouts `CxChip`, `CxFilterChips`, `CxCalcValue`, `src/ui/chart.ts` ; dans `labels.ts`, `StatusKey` = clé de données et `StatusStyleKey` = clé de style ; abréviations de dégâts et de statuts proposées par l'interface (seules « Som. » et « Fol. » viennent du design), à relire en vérification ; liens de la heatmap fournis par l'appelant (`router.resolve`) ; curseur « Niveau affiché » et bascule Courbe/Tableau du graphique, demandés par `spec-weapon` — par : chef de projet
+- D36 · 2026-11-05 · Arbitrages de la coquille : champ de recherche de la barre supérieure en bouton qui ouvre la palette ; thème en bouton-icône ; pied de page « Données extraites du wiki le JJ/MM/AAAA », sans les compteurs du prototype ; 8 résultats par groupe quand un filtre de type est actif dans la palette ; import lancé depuis la page Profil, qui porte la confirmation. Les notifications avec action se mettront en pause au survol et au focus (store en 2.8, hôte en 3.2), pour l'accessibilité. Les règles `.cx-chip` et `.cx-scrim`, définies deux fois, sont à dédoublonner en 3.2 — par : chef de projet
 
 ## Vérifications
