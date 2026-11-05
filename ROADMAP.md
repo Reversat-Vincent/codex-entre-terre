@@ -47,7 +47,8 @@
     > Note : arbitrages en D35. Composants jamais rendus dans un navigateur : à voir aux captures.
   - [x] 2.7b Composants liés au moteur complet : `explainText.ts` (tous les codes, dont `LABEL_CODES`) et `CxWhyPanel`, `CxWeaponCard`, `CxBossTimeline` ; `labels.ts` importe `StageId` et `LoadTarget` du moteur (charge `mid`, pas `medium`) — dev-interface
     > Note : 598 tests ; ajouts `CxFlag`, `CxReadinessStatus` (règles `.cx-status` en double avec `CxReadinessGauge`, à dédoublonner), `src/ui/bossNode.ts`. Pour le widget C (4.3) : `bossNodeData(index.byKey.get(levelKey), store.bossReadiness(levelKey))`, événements `defeat` (cocher les clés du nœud et passer la progression en mode « Boss vaincus »), `why`, `full`, `enableDlc`. Les deux Godfrey se distinguent par le libellé d'étape et la région, à revoir en vérification.
-  - [ ] 2.9 Store `catalogs` (filtres dans l'ordre d'ajout, recherche, tri, page par catalogue ; prédicats des prérequis et des estimations) — dev-logique
+  - [x] 2.9 Store `catalogs` (filtres dans l'ordre d'ajout, recherche, tri, page par catalogue ; prédicats des prérequis et des estimations) — dev-logique — commit `8f653fa`
+    > Note : 627 tests ; registre `src/catalog/registry.ts` (17 catalogues). Choix acceptés : « Inclure les estimations » coché par défaut et propre à chaque catalogue ; tri par défaut sur le nom ; recherche appliquée avant les facettes ; catalogues non masqués par le contenu des critères (la facette Contenu suffit) ; « Effacer » = `clearFilters`.
 - [ ] 3. Coquille et navigation
   - [x] 3.1 Coquille : `App.vue`, routes, navigation latérale et rail, barre supérieure, barre d'onglets, pied de page, progression du chargement, bandeau de stockage, message de mise à jour, notifications, thème, palette de recherche, page introuvable — dev-interface — commit `062e931`
     > Note : vérifiée dans le navigateur (aucune erreur, aucune requête externe). Raccords à brancher : liens externes (`resources` d'`AppSideNav`, `wikiSearchUrl` de la palette) dans `App.vue` après 2.5 ; `CriteriaSlot` à remplacer en 3.2. Arbitrages en D36.
@@ -60,10 +61,10 @@
   - [ ] 4.4 Matrice des faiblesses, plan d'amélioration, calculateur de runes, couverture des données — dev-interface
   - [ ] 4.5 Widget « Rendement des attributs » (D23) : courbes PV, FP, endurance et charge par niveau d'attribut, gain du point suivant, paliers de rendement, position du profil — dev-logique (calcul), dev-interface (widget)
 - [ ] 5. Explorateur
-  - [ ] 5.1 Catalogue générique et catalogue des armes (trois familles) — dev-interface
+  - [ ] 5.1 Vue générique des 17 catalogues (tableau et grille, facettes, colonnes, état vide), catalogue des armes en référence ; inclut le catalogue des boss (ancienne 5.3b) — dev-interface
   - [ ] 5.2 Fiche arme — dev-interface
   - [ ] 5.3a Fiche boss (onglets de rencontre, tuiles, absorption, statuts, butin, « Pour votre profil ») — dev-interface (lancée tôt, indépendante des catalogues ; attend le getter `weaponsAgainst(encounterKey)` du store `analysis`)
-  - [ ] 5.3b Catalogue des boss — dev-interface (avec 5.4)
+  - [x] 5.3b Catalogue des boss — fusionné dans 5.1
   - [ ] 5.4 Autres catalogues et fiches : cendres, armures, talismans, sorts, esprits, objets, lieux, PNJ, origines — dev-interface
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
