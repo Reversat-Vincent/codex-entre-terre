@@ -38,7 +38,8 @@
     > Note : 114 tests ; arbitrages en D30. À reprendre : chemins des actions contre le routeur (3.1) ; coût en FP « 22 (4) » lu comme 22, à valider par contenu-jeu (2.6).
   - [x] 2.5 Moteur, partie 2 : configuration `stages`, `remembrances`, `timeline`, `bossLevel`, `archetypes`, `weaponPools` ; modules `stage`, `score`, `target`, `timeline`, `bossLevel`, `coverage`, `attributeYield`, `encounters` ; store `analysis`, `widgets/registry.ts`, `links.ts`, `externalLinks.ts` (dont la recherche sur le wiki), `wikiText.ts`, tests — dev-logique (opus) — commit `03fb94c`
     > Note : 567 tests. Arbitrages en D37. Codes ajoutés, à écrire dans `explainText.ts` (2.7b), y compris `LABEL_CODES`.
-  - [ ] 2.5b Régions déduites lieu par lieu (le retrait des régions parentes ne s'applique pas entre deux lieux distincts d'une même acquisition) ; table de bénédiction ajoutée à `tables` — dev-donnees
+  - [x] 2.5b Régions déduites lieu par lieu (le retrait des régions parentes ne s'applique pas entre deux lieux distincts d'une même acquisition) ; table de bénédiction ajoutée à `tables` — dev-donnees — commit `0ec7161`
+    > Note : 33 armes récupèrent une région ; une acquisition à plusieurs lieux garde son champ `region` comme groupe à part (hypothèse prudente acceptée).
   - [ ] 2.6 Vérification anticipée du socle (données, persistance, moteur) — verif-masse, contenu-jeu
   - [x] 2.7a Composants de données : `CxScalingChips`, `CxRequirementChips`, `CxDamageChip`, `CxCoverageBar`, `CxReadinessGauge`, `CxProgressThread`, `CxAbsorptionHeatmap`, `CxLineChart`, `CxDataTable` et `useVirtualList`, `CxFacetFilters`, `CxCriteriaChips`, adaptateur `Calc<T>` de `CxValue`, alignement des types de `labels.ts` — dev-interface — commit `b1e5e0b`
     > Note : arbitrages en D35. Composants jamais rendus dans un navigateur : à voir aux captures.
