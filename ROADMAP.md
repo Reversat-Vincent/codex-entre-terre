@@ -61,7 +61,8 @@
 - [ ] 4. Tableau de bord
   - [x] 4.1 Grille de widgets (disposition, réordonner, réduire, retirer, ajouter, plein écran) et `DashboardView` ; pause des notifications au survol et au focus dans `CxToastHost` (API du store en 2.8) — dev-interface — commit `d2dbcf1`
     > Note : contrat d'un corps de widget dans `src/widgets/types.ts`. Arbitrages en D40.
-  - [ ] 4.2 Widget A et sa vue plein écran — dev-interface
+  - [x] 4.2 Widget A et sa vue plein écran — dev-interface
+    > Note : 720 tests. Acceptés : élargissement « style » vers Hybride (ce que compte `analysis.widen`) ; drapeaux d'obtention absents des lignes du tableau (présents sur les cartes et dans « Pourquoi ? »). À revoir en vérification : un profil est dit « configuré » dès qu'un attribut diffère de 10, faute d'indicateur dans les stores (un Wretch réel reste « non configuré »).
   - [x] 4.3 Widget B (origine optimale) et widget C (frise des boss) — dev-interface
     > Note : écarts acceptés (colonne « Adéquation précoce », équilibre dans les tuiles, bouton « Choisir un build cible », toutes les origines sur mobile). Priorités de montée de niveau définies en D42, à calculer en 2.12 et afficher en 4.5.
   - [x] 4.4 Matrice des faiblesses, plan d'amélioration, calculateur de runes, couverture des données — dev-interface
