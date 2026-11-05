@@ -27,6 +27,22 @@ export interface AttributeRow {
   readonly value: number
 }
 
+/** Ligne de la table de bénédiction de l'Arbre-Ombre (page Scadutree Fragment du wiki). */
+export interface BlessingRow {
+  /** Niveau de bénédiction, 0 à 20 (« 12 (Softcap) » est lu 12). */
+  readonly level: number
+  /** Fragments pour passer à ce niveau depuis le précédent. */
+  readonly fragments: number
+  /** Total cumulé de fragments requis pour atteindre ce niveau. */
+  readonly totalFragments: number
+  /** Multiplicateur de dégâts infligés. */
+  readonly damageDealt: number
+  /** Multiplicateur de dégâts reçus. */
+  readonly damageReceived: number
+  /** `true` si la cellule du niveau portait la mention « (Softcap) » : le gain par niveau ralentit après ce palier. */
+  readonly softcap: boolean
+}
+
 /**
  * Table de calcul.
  * @typeParam R Type d'une ligne.
@@ -50,10 +66,15 @@ export interface CalcTables {
   readonly staminaByEndurance: CalcTable<AttributeRow>
   /** Endurance 1 à 99 → charge d'équipement. */
   readonly equipLoadByEndurance: CalcTable<AttributeRow>
+  /** Bénédiction de l'Arbre-Ombre, niveaux 0 à 20 → fragments requis et multiplicateurs de dégâts. */
+  readonly scadutreeBlessing: CalcTable<BlessingRow>
 }
 
-/** Clé d'une table de calcul. */
-export type CalcTableKey = keyof CalcTables
+/**
+ * Clé d'une table de calcul de statistiques (niveaux et attributs).
+ * La bénédiction de l'Arbre-Ombre, de forme différente, n'en fait pas partie : le moteur indexe ces tables par `CalcTableKey`.
+ */
+export type CalcTableKey = Exclude<keyof CalcTables, 'scadutreeBlessing'>
 
 /** Fichier produit `tables`. */
 export interface TablesFile {

@@ -163,7 +163,7 @@ export function removeParents(
 }
 
 /**
- * Régions d'une acquisition : `location` découpé sur ` / `, `region` découpé sur `/`, parents retirés ; équipement de départ ignoré.
+ * Régions d'une acquisition : `location` découpé sur ` / `, `region` découpé sur `/`, parents retirés lieu par lieu ; équipement de départ ignoré.
  * @param ctx Contexte de résolution.
  * @param acquisition Acquisition d'origine.
  * @param index Indice dans `acquisition`.
@@ -180,12 +180,24 @@ export function resolveAcquisition(
 ): AcquisitionRegions {
   if (method === 'starting') return { index, starting: true, values: [], parentsRemoved: [], unresolved: [] }
   const local: RegionNotes = { unresolved: [], prefix: notes.prefix, residues: notes.residues }
-  const found: RegionResolution[] = []
-  for (const part of acquisition.location?.split(' / ') ?? []) found.push(...resolvePart(ctx, part, 'location', local))
-  for (const part of acquisition.region?.split('/') ?? []) found.push(...resolvePart(ctx, part, 'region', local))
+  // Un groupe = un lieu : le retrait des parents ne joue qu'à l'intérieur d'un groupe (D37), jamais entre deux lieux séparés par ` / `.
+  const locationParts = acquisition.location?.split(' / ') ?? []
+  const groups: RegionResolution[][] = locationParts.map((part) => resolvePart(ctx, part, 'location', local))
+  const regionFound = (acquisition.region?.split('/') ?? []).flatMap((part) => resolvePart(ctx, part, 'region', local))
+  // Avec un seul lieu, `region` le précise (même lieu). Avec plusieurs, elle ne se rattache à aucun en particulier : groupe à part.
+  if (groups.length === 1) groups[0]?.push(...regionFound)
+  else if (regionFound.length > 0) groups.push(regionFound)
   notes.unresolved.push(...local.unresolved)
-  const { values, parentsRemoved } = removeParents(ctx, found)
-  return { index, starting: false, values, parentsRemoved, unresolved: local.unresolved }
+  const values: RegionResolution[] = []
+  const parentsRemoved: string[] = []
+  for (const group of groups) {
+    const reduced = removeParents(ctx, group)
+    for (const v of reduced.values) if (!values.some((u) => u.value === v.value)) values.push(v)
+    for (const p of reduced.parentsRemoved) if (!parentsRemoved.includes(p)) parentsRemoved.push(p)
+  }
+  // Une valeur retirée comme parente dans un lieu mais gardée dans un autre n'est pas un retrait de l'acquisition.
+  const kept = new Set(values.map((v) => v.value))
+  return { index, starting: false, values, parentsRemoved: parentsRemoved.filter((p) => !kept.has(p)), unresolved: local.unresolved }
 }
 
 /**

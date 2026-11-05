@@ -2,7 +2,7 @@
 // Références : docs/architecture.md § 3.2 (`tables`) et § 3.5 ; colonne `Increments` ignorée, table de la page « Stamina » (incomplète) non utilisée (décision C2).
 
 import type { MechanicRaw } from '../../src/data/types/mechanics.ts'
-import type { AttributeRow, CalcTable, CalcTables, LevelCostRow, TableSource } from '../../src/data/types/tables.ts'
+import type { AttributeRow, BlessingRow, CalcTable, CalcTables, LevelCostRow, TableSource } from '../../src/data/types/tables.ts'
 import { assertNoFailures } from './checks.ts'
 
 /** Niveau maximal de la table des coûts (page Level du wiki). */
@@ -93,6 +93,75 @@ function attributeTable(
   }
 }
 
+/** Niveau maximal de la bénédiction de l'Arbre-Ombre. */
+export const BLESSING_MAX = 20
+
+/**
+ * Lit la table de bénédiction de l'Arbre-Ombre (page Scadutree Fragment, section « Scadutree Blessing Level »).
+ * Contrôles : niveaux 0 à 20 continus, fragments cumulés strictement croissants, « 12 (Softcap) » lu 12 avec `softcap: true`.
+ * @param topics Pages de `mechanics.json`.
+ * @param failures Écarts, complétés en place.
+ * @returns La table, ou `null` en cas d'écart.
+ */
+function blessingTable(topics: readonly MechanicRaw[], failures: string[]): CalcTable<BlessingRow> | null {
+  const title = 'Scadutree Fragment'
+  const section = 'Scadutree Blessing Level'
+  const cols = {
+    level: 'Scadutree Blessing Level',
+    fragments: 'Scadutree Fragments Required',
+    totalFragments: 'Total Fragments Required',
+    damageDealt: 'Damage Dealt Multiplier',
+    damageReceived: 'Damage Received Multiplier',
+    softcap: 'Scadutree Blessing Level',
+  } as const
+  const source: TableSource = { file: 'mechanics', title, path: `topics[title="${title}"].sections["${section}"].tables[0]` }
+  const where = `${title} (${source.path})`
+  const raw = topics.find((t) => t.title === title)?.sections[section]?.tables?.[0]
+  if (raw === undefined) {
+    failures.push(`mechanics : table de bénédiction absente (${source.path})`)
+    return null
+  }
+  if (raw.length !== BLESSING_MAX + 1) {
+    failures.push(`${where} : ${raw.length} lignes au lieu de ${BLESSING_MAX + 1}`)
+    return null
+  }
+  const rows: BlessingRow[] = []
+  const before = failures.length
+  raw.forEach((line, i) => {
+    if (Array.isArray(line)) {
+      failures.push(`${where} : ligne ${i + 1} en tableau, objet attendu`)
+      return
+    }
+    const r = line as Readonly<Record<string, string | number>>
+    const cell = r[cols.level]
+    const softcap = typeof cell === 'string' && /\(Softcap\)/i.test(cell)
+    const level = typeof cell === 'number' ? cell : typeof cell === 'string' ? Number.parseInt(cell, 10) : Number.NaN
+    const nums = [cols.fragments, cols.totalFragments, cols.damageDealt, cols.damageReceived].map((c) => r[c])
+    if (Number.isNaN(level) || nums.some((n) => typeof n !== 'number')) {
+      failures.push(`${where} : ligne ${i + 1}, valeur non numérique ${JSON.stringify(r)}`)
+      return
+    }
+    const [fragments, totalFragments, damageDealt, damageReceived] = nums as number[]
+    rows.push({
+      level,
+      fragments: fragments as number,
+      totalFragments: totalFragments as number,
+      damageDealt: damageDealt as number,
+      damageReceived: damageReceived as number,
+      softcap,
+    })
+  })
+  if (failures.length > before) return null
+  rows.forEach((r, i) => {
+    if (r.level !== i) failures.push(`${where} : niveau ${r.level} à la ligne ${i + 1} (suite 0–${BLESSING_MAX} rompue)`)
+    const prev = rows[i - 1]
+    if (prev !== undefined && r.totalFragments <= prev.totalFragments) {
+      failures.push(`${where} : fragments cumulés non croissants au niveau ${r.level} (${prev.totalFragments} puis ${r.totalFragments})`)
+    }
+  })
+  return { source, columns: cols, rows }
+}
+
 /**
  * Extrait les tables de calcul et contrôle leur continuité (niveaux 1–713, attributs 1–99).
  * @param topics Pages de `mechanics.json`.
@@ -110,7 +179,8 @@ export function extractCalcTables(topics: readonly MechanicRaw[]): CalcTables {
   const fpByMind = attributeTable(topics, 'Mind', 'Mind', 'FP', failures)
   const staminaByEndurance = attributeTable(topics, 'Endurance', 'Endurance', 'Stamina', failures)
   const equipLoadByEndurance = attributeTable(topics, 'Endurance', 'Endurance', 'Equip Load', failures)
-  assertNoFailures('tables continues (niveaux 1–713, attributs 1–99)', failures)
+  const scadutreeBlessing = blessingTable(topics, failures)
+  assertNoFailures('tables continues (niveaux 1–713, attributs 1–99, bénédiction 0–20)', failures)
   const levelCosts: CalcTable<LevelCostRow> = {
     source: (levelLocated as Located).source,
     columns: levelCols,
@@ -127,5 +197,6 @@ export function extractCalcTables(topics: readonly MechanicRaw[]): CalcTables {
     fpByMind: fpByMind as CalcTable<AttributeRow>,
     staminaByEndurance: staminaByEndurance as CalcTable<AttributeRow>,
     equipLoadByEndurance: equipLoadByEndurance as CalcTable<AttributeRow>,
+    scadutreeBlessing: scadutreeBlessing as CalcTable<BlessingRow>,
   }
 }

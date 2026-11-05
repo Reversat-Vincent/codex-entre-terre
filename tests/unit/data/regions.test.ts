@@ -2,7 +2,7 @@
 
 import { describe, expect, it } from 'vitest'
 import { KNOWN_REGIONS } from '../../../scripts/data/knownRegions.ts'
-import { buildRegionContext, removeParents, resolvePart } from '../../../scripts/data/regions.ts'
+import { buildRegionContext, removeParents, resolveAcquisition, resolvePart } from '../../../scripts/data/regions.ts'
 import type { RegionNotes } from '../../../scripts/data/regions.ts'
 import type { LocationRaw } from '../../../src/data/types/locations.ts'
 import type { NpcRaw } from '../../../src/data/types/npcs.ts'
@@ -24,6 +24,12 @@ describe('résolution des régions', () => {
     expect(values(['Mt. Gelmir', 'Volcano Manor'])).toEqual(['Volcano Manor'])
     expect(values(['Altus Plateau', 'Mt. Gelmir'])).toEqual(['Mt. Gelmir'])
     expect(values(['Limgrave', 'Stormveil Castle'])).toEqual(['Stormveil Castle'])
+  })
+
+  it('retire les parents lieu par lieu, jamais entre deux lieux d’une acquisition (D37)', () => {
+    const a = { location: "Perfumer's Grotto / Volcano Manor (Mt. Gelmir)", region: 'Altus Plateau' } as Parameters<typeof resolveAcquisition>[1]
+    const r = resolveAcquisition(ctx, a, 0, null, notes())
+    expect(r.values.map((v) => v.value)).toEqual(['Altus Plateau', 'Volcano Manor'])
   })
 
   it('applique les règles suffixe, préfixe, lieu et PNJ', () => {
