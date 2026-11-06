@@ -5,6 +5,8 @@ const PORT = 4173
 
 export default defineConfig({
   testDir: 'tests/e2e',
+  // L'audit de mise en page est long : il est lancé à part (`npm run e2e:audit`, playwright.audit.config.ts).
+  testIgnore: ['**/audit.spec.ts'],
   // Vérifie que dist/ est compilé avant de lancer les tests.
   globalSetup: './tests/e2e/global-setup.ts',
   outputDir: '.cache/playwright/results',
