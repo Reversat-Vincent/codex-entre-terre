@@ -165,4 +165,6 @@ const info = computed(() => SHEET_KINDS[props.kind])
 @media (max-width: 767px) {
   .sh-page { padding: var(--space-4); }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) ; le remplissage vertical agrandit la zone, la marge négative annule le surplus de hauteur. */
+@media (max-width: 767px) { .sh-crumb a { padding: calc((var(--size-cible) - 1lh) / 2) var(--space-3); margin: calc((var(--size-cible) - 1lh) / -2) calc(var(--space-3) * -1); } }
 </style>

@@ -180,4 +180,6 @@ const name = computed(() => props.row.derived.displayName)
 .cat-facts dt { font-weight: 600; }
 .cat-facts dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .cat-card .cat-two { font-size: inherit; }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { .cx a.cx-wcard-name {  display: inline-block; min-width: var(--size-cible); padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

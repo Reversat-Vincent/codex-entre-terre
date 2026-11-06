@@ -263,4 +263,6 @@ a.ml-name:hover { color: var(--gold-text); text-decoration: underline; }
   .ml-item { grid-template-columns: auto minmax(0, 1fr); padding: var(--space-3); }
   .ml-actions { grid-column: 1 / -1; justify-content: flex-end; border-top: 1px solid var(--line); padding-top: var(--space-2); }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { a.ml-name {  display: inline-block; min-width: var(--size-cible); padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

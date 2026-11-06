@@ -5,14 +5,13 @@
 import { computed, watch } from 'vue'
 import type { ComputedRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogRow } from '../../../catalog/registry.ts'
 import type { RequirementCheck } from '../../../engine/requirements.ts'
 import { useDatasets } from '../../../composables/useDatasets.ts'
 import { datasetsOfKind } from '../../../data/datasets.ts'
 import type { EntityKind, EntityRef, FileKey } from '../../../data/datasets.ts'
 import { useAnalysisStore } from '../../../stores/analysis.ts'
 import { useCompareStore } from '../../../stores/compare.ts'
-import { useCriteriaStore } from '../../../stores/criteria.ts'
 import { useDataStore } from '../../../stores/data.ts'
 import type { FailedFile } from '../../../stores/data.ts'
 import { formatCompareQuery, parseCompareQuery } from '../../../ui/compare.ts'
@@ -41,8 +40,6 @@ export interface CompareState {
   readonly kind: ComputedRef<EntityKind | null>
   readonly columns: ComputedRef<CompareColumn[]>
   readonly rows: ComputedRef<readonly CompareRowSpec[]>
-  /** Sans effet sur les prérequis (lus dans `requirementsOf`) : conservé tant que la vue le transmet encore au tableau. */
-  readonly profile: ComputedRef<ProfileContext>
   /** Fichiers en échec, nommés pour le message d'erreur. */
   readonly failed: ComputedRef<FailedFile[]>
   retry(): Promise<void>
@@ -65,7 +62,6 @@ export function useCompare(): CompareState {
   const compare = useCompareStore()
   const data = useDataStore()
   const analysis = useAnalysisStore()
-  const criteria = useCriteriaStore()
 
   const kind = computed(() => compare.kind)
 
@@ -128,12 +124,5 @@ export function useCompare(): CompareState {
     return compareRows(k, { withScore: columns.value.some((c) => c.score !== undefined), withStage: columns.value.some((c) => c.stage !== undefined) })
   })
 
-  const profile = computed(
-    (): ProfileContext => ({
-      attributes: criteria.criteria.character.attributes,
-      hands: criteria.criteria.style.hands === 2 ? 'two' : 'one',
-    }),
-  )
-
-  return { kind, columns, rows, profile, failed: datasets.failed, retry: datasets.retry }
+  return { kind, columns, rows, failed: datasets.failed, retry: datasets.retry }
 }

@@ -3,7 +3,7 @@
 
 import type { StorageMode } from '../../../persistence/bridge.ts'
 import type { ImportSummary } from '../../../persistence/importer.ts'
-import type { ValidationIssue } from '../../../persistence/model.ts'
+import type { QuestsSlice, ValidationIssue } from '../../../persistence/model.ts'
 import { formatInt } from '../../../ui/format.ts'
 
 /** Nombre maximal d'écarts du validateur détaillés dans un refus d'import (le message général dit déjà le reste). */
@@ -69,7 +69,7 @@ export function describeStorage(mode: StorageMode): StorageReport {
     tone: 'info',
     icon: 'check-c',
     implications: [
-      'Profils, Ma liste, boss vaincus, disposition du tableau de bord, préférences et recherches récentes restent sur cet appareil.',
+      'Profils, Ma liste, boss vaincus, étapes de quête cochées, disposition du tableau de bord, préférences et recherches récentes restent sur cet appareil.',
       'Rien n’est envoyé sur un serveur et rien n’est synchronisé avec vos autres appareils : utilisez l’export et l’import pour les déplacer.',
       'Vider les données du site dans le navigateur efface aussi ces réglages : pensez à exporter une sauvegarde.',
     ],
@@ -91,6 +91,20 @@ export interface CurrentCounts {
   pins: number
   defeatedBosses: number
   recentSearches: number
+  /** PNJ dont au moins une étape de quête est cochée. */
+  questNpcs: number
+  /** Étapes de quête cochées, tous PNJ confondus. */
+  questSteps: number
+}
+
+/**
+ * Compte les PNJ suivis et les étapes cochées d'une tranche « quêtes » (même définition que le résumé d'import : un PNJ sans étape ne compte pas).
+ * @param slice Tranche « quêtes » du store.
+ * @returns Le nombre de PNJ ayant au moins une étape cochée et le nombre total d'étapes cochées.
+ */
+export function questTotals(slice: QuestsSlice): { questNpcs: number; questSteps: number } {
+  const lists = Object.values(slice).filter((steps) => steps.length > 0)
+  return { questNpcs: lists.length, questSteps: lists.reduce((sum, steps) => sum + steps.length, 0) }
 }
 
 /**
@@ -105,6 +119,8 @@ export function compareRows(current: CurrentCounts, summary: ImportSummary): Com
     row('Profils enregistrés', current.profiles, summary.profiles),
     row('Éléments de Ma liste', current.pins, summary.pins),
     row('Boss vaincus', current.defeatedBosses, summary.defeatedBosses),
+    row('PNJ avec des étapes de quête cochées', current.questNpcs, summary.questNpcs),
+    row('Étapes de quête cochées', current.questSteps, summary.questSteps),
     row('Recherches récentes', current.recentSearches, summary.recentSearches),
   ]
 }

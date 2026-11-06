@@ -7,12 +7,13 @@ import { useAppStore } from '../../../stores/app.ts'
 import { useCriteriaStore } from '../../../stores/criteria.ts'
 import { usePinsStore } from '../../../stores/pins.ts'
 import { useProfilesStore } from '../../../stores/profiles.ts'
+import { useQuestsStore } from '../../../stores/quests.ts'
 import { useSearchStore } from '../../../stores/search.ts'
 import { useToastsStore } from '../../../stores/toasts.ts'
 import CxButton from '../../ds/CxButton.vue'
 import CxDialog from '../../ds/CxDialog.vue'
 import CxNote from '../../ds/CxNote.vue'
-import { compareRows, formatDateTime, shownIssues } from './profileModel.ts'
+import { compareRows, formatDateTime, questTotals, shownIssues } from './profileModel.ts'
 import ProfileSection from './ProfileSection.vue'
 
 /**
@@ -27,6 +28,7 @@ const app = useAppStore()
 const profiles = useProfilesStore()
 const pins = usePinsStore()
 const criteria = useCriteriaStore()
+const quests = useQuestsStore()
 const search = useSearchStore()
 const toasts = useToastsStore()
 
@@ -50,6 +52,7 @@ const rows = computed(() =>
           pins: pins.items.length,
           defeatedBosses: criteria.criteria.progress.defeated.length,
           recentSearches: search.recent.length,
+          ...questTotals(quests.state),
         },
         preview.value.summary,
       )

@@ -216,7 +216,7 @@ const limits = computed(() => (props.requirements?.explanation.limits ?? []).map
 </template>
 
 <style scoped>
-.wp-table-wrap { overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.wp-table-wrap { position: relative; overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .wp-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; line-height: 18px; }
 .wp-table th, .wp-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; text-align: left; }
 .wp-table thead th { background: var(--surface-raised); border-bottom-color: var(--line-strong); color: var(--ink-2); font: 600 12px/16px var(--font-sans); }

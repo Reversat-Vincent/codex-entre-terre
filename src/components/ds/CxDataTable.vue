@@ -3,6 +3,7 @@
 import { computed, nextTick, ref, useId, watch } from 'vue'
 import { PAGE_SIZE, paginate } from '../../catalog/paginate.ts'
 import { sortRank, sortRows, toggleSort, type SortAccessors, type SortKey } from '../../catalog/sort.ts'
+import { useBreakpoint } from '../../composables/useBreakpoint.ts'
 import { useVirtualList, type VirtualExtra } from '../../composables/useVirtualList.ts'
 import { formatInt } from '../../ui/format.ts'
 import CxButton from './CxButton.vue'
@@ -10,8 +11,11 @@ import CxIcon from './CxIcon.vue'
 import CxValue from './CxValue.vue'
 import type { TableColumn } from './types.ts'
 
+/** Hauteur de cible tactile (`--size-cible`), en pixels : le CSS ne peut pas la donner à la virtualisation. */
+const TOUCH_TARGET = 44
+
 /**
- * Tableau de données (README du design system, composant DataTable ; notes `spec-full` et `spec-catalog`). Lignes de 34 px, chiffres tabulaires.
+ * Tableau de données (README du design system, composant DataTable ; notes `spec-full` et `spec-catalog`). Lignes de 34 px (44 px sous 768 px, cible tactile), chiffres tabulaires.
  * - Tri : clic = tri principal, Maj + clic = tri secondaire ; le rang s'affiche dans `.cx-sort-rank` dès qu'il y a plusieurs critères ;
  *   `aria-sort` sur l'en-tête. Le tri et les `null` en dernier (quel que soit le sens) sont ceux de `src/catalog/sort.ts`.
  * - Cases : `CxValue` en mode cellule (`null` = « Non documenté », case hachurée) sauf si le slot `cell-<id>` fournit le contenu.
@@ -96,7 +100,10 @@ const virtual = computed(() => shown.value.length > props.virtualizeAbove)
 const expandedIndex = computed(() => (expanded.value === null ? -1 : shown.value.findIndex((r) => props.rowKey(r) === expanded.value)))
 const extra = computed<VirtualExtra | null>(() => (expandedIndex.value < 0 ? null : { index: expandedIndex.value, height: detailHeight.value }))
 const count = computed(() => shown.value.length)
-const list = useVirtualList(count, props.rowHeight, extra)
+// Sous 768 px, une ligne fait au moins 44 px (cible tactile des liens et boutons de la ligne) ; la virtualisation suit cette hauteur.
+const { isMobile } = useBreakpoint()
+const effectiveRowHeight = computed(() => (isMobile.value ? Math.max(props.rowHeight, TOUCH_TARGET) : props.rowHeight))
+const list = useVirtualList(count, effectiveRowHeight, extra)
 
 const windowStart = computed(() => (virtual.value ? list.window.value.start : 0))
 const visibleRows = computed(() => (virtual.value ? shown.value.slice(list.window.value.start, list.window.value.end) : shown.value))
@@ -226,7 +233,7 @@ function goTo(next: number): void {
           >
             <tr
               :class="{ 'is-selected': selected.has(rowKey(row)), 'is-open': expanded === rowKey(row), 'is-clickable': expandable }"
-              :style="{ height: `${rowHeight}px` }"
+              :style="{ height: `${effectiveRowHeight}px` }"
               :aria-rowindex="virtual ? pageInfo.from + windowStart + i + 1 : undefined"
               @click="onRowClick($event, row)"
             >
@@ -346,7 +353,7 @@ function goTo(next: number): void {
 .cx-dtable { display: grid; gap: var(--space-2); min-width: 0; }
 /* `isolation` : le z-index de l'en-tête collant (`--z-sticky`) reste dans le tableau. Sans cela, il rivalise avec la barre du haut, qui a le même
    niveau : l'en-tête, plus tardif dans la page, la recouvrirait au défilement. */
-.cx-tbl-wrap { isolation: isolate; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.cx-tbl-wrap { position: relative; isolation: isolate; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .cx-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; line-height: 18px; }
 .cx-tbl th { position: sticky; top: 0; z-index: var(--z-sticky); padding: 8px 10px; border-bottom: 1px solid var(--line-strong); background: var(--surface-raised); color: var(--ink-2); font: 600 12px/16px var(--font-sans); text-align: left; white-space: nowrap; vertical-align: bottom; }
 .cx-tbl th.num { text-align: right; }
@@ -372,4 +379,14 @@ function goTo(next: number): void {
 .cx-tbl tr.cx-tbl-spacer td, .cx-tbl tr.cx-tbl-spacer:hover td { height: inherit; padding: 0; border: 0; background: transparent; }
 .cx-tbl-empty { padding: var(--space-4); color: var(--ink-2); }
 .cx-tbl-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); color: var(--ink-3); font-size: 12px; line-height: 16px; }
+/* Mobile : lignes de 44 px (hauteur posée par le composant) ; les liens, boutons de tri et boutons de dépliage de la ligne atteignent 44 px de haut.
+   Le remplissage vertical agrandit la zone de frappe, la marge négative laisse la mise en page inchangée. */
+@media (max-width: 767px) {
+  .cx-tbl th { height: var(--size-cible); padding-block: 0; vertical-align: middle; }
+  .cx-th-btn, .cx a.cx-cell-name { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); }
+  .cx a.cx-cell-name { display: inline-block; min-width: var(--size-cible); }
+  .cx-th-btn { min-width: var(--size-cible); justify-content: center; }
+  .cx-tbl-toggle { position: relative; }
+  .cx-tbl-toggle::after { content: ''; position: absolute; top: 50%; left: 50%; width: var(--size-cible); height: var(--size-cible); transform: translate(-50%, -50%); }
+}
 </style>

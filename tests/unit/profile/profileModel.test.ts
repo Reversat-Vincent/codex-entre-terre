@@ -1,6 +1,6 @@
 // Tests de la logique d'affichage de la page Profil : date et heure, état du stockage, comparatif d'import, écarts détaillés.
 import { describe, expect, it } from 'vitest'
-import { MAX_ISSUES_SHOWN, compareRows, describeStorage, formatDateTime, shownIssues } from '../../../src/components/domain/profile/profileModel.ts'
+import { MAX_ISSUES_SHOWN, compareRows, describeStorage, formatDateTime, questTotals, shownIssues } from '../../../src/components/domain/profile/profileModel.ts'
 import type { ImportSummary } from '../../../src/persistence/importer.ts'
 import type { ValidationIssue } from '../../../src/persistence/model.ts'
 
@@ -21,6 +21,7 @@ describe('describeStorage', () => {
     const report = describeStorage('ok')
     expect(report.tone).toBe('info')
     expect(report.implications.length).toBeGreaterThan(0)
+    expect(report.implications.join(' ')).toContain('étapes de quête cochées')
   })
   it('stockage indisponible : avertissement qui dit que rien n’est conservé', () => {
     const report = describeStorage('unavailable')
@@ -42,14 +43,30 @@ describe('describeStorage', () => {
 })
 
 describe('compareRows', () => {
-  const summary: ImportSummary = { exportedAt: null, appVersion: null, schemaVersion: 1, migratedFrom: null, profiles: 3, pins: 1200, defeatedBosses: 0, recentSearches: 8 }
+  const summary: ImportSummary = { exportedAt: null, appVersion: null, schemaVersion: 1, migratedFrom: null, profiles: 3, pins: 1200, defeatedBosses: 0, recentSearches: 8, questNpcs: 5, questSteps: 42 }
   it('une ligne par famille de données, avec les nombres formatés', () => {
-    const rows = compareRows({ profiles: 1, pins: 4, defeatedBosses: 2, recentSearches: 0 }, summary)
-    expect(rows.map((r) => r.label)).toEqual(['Profils enregistrés', 'Éléments de Ma liste', 'Boss vaincus', 'Recherches récentes'])
+    const rows = compareRows({ profiles: 1, pins: 4, defeatedBosses: 2, recentSearches: 0, questNpcs: 1, questSteps: 3 }, summary)
+    expect(rows.map((r) => r.label)).toEqual([
+      'Profils enregistrés',
+      'Éléments de Ma liste',
+      'Boss vaincus',
+      'PNJ avec des étapes de quête cochées',
+      'Étapes de quête cochées',
+      'Recherches récentes',
+    ])
     expect(rows[0]).toMatchObject({ current: '1', imported: '3' })
     // Séparateur de milliers : espace fine insécable (format.ts).
     expect(rows[1]?.imported).toBe('1\u202f200')
     expect(rows[2]).toMatchObject({ current: '2', imported: '0' })
+    expect(rows[3]).toMatchObject({ current: '1', imported: '5' })
+    expect(rows[4]).toMatchObject({ current: '3', imported: '42' })
+  })
+})
+
+describe('questTotals', () => {
+  it('compte les PNJ et les étapes cochées, sans les PNJ vides', () => {
+    expect(questTotals({ a: ['x', 'y'], b: [], c: ['z'] })).toEqual({ questNpcs: 2, questSteps: 3 })
+    expect(questTotals({})).toEqual({ questNpcs: 0, questSteps: 0 })
   })
 })
 

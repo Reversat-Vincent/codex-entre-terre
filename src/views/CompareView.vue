@@ -22,7 +22,7 @@ import { useToastsStore } from '../stores/toasts.ts'
 const compare = useCompareStore()
 const toasts = useToastsStore()
 const router = useRouter()
-const { kind, columns, rows, profile, failed, retry } = useCompare()
+const { kind, columns, rows, failed, retry } = useCompare()
 usePageTitle('Comparateur')
 
 const catalog = computed(() => (kind.value === null ? null : catalogOfKind(kind.value)))
@@ -117,7 +117,6 @@ function onEmptyAction(id: string): void {
         :columns="columns"
         :rows="rows"
         :catalog="catalog"
-        :profile="profile"
         @remove="(ref) => compare.remove(ref as EntityRef)"
       />
       <CxNote

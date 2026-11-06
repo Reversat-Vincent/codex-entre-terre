@@ -87,4 +87,6 @@ const bars = computed(() => lines.value.map((l) => l.bar))
 .wd-cov-list dd { margin: 0; }
 .wd-cov-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--line); font-size: 12px; line-height: 16px; }
 .wd-cov-why :deep(.cx-why) { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); padding: var(--space-3); }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { .wd-cov-details summary { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

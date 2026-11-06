@@ -45,4 +45,6 @@ const model = defineModel<number>({ required: true })
 .cx-range-field { display: flex; align-items: center; gap: var(--space-2); min-width: 0; }
 .cx-range-field > .cx-range { flex: 1 1 auto; min-width: 0; }
 .cx-range-value { flex: none; }
+/* Mobile : le curseur occupe 44 px de haut (cible tactile) ; la glissière reste centrée. */
+@media (max-width: 767px) { .cx-range { height: var(--size-cible); } }
 </style>

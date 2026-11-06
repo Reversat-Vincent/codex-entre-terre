@@ -2,18 +2,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useDataStore } from '../../stores/data.ts'
+import { formatDate } from '../../ui/format.ts'
 
 /**
  * Pied de page (cahier des charges § 6, architecture § 10.1). Les deux sources sont des liens externes (nouvel onglet, `noopener`) ;
- * la date d'extraction (`retrieved`, AAAA-MM-JJ) est réécrite en JJ/MM/AAAA et n'apparaît qu'une fois le manifeste lu.
+ * la date d'extraction (`retrieved`, AAAA-MM-JJ) est réécrite en JJ/MM/AAAA par `formatDate` et n'apparaît qu'une fois le manifeste lu.
  */
 const data = useDataStore()
 
-const retrieved = computed(() => {
-  const raw = data.manifest?.retrieved
-  const match = raw ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw) : null
-  return match ? `${match[3]}/${match[2]}/${match[1]}` : null
-})
+const retrieved = computed(() => formatDate(data.manifest?.retrieved, 'short'))
 </script>
 
 <template>

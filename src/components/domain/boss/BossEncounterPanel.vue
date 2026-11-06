@@ -41,7 +41,7 @@ const hasRunes = computed(() => (enc.value?.runes_values.length ?? 0) > 0)
 const dealt = computed(() => dealtChips(enc.value?.damage_types_dealt))
 const facts = computed(() => combatFacts(enc.value))
 const notes = computed(() => notesFor(noteGroups(props.boss.fight_notes), enc.value))
-const stage = computed(() => storyStage(props.boss, props.model.key))
+const stage = computed(() => storyStage(analysis.stageOfEncounter(props.model.key)))
 const flags = computed(() => bossFlags(props.boss))
 const hasCombatData = computed(() => enc.value !== null && (enc.value.hp_values.length > 0 || enc.value.runes_values.length > 0 || hasWeaknesses.value))
 
@@ -254,4 +254,6 @@ async function openWhy(explanation: Explanation, subject: string): Promise<void>
 @media (max-width: 1279px) {
   .main { flex-basis: 100%; }
 }
+/* Mobile : le lien seul sur sa ligne fait 44 px de haut (`--size-cible`). */
+@media (max-width: 767px) { .story-link a { display: inline-block; min-height: var(--size-cible); line-height: var(--size-cible); } }
 </style>

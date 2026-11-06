@@ -53,7 +53,12 @@ const prefs = usePreferencesStore()
 const profiles = useProfilesStore()
 const analysis = useAnalysisStore()
 const data = useDataStore()
-const { isMobile } = useBreakpoint()
+const { isMobile, isDesktop } = useBreakpoint()
+/**
+ * Sous 1280 px, les filtres ne tiennent plus à côté du tableau (à 768 px il ne resterait que 450 px pour les colonnes) : ils passent dans une feuille,
+ * en bas sur mobile, en tiroir à gauche sur tablette, comme le panneau de critères.
+ */
+const filtersInSheet = computed(() => !isDesktop.value)
 
 const key = computed<CatalogKey>(() => {
   const query = route.query.famille ?? route.query.type
@@ -252,7 +257,7 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
       class="v-catalog-layout"
     >
       <aside
-        v-if="!isMobile"
+        v-if="!filtersInSheet"
         class="v-catalog-facets"
         aria-label="Filtres"
       >
@@ -272,7 +277,8 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
         aria-label="Résultats"
       >
         <CxButton
-          v-if="isMobile"
+          v-if="filtersInSheet"
+          class="v-catalog-filters-btn"
           icon="filter"
           :pressed="false"
           aria-haspopup="dialog"
@@ -349,9 +355,10 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
     </div>
 
     <CxSheet
-      v-if="isMobile"
+      v-if="filtersInSheet"
       v-model="filtersOpen"
       title="Filtres"
+      :side="isMobile ? 'bottom' : 'left'"
     >
       <CatalogFacets :catalog="key" />
       <template #footer>
@@ -380,7 +387,11 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
 .v-catalog-fhead > span { display: inline-flex; align-items: center; gap: 6px; }
 .v-catalog-fhead .cx-muted { font-size: 12px; font-weight: 400; }
 .v-catalog-results { flex: 1 1 0; display: grid; gap: var(--space-3); min-width: 0; }
+/* Le bouton « Filtres » occupe toute la largeur sur mobile ; sur tablette, il garde sa taille. */
+@media (min-width: 768px) { .v-catalog-filters-btn { justify-self: start; } }
 @media (max-width: 767px) {
   .v-catalog { padding: var(--space-4) var(--space-3) var(--space-5); }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) ; le remplissage vertical agrandit la zone, la marge négative annule le surplus de hauteur. */
+@media (max-width: 767px) { .v-catalog-crumb a { padding: calc((var(--size-cible) - 1lh) / 2) var(--space-3); margin: calc((var(--size-cible) - 1lh) / -2) calc(var(--space-3) * -1); } }
 </style>

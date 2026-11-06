@@ -220,9 +220,6 @@ function toggleCompare(): void {
 .wp-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--ink-3); font-size: 12px; line-height: 16px; }
 .wp-cols { display: grid; gap: var(--space-5); align-items: start; min-width: 0; }
 .wp-main, .wp-side { display: grid; gap: var(--space-4); min-width: 0; }
-/* Une info-bulle fermée (`visibility: hidden`) garde sa boîte absolue : alignée à gauche d'un badge près du bord droit, elle dépasse de 185 à 197 px
-   et fait défiler la page à l'horizontale, à toutes les largeurs. Fermée, elle ne prend plus de place ; ouverte, elle reste telle que `CxTooltip` la dessine. */
-.wp-page :deep(.cx-tip-body:not(.is-open)) { display: none; }
 @media (min-width: 1100px) {
   .wp-cols { grid-template-columns: minmax(0, 1fr) 340px; }
   .wp-side { position: sticky; top: calc(var(--size-topbar) + var(--space-4)); }
@@ -230,4 +227,6 @@ function toggleCompare(): void {
 @media (max-width: 767px) {
   .wp-page { padding: var(--space-4); }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) ; le remplissage vertical agrandit la zone, la marge négative annule le surplus de hauteur. */
+@media (max-width: 767px) { .wp-crumb a { padding: calc((var(--size-cible) - 1lh) / 2) var(--space-3); margin: calc((var(--size-cible) - 1lh) / -2) calc(var(--space-3) * -1); } }
 </style>

@@ -97,4 +97,9 @@ const rows = computed((): DropRow[] =>
 .sh-inv { display: grid; gap: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--line); }
 .sh-inv ul { display: grid; gap: var(--space-1); }
 .sh-inv li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: 13px; line-height: 19px; color: var(--ink-2); }
+/* Mobile : chaque ligne fait 44 px au moins (`--size-cible`), sans espace entre deux zones de frappe. */
+@media (max-width: 767px) {
+  .sh-inv ul { gap: 0; }
+  .sh-inv li { min-height: var(--size-cible); }
+}
 </style>

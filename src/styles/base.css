@@ -44,7 +44,8 @@ body { margin: 0; }
 .cx-muted { color: var(--ink-3); }
 .cx-gold { color: var(--gold-text); }
 .cx-label { font: 600 12px/16px var(--font-sans); letter-spacing: .01em; color: var(--ink-3); }
-/* Texte réservé aux lecteurs d'écran. */
+/* Texte réservé aux lecteurs d'écran. Il est en position absolue : dans un conteneur défilant (tableau large), il doit avoir ce conteneur pour bloc
+   conteneur (`position: relative` sur le conteneur), sinon sa position, hors de la zone visible, élargit la page entière. */
 .cx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Valeur non documentée (`null`) ---------- */

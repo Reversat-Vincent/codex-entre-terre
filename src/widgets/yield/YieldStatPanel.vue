@@ -276,4 +276,6 @@ const nextText = computed(() => {
 .wd-yp-details summary { cursor: pointer; color: var(--ink-2); font-weight: 600; }
 .wd-yp-details[open] summary { margin-bottom: var(--space-2); }
 .wd-yp-quote { margin: 0; padding-left: var(--space-3); border-left: 2px solid var(--line-strong); color: var(--ink-2); font-style: italic; }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { .wd-yp-details summary { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

@@ -83,4 +83,6 @@ const blocks = computed(() => parseWikiLines(props.lines, props.mode))
 .cx .wiki-list > li::marker { color: var(--ink-3); }
 .cx a.wiki-ref { color: var(--gold-text); text-decoration: underline dotted; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .cx a.wiki-ref:hover { text-decoration-style: solid; }
+/* Mobile : un lien qui forme à lui seul une puce ou un paragraphe fait 44 px (`--size-cible`) ; un lien au milieu d'une phrase reste dans la ligne (cas « en ligne » de WCAG 2.5.8). */
+@media (max-width: 767px) { .cx a.wiki-ref:only-child { display: inline-block; min-width: var(--size-cible); min-height: var(--size-cible); line-height: var(--size-cible); } }
 </style>

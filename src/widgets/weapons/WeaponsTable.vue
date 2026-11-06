@@ -13,7 +13,6 @@ import CxRequirementChips from '../../components/ds/CxRequirementChips.vue'
 import CxValue from '../../components/ds/CxValue.vue'
 import CxWhyPanel from '../../components/ds/CxWhyPanel.vue'
 import type { TableColumn } from '../../components/ds/types.ts'
-import type { ProfileContext } from '../../catalog/registry.ts'
 import { stageIndex } from '../../engine/config/stages.ts'
 import type { ScoredWeapon } from '../../engine/score.ts'
 import { useAnalysisStore } from '../../stores/analysis.ts'
@@ -59,10 +58,6 @@ const pins = usePinsStore()
 const compare = useCompareStore()
 const actions = useWeaponActions()
 
-const profile = computed<ProfileContext>(() => ({
-  attributes: criteria.criteria.character.attributes,
-  hands: criteria.criteria.style.hands === 2 ? 'two' : 'one',
-}))
 const configured = computed(() => isProfileConfigured(criteria.criteria.character.attributes))
 const currentStage = computed(() => analysis.stage.value)
 
@@ -232,7 +227,6 @@ const rowCount = computed(() => formatInt(props.rows.length))
             catalog="weapons:melee"
             :column="cell('name')"
             :row="row.candidate.weapon"
-            :profile="profile"
           />
         </div>
       </template>
@@ -288,7 +282,6 @@ const rowCount = computed(() => formatInt(props.rows.length))
             catalog="weapons:melee"
             :column="cell(id)"
             :row="row.candidate.weapon"
-            :profile="profile"
           />
         </div>
       </template>

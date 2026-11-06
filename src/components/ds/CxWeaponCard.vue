@@ -377,4 +377,6 @@ const hasFlags = computed(() => Object.values(flags.value).some(Boolean))
 .cx-wcard-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; margin-top: auto; padding-top: var(--space-2); border-top: 1px solid var(--line); }
 .cx-wcard-acts .cx-btn-why { margin-left: auto; }
 @media (prefers-reduced-motion: reduce) { .cx-score-bar > span { transition: none; } }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { .cx-wcard-name, .cx a.cx-wcard-name {  display: inline-block; min-width: var(--size-cible); padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

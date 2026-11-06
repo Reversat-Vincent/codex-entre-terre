@@ -221,7 +221,7 @@ const colorOf = (affinity: string): number => slots.value.indexOf(affinity) + 1
 .wp-affs { display: flex; flex-wrap: wrap; gap: 6px; }
 .wp-nodata { display: grid; justify-items: start; gap: var(--space-2); }
 .wp-range { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--space-3); }
-.wp-table-wrap { overflow: auto; max-height: 320px; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.wp-table-wrap { position: relative; overflow: auto; max-height: 320px; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .wp-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; line-height: 18px; }
 .wp-table th, .wp-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
 .wp-table thead th { position: sticky; top: 0; background: var(--surface-raised); border-bottom-color: var(--line-strong); color: var(--ink-2); font: 600 12px/16px var(--font-sans); }

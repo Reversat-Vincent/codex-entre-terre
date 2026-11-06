@@ -305,4 +305,6 @@ function onToggle(target: TimelineBossView, event: Event): void {
   .cx-boss-check { min-height: var(--size-cible); }
   .cx-boss-check input { width: 20px; height: 20px; }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { .cx a.cx-boss-name { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

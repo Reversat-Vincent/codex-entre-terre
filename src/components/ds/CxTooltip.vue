@@ -156,13 +156,23 @@ onBeforeUnmount(() => {
 
 <style>
 .cx-tip { position: relative; display: inline-flex; }
-.cx-tip-body { position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: var(--z-popover); width: max-content; max-width: min(280px, calc(100vw - 2 * 8px)); padding: var(--space-2) var(--space-3); border-radius: var(--radius-s); background: var(--surface-raised); box-shadow: var(--shadow-2); color: var(--ink); font: 400 12px/17px var(--font-sans); text-align: left; white-space: normal; letter-spacing: 0; opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(calc(-50% + var(--cx-tip-shift, 0px))); transition: opacity .12s ease; }
+.cx-tip-body { position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: var(--z-popover); width: max-content; max-width: min(280px, calc(100vw - 2 * 8px)); padding: var(--space-2) var(--space-3); border-radius: var(--radius-s); background: var(--surface-raised); box-shadow: var(--shadow-2); color: var(--ink); font: 400 12px/17px var(--font-sans); text-align: left; white-space: normal; letter-spacing: 0; display: none; opacity: 0; pointer-events: none; transform: translateX(calc(-50% + var(--cx-tip-shift, 0px))); transition: opacity .12s ease, display .12s allow-discrete; }
 .cx-tip-body b { font-weight: 600; }
 .cx-tip-body.below { top: calc(100% + 8px); bottom: auto; }
 .cx-tip-body.start { left: 0; transform: translateX(var(--cx-tip-shift, 0px)); }
 .cx-tip-body.end { left: auto; right: 0; transform: translateX(var(--cx-tip-shift, 0px)); }
+/* Fermée, la bulle est en `display: none` : une boîte absolue invisible (`visibility: hidden`) garde sa place et, alignée près du bord droit,
+   fait défiler la page à l'horizontale. `display` est animé en valeur discrète (`allow-discrete`) et `@starting-style` donne l'état de départ du fondu :
+   la bulle apparaît et disparaît en fondu ; un navigateur sans ces fonctions l'affiche sans fondu. `aria-describedby` lit une bulle masquée
+   sans difficulté (le contenu référencé directement est pris en compte par les technologies d'assistance), donc l'accessibilité ne change pas. */
 /* L'ouverture est pilotée par le composant (survol, focus clavier, appui, Échap) : pas de règle :hover ici, sinon Échap serait sans effet. */
-.cx-tip-body.is-open { opacity: 1; visibility: visible; }
+.cx-tip-body.is-open { display: block; opacity: 1; }
+@starting-style { .cx-tip-body.is-open { opacity: 0; } }
 .cx-tip-trigger { display: inline-flex; align-items: center; padding: 0; border: 0; background: transparent; color: inherit; cursor: help; }
 @media (prefers-reduced-motion: reduce) { .cx-tip-body { transition: none; } }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) par un pseudo-élément transparent ; le badge garde sa taille et la mise en page ne bouge pas. */
+@media (max-width: 767px) {
+  .cx-tip-trigger { position: relative; }
+  .cx-tip-trigger::after { content: ''; position: absolute; top: 50%; left: 50%; width: max(100%, var(--size-cible)); height: var(--size-cible); transform: translate(-50%, -50%); }
+}
 </style>

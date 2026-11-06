@@ -1,7 +1,7 @@
 <!-- Contenu d'une case de catalogue (tableau ou carte) : nom en lien avec badge de source, attaque, scaling, prérequis comparés au profil, amélioration, obtention. -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { CatalogKey, CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogKey, CatalogRow } from '../../../catalog/registry.ts'
 import { useAnalysisStore } from '../../../stores/analysis.ts'
 import { STATUS_BY_DATA_KEY, STATUS_SHORT_LABELS, DAMAGE_SHORT_LABELS, WEAPON_CLASS_ICONS } from '../../../ui/labels.ts'
 import type { SourceName } from '../../../ui/labels.ts'
@@ -38,11 +38,9 @@ const props = withDefaults(
     catalog: CatalogKey
     column: CatalogColumn
     row: CatalogRow
-    /** Sans effet : les prérequis se lisent dans `requirementsOf`, qui connaît déjà le profil. Conservé tant que `WeaponsTable` le transmet encore. */
-    profile?: ProfileContext
     layout?: 'table' | 'card'
   }>(),
-  { profile: undefined, layout: 'table' },
+  { layout: 'table' },
 )
 
 const inTable = computed(() => props.layout === 'table')
@@ -132,7 +130,10 @@ const text = computed(() => (props.column.cell === 'text' ? (props.column.value?
     class="cat-two"
   >
     <template v-if="skill.name !== null">
-      <b class="cat-clip">{{ skill.name }}</b>
+      <b
+        class="cat-clip"
+        :title="skill.name"
+      >{{ skill.name }}</b>
       <span class="cx-muted">{{ skill.type }}</span>
     </template>
     <CxValue

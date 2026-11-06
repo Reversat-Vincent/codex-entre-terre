@@ -72,4 +72,6 @@ defineProps<{
 .wp-sim-name { color: var(--ink); font-weight: 600; text-decoration-color: var(--line-strong); text-underline-offset: 3px; overflow-wrap: anywhere; }
 .wp-sim-name:hover { text-decoration-color: var(--gold); }
 .wp-sim-score { margin-left: auto; color: var(--gold-text); font: 600 16px/20px var(--font-sans); }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { .wp-sim-name { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

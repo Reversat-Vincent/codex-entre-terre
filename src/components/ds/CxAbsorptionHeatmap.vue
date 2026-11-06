@@ -190,7 +190,7 @@ const scale = computed(() => {
 
 <style>
 .cx-heat-box { display: grid; gap: var(--space-3); }
-.cx-heat-wrap { overflow-x: auto; }
+.cx-heat-wrap { position: relative; overflow-x: auto; }
 .cx-heat { width: 100%; border-collapse: separate; border-spacing: 2px; font-size: 12px; line-height: 16px; }
 .cx-heat th { padding: 4px; color: var(--ink-2); font: 600 11px/14px var(--font-sans); text-align: center; vertical-align: bottom; }
 .cx-heat th.first { text-align: left; }
@@ -214,4 +214,10 @@ const scale = computed(() => {
 .cx-heat-legend { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); color: var(--ink-3); font-size: 11px; line-height: 14px; }
 .cx-heat-scale { display: inline-flex; gap: 2px; }
 .cx-heat-scale > span { display: grid; place-items: center; min-width: 34px; height: 18px; padding: 0 3px; border-radius: var(--radius-xs); font-weight: 600; font-variant-numeric: tabular-nums; }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) {
+  .cx-heat th.row-h a { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); }
+  /* Le nom du boss passe à la ligne (jamais tronqué) dans une colonne de 150 px : les premières colonnes de valeurs restent visibles sans défiler. */
+  .cx-heat th.row-h { min-width: 110px; max-width: 150px; white-space: normal; overflow-wrap: anywhere; }
+}
 </style>

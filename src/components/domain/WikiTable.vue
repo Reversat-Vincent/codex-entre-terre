@@ -122,7 +122,7 @@ const scrolls = computed(() => props.rows.length > SCROLL_ROWS)
 </template>
 
 <style>
-.wiki-table-wrap { --wt-head-h: 32px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.wiki-table-wrap { position: relative; --wt-head-h: 32px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .wiki-table-wrap.is-scroll { max-height: min(70vh, 36rem); overflow-y: auto; }
 .wiki-table { width: 100%; border-collapse: separate; border-spacing: 0; font: 400 13px/18px var(--font-sans); font-variant-numeric: tabular-nums; }
 .wiki-table .wiki-caption { padding: var(--space-2) var(--space-3); text-align: left; color: var(--ink-3); font: 600 12px/16px var(--font-sans); letter-spacing: .01em; }

@@ -76,6 +76,4 @@ function submit(): void {
 <style>
 .cx-crit-name { display: grid; gap: var(--space-1); }
 .cx-crit-name > label { color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
-.cx-crit-name .cx-input { height: var(--size-controle); padding: 0 var(--space-2); border: 1px solid var(--control-border); border-radius: var(--radius-s); background: var(--surface-sunken); color: var(--ink); font-size: 14px; min-width: 0; }
-@media (max-width: 767px) { .cx-crit-name .cx-input { height: var(--size-cible); } }
 </style>

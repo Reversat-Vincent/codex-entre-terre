@@ -1,5 +1,6 @@
-// Captures de chaque écran : chaque route de src/router/routes.ts à 390 × 844 (mobile), 1024 × 768 (tablette) et 1440 × 900 (desktop),
-// en pleine page dans .cache/e2e/screens/. Le test échoue sur une erreur de console ou sur une requête vers un autre domaine que le serveur local.
+// Captures de chaque écran : chaque route de src/router/routes.ts à 390 × 844 (mobile), 768 × 1024 (tablette basse), 1024 × 768 (tablette)
+// et 1440 × 900 (desktop), en pleine page dans .cache/e2e/screens/. Le test échoue sur une erreur de console, sur une requête vers un autre domaine
+// que le serveur local, ou sur un débordement horizontal de la page (`scrollWidth > innerWidth` : seuls les tableaux défilants le tolèrent, dans leur cadre).
 import { mkdirSync } from 'node:fs'
 import { test, expect } from '@playwright/test'
 import { DATASETS } from '../../src/data/datasets.ts'
@@ -8,9 +9,10 @@ import { routes } from '../../src/router/routes.ts'
 import { WIDGET_IDS } from '../../src/widgets/ids.ts'
 import { readEntryIds, watchPage } from './support.ts'
 
-/** Points de rupture testés : mobile, tablette, desktop. */
+/** Largeurs testées : mobile, tablette basse (début de la plage 768–1279 px), tablette, desktop. */
 const VIEWPORTS = [
   { name: 'mobile', width: 390, height: 844 },
+  { name: 'tablette basse', width: 768, height: 1024 },
   { name: 'tablette', width: 1024, height: 768 },
   { name: 'desktop', width: 1440, height: 900 },
 ] as const
@@ -60,6 +62,10 @@ for (const viewport of VIEWPORTS) {
         await expect(page.locator('main')).toBeVisible()
         // Polices chargées avant la capture, sinon la mise en page change entre deux exécutions.
         await page.evaluate(() => document.fonts.ready)
+
+        // Aucun défilement horizontal de la page : un élément qui dépasse la fenêtre (info-bulle fermée, texte pour lecteur d'écran dans un tableau) la ferait défiler.
+        const widths = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, inner: window.innerWidth }))
+        expect(widths.scroll, `débordement horizontal de la page (${widths.scroll} px pour une fenêtre de ${widths.inner} px)`).toBeLessThanOrEqual(widths.inner)
 
         mkdirSync(SCREENS_DIR, { recursive: true })
         await page.screenshot({ path: `${SCREENS_DIR}/${screen.name}.${viewport.width}x${viewport.height}.png`, fullPage: true })

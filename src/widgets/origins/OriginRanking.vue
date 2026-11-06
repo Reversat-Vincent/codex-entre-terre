@@ -173,7 +173,7 @@ function summary(row: OriginRow): string {
 .cx-or-tbl th.num { text-align: right; }
 .cx-or-tbl th[aria-sort] { color: var(--gold-text); }
 .cx-or-tbl td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-.cx-or-wrap { overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.cx-or-wrap { position: relative; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .cx-or-cell { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .cx-or-tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
 .cx-or-tbl tbody tr:last-child td { border-bottom: 0; }

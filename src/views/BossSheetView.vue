@@ -296,4 +296,6 @@ const placesText = computed(() => {
   .v-head-icon { width: 48px; height: 48px; }
   .v-head-icon :deep(.cx-i) { width: 26px; height: 26px; }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) ; le remplissage vertical agrandit la zone, la marge négative annule le surplus de hauteur. */
+@media (max-width: 767px) { .v-crumb a { padding: calc((var(--size-cible) - 1lh) / 2) var(--space-3); margin: calc((var(--size-cible) - 1lh) / -2) calc(var(--space-3) * -1); } }
 </style>

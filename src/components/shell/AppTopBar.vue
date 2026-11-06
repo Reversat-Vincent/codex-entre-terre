@@ -143,7 +143,7 @@ const listLabel = computed(() => (pinCount.value > 0 ? `Ma liste, ${formatInt(pi
 .cx-topbar-count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--radius-pill); background: var(--surface-sunken); color: var(--ink-2); font: 600 11px/18px var(--font-sans); text-align: center; font-variant-numeric: tabular-nums; }
 /* En-tête mobile (Mobile.dc.html) : 56 px, marque à gauche, deux icônes de 44 px. */
 .cx-topbar.is-mobile { flex-wrap: nowrap; gap: var(--space-2); height: 56px; padding: 0 var(--space-2) 0 var(--space-4); }
-.cx-topbar-brand { flex: 1 1 auto; padding: 0; }
+.cx-topbar-brand { flex: 1 1 auto; min-height: var(--size-cible); padding: 0; }
 .cx-topbar.is-mobile .cx-brand-name { font-size: 20px; }
 .cx-icon44, .cx a.cx-icon44 { position: relative; display: inline-grid; place-items: center; width: var(--size-cible); height: var(--size-cible); padding: 0; border: 0; border-radius: var(--radius-s); background: transparent; color: var(--ink-2); text-decoration: none; cursor: pointer; }
 .cx-icon44:hover { background: var(--surface-hover); color: var(--ink); }

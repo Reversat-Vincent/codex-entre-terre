@@ -47,4 +47,10 @@ defineProps<{
 .sh-loclinks li { min-width: 0; overflow-wrap: anywhere; }
 .sh-loclinks-note { display: block; color: var(--ink-3); font-size: 12px; line-height: 17px; }
 .sh-loclinks-kind { color: var(--ink-3); font-size: 12px; }
+/* Mobile : chaque ligne fait 44 px (`--size-cible`) et son lien en remplit la hauteur. */
+@media (max-width: 767px) {
+  .sh-loclinks { row-gap: 0; }
+  .sh-loclinks li { padding-block: calc((var(--size-cible) - 1lh) / 2); }
+  .sh-loclinks a { padding-block: calc((var(--size-cible) - 1lh) / 2); }
+}
 </style>

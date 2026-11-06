@@ -51,7 +51,7 @@ const shown = computed(() => groups.value.reduce((sum, g) => sum + g.entries.len
         <input
           id="mechanics-search"
           v-model="query"
-          class="v-mechanics-input"
+          class="cx-input"
           type="search"
           autocomplete="off"
           placeholder="Vigor, Poison, Smithing Stones…"
@@ -146,9 +146,6 @@ const shown = computed(() => groups.value.reduce((sum, g) => sum + g.entries.len
 .v-mechanics-head { display: grid; gap: var(--space-2); }
 .v-mechanics-search { display: grid; gap: var(--space-1); max-width: 420px; margin-top: var(--space-2); }
 .v-mechanics-head h1 { width: fit-content; }
-/* `.cx-input` n'est pas dans la copie des styles du design system : le champ reprend ses tokens (bundle.css, .cx-input). */
-.v-mechanics-input { height: var(--size-controle); padding: 0 var(--space-3); border: 1px solid var(--control-border); border-radius: var(--radius-s); background: var(--surface-sunken); color: var(--ink); min-width: 0; }
-.v-mechanics-input::placeholder { color: var(--ink-3); }
 .v-mechanics-count { font-size: 12px; line-height: 16px; }
 .v-mechanics-group { display: grid; gap: var(--space-3); }
 .v-mechanics-n { margin-left: var(--space-1); font: 600 13px/18px var(--font-sans); font-variant-numeric: tabular-nums; }
@@ -160,6 +157,5 @@ const shown = computed(() => groups.value.reduce((sum, g) => sum + g.entries.len
 @media (max-width: 767px) {
   .v-mechanics { padding: var(--space-4); }
   .v-mechanics-list { grid-template-columns: 1fr; }
-  .v-mechanics-input { height: var(--size-cible); }
 }
 </style>

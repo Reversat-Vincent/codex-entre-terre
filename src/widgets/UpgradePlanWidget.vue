@@ -431,7 +431,7 @@ const stageName = computed(() => (playerStage.value === null ? null : STAGE_LABE
 .wd-up-state-title { color: var(--ink); font: 600 17px/22px var(--font-display); }
 .wd-up-sum { gap: var(--space-2); }
 .wd-up-why :deep(.cx-why) { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); padding: var(--space-3); }
-.wd-up-wrap { overflow-x: auto; }
+.wd-up-wrap { position: relative; overflow-x: auto; }
 .wd-up-table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 18px; }
 .wd-up-table th { padding: var(--space-2); border-bottom: 1px solid var(--line-strong); color: var(--ink-3); font: 600 12px/16px var(--font-sans); text-align: left; }
 .wd-up-table td { padding: var(--space-2); border-bottom: 1px solid var(--line); vertical-align: top; }

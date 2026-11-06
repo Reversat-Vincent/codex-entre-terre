@@ -103,9 +103,10 @@ function onClick(event: MouseEvent): void {
 .cx-btn-icon.cx-btn-sm { width: 26px; padding: 0; }
 .cx-btn[aria-pressed="true"] { background: var(--gold-wash); border-color: var(--gold-line); color: var(--gold-text); }
 .cx-btn-ghost[aria-pressed="true"] { border-color: transparent; }
-/* Cible tactile : 44 px minimum sous 768 px (seuil en dur, voir src/ui/breakpoints.ts). */
+/* Cible tactile : 44 px minimum sous 768 px (seuil en dur, voir src/ui/breakpoints.ts).
+   Les sélecteurs `.cx a.cx-btn` (spécificité des liens-boutons) sont repris ici, sinon la hauteur de 32 px des liens l'emporterait. */
 @media (max-width: 767px) {
-  .cx-btn, .cx-btn.cx-btn-sm { height: var(--size-cible); }
+  .cx-btn, .cx a.cx-btn, .cx-btn.cx-btn-sm, .cx a.cx-btn.cx-btn-sm { height: var(--size-cible); }
   .cx-btn-icon, .cx-btn-icon.cx-btn-sm { width: var(--size-cible); }
 }
 </style>

@@ -48,5 +48,9 @@ const model = defineModel<T>({ required: true })
 .cx-seg > button:disabled { background: transparent; color: var(--ink-disabled); cursor: not-allowed; }
 .cx-seg.full { display: flex; }
 .cx-seg.full > button { flex: 1 1 0; }
-@media (max-width: 767px) { .cx-seg > button { height: calc(var(--size-cible) - 6px); } }
+/* Mobile : chaque bouton fait 44 px de haut et de large au moins (le cadre de 2 px de remplissage disparaît pour que la cible soit le bouton entier). */
+@media (max-width: 767px) {
+  .cx-seg { gap: 0; padding: 0; overflow: hidden; }
+  .cx-seg > button { height: var(--size-cible); min-width: var(--size-cible); }
+}
 </style>

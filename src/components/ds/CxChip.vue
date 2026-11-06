@@ -103,5 +103,12 @@ button.cx-chip:hover { border-color: var(--control-border); background: var(--su
 .cx-chip-x { display: grid; place-items: center; width: 18px; height: 18px; margin-right: -6px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink-3); cursor: pointer; }
 .cx-chip-x:hover { background: var(--surface-hover); color: var(--ink); }
 /* Cible tactile de 44 px sous 768 px pour une puce-bascule (seuil en dur, voir src/ui/breakpoints.ts). */
-@media (max-width: 767px) { .cx-chip.is-toggle { height: var(--size-cible); } }
+@media (max-width: 767px) {
+  .cx-chip.is-toggle { height: var(--size-cible); }
+  /* Une puce de critère (bouton principal + croix) : le bouton principal prend toute la hauteur de la puce, 44 px au moins. */
+  .cx-chip:has(> .cx-chip-main) { height: calc(var(--size-cible) + 2px); }
+  .cx-chip-main { align-self: stretch; }
+  .cx-chip-x { position: relative; }
+  .cx-chip-x::after { content: ''; position: absolute; top: 50%; left: 50%; width: var(--size-cible); height: var(--size-cible); transform: translate(-50%, -50%); }
+}
 </style>

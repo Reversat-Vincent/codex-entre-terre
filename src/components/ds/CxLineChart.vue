@@ -473,7 +473,7 @@ const sliderValue = computed({
 .cx-linechart .cx-linechart-tip { top: 0; bottom: auto; right: auto; display: grid; gap: 2px; max-width: 100%; pointer-events: none; transform: none; }
 .cx-linechart-row { display: block; font-variant-numeric: tabular-nums; }
 .cx-linechart-cursor { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--space-3); color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
-.cx-chart-table-wrap { max-height: 360px; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.cx-chart-table-wrap { position: relative; max-height: 360px; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .cx-chart-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; line-height: 18px; font-variant-numeric: tabular-nums; }
 .cx-chart-table th, .cx-chart-table td { padding: 6px 10px; border-bottom: 1px solid var(--line); text-align: left; }
 .cx-chart-table thead th { position: sticky; top: 0; z-index: var(--z-sticky); background: var(--surface-raised); color: var(--ink-2); font: 600 12px/16px var(--font-sans); border-bottom-color: var(--line-strong); }

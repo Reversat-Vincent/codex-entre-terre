@@ -154,13 +154,13 @@ function clear(): void {
 .wt-bar { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3) var(--space-4); padding: var(--space-3) var(--space-4); border: 1px solid var(--line-strong); border-radius: var(--radius-l); background: var(--surface); }
 .wt-field { display: grid; gap: 4px; min-width: 0; }
 .wt-toggle { min-width: 220px; }
-.wt-q { width: 220px; max-width: 100%; height: var(--size-controle); padding: 0 var(--space-3); border: 1px solid var(--control-border); border-radius: var(--radius-s); background: var(--surface-sunken); color: var(--ink); font-size: 13px; min-width: 0; }
+/* Le champ vient de `.cx-input` (base.css) : seules la largeur et la taille du texte sont propres à cette barre. */
+.wt-q { width: 220px; max-width: 100%; font-size: 13px; }
 .wt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-left: auto; }
 .wt-count { color: var(--ink-2); font: 600 12px/16px var(--font-sans); font-variant-numeric: tabular-nums; }
 .wt-hidden { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); flex: 1 1 100%; padding-top: var(--space-2); border-top: 1px solid var(--line); color: var(--ink-2); font-size: 12px; line-height: 16px; }
 .wt-hidden :deep(.cx-toggle) { width: auto; }
 @media (max-width: 767px) {
-  .wt-q { height: var(--size-cible); }
   .wt-field, .wt-q { width: 100%; }
   .wt-meta { margin-left: 0; }
 }

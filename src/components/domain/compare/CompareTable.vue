@@ -1,7 +1,7 @@
 <!-- Tableau du Comparateur : une colonne par élément, une ligne par critère ; la meilleure valeur de chaque ligne porte une icône et le mot « Meilleur ». -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { CatalogKey, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogKey } from '../../../catalog/registry.ts'
 import { entityRoute } from '../../../router/entityRoute.ts'
 import { VERDICT_WORDS, judgeRow } from '../../../ui/compare.ts'
 import type { CellVerdict, CompareValue } from '../../../ui/compare.ts'
@@ -30,8 +30,6 @@ const props = defineProps<{
   rows: readonly CompareRowSpec[]
   /** Catalogue qui décrit le genre (cellules). */
   catalog: CatalogKey
-  /** Sans effet : les prérequis sont ceux de `column.requirements` (store d'analyse). Conservé tant que la vue transmet encore le profil. */
-  profile?: ProfileContext
 }>()
 
 const emit = defineEmits<{
@@ -270,7 +268,7 @@ function word(verdict: CellVerdict | undefined): string | null {
 
 <style scoped>
 /* Le tableau défile dans sa zone (deux axes) : un en-tête `sticky` ne colle à la fenêtre que si son conteneur ne défile pas, d'où la hauteur bornée. */
-.cmp-scroller { max-height: max(480px, calc(100dvh - 120px)); overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+.cmp-scroller { position: relative; max-height: max(480px, calc(100dvh - 120px)); overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .cmp-scroller:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .cmp-table { width: 100%; min-width: calc(168px + var(--cols) * 220px); border-collapse: separate; border-spacing: 0; table-layout: fixed; }
 .cmp-table th, .cmp-table td { padding: var(--space-3); border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; background: var(--surface); }
@@ -300,4 +298,6 @@ a.cmp-name:hover { color: var(--gold-text); text-decoration: underline; }
   .cmp-head { min-width: 190px; }
   .cmp-table th, .cmp-table td { padding: var(--space-2); }
 }
+/* Mobile : zone de frappe de 44 px (`--size-cible`) autour du texte du lien ; la marge négative annule le remplissage pour que la mise en page ne bouge pas. */
+@media (max-width: 767px) { a.cmp-name { padding-block: calc((var(--size-cible) - 1lh) / 2); margin-block: calc((var(--size-cible) - 1lh) / -2); } }
 </style>

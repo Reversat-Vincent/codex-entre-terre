@@ -10,8 +10,6 @@ import type { NameIndex } from '../../../data/links.ts'
 import { normalizeText } from '../../../data/slug.ts'
 import type { BossEntry, Encounter } from '../../../data/types/bosses.ts'
 import type { BossLevel } from '../../../engine/bossLevel.ts'
-import { indexEncounters } from '../../../engine/encounters.ts'
-import { encounterStage } from '../../../engine/stage.ts'
 import type { StageInfo } from '../../../engine/stage.ts'
 import type { Calc, ExplanationLimit } from '../../../engine/types.ts'
 import type { WeaknessWeapon } from '../../../engine/weakness.ts'
@@ -275,12 +273,12 @@ export function levelBasis(calc: Calc<BossLevel> | null): LevelBasis {
 
 /**
  * Étape de partie de la rencontre, pour « Dans l'histoire » (calculs.md, règle 2 de l'étape d'une arme appliquée aux régions de la rencontre).
- * @param boss Page de boss.
- * @param key Clé de la rencontre.
+ * Le calcul est fait par le store d'analyse (`analysis.stageOfEncounter`) ; cette fonction n'en lit que la valeur.
+ * @param calc Résultat de `analysis.stageOfEncounter(clé de rencontre)`, ou `null` si les boss ne sont pas chargés.
  * @returns L'étape et la région qui la décide, ou `null` si les régions ne sont pas classées.
  */
-export function storyStage(boss: BossEntry, key: string): StageInfo | null {
-  return encounterStage(indexEncounters([boss]), key).value
+export function storyStage(calc: Calc<StageInfo> | null): StageInfo | null {
+  return calc?.value ?? null
 }
 
 /**
