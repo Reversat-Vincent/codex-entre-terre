@@ -6,6 +6,7 @@ import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import { DATASETS } from '../data/datasets.ts'
 import type { DatasetKey, EntityRef } from '../data/datasets.ts'
+import type { EncounterKey } from '../data/types/bosses.ts'
 import type { OriginEntry } from '../data/types/origins.ts'
 import type { SpellEntry } from '../data/types/spells.ts'
 import type { WeaponEntry } from '../data/types/weapon.ts'
@@ -126,7 +127,7 @@ export interface BossReadiness {
  * `stage`, `budget`, `candidates`, `filtered`, `preliminary`, `originRanking`, `effectiveOrigin`, `pipeline`, `scored`, `recommendations`,
  * `alternativesOf(ref)`, `widen(stage)`, `weaponsAgainst(clé de rencontre)`, `coverage`, `chips`, `runesTo(niveau)`, `upgradePlanFor(ref, de, à)`,
  * `bellBearingStages`, `encounters`, `derivedOf(attributs)`, `weaponCalcs(ref, niveau, affinité, maniement)`, `scoreOf(ref)`, `requirementsOf(ref)`,
- * `levelUpPriorities`, `runeCostsBetween(de, à)`, `weaknessRows(portée)`, `stageOf(ref)`.
+ * `levelUpPriorities`, `runeCostsBetween(de, à)`, `weaknessRows(portée)`, `stageOf(ref)`, `stageOfEncounter(clé de rencontre)`.
  * Les getters à paramètres sont des fonctions mémoïsées : le cache se vide quand les critères ou les fichiers chargés changent.
  * Aucun effet : chaque getter se recalcule quand les critères ou les fichiers chargés changent.
  */
@@ -337,6 +338,16 @@ export const useAnalysisStore = defineStore('analysis', () => {
   const weaponsAgainstOf = computed(() => (encounterKey: string): Calc<WeaknessWeapon[]> | null => {
     if (encounters.value === null || Object.keys(weaponData.value).length === 0) return null
     return weaponsAgainst(encounters.value.byKey.get(encounterKey), scored.value)
+  })
+
+  /**
+   * Étape de partie d'une rencontre de boss, celle de la frise et de « Dans l'histoire » (calculs.md, « Remembrances » : règle 2 de l'étape
+   * appliquée aux régions de la rencontre), avec son explication. `null` si `bosses` n'est pas chargé ou si la clé est inconnue ; pour une
+   * rencontre dont les régions ne sont pas classées, le `Calc` est rendu avec une valeur `null` et la limite `stage-unclassified`.
+   */
+  const stageOfEncounter = computed(() => (encounterKey: EncounterKey): Calc<StageInfo> | null => {
+    if (encounters.value === null || !encounters.value.byKey.has(encounterKey)) return null
+    return encounterStage(encounters.value, encounterKey)
   })
 
   /**
@@ -553,6 +564,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
     alternativesOf,
     widen,
     weaponsAgainst: weaponsAgainstOf,
+    stageOfEncounter,
     coverage: coverageRows,
     chips,
     runesTo,

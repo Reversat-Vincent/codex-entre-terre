@@ -139,6 +139,20 @@ describe('progression, frise et recommandations', () => {
   })
 })
 
+describe('étape d’une rencontre (frise, fiche boss)', () => {
+  it('stageOfEncounter : étape et explication de la rencontre ; null si la clé est inconnue ou bosses non chargé', async () => {
+    const { analysis } = await setup()
+    const margit = analysis.stageOfEncounter('margit-the-fell-omen/margit-the-fell-omen')
+    expect(margit?.value).toMatchObject({ stage: 'early', basis: 'encounter' })
+    expect(margit?.explanation.method).toBe('stage')
+    expect(margit?.explanation.inputs[0]).toMatchObject({ file: 'bosses', entry: 'margit-the-fell-omen/margit-the-fell-omen' })
+    expect(analysis.stageOfEncounter('inconnu/inconnu')).toBeNull()
+    setActivePinia(createPinia())
+    const without = await setup(['origins'])
+    expect(without.analysis.stageOfEncounter('margit-the-fell-omen/margit-the-fell-omen')).toBeNull()
+  })
+})
+
 describe('armes efficaces contre une rencontre (fiche boss)', () => {
   it('candidats des critères courants qui exploitent les faiblesses, avec leurs prérequis ; Mohg sans suggestion', async () => {
     const { analysis } = await setup()

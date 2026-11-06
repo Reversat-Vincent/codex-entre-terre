@@ -24,6 +24,10 @@ export interface ImportSummary {
   /** Boss vaincus dans les critères de travail. */
   defeatedBosses: number
   recentSearches: number
+  /** PNJ dont au moins une étape de quête est cochée dans le fichier. */
+  questNpcs: number
+  /** Étapes de quête cochées dans le fichier, tous PNJ confondus. */
+  questSteps: number
 }
 
 /** Import prêt à être appliqué : l'état validé et son résumé. Rien n'est encore écrit. */
@@ -42,6 +46,8 @@ export function prepareImport(text: string, options: ParseOptions = {}): Result<
   const parsed = parseDocument(text, options)
   if (!parsed.ok) return parsed
   const { state } = parsed.value
+  // Un PNJ sans étape cochée (liste vide) ne compte pas : l'état validé n'en garde normalement pas, mais le résumé ne s'y fie pas.
+  const questLists = Object.values(state.quests)
   return {
     ok: true,
     value: {
@@ -55,6 +61,8 @@ export function prepareImport(text: string, options: ParseOptions = {}): Result<
         pins: state.pins.length,
         defeatedBosses: state.criteria.progress.defeated.length,
         recentSearches: state.recentSearches.length,
+        questNpcs: questLists.filter((steps) => steps.length > 0).length,
+        questSteps: questLists.reduce((sum, steps) => sum + steps.length, 0),
       },
     },
   }

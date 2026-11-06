@@ -24,8 +24,27 @@ function preview(): ImportPreview {
 describe('prepareImport', () => {
   it('donne un résumé pour la confirmation', () => {
     const { summary } = preview()
-    expect(summary).toMatchObject({ profiles: 1, pins: 2, defeatedBosses: 4, recentSearches: 2, schemaVersion: 1, migratedFrom: null, appVersion: '0.1.0' })
+    expect(summary).toMatchObject({
+      profiles: 1,
+      pins: 2,
+      defeatedBosses: 4,
+      recentSearches: 2,
+      questNpcs: 2,
+      questSteps: 3,
+      schemaVersion: 1,
+      migratedFrom: null,
+      appVersion: '0.1.0',
+    })
     expect(summary.exportedAt).toMatch(/^2026-/)
+  })
+
+  it('compte PNJ et étapes de quête cochés ; zéro sans suivi de quêtes', () => {
+    const none = prepareImport(file({ ...sampleState(), quests: {} }))
+    if (!none.ok) throw new Error('import valide attendu')
+    expect(none.value.summary).toMatchObject({ questNpcs: 0, questSteps: 0 })
+    const one = prepareImport(file({ ...sampleState(), quests: { melina: ['a', 'b', 'c'], 'boc-the-seamster': [] } }))
+    if (!one.ok) throw new Error('import valide attendu')
+    expect(one.value.summary).toMatchObject({ questNpcs: 1, questSteps: 3 })
   })
 
   it('refuse un fichier trop gros sans le lire', async () => {
