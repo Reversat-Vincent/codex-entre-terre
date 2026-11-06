@@ -27,7 +27,7 @@ function scoredWith(checks: RequirementCheck[], total = 60, estimate: Estimate |
   const c = candidate(name)
   const score = makeCalc<WeaponScore>(
     'weapon-score',
-    { total, fit: 0, power: 0, access: 0, upgrade: 0, requirements: checks, missingPoints: 0, overBudget: null, stagesAhead: 0, startingBonus: false },
+    { total, fit: 0, fitExact: 0, power: 0, access: 0, upgrade: 0, requirements: checks, missingPoints: 0, overBudget: null, stagesAhead: 0, startingBonus: false },
     { estimate },
   )
   return { candidate: c, stage: makeCalc('stage', { stage: 'early' } as never), score, hidden: null }

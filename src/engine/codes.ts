@@ -190,8 +190,9 @@ export const LIMIT_CODES = [
   'weakness-weapons-base-values',
   // Rendement des attributs.
   'soft-caps-published',
-  // Score d'une arme hors des critères (getter `scoreOf`) : raison qui la masque ou l'écarte du widget A.
+  // Score d'une arme hors des critères (getter `scoreOf` et lignes de `scored`) : raison qui la masque ou l'écarte du widget A.
   'weapon-hidden-off-build',
+  'weapon-hidden-out-of-reach',
   'weapon-hidden-content-sote',
   'weapon-hidden-content-tp',
   'weapon-hidden-remembrance',

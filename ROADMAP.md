@@ -219,6 +219,31 @@
   - **V20** : erratum de la v1 seulement (479 types documentés), rien à corriger.
   - **V22, statu quo** : un bâton lointain en Fin de jeu reste affiché, avec un « Pourquoi ? » explicite.
   - Par : chef de projet
+- D52 · 2026-11-06 · Arbitrage des contrôles mécaniques et de la revue du tour 2 :
+  - **Règle « hors de portée » (complément de D51)** : elle vaut aussi pour les étapes déjà passées, puisqu'une arme d'une étape passée s'obtient tout de suite. Le filtre porte sur toute arme dont l'étape va au plus jusqu'à celle qui suit l'étape du joueur.
+  - **Origine choisie** : quand les attributs ont été modifiés, ceux qui sont sous la valeur de départ de la nouvelle origine y sont relevés, avec une notification « Annuler ». Sans modification, les attributs de départ sont repris comme avant.
+  - **Notifications** :
+    - « Annuler » se déclenche au clavier par Ctrl + Z (⌘ + Z sur Mac), annoncé dans la notification et ignoré dans un champ de saisie, où l'annulation native s'applique ;
+    - une notification avec action dure au moins 10 s.
+  - **Noms de profils** : deux profils ne portent jamais le même nom ; un doublon reçoit le suffixe « (2) », « (3) »…
+  - **Méthodes d'obtention** : le type de méthode s'affiche en français, avec les libellés des puces (Achat, Butin…). Les détails (lieux, PNJ) restent en anglais, comme les données. C'est une extension de D46.
+  - **Contextes de recherche** : emplacements d'armure et sujets de mécanique affichés en français dans la palette, la page de résultats, le comparateur et Ma liste (D46).
+  - **Retenus** :
+    - focus rendu à une cible stable après une action qui retire l'élément actif ;
+    - glossaire proposé même quand des résultats existent ;
+    - `clientsClaim` et message d'échec de chargement d'une page ;
+    - score « Non classé » sans badge sur la fiche arme ;
+    - texte « Prérequis non atteint » sans titre répété ;
+    - focus initial de la feuille de critères ;
+    - focus sur le titre `h1` après le chargement d'une vue ;
+    - trois `?? 0` à commenter et les `maxLevel ?? 0` à revoir ;
+    - « Points de concentration » remplacé par « FP ».
+  - **Rejetés** :
+    - « Immunités » des boss : c'est l'immunité aux statuts, pas la résistance d'armure ;
+    - TSDoc des réexportations de types, comme au tour 1 ;
+    - fichiers de données volumineux suivis : voulus.
+  - Par : chef de projet
 
 ## Vérifications
 - Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu : 12 constats (contenu affiché exact sur 30 entités, calculs conformes), 11 retenus (2 majeurs : armes hors du build recommandées, catalyseurs dont les prérequis manquent recommandés sans réduction de puissance), 1 reporté (V12 : ordre Prisoner / Astrologer qui dépend des colonnes, statu quo en v1).
+- Tour 2 · 2026-11-06 · verif-masse : `check` réussi deux fois, audit sans débordement de page ; 9 constats mineurs, 6 retenus, 3 rejetés. verif-approfondie : les 5 majeurs du tour 1 corrigés ; 12 constats, dont 3 majeurs (attributs sous le minimum de l'origine, focus perdu après une action, « Annuler » inaccessible au clavier), tous retenus. contenu-jeu (`verification-v2.md`) : 10 constats, dont 1 majeur (V13, bâtons hors de portée), 8 retenus, 1 erratum, 1 statu quo (V22). Arbitrages en D51 et D52 ; 4 majeurs, donc tour 3.

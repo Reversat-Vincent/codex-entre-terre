@@ -38,6 +38,7 @@ import {
   filterWeapons,
   hiddenReason,
   loadBudget,
+  reachOf,
   recommendByStage,
   scoreWeapon,
   widenSuggestions,
@@ -220,7 +221,8 @@ export const useAnalysisStore = defineStore('analysis', () => {
   })
   // Les poids du build restreignent les catalyseurs du style « magie » (D39, S3).
   const candidates = computed(() => candidateWeapons(weaponData.value, c.value.style, weights.value.weights))
-  const filtered = computed(() => filterWeapons(candidates.value, c.value, buildFilter.value))
+  // Étape du joueur lue par le score (accessibilité) et par le filtre « hors de portée » (V13, D51) ; Début tant qu'elle n'est pas connue.
+  const playerStage = computed((): StageId => stage.value.value ?? 'early')
   const caps = computed(() => catalystCaps(weaponData.value))
   const criteriaHands = computed((): Hands => (c.value.style.hands === 2 ? 'two' : 'one'))
   /** Toutes les armes chargées par référence, quel que soit le style (fiches, catalogues, `scoreOf`). */
@@ -252,7 +254,10 @@ export const useAnalysisStore = defineStore('analysis', () => {
   }
 
   /**
-   * Évalue une arme pour les critères courants (étape, puis score ; calculs.md, « Score de recommandation d'une arme (0–100) »).
+   * Évalue une arme pour les critères courants (étape, puis score, puis filtres ; calculs.md, « Score de recommandation d'une arme (0–100) »).
+   * Le filtre « hors de portée » (V13, D51) lit l'étape de l'arme et les points manquants de son score. Une arme masquée porte dans les
+   * limites de son score la raison qui la masque, avec ses paramètres (`withVisibilityLimits`, V14, D51) : lignes grisées du plein écran et
+   * leur « Pourquoi ? ».
    * @param candidate Arme et son fichier.
    * @param starting Armes de départ de l'origine retenue (bonus d'accessibilité, étape des armes de départ), ou `null`.
    * @returns L'arme évaluée, avec la raison qui la masque.
@@ -264,6 +269,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
       encounters: encounters.value,
       startingArmaments: starting,
     })
+    const player = playerStage.value
     const score = scoreWeapon(candidate, {
       weights: weights.value.weights,
       attrs: attrs.value,
@@ -271,13 +277,14 @@ export const useAnalysisStore = defineStore('analysis', () => {
       status: c.value.style.status,
       classes: c.value.style.classes,
       stonePreference: c.value.constraints.stonePreference,
-      playerStage: stage.value.value ?? 'early',
+      playerStage: player,
       budget: budget.value.value,
       catalystCaps: caps.value,
       stage: st,
       startingBonus: starting?.has(candidate.weapon.name) ?? false,
     })
-    return { candidate, stage: st, score, hidden: hiddenReason(candidate, c.value, buildFilter.value) }
+    const hidden = hiddenReason(candidate, c.value, buildFilter.value, reachOf(st, score, player))
+    return { candidate, stage: st, score: withVisibilityLimits(score, hidden, true), hidden }
   }
 
   /**
@@ -306,6 +313,16 @@ export const useAnalysisStore = defineStore('analysis', () => {
   // § 5.4, étape 4 : scores définitifs, recalculés seulement si l'origine retenue diffère de celle des scores préliminaires.
   const rescored = computed(() => effective.value !== chosenOrigin.value)
   const scored = computed(() => (rescored.value ? scoreAll(effective.value) : preliminary.value))
+  // Décompte des filtres sur les candidats : « hors de portée » (V13, D51) demande l'étape et les points manquants de chaque arme, connus après
+  // le score, et les reprend donc des scores définitifs ; les décomptes sont ainsi ceux des colonnes.
+  const filtered = computed(() => {
+    const byRef = new Map(scored.value.map((s) => [s.candidate.ref, s]))
+    const player = playerStage.value
+    return filterWeapons(candidates.value, c.value, buildFilter.value, (x) => {
+      const s = byRef.get(x.ref)
+      return s === undefined ? null : reachOf(s.stage, s.score, player)
+    })
+  })
   const pipeline = computed(
     (): OriginPipeline => ({
       preliminaryOrigin: chosenOrigin.value,
@@ -319,15 +336,19 @@ export const useAnalysisStore = defineStore('analysis', () => {
     const t = scored.value.find((s) => s.candidate.ref === ref)
     return t === undefined ? [] : alternatives(t, scored.value)
   })
-  /** Armes de l'étape hors du style choisi, parmi les fichiers chargés (suggestion « style »). */
+  /**
+   * Armes de l'étape hors du style choisi, parmi les fichiers chargés (suggestion « style »), évaluées sans origine retenue avec les filtres
+   * des colonnes, « hors build » et « hors de portée » compris : seules comptent les armes que l'élargissement montrerait.
+   */
   const otherStyleByStage = computed(() => {
     const inStyle = new Set(candidates.value.map((x) => x.ref))
-    const others = candidateWeapons(weaponData.value, { mode: 'hybrid', classes: [] }).filter((x) => !inStyle.has(x.ref) && filterWeapons([x], c.value, buildFilter.value).kept.length > 0)
     const counts = new Map<StageId, number>()
-    for (const o of others) {
-      const s = entryStage(o.weapon, { ref: o.ref, file: o.file, encounters: encounters.value, startingArmaments: null }).value?.stage
+    for (const o of candidateWeapons(weaponData.value, { mode: 'hybrid', classes: [] })) {
+      if (inStyle.has(o.ref)) continue
+      const s = scoreOne(o, null)
+      const stageId = s.stage.value?.stage
       // Compteur par étape : une étape pas encore vue en est à 0 arme (dénombrement, pas une donnée du jeu).
-      if (s !== undefined) counts.set(s, (counts.get(s) ?? 0) + 1)
+      if (s.hidden === null && stageId !== undefined) counts.set(stageId, (counts.get(stageId) ?? 0) + 1)
     }
     return counts
   })
@@ -358,9 +379,9 @@ export const useAnalysisStore = defineStore('analysis', () => {
 
   /**
    * Score d'une arme pour les critères courants, même hors du style choisi ou masquée par un filtre (fiche arme, comparateur ; calculs.md,
-   * « Score de recommandation d'une arme (0–100) »). Une arme candidate reprend son score définitif ; une autre est évaluée avec l'origine
-   * retenue. Les exclusions et le style sont signalés par des limites (`weapon-hidden-*`, `weapon-outside-style`) ; une arme « Non classé »
-   * reste sans total (D18). `null` si l'arme n'est pas dans un fichier chargé.
+   * « Score de recommandation d'une arme (0–100) »). Une arme candidate reprend son score définitif, tel que dans `scored` ; une autre est
+   * évaluée avec l'origine retenue. Les exclusions et le style sont signalés par des limites (`weapon-hidden-*`, `weapon-outside-style`) ; une
+   * arme « Non classé » reste sans total (D18). `null` si l'arme n'est pas dans un fichier chargé.
    */
   const scoreOf = computed(() => {
     const scoredByRef = new Map(scored.value.map((s) => [s.candidate.ref, s]))
@@ -377,7 +398,8 @@ export const useAnalysisStore = defineStore('analysis', () => {
       const candidate = inStyle?.candidate ?? all.get(ref)
       if (candidate === undefined) return null
       const s = inStyle ?? scoreOne(candidate, starting)
-      const out = withVisibilityLimits(s.score, s.hidden, inStyle !== undefined)
+      // La raison de masquage est déjà dans les limites du score (`scoreOne`) : seul le style reste à signaler.
+      const out = inStyle === undefined ? withVisibilityLimits(s.score, null, false) : s.score
       cache.set(ref, out)
       return out
     }

@@ -106,7 +106,8 @@ export function candidateWeapons(data: WeaponData, style: StyleInput, weights: B
 }
 
 /**
- * Raisons de masquage qu'un critère lève (élargissements du widget A) ; l'ordre est celui d'application des filtres, après « hors build ».
+ * Raisons de masquage qu'un critère lève (élargissements du widget A) ; l'ordre est celui d'application des filtres, après « hors build »
+ * et « hors de portée ».
  */
 export const HIDDEN_REASONS = ['content-sote', 'content-tp', 'remembrance', 'random-drop', 'quest', 'estimate'] as const
 
@@ -114,12 +115,13 @@ export const HIDDEN_REASONS = ['content-sote', 'content-tp', 'remembrance', 'ran
 export type HiddenReason = (typeof HIDDEN_REASONS)[number]
 
 /**
- * Toutes les raisons qui masquent une arme candidate, dans l'ordre d'application. « Hors build » (K-V1, D47) passe en premier : aucun critère
- * à relâcher ne la ferait apparaître, et les décomptes des autres raisons restent ainsi le nombre d'armes qu'un élargissement montrerait.
+ * Toutes les raisons qui masquent une arme candidate, dans l'ordre d'application. « Hors build » (K-V1, D47) et « hors de portée » (V13, D51)
+ * passent en premier : aucun critère à relâcher ne ferait apparaître ces armes, et les décomptes des autres raisons restent ainsi le nombre
+ * d'armes qu'un élargissement montrerait.
  */
-export const MASK_REASONS = ['off-build', ...HIDDEN_REASONS] as const
+export const MASK_REASONS = ['off-build', 'out-of-reach', ...HIDDEN_REASONS] as const
 
-/** Raison qui masque une arme candidate : celle d'un critère, ou « hors build ». */
+/** Raison qui masque une arme candidate : celle d'un critère, « hors build » ou « hors de portée ». */
 export type MaskReason = (typeof MASK_REASONS)[number]
 
 /** Critères lus par les filtres. */
@@ -164,16 +166,58 @@ export function isOffBuild(w: WeaponEntry, build: BuildFilter | null): boolean {
 }
 
 /**
- * Raison pour laquelle une arme est masquée (calculs.md, « Filtres appliqués avant le score ») : hors build (avec un build cible), contenu
- * désactivé, exclusions (Remembrance, butin aléatoire, quête, lus dans `acquisition_flags`), estimations exclues si la fiabilité l'impose.
+ * Position d'une arme par rapport au profil, lue par le filtre « hors de portée » (V13, D51). Elle n'est connue qu'après l'étape de l'arme
+ * et son score : le store `analysis` la construit avec `reachOf`.
+ */
+export interface Reach {
+  /** Étape de l'arme (`entryStage`) ; `null` pour une arme « Non classé », que ce filtre n'écarte jamais. */
+  readonly stage: StageId | null
+  /** Étape courante du joueur (`currentStage` : modes « Étape », « Régions atteintes » et « Boss vaincus »), la même que pour l'accessibilité. */
+  readonly playerStage: StageId
+  /** Total des points de prérequis manquants (`WeaponScore.missingPoints` : somme des écarts de « Prérequis comparés au profil », maniement compris). */
+  readonly missingPoints: number
+}
+
+/**
+ * Position d'une arme évaluée (calculs.md, « Filtres appliqués avant le score », « hors de portée »).
+ * @param stage Étape de l'arme (`entryStage`).
+ * @param score Score de l'arme (`scoreWeapon`), qui porte ses points de prérequis manquants.
+ * @param playerStage Étape courante du joueur, celle passée au score (`ScoreContext.playerStage`).
+ * @returns La position, ou `null` si le score n'a pas de valeur (le filtre ne s'applique alors pas).
+ */
+export function reachOf(stage: Calc<StageInfo>, score: Calc<WeaponScore>, playerStage: StageId): Reach | null {
+  if (score.value === null) return null
+  return { stage: stage.value?.stage ?? null, playerStage, missingPoints: score.value.missingPoints }
+}
+
+/**
+ * Indique si une arme est hors de portée (calculs.md, « Filtres appliqués avant le score », V13, D51) : son étape est au plus la
+ * `SCORE_FILTERS.nearStagesAhead`-ième après celle du joueur (étapes déjà passées comprises), et il lui manque strictement plus de
+ * `SCORE_FILTERS.maxMissingPointsNearStages` points de prérequis au total. Seules les étapes plus lointaines ne sont pas touchées.
+ * @param reach Position de l'arme, ou `null` si elle n'est pas connue.
+ * @returns Vrai si l'arme est hors de portée ; faux sans position ou pour une arme « Non classé ».
+ */
+export function isOutOfReach(reach: Reach | null): boolean {
+  if (reach === null || reach.stage === null) return false
+  // Étapes passées comprises (`stagesAhead` les compte 0, arbitrage de D51) : une arme d'une étape passée s'obtient tout de suite, mais si
+  // elle reste inutilisable elle n'a pas plus sa place dans les recommandations.
+  return stagesAhead(reach.stage, reach.playerStage) <= SCORE_FILTERS.nearStagesAhead && reach.missingPoints > SCORE_FILTERS.maxMissingPointsNearStages
+}
+
+/**
+ * Raison pour laquelle une arme est masquée (calculs.md, « Filtres appliqués avant le score ») : hors build (avec un build cible), hors de
+ * portée (avec sa position), contenu désactivé, exclusions (Remembrance, butin aléatoire, quête, lus dans `acquisition_flags`), estimations
+ * exclues si la fiabilité l'impose.
  * @param c Candidat.
  * @param criteria Critères.
  * @param build Build cible (poids, statut, classes), ou `null` sans build cible (le filtre « hors build » ne s'applique pas).
+ * @param reach Position de l'arme (`reachOf`), ou `null` si elle n'est pas connue (le filtre « hors de portée » ne s'applique pas).
  * @returns La première raison qui s'applique, ou `null` si l'arme reste visible.
  */
-export function hiddenReason(c: CandidateWeapon, criteria: FilterCriteria, build: BuildFilter | null = null): MaskReason | null {
+export function hiddenReason(c: CandidateWeapon, criteria: FilterCriteria, build: BuildFilter | null = null, reach: Reach | null = null): MaskReason | null {
   const w = c.weapon
   if (isOffBuild(w, build)) return 'off-build'
+  if (isOutOfReach(reach)) return 'out-of-reach'
   if (w.source === 'Shadow of the Erdtree' && !criteria.content.sote) return 'content-sote'
   if (w.source === 'Tarnished Pack' && !criteria.content.tp) return 'content-tp'
   if (criteria.constraints.excludeRemembrance && isRemembranceWeapon(c)) return 'remembrance'
@@ -196,14 +240,21 @@ export interface FilterResult {
  * @param candidates Candidats.
  * @param criteria Critères.
  * @param build Build cible (poids, statut, classes), ou `null` sans build cible (le filtre « hors build » ne s'applique pas).
+ * @param reachOfCandidate Position de chaque candidat (`reachOf`, connue après le score), ou `null` : sans elle, le filtre « hors de portée »
+ * ne s'applique pas.
  * @returns Les armes gardées, le décompte des armes masquées par raison et leur liste.
  */
-export function filterWeapons(candidates: readonly CandidateWeapon[], criteria: FilterCriteria, build: BuildFilter | null = null): FilterResult {
+export function filterWeapons(
+  candidates: readonly CandidateWeapon[],
+  criteria: FilterCriteria,
+  build: BuildFilter | null = null,
+  reachOfCandidate: ((c: CandidateWeapon) => Reach | null) | null = null,
+): FilterResult {
   const hidden = Object.fromEntries(MASK_REASONS.map((r) => [r, 0])) as Record<MaskReason, number>
   const kept: CandidateWeapon[] = []
   const hiddenItems: { candidate: CandidateWeapon; reason: MaskReason }[] = []
   for (const c of candidates) {
-    const reason = hiddenReason(c, criteria, build)
+    const reason = hiddenReason(c, criteria, build, reachOfCandidate === null ? null : reachOfCandidate(c))
     if (reason === null) kept.push(c)
     else {
       hidden[reason]++
@@ -279,6 +330,8 @@ export interface WeaponScore {
   /** Somme des quatre composantes ; `null` si l'une manque (arme « Non classé », D18). */
   readonly total: number | null
   readonly fit: number
+  /** Composante 1 avant arrondi, bornée à 0–25 : la valeur que compare le filtre « hors build » (D48) et que cite sa limite (V15, D51). */
+  readonly fitExact: number
   readonly power: number | null
   readonly access: number | null
   readonly upgrade: number
@@ -365,8 +418,9 @@ function fitScore(w: WeaponEntry, ctx: BuildFilter): { exact: number; value: num
 
 /**
  * Composante 2, puissance et scaling (calculs.md, point 2) : 70 % sur la puissance à +0 (attaque totale plafonnée à 200, ou puissance de sort
- * pour les catalyseurs, plafonnée au maximum observé), multipliée par 0,6 si plus de 5 points de prérequis manquent (K-V2, D48, [wiki] −40 %),
- * 30 % sur la somme des lettres (plafond 1,6), −4 au-delà du budget de poids.
+ * pour les catalyseurs, plafonnée au maximum observé), multipliée par 0,6 si plus de 5 points de prérequis manquent (K-V2, D48 ; [wiki] −40 %
+ * pour les armes, [déduction] pour la puissance de sort des catalyseurs, V16), 30 % sur la somme des lettres (plafond 1,6), −4 au-delà du
+ * budget de poids.
  * @param c Candidat.
  * @param ctx Contexte.
  * @param requirements Prérequis comparés au profil (`compareRequirements`, maniement des critères).
@@ -399,9 +453,9 @@ function powerComponent(
   }
   const sum = WEAPON_ATTRIBUTE_KEYS.reduce((s, k) => s + gradeValue(w.scaling[k]), 0)
   const over = ctx.budget === null ? null : w.weight > ctx.budget
-  // K-V2 ([wiki] Weapon Scaling ; calculs.md, puissance d'attaque, point 5). Simplification retenue par D47 : le facteur porte sur toute la
-  // puissance à +0, et non sur les seuls types de dégâts qui progressent avec l'attribut manquant. Tolérance de D48 : le jeu réduit dès un
-  // point manquant, le score seulement au-delà de `unmetRequirementTolerance` points au total.
+  // K-V2 ([wiki] Weapon Scaling pour les armes, [déduction] pour les catalyseurs ; calculs.md, puissance d'attaque, point 5). Simplification
+  // retenue par D47 : le facteur porte sur toute la puissance à +0, et non sur les seuls types de dégâts qui progressent avec l'attribut
+  // manquant. Tolérance de D48 : le jeu réduit dès un point manquant, le score seulement au-delà de `unmetRequirementTolerance` points au total.
   const unmet = requirements.filter((r) => !r.met).map((r) => r.attr)
   const tolerance = POWER_WEIGHTS.unmetRequirementTolerance
   const factor = unmet.length > 0 && missingPoints > tolerance ? POWER_WEIGHTS.unmetRequirementFactor : 1
@@ -479,7 +533,7 @@ export function scoreWeapon(c: CandidateWeapon, ctx: ScoreContext): Calc<WeaponS
 
   const requirements = compareRequirements(w, ctx.attrs, ctx.hands)
   const missingPoints = requirements.reduce((s, r) => s + r.gap, 0)
-  const { value: fit, parts: fitParts } = fitScore(w, ctx)
+  const { exact: fitExact, value: fit, parts: fitParts } = fitScore(w, ctx)
   const power = powerComponent(c, ctx, requirements, missingPoints, powerParts, limits)
 
   const stage = ctx.stage.value
@@ -542,7 +596,19 @@ export function scoreWeapon(c: CandidateWeapon, ctx: ScoreContext): Calc<WeaponS
   ]
   return makeCalc<WeaponScore>(
     'weapon-score',
-    { total, fit, power, access, upgrade: up.value, requirements, missingPoints, overBudget: ctx.budget === null ? null : w.weight > ctx.budget, stagesAhead: ahead, startingBonus: ctx.startingBonus },
+    {
+      total,
+      fit,
+      fitExact,
+      power,
+      access,
+      upgrade: up.value,
+      requirements,
+      missingPoints,
+      overBudget: ctx.budget === null ? null : w.weight > ctx.budget,
+      stagesAhead: ahead,
+      startingBonus: ctx.startingBonus,
+    },
     { estimate: up.estimate, components, inputs, limits },
   )
 }
@@ -643,8 +709,8 @@ export interface WidenSuggestion {
 
 /**
  * Élargissements les plus efficaces pour une colonne (note de spécification du tableau de bord : Remembrance, estimations, DLC, style),
- * du plus efficace au moins efficace ; proposés quand la colonne a moins de 3 armes. « Hors build » n'est jamais proposé : aucun critère ne le
- * lève sans changer de build cible (K-V1).
+ * du plus efficace au moins efficace ; proposés quand la colonne a moins de 3 armes. « Hors build » et « hors de portée » ne sont jamais
+ * proposés : aucun critère ne les lève sans changer de build cible (K-V1) ou de profil (V13, D51).
  * @param column Colonne d'étape.
  * @param otherStyleCount Armes de l'étape hors du style choisi (calculées par l'appelant sur les fichiers chargés), ou 0.
  * @param min Seuil sous lequel la colonne propose un élargissement.
@@ -658,9 +724,10 @@ export function widenSuggestions(column: StageColumn, otherStyleCount = 0, min: 
   return out.filter((s) => s.count > 0).sort((a, b) => b.count - a.count)
 }
 
-/** Limite qui signale chaque raison de masquage dans le score d'une arme consultée hors du widget A (getter `scoreOf`). */
+/** Limite qui signale chaque raison de masquage dans le score d'une arme (lignes de `scored` du store `analysis`, getter `scoreOf`). */
 const HIDDEN_LIMIT: Readonly<Record<MaskReason, LimitCode>> = {
   'off-build': 'weapon-hidden-off-build',
+  'out-of-reach': 'weapon-hidden-out-of-reach',
   'content-sote': 'weapon-hidden-content-sote',
   'content-tp': 'weapon-hidden-content-tp',
   remembrance: 'weapon-hidden-remembrance',
@@ -670,19 +737,52 @@ const HIDDEN_LIMIT: Readonly<Record<MaskReason, LimitCode>> = {
 }
 
 /**
+ * Adéquation avant arrondi telle que la cite la limite « hors build » : au dixième, ou au centième par défaut quand l'arrondi au dixième
+ * atteindrait le seuil (4,96 donne 4,96, et non « 5,0 sur 25, sous le seuil de 5 »).
+ * @param exact Composante 1 avant arrondi (`WeaponScore.fitExact`).
+ * @param max Seuil du filtre.
+ * @returns La valeur à citer.
+ */
+function fitBelowThreshold(exact: number, max: number): number {
+  const tenth = Math.round(exact * 10) / 10
+  return tenth < max ? tenth : Math.floor(exact * 100) / 100
+}
+
+/**
+ * Limite d'une raison de masquage, avec les paramètres que cite son texte, lus dans config/weights.ts et dans le score, jamais recopiés
+ * (D48, V15 et V13, D51). « Hors build » : `max` seuil de la composante 1, `fit` sa valeur avant arrondi. « Hors de portée » : `max` seuil
+ * de points manquants, `points` points manquants de l'arme, `span` nombre d'étapes après celle du joueur couvertes par le filtre.
+ * @param hidden Raison de masquage.
+ * @param score Valeur du score, ou `null` : les paramètres tirés du score sont alors omis.
+ * @returns La limite.
+ */
+function hiddenLimit(hidden: MaskReason, score: WeaponScore | null): ExplanationLimit {
+  const code = HIDDEN_LIMIT[hidden]
+  if (hidden === 'off-build') {
+    const max = SCORE_FILTERS.minFitComponent
+    return { code, params: score === null ? { max } : { max, fit: fitBelowThreshold(score.fitExact, max) } }
+  }
+  if (hidden === 'out-of-reach') {
+    const max = SCORE_FILTERS.maxMissingPointsNearStages
+    const span = SCORE_FILTERS.nearStagesAhead
+    return { code, params: score === null ? { max, span } : { max, span, points: score.missingPoints } }
+  }
+  return { code }
+}
+
+/**
  * Signale dans l'explication d'un score qu'une arme n'est pas recommandable avec les critères courants (calculs.md, « Score de
- * recommandation d'une arme », filtres et candidats) : masquée par un filtre ou hors build, ou hors du style choisi. Le score lui-même ne change pas ;
- * une arme « Non classé » reste sans score (D18).
+ * recommandation d'une arme », filtres et candidats) : masquée par un filtre, hors build ou hors de portée, ou hors du style choisi. Le score
+ * lui-même ne change pas ; une arme « Non classé » reste sans score (D18).
  * @param score Score calculé.
  * @param hidden Raison qui masque l'arme, ou `null`.
  * @param inStyle Vrai si l'arme est candidate pour le style choisi.
- * @returns Le score inchangé s'il n'y a rien à signaler, sinon une copie dont les limites portent les raisons.
+ * @returns Le score inchangé s'il n'y a rien à signaler, sinon une copie dont les limites portent les raisons (paramètres : `hiddenLimit`).
  */
 export function withVisibilityLimits(score: Calc<WeaponScore>, hidden: MaskReason | null, inStyle: boolean): Calc<WeaponScore> {
   const extra: ExplanationLimit[] = []
   if (!inStyle) extra.push({ code: 'weapon-outside-style' })
-  // « Hors build » cite son seuil (D48), pour que le texte ne répète pas une valeur de config/weights.ts.
-  if (hidden !== null) extra.push(hidden === 'off-build' ? { code: HIDDEN_LIMIT[hidden], params: { max: SCORE_FILTERS.minFitComponent } } : { code: HIDDEN_LIMIT[hidden] })
+  if (hidden !== null) extra.push(hiddenLimit(hidden, score.value))
   if (extra.length === 0) return score
   return { ...score, explanation: { ...score.explanation, limits: [...score.explanation.limits, ...extra] } }
 }

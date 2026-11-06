@@ -85,6 +85,9 @@ function zoneRankOf(row: ScoredWeapon): number {
 export const HIDDEN_REASON_TEXTS: Readonly<Record<MaskReason | 'style', { readonly action: string; readonly reason: string; readonly icon: string }>> = {
   // « Hors build » n'est jamais proposé en élargissement (`widenSuggestions`), seule sa raison s'affiche ; son seuil (D48) s'y ajoute par `hiddenReasonOf`.
   'off-build': { action: 'Changer de build cible', reason: 'Hors du build cible', icon: 'sliders' },
+  // « Hors de portée » (V13, D51) n'est jamais proposé en élargissement non plus ; ses paramètres (points manquants, seuil) sont dans la limite
+  // `weapon-hidden-out-of-reach` du score de la ligne.
+  'out-of-reach': { action: 'Monter les attributs requis', reason: 'Hors de portée : trop de prérequis manquants', icon: 'sliders' },
   'content-sote': { action: 'Activer Shadow of the Erdtree', reason: 'Contenu Shadow of the Erdtree désactivé', icon: 'plus' },
   'content-tp': { action: 'Activer le Tarnished Pack', reason: 'Contenu Tarnished Pack désactivé', icon: 'plus' },
   remembrance: { action: 'Inclure les échanges de Remembrance', reason: 'Échange de Remembrance exclu', icon: 'trade' },

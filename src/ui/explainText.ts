@@ -6,8 +6,9 @@
 import type { AttackUnavailableCode } from '../engine/attackPower.ts'
 import { LABEL_CODES } from '../engine/codes.ts'
 import type { ComponentCode, LabelCode, LimitCode } from '../engine/codes.ts'
+import { ATTACK_POWER } from '../engine/config/attackPower.ts'
 import { UPGRADE } from '../engine/config/upgrade.ts'
-import { POWER_WEIGHTS } from '../engine/config/weights.ts'
+import { POWER_WEIGHTS, SCORE_COMPONENT_MAX } from '../engine/config/weights.ts'
 import { METHODS } from '../engine/methods.ts'
 import type { CodeParams, DataValue, ExplanationComponent, MethodId } from '../engine/types.ts'
 import { formatDecimal, formatInt, formatPercent, formatSigned } from './format.ts'
@@ -28,13 +29,36 @@ import type { DamageLabelKey, StatusKey } from './labels.ts'
 export type ParamName =
   | 'attr' | 'attrs' | 'type' | 'stage' | 'player' | 'node' | 'region' | 'zone' | 'path' | 'basis' | 'level' | 'from' | 'to' | 'max' | 'cost'
   | 'points' | 'table' | 'stat' | 'before' | 'after' | 'item' | 'tier' | 'material' | 'category' | 'weight' | 'budget' | 'field' | 'status'
-  | 'encounter' | 'load' | 'row' | 'confidence' | 'actual' | 'required' | 'effective' | 'place' | 'factor' | 'tolerance'
+  | 'encounter' | 'load' | 'row' | 'confidence' | 'actual' | 'required' | 'effective' | 'place' | 'factor' | 'tolerance' | 'fit' | 'span'
 
 /** Lecteur de paramètres : rend le paramètre mis en forme pour la phrase, ou une chaîne vide s'il manque. */
 type ParamReader = (name: ParamName) => string
 
-/** Paramètres numériques affichés avec décimales (poids, budget, gains moyens, facteur) ; les autres nombres sont des entiers. */
-const DECIMAL_PARAMS: ReadonlySet<string> = new Set<ParamName>(['weight', 'budget', 'before', 'after', 'factor'])
+/**
+ * Paramètres numériques affichés avec décimales, et leur nombre maximal de décimales (poids, budget, gains moyens, facteur : une ; adéquation
+ * avant arrondi : deux, le moteur ne la donne au centième que si le dixième atteindrait le seuil) ; les autres nombres sont des entiers.
+ */
+const DECIMAL_PARAMS: Readonly<Partial<Record<ParamName, number>>> = { weight: 1, budget: 1, before: 1, after: 1, factor: 1, fit: 2 }
+
+/**
+ * Réduction en pourcentage d'un facteur de la configuration (0,6 → « 40 % »), pour qu'aucun texte ne recopie une valeur de `src/engine/config/`.
+ * @param factor Facteur appliqué (entre 0 et 1).
+ * @returns La réduction mise en forme.
+ */
+function reductionText(factor: number): string {
+  return formatPercent((1 - factor) * 100)
+}
+
+/**
+ * Étapes couvertes par le filtre « hors de portée » (V13, D51), étapes déjà passées comprises, en fin de phrase.
+ * @param span Nombre d'étapes après celle du joueur, mis en forme (paramètre `span`), ou chaîne vide s'il manque.
+ * @returns « des étapes passées, de la vôtre ni de la suivante », par exemple.
+ */
+function nearStagesText(span: string): string {
+  if (span === '0') return 'des étapes passées ni de la vôtre'
+  if (span === '1') return 'des étapes passées, de la vôtre ni de la suivante'
+  return span === '' ? 'des étapes passées, de la vôtre ni des suivantes' : `des étapes passées, de la vôtre ni des ${span} suivantes`
+}
 
 /** Noms des statistiques du rendement des attributs (`YieldStat`). */
 const STAT_LABELS: Readonly<Record<string, string>> = {
@@ -105,7 +129,10 @@ const ITEM_NAMES: ReadonlyMap<string, string> = new Map([
  * @returns Le texte à insérer dans la phrase ; une valeur inconnue est reprise telle quelle, jamais perdue.
  */
 function formatParam(name: ParamName, raw: string | number): string {
-  if (typeof raw === 'number') return DECIMAL_PARAMS.has(name) ? formatDecimal(raw, 1) : formatInt(raw)
+  if (typeof raw === 'number') {
+    const digits = DECIMAL_PARAMS[name]
+    return digits === undefined ? formatInt(raw) : formatDecimal(raw, digits)
+  }
   if (raw === '') return ''
   switch (name) {
     case 'attr':
@@ -264,9 +291,10 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   'class-bonus': c((p) => `Bonus ou malus de classe${p('category') === '' ? '' : ` (${p('category')})`}`, 'signed'),
   'score-power': c(() => 'Puissance et scaling'),
   'base-power': c((p) => `Puissance de base à +0, ${p('field')}`),
+  // La réduction citée est celle de la configuration, et non le paramètre `factor`, qui vaut 1 dans la tolérance.
   'unmet-requirement-factor': c(
     (p) =>
-      `Puissance retenue, × ${p('factor')} : prérequis non atteints (${p('attrs')}), total manquant ${p('points')} ; réduction de 40 % seulement au-delà de ${p('tolerance')} points manquants`,
+      `Puissance retenue, × ${p('factor')} : prérequis non atteints (${p('attrs')}), total manquant ${p('points')} ; réduction de ${reductionText(POWER_WEIGHTS.unmetRequirementFactor)} seulement au-delà de ${p('tolerance')} points manquants`,
     'decimal',
   ),
   'scaling-sum': c(() => 'Somme des lettres de scaling', 'decimal'),
@@ -283,7 +311,7 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   'estimate-penalty': c(() => "Pénalité d'un type d'amélioration estimé", 'signed'),
   'score-total': c(() => 'Score de recommandation'),
   // Armes efficaces contre une rencontre.
-  'weakness-absorption': c((p) => `Absorption des dégâts ${p('type')} de la rencontre, en %`, 'signed'),
+  'weakness-absorption': c((p) => `Absorption des dégâts de type ${p('type')} de la rencontre, en %`, 'signed'),
   // Couverture des données.
   'coverage-documented': c((p) => `Documenté par le wiki : ${p('row')}`),
   // Rendement des attributs.
@@ -407,9 +435,9 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   // Le jeu réduit dès un point manquant ; la tolérance du score de recommandation (D48) est rappelée pour expliquer qu'une arme ainsi réduite
   // puisse rester recommandée.
   'requirement-not-met': (p) =>
-    `Prérequis non atteint (${p('attrs')}) : les dégâts ${p('type')} sont réduits de 40 % et sans bonus de scaling, dès un point manquant. Le score de recommandation, lui, ne réduit la puissance qu'au-delà de ${formatInt(POWER_WEIGHTS.unmetRequirementTolerance)} points manquants.`,
-  'requirement-effect-undocumented': (p) => `L'effet d'un prérequis non atteint sur les dégâts ${p('type')} n'est pas documenté : la base seule est comptée.`,
-  'penalty-exception': (p) => `Exception connue du wiki : les dégâts ${p('type')} ne sont pas réduits par le prérequis manquant.`,
+    `Prérequis non atteint (${p('attrs')}) : les dégâts de type ${p('type')} sont réduits de ${reductionText(ATTACK_POWER.requirementPenaltyFactor)} et sans bonus de scaling, dès un point manquant. Le score de recommandation, lui, ne réduit la puissance qu'au-delà de ${formatInt(POWER_WEIGHTS.unmetRequirementTolerance)} points manquants.`,
+  'requirement-effect-undocumented': (p) => `L'effet d'un prérequis non atteint sur les dégâts de type ${p('type')} n'est pas documenté : la base seule est comptée.`,
+  'penalty-exception': (p) => `Exception connue du wiki : les dégâts de type ${p('type')} ne sont pas réduits par le prérequis manquant.`,
   'table-inconsistent': () => "Le wiki se contredit sur le tableau d'amélioration de cette arme : les valeurs de l'infobox font foi.",
   'attack-value-unparsed': (p) => `La valeur ${p('type')} du tableau du wiki n'est pas lisible : elle n'est pas calculée.`,
   'attack-type-missing': (p) => `Le tableau du wiki ne donne pas de valeur ${p('type')} à ce niveau : elle n'est pas calculée.`,
@@ -452,9 +480,20 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'weakness-weapons-base-values': () => "Les types de dégâts sont lus à +0 : ni l'affinité, ni les Cendres de guerre, ni les sorts ne sont comptés.",
   /** Rendement des attributs : les paliers sont ceux publiés par le wiki (D39), les gains viennent des tables. */
   'soft-caps-published': () => 'Paliers de rendement publiés par le wiki ; les gains moyens autour de chaque palier sont lus dans les tables.',
-  // Score d'une arme hors des critères.
+  // Score d'une arme hors des critères. « Hors build » cite la valeur avant arrondi (V15, D51), qu'on ne lise pas « 5 / 25 » à côté de
+  // « inférieure à 5 » ; sans elle (paramètre absent), le seuil seul.
   'weapon-hidden-off-build': (p) =>
-    `L'adéquation de cette arme à votre build cible est inférieure à ${p('max')} sur 25 avant arrondi : elle ne figure pas dans les recommandations.`,
+    p('fit') === ''
+      ? `L'adéquation de cette arme à votre build cible est inférieure à ${p('max')} sur ${formatInt(SCORE_COMPONENT_MAX)} avant arrondi : elle ne figure pas dans les recommandations.`
+      : `L'adéquation de cette arme à votre build cible vaut ${p('fit')} sur ${formatInt(SCORE_COMPONENT_MAX)} avant arrondi, sous le seuil de ${p('max')} : elle ne figure pas dans les recommandations.`,
+  // « Hors de portée » (V13, D51) : points manquants, seuil et étapes couvertes lus dans les paramètres.
+  'weapon-hidden-out-of-reach': (p) => {
+    const lead =
+      p('points') === ''
+        ? `Il manque à cette arme ${p('max') === '' ? 'trop de points de prérequis' : `plus de ${p('max')} points de prérequis`}`
+        : `Il manque ${p('points')} points de prérequis à cette arme${p('max') === '' ? '' : `, au-delà de ${p('max')}`}`
+    return `${lead} : elle ne figure pas dans les recommandations ${nearStagesText(p('span'))}.`
+  },
   'weapon-hidden-content-sote': () => 'Cette arme vient de Shadow of the Erdtree, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
   'weapon-hidden-content-tp': () => 'Cette arme vient du Tarnished Pack, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
   'weapon-hidden-remembrance': () => "Cette arme s'obtient par un échange de Remembrance, que vos critères excluent : elle ne figure pas dans les recommandations.",

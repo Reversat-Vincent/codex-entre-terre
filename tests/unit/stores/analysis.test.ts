@@ -205,10 +205,13 @@ describe('profils de verification-v1.md : hors build (K-V1) et prérequis manqua
     // Aucune arme de Force écartée à tort : les armes écartées n'ont au mieux qu'un E en Force.
     for (const w of off) expect(atLeast(w.scaling.str, 'D'), w.name).toBe(false)
     for (const w of shown(analysis)) expect(w.hidden).toBeNull()
-    expect(analysis.scoreOf(analysis.scored.find((s) => s.candidate.weapon.name === 'Coded Sword')!.candidate.ref)?.explanation.limits).toContainEqual({
-      code: 'weapon-hidden-off-build',
-      params: { max: 5 },
-    })
+    // La limite cite le seuil et l'adéquation avant arrondi (V15, D51), dans `scoreOf` comme dans la ligne de `scored` (V14), une seule fois.
+    const coded = analysis.scored.find((s) => s.candidate.weapon.name === 'Coded Sword')!
+    const codedLimits = analysis.scoreOf(coded.candidate.ref)?.explanation.limits ?? []
+    expect(codedLimits.filter((l) => l.code === 'weapon-hidden-off-build')).toEqual([
+      { code: 'weapon-hidden-off-build', params: { max: 5, fit: Math.round(coded.score.value!.fitExact * 10) / 10 } },
+    ])
+    expect(coded.score.explanation.limits).toEqual(codedLimits)
     // D48 : un point de Force manquant reste dans la tolérance, Iron Cleaver garde sa puissance (79 points).
     const cleaver = best(analysis, 'early')!
     expect(cleaver.candidate.weapon.name).toBe('Iron Cleaver')
@@ -250,6 +253,10 @@ describe('profils de verification-v1.md : hors build (K-V1) et prérequis manqua
     const { analysis, criteria } = await setup(ALL_WEAPONS)
     criteria.set({ character: { attributes: { ...ATTRS.astrologer } }, target: { archetype: 'int', level: 150 } })
     for (const n of ['Winged Scythe', "Rogier's Rapier"]) expect(hiddenOf(analysis, n), n).toBe('off-build')
+    // V14, V15 (D51) : la ligne grisée du plein écran porte la limite avec l'adéquation avant arrondi (4,58 → 4,6, affichée 5 dans la colonne).
+    const rapier = analysis.scored.find((s) => s.candidate.weapon.name === "Rogier's Rapier")!
+    expect(rapier.score.value?.fit).toBe(5)
+    expect(rapier.score.explanation.limits).toContainEqual({ code: 'weapon-hidden-off-build', params: { max: 5, fit: 4.6 } })
     // Aucune arme d'Intelligence écartée à tort : les armes écartées n'ont au mieux qu'un E en Intelligence.
     for (const w of offBuild(analysis)) expect(atLeast(w.scaling.int, 'D'), w.name).toBe(false)
     for (const w of shown(analysis)) expect(w.candidate.weapon.scaling.int, w.candidate.weapon.name).not.toBeNull()
@@ -273,7 +280,116 @@ describe('profils de verification-v1.md : hors build (K-V1) et prérequis manqua
       expect(String(params?.attrs).split(','), n).toContain('int')
       // Plus de 25 points manquants : le malus d'accessibilité atteint son plafond de 15 (25 − 4 pour une étape d'avance − 15).
       expect(s.score.value?.access, n).toBe(6)
+      // Et, à l'étape suivant celle du joueur, l'arme est hors de portée (V13, D51).
+      expect(s.hidden, n).toBe('out-of-reach')
     }
+  })
+})
+
+describe('hors de portée (V13, D51) : verification-v2.md § 1.3', () => {
+  const ALL_WEAPONS: FileKey[] = ['origins', 'bosses', 'tables', 'melee_armaments', 'ranged_weapons_catalysts', 'shields_torches']
+  const ASTROLOGER = { vig: 9, mnd: 15, end: 9, str: 8, dex: 12, int: 16, fai: 7, arc: 9 }
+  const PROPHET = { vig: 10, mnd: 14, end: 9, str: 11, dex: 10, int: 7, fai: 16, arc: 10 }
+  type Analysis = ReturnType<typeof useAnalysisStore>
+  const names = (a: Analysis, stage: string) => a.recommendations.columns.find((c) => c.stage === stage)?.weapons.map((w) => w.candidate.weapon.name) ?? []
+  const row = (a: Analysis, name: string) => a.scored.find((s) => s.candidate.weapon.name === name)!
+  /** Aucune colonne vide, sauf celles déjà vides sans le filtre (aucune pour ces profils). */
+  const noEmptyColumn = (a: Analysis) => expect(a.recommendations.columns.map((c) => [c.stage, c.weapons.length > 0])).toEqual(a.recommendations.columns.map((c) => [c.stage, true]))
+
+  it('mage INT 16, « pierres sombres », étape Milieu : Lusat’s et Azur’s Glintstone Staff écartés (38 points), limite chiffrée', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({
+      character: { attributes: { ...ASTROLOGER } },
+      target: { archetype: 'int', level: 150 },
+      style: { mode: 'magic' },
+      constraints: { stonePreference: 'somber' },
+      progress: { mode: 'stage', stage: 'mid' },
+    })
+    expect(analysis.stage.value).toBe('mid')
+    for (const n of ["Lusat's Glintstone Staff", "Azur's Glintstone Staff"]) {
+      const s = row(analysis, n)
+      expect(s.hidden, n).toBe('out-of-reach')
+      expect(names(analysis, 'mid'), n).not.toContain(n)
+      expect(s.score.value?.missingPoints, n).toBe(38)
+      // La ligne du plein écran (V14) et `scoreOf` portent la même limite, une seule fois, avec ses paramètres.
+      const limit = { code: 'weapon-hidden-out-of-reach', params: { max: 25, span: 1, points: 38 } }
+      expect(s.score.explanation.limits.filter((l) => l.code === 'weapon-hidden-out-of-reach'), n).toEqual([limit])
+      expect(analysis.scoreOf(s.candidate.ref), n).toBe(s.score)
+    }
+    // Comptées avec les armes masquées de la colonne et dans `filtered`, jamais proposées en élargissement.
+    const mid = analysis.recommendations.columns.find((c) => c.stage === 'mid')!
+    const out = analysis.scored.filter((s) => s.hidden === 'out-of-reach')
+    expect(mid.hidden['out-of-reach']).toBe(out.filter((s) => s.stage.value?.stage === 'mid').length)
+    expect(analysis.filtered.hidden['out-of-reach']).toBe(out.length)
+    expect(analysis.filtered.hiddenItems.length).toBe(analysis.scored.filter((s) => s.hidden !== null).length)
+    for (const c of analysis.recommendations.columns) expect(analysis.widen(c.stage).map((w) => w.reason)).not.toContain('out-of-reach')
+    // V22 (statu quo) : Rotten Crystal Staff (INT 48, Fin de jeu), deux étapes après celle du joueur, reste la seule arme de sa colonne.
+    expect(row(analysis, 'Rotten Crystal Staff').hidden).toBeNull()
+    expect(names(analysis, 'endgame')).toEqual(['Rotten Crystal Staff'])
+    noEmptyColumn(analysis)
+    // Au Début, le Milieu est l'étape suivante : mêmes armes écartées ; Rotten Crystal Staff reste en Fin de jeu.
+    criteria.set({ progress: { mode: 'stage', stage: 'early' } })
+    for (const n of ["Lusat's Glintstone Staff", "Azur's Glintstone Staff"]) expect(row(analysis, n).hidden, n).toBe('out-of-reach')
+    expect(names(analysis, 'endgame')).toEqual(['Rotten Crystal Staff'])
+    noEmptyColumn(analysis)
+  })
+
+  it('mode « Boss vaincus » : même étape du joueur que le score (Milieu après Margit, Godrick, Red Wolf et Rennala)', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({
+      character: { attributes: { ...ASTROLOGER } },
+      target: { archetype: 'int', level: 150 },
+      style: { mode: 'magic' },
+      constraints: { stonePreference: 'somber' },
+      progress: { mode: 'boss' },
+    })
+    for (const k of [
+      'margit-the-fell-omen/margit-the-fell-omen',
+      'godrick-the-grafted/godrick-the-grafted-phase-1',
+      'red-wolf-of-radagon/red-wolf-of-radagon',
+      'rennala-queen-of-the-full-moon/rennala-queen-of-the-full-moon-phase-2',
+    ]) {
+      criteria.toggleDefeated(k)
+    }
+    expect(analysis.stage.value).toBe('mid')
+    expect(row(analysis, "Lusat's Glintstone Staff").hidden).toBe('out-of-reach')
+    expect(row(analysis, 'Rotten Crystal Staff').hidden).toBeNull()
+  })
+
+  it('Foi en mêlée (Prophet, `fai`), « pierres sombres », étape Milieu : Staff of the Avatar écarté (31 points)', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({
+      character: { attributes: { ...PROPHET } },
+      target: { archetype: 'fai', level: 150 },
+      constraints: { stonePreference: 'somber' },
+      progress: { mode: 'stage', stage: 'mid' },
+    })
+    const avatar = row(analysis, 'Staff of the Avatar')
+    expect(avatar.hidden).toBe('out-of-reach')
+    expect(avatar.score.value?.missingPoints).toBe(31)
+    expect(names(analysis, 'mid')).not.toContain('Staff of the Avatar')
+    expect(names(analysis, 'mid')).toHaveLength(5)
+    noEmptyColumn(analysis)
+  })
+
+  it('joueur en Fin : étape passée comprise, Lusat’s, Azur’s et Staff of the Avatar restent hors de la colonne Milieu (arbitrage de D51)', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({
+      character: { attributes: { ...ASTROLOGER } },
+      target: { archetype: 'int', level: 150 },
+      style: { mode: 'magic' },
+      constraints: { stonePreference: 'somber' },
+      progress: { mode: 'stage', stage: 'late' },
+    })
+    expect(analysis.stage.value).toBe('late')
+    for (const n of ["Lusat's Glintstone Staff", "Azur's Glintstone Staff"]) {
+      expect(row(analysis, n).hidden, n).toBe('out-of-reach')
+      expect(names(analysis, 'mid'), n).not.toContain(n)
+    }
+    criteria.set({ character: { attributes: { ...PROPHET } }, target: { archetype: 'fai', level: 150 }, style: { mode: 'melee' } })
+    expect(row(analysis, 'Staff of the Avatar').hidden).toBe('out-of-reach')
+    expect(names(analysis, 'mid')).not.toContain('Staff of the Avatar')
+    expect(names(analysis, 'mid')).toHaveLength(5)
   })
 })
 

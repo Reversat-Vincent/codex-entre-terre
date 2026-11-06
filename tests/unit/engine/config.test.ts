@@ -71,6 +71,10 @@ describe('pondérations (valeurs de calculs.md)', () => {
     // D48 : seuil « hors build » 5 sur 25, plafond des points manquants 15, tolérance du facteur 0,6 de 5 points.
     expect(SCORE_FILTERS.minFitComponent).toBe(5)
     expect(ACCESS_WEIGHTS.missingPointsCap).toBe(15)
+    // D51 (V13) : « hors de portée » au-delà de 25 points manquants, à l'étape du joueur et à la suivante. 25 est le point où le malus
+    // d'accessibilité atteint son plafond (15 / 0,6) : changer l'un sans l'autre demande de revoir le filtre.
+    expect([SCORE_FILTERS.maxMissingPointsNearStages, SCORE_FILTERS.nearStagesAhead]).toEqual([25, 1])
+    expect(ACCESS_WEIGHTS.missingPointsCap / ACCESS_WEIGHTS.perMissingPoint).toBeCloseTo(SCORE_FILTERS.maxMissingPointsNearStages, 10)
     expect([POWER_WEIGHTS.unmetRequirementFactor, POWER_WEIGHTS.unmetRequirementTolerance]).toEqual([0.6, 5])
     expect([UPGRADE_COST_WEIGHTS.undocumented, UPGRADE_COST_WEIGHTS.notUpgradeable]).toEqual([14, 8])
     expect(READINESS.limitMargin).toBe(8)

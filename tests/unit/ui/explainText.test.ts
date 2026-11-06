@@ -48,12 +48,30 @@ describe('explainText.ts', () => {
     expect(componentLabel('hp', { attr: 'vig', points: 15 })).toBe('PV à VIG 15')
     expect(componentLabel('stages-ahead', { stage: 'endgame', player: 'mid' })).toBe("Étapes d'avance sur la vôtre (Fin de jeu contre Milieu)")
     expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str,dex' })).toContain('STR, DEX')
-    // D48 : réduction de 40 % chiffrée, tolérance du score rappelée ; seuil « hors build » ; facteur et tolérance dans la composante.
-    expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str' })).toContain('40 %')
+    // D48 : réduction de 40 % chiffrée (lue dans la configuration, V17), tolérance du score rappelée ; facteur et tolérance dans la composante.
+    expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str' })).toContain('40 %')
+    expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str' })).toContain('les dégâts de type physique')
     expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str' })).toContain('au-delà de 5 points')
-    expect(limitText('weapon-hidden-off-build', { max: 5 })).toContain('inférieure à 5 sur 25')
+    expect(limitText('penalty-exception', { type: 'magic' })).toContain('les dégâts de type magie')
+    expect(componentLabel('weakness-absorption', { type: 'fire' })).toBe('Absorption des dégâts de type feu de la rencontre, en %')
     expect(componentLabel('unmet-requirement-factor', { factor: 0.6, attrs: 'int', points: 36, tolerance: 5 })).toBe(
-      'Puissance retenue, × 0,6 : prérequis non atteints (INT), total manquant 36 ; réduction de 40 % seulement au-delà de 5 points manquants',
+      'Puissance retenue, × 0,6 : prérequis non atteints (INT), total manquant 36 ; réduction de 40 % seulement au-delà de 5 points manquants',
+    )
+    // « Hors build » : valeur avant arrondi et seuil (V15, D51) ; sans la valeur, le seuil seul.
+    expect(limitText('weapon-hidden-off-build', { max: 5, fit: 4.6 })).toBe(
+      "L'adéquation de cette arme à votre build cible vaut 4,6 sur 25 avant arrondi, sous le seuil de 5 : elle ne figure pas dans les recommandations.",
+    )
+    expect(limitText('weapon-hidden-off-build', { max: 5, fit: 4.96 })).toContain('vaut 4,96 sur 25')
+    expect(limitText('weapon-hidden-off-build', { max: 5 })).toContain('inférieure à 5 sur 25 avant arrondi')
+    // « Hors de portée » (V13, D51) : nombres lus dans les paramètres.
+    expect(limitText('weapon-hidden-out-of-reach', { max: 25, span: 1, points: 38 })).toBe(
+      'Il manque 38 points de prérequis à cette arme, au-delà de 25 : elle ne figure pas dans les recommandations des étapes passées, de la vôtre ni de la suivante.',
+    )
+    expect(limitText('weapon-hidden-out-of-reach', { max: 30, span: 2, points: 31 })).toBe(
+      'Il manque 31 points de prérequis à cette arme, au-delà de 30 : elle ne figure pas dans les recommandations des étapes passées, de la vôtre ni des 2 suivantes.',
+    )
+    expect(limitText('weapon-hidden-out-of-reach', { max: 25, span: 0 })).toBe(
+      'Il manque à cette arme plus de 25 points de prérequis : elle ne figure pas dans les recommandations des étapes passées ni de la vôtre.',
     )
     expect(limitText('upgrade-type-estimated', { confidence: 'high' })).toContain('haute')
     expect(limitText('level-out-of-range', { from: 0, to: 30, max: 25 })).toContain('+25')

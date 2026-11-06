@@ -1,5 +1,6 @@
 // Pondérations et seuils du moteur : valeurs du prototype (`docs/design/Main.dc.html`), regroupées ici et décrites dans `docs/design/ds/calculs.md`.
-// Toute modification d'une valeur se reporte dans calculs.md (docs/architecture.md § 5.3). Aucune valeur de ce fichier n'est un fait du jeu.
+// Toute modification d'une valeur se reporte dans calculs.md (docs/architecture.md § 5.3). Aucune valeur de ce fichier n'est un fait du jeu,
+// sauf `POWER_WEIGHTS.unmetRequirementFactor` (voir son commentaire).
 
 import type { AttributeKey, Grade } from '../../data/keys.ts'
 
@@ -39,7 +40,9 @@ export const POWER_WEIGHTS = {
   overweightPenalty: 4,
   /**
    * Facteur appliqué à la puissance à +0 (attaque ou puissance de sort) quand un prérequis de l'arme n'est pas atteint par le profil (K-V2, D47).
-   * Seule valeur de ce fichier tirée du jeu : [wiki] Weapon Scaling, « takes a -40% penalty » ; la lettre de scaling n'est pas modifiée.
+   * Seule valeur de ce fichier tirée du jeu, et pour les armes seulement : [wiki] Weapon Scaling, « takes a -40% penalty ». Pour la puissance
+   * de sort des catalyseurs, c'est une [déduction] (V16, D51) : Sorcery Scaling dit seulement « will be reduced », sans chiffre, et le facteur
+   * des armes leur est étendu. La lettre de scaling n'est pas modifiée.
    */
   unmetRequirementFactor: 0.6,
   /**
@@ -56,9 +59,17 @@ export const POWER_WEIGHTS = {
  * compris, bornée à 0–25, avant arrondi) est strictement inférieure à ce seuil est écartée des colonnes (raison « hors build »). Il remplace
  * le seuil de D47 sur la seule moyenne des lettres (`minFitMean = 0`), qui laissait passer les armes qu'une pondération secondaire touche
  * (DEX 0,2 de l'archétype Intelligence : Rogier's Rapier, Winged Scythe).
+ * `maxMissingPointsNearStages` et `nearStagesAhead` (V13, D51) [conception] : filtre « hors de portée ». Une arme dont l'étape est au plus
+ * la `nearStagesAhead`-ième après celle du joueur (étapes déjà passées comprises), et à qui il manque strictement plus de `maxMissingPointsNearStages` points de prérequis
+ * au total (somme des écarts de « Prérequis comparés au profil », comme l'accessibilité), est écartée des colonnes. 25 est le nombre de
+ * points où le malus d'accessibilité atteint son plafond (`ACCESS_WEIGHTS.missingPointsCap / perMissingPoint` = 15 / 0,6) : au-delà,
+ * l'accessibilité ne distingue plus une arme d'une autre, et une préférence de pierres suffisait à ramener un bâton à INT 52 dans le top 5
+ * d'un mage à INT 16 (Lusat's, Azur's Glintstone Staff). Les étapes plus lointaines ne sont pas touchées (Rotten Crystal Staff en Fin de jeu).
  */
 export const SCORE_FILTERS = {
   minFitComponent: 5,
+  maxMissingPointsNearStages: 25,
+  nearStagesAhead: 1,
 } as const
 
 /** Composante 3, accessibilité (calculs.md, « Score de recommandation d'une arme », point 3). */

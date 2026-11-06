@@ -2,7 +2,8 @@
 // Armes choisies pour résister aux compléments de données : type d'amélioration déjà documenté par le wiki (Longsword, Erdtree Seal),
 // arme non améliorable (Meteorite Staff) ; les cas « estimé » et « non documenté » sont construits à partir d'une copie.
 // Filtre « hors build » (K-V1) et facteur de prérequis manquant (K-V2) : décisions D47 et D48 (seuil de 5 sur 25, plafond de 15, tolérance de
-// 5 points), docs/contenu/verification-v1.md § 3.2 et § 3.3.
+// 5 points), docs/contenu/verification-v1.md § 3.2 et § 3.3. Filtre « hors de portée » (V13) et paramètres des limites de masquage (V14, V15) :
+// décision D51, docs/contenu/verification-v2.md § 1.3 et § 3.2.
 
 import { describe, expect, it } from 'vitest'
 import type { WeaponEntry } from '../../../src/data/types/weapon.ts'
@@ -15,14 +16,16 @@ import {
   filterWeapons,
   hiddenReason,
   isOffBuild,
+  isOutOfReach,
   loadBudget,
+  reachOf,
   recommendByStage,
   scoreWeapon,
   weaponFilesFor,
   widenSuggestions,
   withVisibilityLimits,
 } from '../../../src/engine/score.ts'
-import type { CandidateWeapon, ScoreContext, ScoredWeapon } from '../../../src/engine/score.ts'
+import type { CandidateWeapon, Reach, ScoreContext, ScoredWeapon } from '../../../src/engine/score.ts'
 import { entryStage } from '../../../src/engine/stage.ts'
 import { attrs } from './helpers.ts'
 import { allWeapons, candidate, data, encounters, weaponData } from './prepared.ts'
@@ -251,9 +254,12 @@ describe('candidats et filtres (D7)', () => {
     expect(off("Rogier's Rapier", int)).toBe(true)
     expect(off('Rotten Crystal Sword', dexarc)).toBe(true)
     expect(off("Miquellan Knight's Sword", dexarc)).toBe(true)
-    // Rogier's Rapier : DEX C (0,55 × 0,2 / 1,2 × 50 = 4,58) s'affiche 5 après arrondi, mais reste sous le seuil.
+    // Rogier's Rapier : DEX C (0,55 × 0,2 / 1,2 × 50 = 4,58) s'affiche 5 après arrondi, mais reste sous le seuil ; le score garde la valeur
+    // avant arrondi (`fitExact`, V15).
     const rapier = candidate("Rogier's Rapier")
-    expect(scoreWeapon(rapier, ctx(rapier, { weights: int.weights })).value?.fit).toBe(5)
+    const rapierScore = scoreWeapon(rapier, ctx(rapier, { weights: int.weights })).value
+    expect(rapierScore?.fit).toBe(5)
+    expect(rapierScore?.fitExact).toBeCloseTo((0.55 * 0.2) / 1.2 / 0.5 * 25, 10)
     // Le seuil porte sur toute la composante : le bonus de classe préférée (+2) la fait passer au-dessus.
     expect(off("Rogier's Rapier", build(int.weights, { classes: [rapier.weapon.category] }))).toBe(false)
     // Armes adaptées gardées.
@@ -270,6 +276,51 @@ describe('candidats et filtres (D7)', () => {
     expect(r.hidden['off-build']).toBe(r.hiddenItems.length)
     expect(r.hiddenItems.every((h) => isOffBuild(h.candidate.weapon, str))).toBe(true)
     expect(filterWeapons(allWeapons(), base).hidden['off-build']).toBe(0)
+  })
+
+  it('hors de portée (V13, D51) : plus de 25 points manquants, jusqu’à l’étape qui suit celle du joueur, étapes passées comprises', () => {
+    const base = { content: { sote: true, tp: true }, constraints: { excludeRemembrance: false, excludeRandomDrop: false, excludeQuest: false }, reliability: { includeEstimates: true } }
+    const reach = (stage: Reach['stage'], playerStage: Reach['playerStage'], missingPoints: number): Reach => ({ stage, playerStage, missingPoints })
+    // Étape du joueur et suivante ; strictement plus de 25 points (25 : malus d'accessibilité au plafond, 15 / 0,6).
+    expect(isOutOfReach(reach('mid', 'early', 38))).toBe(true)
+    expect(isOutOfReach(reach('mid', 'mid', 38))).toBe(true)
+    expect(isOutOfReach(reach('mid', 'mid', 26))).toBe(true)
+    expect(isOutOfReach(reach('mid', 'mid', 25))).toBe(false)
+    expect(isOutOfReach(reach('dlc', 'endgame', 30))).toBe(true)
+    // Étapes déjà passées : touchées aussi (arbitrage de D51).
+    expect(isOutOfReach(reach('early', 'mid', 38))).toBe(true)
+    expect(isOutOfReach(reach('mid', 'late', 38))).toBe(true)
+    expect(isOutOfReach(reach('early', 'dlc', 26))).toBe(true)
+    expect(isOutOfReach(reach('early', 'dlc', 25))).toBe(false)
+    // Étapes plus lointaines (Rotten Crystal Staff en Fin de jeu, joueur au Début ou au Milieu) : non touchées.
+    expect(isOutOfReach(reach('endgame', 'early', 32))).toBe(false)
+    expect(isOutOfReach(reach('endgame', 'mid', 32))).toBe(false)
+    expect(isOutOfReach(reach('endgame', 'late', 32))).toBe(true)
+    // Arme « Non classé » ou position inconnue : jamais écartée.
+    expect(isOutOfReach(reach(null, 'early', 99))).toBe(false)
+    expect(isOutOfReach(null)).toBe(false)
+
+    // Position tirée du score : Lusat's Glintstone Staff (STR 10, INT 52) pour l'Astrologer (STR 8, INT 16), 38 points, Milieu.
+    const lusat = candidate("Lusat's Glintstone Staff")
+    const astrologer = { vig: 9, mnd: 15, end: 9, str: 8, dex: 12, int: 16, fai: 7, arc: 9 }
+    const stage = stageOf(lusat)
+    const score = scoreWeapon(lusat, ctx(lusat, { weights: { int: 1, dex: 0.2 }, attrs: astrologer, stage }))
+    expect(reachOf(stage, score, 'early')).toEqual({ stage: 'mid', playerStage: 'early', missingPoints: 38 })
+    const int = { weights: { int: 1, dex: 0.2 }, status: null, classes: [] }
+    expect(hiddenReason(lusat, base, int, reachOf(stage, score, 'early'))).toBe('out-of-reach')
+    // Joueur en Fin : le Milieu est passé, le bâton reste écarté (arbitrage de D51).
+    expect(hiddenReason(lusat, base, int, reachOf(stage, score, 'late'))).toBe('out-of-reach')
+    // « Hors build » passe d'abord, puis « hors de portée », puis les critères (décomptes d'élargissement exacts).
+    const coded = candidate('Coded Sword')
+    expect(hiddenReason(coded, base, { weights: { str: 1, dex: 0.2 }, status: null, classes: [] }, reach('mid', 'mid', 40))).toBe('off-build')
+    const est = withUpgrade(candidate('Longsword'), { material: 'Smithing Stones', maxLevel: 25, reliability: 'estimate', confidence: 'medium' })
+    expect(hiddenReason(est, { ...base, reliability: { includeEstimates: false } }, null, reach('early', 'early', 30))).toBe('out-of-reach')
+    // Sans position, le filtre ne s'applique pas ; `filterWeapons` le compte avec les armes masquées quand la position est fournie.
+    expect(hiddenReason(lusat, base, int)).toBeNull()
+    const r = filterWeapons([lusat, candidate("Astrologer's Staff")], base, int, (c) => (c.ref === lusat.ref ? reachOf(stage, score, 'mid') : null))
+    expect(r.hidden['out-of-reach']).toBe(1)
+    expect(r.hiddenItems).toEqual([{ candidate: lusat, reason: 'out-of-reach' }])
+    expect(r.kept.map((c) => c.weapon.name)).toEqual(["Astrologer's Staff"])
   })
 
   it('budget de charge : Endurance 25 (72,0), charge moyenne → 12,6', () => {
@@ -336,6 +387,15 @@ describe('recommandations par étape', () => {
     expect(early.hiddenCount).toBeGreaterThan(0)
     expect(widenSuggestions(early, 2)).toEqual([{ reason: 'style', count: 2 }])
   })
+
+  it('hors de portée (V13, D51) : hors des colonnes, compté avec les armes masquées, jamais proposé en élargissement', () => {
+    const far = scored.map((s) => ({ ...s, hidden: s.stage.value?.stage === 'mid' ? ('out-of-reach' as const) : s.hidden }))
+    const mid = recommendByStage(far).columns.find((c) => c.stage === 'mid')!
+    expect(mid.weapons).toHaveLength(0)
+    expect(mid.hidden['out-of-reach']).toBe(mid.hiddenCount)
+    expect(mid.hiddenCount).toBeGreaterThan(0)
+    expect(widenSuggestions(mid, 1)).toEqual([{ reason: 'style', count: 1 }])
+  })
 })
 
 describe('withVisibilityLimits', () => {
@@ -360,6 +420,21 @@ describe('withVisibilityLimits', () => {
     expect(out.value).toBe(score.value)
     expect(out.explanation.limits.slice(-2)).toEqual([{ code: 'weapon-outside-style' }, { code: 'weapon-hidden-remembrance' }])
     expect(score.explanation.limits).not.toContainEqual({ code: 'weapon-outside-style' })
-    expect(withVisibilityLimits(score, 'off-build', true).explanation.limits.at(-1)).toEqual({ code: 'weapon-hidden-off-build', params: { max: 5 } })
+  })
+
+  it('« hors build » cite le seuil et l’adéquation avant arrondi (V15) ; « hors de portée » ses points manquants (V13)', () => {
+    // Rogier's Rapier, archétype Intelligence : 4,58 avant arrondi, affiché 5 ; la limite cite 4,6, sous le seuil de 5.
+    const rapier = candidate("Rogier's Rapier")
+    const score = scoreWeapon(rapier, { ...ctx, weights: { int: 1, dex: 0.2 }, stage: entryStage(rapier.weapon, { ref: rapier.ref, file: rapier.file, encounters: encounters(), startingArmaments: null }) })
+    expect(withVisibilityLimits(score, 'off-build', true).explanation.limits.at(-1)).toEqual({ code: 'weapon-hidden-off-build', params: { max: 5, fit: 4.6 } })
+    // Un dixième qui atteindrait le seuil n'est jamais cité : 4,96 reste 4,96 (et non « 5,0, sous le seuil de 5 »).
+    const edge = { ...score, value: { ...score.value!, fitExact: 4.96 } }
+    expect(withVisibilityLimits(edge, 'off-build', true).explanation.limits.at(-1)?.params).toEqual({ max: 5, fit: 4.96 })
+    // « Hors de portée » : seuil, étapes couvertes et points manquants du score.
+    const far = { ...score, value: { ...score.value!, missingPoints: 38 } }
+    expect(withVisibilityLimits(far, 'out-of-reach', true).explanation.limits.at(-1)).toEqual({
+      code: 'weapon-hidden-out-of-reach',
+      params: { max: 25, span: 1, points: 38 },
+    })
   })
 })
