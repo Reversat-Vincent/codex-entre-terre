@@ -1,5 +1,5 @@
 # Feuille de route
-> Phase : vérification · Mise à jour : 2026-11-06
+> Phase : vérification, en pause à la demande du développeur depuis le 2026-11-06 · Mise à jour : 2026-11-06
 
 ## Étapes
 - [x] 0. Lancement
@@ -115,7 +115,11 @@
     > Note : 1 021 tests unitaires, 132 e2e. Arbitrages de la passe B en D50.
   - [ ] 8.3 Tour 2, vérification des corrections et de ce que le tour 1 n'a pas pu voir — verif-masse, verif-approfondie (opus), contenu-jeu (opus) → `docs/contenu/verification-v2.md`
     > Note : verif-masse et contenu-jeu rendus ; `npm run check` réussi deux fois de suite (1 024 tests unitaires, 132 e2e, aucun échec intermittent).
-  - [ ] 8.4 Tour 2, corrections — dev-logique en opus (V13 à V18, V21 : règle « hors de portée », limites portées par les lignes du plein écran, textes), dev-donnees (V19, `data/README.md`) ; puis dev-interface (affichage des limites V13 à V15, constats d'interface du tour 2)
+  - [ ] 8.4 Tour 2, corrections — dev-logique en opus (V13 à V18, V21 : règle « hors de portée », limites portées par les lignes du plein écran, textes) — commit `e90c49e` ; dev-donnees (V19, `data/README.md`) — commit `7ec70c9` ; reste, en trois lots parallèles sans fichier commun (D52) :
+    - dev-logique : `setOrigin` (attributs relevés) et sa notification dans `CriteriaFieldsCharacter.vue`, noms de profils uniques, glossaire proposé malgré des résultats, contextes de recherche en français (`search.ts`, `commandPaletteModel.ts`, `CompareAdd.vue`) ;
+    - dev-outillage : `clientsClaim`, test e2e de navigation hors ligne pendant la première visite ;
+    - dev-interface : focus après une action qui retire l'élément actif, Ctrl + Z pour « Annuler », score « Non classé » de la fiche arme, `router.onError`, texte « Prérequis non atteint », focus initial de la feuille de critères, focus sur le `h1`, méthodes d'obtention en français (carte et `myListModel.ts`, dont `detailOf`), affichage des limites V14 et V15 (`hiddenReasonOf`, `WeaponsTable.vue`, `VISIBILITY_LIMITS` de `WeaponScorePanel.vue`), restes de verif-masse (`?? 0`, `maxLevel`, « Points de concentration »).
+    > Note : pause demandée le 06/11 avant le lancement de ces trois lots ; aucun sous-agent ne tourne. La tâche programmée de reprise automatique est supprimée pendant la pause.
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
 
 ## Questions en attente
