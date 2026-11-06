@@ -198,6 +198,12 @@
   - **Données** : lieu « Volcano Manor » pour Albinauric Staff, Erdtree Seal et Gelmir Glintstone Staff ; fiabilité « wiki » pour 49 types d'amélioration confirmés par la liste ; Nanaya's Torch garde 65 (page de l'arme), l'écart avec la page Madness est noté dans les métadonnées.
   - **Statu quo** : V12, ordre Prisoner / Astrologer.
   - Par : chef de projet
+- D48 · 2026-11-06 · Réglage des règles de D47, après mesure sur les profils de test :
+  - **Hors build** : une arme est écartée quand sa composante « Adéquation au build » est inférieure à 5 sur 25. La règle « aucune lettre sur un attribut pondéré » laissait passer les armes qu'une pondération secondaire touche (DEX 0,2 de l'archétype Intelligence).
+  - **Points de prérequis manquants** : l'accessibilité les compte jusqu'à 15 points, au lieu de 9.
+  - **Facteur 0,6** : il ne s'applique à la puissance que si plus de 5 points de prérequis manquent au total, pour ne pas punir une arme à un point près comme une arme à trente points.
+  - Raison : écarter les recommandations absurdes relevées en V1 et V2 sans pénaliser les armes presque accessibles.
+  - Par : chef de projet
 
 ## Vérifications
 - Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu : 12 constats (contenu affiché exact sur 30 entités, calculs conformes), 11 retenus (2 majeurs : armes hors du build recommandées, catalyseurs dont les prérequis manquent recommandés sans réduction de puissance), 1 reporté (V12 : ordre Prisoner / Astrologer qui dépend des colonnes, statu quo en v1).
