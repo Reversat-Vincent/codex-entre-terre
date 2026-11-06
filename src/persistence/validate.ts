@@ -5,6 +5,7 @@
 import { ENTITY_KINDS } from '../data/datasets.ts'
 import type { EntityRef } from '../data/datasets.ts'
 import { ATTRIBUTE_KEYS, STATUS_KEYS } from '../data/keys.ts'
+import { ARCHETYPE_IDS } from '../engine/config/archetypes.ts'
 import { isWidgetId } from '../widgets/ids.ts'
 import type { WidgetId } from '../widgets/ids.ts'
 import { CURRENT_SCHEMA } from './schema.ts'
@@ -50,6 +51,7 @@ function readString(v: unknown, path: string, ctx: Ctx, opts: { min?: number } =
     fail(ctx, path, `chaîne trop longue (${v.length} caractères, ${LIMITS.maxString} au plus)`)
     return null
   }
+  // Longueur minimale facultative : 0 veut dire « pas de seuil » (borne de validation, pas une valeur du jeu).
   if (v.length < (opts.min ?? 0)) {
     fail(ctx, path, 'chaîne vide')
     return null
@@ -170,7 +172,8 @@ function readCriteria(v: unknown, path: string, ctx: Ctx): Criteria | null {
   let target: Criteria['target'] | null = null
   if (targetRec) {
     const rawArch = own(targetRec, 'archetype')
-    const archetype = rawArch === null ? null : readString(rawArch, `${path}.target.archetype`, ctx, { min: 1 })
+    // Ensemble connu (config/archetypes.ts) : `constructor`, `__proto__`, `toString`… sont refusés au lieu de passer pour une chaîne non vide.
+    const archetype = rawArch === null ? null : readEnum(rawArch, `${path}.target.archetype`, ctx, ARCHETYPE_IDS)
     const level = readInt(own(targetRec, 'level'), `${path}.target.level`, ctx, LIMITS.levelMin, LIMITS.levelMax)
     if ((rawArch === null || archetype !== null) && level !== null) target = { archetype, level }
   }

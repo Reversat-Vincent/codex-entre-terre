@@ -72,7 +72,7 @@ export function weaponFilesFor(style: StyleInput): WeaponFileKey[] {
 export function styleCategories(mode: PlayStyle, weights: BuildWeights): readonly string[] | null {
   const categories = STYLE_POOLS[mode].categories
   if (mode !== 'magic' || categories === null) return categories
-  // Poids absent = attribut hors build (type `BuildWeights`) : il ne retient pas sa catégorie de catalyseur.
+  // Un poids absent veut dire « attribut hors build » (type `BuildWeights`), pas une donnée du jeu manquante : 0 = ne retient pas la catégorie.
   const weighted = categories.filter((cat) => {
     const attr = MAGIC_CATALYST_ATTRIBUTE[cat]
     return attr !== undefined && (weights[attr] ?? 0) > 0

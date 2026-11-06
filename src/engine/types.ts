@@ -201,3 +201,14 @@ export function isCalc<T>(x: T | Calc<T>): x is Calc<T> {
 export function isIntIn(n: number, min: number, max: number): boolean {
   return Number.isInteger(n) && n >= min && n <= max
 }
+
+/**
+ * Lit une entrée d'une table par une clé qui peut venir de l'état de l'utilisateur ou d'un fichier importé : seules les clés propres
+ * comptent, jamais la chaîne de prototypes (`constructor`, `toString`, `__proto__`… ne désignent aucune entrée).
+ * @param table Table de configuration.
+ * @param key Clé à chercher.
+ * @returns La valeur, ou `undefined` si la clé n'est pas une clé propre de la table.
+ */
+export function ownValue<V>(table: Readonly<Record<string, V>>, key: string): V | undefined {
+  return Object.hasOwn(table, key) ? table[key] : undefined
+}

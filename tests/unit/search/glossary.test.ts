@@ -2,6 +2,7 @@
 
 import { describe, expect, it } from 'vitest'
 import { normalizeText } from '../../../src/data/slug.ts'
+import { prepared } from '../data/helpers.ts'
 import { GLOSSARY, MAX_TRANSLATIONS, STOPWORDS, lookupWord, translateQuery } from '../../../src/search/glossary.ts'
 
 describe('GLOSSARY', () => {
@@ -66,5 +67,34 @@ describe('translateQuery', () => {
     expect(translateQuery('de la')).toEqual([])
     expect(translateQuery('')).toEqual([])
     expect(translateQuery('rune')).toEqual([])
+  })
+})
+
+describe('mots de mécanique', () => {
+  it('traduit les mots courants de la tâche « comprendre une mécanique »', () => {
+    expect(translateQuery('saignement')).toEqual(['blood loss'])
+    expect(translateQuery('hémorragie')).toEqual(['blood loss'])
+    expect(translateQuery('statut')).toEqual(['status'])
+    expect(translateQuery('parade')).toEqual(['parry'])
+    expect(translateQuery('garde')).toEqual(['guard'])
+    expect(translateQuery('affinités')).toEqual(['affinity'])
+    expect(translateQuery('endurance')).toEqual(['stamina'])
+    expect(translateQuery('givre')).toEqual(['frost', 'frostbite'])
+    expect(translateQuery('poison')).toEqual([])
+    expect(translateQuery('putréfaction')).toEqual(['rot', 'scarlet rot'])
+    expect(translateQuery('sommeil')).toEqual(['sleep'])
+    expect(translateQuery('folie')).toEqual(['madness', 'frenzy'])
+    expect(translateQuery('équilibre')).toEqual(['poise'])
+    expect(translateQuery('charge')).toEqual(['equip load'])
+    expect(translateQuery('esprit')).toEqual(['spirit'])
+  })
+
+  it('chaque équivalent est un mot (ou une suite de mots) d’un nom de l’index de recherche', () => {
+    const names = prepared().search.map((d) => ` ${d.norm} `)
+    const missing: string[] = []
+    for (const [fr, en] of Object.entries(GLOSSARY)) {
+      for (const word of en) if (!names.some((n) => n.includes(` ${word} `))) missing.push(`${fr} → ${word}`)
+    }
+    expect(missing).toEqual([])
   })
 })

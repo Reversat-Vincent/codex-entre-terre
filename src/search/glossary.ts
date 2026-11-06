@@ -55,7 +55,7 @@ export const GLOSSARY: Readonly<Record<string, readonly string[]>> = {
   feu: ['fire'],
   flamme: ['flame'],
   glace: ['ice', 'frost'],
-  givre: ['frost'],
+  givre: ['frost', 'frostbite'],
   foudre: ['lightning'],
   eclair: ['lightning'],
   sacre: ['holy', 'sacred'],
@@ -73,6 +73,19 @@ export const GLOSSARY: Readonly<Record<string, readonly string[]>> = {
   sommeil: ['sleep'],
   folie: ['madness', 'frenzy'],
   mort: ['death'],
+  // Mécaniques (tâche « comprendre une mécanique ») : équivalents relevés dans les noms de mécaniques de l'index (Blood Loss, Status Effects,
+  // Skill: Parry, Guard Boost, Affinity/…, Stamina, Endurance, Frostbite, Scarlet Rot, Poise, Equip Load). « Bleed » n'est un mot d'aucun nom
+  // de l'index : le wiki intitule la mécanique « Blood Loss », donc « saignement » ne propose que « blood loss ».
+  saignement: ['blood loss'],
+  hemorragie: ['blood loss'],
+  statut: ['status'],
+  parade: ['parry'],
+  garde: ['guard'],
+  affinite: ['affinity'],
+  endurance: ['stamina', 'endurance'],
+  putrefaction: ['rot', 'scarlet rot'],
+  equilibre: ['poise'],
+  charge: ['equip load'],
   // Créatures et personnages
   dragon: ['dragon'],
   loup: ['wolf'],

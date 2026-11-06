@@ -146,6 +146,7 @@ export function upgradePlan(
   const totals = new Map<string, StoneTotal>()
   for (const s of steps) {
     const prev = totals.get(s.item)
+    // Cumul de quantités déjà posées : aucune entrée précédente = aucune pierre comptée jusque-là (compteur, pas une donnée du jeu).
     totals.set(s.item, { item: s.item, name: s.name, tier: s.tier, quantity: (prev?.quantity ?? 0) + s.quantity })
   }
   const order = (t: StoneTierId): number => (t === 'ancient' ? Number.MAX_SAFE_INTEGER : t)

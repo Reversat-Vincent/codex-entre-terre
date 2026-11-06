@@ -9,7 +9,7 @@ import { DLC_SOURCE, REGION_PARENT } from './config/stages.ts'
 import type { DlcZone } from './config/stages.ts'
 import type { EncounterIndex, EncounterRef } from './encounters.ts'
 import { dlcZoneOfRegion, dlcZoneRank, mostPrecise } from './stage.ts'
-import { makeCalc, nullCalc } from './types.ts'
+import { makeCalc, nullCalc, ownValue } from './types.ts'
 import type { Calc, DataRef, Estimate, ExplanationComponent, ExplanationLimit } from './types.ts'
 
 export { gaugeMax, readiness } from './readiness.ts'
@@ -112,19 +112,19 @@ export interface TierResolution {
  * @returns Le palier, ou `null` si aucune zone n'a de palier (DLC, Deeproot Depths…).
  */
 export function encounterTier(ref: EncounterRef, cfg: BossLevelConfig = BOSS_LEVEL): TierResolution | null {
-  const fixed = cfg.encounterTier[ref.key]
+  const fixed = ownValue(cfg.encounterTier, ref.key)
   if (fixed !== undefined) return { ...fixed, region: null }
   let best: TierResolution | null = null
   for (const region of mostPrecise(ref.encounter?.regions ?? [])) {
     let cur: string | undefined = region
     let viaParent = false
     while (cur !== undefined) {
-      const zone = cfg.zoneTier[cur]
+      const zone = ownValue(cfg.zoneTier, cur)
       if (zone !== undefined) {
         if (best === null || zone.tier < best.tier) best = { tier: zone.tier, basis: viaParent ? 'parent' : zone.basis, region: cur }
         break
       }
-      cur = REGION_PARENT[cur]
+      cur = ownValue(REGION_PARENT, cur)
       viaParent = true
     }
   }

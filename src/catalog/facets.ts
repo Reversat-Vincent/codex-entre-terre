@@ -607,6 +607,7 @@ export function computeCatalog<R>(def: CatalogDef<R>, rows: readonly R[], query:
     }
     for (let f = 0; f < nFacets; f++) {
       const total = totals[f] as Map<string, number>
+      // Compteurs de lignes par valeur de facette : une valeur pas encore vue en est à 0 ligne (dénombrement, pas une donnée du jeu).
       for (const v of (table[f] as Set<string>[])[r] as Set<string>) total.set(v, (total.get(v) ?? 0) + 1)
     }
     if (failures === 0 && estimated?.[r]) estimateCount++
@@ -616,27 +617,33 @@ export function computeCatalog<R>(def: CatalogDef<R>, rows: readonly R[], query:
     for (let f = 0; f < nFacets; f++) {
       if (failures === 1 && f !== failedFacet) continue
       const c = counts[f] as Map<string, number>
+      // Même dénombrement, sur les lignes qui passent les autres facettes.
       for (const v of (table[f] as Set<string>[])[r] as Set<string>) c.set(v, (c.get(v) ?? 0) + 1)
     }
   }
 
   const facets: FacetState[] = def.facets.map((facet, f) => {
+    // Aucune sélection pour cette facette = ensemble vide (filtre inactif), pas une valeur du jeu.
     const chosen = selection.get(facet.id) ?? new Set<string>()
     const total = totals[f] as Map<string, number>
     const count = counts[f] as Map<string, number>
     const values: string[] = facet.fixedOptions ? facet.fixedOptions.map((o) => o.value) : [...total.keys()].filter((v) => v !== NONE_VALUE)
     if (!facet.fixedOptions) {
+      // Tri par effectif décroissant : une valeur sans effectif compte 0 (dénombrement, pas une donnée du jeu).
       values.sort((a, b) => (total.get(b) ?? 0) - (total.get(a) ?? 0) || collator.compare(optionLabel(facet, a), optionLabel(facet, b)))
     }
+    // Valeur jamais comptée = 0 ligne : « Non documenté » n'est proposé que si au moins une ligne y est.
     if ((total.get(NONE_VALUE) ?? 0) > 0 || chosen.has(NONE_VALUE)) values.push(NONE_VALUE)
     for (const v of chosen) if (!values.includes(v)) values.push(v)
     const options: FacetOptionState[] = values.map((value) => {
+      // Option absente des lignes filtrées ou comptée nulle part : 0 résultat (dénombrement) ; l'option reste affichée, grisée.
       const n = count.get(value) ?? 0
       const selected = chosen.has(value)
       return {
         value,
         label: optionLabel(facet, value),
         count: n,
+        // Valeur choisie mais absente des lignes : effectif 0 (dénombrement).
         total: total.get(value) ?? 0,
         selected,
         empty: n === 0,

@@ -9,7 +9,7 @@ import type { DlcZone, StageId } from './config/stages.ts'
 import { REMEMBRANCES } from './config/remembrances.ts'
 import type { RemembranceLink } from './config/remembrances.ts'
 import type { EncounterIndex } from './encounters.ts'
-import { makeCalc, nullCalc } from './types.ts'
+import { makeCalc, nullCalc, ownValue } from './types.ts'
 import type { Calc, DataRef, ExplanationLimit } from './types.ts'
 
 /** Provenance de l'étape : règle de calculs.md qui l'a donnée (`override` = surcharge documentée de config/stages.ts, règle 0). */
@@ -29,11 +29,11 @@ export interface StageInfo {
 
 /**
  * Étape d'une région (config/stages.ts, table du § 1.3).
- * @param region Nom exact de data/.
+ * @param region Nom exact de data/ ; une région venue de l'état de l'utilisateur est lue par clé propre seulement (`constructor` n'est pas une région).
  * @returns L'étape, ou `null` si la région n'est pas dans la table.
  */
 export function stageOfRegion(region: string): StageId | null {
-  return REGION_STAGE[region] ?? null
+  return ownValue(REGION_STAGE, region) ?? null
 }
 
 /**
@@ -42,7 +42,7 @@ export function stageOfRegion(region: string): StageId | null {
  * @returns La sous-zone, ou `null` hors DLC.
  */
 export function dlcZoneOfRegion(region: string): DlcZone | null {
-  return DLC_ZONE[region] ?? null
+  return ownValue(DLC_ZONE, region) ?? null
 }
 
 /**
@@ -61,10 +61,10 @@ export function dlcZoneRank(zone: DlcZone | null): number {
  */
 function ancestors(region: string): string[] {
   const out: string[] = []
-  let cur = REGION_PARENT[region]
+  let cur = ownValue(REGION_PARENT, region)
   while (cur !== undefined && !out.includes(cur)) {
     out.push(cur)
-    cur = REGION_PARENT[cur]
+    cur = ownValue(REGION_PARENT, cur)
   }
   return out
 }

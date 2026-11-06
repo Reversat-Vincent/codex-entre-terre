@@ -321,6 +321,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
     const counts = new Map<StageId, number>()
     for (const o of others) {
       const s = entryStage(o.weapon, { ref: o.ref, file: o.file, encounters: encounters.value, startingArmaments: null }).value?.stage
+      // Compteur par étape : une étape pas encore vue en est à 0 arme (dénombrement, pas une donnée du jeu).
       if (s !== undefined) counts.set(s, (counts.get(s) ?? 0) + 1)
     }
     return counts

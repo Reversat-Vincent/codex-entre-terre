@@ -7,7 +7,7 @@ import { ARCHETYPES, AUTO_WEIGHTS, TARGET_FLOOR, TEMPLATE_LEVEL, TEMPLATE_ORDER,
 import type { Archetype } from './config/archetypes.ts'
 import { ATTRIBUTE_MAX, ATTRIBUTE_MIN, LEVEL_OFFSET } from './level.ts'
 import type { BuildWeights } from './origins.ts'
-import { makeCalc, nullCalc } from './types.ts'
+import { makeCalc, nullCalc, ownValue } from './types.ts'
 import type { Attributes, Calc, DataRef, ExplanationComponent, ExplanationLimit } from './types.ts'
 
 /** Configuration du build cible (par défaut celle de config/archetypes.ts). */
@@ -63,7 +63,7 @@ export function targetAttributes(
   current: Attributes | null,
   cfg: TargetConfig = TARGET_CONFIG,
 ): Calc<Attributes> {
-  const arch = archetype === null ? undefined : cfg.archetypes[archetype]
+  const arch = archetype === null ? undefined : ownValue(cfg.archetypes, archetype)
   if (arch === undefined) return nullCalc('target-attributes', { code: 'no-archetype' })
   if (!Number.isInteger(targetLevel) || targetLevel < 1) {
     return nullCalc('target-attributes', { code: 'level-out-of-range', params: { level: targetLevel } })

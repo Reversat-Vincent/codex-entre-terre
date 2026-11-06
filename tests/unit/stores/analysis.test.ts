@@ -298,3 +298,29 @@ describe('getters des fiches, des catalogues et des widgets (2.12)', () => {
     expect(analysis.stageOf('armor:absente')).toBeNull()
   })
 })
+
+describe('clés de prototype venues de l’état (fichier importé)', () => {
+  const PROTO_KEYS = ['constructor', '__proto__', 'toString', 'valueOf', 'hasOwnProperty']
+
+  it.each(PROTO_KEYS)('« %s » comme archétype, origine, classe, région ou boss vaincu : aucun calcul ne casse', async (key) => {
+    const { analysis, criteria } = await setup(['origins', 'bosses', 'tables', 'melee_armaments', 'ranged_weapons_catalysts'])
+    const base = criteria.snapshot()
+    criteria.hydrate({
+      ...base,
+      character: { ...base.character, origin: key },
+      target: { archetype: key, level: 150 },
+      style: { ...base.style, classes: [key] },
+      progress: { mode: 'region', stage: 'early', regions: [key], defeated: [key] },
+    })
+    expect(analysis.target.value).toBeNull()
+    expect(analysis.weights.source).toBe('auto')
+    expect(analysis.stage.value).toBe('early')
+    // Une origine absente des données est conservée telle quelle (« toléré ») mais ne donne ni arme ni attribut de départ.
+    expect(analysis.scored.length).toBeGreaterThan(0)
+    expect(analysis.recommendations.columns.length).toBeGreaterThan(0)
+    expect(analysis.timeline?.steps.length).toBeGreaterThan(0)
+    expect(analysis.chips.some((c) => c.kind === 'build')).toBe(true)
+    criteria.set({ progress: { mode: 'boss' } })
+    expect(analysis.stage.value).toBeDefined()
+  })
+})
