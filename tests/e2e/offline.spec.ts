@@ -6,7 +6,7 @@ import { readDataManifest, watchPage } from './support.ts'
 test('le site se recharge sans réseau, données comprises', async ({ page, context, baseURL }) => {
   const watcher = watchPage(page, baseURL ?? '')
   await page.goto('./', { waitUntil: 'networkidle' })
-  await expect(page.locator('main')).toBeVisible()
+  await expect(page.locator('main h1').first()).toBeVisible()
 
   // Première visite : le service worker s'enregistre, s'installe (précache complet) puis s'active.
   await page.evaluate(async () => {
@@ -36,7 +36,7 @@ test('le site se recharge sans réseau, données comprises', async ({ page, cont
   watcher.problems.length = 0
   await page.reload({ waitUntil: 'load' })
 
-  await expect(page.locator('main')).toBeVisible()
+  await expect(page.locator('main h1').first()).toBeVisible()
   await expect(page.locator('header').first()).toBeVisible()
   expect(await page.evaluate(() => navigator.serviceWorker.controller !== null), 'page contrôlée par le service worker').toBe(true)
 

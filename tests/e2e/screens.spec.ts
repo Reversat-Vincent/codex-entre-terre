@@ -58,8 +58,10 @@ for (const viewport of VIEWPORTS) {
     for (const screen of screens) {
       test(`écran ${screen.name}`, async ({ page, baseURL }) => {
         const watcher = watchPage(page, baseURL ?? '')
-        await page.goto(`./#${screen.hash}`, { waitUntil: 'networkidle' })
-        await expect(page.locator('main')).toBeVisible()
+        await page.goto(`./#${screen.hash}`, { waitUntil: 'load' })
+        // Repère stable : le titre h1 de la route, rendu une fois la vue et ses données chargées (plus fiable que `networkidle` sous charge).
+        await expect(page.locator('main h1').first()).toBeVisible()
+        await page.waitForLoadState('networkidle')
         // Polices chargées avant la capture, sinon la mise en page change entre deux exécutions.
         await page.evaluate(() => document.fonts.ready)
 
