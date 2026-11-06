@@ -9,6 +9,7 @@ import { STORAGE_KEYS } from '../../../src/persistence/schema.ts'
 import { useCriteriaStore } from '../../../src/stores/criteria.ts'
 import { useLayoutStore } from '../../../src/stores/layout.ts'
 import { usePinsStore } from '../../../src/stores/pins.ts'
+import { useQuestsStore } from '../../../src/stores/quests.ts'
 import { usePreferencesStore } from '../../../src/stores/preferences.ts'
 import { useProfilesStore } from '../../../src/stores/profiles.ts'
 import { useSearchStore } from '../../../src/stores/search.ts'
@@ -34,6 +35,7 @@ function setup(storage: SpyStorage, durable = true) {
     criteria: useCriteriaStore(),
     profiles: useProfilesStore(),
     pins: usePinsStore(),
+    quests: useQuestsStore(),
     layout: useLayoutStore(),
     preferences: usePreferencesStore(),
     recentSearches: useSearchStore(),
@@ -92,7 +94,7 @@ describe('écriture', () => {
     expect(storage.writes).toBe(1)
   })
 
-  it('restaure l’état au démarrage suivant (hydratation des six stores)', () => {
+  it('restaure l’état au démarrage suivant (hydratation des sept stores)', () => {
     const storage = spyStorage()
     const first = setup(storage)
     first.bridge.start(loadStoredState(storage))
@@ -104,6 +106,7 @@ describe('écriture', () => {
     second.bridge.start(loadStoredState(storage))
     expect(second.bridge.collect()).toEqual(sampleState())
     expect(second.stores.pins.items).toHaveLength(2)
+    expect(second.stores.quests.isDone('melina', 'rest-at-the-site-of-grace')).toBe(true)
     expect(second.stores.preferences.theme).toBe('parchemin')
   })
 })

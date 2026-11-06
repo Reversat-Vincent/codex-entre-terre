@@ -36,6 +36,7 @@ export function sampleState(): PersistedState {
       { ref: 'weapon:moonveil', addedAt: '2026-11-01T10:00:00.000Z', done: true },
       { ref: 'boss:margit-the-fell-omen', addedAt: '2026-11-01T10:01:00.000Z', done: false },
     ],
+    quests: { melina: ['speak-to-melina-at-the-site-of-grace', 'rest-at-the-site-of-grace'], 'boc-the-seamster': ['speak-to-boc'] },
     layout,
     preferences: { ...defaultPreferences(), theme: 'parchemin', navRail: 'rail', catalogView: { weapons: 'grid' }, catalogColumns: { weapons: ['name', 'weight'] } },
     recentSearches: ['moonveil', 'jolan'],

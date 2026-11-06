@@ -24,7 +24,7 @@ export interface SliceStore<T> {
   hydrate(slice: T): void
 }
 
-/** Les six tranches de l'état persisté, chacune portée par un store. */
+/** Les sept tranches de l'état persisté, chacune portée par un store. */
 export type BridgeStores = { [K in keyof PersistedState]: SliceStore<PersistedState[K]> }
 
 /** Cible d'événements minimale (`window`, ou un `EventTarget` dans les tests). */
@@ -62,7 +62,7 @@ export interface Bridge {
    * Une migration est réécrite aussitôt sous la version courante.
    */
   start(load: StoredLoad): void
-  /** Rassemble l'état courant des six stores. */
+  /** Rassemble l'état courant des sept stores. */
   collect(): PersistedState
   /**
    * Remplace tout l'état (import, annulation) : hydrate les stores sans déclencher l'écriture différée, puis écrit tout de suite.
@@ -75,7 +75,7 @@ export interface Bridge {
   stop(): void
 }
 
-const KEYS: readonly (keyof PersistedState)[] = ['criteria', 'profiles', 'pins', 'layout', 'preferences', 'recentSearches']
+const KEYS: readonly (keyof PersistedState)[] = ['criteria', 'profiles', 'pins', 'quests', 'layout', 'preferences', 'recentSearches']
 
 /**
  * Crée le pont de persistance. Rien n'est lu ni écrit avant `start`.

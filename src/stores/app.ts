@@ -17,6 +17,7 @@ import { useCriteriaStore } from './criteria.ts'
 import { useDataStore } from './data.ts'
 import { useLayoutStore } from './layout.ts'
 import { usePinsStore } from './pins.ts'
+import { useQuestsStore } from './quests.ts'
 import { usePreferencesStore, applyTheme } from './preferences.ts'
 import { useProfilesStore } from './profiles.ts'
 import { useSearchStore } from './search.ts'
@@ -77,6 +78,7 @@ export const useAppStore = defineStore('app', () => {
         criteria: useCriteriaStore(),
         profiles: useProfilesStore(),
         pins: usePinsStore(),
+        quests: useQuestsStore(),
         layout: useLayoutStore(),
         preferences: usePreferencesStore(),
         recentSearches: useSearchStore(),

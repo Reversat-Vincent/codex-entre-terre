@@ -34,7 +34,7 @@ describe('export', () => {
     const doc = JSON.parse(buildExportFile(sampleState(), '0.1.0', NOW).content) as Doc
     expect(doc).toMatchObject({ app: 'codex-entre-terre', kind: 'export', schemaVersion: CURRENT_SCHEMA, appVersion: '0.1.0' })
     expect(typeof doc.exportedAt).toBe('string')
-    expect(Object.keys(doc.state).sort()).toEqual(['criteria', 'layout', 'pins', 'preferences', 'profiles', 'recentSearches'])
+    expect(Object.keys(doc.state).sort()).toEqual(['criteria', 'layout', 'pins', 'preferences', 'profiles', 'quests', 'recentSearches'])
   })
 
   it('export puis import redonne exactement le même état', () => {
@@ -138,6 +138,53 @@ describe('bornes', () => {
 
   it('une référence absente des données ne bloque pas', () => {
     expect(bad((d) => (d.state.pins[0].ref = 'weapon:arme-qui-nexiste-pas'))).toEqual([])
+  })
+})
+
+describe('quêtes cochées', () => {
+  const bad = (mutate: (d: Doc) => void): string[] => {
+    const r = validateDocument(JSON.parse(exportedJson(mutate)))
+    return r.ok ? [] : r.error.map((i) => i.path)
+  }
+  const npcs = (n: number): Record<string, string[]> => Object.fromEntries(Array.from({ length: n }, (_, i) => [`pnj-${i}`, ['etape']]))
+
+  it('300 PNJ, 200 étapes par PNJ, clés de 100 caractères au plus', () => {
+    expect(bad((d) => (d.state.quests = npcs(301)))).toContain('document.state.quests')
+    expect(bad((d) => (d.state.quests = npcs(300)))).toEqual([])
+    const steps = (n: number): string[] => Array.from({ length: n }, (_, i) => `etape-${i}`)
+    expect(bad((d) => (d.state.quests = { melina: steps(201) }))).toContain('document.state.quests["melina"]')
+    expect(bad((d) => (d.state.quests = { melina: steps(200) }))).toEqual([])
+    expect(bad((d) => (d.state.quests = { melina: ['x'.repeat(101)] }))).toContain('document.state.quests["melina"][0]')
+    expect(bad((d) => (d.state.quests = { melina: ['x'.repeat(100)] }))).toEqual([])
+  })
+
+  it('refuse les types faux, les clés vides et les doublons', () => {
+    expect(bad((d) => (d.state.quests = []))).toContain('document.state.quests')
+    expect(bad((d) => (d.state.quests = { melina: 'a' }))).toContain('document.state.quests["melina"]')
+    expect(bad((d) => (d.state.quests = { melina: [1] }))).toContain('document.state.quests["melina"][0]')
+    expect(bad((d) => (d.state.quests = { melina: [''] }))).toContain('document.state.quests["melina"][0]')
+    expect(bad((d) => (d.state.quests = { melina: ['a', 'a'] }))).toContain('document.state.quests["melina"][1]')
+    expect(bad((d) => (d.state.quests = { ['x'.repeat(201)]: ['a'] }))).toContain('document.state.quests')
+  })
+
+  it('une tranche absente vaut « rien de coché » ; un PNJ sans étape est écarté', () => {
+    const r = parseDocument(exportedJson((d) => delete d.state.quests))
+    expect(r.ok && r.value.state.quests).toEqual({})
+    const r2 = parseDocument(exportedJson((d) => (d.state.quests = { melina: [], boc: ['a'] })))
+    expect(r2.ok && r2.value.state.quests).toEqual({ boc: ['a'] })
+  })
+
+  it('ignore __proto__ et reconstruit les listes', () => {
+    const text = exportedJson().replace('"quests":{', '"quests":{"__proto__":["polluted"],')
+    expect(text).toContain('"__proto__":["polluted"]')
+    const r = parseDocument(text)
+    expect(r.ok).toBe(true)
+    expect(({} as Record<string, unknown>).polluted).toBeUndefined()
+    if (r.ok) {
+      expect(Object.hasOwn(r.value.state.quests, '__proto__')).toBe(false)
+      expect(Object.getPrototypeOf(r.value.state.quests)).toBe(Object.prototype)
+      expect(r.value.state.quests).toEqual(sampleState().quests)
+    }
   })
 })
 

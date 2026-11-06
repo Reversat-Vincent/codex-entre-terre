@@ -79,6 +79,15 @@ export interface PinRecord {
   done: boolean
 }
 
+/** Identifiant de PNJ (`npcs[].id`, slug). Un identifiant absent des données est toléré. */
+export type NpcId = string
+
+/**
+ * Tranche « quêtes » : pour chaque PNJ, les clés des étapes de quête cochées (`questStepKey` de `stores/quests.ts`).
+ * Un PNJ sans étape cochée est absent de l'objet.
+ */
+export type QuestsSlice = Record<NpcId, string[]>
+
 /** Tranche « disposition » : widgets affichés dans l'ordre, retirés, réduits (bureau) et réduits (mobile). */
 export interface LayoutSlice {
   order: WidgetId[]
@@ -118,6 +127,7 @@ export interface PersistedState {
   criteria: Criteria
   profiles: ProfilesSlice
   pins: PinRecord[]
+  quests: QuestsSlice
   layout: LayoutSlice
   preferences: PreferencesSlice
   recentSearches: string[]
@@ -140,6 +150,10 @@ export const LIMITS = {
   levelMax: 713,
   maxProfiles: 50,
   maxPins: 2000,
+  /** Quêtes : PNJ ayant au moins une étape cochée, étapes cochées par PNJ, longueur d'une clé d'étape. */
+  maxQuestNpcs: 300,
+  maxQuestSteps: 200,
+  maxQuestKey: 100,
   maxString: 200,
   maxRecentSearches: 8,
   /** Listes de chaînes dans les critères (classes, régions, boss vaincus). */

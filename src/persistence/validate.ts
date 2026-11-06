@@ -9,7 +9,7 @@ import { isWidgetId } from '../widgets/ids.ts'
 import type { WidgetId } from '../widgets/ids.ts'
 import { CURRENT_SCHEMA } from './schema.ts'
 import { CATALOG_VIEWS, LIMITS, LOADS, NAV_RAIL_MODES, PROGRESS_MODES, STAGE_IDS, STONE_PREFERENCES, STYLE_MODES, THEMES } from './model.ts'
-import type { Attributes, CatalogView, Criteria, LayoutSlice, PersistedState, PinRecord, PreferencesSlice, ProfileRecord, ProfilesSlice, Result, ValidationIssue } from './model.ts'
+import type { Attributes, CatalogView, Criteria, LayoutSlice, PersistedState, PinRecord, PreferencesSlice, ProfileRecord, ProfilesSlice, QuestsSlice, Result, ValidationIssue } from './model.ts'
 
 /** Nombre maximal d'écarts conservés : au-delà, le fichier est de toute façon refusé. */
 const MAX_ISSUES = 50
@@ -268,6 +268,54 @@ function readPins(v: unknown, path: string, ctx: Ctx): PinRecord[] | null {
   })
 }
 
+/**
+ * Étapes de quête cochées : objet borné (300 PNJ), clé de PNJ non vide de 200 caractères au plus, liste de 200 clés d'étape au plus
+ * (non vides, 100 caractères au plus, sans doublon). Un PNJ sans étape est écarté sans écart signalé ; l'objet rendu n'a pas de prototype partagé
+ * avec le fichier lu et `__proto__` n'est jamais copié.
+ * Une tranche absente du document (enregistré avant l'ajout des quêtes, le schéma n'ayant pas changé de version) vaut « aucune étape cochée ».
+ */
+function readQuests(v: unknown, path: string, ctx: Ctx): QuestsSlice | null {
+  if (v === undefined) return {}
+  const rec = readRecord(v, path, ctx)
+  if (!rec) return null
+  const keys = Object.keys(rec)
+  if (keys.length > LIMITS.maxQuestNpcs) {
+    fail(ctx, path, `trop de PNJ (${keys.length}, ${LIMITS.maxQuestNpcs} au plus)`)
+    return null
+  }
+  const out: QuestsSlice = {}
+  let ok = true
+  for (const key of keys) {
+    if (key === '__proto__') continue
+    const at = `${path}[${JSON.stringify(key.slice(0, 40))}]`
+    if (key.length === 0 || key.length > LIMITS.maxString) {
+      fail(ctx, path, 'identifiant de PNJ invalide')
+      ok = false
+      continue
+    }
+    const seen = new Set<string>()
+    const steps = readList<string>(rec[key], at, ctx, LIMITS.maxQuestSteps, (x, p) => {
+      if (typeof x !== 'string' || x.length === 0) {
+        fail(ctx, p, typeof x === 'string' ? 'clé d’étape vide' : `chaîne attendue, ${typeName(x)} trouvé`)
+        return null
+      }
+      if (x.length > LIMITS.maxQuestKey) {
+        fail(ctx, p, `clé d’étape trop longue (${x.length} caractères, ${LIMITS.maxQuestKey} au plus)`)
+        return null
+      }
+      if (seen.has(x)) {
+        fail(ctx, p, 'étape cochée en double')
+        return null
+      }
+      seen.add(x)
+      return x
+    })
+    if (steps === null) ok = false
+    else if (steps.length > 0) Object.defineProperty(out, key, { value: steps, enumerable: true, writable: true, configurable: true })
+  }
+  return ok ? out : null
+}
+
 function readWidgetList(v: unknown, path: string, ctx: Ctx): WidgetId[] | null {
   const seen = new Set<string>()
   return readList<WidgetId>(v, path, ctx, 100, (x, p) => {
@@ -376,11 +424,12 @@ function readState(v: unknown, path: string, ctx: Ctx): PersistedState | null {
   const criteria = readCriteria(own(rec, 'criteria'), `${path}.criteria`, ctx)
   const profiles = readProfiles(own(rec, 'profiles'), `${path}.profiles`, ctx)
   const pins = readPins(own(rec, 'pins'), `${path}.pins`, ctx)
+  const quests = readQuests(own(rec, 'quests'), `${path}.quests`, ctx)
   const layout = readLayout(own(rec, 'layout'), `${path}.layout`, ctx)
   const preferences = readPreferences(own(rec, 'preferences'), `${path}.preferences`, ctx)
   const recentSearches = readRecentSearches(own(rec, 'recentSearches'), `${path}.recentSearches`, ctx)
-  if (ctx.count > before || !criteria || !profiles || !pins || !layout || !preferences || !recentSearches) return null
-  return { criteria, profiles, pins, layout, preferences, recentSearches }
+  if (ctx.count > before || !criteria || !profiles || !pins || !quests || !layout || !preferences || !recentSearches) return null
+  return { criteria, profiles, pins, quests, layout, preferences, recentSearches }
 }
 
 function finish<T>(value: T | null, ctx: Ctx): Result<T, ValidationIssue[]> {
