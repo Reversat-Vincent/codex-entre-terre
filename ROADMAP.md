@@ -93,7 +93,7 @@
   - [x] 2.14 Suivi des quêtes enregistré (D45) : store `quests`, champ du document de persistance, validation, export et import, clé d'étape stable `questStepKey(texte)` — dev-logique — commit `7233213`
     > Note : un document sans `quests` se lit comme vide (sauvegardes de développement). Reste à ajouter une ligne « étapes de quête cochées » au résumé de confirmation d'import (`importer.ts`, `ProfileBackup.vue`) : à traiter en vérification.
   - [x] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
-    > Note : 901 tests. Écrans non dessinés, construits sur les styles de la palette ; icônes de catalogues à valider en vérification. `ProvisionalScreen.vue` n'est plus utilisé : à retirer.
+    > Note : 901 tests. Écrans non dessinés, construits sur les styles de la palette ; icônes de catalogues à valider en vérification. `ProvisionalScreen.vue`, devenu inutile, a été retiré au tour 1 (`53f3227`).
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [x] 6.1 Ma liste et comparateur — dev-interface
     > Note : vérifiés dans Chromium. Acceptés : « Meilleur » seulement sur les lignes qui ont un sens (attaque, poids, prérequis, absorptions…), « Écart » ailleurs (scaling, amélioration, compétence, passif, dont le mérite dépend du build) ; tableau défilant à hauteur bornée. Étape et score hors style par `stageOf` et `scoreOf` (2.12), branchés en 4.6.
@@ -114,6 +114,8 @@
   - [x] 8.2 Tour 1, corrections — dev-logique (import, `setOrigin`, glossaire, `gaugeMax`, `?? 0` de la logique), dev-interface A (contraste, widget A, marque, navigation, frise, obtention, restes), dev-outillage (stabilité e2e) ; puis dev-interface B (`?? 0` des composants, branchement de `setOrigin` et `gaugeMax`, note de Sir Gideon) ; puis corrections de contenu : dev-donnees (D-V4 à D-V6), dev-logique en opus (K-V1 à K-V3, textes de `calculs.md`), puis dev-interface B (avec les libellés D46 et les textes V11) — commits `037d9f6`, `4feef13`, `8ba9968`, `53f3227`, `4005d72`, `4cc1446`, `8d6d463`
     > Note : 1 021 tests unitaires, 132 e2e. Arbitrages de la passe B en D50.
   - [ ] 8.3 Tour 2, vérification des corrections et de ce que le tour 1 n'a pas pu voir — verif-masse, verif-approfondie (opus), contenu-jeu (opus) → `docs/contenu/verification-v2.md`
+    > Note : verif-masse et contenu-jeu rendus ; `npm run check` réussi deux fois de suite (1 024 tests unitaires, 132 e2e, aucun échec intermittent).
+  - [ ] 8.4 Tour 2, corrections — dev-logique en opus (V13 à V18, V21 : règle « hors de portée », limites portées par les lignes du plein écran, textes), dev-donnees (V19, `data/README.md`) ; puis dev-interface (affichage des limites V13 à V15, constats d'interface du tour 2)
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
 
 ## Questions en attente

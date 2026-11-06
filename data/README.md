@@ -140,6 +140,7 @@ Chaque fichier a la forme `{"metadata": {...}, "<liste>": [...]}`. La clé de la
 5. **Correctifs après l'extraction** (décisions du projet) :
    - 01/11/2026, D8 et D15 : charge d'équipement de Heavy Knight, 43 coefficients de scaling du Horn Bow (décimales sans zéro initial mal lues, lecture corrigée dans `tools/wiki/`), combat de Sir Gideon Ofnir, runes de Godskin Duo, lieu et régions de trois combats, 107 faux `Altus Plateau` dans `regions_mentioned` ;
    - 05/11/2026, D29 et D34 : type d'amélioration de 303 armes et Cendre de guerre de 294 armes lus dans les deux listes ci-dessus, `affinity_changeable` de 95 armes Somber déduit, combats (clés `negation_*`, Count Ymir, 3 liens de page, 5 pages d'envahisseurs), Fanged Imp Ashes, restes d'images supprimés (`ER Icon`, `ER Site of Grace`, `og pic`).
+   - 06/11/2026, D47 : lieu d'acquisition de 3 armes (Albinauric Staff, Erdtree Seal, Gelmir Glintstone Staff : Volcano Manor), source du matériau d'amélioration de 49 armes confirmées par la liste du wiki (D-V5, `deduced` devenu `wiki`), note de statut de Nanaya's Torch (D-V6).
 
    Détail, anciennes valeurs et pages wiki : [`CHANGELOG.md`](CHANGELOG.md).
 
@@ -151,7 +152,7 @@ Les principaux scripts d'extraction sont dans `tools/wiki/`, à la racine du dé
 
 - **Type d'amélioration des armes** : presque toutes les armes sont documentées depuis D29 (liste « Armaments by Bolstering Material »). Il reste 4 armes de mêlée sur 335, 0 arme à distance sur 63 et 2 boucliers sur 89 sans type : Leontiel's Greatsword, Reverse-Bladed Sword, Reed Great Katana, Golden Order Flail, Silver Grooved Shield et Ritual Thrusting Shield (`Tarnished Pack`, absentes de la liste).
   - Pour ces 6 armes, `upgrade.material` vaut `null`. Les 4 armes de mêlée gardent une estimation statistique dans `upgrade.estimate_if_undocumented` (confiance au moins moyenne), à traiter comme non vérifiée ; les 2 boucliers n'en ont pas.
-  - Fiabilité du type d'amélioration, sur 487 armes (`derived.upgrade.reliability`) : 429 `wiki` (listes comprises), 51 `deduced` (déduit d'une règle du wiki), 4 `estimate`, 2 `null`, 1 non améliorable.
+  - Fiabilité du type d'amélioration, sur 487 armes (`derived.upgrade.reliability`) : 478 `wiki` (listes comprises, dont les 49 armes confirmées par la liste du wiki avec le correctif D-V5), 2 `deduced` (déduit d'une règle du wiki), 4 `estimate`, 2 `null`, 1 non améliorable.
   - 191 armes gardent leur `estimate_if_undocumented` alors que leur matériau est maintenant documenté : le champ n'est plus lu. Le wiki contredit 13 de ces estimations sur le matériau et 5 sur la Cendre de guerre.
   - Provenance : `upgrade.material_info_source` vaut `wiki (Armaments by Bolstering Material)` ; `upgrade.changeability_info_source` vaut `wiki (Ash of War-Compatible Armaments)`, ou s'y ajoute avec ` + ` quand l'arme avait déjà une provenance.
   - `affinity_changeable` : les 95 armes Somber qui l'avaient à `null` ont `false`, **déduit** de la règle du wiki (une arme améliorée avec des Somber Smithing Stones ne reçoit aucune Cendre de guerre, donc aucune affinité). La déduction est écrite dans `changeability_info_source` (`deduced (affinity_changeable: …)`). Les 99 autres armes Somber l'ont à `false` d'après le wiki, la liste ou une page de classe.
