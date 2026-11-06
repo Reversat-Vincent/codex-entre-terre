@@ -36,17 +36,18 @@ function scoredWith(checks: RequirementCheck[], total = 60, estimate: Estimate |
 const str20: RequirementCheck = { attr: 'str', required: 20, actual: 14, effective: 14, met: false, gap: 6, twoHandApplied: false }
 
 describe('levelUpPriorities', () => {
-  it('cas de calculs.md : prérequis, palier de Vigor, puis écart pondéré au build `str` (4 au plus)', () => {
+  it('cas de calculs.md avant K-V2 (Iron Cleaver, STR 15) : prérequis, palier de Vigor, puis écart pondéré au build `str` (4 au plus)', () => {
     const target = targetAttributes('str', 150, VAGABOND)
-    const r = levelUpPriorities({ attrs: VAGABOND, weapon: scoredWith([str20]), target, weights: ARCHETYPES.str.weights })
+    const ironCleaver: RequirementCheck = { attr: 'str', required: 15, actual: 14, effective: 14, met: false, gap: 1, twoHandApplied: false }
+    const r = levelUpPriorities({ attrs: VAGABOND, weapon: scoredWith([ironCleaver], 79, null, 'Iron Cleaver'), target, weights: ARCHETYPES.str.weights })
     expect(r.explanation.method).toBe('level-up-priorities')
     expect(r.value?.map((p) => [p.attr, p.target, p.reason])).toEqual([
-      ['str', 20, 'priority-weapon-requirement'],
+      ['str', 15, 'priority-weapon-requirement'],
       ['vig', 40, 'priority-vigor-soft-cap'],
       ['end', 31, 'priority-build-target'],
       ['mnd', 15, 'priority-build-target'],
     ])
-    expect(r.value?.[0]).toMatchObject({ current: 14, weapon: 'weapon:' + candidate('Longsword').weapon.id, weight: null })
+    expect(r.value?.[0]).toMatchObject({ current: 14, weapon: 'weapon:' + candidate('Iron Cleaver').weapon.id, weight: null })
     expect(r.value?.[2]).toMatchObject({ current: 11, weight: 0.5 })
     expect(r.explanation.components[2]).toEqual({ code: 'priority-build-target', value: 31, params: { attr: 'end', actual: 11, weight: 0.5, points: 20 } })
     const codes = r.explanation.limits.map((l) => l.code)
@@ -54,8 +55,21 @@ describe('levelUpPriorities', () => {
     expect(codes).toContain('priorities-survival-weight')
     expect(codes).toContain('priorities-design-method')
     expect(r.estimate).toBeNull()
-    expect(r.explanation.inputs).toContainEqual(expect.objectContaining({ field: 'requirements.str', value: 20, reliability: 'wiki' }))
+    expect(r.explanation.inputs).toContainEqual(expect.objectContaining({ field: 'requirements.str', value: 15, reliability: 'wiki' }))
     expect(r.explanation.inputs).toContainEqual(expect.objectContaining({ entry: 'softCaps', value: 40 }))
+  })
+
+  it('cas de calculs.md depuis K-V2 (meilleure arme aux prérequis atteints) : VIG 40, STR 80, END 31, MND 15', () => {
+    const target = targetAttributes('str', 150, VAGABOND)
+    const halberd: RequirementCheck = { attr: 'str', required: 14, actual: 14, effective: 14, met: true, gap: 0, twoHandApplied: false }
+    const r = levelUpPriorities({ attrs: VAGABOND, weapon: scoredWith([halberd], 76, null, "Banished Knight's Halberd"), target, weights: ARCHETYPES.str.weights })
+    expect(r.value?.map((p) => [p.attr, p.target, p.reason])).toEqual([
+      ['vig', 40, 'priority-vigor-soft-cap'],
+      ['str', 80, 'priority-build-target'],
+      ['end', 31, 'priority-build-target'],
+      ['mnd', 15, 'priority-build-target'],
+    ])
+    expect(r.value?.[1]).toMatchObject({ current: 14, weight: 1 })
   })
 
   it('sans build cible : seulement les règles 1 et 2, avec la limite', () => {

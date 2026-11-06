@@ -3,7 +3,7 @@
 
 import { describe, expect, it } from 'vitest'
 import { STAGE_IDS } from '../../../src/engine/config/stages.ts'
-import { currentStage, dlcZoneRank, encounterStage, entryStage, mostPrecise, stagesAhead } from '../../../src/engine/stage.ts'
+import { currentStage, dlcZoneRank, encounterStage, entryRegions, entryStage, mostPrecise, stagesAhead } from '../../../src/engine/stage.ts'
 import type { StageContext } from '../../../src/engine/stage.ts'
 import { allWeapons, candidate, encounters } from './prepared.ts'
 
@@ -28,8 +28,7 @@ describe('étape d’une arme', () => {
   it('armes de Mt. Gelmir en Milieu, celles de Volcano Manor en Fin (D10)', () => {
     const gelmir = [
       'Great Knife', "Scavenger's Curved Sword", 'Mantis Blade', 'Butchering Knife', 'Ringed Finger',
-      "Troll's Hammer", 'Fallingstar Beast Jaw', 'Thorned Whip', 'Pulley Bow', 'Pulley Crossbow', 'Jar Cannon', 'Albinauric Staff',
-      'Gelmir Glintstone Staff', 'Erdtree Seal', 'Coil Shield',
+      "Troll's Hammer", 'Fallingstar Beast Jaw', 'Thorned Whip', 'Pulley Bow', 'Pulley Crossbow', 'Jar Cannon', 'Coil Shield',
     ]
     for (const n of gelmir) expect(stageOf(n).value?.stage, n).toBe('mid')
     // Listée en Milieu par decisions-progression.md § 1.5 : « Perfumer's Grotto » (Altus Plateau) et « Volcano Manor » sont deux lieux distincts,
@@ -38,6 +37,30 @@ describe('étape d’une arme', () => {
     for (const n of ["Ghiza's Wheel", "Inquisitor's Girandole", 'Godskin Stitcher', "Man-Serpent's Shield", 'Serpent-Hunter']) {
       expect(stageOf(n).value?.stage, n).toBe('late')
     }
+    // Correctif de données D-V4 (D47) : ces trois objets sont dans Volcano Manor d'après le texte du wiki, et rejoignent la Fin.
+    for (const n of ['Albinauric Staff', 'Gelmir Glintstone Staff', 'Erdtree Seal']) {
+      expect(stageOf(n).value, n).toMatchObject({ stage: 'late', region: 'Volcano Manor' })
+    }
+  })
+
+  it('Dragonbarrow sous Caelid (K-V3) : lieu « Dragonbarrow » et région « Caelid » d’une même acquisition → Fin', () => {
+    // Avant K-V3, `Caelid` restait à côté de `Dragonbarrow` (absent de locations.json) et Milieu l'emportait.
+    for (const n of ['Clawmark Seal', 'Spiked Caestus']) {
+      expect(stageOf(n).value, n).toMatchObject({ stage: 'late', basis: 'acquisition', region: 'Dragonbarrow' })
+    }
+    // Témoins : Cinquedea (Bestial Sanctum → Greyoll's Dragonbarrow) et Beast-Repellent Torch (Dragonbarrow seul) étaient déjà en Fin.
+    expect(stageOf('Cinquedea').value?.stage).toBe('late')
+    expect(stageOf('Beast-Repellent Torch').value?.stage).toBe('late')
+    // Jamais entre deux lieux distincts (D37) : Heavy Crossbow garde Limgrave.
+    expect(stageOf('Heavy Crossbow').value?.stage).toBe('early')
+    expect(mostPrecise(['Caelid', 'Dragonbarrow'])).toEqual(['Dragonbarrow'])
+  })
+
+  it('repli regions_mentioned : l’exception K-V3 ne s’y applique pas (lieux distincts mêlés)', () => {
+    const regions = (values: string[]) => ({ acquisitions: [], fallback: null, basis: 'regions_mentioned' as const, values })
+    expect(entryRegions(regions(['Caelid', 'Dragonbarrow']))).toEqual(['Caelid', 'Dragonbarrow'])
+    // Rencontres : Greyll et Greyoll (`Caelid` + `Dragonbarrow`, au même lieu) passent en Fin, comme Dragonbarrow dans calculs.md.
+    expect(encounterStage(encounters(), 'dragon/elder-dragon-greyoll').value).toMatchObject({ stage: 'late', region: 'Dragonbarrow' })
   })
 
   it('Crumbling Farum Azula sous Mountaintops of the Giants (D39, L1) : ses Remembrances en Fin de jeu', () => {

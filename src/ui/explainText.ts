@@ -27,13 +27,13 @@ import type { DamageLabelKey, StatusKey } from './labels.ts'
 export type ParamName =
   | 'attr' | 'attrs' | 'type' | 'stage' | 'player' | 'node' | 'region' | 'zone' | 'path' | 'basis' | 'level' | 'from' | 'to' | 'max' | 'cost'
   | 'points' | 'table' | 'stat' | 'before' | 'after' | 'item' | 'tier' | 'material' | 'category' | 'weight' | 'budget' | 'field' | 'status'
-  | 'encounter' | 'load' | 'row' | 'confidence' | 'actual' | 'required' | 'effective' | 'place'
+  | 'encounter' | 'load' | 'row' | 'confidence' | 'actual' | 'required' | 'effective' | 'place' | 'factor'
 
 /** Lecteur de paramètres : rend le paramètre mis en forme pour la phrase, ou une chaîne vide s'il manque. */
 type ParamReader = (name: ParamName) => string
 
-/** Paramètres numériques affichés avec décimales (poids, budget, gains moyens) ; les autres nombres sont des entiers. */
-const DECIMAL_PARAMS: ReadonlySet<string> = new Set<ParamName>(['weight', 'budget', 'before', 'after'])
+/** Paramètres numériques affichés avec décimales (poids, budget, gains moyens, facteur) ; les autres nombres sont des entiers. */
+const DECIMAL_PARAMS: ReadonlySet<string> = new Set<ParamName>(['weight', 'budget', 'before', 'after', 'factor'])
 
 /** Noms des statistiques du rendement des attributs (`YieldStat`). */
 const STAT_LABELS: Readonly<Record<string, string>> = {
@@ -263,6 +263,7 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   'class-bonus': c((p) => `Bonus ou malus de classe${p('category') === '' ? '' : ` (${p('category')})`}`, 'signed'),
   'score-power': c(() => 'Puissance et scaling'),
   'base-power': c((p) => `Puissance de base à +0, ${p('field')}`),
+  'unmet-requirement-factor': c((p) => `Puissance retenue, × ${p('factor')} : prérequis non atteint (${p('attrs')})`, 'decimal'),
   'scaling-sum': c(() => 'Somme des lettres de scaling', 'decimal'),
   'overweight-penalty': c((p) => `Pénalité de poids (arme ${p('weight')}, budget ${p('budget') === '' ? 'inconnu' : p('budget')})`, 'signed'),
   'score-access': c(() => 'Accessibilité à votre étape'),
@@ -444,6 +445,8 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   /** Rendement des attributs : les paliers sont ceux publiés par le wiki (D39), les gains viennent des tables. */
   'soft-caps-published': () => 'Paliers de rendement publiés par le wiki ; les gains moyens autour de chaque palier sont lus dans les tables.',
   // Score d'une arme hors des critères.
+  'weapon-hidden-off-build': () =>
+    "Aucune lettre de scaling de cette arme ne porte sur un attribut de votre build cible : elle ne figure pas dans les recommandations.",
   'weapon-hidden-content-sote': () => 'Cette arme vient de Shadow of the Erdtree, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
   'weapon-hidden-content-tp': () => 'Cette arme vient du Tarnished Pack, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
   'weapon-hidden-remembrance': () => "Cette arme s'obtient par un échange de Remembrance, que vos critères excluent : elle ne figure pas dans les recommandations.",

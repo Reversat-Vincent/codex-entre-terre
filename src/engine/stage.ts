@@ -1,9 +1,10 @@
 // Étape de progression d'une arme, d'un objet ou d'une rencontre, et étape courante du joueur selon son mode de progression.
 // Méthode : docs/design/ds/calculs.md, « Étape de progression d'une arme » (règles D10, table des Remembrances D12, étiquette DLC D11 et D18,
-// surcharges d'étape D39) ; configuration : config/stages.ts, config/remembrances.ts. Les régions des objets viennent de `derived.regions` (préparation des données).
+// surcharges d'étape D39) ; configuration : config/stages.ts, config/remembrances.ts. Les régions des objets viennent de `derived.regions` (préparation des données),
+// réduites lieu par lieu avec `REGION_PARENT` (`entryRegions`, K-V3).
 
 import type { DatasetKey, EntityRef } from '../data/datasets.ts'
-import type { AcquisitionDerived, SourceTag } from '../data/types/common.ts'
+import type { AcquisitionDerived, DerivedRegions, SourceTag } from '../data/types/common.ts'
 import { DLC_SOURCE, DLC_ZONE, DLC_ZONES, REGION_PARENT, REGION_STAGE, STAGE_IDS, STAGE_OVERRIDES, stageIndex } from './config/stages.ts'
 import type { DlcZone, StageId } from './config/stages.ts'
 import { REMEMBRANCES } from './config/remembrances.ts'
@@ -78,6 +79,45 @@ export function mostPrecise(regions: readonly string[]): string[] {
   const unique = [...new Set(regions)]
   const parents = new Set(unique.flatMap(ancestors))
   return unique.filter((r) => !parents.has(r))
+}
+
+/**
+ * Groupes de régions d'une acquisition, un par lieu, comme la préparation les forme (scripts/data/regions.ts, `resolveAcquisition`, D37) :
+ * les régions de `location` sont groupées par morceau de texte ; celles de `region` rejoignent le lieu quand il est seul et entièrement
+ * résolu, sinon forment un groupe à part. Dans le doute (morceau non résolu), le groupe à part ne retire rien de plus que la préparation.
+ * @param acq Régions d'une acquisition (`derived.regions.acquisitions[]`).
+ * @returns Les groupes de régions.
+ */
+function acquisitionGroups(acq: DerivedRegions['acquisitions'][number]): string[][] {
+  const byLocation = new Map<string, string[]>()
+  const fromRegion: string[] = []
+  for (const v of acq.values) {
+    if (v.from !== 'location') fromRegion.push(v.value)
+    else {
+      const group = byLocation.get(v.raw)
+      if (group === undefined) byLocation.set(v.raw, [v.value])
+      else group.push(v.value)
+    }
+  }
+  const groups = [...byLocation.values()]
+  const single = groups.length === 1 && acq.unresolved.length === 0 ? groups[0] : undefined
+  if (single !== undefined) single.push(...fromRegion)
+  else if (fromRegion.length > 0) groups.push(fromRegion)
+  return groups
+}
+
+/**
+ * Régions retenues d'une entrée (calculs.md, règles 2 et 4) : `derived.regions`, dont le moteur retire encore, lieu par lieu, les régions
+ * parentes des acquisitions selon `REGION_PARENT`. La préparation l'a déjà fait avec `locations.json` : seuls les liens propres au moteur
+ * (exception `Dragonbarrow` → `Caelid`, K-V3) changent le résultat. Jamais entre deux lieux distincts (D37), ni dans le repli
+ * `regions_mentioned` : cette liste mêle des lieux distincts sans les séparer (Radahn's Great Rune : défaite de Radahn en Caelid, puis tour
+ * près de Dragonbarrow ; Gravity Stone Fan : coffre en Caelid, puis marchand de Dragonbarrow), où retirer `Caelid` retarderait l'étape à tort.
+ * @param regions Régions dérivées de l'entrée.
+ * @returns Les régions retenues, sans doublon, dans l'ordre de lecture.
+ */
+export function entryRegions(regions: DerivedRegions): string[] {
+  if (regions.basis !== 'acquisition') return [...regions.values]
+  return [...new Set(regions.acquisitions.flatMap((acq) => acquisitionGroups(acq).flatMap(mostPrecise)))]
 }
 
 /** Étape la plus précoce d'une liste de régions, sans sa provenance. */
@@ -207,7 +247,7 @@ export function entryStage(entry: StageEntry, ctx: StageContext): Calc<StageInfo
     const regions = entry.derived.regions
     if (regions.values.length > 0) {
       inputs.push({ file: ctx.file, entry: entry.id, field: 'derived.regions.values', value: regions.values.join(', '), reliability: 'deduced' })
-      const found = earliestStage(regions.values)
+      const found = earliestStage(entryRegions(regions))
       if (found !== null) {
         info = { ...found, basis: regions.basis === 'regions_mentioned' ? 'regions_mentioned' : 'acquisition', remembrance: null }
       }

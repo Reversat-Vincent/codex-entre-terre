@@ -7,6 +7,7 @@ import { FILE_KEYS } from '../../../src/data/datasets.ts'
 import type { FileKey } from '../../../src/data/datasets.ts'
 import type { FetchFn } from '../../../src/data/loader.ts'
 import type { DataManifest } from '../../../src/data/types/index.ts'
+import { byScore } from '../../../src/engine/score.ts'
 import { useAnalysisStore } from '../../../src/stores/analysis.ts'
 import { useCriteriaStore } from '../../../src/stores/criteria.ts'
 import { useDataStore } from '../../../src/stores/data.ts'
@@ -173,6 +174,75 @@ describe('armes efficaces contre une rencontre (fiche boss)', () => {
     const { analysis, criteria } = await setup(['origins', 'bosses', 'tables', 'ranged_weapons_catalysts'])
     criteria.set({ style: { mode: 'magic' }, target: { archetype: 'int', level: 150 } })
     expect(new Set(analysis.candidates.map((c) => c.weapon.category))).toEqual(new Set(['Staves']))
+  })
+})
+
+describe('profils de verification-v1.md : hors build (K-V1) et prérequis manquants (K-V2)', () => {
+  const ATTRS = {
+    vagabond: { vig: 15, mnd: 10, end: 11, str: 14, dex: 13, int: 9, fai: 9, arc: 7 },
+    samurai: { vig: 12, mnd: 11, end: 13, str: 12, dex: 15, int: 9, fai: 8, arc: 8 },
+    astrologer: { vig: 9, mnd: 15, end: 9, str: 8, dex: 12, int: 16, fai: 7, arc: 9 },
+  }
+  const ALL_WEAPONS: FileKey[] = ['origins', 'bosses', 'tables', 'melee_armaments', 'ranged_weapons_catalysts', 'shields_torches']
+  const names = (a: ReturnType<typeof useAnalysisStore>, stage: string) =>
+    a.recommendations.columns.find((c) => c.stage === stage)?.weapons.map((w) => w.candidate.weapon.name) ?? []
+  const shown = (a: ReturnType<typeof useAnalysisStore>) => a.recommendations.columns.flatMap((c) => c.weapons)
+
+  it('Force (Vagabond, `str` 150, Début) : armes hors build écartées mais grisées ; priorités VIG 40, STR 80, END 31, MND 15', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({ character: { attributes: { ...ATTRS.vagabond } } })
+    // Sans build cible, rien n'est écarté.
+    expect(analysis.filtered.hidden['off-build']).toBe(0)
+    criteria.set({ target: { archetype: 'str', level: 150 } })
+    const off = analysis.scored.filter((s) => s.hidden === 'off-build').map((s) => s.candidate.weapon.name)
+    expect(off).toEqual(expect.arrayContaining(['Coded Sword', 'Cipher Pata']))
+    expect(analysis.filtered.hidden['off-build']).toBe(off.length)
+    for (const w of shown(analysis)) expect(w.hidden).toBeNull()
+    expect(analysis.scoreOf(analysis.scored.find((s) => s.candidate.weapon.name === 'Coded Sword')!.candidate.ref)?.explanation.limits).toContainEqual({
+      code: 'weapon-hidden-off-build',
+    })
+    // K-V2 : Iron Cleaver (STR 15 pour STR 14) perd 40 % de sa puissance et quitte la colonne ; la meilleure arme a ses prérequis atteints.
+    expect(names(analysis, 'early')).not.toContain('Iron Cleaver')
+    const best = [...analysis.recommendations.columns[0]!.weapons].sort(byScore)[0]!
+    expect(best.score.value?.requirements.every((r) => r.met)).toBe(true)
+    expect((analysis.levelUpPriorities.value ?? []).map((p) => [p.attr, p.target, p.reason])).toEqual([
+      ['vig', 40, 'priority-vigor-soft-cap'],
+      ['str', 80, 'priority-build-target'],
+      ['end', 31, 'priority-build-target'],
+      ['mnd', 15, 'priority-build-target'],
+    ])
+  })
+
+  it('Dextérité / saignement (attributs du Samurai, `dexarc`) : Reduvia en tête, aucune arme sans lettre DEX ni ARC', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({ character: { attributes: { ...ATTRS.samurai } }, target: { archetype: 'dexarc', level: 150 }, style: { status: 'blood_loss' } })
+    expect(names(analysis, 'early')[0]).toBe('Reduvia')
+    for (const w of shown(analysis)) expect(w.candidate.weapon.scaling.dex !== null || w.candidate.weapon.scaling.arc !== null, w.candidate.weapon.name).toBe(true)
+    expect(analysis.scored.find((s) => s.candidate.weapon.name === 'Club')?.hidden).toBe('off-build')
+  })
+
+  it('Intelligence en mêlée (Astrologer, `int`) : plus de DEX 17 pour Rogier’s Rapier parmi les priorités', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({ character: { attributes: { ...ATTRS.astrologer } }, target: { archetype: 'int', level: 150 } })
+    expect(names(analysis, 'early')).not.toContain("Rogier's Rapier")
+    const priorities = analysis.levelUpPriorities.value ?? []
+    expect(priorities.some((p) => p.attr === 'dex')).toBe(false)
+    for (const p of priorities.filter((x) => x.reason === 'priority-weapon-requirement')) expect(['int', 'dex']).toContain(p.attr)
+  })
+
+  it('Intelligence en magie (Astrologer, INT 16) : Lusat’s, Azur’s et Crystal Staff réduits de 40 %, derrière les bâtons accessibles', async () => {
+    const { analysis, criteria } = await setup(ALL_WEAPONS)
+    criteria.set({ character: { attributes: { ...ATTRS.astrologer } }, target: { archetype: 'int', level: 150 }, style: { mode: 'magic' } })
+    const total = (n: string) => analysis.scored.find((s) => s.candidate.weapon.name === n)?.score.value?.total ?? null
+    for (const n of ["Lusat's Glintstone Staff", "Azur's Glintstone Staff", 'Crystal Staff']) {
+      const s = analysis.scored.find((x) => x.candidate.weapon.name === n)!
+      // Lusat's demande aussi STR 10 (Astrologer : 8) : chaque prérequis manquant est cité, le facteur ne s'applique qu'une fois.
+      const params = s.score.explanation.components.find((x) => x.code === 'unmet-requirement-factor')?.params
+      expect(params?.factor, n).toBe(0.6)
+      expect(String(params?.attrs).split(','), n).toContain('int')
+      expect(total(n)!, n).toBeLessThan(total("Digger's Staff")!)
+      expect(total(n)!, n).toBeLessThan(total('Staff of Loss')!)
+    }
   })
 })
 

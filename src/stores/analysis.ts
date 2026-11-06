@@ -144,6 +144,8 @@ export const useAnalysisStore = defineStore('analysis', () => {
   // Personnage et build cible.
   const level = computed(() => levelOf(attrs.value))
   const weights = computed(() => buildWeights(c.value.target.archetype, attrs.value))
+  // Filtre « hors build » (K-V1) : seulement avec un build cible ; les poids automatiques suivent le profil et n'écartent rien.
+  const buildFilter = computed(() => (weights.value.source === 'archetype' ? weights.value.weights : null))
   const target = computed(() => targetAttributes(c.value.target.archetype, c.value.target.level, attrs.value))
   const derived = computed(() => (tables.value === null ? null : derivedStats(attrs.value, tables.value)))
   const yieldCurves = computed(() => (tables.value === null ? null : attributeYield(attrs.value, tables.value)))
@@ -215,7 +217,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
   })
   // Les poids du build restreignent les catalyseurs du style « magie » (D39, S3).
   const candidates = computed(() => candidateWeapons(weaponData.value, c.value.style, weights.value.weights))
-  const filtered = computed(() => filterWeapons(candidates.value, c.value))
+  const filtered = computed(() => filterWeapons(candidates.value, c.value, buildFilter.value))
   const caps = computed(() => catalystCaps(weaponData.value))
   const criteriaHands = computed((): Hands => (c.value.style.hands === 2 ? 'two' : 'one'))
   /** Toutes les armes chargées par référence, quel que soit le style (fiches, catalogues, `scoreOf`). */
@@ -272,7 +274,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
       stage: st,
       startingBonus: starting?.has(candidate.weapon.name) ?? false,
     })
-    return { candidate, stage: st, score, hidden: hiddenReason(candidate, c.value) }
+    return { candidate, stage: st, score, hidden: hiddenReason(candidate, c.value, buildFilter.value) }
   }
 
   /**
@@ -317,7 +319,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
   /** Armes de l'étape hors du style choisi, parmi les fichiers chargés (suggestion « style »). */
   const otherStyleByStage = computed(() => {
     const inStyle = new Set(candidates.value.map((x) => x.ref))
-    const others = candidateWeapons(weaponData.value, { mode: 'hybrid', classes: [] }).filter((x) => !inStyle.has(x.ref) && filterWeapons([x], c.value).kept.length > 0)
+    const others = candidateWeapons(weaponData.value, { mode: 'hybrid', classes: [] }).filter((x) => !inStyle.has(x.ref) && filterWeapons([x], c.value, buildFilter.value).kept.length > 0)
     const counts = new Map<StageId, number>()
     for (const o of others) {
       const s = entryStage(o.weapon, { ref: o.ref, file: o.file, encounters: encounters.value, startingArmaments: null }).value?.stage

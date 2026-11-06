@@ -73,6 +73,8 @@ export const COMPONENT_CODES = [
   'class-bonus',
   'score-power',
   'base-power',
+  // Puissance retenue quand un prérequis n'est pas atteint (K-V2) : puissance de base × facteur.
+  'unmet-requirement-factor',
   'scaling-sum',
   'overweight-penalty',
   'score-access',
@@ -189,6 +191,7 @@ export const LIMIT_CODES = [
   // Rendement des attributs.
   'soft-caps-published',
   // Score d'une arme hors des critères (getter `scoreOf`) : raison qui la masque ou l'écarte du widget A.
+  'weapon-hidden-off-build',
   'weapon-hidden-content-sote',
   'weapon-hidden-content-tp',
   'weapon-hidden-remembrance',

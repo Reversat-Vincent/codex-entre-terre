@@ -25,7 +25,7 @@ describe('stages.ts', () => {
     for (const [region, stage] of Object.entries(REGION_STAGE)) if (stage === 'dlc') expect(DLC_ZONE[region], region).toBeDefined()
   })
 
-  it('REGION_PARENT reproduit la hiérarchie de locations.json', () => {
+  it('REGION_PARENT reproduit la hiérarchie de locations.json, plus ses exceptions nommées', () => {
     const raw = rawData()
     const ctx = buildRegionContext(raw.locations.entries as LocationRaw[], raw.npcs.entries as NpcRaw[], KNOWN_REGIONS)
     const expected: Record<string, string> = {}
@@ -33,7 +33,13 @@ describe('stages.ts', () => {
       const p = ctx.parent.get(k)
       if (p !== undefined && KNOWN_REGIONS.includes(p)) expected[k] = p
     }
-    expect(REGION_PARENT).toEqual(expected)
+    // Exception K-V3 (D47) : `Dragonbarrow` n'est pas un lieu de locations.json (seul `Greyoll's Dragonbarrow` l'est) ; lien ajouté au moteur.
+    const exceptions: Record<string, string> = { Dragonbarrow: 'Caelid' }
+    for (const k of Object.keys(exceptions)) {
+      expect(ctx.parent.has(k), `${k} est devenu un lieu de locations.json : l'exception n'a plus lieu d'être`).toBe(false)
+      expect(KNOWN_REGIONS, k).toContain(k)
+    }
+    expect(REGION_PARENT).toEqual({ ...expected, ...exceptions })
   })
 
   it('surcharges d’étape : objets existants, page du wiki citée, sous-zone seulement en DLC', () => {

@@ -1,6 +1,7 @@
 // Tests du score de recommandation (calculs.md, « Score de recommandation d'une arme (0–100) ») sur des armes connues.
 // Armes choisies pour résister aux compléments de données : type d'amélioration déjà documenté par le wiki (Longsword, Erdtree Seal),
 // arme non améliorable (Meteorite Staff) ; les cas « estimé » et « non documenté » sont construits à partir d'une copie.
+// Filtre « hors build » (K-V1) et facteur de prérequis manquant (K-V2) : décision D47, docs/contenu/verification-v1.md § 3.2 et § 3.3.
 
 import { describe, expect, it } from 'vitest'
 import type { WeaponEntry } from '../../../src/data/types/weapon.ts'
@@ -12,6 +13,7 @@ import {
   styleCategories,
   filterWeapons,
   hiddenReason,
+  isOffBuild,
   loadBudget,
   recommendByStage,
   scoreWeapon,
@@ -79,8 +81,38 @@ describe('composantes sur des armes connues', () => {
     expect(caps['Sacred Seals']).toBe(137)
     expect(caps.Staves).toBe(162)
     const s = scoreWeapon(c, ctx(c, { weights: { fai: 1, str: 0.3 } }))
-    // Adéquation : C (0,55) sur des poids 1,3 → 21 ; puissance 17,5 + 2,58 → 20 ; accès : Milieu (−4), FAI 10 sur 40 (−9) → 12 ; sombres 20.
-    expect(s.value).toMatchObject({ fit: 21, power: 20, access: 12, upgrade: 20, total: 73 })
+    // Adéquation : C (0,55) sur des poids 1,3 → 21 ; puissance : FAI 10 sur 40, prérequis manquant, 17,5 × 0,6 + 2,58 → 13 (K-V2) ;
+    // accès : Volcano Manor (D-V4), Fin, 2 étapes d'avance (−8), 30 points manquants (−9, plafond) → 8 ; sombres 20.
+    expect(s.value).toMatchObject({ fit: 21, power: 13, access: 8, upgrade: 20, total: 62 })
+    // Profil qui atteint les prérequis (FAI 40) : puissance entière, 17,5 + 2,58 → 20, et accès sans point manquant (25 − 8).
+    const met = scoreWeapon(c, ctx(c, { weights: { fai: 1, str: 0.3 }, attrs: attrs({ fai: 40 }) }))
+    expect(met.value).toMatchObject({ fit: 21, power: 20, access: 17, upgrade: 20, total: 78 })
+  })
+
+  it('prérequis non atteint (K-V2) : puissance de base × 0,6, lettres inchangées, expliqué par une composante', () => {
+    const c = candidate("Lusat's Glintstone Staff")
+    const weights = { int: 1, dex: 0.2 }
+    const base = c.weapon.sorcery_scaling as number
+    const low = scoreWeapon(c, ctx(c, { weights, attrs: attrs({ int: 16 }) }))
+    const high = scoreWeapon(c, ctx(c, { weights, attrs: attrs({ int: 52 }) }))
+    const factor = low.explanation.components.find((x) => x.code === 'unmet-requirement-factor')
+    expect(factor).toEqual({ code: 'unmet-requirement-factor', value: Math.round(base * 0.6 * 10) / 10, max: 162, params: { factor: 0.6, attrs: 'int' } })
+    expect(high.explanation.components.some((x) => x.code === 'unmet-requirement-factor')).toBe(false)
+    // La somme des lettres ne change pas ; seule la part de la puissance (70 % de 25) est réduite de 40 %.
+    const sum = (s: typeof low) => s.explanation.components.find((x) => x.code === 'scaling-sum')?.value
+    expect(sum(low)).toBe(sum(high))
+    // INT 52 : 17,5 × 161 / 162 + 7,5 × 1,1 / 1,6 = 22,5 → 23 ; INT 16 : 17,5 × 0,6 × 161 / 162 + 5,16 = 15,6 → 16.
+    expect(high.value?.power).toBe(23)
+    expect(low.value?.power).toBe(16)
+    // Puissance de sort non documentée : le facteur garde `null`, jamais 0.
+    const none = scoreWeapon(c, ctx(c, { weights, attrs: attrs({ int: 16 }), catalystCaps: {} }))
+    expect(none.value?.power).toBeNull()
+    // Puissance de sort absente de l'entrée (champ facultatif) : non documentée.
+    const rest = { ...c.weapon }
+    delete rest.sorcery_scaling
+    const undocumented: CandidateWeapon = { ...c, weapon: rest }
+    const nullBase = scoreWeapon(undocumented, ctx(undocumented, { weights, attrs: attrs({ int: 16 }) }))
+    expect(nullBase.explanation.components.find((x) => x.code === 'unmet-requirement-factor')?.value).toBeNull()
   })
 
   it('accessibilité : étapes d’avance, points manquants plafonnés, Remembrance, départ', () => {
@@ -176,6 +208,27 @@ describe('candidats et filtres (D7)', () => {
     expect(r.kept).toHaveLength(487 - 110)
   })
 
+  it('hors build (K-V1) : aucune lettre sur un attribut pondéré du build cible ; rien sans build cible', () => {
+    const base = { content: { sote: true, tp: true }, constraints: { excludeRemembrance: false, excludeRandomDrop: false, excludeQuest: false }, reliability: { includeEstimates: true } }
+    const str = { str: 1, dex: 0.2 }
+    // Coded Sword : seulement FAI ; Club : seulement STR.
+    expect(isOffBuild(candidate('Coded Sword').weapon, str)).toBe(true)
+    expect(isOffBuild(candidate('Club').weapon, str)).toBe(false)
+    expect(isOffBuild(candidate('Club').weapon, { dex: 1, arc: 1 })).toBe(true)
+    // Une seule lettre sur un attribut faiblement pondéré suffit (Rogier's Rapier, DEX C, pour INT 1 et DEX 0,2).
+    expect(isOffBuild(candidate("Rogier's Rapier").weapon, { int: 1, dex: 0.2 })).toBe(false)
+    // Sans build cible (poids automatiques), ou build sans attribut d'arme pondéré : rien n'est écarté.
+    expect(isOffBuild(candidate('Coded Sword').weapon, null)).toBe(false)
+    expect(isOffBuild(candidate('Coded Sword').weapon, {})).toBe(false)
+    // « Hors build » passe avant les critères : les décomptes des critères restent ceux qu'un élargissement montrerait.
+    expect(hiddenReason(candidate('Coded Sword'), { ...base, content: { sote: true, tp: false } }, str)).toBe('off-build')
+    expect(hiddenReason(candidate('Coded Sword'), base)).toBeNull()
+    const r = filterWeapons(allWeapons(), base, str)
+    expect(r.hidden['off-build']).toBe(r.hiddenItems.length)
+    expect(r.hiddenItems.every((h) => isOffBuild(h.candidate.weapon, str))).toBe(true)
+    expect(filterWeapons(allWeapons(), base).hidden['off-build']).toBe(0)
+  })
+
   it('budget de charge : Endurance 25 (72,0), charge moyenne → 12,6', () => {
     expect(loadBudget(25, 'mid', data().tables).value).toBe(12.6)
     expect(loadBudget(25, 'light', data().tables).value).toBe(5.4)
@@ -231,6 +284,15 @@ describe('recommandations par étape', () => {
     ])
     expect(widenSuggestions(rec.columns[0]!)).toEqual([])
   })
+
+  it('hors build (K-V1) : hors des colonnes, compté par raison, jamais proposé en élargissement', () => {
+    const offBuild = scored.map((s) => ({ ...s, hidden: s.stage.value?.stage === 'early' ? ('off-build' as const) : s.hidden }))
+    const early = recommendByStage(offBuild).columns.find((c) => c.stage === 'early')!
+    expect(early.weapons).toHaveLength(0)
+    expect(early.hidden['off-build']).toBe(early.hiddenCount)
+    expect(early.hiddenCount).toBeGreaterThan(0)
+    expect(widenSuggestions(early, 2)).toEqual([{ reason: 'style', count: 2 }])
+  })
 })
 
 describe('withVisibilityLimits', () => {
@@ -255,5 +317,6 @@ describe('withVisibilityLimits', () => {
     expect(out.value).toBe(score.value)
     expect(out.explanation.limits.slice(-2)).toEqual([{ code: 'weapon-outside-style' }, { code: 'weapon-hidden-remembrance' }])
     expect(score.explanation.limits).not.toContainEqual({ code: 'weapon-outside-style' })
+    expect(withVisibilityLimits(score, 'off-build', true).explanation.limits.at(-1)).toEqual({ code: 'weapon-hidden-off-build' })
   })
 })

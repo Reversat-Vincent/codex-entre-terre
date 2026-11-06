@@ -37,6 +37,21 @@ export const POWER_WEIGHTS = {
   attackCap: 200,
   /** Malus si l'arme dépasse le budget de poids. Plafonds des catalyseurs : calculés au chargement, maximum observé dans data/. */
   overweightPenalty: 4,
+  /**
+   * Facteur appliqué à la puissance à +0 (attaque ou puissance de sort) quand un prérequis de l'arme n'est pas atteint par le profil (K-V2, D47).
+   * Seule valeur de ce fichier tirée du jeu : [wiki] Weapon Scaling, « takes a -40% penalty » ; la lettre de scaling n'est pas modifiée.
+   */
+  unmetRequirementFactor: 0.6,
+} as const
+
+/**
+ * Filtres du score appliqués avant les recommandations (calculs.md, « Score de recommandation d'une arme », « Filtres appliqués avant le score »).
+ * `minFitMean` (K-V1, D47) : avec un build cible, une arme dont la moyenne pondérée des lettres de scaling (composante 1, avant pénalités et
+ * bonus) est inférieure ou égale à ce seuil est écartée des colonnes (raison « hors build »). 0 = aucune lettre sur un attribut pondéré ;
+ * 0,25 écarterait aussi les armes qui n'ont qu'un E (option b de verification-v1.md § 3.2).
+ */
+export const SCORE_FILTERS = {
+  minFitMean: 0,
 } as const
 
 /** Composante 3, accessibilité (calculs.md, « Score de recommandation d'une arme », point 3). */

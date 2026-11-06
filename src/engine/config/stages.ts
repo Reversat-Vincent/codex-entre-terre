@@ -186,7 +186,8 @@ export const STAGE_OVERRIDES: Readonly<Record<string, StageOverride>> = {
  * Région parente directe de chaque région connue qui en a une, d'après `locations.json` (`region` sans sa parenthèse).
  * Le moteur ne charge pas `locations` : cette copie sert à garder la région la plus précise des rencontres de boss (`encounters[].regions`,
  * calculs.md, « Remembrances » : règle 2 appliquée à la rencontre). Les armes ont déjà leurs régions parentes retirées par la préparation
- * (`derived.regions`). Un test vérifie chaque lien contre `locations.json`.
+ * (`derived.regions`) ; le moteur les retire à nouveau, lieu par lieu, pour appliquer les liens absents de `locations.json` (exceptions
+ * commentées ci-dessous). Un test vérifie chaque lien contre `locations.json`, exceptions comprises.
  */
 export const REGION_PARENT: Readonly<Record<string, string>> = {
   'Castle Morne': 'Limgrave',
@@ -211,6 +212,10 @@ export const REGION_PARENT: Readonly<Record<string, string>> = {
   'Forbidden Lands': 'Mountaintops of the Giants',
   'Forge of the Giants': 'Flame Peak',
   "Greyoll's Dragonbarrow": 'Caelid',
+  // Exception (K-V3, D47) : `Dragonbarrow` est dans `REGION_STAGE` (Fin) mais absent de `locations.json`, qui ne connaît que
+  // `Greyoll's Dragonbarrow`. Sans ce lien, `Caelid` restait à côté de `Dragonbarrow` (« Dragonbarrow » + région « Caelid ») et
+  // l'étape la plus précoce, Milieu, l'emportait. Le test de concordance avec `locations.json` l'admet nommément.
+  Dragonbarrow: 'Caelid',
   'Leyndell, Royal Capital': 'Altus Plateau',
   'Nokstella, Eternal City': 'Ainsel River Main',
   'Subterranean Shunning-Grounds': 'Leyndell, Royal Capital',

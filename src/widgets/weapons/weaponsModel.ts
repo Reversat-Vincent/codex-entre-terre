@@ -7,7 +7,7 @@ import { normalizeText } from '../../data/slug.ts'
 import type { ThreadStage, TabItem } from '../../components/ds/types.ts'
 import { STAGE_IDS, stageIndex } from '../../engine/config/stages.ts'
 import type { DlcZone, StageId } from '../../engine/config/stages.ts'
-import type { HiddenReason, ScoredWeapon, StageColumn, WidenSuggestion } from '../../engine/score.ts'
+import type { HiddenReason, MaskReason, ScoredWeapon, StageColumn, WidenSuggestion } from '../../engine/score.ts'
 import { dlcZoneRank } from '../../engine/stage.ts'
 import type { Attributes } from '../../engine/types.ts'
 import { DLC_ZONE_LABELS, STAGE_LABELS } from '../../ui/labels.ts'
@@ -81,7 +81,9 @@ function zoneRankOf(row: ScoredWeapon): number {
 // Élargissements et états vides
 
 /** Libellés des raisons qui masquent une arme : phrase du bouton d'élargissement, et raison affichée sur une ligne grisée du plein écran. */
-export const HIDDEN_REASON_TEXTS: Readonly<Record<HiddenReason | 'style', { readonly action: string; readonly reason: string; readonly icon: string }>> = {
+export const HIDDEN_REASON_TEXTS: Readonly<Record<MaskReason | 'style', { readonly action: string; readonly reason: string; readonly icon: string }>> = {
+  // Texte minimal (K-V1, tâche de logique) : « hors build » n'est jamais proposé en élargissement (`widenSuggestions`), seule sa raison s'affiche.
+  'off-build': { action: 'Changer de build cible', reason: 'Hors du build cible', icon: 'sliders' },
   'content-sote': { action: 'Activer Shadow of the Erdtree', reason: 'Contenu Shadow of the Erdtree désactivé', icon: 'plus' },
   'content-tp': { action: 'Activer le Tarnished Pack', reason: 'Contenu Tarnished Pack désactivé', icon: 'plus' },
   remembrance: { action: 'Inclure les échanges de Remembrance', reason: 'Échange de Remembrance exclu', icon: 'trade' },
