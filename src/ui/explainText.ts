@@ -7,6 +7,7 @@ import type { AttackUnavailableCode } from '../engine/attackPower.ts'
 import { LABEL_CODES } from '../engine/codes.ts'
 import type { ComponentCode, LabelCode, LimitCode } from '../engine/codes.ts'
 import { UPGRADE } from '../engine/config/upgrade.ts'
+import { POWER_WEIGHTS } from '../engine/config/weights.ts'
 import { METHODS } from '../engine/methods.ts'
 import type { CodeParams, DataValue, ExplanationComponent, MethodId } from '../engine/types.ts'
 import { formatDecimal, formatInt, formatPercent, formatSigned } from './format.ts'
@@ -27,7 +28,7 @@ import type { DamageLabelKey, StatusKey } from './labels.ts'
 export type ParamName =
   | 'attr' | 'attrs' | 'type' | 'stage' | 'player' | 'node' | 'region' | 'zone' | 'path' | 'basis' | 'level' | 'from' | 'to' | 'max' | 'cost'
   | 'points' | 'table' | 'stat' | 'before' | 'after' | 'item' | 'tier' | 'material' | 'category' | 'weight' | 'budget' | 'field' | 'status'
-  | 'encounter' | 'load' | 'row' | 'confidence' | 'actual' | 'required' | 'effective' | 'place' | 'factor'
+  | 'encounter' | 'load' | 'row' | 'confidence' | 'actual' | 'required' | 'effective' | 'place' | 'factor' | 'tolerance'
 
 /** Lecteur de paramètres : rend le paramètre mis en forme pour la phrase, ou une chaîne vide s'il manque. */
 type ParamReader = (name: ParamName) => string
@@ -263,7 +264,11 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   'class-bonus': c((p) => `Bonus ou malus de classe${p('category') === '' ? '' : ` (${p('category')})`}`, 'signed'),
   'score-power': c(() => 'Puissance et scaling'),
   'base-power': c((p) => `Puissance de base à +0, ${p('field')}`),
-  'unmet-requirement-factor': c((p) => `Puissance retenue, × ${p('factor')} : prérequis non atteint (${p('attrs')})`, 'decimal'),
+  'unmet-requirement-factor': c(
+    (p) =>
+      `Puissance retenue, × ${p('factor')} : prérequis non atteints (${p('attrs')}), total manquant ${p('points')} ; réduction de 40 % seulement au-delà de ${p('tolerance')} points manquants`,
+    'decimal',
+  ),
   'scaling-sum': c(() => 'Somme des lettres de scaling', 'decimal'),
   'overweight-penalty': c((p) => `Pénalité de poids (arme ${p('weight')}, budget ${p('budget') === '' ? 'inconnu' : p('budget')})`, 'signed'),
   'score-access': c(() => 'Accessibilité à votre étape'),
@@ -399,7 +404,10 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'scaling-missing-at-level': (p) => `Le tableau d'amélioration n'a pas de scaling au niveau +${p('level')} : coefficient non déterminable.`,
   'elemental-scaling-undocumented': (p) => `Scaling élémentaire non documenté pour ${p('type')} : la base seule est comptée.`,
   'scaling-attribute-ignored': (p) => `Le scaling de ${p('attr')} n'est rattaché à aucun type de dégâts par la méthode : son effet n'est pas compté.`,
-  'requirement-not-met': (p) => `Prérequis non atteint (${p('attrs')}) : les dégâts ${p('type')} sont réduits et sans bonus de scaling.`,
+  // Le jeu réduit dès un point manquant ; la tolérance du score de recommandation (D48) est rappelée pour expliquer qu'une arme ainsi réduite
+  // puisse rester recommandée.
+  'requirement-not-met': (p) =>
+    `Prérequis non atteint (${p('attrs')}) : les dégâts ${p('type')} sont réduits de 40 % et sans bonus de scaling, dès un point manquant. Le score de recommandation, lui, ne réduit la puissance qu'au-delà de ${formatInt(POWER_WEIGHTS.unmetRequirementTolerance)} points manquants.`,
   'requirement-effect-undocumented': (p) => `L'effet d'un prérequis non atteint sur les dégâts ${p('type')} n'est pas documenté : la base seule est comptée.`,
   'penalty-exception': (p) => `Exception connue du wiki : les dégâts ${p('type')} ne sont pas réduits par le prérequis manquant.`,
   'table-inconsistent': () => "Le wiki se contredit sur le tableau d'amélioration de cette arme : les valeurs de l'infobox font foi.",
@@ -445,8 +453,8 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   /** Rendement des attributs : les paliers sont ceux publiés par le wiki (D39), les gains viennent des tables. */
   'soft-caps-published': () => 'Paliers de rendement publiés par le wiki ; les gains moyens autour de chaque palier sont lus dans les tables.',
   // Score d'une arme hors des critères.
-  'weapon-hidden-off-build': () =>
-    "Aucune lettre de scaling de cette arme ne porte sur un attribut de votre build cible : elle ne figure pas dans les recommandations.",
+  'weapon-hidden-off-build': (p) =>
+    `L'adéquation de cette arme à votre build cible est inférieure à ${p('max')} sur 25 avant arrondi : elle ne figure pas dans les recommandations.`,
   'weapon-hidden-content-sote': () => 'Cette arme vient de Shadow of the Erdtree, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
   'weapon-hidden-content-tp': () => 'Cette arme vient du Tarnished Pack, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
   'weapon-hidden-remembrance': () => "Cette arme s'obtient par un échange de Remembrance, que vos critères excluent : elle ne figure pas dans les recommandations.",
@@ -582,7 +590,8 @@ export interface MethodText {
 const METHOD_SUMMARIES: Readonly<Record<MethodId, { readonly title: string; readonly summary: string }>> = {
   stage: {
     title: 'Étape de progression',
-    summary: "L'étape d'une arme est celle de son lieu d'obtention le plus précoce, parmi les cinq étapes de la partie",
+    summary:
+      "L'étape d'une arme est celle de son lieu d'obtention le plus précoce, sauf condition d'obtention documentée ou échange de Remembrance (étape du boss), parmi les cinq étapes de la partie",
   },
   'weapon-score': {
     title: "Score de recommandation d'une arme",
@@ -590,7 +599,8 @@ const METHOD_SUMMARIES: Readonly<Record<MethodId, { readonly title: string; read
   },
   requirements: {
     title: 'Prérequis comparés au profil',
-    summary: "Chaque prérequis est atteint si l'attribut du profil est au moins égal à la valeur demandée, la Force comptant 1,5 fois à deux mains",
+    summary:
+      "Chaque prérequis est atteint si l'attribut du profil est au moins égal à la valeur demandée, la Force effective valant Force × 1,5 arrondie à l'inférieur à deux mains, sauf pour les armes sans posture à deux mains",
   },
   'optimal-origin': {
     title: 'Origine optimale',
@@ -602,7 +612,8 @@ const METHOD_SUMMARIES: Readonly<Record<MethodId, { readonly title: string; read
   },
   'boss-level': {
     title: "Niveau recommandé d'un boss",
-    summary: "Le niveau recommandé est une estimation : la moyenne du palier de zone du wiki et du niveau que représentent les runes du boss",
+    summary:
+      "Le niveau recommandé est une estimation : la moyenne du niveau associé au palier de zone du wiki et du niveau que représentent les runes du boss ; pour un boss du DLC, le niveau d'entrée du DLC",
   },
   readiness: {
     title: 'Préparation et jauge',

@@ -48,6 +48,13 @@ describe('explainText.ts', () => {
     expect(componentLabel('hp', { attr: 'vig', points: 15 })).toBe('PV à VIG 15')
     expect(componentLabel('stages-ahead', { stage: 'endgame', player: 'mid' })).toBe("Étapes d'avance sur la vôtre (Fin de jeu contre Milieu)")
     expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str,dex' })).toContain('STR, DEX')
+    // D48 : réduction de 40 % chiffrée, tolérance du score rappelée ; seuil « hors build » ; facteur et tolérance dans la composante.
+    expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str' })).toContain('40 %')
+    expect(limitText('requirement-not-met', { type: 'physical', attrs: 'str' })).toContain('au-delà de 5 points')
+    expect(limitText('weapon-hidden-off-build', { max: 5 })).toContain('inférieure à 5 sur 25')
+    expect(componentLabel('unmet-requirement-factor', { factor: 0.6, attrs: 'int', points: 36, tolerance: 5 })).toBe(
+      'Puissance retenue, × 0,6 : prérequis non atteints (INT), total manquant 36 ; réduction de 40 % seulement au-delà de 5 points manquants',
+    )
     expect(limitText('upgrade-type-estimated', { confidence: 'high' })).toContain('haute')
     expect(limitText('level-out-of-range', { from: 0, to: 30, max: 25 })).toContain('+25')
     expect(labelText('timeline-step-place', { place: 'Leyndell, Royal Capital' })).toBe('Leyndell, Royal Capital')

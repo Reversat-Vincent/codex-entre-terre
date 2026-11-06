@@ -142,17 +142,25 @@ export function isRemembranceWeapon(c: CandidateWeapon): boolean {
 }
 
 /**
- * Indique si une arme est hors du build cible (calculs.md, « Filtres appliqués avant le score », K-V1) : la moyenne pondérée de ses lettres de
- * scaling (composante 1, avant pénalités et bonus) ne dépasse pas `SCORE_FILTERS.minFitMean`, c'est-à-dire, au réglage 0, qu'aucune de ses
- * lettres ne porte sur un attribut pondéré du build.
+ * Build cible lu par le filtre « hors build » : les entrées de la composante 1 (poids de l'archétype, statut privilégié, classes préférées).
+ * Le contexte du score (`ScoreContext`) en est un.
+ */
+export interface BuildFilter {
+  readonly weights: BuildWeights
+  readonly status: StatusKey | null
+  readonly classes: readonly string[]
+}
+
+/**
+ * Indique si une arme est hors du build cible (calculs.md, « Filtres appliqués avant le score », K-V1, D48) : sa composante 1 « Adéquation
+ * au build », pénalités et bonus compris, avant arrondi, est strictement inférieure à `SCORE_FILTERS.minFitComponent` (5 sur 25).
  * @param w Arme.
- * @param build Poids du build cible, ou `null` sans build cible (poids automatiques) : rien n'est alors écarté.
+ * @param build Build cible (poids, statut, classes), ou `null` sans build cible (poids automatiques) : rien n'est alors écarté.
  * @returns Vrai si l'arme est hors build ; faux sans build cible ou si le build ne pondère aucun attribut d'arme.
  */
-export function isOffBuild(w: WeaponEntry, build: BuildWeights | null): boolean {
-  if (build === null) return false
-  const mean = scalingFitMean(w, build)
-  return mean !== null && mean <= SCORE_FILTERS.minFitMean
+export function isOffBuild(w: WeaponEntry, build: BuildFilter | null): boolean {
+  if (build === null || scalingFitMean(w, build.weights) === null) return false
+  return fitScore(w, build).exact < SCORE_FILTERS.minFitComponent
 }
 
 /**
@@ -160,10 +168,10 @@ export function isOffBuild(w: WeaponEntry, build: BuildWeights | null): boolean 
  * désactivé, exclusions (Remembrance, butin aléatoire, quête, lus dans `acquisition_flags`), estimations exclues si la fiabilité l'impose.
  * @param c Candidat.
  * @param criteria Critères.
- * @param build Poids du build cible, ou `null` sans build cible (le filtre « hors build » ne s'applique pas).
+ * @param build Build cible (poids, statut, classes), ou `null` sans build cible (le filtre « hors build » ne s'applique pas).
  * @returns La première raison qui s'applique, ou `null` si l'arme reste visible.
  */
-export function hiddenReason(c: CandidateWeapon, criteria: FilterCriteria, build: BuildWeights | null = null): MaskReason | null {
+export function hiddenReason(c: CandidateWeapon, criteria: FilterCriteria, build: BuildFilter | null = null): MaskReason | null {
   const w = c.weapon
   if (isOffBuild(w, build)) return 'off-build'
   if (w.source === 'Shadow of the Erdtree' && !criteria.content.sote) return 'content-sote'
@@ -187,10 +195,10 @@ export interface FilterResult {
  * Applique les filtres aux candidats (calculs.md, « Filtres appliqués avant le score »).
  * @param candidates Candidats.
  * @param criteria Critères.
- * @param build Poids du build cible, ou `null` sans build cible (le filtre « hors build » ne s'applique pas).
+ * @param build Build cible (poids, statut, classes), ou `null` sans build cible (le filtre « hors build » ne s'applique pas).
  * @returns Les armes gardées, le décompte des armes masquées par raison et leur liste.
  */
-export function filterWeapons(candidates: readonly CandidateWeapon[], criteria: FilterCriteria, build: BuildWeights | null = null): FilterResult {
+export function filterWeapons(candidates: readonly CandidateWeapon[], criteria: FilterCriteria, build: BuildFilter | null = null): FilterResult {
   const hidden = Object.fromEntries(MASK_REASONS.map((r) => [r, 0])) as Record<MaskReason, number>
   const kept: CandidateWeapon[] = []
   const hiddenItems: { candidate: CandidateWeapon; reason: MaskReason }[] = []
@@ -321,13 +329,12 @@ function component(x: number): number {
 }
 
 /**
- * Composante 1, adéquation au build (calculs.md, point 1).
+ * Composante 1, adéquation au build (calculs.md, point 1), avec sa valeur avant arrondi (lue par le filtre « hors build », D48).
  * @param w Arme.
- * @param ctx Contexte.
- * @param parts Composantes de détail, complétées en place.
- * @returns La composante sur 25.
+ * @param ctx Poids du build, statut privilégié et classes préférées.
+ * @returns `exact` bornée à 0–25 avant arrondi, `value` la composante arrondie, `parts` ses composantes de détail.
  */
-function fitComponent(w: WeaponEntry, ctx: ScoreContext, parts: ExplanationComponent[]): number {
+function fitScore(w: WeaponEntry, ctx: BuildFilter): { exact: number; value: number; parts: ExplanationComponent[] } {
   // Sans attribut d'arme pondéré, la moyenne n'a pas de sens : elle compte pour 0, l'adéquation repose alors sur les pénalités et bonus.
   const mean = scalingFitMean(w, ctx.weights) ?? 0
   const raw = Math.min(SCORE_COMPONENT_MAX, (SCORE_COMPONENT_MAX / FIT_WEIGHTS.meanForMax) * mean)
@@ -346,22 +353,24 @@ function fitComponent(w: WeaponEntry, ctx: ScoreContext, parts: ExplanationCompo
   // Poker…), sans `status_buildup` ; elles n'ont pas le bonus.
   const statusBonus = ctx.status !== null && (w.status_buildup?.[ctx.status] ?? 0) > 0 ? FIT_WEIGHTS.passiveStatusBonus : 0
   const classBonus = ctx.classes.length === 0 ? 0 : ctx.classes.includes(w.category) ? FIT_WEIGHTS.preferredClassBonus : -FIT_WEIGHTS.otherClassPenalty
-  parts.push(
+  const parts: ExplanationComponent[] = [
     { code: 'scaling-mean', value: Math.round(mean * 1000) / 1000 },
     { code: 'off-build-penalty', value: -penalty },
     { code: 'status-bonus', value: statusBonus, params: { status: ctx.status ?? '' } },
     { code: 'class-bonus', value: classBonus, params: { category: w.category } },
-  )
-  return component(raw - penalty + statusBonus + classBonus)
+  ]
+  const sum = raw - penalty + statusBonus + classBonus
+  return { exact: Math.min(SCORE_COMPONENT_MAX, Math.max(0, sum)), value: component(sum), parts }
 }
 
 /**
  * Composante 2, puissance et scaling (calculs.md, point 2) : 70 % sur la puissance à +0 (attaque totale plafonnée à 200, ou puissance de sort
- * pour les catalyseurs, plafonnée au maximum observé), multipliée par 0,6 si un prérequis n'est pas atteint (K-V2, [wiki] −40 %), 30 % sur la
- * somme des lettres (plafond 1,6), −4 au-delà du budget de poids.
+ * pour les catalyseurs, plafonnée au maximum observé), multipliée par 0,6 si plus de 5 points de prérequis manquent (K-V2, D48, [wiki] −40 %),
+ * 30 % sur la somme des lettres (plafond 1,6), −4 au-delà du budget de poids.
  * @param c Candidat.
  * @param ctx Contexte.
  * @param requirements Prérequis comparés au profil (`compareRequirements`, maniement des critères).
+ * @param missingPoints Total des points de prérequis manquants (somme des écarts de `requirements`).
  * @param parts Composantes de détail, complétées en place.
  * @param limits Limites, complétées en place.
  * @returns La composante sur 25, ou `null` si la puissance de sort d'un catalyseur n'est pas documentée.
@@ -370,6 +379,7 @@ function powerComponent(
   c: CandidateWeapon,
   ctx: ScoreContext,
   requirements: readonly RequirementCheck[],
+  missingPoints: number,
   parts: ExplanationComponent[],
   limits: ExplanationLimit[],
 ): number | null {
@@ -389,15 +399,23 @@ function powerComponent(
   }
   const sum = WEAPON_ATTRIBUTE_KEYS.reduce((s, k) => s + gradeValue(w.scaling[k]), 0)
   const over = ctx.budget === null ? null : w.weight > ctx.budget
-  // K-V2 : un seul prérequis manquant suffit ([wiki] Weapon Scaling ; calculs.md, puissance d'attaque, point 5). Simplification retenue par
-  // D47 : le facteur porte sur toute la puissance à +0, et non sur les seuls types de dégâts qui progressent avec l'attribut manquant.
+  // K-V2 ([wiki] Weapon Scaling ; calculs.md, puissance d'attaque, point 5). Simplification retenue par D47 : le facteur porte sur toute la
+  // puissance à +0, et non sur les seuls types de dégâts qui progressent avec l'attribut manquant. Tolérance de D48 : le jeu réduit dès un
+  // point manquant, le score seulement au-delà de `unmetRequirementTolerance` points au total.
   const unmet = requirements.filter((r) => !r.met).map((r) => r.attr)
-  const factor = unmet.length > 0 ? POWER_WEIGHTS.unmetRequirementFactor : 1
+  const tolerance = POWER_WEIGHTS.unmetRequirementTolerance
+  const factor = unmet.length > 0 && missingPoints > tolerance ? POWER_WEIGHTS.unmetRequirementFactor : 1
   parts.push({ code: 'base-power', value: base, max: cap ?? undefined, params: { field: field ?? 'attack_power' } })
   if (unmet.length > 0) {
-    // Puissance retenue après le facteur ; `null` reste `null` (puissance de sort non documentée).
-    const reduced = base === null ? null : Math.round(base * factor * 10) / 10
-    parts.push({ code: 'unmet-requirement-factor', value: reduced, max: cap ?? undefined, params: { factor, attrs: unmet.join(',') } })
+    // Puissance retenue après le facteur (× 1 dans la tolérance, affichée pour dire pourquoi elle n'est pas réduite) ; `null` reste `null`
+    // (puissance de sort non documentée).
+    const kept = base === null ? null : Math.round(base * factor * 10) / 10
+    parts.push({
+      code: 'unmet-requirement-factor',
+      value: kept,
+      max: cap ?? undefined,
+      params: { factor, attrs: unmet.join(','), points: missingPoints, tolerance },
+    })
   }
   parts.push(
     { code: 'scaling-sum', value: Math.round(sum * 100) / 100, max: POWER_WEIGHTS.scalingSumCap },
@@ -454,17 +472,16 @@ function upgradeComponent(w: WeaponEntry, ctx: ScoreContext, parts: ExplanationC
  */
 export function scoreWeapon(c: CandidateWeapon, ctx: ScoreContext): Calc<WeaponScore> {
   const w = c.weapon
-  const fitParts: ExplanationComponent[] = []
   const powerParts: ExplanationComponent[] = []
   const accessParts: ExplanationComponent[] = []
   const upgradeParts: ExplanationComponent[] = []
   const limits: ExplanationLimit[] = [{ code: 'score-base-values' }]
 
   const requirements = compareRequirements(w, ctx.attrs, ctx.hands)
-  const fit = fitComponent(w, ctx, fitParts)
-  const power = powerComponent(c, ctx, requirements, powerParts, limits)
-
   const missingPoints = requirements.reduce((s, r) => s + r.gap, 0)
+  const { value: fit, parts: fitParts } = fitScore(w, ctx)
+  const power = powerComponent(c, ctx, requirements, missingPoints, powerParts, limits)
+
   const stage = ctx.stage.value
   const remembrance = isRemembranceWeapon(c)
   const invader = w.derived.invaderDrop.length > 0
@@ -664,7 +681,8 @@ const HIDDEN_LIMIT: Readonly<Record<MaskReason, LimitCode>> = {
 export function withVisibilityLimits(score: Calc<WeaponScore>, hidden: MaskReason | null, inStyle: boolean): Calc<WeaponScore> {
   const extra: ExplanationLimit[] = []
   if (!inStyle) extra.push({ code: 'weapon-outside-style' })
-  if (hidden !== null) extra.push({ code: HIDDEN_LIMIT[hidden] })
+  // « Hors build » cite son seuil (D48), pour que le texte ne répète pas une valeur de config/weights.ts.
+  if (hidden !== null) extra.push(hidden === 'off-build' ? { code: HIDDEN_LIMIT[hidden], params: { max: SCORE_FILTERS.minFitComponent } } : { code: HIDDEN_LIMIT[hidden] })
   if (extra.length === 0) return score
   return { ...score, explanation: { ...score.explanation, limits: [...score.explanation.limits, ...extra] } }
 }

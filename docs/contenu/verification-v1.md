@@ -236,16 +236,23 @@ Le wiki ne donne aucune traduction officielle : aucune n'est proposée ici comme
 
 ## 5. Textes d'explication (`src/ui/explainText.ts`)
 
-Relecture de toutes les phrases contre `calculs.md`. Elles sont exactes, avec quatre résumés à compléter (V11, mineur) :
+Relecture de toutes les phrases contre `calculs.md`. Elles sont exactes, avec quatre résumés à compléter (V11, mineur). Les quatre textes proposés sont appliqués depuis D48 ; le texte de `requirement-not-met` rappelle en plus la tolérance du score (voir la ligne ajoutée sous le tableau).
 
-| Clé | Texte actuel | Écart | Texte proposé |
+| Clé | Texte d'origine | Écart | Texte appliqué |
 |---|---|---|---|
 | `METHOD_SUMMARIES.stage` | « L'étape d'une arme est celle de son lieu d'obtention le plus précoce, parmi les cinq étapes de la partie » | omet la surcharge (règle 0) et la Remembrance (règle 1), qui passent avant les lieux | « L'étape d'une arme est celle de son lieu d'obtention le plus précoce, sauf condition d'obtention documentée ou échange de Remembrance (étape du boss), parmi les cinq étapes de la partie » |
 | `METHOD_SUMMARIES.requirements` | « …la Force comptant 1,5 fois à deux mains » | omet l'arrondi inférieur et les armes sans posture à deux mains | « …la Force effective valant Force × 1,5 arrondie à l'inférieur à deux mains, sauf pour les armes sans posture à deux mains » |
 | `METHOD_SUMMARIES['boss-level']` | « …la moyenne du palier de zone du wiki et du niveau que représentent les runes du boss » | M1 est le niveau associé au palier, pas le palier ; les boss du DLC reçoivent le niveau d'entrée du DLC | « …la moyenne du niveau associé au palier de zone du wiki et du niveau que représentent les runes du boss ; pour un boss du DLC, le niveau d'entrée du DLC » |
-| `LIMIT_TEXTS['requirement-not-met']` | « …les dégâts X sont réduits et sans bonus de scaling » | ne chiffre pas la réduction | « …les dégâts X sont réduits de 40 % et sans bonus de scaling » |
+| `LIMIT_TEXTS['requirement-not-met']` | « …les dégâts X sont réduits et sans bonus de scaling » | ne chiffre pas la réduction | « …les dégâts X sont réduits de 40 % et sans bonus de scaling, dès un point manquant. Le score de recommandation, lui, ne réduit la puissance qu'au-delà de 5 points manquants. » |
 
-Vérifiés sans écart : `widget-how-upgrade-plan` (2, 4 puis 6 pierres par palier ; une pierre sombre par niveau), `widget-how-optimal-origin`, `widget-how-boss-order` (Limite à 8 niveaux), `curve-below-10` (corrigé depuis 4.6b), `curve-non-physical`, `two-hand-*`, `soft-caps-published`, `priorities-*`, `dlc-entry-level-used`, `tier-missing`, `runes-excluded`, `hp-not-used`, et les résumés `optimal-origin`, `readiness`, `rune-cost`, `upgrade-plan`, `derived-stats`, `attack-power`, `level`, `level-up-priorities`, `attribute-yield`. Si V1 ou V2 sont retenus, il faudra un texte de limite pour la raison « hors build » et pour la puissance réduite par un prérequis manquant.
+Textes ajoutés avec D48, pour les règles K-V1 et K-V2 :
+
+| Clé | Texte appliqué |
+|---|---|
+| `LIMIT_TEXTS['weapon-hidden-off-build']` | « L'adéquation de cette arme à votre build cible est inférieure à 5 sur 25 avant arrondi : elle ne figure pas dans les recommandations. » (le seuil vient de `SCORE_FILTERS.minFitComponent`) |
+| `COMPONENT_SPECS['unmet-requirement-factor']` | « Puissance retenue, × 0,6 : prérequis non atteints (INT), total manquant 36 ; réduction de 40 % seulement au-delà de 5 points manquants » (× 1 dans la tolérance) |
+
+Vérifiés sans écart : `widget-how-upgrade-plan` (2, 4 puis 6 pierres par palier ; une pierre sombre par niveau), `widget-how-optimal-origin`, `widget-how-boss-order` (Limite à 8 niveaux), `curve-below-10` (corrigé depuis 4.6b), `curve-non-physical`, `two-hand-*`, `soft-caps-published`, `priorities-*`, `dlc-entry-level-used`, `tier-missing`, `runes-excluded`, `hp-not-used`, et les résumés `optimal-origin`, `readiness`, `rune-cost`, `upgrade-plan`, `derived-stats`, `attack-power`, `level`, `level-up-priorities`, `attribute-yield`.
 
 ---
 

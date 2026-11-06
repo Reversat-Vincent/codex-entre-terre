@@ -8,7 +8,7 @@ import { slug } from '../../../src/data/slug.ts'
 import { UPGRADE } from '../../../src/engine/config/upgrade.ts'
 import { TWO_HANDED } from '../../../src/engine/config/twoHanded.ts'
 import { ATTACK_POWER } from '../../../src/engine/config/attackPower.ts'
-import { ACCESS_WEIGHTS, FIT_WEIGHTS, GAUGE, POWER_WEIGHTS, READINESS, UPGRADE_COST_WEIGHTS } from '../../../src/engine/config/weights.ts'
+import { ACCESS_WEIGHTS, FIT_WEIGHTS, GAUGE, POWER_WEIGHTS, READINESS, SCORE_FILTERS, UPGRADE_COST_WEIGHTS } from '../../../src/engine/config/weights.ts'
 import { METHODS } from '../../../src/engine/methods.ts'
 import { COMPONENT_CODES, LIMIT_CODES } from '../../../src/engine/codes.ts'
 import { rawList } from './helpers.ts'
@@ -68,7 +68,10 @@ describe('pondérations (valeurs de calculs.md)', () => {
 
   it('composantes 2 à 4, préparation et jauge', () => {
     expect(POWER_WEIGHTS.baseShare + POWER_WEIGHTS.scalingShare).toBe(1)
-    expect(ACCESS_WEIGHTS.missingPointsCap).toBe(9)
+    // D48 : seuil « hors build » 5 sur 25, plafond des points manquants 15, tolérance du facteur 0,6 de 5 points.
+    expect(SCORE_FILTERS.minFitComponent).toBe(5)
+    expect(ACCESS_WEIGHTS.missingPointsCap).toBe(15)
+    expect([POWER_WEIGHTS.unmetRequirementFactor, POWER_WEIGHTS.unmetRequirementTolerance]).toEqual([0.6, 5])
     expect([UPGRADE_COST_WEIGHTS.undocumented, UPGRADE_COST_WEIGHTS.notUpgradeable]).toEqual([14, 8])
     expect(READINESS.limitMargin).toBe(8)
     expect(GAUGE).toEqual({ aboveRecommended: 30, abovePlayer: 12, minimum: 60 })

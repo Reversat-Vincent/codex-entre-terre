@@ -177,71 +177,102 @@ describe('armes efficaces contre une rencontre (fiche boss)', () => {
   })
 })
 
-describe('profils de verification-v1.md : hors build (K-V1) et prérequis manquants (K-V2)', () => {
+describe('profils de verification-v1.md : hors build (K-V1) et prérequis manquants (K-V2), réglés par D48', () => {
   const ATTRS = {
     vagabond: { vig: 15, mnd: 10, end: 11, str: 14, dex: 13, int: 9, fai: 9, arc: 7 },
     samurai: { vig: 12, mnd: 11, end: 13, str: 12, dex: 15, int: 9, fai: 8, arc: 8 },
     astrologer: { vig: 9, mnd: 15, end: 9, str: 8, dex: 12, int: 16, fai: 7, arc: 9 },
   }
   const ALL_WEAPONS: FileKey[] = ['origins', 'bosses', 'tables', 'melee_armaments', 'ranged_weapons_catalysts', 'shields_torches']
-  const names = (a: ReturnType<typeof useAnalysisStore>, stage: string) =>
-    a.recommendations.columns.find((c) => c.stage === stage)?.weapons.map((w) => w.candidate.weapon.name) ?? []
-  const shown = (a: ReturnType<typeof useAnalysisStore>) => a.recommendations.columns.flatMap((c) => c.weapons)
+  type Analysis = ReturnType<typeof useAnalysisStore>
+  const names = (a: Analysis, stage: string) => a.recommendations.columns.find((c) => c.stage === stage)?.weapons.map((w) => w.candidate.weapon.name) ?? []
+  const shown = (a: Analysis) => a.recommendations.columns.flatMap((c) => c.weapons)
+  const hiddenOf = (a: Analysis, name: string) => a.scored.find((s) => s.candidate.weapon.name === name)?.hidden
+  const offBuild = (a: Analysis) => a.scored.filter((s) => s.hidden === 'off-build').map((s) => s.candidate.weapon)
+  /** Vrai si la lettre vaut au moins `min` (S > A > B > C > D > E ; `null` = pas de scaling). */
+  const atLeast = (grade: string | null, min: string) => grade !== null && 'SABCDE'.indexOf(grade) <= 'SABCDE'.indexOf(min)
+  const best = (a: Analysis, stage: string) => [...(a.recommendations.columns.find((c) => c.stage === stage)?.weapons ?? [])].sort(byScore)[0]
 
-  it('Force (Vagabond, `str` 150, Début) : armes hors build écartées mais grisées ; priorités VIG 40, STR 80, END 31, MND 15', async () => {
+  it('Force (Vagabond, `str` 150) : Iron Cleaver en tête du Début, priorités STR 15, VIG 40, END 31, MND 15 (calculs.md) ; STR 17 au Milieu', async () => {
     const { analysis, criteria } = await setup(ALL_WEAPONS)
     criteria.set({ character: { attributes: { ...ATTRS.vagabond } } })
     // Sans build cible, rien n'est écarté.
     expect(analysis.filtered.hidden['off-build']).toBe(0)
     criteria.set({ target: { archetype: 'str', level: 150 } })
-    const off = analysis.scored.filter((s) => s.hidden === 'off-build').map((s) => s.candidate.weapon.name)
-    expect(off).toEqual(expect.arrayContaining(['Coded Sword', 'Cipher Pata']))
+    const off = offBuild(analysis)
+    expect(off.map((w) => w.name)).toEqual(expect.arrayContaining(['Coded Sword', 'Cipher Pata']))
     expect(analysis.filtered.hidden['off-build']).toBe(off.length)
+    // Aucune arme de Force écartée à tort : les armes écartées n'ont au mieux qu'un E en Force.
+    for (const w of off) expect(atLeast(w.scaling.str, 'D'), w.name).toBe(false)
     for (const w of shown(analysis)) expect(w.hidden).toBeNull()
     expect(analysis.scoreOf(analysis.scored.find((s) => s.candidate.weapon.name === 'Coded Sword')!.candidate.ref)?.explanation.limits).toContainEqual({
       code: 'weapon-hidden-off-build',
+      params: { max: 5 },
     })
-    // K-V2 : Iron Cleaver (STR 15 pour STR 14) perd 40 % de sa puissance et quitte la colonne ; la meilleure arme a ses prérequis atteints.
-    expect(names(analysis, 'early')).not.toContain('Iron Cleaver')
-    const best = [...analysis.recommendations.columns[0]!.weapons].sort(byScore)[0]!
-    expect(best.score.value?.requirements.every((r) => r.met)).toBe(true)
+    // D48 : un point de Force manquant reste dans la tolérance, Iron Cleaver garde sa puissance (79 points).
+    const cleaver = best(analysis, 'early')!
+    expect(cleaver.candidate.weapon.name).toBe('Iron Cleaver')
+    expect(cleaver.score.value).toMatchObject({ total: 79, missingPoints: 1 })
     expect((analysis.levelUpPriorities.value ?? []).map((p) => [p.attr, p.target, p.reason])).toEqual([
+      ['str', 15, 'priority-weapon-requirement'],
       ['vig', 40, 'priority-vigor-soft-cap'],
-      ['str', 80, 'priority-build-target'],
       ['end', 31, 'priority-build-target'],
       ['mnd', 15, 'priority-build-target'],
     ])
+    criteria.set({ progress: { stage: 'mid' } })
+    expect(best(analysis, 'mid')?.candidate.weapon.name).toBe('Nox Flowing Hammer')
+    expect((analysis.levelUpPriorities.value ?? []).map((p) => [p.attr, p.target])).toEqual([
+      ['str', 17],
+      ['vig', 40],
+      ['end', 31],
+      ['mnd', 15],
+    ])
   })
 
-  it('Dextérité / saignement (attributs du Samurai, `dexarc`) : Reduvia en tête, aucune arme sans lettre DEX ni ARC', async () => {
+  it('Dextérité / saignement (attributs du Samurai, `dexarc`) : Rotten Crystal Sword et Miquellan Knight’s Sword écartés, Reduvia en tête', async () => {
     const { analysis, criteria } = await setup(ALL_WEAPONS)
     criteria.set({ character: { attributes: { ...ATTRS.samurai } }, target: { archetype: 'dexarc', level: 150 }, style: { status: 'blood_loss' } })
     expect(names(analysis, 'early')[0]).toBe('Reduvia')
+    for (const n of ['Rotten Crystal Sword', "Miquellan Knight's Sword", 'Winged Scythe', 'Club']) expect(hiddenOf(analysis, n), n).toBe('off-build')
     for (const w of shown(analysis)) expect(w.candidate.weapon.scaling.dex !== null || w.candidate.weapon.scaling.arc !== null, w.candidate.weapon.name).toBe(true)
-    expect(analysis.scored.find((s) => s.candidate.weapon.name === 'Club')?.hidden).toBe('off-build')
+    // Aucune arme adaptée écartée à tort : ni lettre C ou mieux en DEX ou ARC. Les quatre armes de saignement écartées demandent 18 ou plus
+    // dans un attribut hors build (INT ou FAI), ce qui les pénalise (composante 1, −4 au-delà de 10, −7 au-delà de 20).
+    const off = offBuild(analysis)
+    for (const w of off) expect(atLeast(w.scaling.dex, 'C') || atLeast(w.scaling.arc, 'C'), w.name).toBe(false)
+    const bleeding = off.filter((w) => w.status_buildup?.blood_loss !== undefined)
+    expect(bleeding.map((w) => w.name).sort()).toEqual(['Barbed Staff-Spear', 'Meteoric Ore Blade', 'Moonveil', 'Winged Scythe'])
+    for (const w of bleeding) expect(Math.max(w.requirements.int, w.requirements.fai), w.name).toBeGreaterThanOrEqual(18)
+    // Les armes de saignement qu'une arme d'adéquation nulle évinçait reviennent en Fin de jeu (verification-v1.md § 3.2).
+    expect(names(analysis, 'endgame')).toEqual(expect.arrayContaining(['Hand of Malenia', "Mohgwyn's Sacred Spear"]))
   })
 
-  it('Intelligence en mêlée (Astrologer, `int`) : plus de DEX 17 pour Rogier’s Rapier parmi les priorités', async () => {
+  it('Intelligence en mêlée (Astrologer, `int`) : Winged Scythe et Rogier’s Rapier écartés, Début vide avec élargissement, plus de DEX 17', async () => {
     const { analysis, criteria } = await setup(ALL_WEAPONS)
     criteria.set({ character: { attributes: { ...ATTRS.astrologer } }, target: { archetype: 'int', level: 150 } })
-    expect(names(analysis, 'early')).not.toContain("Rogier's Rapier")
-    const priorities = analysis.levelUpPriorities.value ?? []
-    expect(priorities.some((p) => p.attr === 'dex')).toBe(false)
-    for (const p of priorities.filter((x) => x.reason === 'priority-weapon-requirement')) expect(['int', 'dex']).toContain(p.attr)
+    for (const n of ['Winged Scythe', "Rogier's Rapier"]) expect(hiddenOf(analysis, n), n).toBe('off-build')
+    // Aucune arme d'Intelligence écartée à tort : les armes écartées n'ont au mieux qu'un E en Intelligence.
+    for (const w of offBuild(analysis)) expect(atLeast(w.scaling.int, 'D'), w.name).toBe(false)
+    for (const w of shown(analysis)) expect(w.candidate.weapon.scaling.int, w.candidate.weapon.name).not.toBeNull()
+    // Début : aucune arme d'Intelligence, la colonne propose de changer de style (« hors build » n'est jamais proposé).
+    expect(names(analysis, 'early')).toEqual([])
+    expect(analysis.widen('early').map((s) => s.reason)).toContain('style')
+    expect((analysis.levelUpPriorities.value ?? []).some((p) => p.attr === 'dex')).toBe(false)
   })
 
-  it('Intelligence en magie (Astrologer, INT 16) : Lusat’s, Azur’s et Crystal Staff réduits de 40 %, derrière les bâtons accessibles', async () => {
+  it('Intelligence en magie (Astrologer, INT 16) : Lusat’s, Azur’s et Crystal Staff réduits de 40 % et hors des cinq premiers du Milieu', async () => {
     const { analysis, criteria } = await setup(ALL_WEAPONS)
     criteria.set({ character: { attributes: { ...ATTRS.astrologer } }, target: { archetype: 'int', level: 150 }, style: { mode: 'magic' } })
-    const total = (n: string) => analysis.scored.find((s) => s.candidate.weapon.name === n)?.score.value?.total ?? null
+    const mid = names(analysis, 'mid')
+    expect(mid).toHaveLength(5)
     for (const n of ["Lusat's Glintstone Staff", "Azur's Glintstone Staff", 'Crystal Staff']) {
+      expect(mid, n).not.toContain(n)
       const s = analysis.scored.find((x) => x.candidate.weapon.name === n)!
       // Lusat's demande aussi STR 10 (Astrologer : 8) : chaque prérequis manquant est cité, le facteur ne s'applique qu'une fois.
       const params = s.score.explanation.components.find((x) => x.code === 'unmet-requirement-factor')?.params
       expect(params?.factor, n).toBe(0.6)
       expect(String(params?.attrs).split(','), n).toContain('int')
-      expect(total(n)!, n).toBeLessThan(total("Digger's Staff")!)
-      expect(total(n)!, n).toBeLessThan(total('Staff of Loss')!)
+      // Plus de 25 points manquants : le malus d'accessibilité atteint son plafond de 15 (25 − 4 pour une étape d'avance − 15).
+      expect(s.score.value?.access, n).toBe(6)
     }
   })
 })

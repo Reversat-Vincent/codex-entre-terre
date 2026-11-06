@@ -43,7 +43,7 @@ import {
   widenSuggestions,
   withVisibilityLimits,
 } from '../engine/score.ts'
-import type { CandidateWeapon, ScoredWeapon, StageRecommendations, WeaponData, WeaponScore, WidenSuggestion } from '../engine/score.ts'
+import type { BuildFilter, CandidateWeapon, ScoredWeapon, StageRecommendations, WeaponData, WeaponScore, WidenSuggestion } from '../engine/score.ts'
 import { currentStage, encounterStage, entryStage } from '../engine/stage.ts'
 import type { StageEntry, StageInfo } from '../engine/stage.ts'
 import { buildWeights, targetAttributes } from '../engine/target.ts'
@@ -144,8 +144,11 @@ export const useAnalysisStore = defineStore('analysis', () => {
   // Personnage et build cible.
   const level = computed(() => levelOf(attrs.value))
   const weights = computed(() => buildWeights(c.value.target.archetype, attrs.value))
-  // Filtre « hors build » (K-V1) : seulement avec un build cible ; les poids automatiques suivent le profil et n'écartent rien.
-  const buildFilter = computed(() => (weights.value.source === 'archetype' ? weights.value.weights : null))
+  // Filtre « hors build » (K-V1, D48) : seulement avec un build cible ; les poids automatiques suivent le profil et n'écartent rien. Il lit les
+  // mêmes entrées que la composante 1 du score (poids, statut privilégié, classes préférées).
+  const buildFilter = computed((): BuildFilter | null =>
+    weights.value.source === 'archetype' ? { weights: weights.value.weights, status: c.value.style.status, classes: c.value.style.classes } : null,
+  )
   const target = computed(() => targetAttributes(c.value.target.archetype, c.value.target.level, attrs.value))
   const derived = computed(() => (tables.value === null ? null : derivedStats(attrs.value, tables.value)))
   const yieldCurves = computed(() => (tables.value === null ? null : attributeYield(attrs.value, tables.value)))

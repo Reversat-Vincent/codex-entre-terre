@@ -1,7 +1,8 @@
 // Tests du score de recommandation (calculs.md, « Score de recommandation d'une arme (0–100) ») sur des armes connues.
 // Armes choisies pour résister aux compléments de données : type d'amélioration déjà documenté par le wiki (Longsword, Erdtree Seal),
 // arme non améliorable (Meteorite Staff) ; les cas « estimé » et « non documenté » sont construits à partir d'une copie.
-// Filtre « hors build » (K-V1) et facteur de prérequis manquant (K-V2) : décision D47, docs/contenu/verification-v1.md § 3.2 et § 3.3.
+// Filtre « hors build » (K-V1) et facteur de prérequis manquant (K-V2) : décisions D47 et D48 (seuil de 5 sur 25, plafond de 15, tolérance de
+// 5 points), docs/contenu/verification-v1.md § 3.2 et § 3.3.
 
 import { describe, expect, it } from 'vitest'
 import type { WeaponEntry } from '../../../src/data/types/weapon.ts'
@@ -81,9 +82,10 @@ describe('composantes sur des armes connues', () => {
     expect(caps['Sacred Seals']).toBe(137)
     expect(caps.Staves).toBe(162)
     const s = scoreWeapon(c, ctx(c, { weights: { fai: 1, str: 0.3 } }))
-    // Adéquation : C (0,55) sur des poids 1,3 → 21 ; puissance : FAI 10 sur 40, prérequis manquant, 17,5 × 0,6 + 2,58 → 13 (K-V2) ;
-    // accès : Volcano Manor (D-V4), Fin, 2 étapes d'avance (−8), 30 points manquants (−9, plafond) → 8 ; sombres 20.
-    expect(s.value).toMatchObject({ fit: 21, power: 13, access: 8, upgrade: 20, total: 62 })
+    // Adéquation : C (0,55) sur des poids 1,3 → 21 ; puissance : FAI 10 sur 40, 30 points manquants (au-delà de la tolérance de 5),
+    // 17,5 × 0,6 + 2,58 → 13 (K-V2) ; accès : Volcano Manor (D-V4), Fin, 2 étapes d'avance (−8), 30 points manquants (18, plafond 15) → 2 ;
+    // sombres 20.
+    expect(s.value).toMatchObject({ fit: 21, power: 13, access: 2, upgrade: 20, total: 56 })
     // Profil qui atteint les prérequis (FAI 40) : puissance entière, 17,5 + 2,58 → 20, et accès sans point manquant (25 − 8).
     const met = scoreWeapon(c, ctx(c, { weights: { fai: 1, str: 0.3 }, attrs: attrs({ fai: 40 }) }))
     expect(met.value).toMatchObject({ fit: 21, power: 20, access: 17, upgrade: 20, total: 78 })
@@ -96,7 +98,12 @@ describe('composantes sur des armes connues', () => {
     const low = scoreWeapon(c, ctx(c, { weights, attrs: attrs({ int: 16 }) }))
     const high = scoreWeapon(c, ctx(c, { weights, attrs: attrs({ int: 52 }) }))
     const factor = low.explanation.components.find((x) => x.code === 'unmet-requirement-factor')
-    expect(factor).toEqual({ code: 'unmet-requirement-factor', value: Math.round(base * 0.6 * 10) / 10, max: 162, params: { factor: 0.6, attrs: 'int' } })
+    expect(factor).toEqual({
+      code: 'unmet-requirement-factor',
+      value: Math.round(base * 0.6 * 10) / 10,
+      max: 162,
+      params: { factor: 0.6, attrs: 'int', points: 36, tolerance: 5 },
+    })
     expect(high.explanation.components.some((x) => x.code === 'unmet-requirement-factor')).toBe(false)
     // La somme des lettres ne change pas ; seule la part de la puissance (70 % de 25) est réduite de 40 %.
     const sum = (s: typeof low) => s.explanation.components.find((x) => x.code === 'scaling-sum')?.value
@@ -115,11 +122,31 @@ describe('composantes sur des armes connues', () => {
     expect(nullBase.explanation.components.find((x) => x.code === 'unmet-requirement-factor')?.value).toBeNull()
   })
 
+  it('tolérance du facteur (D48) : × 0,6 seulement au-delà de 5 points manquants au total, × 1 affiché en deçà', () => {
+    const c = candidate("Lusat's Glintstone Staff")
+    const weights = { int: 1, dex: 0.2 }
+    const factorOf = (int: number) => scoreWeapon(c, ctx(c, { weights, attrs: attrs({ int }) })).explanation.components.find((x) => x.code === 'unmet-requirement-factor')
+    // INT 47 pour 52 : 5 points, dans la tolérance ; INT 46 : 6 points, au-delà.
+    expect(factorOf(47)?.params).toEqual({ factor: 1, attrs: 'int', points: 5, tolerance: 5 })
+    expect(factorOf(47)?.value).toBe(c.weapon.sorcery_scaling)
+    expect(factorOf(46)?.params).toMatchObject({ factor: 0.6, points: 6 })
+    // Iron Cleaver (STR 15) pour le Vagabond (STR 14) : un point manquant, puissance entière (cas de calculs.md, « Priorités de montée de niveau »).
+    const cleaver = candidate('Iron Cleaver')
+    const vagabond = { vig: 15, mnd: 10, end: 11, str: 14, dex: 13, int: 9, fai: 9, arc: 7 }
+    const low = scoreWeapon(cleaver, ctx(cleaver, { weights: { str: 1, dex: 0.2 }, attrs: vagabond }))
+    const met = scoreWeapon(cleaver, ctx(cleaver, { weights: { str: 1, dex: 0.2 }, attrs: { ...vagabond, str: 15 } }))
+    expect(low.value?.missingPoints).toBe(1)
+    expect(low.value?.power).toBe(met.value?.power)
+    expect(low.explanation.components.find((x) => x.code === 'unmet-requirement-factor')?.params?.factor).toBe(1)
+  })
+
   it('accessibilité : étapes d’avance, points manquants plafonnés, Remembrance, départ', () => {
     const c = candidate('Blasphemous Blade')
     const s = scoreWeapon(c, ctx(c))
-    // Fin (2 étapes d'avance, −8), STR 22 / FAI 21 / DEX 15 : 30 points manquants (−9), Remembrance (−4).
-    expect(s.value?.access).toBe(4)
+    // Fin (2 étapes d'avance, −8), STR 22 / FAI 21 / DEX 15 : 30 points manquants (−18, plafond −15), Remembrance (−4) : 25 − 27, borné à 0.
+    expect(s.value?.access).toBe(0)
+    // Mêmes malus avec 10 points manquants seulement (STR 22, FAI 21, DEX 15 → 20, 13, 15) : −6, sous le plafond → 25 − 8 − 6 − 4 = 7.
+    expect(scoreWeapon(c, ctx(c, { attrs: attrs({ str: 20, fai: 13, dex: 15 }) })).value).toMatchObject({ missingPoints: 10, access: 7 })
     const l = candidate('Longsword')
     expect(scoreWeapon(l, ctx(l, { startingBonus: true })).value?.access).toBe(25)
     expect(scoreWeapon(l, ctx(l, { startingBonus: true, playerStage: 'early', attrs: attrs({ str: 8 }) })).value?.access).toBe(25)
@@ -208,18 +235,34 @@ describe('candidats et filtres (D7)', () => {
     expect(r.kept).toHaveLength(487 - 110)
   })
 
-  it('hors build (K-V1) : aucune lettre sur un attribut pondéré du build cible ; rien sans build cible', () => {
+  it('hors build (K-V1, D48) : adéquation au build inférieure à 5 sur 25, avant arrondi ; rien sans build cible', () => {
     const base = { content: { sote: true, tp: true }, constraints: { excludeRemembrance: false, excludeRandomDrop: false, excludeQuest: false }, reliability: { includeEstimates: true } }
-    const str = { str: 1, dex: 0.2 }
+    const build = (weights: Record<string, number>, over: { status?: 'blood_loss'; classes?: string[] } = {}) => ({ weights, status: over.status ?? null, classes: over.classes ?? [] })
+    const str = build({ str: 1, dex: 0.2 })
+    const int = build({ int: 1, dex: 0.2 })
+    const dexarc = build({ dex: 1, arc: 1 })
+    const off = (name: string, b: ReturnType<typeof build> | null) => isOffBuild(candidate(name).weapon, b)
     // Coded Sword : seulement FAI ; Club : seulement STR.
-    expect(isOffBuild(candidate('Coded Sword').weapon, str)).toBe(true)
-    expect(isOffBuild(candidate('Club').weapon, str)).toBe(false)
-    expect(isOffBuild(candidate('Club').weapon, { dex: 1, arc: 1 })).toBe(true)
-    // Une seule lettre sur un attribut faiblement pondéré suffit (Rogier's Rapier, DEX C, pour INT 1 et DEX 0,2).
-    expect(isOffBuild(candidate("Rogier's Rapier").weapon, { int: 1, dex: 0.2 })).toBe(false)
+    expect(off('Coded Sword', str)).toBe(true)
+    expect(off('Club', str)).toBe(false)
+    expect(off('Club', dexarc)).toBe(true)
+    // verification-v1.md § 3.2 : une lettre sur un attribut faiblement pondéré ne suffit plus (DEX 0,2 de l'archétype Intelligence).
+    expect(off('Winged Scythe', int)).toBe(true)
+    expect(off("Rogier's Rapier", int)).toBe(true)
+    expect(off('Rotten Crystal Sword', dexarc)).toBe(true)
+    expect(off("Miquellan Knight's Sword", dexarc)).toBe(true)
+    // Rogier's Rapier : DEX C (0,55 × 0,2 / 1,2 × 50 = 4,58) s'affiche 5 après arrondi, mais reste sous le seuil.
+    const rapier = candidate("Rogier's Rapier")
+    expect(scoreWeapon(rapier, ctx(rapier, { weights: int.weights })).value?.fit).toBe(5)
+    // Le seuil porte sur toute la composante : le bonus de classe préférée (+2) la fait passer au-dessus.
+    expect(off("Rogier's Rapier", build(int.weights, { classes: [rapier.weapon.category] }))).toBe(false)
+    // Armes adaptées gardées.
+    expect(off('Iron Cleaver', str)).toBe(false)
+    expect(off('Reduvia', build(dexarc.weights, { status: 'blood_loss' }))).toBe(false)
+    expect(off('Moonveil', int)).toBe(false)
     // Sans build cible (poids automatiques), ou build sans attribut d'arme pondéré : rien n'est écarté.
-    expect(isOffBuild(candidate('Coded Sword').weapon, null)).toBe(false)
-    expect(isOffBuild(candidate('Coded Sword').weapon, {})).toBe(false)
+    expect(off('Coded Sword', null)).toBe(false)
+    expect(off('Coded Sword', build({}))).toBe(false)
     // « Hors build » passe avant les critères : les décomptes des critères restent ceux qu'un élargissement montrerait.
     expect(hiddenReason(candidate('Coded Sword'), { ...base, content: { sote: true, tp: false } }, str)).toBe('off-build')
     expect(hiddenReason(candidate('Coded Sword'), base)).toBeNull()
@@ -317,6 +360,6 @@ describe('withVisibilityLimits', () => {
     expect(out.value).toBe(score.value)
     expect(out.explanation.limits.slice(-2)).toEqual([{ code: 'weapon-outside-style' }, { code: 'weapon-hidden-remembrance' }])
     expect(score.explanation.limits).not.toContainEqual({ code: 'weapon-outside-style' })
-    expect(withVisibilityLimits(score, 'off-build', true).explanation.limits.at(-1)).toEqual({ code: 'weapon-hidden-off-build' })
+    expect(withVisibilityLimits(score, 'off-build', true).explanation.limits.at(-1)).toEqual({ code: 'weapon-hidden-off-build', params: { max: 5 } })
   })
 })

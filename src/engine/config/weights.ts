@@ -42,16 +42,23 @@ export const POWER_WEIGHTS = {
    * Seule valeur de ce fichier tirée du jeu : [wiki] Weapon Scaling, « takes a -40% penalty » ; la lettre de scaling n'est pas modifiée.
    */
   unmetRequirementFactor: 0.6,
+  /**
+   * Tolérance du facteur précédent (D48) [conception] : il ne s'applique que si le total des points de prérequis manquants (somme des écarts
+   * de « Prérequis comparés au profil ») dépasse cette valeur, pour ne pas punir une arme à un point près comme une arme à trente points.
+   * Le jeu, lui, applique la réduction dès un point manquant : l'écart est assumé, la composante 3 compte déjà ces points.
+   */
+  unmetRequirementTolerance: 5,
 } as const
 
 /**
  * Filtres du score appliqués avant les recommandations (calculs.md, « Score de recommandation d'une arme », « Filtres appliqués avant le score »).
- * `minFitMean` (K-V1, D47) : avec un build cible, une arme dont la moyenne pondérée des lettres de scaling (composante 1, avant pénalités et
- * bonus) est inférieure ou égale à ce seuil est écartée des colonnes (raison « hors build »). 0 = aucune lettre sur un attribut pondéré ;
- * 0,25 écarterait aussi les armes qui n'ont qu'un E (option b de verification-v1.md § 3.2).
+ * `minFitComponent` (K-V1, D48) [conception] : avec un build cible, une arme dont la composante 1 « Adéquation au build » (pénalités et bonus
+ * compris, bornée à 0–25, avant arrondi) est strictement inférieure à ce seuil est écartée des colonnes (raison « hors build »). Il remplace
+ * le seuil de D47 sur la seule moyenne des lettres (`minFitMean = 0`), qui laissait passer les armes qu'une pondération secondaire touche
+ * (DEX 0,2 de l'archétype Intelligence : Rogier's Rapier, Winged Scythe).
  */
 export const SCORE_FILTERS = {
-  minFitMean: 0,
+  minFitComponent: 5,
 } as const
 
 /** Composante 3, accessibilité (calculs.md, « Score de recommandation d'une arme », point 3). */
@@ -60,9 +67,12 @@ export const ACCESS_WEIGHTS = {
   base: 25,
   /** Malus par étape d'avance sur l'étape du joueur. */
   perStageAhead: 4,
-  /** Malus par point d'attribut manquant, et son plafond. */
+  /**
+   * Malus par point d'attribut manquant, et son plafond. Plafond porté de 9 à 15 par D48 : les points manquants comptent jusqu'à 25
+   * (15 / 0,6) au lieu de 15, pour qu'une arme à trente points du profil ne reste pas presque aussi accessible qu'une arme à dix points.
+   */
   perMissingPoint: 0.6,
-  missingPointsCap: 9,
+  missingPointsCap: 15,
   /** Malus d'un échange de Remembrance. */
   remembrancePenalty: 4,
   /** Malus d'un butin de PNJ envahisseur. */

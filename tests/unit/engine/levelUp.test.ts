@@ -36,7 +36,7 @@ function scoredWith(checks: RequirementCheck[], total = 60, estimate: Estimate |
 const str20: RequirementCheck = { attr: 'str', required: 20, actual: 14, effective: 14, met: false, gap: 6, twoHandApplied: false }
 
 describe('levelUpPriorities', () => {
-  it('cas de calculs.md avant K-V2 (Iron Cleaver, STR 15) : prérequis, palier de Vigor, puis écart pondéré au build `str` (4 au plus)', () => {
+  it('cas de calculs.md (Iron Cleaver, STR 15) : prérequis, palier de Vigor, puis écart pondéré au build `str` (4 au plus)', () => {
     const target = targetAttributes('str', 150, VAGABOND)
     const ironCleaver: RequirementCheck = { attr: 'str', required: 15, actual: 14, effective: 14, met: false, gap: 1, twoHandApplied: false }
     const r = levelUpPriorities({ attrs: VAGABOND, weapon: scoredWith([ironCleaver], 79, null, 'Iron Cleaver'), target, weights: ARCHETYPES.str.weights })
@@ -59,7 +59,7 @@ describe('levelUpPriorities', () => {
     expect(r.explanation.inputs).toContainEqual(expect.objectContaining({ entry: 'softCaps', value: 40 }))
   })
 
-  it('cas de calculs.md depuis K-V2 (meilleure arme aux prérequis atteints) : VIG 40, STR 80, END 31, MND 15', () => {
+  it('meilleure arme aux prérequis atteints : la règle 1 ne donne rien, puis VIG 40, STR 80, END 31, MND 15', () => {
     const target = targetAttributes('str', 150, VAGABOND)
     const halberd: RequirementCheck = { attr: 'str', required: 14, actual: 14, effective: 14, met: true, gap: 0, twoHandApplied: false }
     const r = levelUpPriorities({ attrs: VAGABOND, weapon: scoredWith([halberd], 76, null, "Banished Knight's Halberd"), target, weights: ARCHETYPES.str.weights })
