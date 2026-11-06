@@ -240,6 +240,7 @@ L'origine « Automatique » est le rang 1 de B ; B départage avec les armes de 
 | `layout` | `order`, `hidden`, `collapsed`, `collapsedMobile` (D réduits par défaut) | `move`, `add`, `remove`, `toggleCollapse`, `reset` | oui |
 | `preferences` | `theme: 'sombre' \| 'parchemin'`, `navRail: 'auto' \| 'rail' \| 'expanded'`, `criteriaCollapsed`, `catalogView: Record<catalogue, 'table' \| 'grid'>`, `catalogColumns: Record<catalogue, string[]>` | setters ; le thème écrit `data-theme` | oui |
 | `search` | `open`, `query`, `recent` (8 au plus) | `openPalette`, `close`, `commit` | `recent` |
+| `quests` | `Record<NpcId, string[]>` des clés d'étapes cochées (`questStepKeys(textes)` sur toutes les étapes du PNJ, dans l'ordre d'affichage) | `toggle`, `reset`, `isDone`, `doneCount(npcId, among?)` | oui (D45) |
 | `catalogs`, `toasts` | filtres (ordre d'ajout), tri, page ; notifications | — | non |
 
 ```ts
@@ -262,7 +263,7 @@ Les boss vaincus font partie des critères de travail : ils suivent le personnag
 |---|---|
 | Stockage | `localStorage` derrière une interface `StorageLike` injectable (tests en `node`) ; aucun autre accès au stockage dans le code |
 | Clés | `codex-entre-terre:state` ; `codex-entre-terre:backup-v<N>` (copie brute avant migration) |
-| Document | `{ app: 'codex-entre-terre'; schemaVersion; savedAt; appVersion; state: { criteria; profiles; pins; layout; preferences; recentSearches } }` |
+| Document | `{ app: 'codex-entre-terre'; schemaVersion; savedAt; appVersion; state: { criteria; profiles; pins; layout; preferences; recentSearches; quests } }` (`quests` : 300 PNJ, 200 étapes par PNJ, clés de 100 caractères au plus ; absent = vide) |
 | Écriture | abonnement aux stores, écriture après 300 ms de calme et à `pagehide` ; `storage` d'un autre onglet → réhydratation |
 | Migrations | `Record<number, (s: unknown) => unknown>` de N vers N + 1, en chaîne, chacune testée ; `CURRENT_SCHEMA = 1` |
 | Mode dégradé | test d'écriture au démarrage ; échec ou quota → mémoire seule et bandeau « Vos réglages ne seront pas conservés sur cet appareil » ; version stockée plus récente → lecture seule, rien n'est écrasé |

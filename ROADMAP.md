@@ -86,7 +86,8 @@
     > Note : écarts du wiki affichés tels quels (casse de `sub_type`, Gelmir's Fury, Cerulean Seed Talisman +1, Raya Lucaria Soldier Ashes) ; vendeur d'un sort « Non documenté » hors `infobox.seller` (28 sorts sur 213), sans deviner depuis le texte.
   - [x] 5.4b Fiches objets, lieux (fil d'Ariane de région, sites de grâce, boss, PNJ, butin), PNJ (boutique en tableau, quête en liste à cocher), origines ; sections absentes du schéma masquées, butin d'envahisseur lié au boss, `parseSkillCost` partagé — dev-interface — commit `36e26b1`
     > Note : 816 tests. Une fiche d'objet charge les cinq fichiers d'objets, faute de savoir lequel contient l'entrée (optimisation reportée). Quête à cocher enregistrée : D45, tâche 2.14.
-  - [ ] 2.14 Suivi des quêtes enregistré (D45) : store `quests`, champ du document de persistance, validation, export et import, clé d'étape stable `questStepKey(texte)` — dev-logique
+  - [x] 2.14 Suivi des quêtes enregistré (D45) : store `quests`, champ du document de persistance, validation, export et import, clé d'étape stable `questStepKey(texte)` — dev-logique — commit `7233213`
+    > Note : un document sans `quests` se lit comme vide (sauvegardes de développement). Reste à ajouter une ligne « étapes de quête cochées » au résumé de confirmation d'import (`importer.ts`, `ProfileBackup.vue`) : à traiter en vérification.
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [x] 6.1 Ma liste et comparateur — dev-interface
