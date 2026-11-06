@@ -92,7 +92,8 @@
     > Note : 816 tests. Une fiche d'objet charge les cinq fichiers d'objets, faute de savoir lequel contient l'entrée (optimisation reportée). Quête à cocher enregistrée : D45, tâche 2.14.
   - [x] 2.14 Suivi des quêtes enregistré (D45) : store `quests`, champ du document de persistance, validation, export et import, clé d'étape stable `questStepKey(texte)` — dev-logique — commit `7233213`
     > Note : un document sans `quests` se lit comme vide (sauvegardes de développement). Reste à ajouter une ligne « étapes de quête cochées » au résumé de confirmation d'import (`importer.ts`, `ProfileBackup.vue`) : à traiter en vérification.
-  - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface (oubliée, lancée après la passe responsive ; en cours)
+  - [x] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
+    > Note : 901 tests. Écrans non dessinés, construits sur les styles de la palette ; icônes de catalogues à valider en vérification. `ProvisionalScreen.vue` n'est plus utilisé : à retirer.
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [x] 6.1 Ma liste et comparateur — dev-interface
     > Note : vérifiés dans Chromium. Acceptés : « Meilleur » seulement sur les lignes qui ont un sens (attaque, poids, prérequis, absorptions…), « Écart » ailleurs (scaling, amélioration, compétence, passif, dont le mérite dépend du build) ; tableau défilant à hauteur bornée. Étape et score hors style par `stageOf` et `scoreOf` (2.12), branchés en 4.6.
