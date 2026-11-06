@@ -36,7 +36,8 @@
       "patch_notes": "Balance changes listed on the weapon page: game version, official patch note, community explanation.",
       "compatible_ashes_of_war": "Only on the few pages that list them.",
       "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules).",
-      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept.",
+      "status_inconsistencies_flagged": "Nanaya's Torch: weapon page 65 (kept), Madness page list +55"
     },
     "class_rules": {
       "Thrusting Shields": {
@@ -8171,7 +8172,7 @@
       "upgrade": {
         "material": "Smithing Stones",
         "max_level": 25,
-        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": true,
         "affinity_changeable": true,
         "changeability_info_source": "wiki (text)",

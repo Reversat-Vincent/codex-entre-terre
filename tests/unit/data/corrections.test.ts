@@ -19,7 +19,7 @@ describe('fiabilité du type d’amélioration après D29', () => {
   it('documente presque toutes les armes', () => {
     const count: Record<string, number> = {}
     for (const w of allWeapons()) count[w.derived.upgrade.reliability] = (count[w.derived.upgrade.reliability] ?? 0) + 1
-    expect(count).toEqual({ wiki: 429, deduced: 51, estimate: 4, null: 2, 'not-upgradeable': 1 })
+    expect(count).toEqual({ wiki: 478, deduced: 2, estimate: 4, null: 2, 'not-upgradeable': 1 })
   })
 
   it('met à jour upgrade_path_documentation avec les comptes réels', () => {

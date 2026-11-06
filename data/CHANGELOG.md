@@ -1167,3 +1167,18 @@ Décision D44 (accumulations de statut absentes) ; justifications : `docs/conten
 | S7 | `melee_armaments.json` | Chilling Perfume Bottle | `status_buildup` | (absent) | `{"frostbite": 60}` | https://eldenring.wiki.gg/wiki/Chilling_Perfume_Bottle ; https://eldenring.wiki.gg/wiki/Frostbite (valeur 60 sur la page de l'arme) | D44 | 2026-11-05 |
 | S8 | `ranged_weapons_catalysts.json` | Rotten Crystal Staff | `status_buildup` | (absent) | `{"scarlet_rot": 50}` | https://eldenring.wiki.gg/wiki/Rotten_Crystal_Staff ; https://eldenring.wiki.gg/wiki/Scarlet_Rot (page de liste) | D44 | 2026-11-05 |
 | S9 | `shields_torches.json` | Ghostflame Torch | `status_buildup` | (absent) | `{"frostbite": 65}` | https://eldenring.wiki.gg/wiki/Ghostflame_Torch ; https://eldenring.wiki.gg/wiki/Frostbite (valeur 65 sur la page de l'arme) | D44 | 2026-11-05 |
+
+
+## 2026-11-06 (D47)
+
+Correctifs du premier tour de vérification (`docs/contenu/verification-v1.md`, § 6). Fichiers réécrits par script, format d'origine conservé ; chaque ancienne valeur vérifiée avant écriture.
+
+| # | Fichier | Entrée | Champ | Ancienne valeur | Nouvelle valeur | Page wiki | Décision | Date |
+|---|---|---|---|---|---|---|---|---|
+| D-V4 | `ranged_weapons_catalysts.json` | Albinauric Staff | `acquisition[0].location` | `"Mt. Gelmir"` | `"Volcano Manor"` | https://eldenring.wiki.gg/wiki/Albinauric_Staff | D47 | 2026-11-06 |
+| D-V4 | `ranged_weapons_catalysts.json` | Erdtree Seal | `acquisition[0].location` | `"Mt. Gelmir"` | `"Volcano Manor"` | https://eldenring.wiki.gg/wiki/Erdtree_Seal | D47 | 2026-11-06 |
+| D-V4 | `ranged_weapons_catalysts.json` | Gelmir Glintstone Staff | `acquisition[0].location` | `"Mt. Gelmir"` | `"Volcano Manor"` | https://eldenring.wiki.gg/wiki/Gelmir_Glintstone_Staff | D47 | 2026-11-06 |
+| D-V5 | `melee_armaments.json` (45), `ranged_weapons_catalysts.json` (3), `shields_torches.json` (1) | 49 armes, liste ci-dessous | `upgrade.material_info_source` | `"deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)"` | `"wiki (Armaments by Bolstering Material)"` (`material` inchangé ; chaque arme vérifiée dans la liste du wiki téléchargée, matériau Smithing Stone) | https://eldenring.wiki.gg/wiki/Armaments_by_Bolstering_Material | D47 | 2026-11-06 |
+| D-V6 | `shields_torches.json` | `metadata` | `field_notes.status_inconsistencies_flagged` | (absent) | `"Nanaya's Torch: weapon page 65 (kept), Madness page list +55"` (aucune valeur d'arme changée) | https://eldenring.wiki.gg/wiki/Nanaya%27s_Torch ; https://eldenring.wiki.gg/wiki/Madness | D47 | 2026-11-06 |
+
+Armes de D-V5 : Milady, Iron Greatsword, Knight's Greatsword, Banished Knight's Greatsword, Forked Greatsword, Lizard Greatsword, Flamberge, Gargoyle's Greatsword, Zweihander, Greatsword, Watchdog's Greatsword, Troll's Golden Sword, Rapier, Queelign's Greatsword, Bandit's Curved Sword, Shotel, Scavenger's Curved Sword, Dismounter, Monk's Flameblade, Beastman's Cleaver, Backhand Blade, Uchigatana, Twinblade, Black Steel Twinblade, Godskin Peeler, Gargoyle's Twinblade, Hand Axe, Forked Hatchet, Warped Axe, Great Omenkiller Cleaver, Curved Club, Stone Club, Warpick, Hammer, Chainlink Flail, Black Steel Greathammer, Lance, Messmer Soldier's Spear, Urumi, Katar, Pata, Firespark Perfume Bottle, Lightning Perfume Bottle, Chilling Perfume Bottle, Frenzyflame Perfume Bottle, Albinauric Bow, Greatbow, Igon's Greatbow, Fingerprint Stone Shield.

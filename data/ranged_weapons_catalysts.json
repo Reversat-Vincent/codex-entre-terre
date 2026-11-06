@@ -1004,7 +1004,7 @@
       "upgrade": {
         "material": "Smithing Stones",
         "max_level": 25,
-        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": true,
         "affinity_changeable": true,
         "changeability_info_source": "wiki (text)",
@@ -2327,7 +2327,7 @@
       "upgrade": {
         "material": "Smithing Stones",
         "max_level": 25,
-        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": true,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (text)",
@@ -3197,7 +3197,7 @@
       "upgrade": {
         "material": "Smithing Stones",
         "max_level": 25,
-        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": true,
         "affinity_changeable": false,
         "changeability_info_source": "wiki (text)",
@@ -6882,7 +6882,7 @@
       "acquisition": [
         {
           "method": "Loot",
-          "location": "Mt. Gelmir",
+          "location": "Volcano Manor",
           "region": null,
           "details": [
             "Found together with the Albinauric Mask in the same room as an Omenkiller, located on the third floor of the same building as the Guest Hall Site of Grace, located in Volcano Manor.",
@@ -7066,7 +7066,7 @@
       "acquisition": [
         {
           "method": "Drop",
-          "location": "Mt. Gelmir",
+          "location": "Volcano Manor",
           "region": null,
           "details": [
             "11.11% drop chance from the egg-headed Man-Serpent near the throne in Volcano Manor, right before Rykard's teleporter at the end of the area."
@@ -8695,7 +8695,7 @@
       "acquisition": [
         {
           "method": "Loot",
-          "location": "Mt. Gelmir",
+          "location": "Volcano Manor",
           "region": null,
           "details": [
             "Found inside a open cell just northwest of the Prison Town Church Site of Grace, located in Volcano Manor. There is an Omenkiller enemy near it.",
