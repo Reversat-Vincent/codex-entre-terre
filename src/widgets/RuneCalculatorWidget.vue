@@ -14,6 +14,7 @@ import { useCriteriaStore } from '../stores/criteria.ts'
 import { useDataStore } from '../stores/data.ts'
 import { limitText } from '../ui/explainText.ts'
 import { formatInt } from '../ui/format.ts'
+import { costBars } from './misc/runeModel.ts'
 import WidgetFoot from './misc/WidgetFoot.vue'
 import WidgetStepper from './misc/WidgetStepper.vue'
 import type { WidgetBodyProps } from './types.ts'
@@ -22,7 +23,8 @@ import type { WidgetBodyProps } from './types.ts'
  * Corps du widget `rune-calculator` (D5 ; calculs.md, « Coût en runes d'un niveau », décision D4). Contrat d'un corps : voir `src/widgets/types.ts`.
  * Trois sources du niveau visé : le niveau recommandé du prochain boss de la frise (`analysis.nextBoss` et `analysis.bossLevel`), le niveau cible
  * des critères, ou une saisie. Le total vient de `analysis.runesTo(niveau)` (somme des coûts lus dans la table officielle 1–713) et s'affiche avec
- * le badge Calculé et « Pourquoi ? » (`CxCalcValue`, `CxWhyPanel`). Aucun calcul ici : une plage invalide ou hors table est dite par la limite
+ * le badge Calculé et « Pourquoi ? » (`CxCalcValue`, `CxWhyPanel`). Le détail (niveaux à gagner, prochain niveau, dernier niveau, petite courbe du coût
+ * par niveau) vient de `analysis.runeCostsBetween(de, à)`. Aucun calcul ici : une plage invalide ou hors table est dite par la limite
  * que le moteur renvoie, jamais par un 0.
  */
 defineProps<WidgetBodyProps>()
@@ -83,6 +85,17 @@ const runes = computed(() => (targetLevel.value === null ? null : analysis.runes
 const runesLimit = computed(() => {
   const limit = runes.value?.explanation.limits.at(-1)
   return runes.value?.value === null && limit !== undefined ? limitText(limit.code, limit.params) : null
+})
+
+/** Coût de chaque niveau de l'actuel au niveau visé (calculs.md, « Coût en runes d'un niveau »), pour le détail sous le total. */
+const costs = computed(() => (current.value === null || targetLevel.value === null ? null : analysis.runeCostsBetween(current.value, targetLevel.value)))
+const costList = computed(() => costs.value?.value ?? [])
+const bars = computed(() => costBars(costList.value))
+const barsLabel = computed(() => {
+  const first = costList.value[0]
+  const last = costList.value.at(-1)
+  if (first === undefined || last === undefined) return ''
+  return `Coût en runes par niveau, du niveau ${formatInt(first.level)} (${formatInt(first.cost)}) au niveau ${formatInt(last.level)} (${formatInt(last.cost)})${bars.value.step > 1 ? `, un niveau sur ${bars.value.step}` : ''}`
 })
 </script>
 
@@ -183,6 +196,47 @@ const runesLimit = computed(() => {
         <p class="cx-muted wd-runes-text">
           runes pour passer du niveau {{ formatInt(current) }} au niveau {{ formatInt(targetLevel) }}
         </p>
+        <dl
+          v-if="costList.length > 0"
+          class="wd-runes-kv"
+        >
+          <div>
+            <dt>Niveaux à gagner</dt>
+            <dd class="cx-num">
+              {{ formatInt(costList.length) }}
+            </dd>
+          </div>
+          <div>
+            <dt>Prochain niveau</dt>
+            <dd class="cx-num">
+              {{ formatInt(costList[0]!.cost) }}
+            </dd>
+          </div>
+          <div>
+            <dt>Dernier niveau</dt>
+            <dd class="cx-num">
+              {{ formatInt(costList[costList.length - 1]!.cost) }}
+            </dd>
+          </div>
+        </dl>
+        <template v-if="bars.bars.length > 1">
+          <div
+            class="wd-runes-bars"
+            role="img"
+            :aria-label="barsLabel"
+          >
+            <span
+              v-for="bar in bars.bars"
+              :key="bar.level"
+              :style="{ height: `${bar.height}%` }"
+              :title="`Niveau ${formatInt(bar.level)} : ${formatInt(bar.cost)} runes`"
+            />
+          </div>
+          <p class="wd-runes-axis cx-num">
+            <span>Coût par niveau, niv. {{ formatInt(costList[0]!.level) }}</span>
+            <span>niv. {{ formatInt(costList[costList.length - 1]!.level) }}</span>
+          </p>
+        </template>
         <div class="wd-runes-why">
           <CxWhyPanel
             v-model:open="whyOpen"
@@ -224,6 +278,14 @@ const runesLimit = computed(() => {
 .wd-runes-total { overflow-wrap: anywhere; }
 .wd-runes-total :deep(.cx-value > .cx-num) { font-size: 44px; line-height: 48px; font-weight: 600; }
 .wd-runes-text { margin: 0; }
+.wd-runes-kv { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin: var(--space-3) 0 0; }
+.wd-runes-kv div { display: grid; gap: 2px; }
+.wd-runes-kv dt { color: var(--ink-3); font-size: 11px; line-height: 14px; }
+.wd-runes-kv dd { margin: 0; color: var(--ink); font: 600 15px/18px var(--font-sans); }
+/* Courbe en barres : la hauteur est relative à la plus haute barre ; couleur de la donnée calculée, jamais seule (valeurs en info-bulle et en légende). */
+.wd-runes-bars { display: flex; align-items: flex-end; gap: 2px; height: 56px; margin-top: var(--space-3); }
+.wd-runes-bars > span { flex: 1 1 0; min-width: 2px; border-radius: 2px 2px 0 0; background: var(--gold); }
+.wd-runes-axis { display: flex; justify-content: space-between; margin: 0; color: var(--ink-3); font-size: 11px; line-height: 14px; }
 /* Le panneau « Pourquoi ? » est pensé pour trois colonnes ; dans un widget de 5 colonnes, il se lit mieux en une seule. */
 .wd-runes-why { margin-top: var(--space-2); }
 .wd-runes-why :deep(.cx-why) { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); padding: var(--space-3); }

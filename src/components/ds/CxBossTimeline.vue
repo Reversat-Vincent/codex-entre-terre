@@ -7,6 +7,7 @@ import type { Explanation } from '../../engine/types.ts'
 import type { BossNodeData } from '../../ui/bossNode.ts'
 import { formatInt } from '../../ui/format.ts'
 import { labelText } from '../../ui/explainText.ts'
+import type { EstimateConfidence } from '../../ui/labels.ts'
 import BossNode from './BossNode.vue'
 import CxButton from './CxButton.vue'
 import CxEmptyState from './CxEmptyState.vue'
@@ -44,8 +45,8 @@ const props = withDefaults(
 const emit = defineEmits<{
   /** Un nœud ou un prérequis boss est coché ou décoché « Vaincu » : nœud concerné et nouvel état. */
   defeat: [node: TimelineBossView, defeated: boolean]
-  /** Demande du détail d'un niveau recommandé : explication à afficher dans « Pourquoi ? ». */
-  why: [explanation: Explanation]
+  /** Demande du détail d'un niveau recommandé : explication à afficher dans « Pourquoi ? » et confiance de son estimation (`null` si non estimé). */
+  why: [explanation: Explanation, confidence: EstimateConfidence | null]
   /** « Activer Shadow of the Erdtree » depuis l'état vide de la voie DLC. */
   enableDlc: []
   /** « Voir la frise complète » (variante compacte). */
@@ -138,7 +139,7 @@ const gateText = computed(() => {
         :player-level="playerLevel"
         next
         @defeat="(n, v) => emit('defeat', n, v)"
-        @why="(e) => emit('why', e)"
+        @why="(e, c) => emit('why', e, c)"
       />
       <p
         v-if="nextStep && nextStep.kind === 'choice'"
@@ -258,7 +259,7 @@ const gateText = computed(() => {
                   :next="isNextNode(step, node)"
                   :optional="isOptional(step, node)"
                   @defeat="(n, v) => emit('defeat', n, v)"
-                  @why="(e) => emit('why', e)"
+                  @why="(e, c) => emit('why', e, c)"
                 />
               </template>
             </div>
@@ -327,7 +328,7 @@ const gateText = computed(() => {
                 :next="next?.lane === 'dlc' && next.node.id === node.id"
                 :locked="!timeline.dlc.open"
                 @defeat="(n, v) => emit('defeat', n, v)"
-                @why="(e) => emit('why', e)"
+                @why="(e, c) => emit('why', e, c)"
               />
             </div>
           </li>
@@ -354,7 +355,8 @@ const gateText = computed(() => {
 .cx-choice { display: grid; gap: var(--space-3); padding: var(--space-3); border: 1px dashed var(--gold-line); border-radius: var(--radius-l); }
 .cx-choice-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .cx-choice-title { color: var(--ink); font: 600 16px/20px var(--font-display); }
-.cx-choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: var(--space-2); }
+/* `align-items: start` : chaque nœud garde sa hauteur propre au lieu de s'étirer jusqu'à celle du plus haut de sa rangée (le vide sous un nœud vaincu à prérequis, Godrick). */
+.cx-choice-grid { display: grid; align-items: start; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: var(--space-2); }
 .cx-or { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--space-2); }
 .cx-or-sep { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--gold-line); background: var(--surface); color: var(--gold-text); font: 600 italic 15px/1 var(--font-display); transform: rotate(45deg); }
 .cx-or-sep > span { transform: rotate(-45deg); }

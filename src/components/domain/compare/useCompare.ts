@@ -1,10 +1,12 @@
 // Composable du Comparateur : synchronise le store `compare` avec `?e=` dans les deux sens, demande les fichiers des éléments comparés, résout chaque colonne
-// et fournit le profil et le score des armes (store d'analyse). Aucun calcul de jeu : le score et les prérequis viennent du moteur.
+// et lit ses prérequis, son étape et son score (armes) dans le store d'analyse (`requirementsOf`, `stageOf`, `scoreOf`, y compris hors du style des critères).
+// Aucun calcul de jeu ici.
 
 import { computed, watch } from 'vue'
 import type { ComputedRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { RequirementCheck } from '../../../engine/requirements.ts'
 import { useDatasets } from '../../../composables/useDatasets.ts'
 import { datasetsOfKind } from '../../../data/datasets.ts'
 import type { EntityKind, EntityRef, FileKey } from '../../../data/datasets.ts'
@@ -14,6 +16,8 @@ import { useCriteriaStore } from '../../../stores/criteria.ts'
 import { useDataStore } from '../../../stores/data.ts'
 import type { FailedFile } from '../../../stores/data.ts'
 import { formatCompareQuery, parseCompareQuery } from '../../../ui/compare.ts'
+import { STAGED_KINDS, scoreView, stageView } from '../mylist/myListModel.ts'
+import type { ScoreView, StageView } from '../mylist/myListModel.ts'
 import { compareRows } from './compareModel.ts'
 import type { CompareRowSpec } from './compareModel.ts'
 
@@ -24,8 +28,12 @@ export interface CompareColumn {
   readonly state: 'ready' | 'loading' | 'error' | 'missing'
   /** Entrée de `data/`, vue comme une ligne de catalogue ; `null` tant qu'elle manque. */
   readonly row: CatalogRow | null
-  /** Score de recommandation (armes) : `undefined` si l'arme n'est pas évaluée pour le style, `null` si « Non classé », sinon le total. */
-  readonly score: number | null | undefined
+  /** Score de recommandation (armes) pour le profil, y compris hors du style de jeu ; `undefined` tant que le calcul n'est pas prêt ou hors armes. */
+  readonly score: ScoreView | undefined
+  /** Étape de l'élément (genres qui ont des acquisitions) ; `undefined` tant que le calcul n'est pas prêt ou si le genre n'en a pas. */
+  readonly stage: StageView | undefined
+  /** Prérequis de l'élément comparés au profil actif (armes et sorts) ; vide sinon. */
+  readonly requirements: readonly RequirementCheck[]
 }
 
 /** Valeur renvoyée par `useCompare`. */
@@ -33,14 +41,16 @@ export interface CompareState {
   readonly kind: ComputedRef<EntityKind | null>
   readonly columns: ComputedRef<CompareColumn[]>
   readonly rows: ComputedRef<readonly CompareRowSpec[]>
+  /** Sans effet sur les prérequis (lus dans `requirementsOf`) : conservé tant que la vue le transmet encore au tableau. */
   readonly profile: ComputedRef<ProfileContext>
   /** Fichiers en échec, nommés pour le message d'erreur. */
   readonly failed: ComputedRef<FailedFile[]>
   retry(): Promise<void>
 }
 
-/** Fichiers que le moteur lit pour évaluer une arme (score). */
+/** Fichiers que le moteur lit pour évaluer une entité (étape et score). */
 const WEAPON_ENGINE_FILES: readonly FileKey[] = ['bosses', 'origins', 'tables']
+
 
 /**
  * Prépare le comparateur.
@@ -92,34 +102,30 @@ export function useCompare(): CompareState {
   const files = computed((): FileKey[] => {
     const k = kind.value
     if (k === null) return ['search-index']
-    return [...datasetsOfKind(k), 'search-index', ...(k === 'weapon' ? WEAPON_ENGINE_FILES : [])]
+    return [...datasetsOfKind(k), 'search-index', ...(STAGED_KINDS.has(k) ? WEAPON_ENGINE_FILES : [])]
   })
   const datasets = useDatasets(files)
   const engineReady = computed(() => data.statusOf(WEAPON_ENGINE_FILES) === 'ready')
-
-  // `analysis.scored` n'est lu que pour des armes : le calcul des scores n'est pas payé pour les autres genres.
-  const scores = computed(() => {
-    const map = new Map<EntityRef, number | null>()
-    if (kind.value !== 'weapon' || !engineReady.value) return map
-    for (const s of analysis.scored) map.set(s.candidate.ref, s.score.value?.total ?? null)
-    return map
-  })
 
   const columns = computed((): CompareColumn[] =>
     compare.items.map((ref): CompareColumn => {
       const entry = data.entity(ref) as CatalogRow | null
       const k = kind.value
-      const score = k === 'weapon' && engineReady.value ? scores.value.get(ref) : undefined
-      if (entry !== null) return { ref, state: 'ready', row: entry, score }
+      // Les getters ne sont lus que pour les genres concernés et une fois les fichiers du moteur prêts.
+      const ready = k !== null && STAGED_KINDS.has(k) && engineReady.value
+      const score = ready && k === 'weapon' ? (scoreView(analysis.scoreOf(ref)) ?? undefined) : undefined
+      const stage = ready ? (stageView(analysis.stageOf(ref)) ?? undefined) : undefined
+      const requirements = k === 'weapon' || k === 'spell' ? (analysis.requirementsOf(ref)?.value?.checks ?? []) : []
+      if (entry !== null) return { ref, state: 'ready', row: entry, score, stage, requirements }
       const status = k === null ? 'ready' : data.statusOf(datasetsOfKind(k))
-      return { ref, state: status === 'loading' ? 'loading' : status === 'error' ? 'error' : 'missing', row: null, score }
+      return { ref, state: status === 'loading' ? 'loading' : status === 'error' ? 'error' : 'missing', row: null, score, stage, requirements }
     }),
   )
 
   const rows = computed(() => {
     const k = kind.value
     if (k === null) return []
-    return compareRows(k, { withScore: columns.value.some((c) => c.score !== undefined) })
+    return compareRows(k, { withScore: columns.value.some((c) => c.score !== undefined), withStage: columns.value.some((c) => c.stage !== undefined) })
   })
 
   const profile = computed(

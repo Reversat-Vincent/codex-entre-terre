@@ -7,7 +7,7 @@ import type { WeaponEntry } from '../../../data/types/weapon.ts'
 import type { AttackPowerResult, AttackTypeBreakdown } from '../../../engine/attackPower.ts'
 import type { TwoHandMode } from '../../../engine/requirements.ts'
 import type { Hands } from '../../../engine/types.ts'
-import { limitText } from '../../../ui/explainText.ts'
+import { attackUnavailableText, limitText } from '../../../ui/explainText.ts'
 import { DAMAGE_ICONS, DAMAGE_LABELS } from '../../../ui/labels.ts'
 import CxIcon from '../../ds/CxIcon.vue'
 import CxNote from '../../ds/CxNote.vue'
@@ -26,8 +26,8 @@ import WeaponSection from './WeaponSection.vue'
  */
 const props = defineProps<{
   weapon: WeaponEntry
-  /** Résultat du moteur pour le niveau, l'affinité, les attributs du profil et le maniement courants. */
-  attack: AttackPowerResult
+  /** Résultat du moteur pour le niveau, l'affinité, les attributs du profil et le maniement courants ; `null` tant que l'arme n'est pas chargée. */
+  attack: AttackPowerResult | null
   /** Niveau du calcul. */
   level: number
   /** Maniement transmis au moteur. */
@@ -42,14 +42,6 @@ const props = defineProps<{
 
 /** Affinité du calcul. */
 const affinity = defineModel<string>('affinity', { required: true })
-
-/** Raison de l'absence de valeur calculée, par code du moteur (`AttackUnavailableCode`). */
-const UNAVAILABLE_TEXTS: Readonly<Record<string, string>> = {
-  'level-out-of-range': "Ce niveau est hors des bornes de l'arme : rien n'est calculé.",
-  'affinity-undocumented': "Le wiki ne donne pas de tableau d'amélioration pour cette affinité : seule la base à +0 en Standard est calculable.",
-  'level-undocumented': "Le tableau du wiki n'encadre pas ce niveau par deux niveaux documentés : la base n'est pas interpolée.",
-  'published-value-missing': 'Le wiki ne publie pas la valeur à ce niveau.',
-}
 
 /** Limites du moteur qui méritent d'être lues sans ouvrir « Pourquoi ? » (les autres, génériques, y restent). */
 const VISIBLE_LIMITS: ReadonlySet<string> = new Set([
@@ -67,10 +59,10 @@ const VISIBLE_LIMITS: ReadonlySet<string> = new Set([
   'scaling-missing-at-level',
 ])
 
-const calc = computed(() => ('unavailable' in props.attack ? null : props.attack))
+const calc = computed(() => (props.attack === null || 'unavailable' in props.attack ? null : props.attack))
 const breakdown = computed(() => calc.value?.value ?? null)
 const unavailableText = computed(() =>
-  'unavailable' in props.attack ? (UNAVAILABLE_TEXTS[props.attack.unavailable] ?? 'Non calculable.') : null,
+  props.attack !== null && 'unavailable' in props.attack ? attackUnavailableText(props.attack.unavailable) : null,
 )
 const penaltyNotes = computed(() => (calc.value?.explanation.limits ?? []).filter((l) => l.code === 'requirement-not-met').map((l) => limitText(l.code, l.params)))
 const otherNotes = computed(() => (calc.value?.explanation.limits ?? []).filter((l) => VISIBLE_LIMITS.has(l.code)).map((l) => limitText(l.code, l.params)))

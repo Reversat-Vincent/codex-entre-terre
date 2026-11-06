@@ -1,6 +1,7 @@
 <!-- Encart « Qualité des données » : fiabilité champ par champ (wiki, déduit, estimation, non documenté, incohérence, calculé), puis la source du wiki. -->
 <script setup lang="ts">
 import { computed } from 'vue'
+import { formatDate } from '../../../ui/format.ts'
 import CxReliabilityBadge from '../../ds/CxReliabilityBadge.vue'
 import WeaponSection from './WeaponSection.vue'
 import type { QualityRow } from './weaponModel.ts'
@@ -17,12 +18,8 @@ const props = defineProps<{
   retrieved: string | null
 }>()
 
-/** Date d'extraction en toutes lettres (« 31 octobre 2026 ») ; une date illisible est reprise telle quelle. */
-const retrievedText = computed(() => {
-  if (props.retrieved === null) return null
-  const date = new Date(`${props.retrieved}T00:00:00Z`)
-  return Number.isNaN(date.getTime()) ? props.retrieved : new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'UTC' }).format(date)
-})
+/** Date d'extraction en toutes lettres (« 31 octobre 2026 ») ; une date absente ou illisible n'est pas affichée. */
+const retrievedText = computed(() => formatDate(props.retrieved, 'long'))
 </script>
 
 <template>

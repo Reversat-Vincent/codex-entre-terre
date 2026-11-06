@@ -9,9 +9,11 @@ import CxReliabilityBadge from '../../components/ds/CxReliabilityBadge.vue'
 import CxValue from '../../components/ds/CxValue.vue'
 import CxWhyPanel from '../../components/ds/CxWhyPanel.vue'
 import type { DerivedStats } from '../../engine/derivedStats.ts'
+import type { LevelUpPriority } from '../../engine/levelUp.ts'
 import type { ScoredWeapon } from '../../engine/score.ts'
 import type { Attributes, Calc } from '../../engine/types.ts'
 import { entityRoute } from '../../router/entityRoute.ts'
+import { componentLabel, limitText } from '../../ui/explainText.ts'
 import { formatInt } from '../../ui/format.ts'
 import { ATTRIBUTE_LABELS } from '../../ui/labels.ts'
 import OriginAttributeBars from './OriginAttributeBars.vue'
@@ -19,9 +21,10 @@ import type { EquipmentGroup, OriginRow } from './useOriginWidget.ts'
 
 /**
  * Détail de l'origine choisie dans le classement (brief § 5.2 B, note `spec-main`). Rien n'est calculé ici : le rang, le niveau final et les
- * points gaspillés viennent de `rankOrigins`, les statistiques dérivées de `derivedStats`, les premières armes de l'étape Début du widget A.
+ * points gaspillés viennent de `rankOrigins`, les statistiques dérivées de `derivedOf`, les premières armes de l'étape Début du widget A.
  * Les statistiques de PV, FP, endurance et charge sont « Calculé » avec leur « Pourquoi ? » ; l'équilibre est une donnée du wiki (infobox de l'origine).
- * Les priorités de montée de niveau n'ont pas encore de calcul dans le moteur : la section l'annonce au lieu d'afficher une valeur inventée.
+ * Les priorités de montée de niveau (`levelUpPriorities`, méthode D42) sont celles du profil, pas de l'origine détaillée : Calculé, avec leur « Pourquoi ? »
+ * et leur estimation quand le choix de l'arme en dépend ; leur texte est celui de `componentLabel`.
  */
 const props = defineProps<{
   /** Origine détaillée, avec son rang. */
@@ -42,6 +45,8 @@ const props = defineProps<{
   earlyWeapons: readonly ScoredWeapon[]
   /** Les fichiers d'armes sont lus. */
   weaponsLoaded: boolean
+  /** Priorités de montée de niveau du profil. */
+  priorities: Calc<LevelUpPriority[]>
   /** Niveau du joueur, `null` s'il n'est pas calculable. */
   playerLevel: number | null
 }>()
@@ -50,6 +55,21 @@ const props = defineProps<{
 function totalOf(w: ScoredWeapon): number | null {
   return w.score.value?.total ?? null
 }
+
+/** Priorité prête à afficher : attribut, valeur actuelle et visée, phrase du moteur (`componentLabel`) et arme visée. */
+const priorityRows = computed(() =>
+  (props.priorities.value ?? []).map((p) => ({
+    key: `${p.reason}-${p.attr}`,
+    attr: ATTRIBUTE_LABELS[p.attr].abbr,
+    current: p.current,
+    target: p.target,
+    text: componentLabel(p.reason, { attr: p.attr, actual: p.current, ...(p.weight === null ? {} : { weight: p.weight, points: p.target - p.current }) }),
+    weapon: p.weapon,
+  })),
+)
+const priorityLimits = computed(() =>
+  props.priorities.explanation.limits.filter((l) => l.code !== 'priorities-design-method').map((l) => limitText(l.code, l.params)),
+)
 
 const route = computed(() => entityRoute(props.row.ref))
 const wastedText = computed(() => {
@@ -231,9 +251,54 @@ const stats = computed(() => [
       <h4 class="cx-label">
         {{ playerLevel === null ? 'Priorités de montée de niveau' : `Priorités de montée de niveau, depuis votre niveau ${formatInt(playerLevel)}` }}
       </h4>
-      <p class="cx-muted cx-od-hint">
-        Cette section n'est pas encore disponible : le calcul des priorités de montée de niveau n'est pas encore écrit dans le moteur.
+      <p
+        v-if="priorityRows.length === 0"
+        class="cx-muted cx-od-hint"
+      >
+        Aucune priorité : vos attributs atteignent déjà les prérequis, le palier de Vigor et la cible.
       </p>
+      <ol
+        v-else
+        class="cx-od-prio"
+      >
+        <li
+          v-for="p in priorityRows"
+          :key="p.key"
+        >
+          <b class="cx-num">{{ p.attr }} {{ formatInt(p.current) }} → {{ formatInt(p.target) }}</b>
+          <span>{{ p.text }}</span>
+          <RouterLink
+            v-if="p.weapon"
+            :to="entityRoute(p.weapon)"
+          >
+            Voir l'arme
+          </RouterLink>
+        </li>
+      </ol>
+      <div class="cx-od-prio-calc">
+        <CxReliabilityBadge kind="calculated" />
+        <CxReliabilityBadge
+          v-if="priorities.estimate"
+          kind="estimate"
+          :confidence="priorities.estimate.confidence"
+        />
+      </div>
+      <ul
+        v-if="priorityLimits.length > 0"
+        class="cx-od-hint cx-od-limits"
+      >
+        <li
+          v-for="(text, i) in priorityLimits"
+          :key="i"
+        >
+          {{ text }}
+        </li>
+      </ul>
+      <CxWhyPanel
+        :explanation="priorities.explanation"
+        :estimate="priorities.estimate?.confidence ?? null"
+        subject="ces priorités de montée de niveau"
+      />
     </section>
   </div>
 </template>
@@ -255,6 +320,11 @@ const stats = computed(() => [
 .cx-od-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; overflow-wrap: anywhere; }
 .cx-od-kind { min-width: 52px; color: var(--ink-3); font-size: 11px; line-height: 14px; }
 .cx-od-score { margin-left: auto; color: var(--gold-text); font: 600 14px/18px var(--font-sans); font-variant-numeric: tabular-nums; }
+.cx-od-prio { display: grid; gap: 6px; }
+.cx-od-prio li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 13px; line-height: 18px; }
+.cx-od-prio b { color: var(--gold-text); font-weight: 600; }
+.cx-od-prio-calc { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.cx-od-limits { display: grid; gap: 2px; }
 .cx-od-hint { color: var(--ink-3); font-size: 11px; line-height: 15px; }
 @media (max-width: 767px) { .cx-od-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } .cx-od-cols { grid-template-columns: minmax(0, 1fr); } }
 </style>

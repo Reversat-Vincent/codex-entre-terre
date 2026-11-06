@@ -1,4 +1,4 @@
-// Modèle de la fiche boss : lecture des rencontres, indicateurs, PV et runes, statuts, butin, notes de combat et suggestions d'armes.
+// Modèle de la fiche boss : lecture des rencontres, indicateurs, PV et runes, statuts, butin, notes de combat et suggestions d'armes (mise en forme du résultat du store d'analyse).
 // Fonctions pures (aucun store, aucune interface) : elles transforment les données de `data/` et les résultats du moteur en objets prêts à afficher.
 // Références : docs/architecture.md § 3.3 (clés de rencontre), § 3.4 (sémantique des champs), docs/design/ds/calculs.md, « Niveau recommandé d'un boss et préparation ».
 
@@ -13,10 +13,11 @@ import type { BossLevel } from '../../../engine/bossLevel.ts'
 import { indexEncounters } from '../../../engine/encounters.ts'
 import { encounterStage } from '../../../engine/stage.ts'
 import type { StageInfo } from '../../../engine/stage.ts'
-import type { Calc } from '../../../engine/types.ts'
+import type { Calc, ExplanationLimit } from '../../../engine/types.ts'
+import type { WeaknessWeapon } from '../../../engine/weakness.ts'
 import { formatDecimal } from '../../../ui/format.ts'
 import { DLC_ZONE_LABELS, STAGE_LABELS } from '../../../ui/labels.ts'
-import type { BossFlagModel, BossWeaponSuggestion, CountModel, EncounterModel, LootGroupModel, LootItemModel, NoteGroupModel, StatusRowModel } from './types.ts'
+import type { BossFlagModel, CountModel, EncounterModel, LootGroupModel, LootItemModel, NoteGroupModel, StatusRowModel } from './types.ts'
 
 /** Indicateurs de la page « Bosses » du wiki, en français (icônes du sprite du design system). */
 const FLAGS: Readonly<Record<string, { label: string; icon: string; title: string }>> = {
@@ -294,36 +295,27 @@ export function stageText(stage: StageInfo): string {
   return parts.join(', ')
 }
 
-/** Résultat de la lecture des suggestions d'armes. */
-export interface WeaponSuggestions {
-  /** Faux tant que le getter `weaponsAgainst` n'existe pas ou n'a pas pu répondre (fichiers d'armes non chargés). */
-  readonly available: boolean
-  readonly items: readonly BossWeaponSuggestion[]
-}
+/** État du bloc « Vos armes contre ses faiblesses » : chargement, limite du moteur (absorption non documentée), liste vide ou liste. */
+export type WeaponSuggestionsView =
+  | { readonly kind: 'loading' }
+  | { readonly kind: 'limit'; readonly limits: readonly ExplanationLimit[] }
+  | { readonly kind: 'empty' }
+  | { readonly kind: 'list'; readonly items: readonly WeaknessWeapon[] }
 
 /**
- * Lit les armes du profil efficaces contre une rencontre, par le getter `weaponsAgainst(clé de rencontre)` du store `analysis`.
- * Le getter est demandé à la logique : tant qu'il manque, l'état « indisponible » est rendu. Une réponse est acceptée si c'est une liste
- * ou un `Calc` dont la valeur est une liste ; les entrées incomplètes sont écartées.
- * @param getter Le getter du store (fonction), ou toute autre valeur si le store ne l'expose pas encore.
- * @param key Clé de la rencontre.
- * @returns Les suggestions et leur disponibilité.
+ * Prépare l'affichage des armes du profil efficaces contre une rencontre, d'après le getter `weaponsAgainst(clé de rencontre)` du store `analysis`
+ * (calculs.md, « Armes efficaces contre une rencontre »). Une rencontre sans absorption documentée (Mohg) rend une liste vide avec la limite
+ * `absorption-undocumented` : elle est affichée telle quelle. Sans faiblesses documentées, les fichiers d'armes ne sont pas chargés et le getter
+ * répond `null` : la même limite est alors posée ici, car le moteur la poserait pour la même raison.
+ * @param calc Résultat du getter, ou `null` tant que les fichiers d'armes ne sont pas chargés.
+ * @param hasWeaknesses Vrai si le wiki donne l'absorption de la rencontre (les fichiers d'armes sont alors demandés).
+ * @returns L'état à afficher.
  */
-export function readWeaponSuggestions(getter: unknown, key: string): WeaponSuggestions {
-  if (typeof getter !== 'function') return { available: false, items: [] }
-  const result: unknown = (getter as (k: string) => unknown)(key)
-  const list = Array.isArray(result) ? result : isCalcLike(result) && Array.isArray(result.value) ? result.value : null
-  if (list === null) return { available: false, items: [] }
-  const items = list.filter(
-    (x): x is BossWeaponSuggestion =>
-      typeof x === 'object' && x !== null && typeof (x as { ref?: unknown }).ref === 'string' && typeof (x as { name?: unknown }).name === 'string' && Array.isArray((x as { requirements?: unknown }).requirements),
-  )
-  return { available: true, items }
-}
-
-/** Vrai pour un objet qui porte une propriété `value` (forme d'un `Calc`). */
-function isCalcLike(x: unknown): x is { value: unknown } {
-  return typeof x === 'object' && x !== null && 'value' in x
+export function weaponSuggestions(calc: Calc<WeaknessWeapon[]> | null, hasWeaknesses: boolean): WeaponSuggestionsView {
+  if (calc === null) return hasWeaknesses ? { kind: 'loading' } : { kind: 'limit', limits: [{ code: 'absorption-undocumented' }] }
+  const limits = calc.explanation.limits
+  if (calc.value === null || (calc.value.length === 0 && limits.length > 0)) return { kind: 'limit', limits }
+  return calc.value.length === 0 ? { kind: 'empty' } : { kind: 'list', items: calc.value }
 }
 
 /** Type de dégâts infligé par le boss : type de dégâts, statut, ou texte du wiki non reconnu. */

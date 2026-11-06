@@ -5,13 +5,11 @@
 import { computed, ref } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { indexEncounters } from '../../engine/encounters.ts'
 import type { TimelineBossView, TimelineView } from '../../engine/timeline.ts'
 import type { Explanation } from '../../engine/types.ts'
 import { entityRoute } from '../../router/entityRoute.ts'
 import { useAnalysisStore } from '../../stores/analysis.ts'
 import { useCriteriaStore } from '../../stores/criteria.ts'
-import { useDataStore } from '../../stores/data.ts'
 import { bossNodeData } from '../../ui/bossNode.ts'
 import type { BossNodeData } from '../../ui/bossNode.ts'
 import type { EstimateConfidence } from '../../ui/labels.ts'
@@ -28,10 +26,10 @@ export interface BossWidgetModel {
   readonly next: ComputedRef<BossNodeData | null>
   /** Explication ouverte dans le panneau « Pourquoi ? », `null` si le panneau est fermé. */
   readonly why: Ref<Explanation | null>
-  /** Confiance de l'estimation du niveau expliqué. */
-  readonly whyEstimate: ComputedRef<EstimateConfidence | null>
-  /** Ouvre le « Pourquoi ? » d'un niveau recommandé. */
-  readonly showWhy: (explanation: Explanation) => void
+  /** Confiance de l'estimation du niveau expliqué, transmise avec l'événement `why`. */
+  readonly whyEstimate: Ref<EstimateConfidence | null>
+  /** Ouvre le « Pourquoi ? » d'un niveau recommandé, avec la confiance de son estimation (`null` si le niveau n'est pas estimé). */
+  readonly showWhy: (explanation: Explanation, confidence: EstimateConfidence | null) => void
   /** Ferme le « Pourquoi ? ». */
   readonly closeWhy: () => void
   /** Coche ou décoche « Vaincu » pour un nœud, puis passe la progression en mode « Boss vaincus ». */
@@ -44,24 +42,18 @@ export interface BossWidgetModel {
 
 /**
  * Prépare ce que le widget C affiche et les actions qu'il déclenche, à partir des stores `analysis`, `criteria` et `data`.
- * L'index des rencontres est reconstruit ici (le store ne l'expose pas) : c'est une lecture de données, sans calcul.
+ * L'index des rencontres est celui du store (`analysis.encounters`).
  * @returns Le modèle réactif du widget.
  */
 export function useBossWidget(): BossWidgetModel {
   const analysis = useAnalysisStore()
   const criteria = useCriteriaStore()
-  const data = useDataStore()
   const router = useRouter()
   const why = ref<Explanation | null>(null)
 
-  const index = computed(() => {
-    const entries = data.dataset('bosses')?.entries
-    return entries === undefined ? null : indexEncounters(entries)
-  })
-
   const details = computed((): Record<string, BossNodeData | null> => {
     const t = analysis.timeline
-    const idx = index.value
+    const idx = analysis.encounters
     const out: Record<string, BossNodeData | null> = {}
     if (t === null || idx === null) return out
     const nodes: TimelineBossView[] = [
@@ -85,15 +77,7 @@ export function useBossWidget(): BossWidgetModel {
     return node === undefined ? null : (details.value[node.levelKey] ?? null)
   })
 
-  /** Confiance de l'estimation de la rencontre dont le niveau porte l'explication ouverte (identité de l'objet `Explanation`). */
-  const whyEstimate = computed((): EstimateConfidence | null => {
-    const open = why.value
-    if (open === null) return null
-    for (const d of Object.values(details.value)) {
-      if (d?.level?.explanation === open) return d.level.estimate?.confidence ?? null
-    }
-    return null
-  })
+  const whyEstimate = ref<EstimateConfidence | null>(null)
 
   return {
     timeline: computed(() => analysis.timeline),
@@ -102,11 +86,13 @@ export function useBossWidget(): BossWidgetModel {
     next,
     why,
     whyEstimate,
-    showWhy: (explanation) => {
+    showWhy: (explanation, confidence) => {
       why.value = explanation
+      whyEstimate.value = confidence
     },
     closeWhy: () => {
       why.value = null
+      whyEstimate.value = null
     },
     setDefeated: (node, defeated) => {
       for (const key of node.keys) {

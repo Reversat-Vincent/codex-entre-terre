@@ -3,6 +3,7 @@
 import { computed } from 'vue'
 import type { WeaponScore } from '../../../engine/score.ts'
 import type { Calc } from '../../../engine/types.ts'
+import { limitText } from '../../../ui/explainText.ts'
 import { formatInt } from '../../../ui/format.ts'
 import CxNote from '../../ds/CxNote.vue'
 import CxReliabilityBadge from '../../ds/CxReliabilityBadge.vue'
@@ -13,19 +14,32 @@ import WeaponSection from './WeaponSection.vue'
 
 /**
  * Score de recommandation de l'arme pour les critères courants (calculs.md, « Score de recommandation d'une arme (0–100) ») : quatre composantes de 0 à 25.
- * Le score vient du moteur par le store d'analyse ; le composant n'additionne ni n'arrondit rien. Une composante `null` s'affiche « Non documenté », jamais 0.
+ * Le score vient du moteur par le store d'analyse (`scoreOf`, même hors du style ou masquée : la raison est une limite, dite dans une note) ;
+ * le composant n'additionne ni n'arrondit rien. Une composante `null` s'affiche « Non documenté », jamais 0.
  * « Pourquoi ? » rend l'`Explanation` du moteur (composantes, données utilisées, limites) ; sa grille à trois colonnes passe à une colonne dans cet encart étroit.
  */
 const props = defineProps<{
-  /** Score du moteur ; `null` si l'arme n'est pas évaluée pour le style de jeu choisi. */
+  /** Score du moteur ; `null` tant que l'arme n'est pas dans un fichier chargé. */
   score: Calc<WeaponScore> | null
   /** État du chargement des fichiers dont le score dépend (origines, boss, tables). */
   status: 'loading' | 'ready' | 'error'
   /** Description du profil (« Dex / Saignement, Samurai, niveau 42, étape Milieu »). */
   profile: string
-  /** Libellé du style de jeu des critères, pour expliquer une arme non évaluée. */
-  styleLabel: string
 }>()
+
+/** Codes des limites qui disent pourquoi l'arme n'est pas dans les recommandations (style ou exclusion), lus dans l'explication du score. */
+const VISIBILITY_LIMITS: ReadonlySet<string> = new Set([
+  'weapon-outside-style',
+  'weapon-hidden-content-sote',
+  'weapon-hidden-content-tp',
+  'weapon-hidden-remembrance',
+  'weapon-hidden-random-drop',
+  'weapon-hidden-quest',
+  'weapon-hidden-estimate',
+])
+const visibilityNotes = computed(() =>
+  (props.score?.explanation.limits ?? []).filter((l) => VISIBILITY_LIMITS.has(l.code)).map((l) => limitText(l.code, l.params)),
+)
 
 const parts = computed(() => {
   const s = props.score?.value
@@ -69,9 +83,17 @@ const parts = computed(() => {
       tone="partial"
       title="Score non calculé."
     >
-      Cette arme est hors de votre style de jeu ({{ styleLabel }}) : le score ne concerne que les armes que ce style propose. Changez le style dans les critères du tableau de bord pour l'évaluer.
+      Les données de cette arme ne sont pas chargées : aucun score n'est disponible.
     </CxNote>
     <template v-else>
+      <CxNote
+        v-for="(text, i) in visibilityNotes"
+        :key="i"
+        tone="partial"
+        title="Hors des recommandations."
+      >
+        {{ text }}
+      </CxNote>
       <div class="wp-scoreline">
         <CxValue
           v-if="score.value?.total === null || score.value === null"

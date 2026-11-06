@@ -30,8 +30,8 @@ const props = defineProps<{
   rows: readonly CompareRowSpec[]
   /** Catalogue qui décrit le genre (cellules). */
   catalog: CatalogKey
-  /** Attributs et posture du profil actif (prérequis comparés). */
-  profile: ProfileContext
+  /** Sans effet : les prérequis sont ceux de `column.requirements` (store d'analyse). Conservé tant que la vue transmet encore le profil. */
+  profile?: ProfileContext
 }>()
 
 const emit = defineEmits<{
@@ -41,8 +41,9 @@ const emit = defineEmits<{
 
 /** Valeur comparée de la cellule d'une ligne ; `null` si l'entrée manque. */
 function valueOf(spec: CompareRowSpec, column: CompareColumn): CompareValue {
-  if (spec.cell === 'score') return column.score ?? null
-  return column.row === null ? null : spec.rank(column.row, { profile: props.profile })
+  if (spec.cell === 'score') return column.score?.total ?? null
+  if (spec.cell === 'stage') return column.stage === undefined ? null : column.stage.kind === 'stage' ? column.stage.text : 'Non classé'
+  return column.row === null ? null : spec.rank(column.row, { requirements: column.requirements })
 }
 
 interface DisplayRow {
@@ -207,9 +208,9 @@ function word(verdict: CellVerdict | undefined): string | null {
                   <span
                     v-if="column.score === undefined"
                     class="cx-muted"
-                  >Non évaluée : hors de votre style de jeu</span>
+                  >Calcul en cours…</span>
                   <span
-                    v-else-if="column.score === null"
+                    v-else-if="column.score.total === null"
                     class="cx-muted"
                   >Non classé</span>
                   <span
@@ -217,19 +218,34 @@ function word(verdict: CellVerdict | undefined): string | null {
                     class="cmp-score"
                   >
                     <CxValue
-                      :value="column.score"
+                      :value="column.score.total"
                       calculated
                       :why="false"
+                      :estimate="column.score.estimate"
                       method="Score de recommandation de l’arme pour vos critères, sur 100."
                     /><span class="cx-muted"> / 100</span>
                   </span>
+                  <span
+                    v-if="column.score?.outsideStyle"
+                    class="cx-muted"
+                  >Hors de votre style de jeu : donné pour information</span>
+                </template>
+                <template v-else-if="row.spec.cell === 'stage'">
+                  <span
+                    v-if="column.stage === undefined"
+                    class="cx-muted"
+                  >Calcul en cours…</span>
+                  <span v-else-if="column.stage.kind === 'stage'">{{ column.stage.text }}</span>
+                  <span
+                    v-else
+                    class="cx-muted"
+                  >Non classé</span>
                 </template>
                 <CatalogCell
                   v-else-if="column.row && row.spec.column"
                   :catalog="catalog"
                   :column="row.spec.column"
                   :row="column.row"
-                  :profile="profile"
                   layout="card"
                 />
                 <CxValue

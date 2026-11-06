@@ -12,6 +12,7 @@ import {
   splitNames,
 } from '../../../src/components/domain/sheet/sheetModel.ts'
 import { spellRequirementRows } from '../../../src/components/domain/sheet/spell/spellModel.ts'
+import { checkSpellRequirements } from '../../../src/engine/requirements.ts'
 import type { Attributes } from '../../../src/engine/types.ts'
 
 const attrs: Attributes = { vig: 10, mnd: 10, end: 10, str: 10, dex: 10, int: 20, fai: 10, arc: 10 }
@@ -81,14 +82,21 @@ describe('armure', () => {
 
 describe('sort : prérequis comparés au profil', () => {
   it('une ligne par attribut, comparaison du moteur seulement quand il y a un prérequis', () => {
-    const rows = spellRequirementRows({ id: 'x', category: 'Sorceries', requirements: { int: 23, fai: 0, arc: 0 } }, attrs)
+    const spell = { id: 'x', requirements: { int: 23, fai: 0, arc: 0 } }
+    const rows = spellRequirementRows(spell, attrs, checkSpellRequirements(spell, attrs).value?.checks ?? [])
     expect(rows.map((r) => r.attr)).toEqual(['int', 'fai', 'arc'])
     expect(rows[0]?.check).toMatchObject({ required: 23, actual: 20, met: false, gap: 3 })
     expect(rows[1]?.check).toBeNull()
   })
   it('un prérequis atteint est marqué atteint', () => {
-    const rows = spellRequirementRows({ id: 'x', category: 'Incantations', requirements: { int: 0, fai: 10, arc: 0 } }, attrs)
+    const spell = { id: 'x', requirements: { int: 0, fai: 10, arc: 0 } }
+    const rows = spellRequirementRows(spell, attrs, checkSpellRequirements(spell, attrs).value?.checks ?? [])
     expect(rows[1]?.check).toMatchObject({ met: true, gap: 0 })
+  })
+  it('sans comparaison du store, aucune ligne n’est comparée', () => {
+    const rows = spellRequirementRows({ requirements: { int: 23, fai: 0, arc: 0 } }, attrs, [])
+    expect(rows.map((r) => r.check)).toEqual([null, null, null])
+    expect(rows[0]?.required).toBe(23)
   })
 })
 

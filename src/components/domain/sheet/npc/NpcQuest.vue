@@ -1,7 +1,9 @@
-<!-- Étapes de quête d'un PNJ en liste à cocher : groupes par lieu, coche locale à la page (non enregistrée), progression et remise à zéro. -->
+<!-- Étapes de quête d'un PNJ en liste à cocher : groupes par lieu, coches enregistrées par le store `quests`, progression et remise à zéro. -->
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import type { EntityRef } from '../../../../data/datasets.ts'
+import { questStepKeys, useQuestsStore } from '../../../../stores/quests.ts'
+import { useToastsStore } from '../../../../stores/toasts.ts'
 import CxButton from '../../../ds/CxButton.vue'
 import CxCheckbox from '../../../ds/CxCheckbox.vue'
 import WikiInline from '../../WikiInline.vue'
@@ -10,9 +12,11 @@ import SheetSection from '../SheetSection.vue'
 import { questGroups, questStepCount } from './npcModel.ts'
 
 /**
- * Progression de quête du wiki (`questline`) en liste à cocher. La coche est un état local de la page : elle n'est pas enregistrée (aucun store de l'application
- * ne prévoit de suivi de quête), elle repart de zéro quand on quitte la fiche. Le texte des étapes est celui du wiki, en anglais ; un nom exact d'entité
- * devient un lien. Les précisions (`→`) sont affichées sous leur étape, sans case propre : une étape = une case.
+ * Progression de quête du wiki (`questline`) en liste à cocher. Les coches sont enregistrées avec le reste de l'état de l'utilisateur (store `quests`, D45) :
+ * chaque étape a une clé tirée de son texte, calculée sur toutes les étapes du PNJ dans l'ordre d'affichage, groupes confondus (deux étapes identiques de
+ * groupes différents ont donc deux clés). Le compteur ne compte que les étapes affichées : une coche orpheline (texte du wiki changé) ne le gonfle pas.
+ * Le texte des étapes est celui du wiki, en anglais ; un nom exact d'entité devient un lien. Les précisions (`→`) sont affichées sous leur étape,
+ * sans case propre : une étape = une case.
  */
 const props = defineProps<{
   /** Lignes de `questline.text`. */
@@ -23,23 +27,45 @@ const props = defineProps<{
 
 const groups = computed(() => questGroups(props.lines))
 const total = computed(() => questStepCount(groups.value))
-const done = ref<ReadonlySet<string>>(new Set())
+const quests = useQuestsStore()
+const toasts = useToastsStore()
+
+/** Identifiant du PNJ dans le store : la partie de la référence après `npc:`. */
+const npcId = computed(() => props.entityRef.slice(props.entityRef.indexOf(':') + 1))
+/** Clé de chaque étape affichée, par identifiant d'étape de la page. */
+const keyOf = computed(() => {
+  const steps = groups.value.flatMap((g) => g.steps)
+  const keys = questStepKeys(steps.map((s) => s.text))
+  return new Map(steps.map((s, i) => [s.id, keys[i] ?? s.id]))
+})
+const doneCount = computed(() => quests.doneCount(npcId.value, [...keyOf.value.values()]))
 
 /**
- * Coche ou décoche une étape.
- * @param id Identifiant de l'étape.
- * @param checked Nouvel état.
+ * Indique si une étape est cochée.
+ * @param id Identifiant de l'étape dans la page.
+ * @returns Vrai si sa clé est enregistrée comme cochée.
  */
-function setDone(id: string, checked: boolean): void {
-  const next = new Set(done.value)
-  if (checked) next.add(id)
-  else next.delete(id)
-  done.value = next
+function isDone(id: string): boolean {
+  const key = keyOf.value.get(id)
+  return key !== undefined && quests.isDone(npcId.value, key)
 }
 
-/** Décoche toutes les étapes. */
+/**
+ * Coche ou décoche une étape ; un refus du store (bornes de stockage atteintes) est dit dans une notification.
+ * @param id Identifiant de l'étape dans la page.
+ */
+function toggle(id: string): void {
+  const key = keyOf.value.get(id)
+  if (key === undefined) return
+  const wasDone = quests.isDone(npcId.value, key)
+  if (!quests.toggle(npcId.value, key) && !wasDone) {
+    toasts.push({ message: 'Cette étape ne peut pas être enregistrée : la limite de quêtes suivies est atteinte.', kind: 'warning' })
+  }
+}
+
+/** Décoche toutes les étapes de ce PNJ. */
 function reset(): void {
-  done.value = new Set()
+  quests.reset(npcId.value)
 }
 </script>
 
@@ -47,18 +73,18 @@ function reset(): void {
   <SheetSection
     v-if="groups.length > 0"
     title="Étapes de la quête"
-    subtitle="Les cases ne servent qu’à suivre votre lecture : elles ne sont pas enregistrées."
+    subtitle="Vos cases sont enregistrées sur cet appareil avec le reste de vos réglages."
   >
     <template #aside>
       <span
         class="sh-q-count cx-num"
         role="status"
-      >{{ done.size }} / {{ total }} cochées</span>
+      >{{ doneCount }} / {{ total }} cochées</span>
       <CxButton
         size="sm"
         variant="ghost"
         icon="refresh"
-        :disabled="done.size === 0"
+        :disabled="doneCount === 0"
         @click="reset"
       >
         Tout décocher
@@ -84,11 +110,11 @@ function reset(): void {
         <li
           v-for="s in g.steps"
           :key="s.id"
-          :class="{ 'is-done': done.has(s.id) }"
+          :class="{ 'is-done': isDone(s.id) }"
         >
           <CxCheckbox
-            :model-value="done.has(s.id)"
-            @update:model-value="setDone(s.id, $event)"
+            :model-value="isDone(s.id)"
+            @update:model-value="toggle(s.id)"
           >
             <span
               v-if="s.optional"

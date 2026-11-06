@@ -1,13 +1,14 @@
 // Modèle du Comparateur : lignes à comparer pour chaque genre d'entité (colonnes du catalogue du genre, sens de chaque ligne) et valeur de comparaison d'une cellule.
-// Ne produit aucune valeur de jeu : les valeurs viennent des données, des accesseurs du registre des catalogues et du moteur (prérequis comparés au profil).
+// Ne produit aucune valeur de jeu : les valeurs viennent des données, des accesseurs du registre des catalogues et du store d'analyse (prérequis, étape, score).
 // L'ordre des valeurs (meilleure valeur, écart) est jugé par `src/ui/compare.ts`.
 
-import type { CatalogKey, CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogKey, CatalogRow } from '../../../catalog/registry.ts'
 import { CATALOG_SPECS } from '../../../catalog/registry.ts'
 import type { EntityKind } from '../../../data/datasets.ts'
 import { COMPARE_MAX } from '../../../stores/compare.ts'
 import type { BetterWhen, CompareValue } from '../../../ui/compare.ts'
-import { columnsOf, obtentionParts, passiveParts, skillParts, upgradeParts, weaponRequirements, weaponScaling } from '../catalog/catalogModel.ts'
+import type { RequirementCheck } from '../../../engine/requirements.ts'
+import { columnsOf, obtentionParts, passiveParts, skillParts, upgradeParts, weaponScaling } from '../catalog/catalogModel.ts'
 import type { CatalogColumn } from '../catalog/catalogModel.ts'
 
 /** Nombre maximal de colonnes du comparateur (celui du store `compare`). */
@@ -53,10 +54,10 @@ export const KIND_PLURALS: Readonly<Record<EntityKind, string>> = {
   mechanic: 'mécaniques',
 }
 
-/** Éléments dont une ligne a besoin en plus de l'entrée : le profil et les scores déjà calculés par le moteur. */
+/** Éléments dont une ligne a besoin en plus de l'entrée : les résultats que le store d'analyse a déjà calculés pour cette entrée. */
 export interface CompareContext {
-  /** Attributs et posture du profil actif (prérequis comparés). */
-  readonly profile: ProfileContext
+  /** Prérequis de l'entrée comparés au profil actif (`analysis.requirementsOf`) ; vide si l'entrée n'en a pas ou n'est pas calculable. */
+  readonly requirements: readonly RequirementCheck[]
 }
 
 /** Description d'une ligne du comparateur. */
@@ -71,11 +72,11 @@ export interface CompareRowSpec {
   readonly group: string | null
   /** Sens de la ligne : décide de la meilleure valeur. */
   readonly better: BetterWhen
-  /** `column` : cellule du catalogue (via `CatalogCell`) ; `score` : score de recommandation, fourni par le moteur. */
-  readonly cell: 'column' | 'score'
-  /** Colonne du catalogue qui dit comment afficher la cellule, `null` pour le score. */
+  /** `column` : cellule du catalogue (via `CatalogCell`) ; `score` : score de recommandation, `stage` : étape, fournis par le store d'analyse. */
+  readonly cell: 'column' | 'score' | 'stage'
+  /** Colonne du catalogue qui dit comment afficher la cellule, `null` pour le score et l'étape. */
   readonly column: CatalogColumn | null
-  /** Valeur comparée d'une entrée ; `null` : non documenté. Sans objet pour `score` (la vue fournit le score). */
+  /** Valeur comparée d'une entrée ; `null` : non documenté. Sans objet pour `score` et `stage` (la vue fournit leur valeur). */
   readonly rank: (row: CatalogRow, context: CompareContext) => CompareValue
 }
 
@@ -129,14 +130,20 @@ function obtentionSignature(row: CatalogRow): string | null {
   return parts.length === 0 ? null : parts.join(' · ')
 }
 
+/** Ligne « Étape » : l'étape de progression de l'entité, donnée par `analysis.stageOf` (pas de meilleure valeur : seul l'écart est signalé). */
+function stageRow(): CompareRowSpec {
+  return { id: 'stage', label: 'Étape', note: 'Où l’obtenir dans la progression', group: null, better: 'none', cell: 'stage', column: null, rank: () => null }
+}
+
 /**
  * Lignes d'une arme : attaque à +0, scaling, prérequis comparés au profil, poids, amélioration, compétence, passif, score, obtention.
  * @param catalog Catalogue du genre.
  * @param columns Colonnes du catalogue.
  * @param withScore Vrai si un score existe pour au moins une des armes comparées.
+ * @param withStage Vrai si une étape existe pour au moins une des armes comparées.
  * @returns Les lignes, dans l'ordre d'affichage.
  */
-function weaponRows(catalog: CatalogKey, columns: readonly CatalogColumn[], withScore: boolean): CompareRowSpec[] {
+function weaponRows(catalog: CatalogKey, columns: readonly CatalogColumn[], withScore: boolean, withStage: boolean): CompareRowSpec[] {
   const col = (id: string): CatalogColumn => columns.find((c) => c.id === id) as CatalogColumn
   const rows: CompareRowSpec[] = [
     { id: 'attack', label: 'Attaque à +0', note: 'Valeurs de base du wiki', group: null, better: 'higher', cell: 'column', column: col('attack'), rank: defaultRank(catalog, col('attack')) },
@@ -149,8 +156,8 @@ function weaponRows(catalog: CatalogKey, columns: readonly CatalogColumn[], with
       better: 'lower',
       cell: 'column',
       column: col('requirements'),
-      // Écart total en points d'attribut à gagner (moteur : `compareRequirements`, calculs.md « Prérequis comparés au profil »).
-      rank: (row, ctx) => weaponRequirements(row, ctx.profile).reduce((sum, check) => sum + check.gap, 0),
+      // Écart total en points d'attribut à gagner, additionné sur les écarts du store (`requirementsOf`, calculs.md « Prérequis comparés au profil »).
+      rank: (_row, ctx) => ctx.requirements.reduce((sum, check) => sum + check.gap, 0),
     },
     { id: 'weight', label: 'Poids', note: null, group: null, better: 'lower', cell: 'column', column: col('weight'), rank: defaultRank(catalog, col('weight')) },
     { id: 'upgrade', label: 'Amélioration', note: 'Pierres, niveau maximal et fiabilité', group: null, better: 'none', cell: 'column', column: col('upgrade'), rank: (row) => upgradeParts(row).text },
@@ -160,6 +167,7 @@ function weaponRows(catalog: CatalogKey, columns: readonly CatalogColumn[], with
   if (withScore) {
     rows.push({ id: 'score', label: 'Score pour votre profil', note: 'Calculé par l’application, sur 100', group: null, better: 'higher', cell: 'score', column: null, rank: () => null })
   }
+  if (withStage) rows.push(stageRow())
   rows.push({ id: 'obtention', label: 'Obtention', note: null, group: null, better: 'none', cell: 'column', column: col('obtention'), rank: obtentionSignature })
   return rows
 }
@@ -193,15 +201,29 @@ function armorRows(catalog: CatalogKey, columns: readonly CatalogColumn[]): Comp
 /**
  * Lignes à comparer pour un genre : les champs principaux du catalogue du genre (toutes ses colonnes sauf le nom), avec le sens de chaque ligne.
  * @param kind Genre d'entité (les armes et les armures ont des lignes dédiées).
- * @param options `withScore` : vrai si un score existe pour au moins une arme comparée (la ligne « Score » n'apparaît pas sinon).
+ * @param options `withScore` : vrai si un score existe pour au moins une arme comparée (la ligne « Score » n'apparaît pas sinon) ;
+ * `withStage` : vrai si une étape existe pour au moins une entrée comparée (la ligne « Étape » n'apparaît pas sinon).
  * @returns Les lignes, ou une liste vide pour un genre qu'on ne compare pas.
  */
-export function compareRows(kind: EntityKind, options: { withScore?: boolean } = {}): readonly CompareRowSpec[] {
+export function compareRows(kind: EntityKind, options: { withScore?: boolean; withStage?: boolean } = {}): readonly CompareRowSpec[] {
   const catalog = catalogOfKind(kind)
   if (catalog === null) return []
   const columns = columnsOf(catalog)
-  if (kind === 'weapon') return weaponRows(catalog, columns, options.withScore ?? false)
-  if (kind === 'armor') return armorRows(catalog, columns)
+  if (kind === 'weapon') return weaponRows(catalog, columns, options.withScore ?? false, options.withStage ?? false)
+  const rows = kind === 'armor' ? armorRows(catalog, columns) : genericRows(catalog, columns)
+  if (!options.withStage) return rows
+  // L'étape se place avant l'obtention quand cette ligne existe, sinon en fin de tableau.
+  const at = rows.findIndex((r) => r.id === 'obtention')
+  return at < 0 ? [...rows, stageRow()] : [...rows.slice(0, at), stageRow(), ...rows.slice(at)]
+}
+
+/**
+ * Lignes des genres sans lignes dédiées : toutes les colonnes du catalogue sauf le nom.
+ * @param catalog Catalogue du genre.
+ * @param columns Colonnes du catalogue.
+ * @returns Les lignes, dans l'ordre des colonnes.
+ */
+function genericRows(catalog: CatalogKey, columns: readonly CatalogColumn[]): CompareRowSpec[] {
   return columns
     .filter((c) => c.id !== 'name')
     .map((c): CompareRowSpec => ({

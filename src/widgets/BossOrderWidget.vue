@@ -61,7 +61,7 @@ const nextConfidence = computed(() => model.next.value?.level?.estimate?.confide
             :value="nextLevel"
             :estimate="nextConfidence"
             calculated
-            @why="model.next.value.level && model.showWhy(model.next.value.level.explanation)"
+            @why="model.next.value.level && model.showWhy(model.next.value.level.explanation, nextConfidence)"
           />
         </span>
       </div>

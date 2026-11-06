@@ -1,10 +1,9 @@
-// Types partagés des composants de la fiche boss : onglets de rencontre, lignes de statut, groupes de butin, suggestions d'armes.
+// Types partagés des composants de la fiche boss : onglets de rencontre, lignes de statut, groupes de butin.
 // Aucune logique : les fonctions qui les remplissent sont dans `bossSheetModel.ts`.
 
 import type { EntityKind, EntityRef } from '../../../data/datasets.ts'
-import type { NegationKey, StatusKey } from '../../../data/keys.ts'
+import type { StatusKey } from '../../../data/keys.ts'
 import type { Encounter } from '../../../data/types/bosses.ts'
-import type { RequirementCheck } from '../../../engine/requirements.ts'
 import type { SourceName } from '../../../ui/labels.ts'
 
 /** Rencontre d'une page de boss, prête pour un onglet. */
@@ -70,21 +69,4 @@ export interface LootItemModel {
   readonly ref: EntityRef | null
   /** Genre de l'entité liée, pour le libellé « Arme », « Objet »… ; `null` sans lien. */
   readonly kind: EntityKind | null
-}
-
-/**
- * Arme du profil efficace contre une faiblesse, telle que la rend le getter `weaponsAgainst(clé de rencontre)` du store `analysis`.
- * Forme supposée tant que le getter n'existe pas (voir `readWeaponSuggestions`).
- */
-export interface BossWeaponSuggestion {
-  /** Référence de la fiche de l'arme (`weapon:<id>`). */
-  readonly ref: EntityRef
-  /** Nom de l'arme, en anglais comme dans les données. */
-  readonly name: string
-  /** Type de dégâts de l'arme qui exploite la faiblesse. */
-  readonly damage: NegationKey
-  /** Valeur d'attaque de ce type de dégâts à +0 ; `null` si elle n'est pas documentée. */
-  readonly attack: number | null
-  /** Prérequis de l'arme comparés au profil actif. */
-  readonly requirements: readonly RequirementCheck[]
 }

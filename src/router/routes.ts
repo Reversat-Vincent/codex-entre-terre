@@ -54,7 +54,7 @@ export const routes: RouteRecordRaw[] = [
   { path: '/mecaniques/:id', name: 'mechanic', component: () => import('../views/MechanicArticleView.vue'), meta: { title: 'Mécanique', tab: 'mechanics' } },
   { path: '/ma-liste', name: 'myList', component: () => import('../views/MyListView.vue'), meta: { title: 'Ma liste', tab: 'list' } },
   { path: '/comparateur', name: 'compare', component: () => import('../views/CompareView.vue'), meta: { title: 'Comparateur', tab: EXPLORE } },
-  { path: '/profil', name: 'profile', component: () => import('../views/ProfileView.vue'), meta: { title: 'Profil', tab: 'profile' } },
+  { path: '/profil', name: 'profile', component: () => import('../views/ProfileView.vue'), meta: { title: 'Mon profil', tab: 'profile' } },
   { path: '/recherche', name: 'search', component: () => import('../views/SearchView.vue'), meta: { title: 'Recherche', tab: EXPLORE } },
   { path: '/:pathMatch(.*)*', name: 'notFound', component: () => import('../views/NotFoundView.vue'), meta: { title: 'Page introuvable' } },
 ]

@@ -13,8 +13,8 @@ import ProfileSection from './ProfileSection.vue'
 /**
  * Préférences d'affichage (architecture § 6, store `preferences`) : thème, mode de la navigation, et deux réinitialisations.
  * Chaque choix s'applique tout de suite. Les réinitialisations passent par les stores et se défont par « Annuler » dans la notification ;
- * pour les catalogues, le store n'a pas d'action dédiée : on le réhydrate avec son instantané dont les vues et colonnes sont vidées
- * (un catalogue sans choix retombe sur le tableau et ses colonnes par défaut).
+ * pour les catalogues, `resetCatalogs()` vide les vues et colonnes choisies (un catalogue sans choix retombe sur le tableau et ses colonnes par défaut),
+ * et « Annuler » rétablit l'instantané pris avant.
  */
 const preferences = usePreferencesStore()
 const layout = useLayoutStore()
@@ -38,7 +38,7 @@ const catalogChoices = computed(() => Object.keys(preferences.catalogView).lengt
 /** Vide les vues et colonnes choisies pour chaque catalogue ; « Annuler » rétablit l'instantané. */
 function resetCatalogs(): void {
   const before = preferences.snapshot()
-  preferences.hydrate({ ...before, catalogView: {}, catalogColumns: {} })
+  preferences.resetCatalogs()
   toasts.undoable('Vues et colonnes des catalogues réinitialisées', () => preferences.hydrate(before), 'refresh')
 }
 </script>

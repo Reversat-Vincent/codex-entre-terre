@@ -6,6 +6,7 @@ import type { Explanation } from '../../engine/types.ts'
 import { formatInt } from '../../ui/format.ts'
 import type { BossNodeData } from '../../ui/bossNode.ts'
 import { labelText } from '../../ui/explainText.ts'
+import type { EstimateConfidence } from '../../ui/labels.ts'
 import CxButton from './CxButton.vue'
 import CxDamageChip from './CxDamageChip.vue'
 import CxFlag from './CxFlag.vue'
@@ -47,8 +48,8 @@ const props = withDefaults(
 const emit = defineEmits<{
   /** La case « Vaincu » du nœud ou d'un prérequis boss a changé : nœud concerné et nouvel état. */
   defeat: [node: TimelineBossView, defeated: boolean]
-  /** Demande du détail du niveau recommandé : explication à afficher dans « Pourquoi ? ». */
-  why: [explanation: Explanation]
+  /** Demande du détail du niveau recommandé : explication à afficher dans « Pourquoi ? » et confiance de son estimation (`null` si non estimé). */
+  why: [explanation: Explanation, confidence: EstimateConfidence | null]
 }>()
 
 const data = computed(() => props.details[props.node.levelKey] ?? null)
@@ -241,7 +242,7 @@ function onToggle(target: TimelineBossView, event: Event): void {
                 variant="ghost"
                 size="sm"
                 icon="help"
-                @click="emit('why', data.level.explanation)"
+                @click="emit('why', data.level.explanation, confidence)"
               >Pourquoi ?<span class="cx-sr"> : niveau recommandé de {{ data.name }}</span></CxButton>
             </span>
           </template>
@@ -279,7 +280,8 @@ function onToggle(target: TimelineBossView, event: Event): void {
 </template>
 
 <style>
-.cx-boss { display: grid; grid-template-columns: minmax(0, 1fr) minmax(168px, 220px); gap: var(--space-2) var(--space-4); padding: var(--space-3); border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface-raised); }
+/* `align-content: start` : sans lui, la hauteur imposée par la rangée d'une grille (carte voisine plus haute) est répartie entre les rangées du nœud et ouvre un vide entre ses prérequis et sa case « Vaincu ». */
+.cx-boss { display: grid; align-content: start; grid-template-columns: minmax(0, 1fr) minmax(168px, 220px); gap: var(--space-2) var(--space-4); padding: var(--space-3); border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface-raised); }
 .cx-boss.is-done { border-color: var(--line); background: var(--surface); }
 .cx-boss.is-next { border-color: var(--gold-line); }
 .cx-boss.is-optional { border-style: dashed; }

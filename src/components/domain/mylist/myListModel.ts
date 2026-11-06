@@ -1,9 +1,15 @@
 // Modèle de « Ma liste » : filtre À récupérer / Récupérés / Tout, déplacement d'un élément parmi les éléments visibles, « où l'obtenir » et libellés des genres.
 // Fonctions pures : ni store ni accès aux données chargées ; les entrées sont lues telles quelles, sans valeur de jeu ajoutée.
+// Étape et score : mise en forme des résultats de `stageOf` et `scoreOf` (store `analysis`), partagée avec le comparateur.
 
 import type { EntityKind } from '../../../data/datasets.ts'
 import type { AcquisitionDerived } from '../../../data/types/common.ts'
+import type { StageInfo } from '../../../engine/stage.ts'
+import type { WeaponScore } from '../../../engine/score.ts'
+import type { Calc } from '../../../engine/types.ts'
 import type { PinRecord } from '../../../persistence/model.ts'
+import { DLC_ZONE_LABELS, STAGE_LABELS } from '../../../ui/labels.ts'
+import type { EstimateConfidence } from '../../../ui/labels.ts'
 
 /** Filtre de la liste. */
 export type ListFilter = 'todo' | 'done' | 'all'
@@ -151,4 +157,46 @@ export function detailOf(entry: unknown): string | null {
   if (Array.isArray(e.tier) && e.tier.length > 0) return e.tier.join(', ')
   if (typeof e.kind === 'string' && e.kind !== '') return e.kind
   return null
+}
+
+/** Genres dont `analysis.stageOf` donne l'étape (ceux dont les entrées ont des acquisitions) : seuls ceux-là ont une ligne « Étape » et demandent les fichiers du moteur. */
+export const STAGED_KINDS: ReadonlySet<EntityKind> = new Set(['weapon', 'ash', 'armor', 'talisman', 'spell', 'spirit', 'item'])
+
+/** Étape affichée d'une entité : libellé (« Milieu », « DLC · Entrée ») ou « Non classé ». */
+export type StageView = { readonly kind: 'stage'; readonly text: string } | { readonly kind: 'unclassified' }
+
+/**
+ * Prépare l'étape d'une entité d'après le getter `stageOf` du store `analysis` (calculs.md, « Étape de progression d'une arme »).
+ * @param calc Résultat de `analysis.stageOf(ref)`, ou `null` pour une entité sans acquisitions ou dont le fichier n'est pas chargé.
+ * @returns L'étape à afficher, `unclassified` si aucune règle n'en donne, `null` si le getter ne couvre pas l'entité.
+ */
+export function stageView(calc: Calc<StageInfo> | null): StageView | null {
+  if (calc === null) return null
+  const info = calc.value
+  if (info === null) return { kind: 'unclassified' }
+  const zone = info.stage === 'dlc' && info.dlcZone !== null ? ` · ${DLC_ZONE_LABELS[info.dlcZone]}` : ''
+  return { kind: 'stage', text: `${STAGE_LABELS[info.stage]}${zone}` }
+}
+
+/** Score d'une arme pour le profil : total sur 100 (`null` : « Non classé »), estimation héritée et indication « hors des recommandations ». */
+export interface ScoreView {
+  readonly total: number | null
+  readonly estimate: EstimateConfidence | null
+  /** Vrai si l'arme est hors du style de jeu des critères : le score est donné pour information (limite `weapon-outside-style`). */
+  readonly outsideStyle: boolean
+}
+
+/**
+ * Prépare le score d'une arme d'après le getter `scoreOf` du store `analysis`, y compris hors du style choisi ou masquée par un filtre
+ * (calculs.md, « Score de recommandation d'une arme (0–100) »).
+ * @param calc Résultat de `analysis.scoreOf(ref)`, ou `null` si l'arme n'est pas dans un fichier chargé.
+ * @returns Le score à afficher, ou `null` sans résultat.
+ */
+export function scoreView(calc: Calc<WeaponScore> | null): ScoreView | null {
+  if (calc === null) return null
+  return {
+    total: calc.value?.total ?? null,
+    estimate: calc.estimate?.confidence ?? null,
+    outsideStyle: calc.explanation.limits.some((l) => l.code === 'weapon-outside-style'),
+  }
 }

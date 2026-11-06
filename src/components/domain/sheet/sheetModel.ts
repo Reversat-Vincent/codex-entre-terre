@@ -4,6 +4,7 @@
 import type { RouteLocationRaw } from 'vue-router'
 import type { EntityKind } from '../../../data/datasets.ts'
 import type { Acquisition, AcquisitionDerived, WikiSection } from '../../../data/types/common.ts'
+import { formatDate } from '../../../ui/format.ts'
 
 /** Une valeur clé : libellé français, valeur du wiki telle quelle, mise en forme du nombre et noms à relier aux fiches. */
 export interface SheetFact {
@@ -253,12 +254,10 @@ export function toNameEntries(names: readonly string[]): NameEntry[] {
 /**
  * Date d'extraction en toutes lettres.
  * @param retrieved Date AAAA-MM-JJ (`metadata.retrieved`), ou `null`.
- * @returns « 31 octobre 2026 », la valeur telle quelle si elle est illisible, ou `null`.
+ * @returns « 31 octobre 2026 », ou `null` si la date est absente ou illisible.
  */
 export function retrievedText(retrieved: string | null | undefined): string | null {
-  if (!retrieved) return null
-  const date = new Date(`${retrieved}T00:00:00Z`)
-  return Number.isNaN(date.getTime()) ? retrieved : new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'UTC' }).format(date)
+  return formatDate(retrieved, 'long')
 }
 
 // ─── Notation de coût « X (Y) » ─────────────────────────────────────────────────

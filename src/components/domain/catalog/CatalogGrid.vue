@@ -1,7 +1,7 @@
 <!-- Mode grille d'un catalogue : une carte légère par entité, pages de 50, pied de page « 1–50 sur 704 » avec Précédent et Suivant. -->
 <script setup lang="ts">
 import type { Page } from '../../../catalog/paginate.ts'
-import type { CatalogKey, CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogKey, CatalogRow } from '../../../catalog/registry.ts'
 import { entityRef } from '../../../data/datasets.ts'
 import { useCompareStore } from '../../../stores/compare.ts'
 import { usePinsStore } from '../../../stores/pins.ts'
@@ -20,7 +20,6 @@ const props = defineProps<{
   catalog: CatalogKey
   /** Page courante, avec ses repères (`store.page`). */
   page: Page<CatalogRow>
-  profile: ProfileContext
 }>()
 
 const emit = defineEmits<{
@@ -54,7 +53,6 @@ function toggleCompare(row: CatalogRow): void {
         :key="row.id"
         :catalog="catalog"
         :row="row"
-        :profile="profile"
         :pinned="pins.isPinned(refOf(row))"
         :compared="compare.has(refOf(row))"
         @pin="togglePin(row)"

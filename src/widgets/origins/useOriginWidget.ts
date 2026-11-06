@@ -1,14 +1,14 @@
 // Modèle d'affichage du widget B (configuration de départ optimale) : lignes du classement, origine détaillée, équipement et armes de début.
-// Aucun calcul propre : les rangs viennent de `useAnalysisStore().originRanking`, les armes de `recommendations` ; seule exception signalée
-// plus bas, les statistiques dérivées de l'origine affichée (méthode : calculs.md, « Statistiques dérivées »).
+// Aucun calcul propre : les rangs viennent de `useAnalysisStore().originRanking`, les armes de `recommendations`, les statistiques dérivées de
+// `derivedOf` (calculs.md, « Statistiques dérivées ») et les priorités de montée de niveau de `levelUpPriorities` (calculs.md, « Priorités de montée de niveau »).
 
 import { computed, ref } from 'vue'
 import type { ComputedRef } from 'vue'
 import type { EntityRef } from '../../data/datasets.ts'
 import type { OriginEntry } from '../../data/types/origins.ts'
-import { derivedStats } from '../../engine/derivedStats.ts'
 import type { DerivedStats } from '../../engine/derivedStats.ts'
 import { originAttributes } from '../../engine/level.ts'
+import type { LevelUpPriority } from '../../engine/levelUp.ts'
 import type { OriginRank } from '../../engine/origins.ts'
 import type { ScoredWeapon } from '../../engine/score.ts'
 import type { Attributes, Calc } from '../../engine/types.ts'
@@ -64,6 +64,8 @@ export interface OriginWidgetModel {
   readonly hiddenCount: ComputedRef<number>
   /** Statistiques dérivées de l'origine détaillée. */
   readonly derived: ComputedRef<Calc<DerivedStats> | null>
+  /** Priorités de montée de niveau du profil (méthode D42), avec leur explication. */
+  readonly priorities: ComputedRef<Calc<LevelUpPriority[]>>
   /** Équipement de départ de l'origine détaillée. */
   readonly equipment: ComputedRef<readonly EquipmentGroup[]>
   /** Armes de l'étape Début du widget A. */
@@ -76,8 +78,6 @@ export interface OriginWidgetModel {
 
 /**
  * Prépare ce que le widget B affiche, à partir des stores `analysis`, `criteria` et `data`.
- * Écart signalé : les statistiques dérivées de l'origine affichée appellent `derivedStats` (moteur) ici, faute de getter
- * `analysis.derivedOf(attributs)` ; le store ne calcule que celles du profil. À déplacer dans le store sans changer ce composable.
  * @returns Le modèle réactif du widget.
  */
 export function useOriginWidget(): OriginWidgetModel {
@@ -111,9 +111,8 @@ export function useOriginWidget(): OriginWidgetModel {
   })
 
   const derived = computed((): Calc<DerivedStats> | null => {
-    const tables = data.file('tables')?.tables ?? null
     const attrs = startAttributes.value
-    return tables === null || attrs === null ? null : derivedStats(attrs, tables)
+    return attrs === null ? null : analysis.derivedOf(attrs)
   })
 
   const equipment = computed((): EquipmentGroup[] => {
@@ -148,6 +147,7 @@ export function useOriginWidget(): OriginWidgetModel {
     },
     hiddenCount,
     derived,
+    priorities: computed(() => analysis.levelUpPriorities),
     equipment,
     earlyWeapons,
     weaponsLoaded,

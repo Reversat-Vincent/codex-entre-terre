@@ -8,12 +8,10 @@ import type { WeaponEntry } from '../../../data/types/weapon.ts'
 import type { WeaponFileKey } from '../../../engine/types.ts'
 import { useAnalysisStore } from '../../../stores/analysis.ts'
 import { useCompareStore } from '../../../stores/compare.ts'
-import { useCriteriaStore } from '../../../stores/criteria.ts'
 import { useDataStore } from '../../../stores/data.ts'
 import { usePinsStore } from '../../../stores/pins.ts'
 import { useToastsStore } from '../../../stores/toasts.ts'
 import { STAGE_LABELS } from '../../../ui/labels.ts'
-import { STYLE_LABELS } from '../../criteria/criteriaModel.ts'
 import CxIcon from '../../ds/CxIcon.vue'
 import WeaponAcquisition from './WeaponAcquisition.vue'
 import WeaponAlerts from './WeaponAlerts.vue'
@@ -36,7 +34,7 @@ import { useWeaponSheet } from './useWeaponSheet.ts'
  * Fiche d'une arme (`/armes/:id`, design FicheArme, note `spec-weapon`).
  * Colonne principale : attaque et garde, scaling et prérequis, compétence, amélioration avec son graphique, obtention, notes et patchs ;
  * colonne latérale : score pour le profil avec « Pourquoi ? », qualité des données, armes voisines de la même classe.
- * Les valeurs calculées viennent du moteur (`useWeaponSheet`, store d'analyse) ; ce composant range les résultats et gère l'épinglage et le comparateur.
+ * Les valeurs calculées viennent du store d'analyse (`useWeaponSheet`) ; ce composant range les résultats et gère l'épinglage et le comparateur.
  * Un composant par arme affichée : la vue lui donne `:key` = id pour que le niveau, l'affinité et le maniement repartent de zéro d'une fiche à l'autre.
  */
 const props = defineProps<{
@@ -47,12 +45,11 @@ const props = defineProps<{
 
 const data = useDataStore()
 const analysis = useAnalysisStore()
-const criteria = useCriteriaStore()
 const pins = usePinsStore()
 const compare = useCompareStore()
 const toasts = useToastsStore()
 
-const sheet = useWeaponSheet(props.weapon, props.file)
+const sheet = useWeaponSheet(props.weapon)
 
 const family = computed(() => DATASETS[props.file])
 const familyQuery = computed(() => ({ [family.value.routes.query?.name ?? 'famille']: family.value.routes.query?.value ?? 'melee' }))
@@ -163,7 +160,7 @@ function toggleCompare(): void {
           :attack="sheet.attack.value"
           :level="sheet.level.value"
           :hands="sheet.engineHands.value"
-          :two-hand-mode="sheet.twoHandMode"
+          :two-hand-mode="sheet.twoHandMode.value"
           :affinities="sheet.tables.value.affinities"
           :has-table="sheet.tables.value.mode !== 'none'"
         />
@@ -173,7 +170,7 @@ function toggleCompare(): void {
           :requirements="sheet.requirements.value"
           :attrs="sheet.attrs.value"
           :effective-strength="sheet.effectiveStrength.value"
-          :two-hand-mode="sheet.twoHandMode"
+          :two-hand-mode="sheet.twoHandMode.value"
           :profile-label="profileLabel"
         />
         <WeaponSkill :weapon="weapon" />
@@ -203,7 +200,6 @@ function toggleCompare(): void {
           :score="score"
           :status="scoreStatus"
           :profile="profile"
-          :style-label="STYLE_LABELS[criteria.criteria.style.mode]"
         />
         <WeaponQuality
           :rows="quality"
@@ -224,6 +220,9 @@ function toggleCompare(): void {
 .wp-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--ink-3); font-size: 12px; line-height: 16px; }
 .wp-cols { display: grid; gap: var(--space-5); align-items: start; min-width: 0; }
 .wp-main, .wp-side { display: grid; gap: var(--space-4); min-width: 0; }
+/* Une info-bulle fermée (`visibility: hidden`) garde sa boîte absolue : alignée à gauche d'un badge près du bord droit, elle dépasse de 185 à 197 px
+   et fait défiler la page à l'horizontale, à toutes les largeurs. Fermée, elle ne prend plus de place ; ouverte, elle reste telle que `CxTooltip` la dessine. */
+.wp-page :deep(.cx-tip-body:not(.is-open)) { display: none; }
 @media (min-width: 1100px) {
   .wp-cols { grid-template-columns: minmax(0, 1fr) 340px; }
   .wp-side { position: sticky; top: calc(var(--size-topbar) + var(--space-4)); }

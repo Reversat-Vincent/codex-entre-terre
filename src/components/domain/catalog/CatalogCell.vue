@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { CatalogKey, CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import { useAnalysisStore } from '../../../stores/analysis.ts'
 import { STATUS_BY_DATA_KEY, STATUS_SHORT_LABELS, DAMAGE_SHORT_LABELS, WEAPON_CLASS_ICONS } from '../../../ui/labels.ts'
 import type { SourceName } from '../../../ui/labels.ts'
 import CxDamageChip from '../../ds/CxDamageChip.vue'
@@ -18,18 +19,17 @@ import {
   obtentionParts,
   passiveParts,
   rowRoute,
+  rowRef,
   skillParts,
-  spellRequirements,
   upgradeParts,
   weaponClass,
-  weaponRequirements,
   weaponScaling,
 } from './catalogModel.ts'
 import type { CatalogColumn } from './catalogModel.ts'
 
 /**
  * Case d'un catalogue (design `Catalogue.dc.html`, notes `spec-catalog`). Un seul composant pour tous les catalogues : la colonne dit ce qu'il faut afficher.
- * Le composant ne calcule rien : les prérequis viennent de `weaponRequirements` (moteur, calculs.md « Prérequis comparés au profil »), le reste est lu dans la ligne.
+ * Le composant ne calcule rien : les prérequis viennent du getter `requirementsOf` du store `analysis` (calculs.md « Prérequis comparés au profil »), le reste est lu dans la ligne.
  * Conventions de données : `null` → « Non documenté » (case hachurée en tableau), estimation → badge Estimation avec sa confiance, badge de source juste après le nom.
  * En mode `card`, le texte peut passer à la ligne ; en mode `table`, la case tient sur la hauteur fixe de la ligne (virtualisation).
  */
@@ -38,11 +38,11 @@ const props = withDefaults(
     catalog: CatalogKey
     column: CatalogColumn
     row: CatalogRow
-    /** Attributs et posture du profil actif, pour comparer les prérequis. */
-    profile: ProfileContext
+    /** Sans effet : les prérequis se lisent dans `requirementsOf`, qui connaît déjà le profil. Conservé tant que `WeaponsTable` le transmet encore. */
+    profile?: ProfileContext
     layout?: 'table' | 'card'
   }>(),
-  { layout: 'table' },
+  { profile: undefined, layout: 'table' },
 )
 
 const inTable = computed(() => props.layout === 'table')
@@ -51,10 +51,10 @@ const classIcon = computed(() => (isWeapon.value ? WEAPON_CLASS_ICONS[weaponClas
 const attack = computed(() => (props.column.cell === 'attack' ? attackParts(props.row) : []))
 const scaling = computed(() => (props.column.cell === 'scaling' ? weaponScaling(props.row) : {}))
 const hasScaling = computed(() => Object.values(scaling.value).some((g) => g !== null))
+const analysis = useAnalysisStore()
 const checks = computed(() => {
-  if (props.column.cell === 'requirements') return weaponRequirements(props.row, props.profile)
-  if (props.column.cell === 'spell-requirements') return spellRequirements(props.row, props.profile)
-  return []
+  if (props.column.cell !== 'requirements' && props.column.cell !== 'spell-requirements') return []
+  return analysis.requirementsOf(rowRef(props.catalog, props.row))?.value?.checks ?? []
 })
 const skill = computed(() => (props.column.cell === 'skill' ? skillParts(props.row) : null))
 const passive = computed(() => (props.column.cell === 'passive' ? passiveParts(props.row) : { statuses: [], texts: [] }))

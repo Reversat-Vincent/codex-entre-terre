@@ -1,10 +1,8 @@
-// Modèle d'affichage des catalogues : colonnes des 17 catalogues, tri du tableau relié au store, champs lus par les cellules.
+// Modèle d'affichage des catalogues : colonnes des 17 catalogues, champs lus par les cellules.
 
 import { describe, expect, it } from 'vitest'
 import { CATALOG_KEYS, CATALOG_SPECS } from '../../../src/catalog/registry.ts'
 import type { CatalogRow } from '../../../src/catalog/registry.ts'
-import { toggleSort } from '../../../src/catalog/sort.ts'
-import type { SortKey } from '../../../src/catalog/sort.ts'
 import {
   CATALOG_INFO,
   catalogIntro,
@@ -14,11 +12,10 @@ import {
   familyOf,
   obtentionParts,
   rowHeightOf,
+  rowRef,
   sortChoices,
-  sortClickOf,
   upgradeParts,
   visibleColumns,
-  weaponRequirements,
 } from '../../../src/components/domain/catalog/catalogModel.ts'
 
 const asRow = (value: object): CatalogRow => value as unknown as CatalogRow
@@ -79,18 +76,17 @@ describe('catalogues et familles', () => {
   })
 })
 
-describe('tri du tableau relié au store', () => {
-  const asc = (column: string): SortKey => ({ column, direction: 'asc' })
-
-  it('retrouve le clic simple et le clic avec Maj', () => {
-    const before = [asc('name')]
-    expect(sortClickOf(before, toggleSort(before, 'weight', false))).toEqual({ column: 'weight', additive: false })
-    expect(sortClickOf(before, toggleSort(before, 'weight', true))).toEqual({ column: 'weight', additive: true })
-    expect(sortClickOf(before, toggleSort(before, 'name', false))).toEqual({ column: 'name', additive: false })
+describe('colonnes par défaut et références', () => {
+  it('masque Obtention et Compétence par défaut pour les armes (D43)', () => {
+    const ids = defaultColumnIds('weapons:melee')
+    expect(ids).not.toContain('obtention')
+    expect(ids).not.toContain('skill')
+    expect(columnsOf('weapons:melee').some((c) => c.id === 'obtention')).toBe(true)
   })
 
-  it('retourne null quand aucun clic ne donne ce tri', () => {
-    expect(sortClickOf([asc('name')], [asc('a'), asc('b')])).toBeNull()
+  it("donne la référence d'entité d'une ligne", () => {
+    expect(rowRef('weapons:melee', asRow({ id: 'moonveil' }))).toBe('weapon:moonveil')
+    expect(rowRef('armors', asRow({ id: 'bull-goat-armor' }))).toBe('armor:bull-goat-armor')
   })
 })
 
@@ -104,13 +100,6 @@ describe('champs lus par les cellules', () => {
     expect(upgradeParts(upgrade('wiki', {}, [{ field: 'upgrade.material', reference: 'list' }]))).toMatchObject({ kind: 'inconsistent' })
     expect(upgradeParts(asRow({ derived: { upgrade: { material: null, maxLevel: null, reliability: 'null' }, inconsistent: [] } })).text).toBeNull()
     expect(upgradeParts(asRow({ derived: { upgrade: { material: null, maxLevel: null, reliability: 'not-upgradeable' }, inconsistent: [] } })).text).toBe('Non améliorable')
-  })
-
-  it('compare les prérequis au profil avec l\'écart en points', () => {
-    const weapon = asRow({ id: 'moonveil', category: 'Katanas', requirements: { str: 12, dex: 18, int: 23, fai: 0, arc: 0 } })
-    const attributes = { vig: 10, mnd: 10, end: 10, str: 12, dex: 18, int: 9, fai: 10, arc: 10 }
-    const checks = weaponRequirements(weapon, { attributes, hands: 'one' })
-    expect(checks.map((c) => [c.attr, c.met, c.gap])).toEqual([['str', true, 0], ['dex', true, 0], ['int', false, 14]])
   })
 
   it('lit l\'obtention sans rien inventer', () => {

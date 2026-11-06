@@ -1,4 +1,4 @@
-// Logique d'affichage pure de la page Profil : dates en français, textes d'état du stockage, lignes du comparatif d'import.
+// Logique d'affichage pure de la page Profil : date et heure en français, textes d'état du stockage, lignes du comparatif d'import.
 // Aucun accès au stockage ni aux stores : les composants lui passent des valeurs.
 
 import type { StorageMode } from '../../../persistence/bridge.ts'
@@ -19,20 +19,6 @@ export function formatDateTime(iso: string | null): string | null {
   const date = new Date(iso)
   if (Number.isNaN(date.getTime())) return null
   return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeStyle: 'short' }).format(date)
-}
-
-/**
- * Date d'extraction du wiki (`AAAA-MM-JJ`) en toutes lettres.
- * @param ymd Date du manifeste (`retrieved`), ou `null`.
- * @returns « 5 novembre 2026 », ou `null` si la date est absente ou mal formée.
- */
-export function formatExtractionDate(ymd: string | null | undefined): string | null {
-  const match = ymd ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd) : null
-  if (!match) return null
-  const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])))
-  if (Number.isNaN(date.getTime())) return null
-  // UTC des deux côtés : la date du manifeste ne doit pas glisser d'un jour selon le fuseau.
-  return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'UTC' }).format(date)
 }
 
 /** Explication de l'état du stockage : phrase d'état, ton du bandeau et conséquences concrètes. */

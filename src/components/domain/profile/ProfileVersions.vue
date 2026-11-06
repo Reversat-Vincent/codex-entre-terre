@@ -4,8 +4,8 @@ import { computed } from 'vue'
 import { CURRENT_SCHEMA } from '../../../persistence/schema.ts'
 import { useAppStore } from '../../../stores/app.ts'
 import { useDataStore } from '../../../stores/data.ts'
+import { formatDate } from '../../../ui/format.ts'
 import CxValue from '../../ds/CxValue.vue'
-import { formatExtractionDate } from './profileModel.ts'
 import ProfileSection from './ProfileSection.vue'
 
 /**
@@ -18,7 +18,7 @@ const data = useDataStore()
 
 const manifest = computed(() => data.manifest)
 const dataState = computed(() => (data.manifestStatus === 'error' ? 'Indisponible' : 'Chargement…'))
-const extraction = computed(() => formatExtractionDate(manifest.value?.retrieved))
+const extraction = computed(() => formatDate(manifest.value?.retrieved, 'long'))
 </script>
 
 <template>

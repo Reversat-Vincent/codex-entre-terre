@@ -1,14 +1,12 @@
 // Modèle d'affichage des catalogues : titres et noms, onglets de famille, colonnes de chacun des 17 catalogues, lecture des champs affichés par les cellules
-// (attaque à +0, amélioration, obtention, passif) et liaison entre le tri de `CxDataTable` et les actions du store `catalogs`.
-// Aucune donnée de jeu n'est ajoutée : seuls des libellés d'interface le sont. Les calculs (prérequis comparés au profil) sont ceux du moteur.
+// (attaque à +0, amélioration, obtention, passif). Aucune donnée de jeu n'est ajoutée : seuls des libellés d'interface le sont.
+// Aucun calcul : les prérequis comparés au profil viennent du getter `requirementsOf` du store `analysis`.
 
 import type { RouteLocationRaw } from 'vue-router'
-import type { CatalogKey, CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogKey, CatalogRow } from '../../../catalog/registry.ts'
 import { CATALOG_KEYS, CATALOG_SPECS } from '../../../catalog/registry.ts'
-import { toggleSort } from '../../../catalog/sort.ts'
-import type { SortKey } from '../../../catalog/sort.ts'
 import { DATASETS, entityRef } from '../../../data/datasets.ts'
-import type { EntityKind } from '../../../data/datasets.ts'
+import type { EntityKind, EntityRef } from '../../../data/datasets.ts'
 import { ATTRIBUTE_KEYS, DAMAGE_KEYS, ORIGIN_ATTRIBUTE_FIELD, STATUS_KEYS } from '../../../data/keys.ts'
 import type { DamageKey, StatusKey } from '../../../data/keys.ts'
 import type { AshOfWarEntry } from '../../../data/types/ashesOfWar.ts'
@@ -22,8 +20,6 @@ import type { SpiritAshEntry } from '../../../data/types/spiritAshes.ts'
 import type { TalismanEntry } from '../../../data/types/talismans.ts'
 import type { AcquisitionDerived } from '../../../data/types/common.ts'
 import type { WeaponEntry } from '../../../data/types/weapon.ts'
-import { compareRequirements } from '../../../engine/requirements.ts'
-import type { RequirementCheck } from '../../../engine/requirements.ts'
 import { entityRoute } from '../../../router/entityRoute.ts'
 import { formatInt } from '../../../ui/format.ts'
 import { ATTRIBUTE_LABELS, DAMAGE_LABELS } from '../../../ui/labels.ts'
@@ -126,7 +122,17 @@ export function catalogRoute(key: CatalogKey): RouteLocationRaw {
  * @returns La route de la fiche.
  */
 export function rowRoute(key: CatalogKey, row: CatalogRow): RouteLocationRaw {
-  return entityRoute(entityRef(CATALOG_INFO[key].kind, row.id))
+  return entityRoute(rowRef(key, row))
+}
+
+/**
+ * Référence d'entité d'une ligne de catalogue (clé des getters du store `analysis` : `requirementsOf`, `scoreOf`, `stageOf`).
+ * @param key Catalogue.
+ * @param row Ligne.
+ * @returns La référence `genre:id`.
+ */
+export function rowRef(key: CatalogKey, row: CatalogRow): EntityRef {
+  return entityRef(CATALOG_INFO[key].kind, row.id)
 }
 
 /**
@@ -232,7 +238,8 @@ const WEAPON_COLUMNS: readonly CatalogColumn[] = [
   column({ id: 'skill', label: 'Compétence', cell: 'skill', defaultVisible: false, card: { icon: 'skill' } }),
   column({ id: 'passive', label: 'Passif', cell: 'passive', card: { icon: 'info' } }),
   column({ id: 'upgrade', label: 'Amélioration', cell: 'upgrade', card: { icon: 'stone' } }),
-  obtentionColumn(),
+  // Masquée par défaut, comme Compétence : le tableau tient sans défilement horizontal à 1440 px (D43, note `spec-catalog`).
+  obtentionColumn(false),
 ]
 
 /** Libellés français des emplacements d'armure (les mêmes que ceux de la facette « Emplacement »). */
@@ -420,48 +427,8 @@ export function sortChoices(key: CatalogKey): readonly SortChoice[] {
   return out
 }
 
-/**
- * Retrouve le clic d'en-tête qui a produit un nouveau tri de `CxDataTable` : le tableau émet la liste de critères, le store veut une colonne et la touche Maj.
- * @param before Critères avant le clic.
- * @param after Critères émis par le tableau.
- * @returns La colonne et l'indicateur « Maj », ou `null` si aucun clic ne donne ce résultat.
- */
-export function sortClickOf(before: readonly SortKey[], after: readonly SortKey[]): { column: string; additive: boolean } | null {
-  const columns = new Set([...before, ...after].map((k) => k.column))
-  for (const additive of [false, true]) {
-    for (const column of columns) {
-      const next = toggleSort(before, column, additive)
-      if (next.length === after.length && next.every((k, i) => k.column === after[i]?.column && k.direction === after[i]?.direction)) return { column, additive }
-    }
-  }
-  return null
-}
-
 // ---------------------------------------------------------------------------------------------
 // Champs affichés par les cellules
-
-/**
- * Prérequis d'une arme comparés au profil (calculs.md, « Prérequis comparés au profil » : `compareRequirements` du moteur).
- * @param row Arme.
- * @param profile Attributs et posture du profil actif.
- * @returns Une comparaison par prérequis non nul (« +14 INT » pour l'écart), dans l'ordre STR, DEX, INT, FAI, ARC.
- */
-export function weaponRequirements(row: CatalogRow, profile: ProfileContext): readonly RequirementCheck[] {
-  return compareRequirements(row as unknown as WeaponEntry, profile.attributes, profile.hands)
-}
-
-/**
- * Prérequis d'un sort (INT, FAI, ARC) comparés au profil par la même méthode (calculs.md, « Prérequis comparés au profil ») :
- * un sort n'a ni prérequis de Force ni posture, la comparaison est donc la simple égalité `attribut ≥ prérequis` du moteur.
- * @param row Sort.
- * @param profile Attributs du profil actif.
- * @returns Une comparaison par prérequis non nul.
- */
-export function spellRequirements(row: CatalogRow, profile: ProfileContext): readonly RequirementCheck[] {
-  const spell = row as unknown as SpellEntry
-  const { int, fai, arc } = spell.requirements
-  return compareRequirements({ id: spell.id, category: 'Spell', requirements: { str: 0, dex: 0, int, fai, arc } }, profile.attributes, 'one')
-}
 
 /** Dégâts d'une arme à +0 : un type et sa valeur. */
 export interface AttackPart {

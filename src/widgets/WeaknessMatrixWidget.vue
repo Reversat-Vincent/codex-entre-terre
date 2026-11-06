@@ -9,13 +9,10 @@ import CxSelect from '../components/ds/CxSelect.vue'
 import type { SelectOption } from '../components/ds/types.ts'
 import { NEGATION_KEYS } from '../data/keys.ts'
 import type { NegationKey } from '../data/keys.ts'
-import { indexEncounters } from '../engine/encounters.ts'
 import { useAnalysisStore } from '../stores/analysis.ts'
-import { useCriteriaStore } from '../stores/criteria.ts'
-import { useDataStore } from '../stores/data.ts'
 import { formatInt } from '../ui/format.ts'
 import { DAMAGE_LABELS } from '../ui/labels.ts'
-import { allRows, sortRows, timelineRows } from './misc/weaknessModel.ts'
+import { heatmapRows, sortRows } from './misc/weaknessModel.ts'
 import type { BossHref } from './misc/weaknessModel.ts'
 import type { WidgetBodyProps } from './types.ts'
 
@@ -26,36 +23,25 @@ import type { WidgetBodyProps } from './types.ts'
  *   de boss de la frise sont affichés.
  * - `fullscreen` : toutes les rencontres de `bosses.json` qui ont des données d'absorption (dans la limite du contenu activé).
  * Le tri par type de dégâts remplace les en-têtes cliquables du prototype : `CxAbsorptionHeatmap` n'a pas de tri, un sélecteur le porte ici.
- * Aucun calcul : la frise vient de `analysis`, les lignes sont mises en forme par `misc/weaknessModel.ts`.
+ * Aucun calcul : les lignes viennent de `analysis.weaknessRows` (sans adresse), `misc/weaknessModel.ts` y ajoute l'adresse de la fiche.
  */
 const props = defineProps<WidgetBodyProps>()
 
 const analysis = useAnalysisStore()
-const data = useDataStore()
-const criteria = useCriteriaStore()
 const router = useRouter()
 
 /** Tri choisi : l'ordre d'origine (`story`) ou un type de dégâts, du plus vulnérable au plus résistant. */
 const sortBy = ref<'story' | NegationKey>('story')
 const sortId = useId()
 
-const bosses = computed(() => data.dataset('bosses')?.entries ?? null)
-const index = computed(() => (bosses.value === null ? null : indexEncounters(bosses.value)))
-const content = computed(() => criteria.criteria.content)
-
 /** Adresse de la fiche d'un boss, ouverte sur la rencontre de la ligne (le routeur est en mode hash). */
 const href: BossHref = (bossId, encounterId) => router.resolve({ name: 'boss', params: { id: bossId }, query: { rencontre: encounterId } }).href
 
 const isFullscreen = computed(() => props.mode === 'fullscreen')
 
-const dashboardRows = computed(() => {
-  const timeline = analysis.timeline
-  return timeline === null || index.value === null ? null : timelineRows(timeline, index.value, href)
-})
-const fullRows = computed(() =>
-  bosses.value === null ? [] : allRows(bosses.value, new Set(criteria.criteria.progress.defeated), content.value, href),
-)
-const rows = computed(() => (isFullscreen.value ? fullRows.value : (dashboardRows.value?.rows ?? [])))
+/** Lignes du store : la frise (tableau de bord) ou toutes les rencontres (plein écran) ; `null` tant que les données ne sont pas prêtes. */
+const source = computed(() => analysis.weaknessRows(isFullscreen.value ? 'all' : 'timeline'))
+const rows = computed(() => heatmapRows(source.value?.rows ?? [], href))
 const sorted = computed(() => sortRows(rows.value, sortBy.value === 'story' ? null : sortBy.value))
 
 const sortOptions = computed<SelectOption[]>(() => [
@@ -100,11 +86,11 @@ const sortModel = computed<string>({
       </div>
       <CxAbsorptionHeatmap :rows="sorted" />
       <CxNote
-        v-if="!isFullscreen && dashboardRows !== null"
+        v-if="!isFullscreen && source !== null"
         tone="partial"
         title="Données partielles."
       >
-        {{ formatInt(dashboardRows.rows.length) }} boss de la frise sur {{ formatInt(dashboardRows.total) }} ont une absorption documentée ;
+        {{ formatInt(source.rows.length) }} boss de la frise sur {{ formatInt(source.total) }} ont une absorption documentée ;
         les autres n'apparaissent pas. Le plein écran liste toutes les rencontres documentées.
       </CxNote>
       <p

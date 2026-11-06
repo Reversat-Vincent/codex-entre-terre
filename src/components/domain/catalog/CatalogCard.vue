@@ -1,7 +1,7 @@
 <!-- Carte d'une entité en mode grille : nom, badge de source, repères, lignes de la carte et actions (épingler, comparer, voir la fiche). -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { CatalogKey, CatalogRow, ProfileContext } from '../../../catalog/registry.ts'
+import type { CatalogKey, CatalogRow } from '../../../catalog/registry.ts'
 import { WEAPON_CLASS_ICONS } from '../../../ui/labels.ts'
 import type { SourceName } from '../../../ui/labels.ts'
 import CxButton from '../../ds/CxButton.vue'
@@ -19,7 +19,6 @@ import { CATALOG_INFO, columnsOf, rowRoute, weaponClass } from './catalogModel.t
 const props = defineProps<{
   catalog: CatalogKey
   row: CatalogRow
-  profile: ProfileContext
   /** L'entité est dans Ma liste. */
   pinned: boolean
   /** L'entité est dans le comparateur. */
@@ -79,7 +78,6 @@ const name = computed(() => props.row.derived.displayName)
           :catalog="catalog"
           :column="weight"
           :row="row"
-          :profile="profile"
           layout="card"
         />
       </span>
@@ -115,7 +113,6 @@ const name = computed(() => props.row.derived.displayName)
         :catalog="catalog"
         :column="field"
         :row="row"
-        :profile="profile"
         layout="card"
       />
     </div>
@@ -132,7 +129,6 @@ const name = computed(() => props.row.derived.displayName)
         :catalog="catalog"
         :column="line"
         :row="row"
-        :profile="profile"
         layout="card"
       />
     </div>

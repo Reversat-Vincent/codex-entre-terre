@@ -1,4 +1,4 @@
-<!-- Ligne de « Ma liste » : case « Récupéré », nom en lien vers la fiche avec badge de source, genre, où l'obtenir, étape d'une arme, déplacement et retrait. -->
+<!-- Ligne de « Ma liste » : case « Récupéré », nom en lien vers la fiche avec badge de source, genre, où l'obtenir, étape, score d'une arme, déplacement et retrait. -->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { entityRoute } from '../../../router/entityRoute.ts'
@@ -17,7 +17,8 @@ import type { MyListRow } from './useMyList.ts'
  * - Récupéré : case à cocher native, plus un badge « Récupéré » avec une icône : l'état ne repose jamais sur la couleur seule.
  * - Référence absente des données (cas d'un import) : « Élément introuvable » et un bouton de retrait ; la référence est affichée telle quelle.
  * - Où l'obtenir : méthode, lieu et région tels que dans les données ; un genre qui ne documente rien affiche « Non documenté », jamais un blanc.
- * - Étape (armes) : fournie par le moteur ; une arme hors du style de jeu des critères n'est pas évaluée, et le dit.
+ * - Étape et score d'une arme : fournis par le store d'analyse (`stageOf`, `scoreOf`), y compris pour une arme hors du style de jeu des critères,
+ *   dont le score est alors donné pour information.
  */
 const props = defineProps<{
   row: MyListRow
@@ -170,13 +171,32 @@ const kindIcon = computed(() => (props.row.kind === null ? 'help' : KIND_ICONS[p
           <span v-if="row.stage.kind === 'stage'">{{ row.stage.text }}</span>
           <span v-else-if="row.stage.kind === 'unclassified'">Non classée</span>
           <span
-            v-else-if="row.stage.kind === 'outside'"
-            class="cx-muted"
-          >Non évaluée : cette arme est hors du style de jeu de vos critères</span>
-          <span
             v-else
             class="cx-muted"
           >Calcul en cours…</span>
+        </p>
+        <p
+          v-if="row.score"
+          class="ml-stage"
+        >
+          <span class="ml-where-title"><CxIcon
+            name="calc"
+            size="sm"
+          />Score</span>
+          <span v-if="row.score.total === null">Non classé : ni score ni rang</span>
+          <span v-else>
+            <CxValue
+              :value="row.score.total"
+              calculated
+              :why="false"
+              :estimate="row.score.estimate"
+              method="Score de recommandation de l'arme pour vos critères, sur 100."
+            /><span class="cx-muted"> / 100</span>
+          </span>
+          <span
+            v-if="row.score.outsideStyle"
+            class="cx-muted"
+          >Hors du style de jeu de vos critères : donné pour information</span>
         </p>
       </template>
     </div>

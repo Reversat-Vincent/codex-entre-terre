@@ -98,6 +98,7 @@ const targetLabel = computed(() => {
           :target="model.targetAttributes.value"
           :target-label="targetLabel"
           :derived="model.derived.value"
+          :priorities="model.priorities.value"
           :equipment="model.equipment.value"
           :early-weapons="model.earlyWeapons.value"
           :weapons-loaded="model.weaponsLoaded.value"

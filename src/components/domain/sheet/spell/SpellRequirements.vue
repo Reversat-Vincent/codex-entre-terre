@@ -2,25 +2,29 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { SpellEntry } from '../../../../data/types/spells.ts'
+import { useAnalysisStore } from '../../../../stores/analysis.ts'
 import { useCriteriaStore } from '../../../../stores/criteria.ts'
 import { ATTRIBUTE_LABELS } from '../../../../ui/labels.ts'
 import CxReliabilityBadge from '../../../ds/CxReliabilityBadge.vue'
 import CxRequirementChips from '../../../ds/CxRequirementChips.vue'
 import CxValue from '../../../ds/CxValue.vue'
+import CxWhyPanel from '../../../ds/CxWhyPanel.vue'
 import SheetSection from '../SheetSection.vue'
 import { spellRequirementRows } from './spellModel.ts'
 
 /**
- * Prérequis du sort (`requirements.int|fai|arc`, 0 = aucun) comparés au profil. La comparaison vient du moteur (`spellRequirementRows` appelle
- * `compareRequirements`) ; ce composant lit seulement les attributs des critères en cours et affiche le résultat : atteint, ou écart « +14 INT ».
- * La comparaison est une valeur calculée : badge Calculé à côté des valeurs du wiki, qui restent affichées telles quelles dans la colonne « Exigé ».
+ * Prérequis du sort (`requirements.int|fai|arc`, 0 = aucun) comparés au profil. La comparaison vient du moteur par le getter `requirementsOf` du store
+ * `analysis` ; ce composant lit les attributs des critères en cours et affiche le résultat : atteint, ou écart « +14 INT ».
+ * La comparaison est une valeur calculée : badge Calculé et « Pourquoi ? » à côté des valeurs du wiki, qui restent affichées telles quelles dans la colonne « Exigé ».
  */
 const props = defineProps<{
-  spell: Pick<SpellEntry, 'id' | 'category' | 'requirements'>
+  spell: Pick<SpellEntry, 'id' | 'requirements'>
 }>()
 
 const criteria = useCriteriaStore()
-const rows = computed(() => spellRequirementRows(props.spell, criteria.criteria.character.attributes))
+const analysis = useAnalysisStore()
+const requirements = computed(() => analysis.requirementsOf(`spell:${props.spell.id}`))
+const rows = computed(() => spellRequirementRows(props.spell, criteria.criteria.character.attributes, requirements.value?.value?.checks ?? []))
 const anyRequired = computed(() => rows.value.some((r) => r.required > 0))
 </script>
 
@@ -89,6 +93,11 @@ const anyRequired = computed(() => rows.value.some((r) => r.required > 0))
         </tr>
       </tbody>
     </table>
+    <CxWhyPanel
+      v-if="requirements"
+      :explanation="requirements.explanation"
+      subject="cette comparaison des prérequis"
+    />
     <p
       v-if="!anyRequired"
       class="sh-req-none"

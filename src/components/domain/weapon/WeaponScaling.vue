@@ -19,14 +19,14 @@ import WeaponSection from './WeaponSection.vue'
 
 /**
  * « Scaling et prérequis » : les lettres de scaling sont celles du wiki à +0 en Standard (`null` = pas de scaling, donc aucune puce, décision D17) ;
- * les prérequis sont comparés aux attributs du profil par le moteur (`checkRequirements`, calculs.md « Prérequis comparés au profil »).
+ * les prérequis sont comparés aux attributs du profil par le moteur, lus dans le store d'analyse (calculs.md « Prérequis comparés au profil »).
  * À deux mains, la Force effective vaut `floor(STR × 1,5)` : la ligne Force le dit (« ×1,5 = N ») et la puce porte « 2M » ; l'écart reste en Force réelle.
  * Le composant ne calcule rien : écarts et Force effective viennent du moteur.
  */
 const props = defineProps<{
   weapon: WeaponEntry
-  /** Comparaison du moteur. */
-  requirements: Calc<RequirementsResult>
+  /** Comparaison du moteur ; `null` tant que l'arme n'est pas chargée (la colonne État dit alors « Non calculé »). */
+  requirements: Calc<RequirementsResult> | null
   /** Attributs du profil actif. */
   attrs: Attributes
   /** Force effective à deux mains (moteur), `null` si le bonus ne s'applique pas. */
@@ -62,8 +62,8 @@ interface Row {
 
 const rows = computed((): Row[] =>
   WEAPON_ATTRIBUTE_KEYS.map((attr) => {
-    const check = props.requirements.value?.checks.find((c) => c.attr === attr) ?? null
-    const state = check === null ? 'Sans prérequis' : check.met ? 'Atteint' : `Manque ${formatInt(check.gap)} point${check.gap > 1 ? 's' : ''}`
+    const check = props.requirements?.value?.checks.find((c) => c.attr === attr) ?? null
+    const state = props.requirements === null ? 'Non calculé' : check === null ? 'Sans prérequis' : check.met ? 'Atteint' : `Manque ${formatInt(check.gap)} point${check.gap > 1 ? 's' : ''}`
     return {
       attr,
       name: ATTRIBUTE_LABELS[attr].name,
@@ -75,10 +75,10 @@ const rows = computed((): Row[] =>
   }),
 )
 
-const missing = computed(() => (props.requirements.value?.checks ?? []).filter((c) => !c.met))
+const missing = computed(() => (props.requirements?.value?.checks ?? []).filter((c) => !c.met))
 const gapText = computed(() => missing.value.map((c) => `+${formatInt(c.gap)} ${ATTRIBUTE_LABELS[c.attr].abbr}`).join(', '))
 const handsText = computed(() => (props.effectiveStrength !== null ? 'à deux mains' : 'à une main'))
-const limits = computed(() => props.requirements.explanation.limits.map((l) => limitText(l.code, l.params)))
+const limits = computed(() => (props.requirements?.explanation.limits ?? []).map((l) => limitText(l.code, l.params)))
 </script>
 
 <template>
@@ -177,7 +177,14 @@ const limits = computed(() => props.requirements.explanation.limits.map((l) => l
     </div>
 
     <CxNote
-      v-if="missing.length > 0"
+      v-if="requirements === null"
+      tone="partial"
+      title="Prérequis non calculés."
+    >
+      Les données de cette arme ne sont pas encore chargées.
+    </CxNote>
+    <CxNote
+      v-else-if="missing.length > 0"
       tone="warn"
       title="Prérequis non atteints."
     >
@@ -201,6 +208,7 @@ const limits = computed(() => props.requirements.explanation.limits.map((l) => l
       </li>
     </ul>
     <CxWhyPanel
+      v-if="requirements !== null"
       :explanation="requirements.explanation"
       subject="cette comparaison des prérequis"
     />

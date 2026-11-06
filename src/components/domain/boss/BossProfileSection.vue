@@ -6,6 +6,7 @@ import { entityRoute } from '../../../router/entityRoute.ts'
 import { useAnalysisStore } from '../../../stores/analysis.ts'
 import { useCriteriaStore } from '../../../stores/criteria.ts'
 import { useProfilesStore } from '../../../stores/profiles.ts'
+import { limitText } from '../../../ui/explainText.ts'
 import { formatInt } from '../../../ui/format.ts'
 import type { Explanation } from '../../../engine/types.ts'
 import CxButton from '../../ds/CxButton.vue'
@@ -15,14 +16,14 @@ import CxReadinessGauge from '../../ds/CxReadinessGauge.vue'
 import CxReliabilityBadge from '../../ds/CxReliabilityBadge.vue'
 import CxRequirementChips from '../../ds/CxRequirementChips.vue'
 import BossSection from './BossSection.vue'
-import { readWeaponSuggestions } from './bossSheetModel.ts'
+import { weaponSuggestions } from './bossSheetModel.ts'
 
 /**
  * Section « Pour votre profil » (écran Fiche boss, note `spec-boss`) :
  * - jauge niveau du profil / niveau recommandé (valeurs du store `analysis.bossReadiness`, Calculé et « Pourquoi ? ») ;
  * - case « Rencontre vaincue », reliée à la frise du tableau de bord par `criteria.toggleDefeated` (même clé de rencontre) ;
  * - armes du profil efficaces contre les faiblesses, avec leurs prérequis comparés au profil (getter `analysis.weaponsAgainst(clé)`).
- * Faiblesses non documentées (Mohg) : aucune suggestion d'arme. Le getter est demandé à la logique : tant qu'il n'existe pas, le bloc rend l'état « indisponible ».
+ * Faiblesses non documentées (Mohg) : aucune suggestion d'arme, et la limite du moteur est affichée.
  */
 const props = defineProps<{
   /** Clé de la rencontre (`bossId/encounterId`, ou `bossId`). */
@@ -56,11 +57,11 @@ const defeated = computed({
   },
 })
 
-/** Le getter `weaponsAgainst` n'est pas encore dans le store `analysis` : lu sans présumer de son existence (voir `readWeaponSuggestions`). */
-const suggestions = computed(() => {
-  const getter = (analysis as unknown as { weaponsAgainst?: unknown }).weaponsAgainst
-  return props.hasWeaknesses ? readWeaponSuggestions(getter, props.encounterKey) : null
-})
+/** Armes efficaces, rendues par le store ; `null` tant que les fichiers d'armes ne sont pas chargés (ou sans faiblesses documentées, où ils ne sont pas lus). */
+const suggestions = computed(() =>
+  weaponSuggestions(props.hasWeaknesses ? analysis.weaponsAgainst(props.encounterKey) : null, props.hasWeaknesses),
+)
+const limitTexts = computed(() => (suggestions.value.kind === 'limit' ? suggestions.value.limits.map((l) => limitText(l.code, l.params)) : []))
 </script>
 
 <template>
@@ -109,19 +110,23 @@ const suggestions = computed(() => {
         Vos armes contre ses faiblesses
       </h3>
       <p
-        v-if="suggestions === null"
+        v-if="suggestions.kind === 'loading'"
         class="prof-note"
+        aria-busy="true"
       >
-        Faiblesses non documentées : aucune suggestion d’arme pour cette rencontre.
+        Lecture des fichiers d’armes…
       </p>
+      <template v-else-if="suggestions.kind === 'limit'">
+        <p
+          v-for="(text, i) in limitTexts"
+          :key="i"
+          class="prof-note"
+        >
+          {{ text }}
+        </p>
+      </template>
       <p
-        v-else-if="!suggestions.available"
-        class="prof-note"
-      >
-        Suggestions d’armes indisponibles pour le moment : les fichiers d’armes ne sont pas encore lus.
-      </p>
-      <p
-        v-else-if="suggestions.items.length === 0"
+        v-else-if="suggestions.kind === 'empty'"
         class="prof-note"
       >
         Aucune arme de votre sélection ne ressort contre ses faiblesses.

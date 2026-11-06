@@ -10,7 +10,7 @@ import {
   noteGroups,
   notesFor,
   pickEncounter,
-  readWeaponSuggestions,
+  weaponSuggestions,
   resolveLootItem,
   statusRows,
   yesNo,
@@ -154,14 +154,20 @@ describe('notes de combat', () => {
 })
 
 describe('suggestions d’armes', () => {
-  const item = { ref: 'weapon:uchigatana', name: 'Uchigatana', damage: 'slash', attack: 120, requirements: [] }
-  it('getter absent : indisponible', () => {
-    expect(readWeaponSuggestions(undefined, 'a/b')).toEqual({ available: false, items: [] })
+  const explanation = (limits: { code: string }[]) => ({ method: 'weapon-score', components: [], inputs: [], limits })
+  const calc = (value: unknown, limits: { code: string }[] = []) => ({ value, estimate: null, explanation: explanation(limits) }) as never
+  const item = { ref: 'weapon:uchigatana', name: 'Uchigatana', damage: 'slash', absorption: 5, attack: 120, requirements: [], score: 80 }
+  it('fichiers non chargés : chargement, ou limite d’absorption sans faiblesses documentées', () => {
+    expect(weaponSuggestions(null, true)).toEqual({ kind: 'loading' })
+    expect(weaponSuggestions(null, false)).toEqual({ kind: 'limit', limits: [{ code: 'absorption-undocumented' }] })
   })
-  it('liste ou Calc ; les entrées incomplètes sont écartées', () => {
-    expect(readWeaponSuggestions(() => [item, { name: 'sans ref' }], 'a/b')).toEqual({ available: true, items: [item] })
-    expect(readWeaponSuggestions(() => ({ value: [item] }), 'a/b').items).toHaveLength(1)
-    expect(readWeaponSuggestions(() => null, 'a/b').available).toBe(false)
+  it('liste vide avec limite du moteur (Mohg) : la limite est rendue', () => {
+    expect(weaponSuggestions(calc([], [{ code: 'absorption-undocumented' }]), true)).toEqual({ kind: 'limit', limits: [{ code: 'absorption-undocumented' }] })
+    expect(weaponSuggestions(calc(null, [{ code: 'encounter-missing' }]), true).kind).toBe('limit')
+  })
+  it('liste vide sans limite : état vide ; sinon la liste', () => {
+    expect(weaponSuggestions(calc([]), true)).toEqual({ kind: 'empty' })
+    expect(weaponSuggestions(calc([item]), true)).toEqual({ kind: 'list', items: [item] })
   })
 })
 

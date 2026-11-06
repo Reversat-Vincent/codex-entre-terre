@@ -131,9 +131,7 @@ const countText = computed(() => {
 .cat-toolbar { display: grid; gap: var(--space-2); }
 .cat-tool { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .cat-search { flex: 0 1 220px; min-width: 150px; }
-/* `.cx-input` n'est pas dans la copie des styles du design system : le champ reprend ses tokens (bundle.css, .cx-input). */
-.cat-search .cx-input { width: 100%; height: var(--size-controle); padding: 0 var(--space-3); border: 1px solid var(--control-border); border-radius: var(--radius-s); background: var(--surface-sunken); color: var(--ink); font-size: 13px; min-width: 0; }
-@media (max-width: 767px) { .cat-search .cx-input { height: var(--size-cible); } }
+.cat-search .cx-input { width: 100%; font-size: 13px; }
 .cat-count { margin-left: auto; color: var(--ink-3); font-size: 13px; font-variant-numeric: tabular-nums; }
 .cat-sort-label { margin: 0; }
 @media (max-width: 767px) {

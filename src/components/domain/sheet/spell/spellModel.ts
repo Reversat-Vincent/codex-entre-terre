@@ -1,7 +1,6 @@
-// Modèle de la fiche de sort : prérequis INT, FAI et ARC comparés au profil (par le moteur), coûts, valeurs clés et alertes de qualité.
+// Modèle de la fiche de sort : prérequis INT, FAI et ARC rangés avec la comparaison du store d'analyse (`requirementsOf`), valeurs clés et alertes de qualité.
 
 import type { SpellEntry } from '../../../../data/types/spells.ts'
-import { compareRequirements } from '../../../../engine/requirements.ts'
 import type { RequirementCheck } from '../../../../engine/requirements.ts'
 import type { Attributes } from '../../../../engine/types.ts'
 import { acquisitionAlert, acquisitionViews, missingFieldsAlert, presentAlerts } from '../sheetModel.ts'
@@ -13,7 +12,7 @@ export const SPELL_ATTRIBUTES = ['int', 'fai', 'arc'] as const
 /** Attribut exigible par un sort. */
 export type SpellAttribute = (typeof SPELL_ATTRIBUTES)[number]
 
-/** Ligne de prérequis : valeur exigée, valeur du profil et comparaison du moteur (absente si aucun prérequis). */
+/** Ligne de prérequis : valeur exigée, valeur du profil et comparaison du moteur (absente si aucun prérequis ou si elle n'est pas calculée). */
 export interface SpellRequirementRow {
   readonly attr: SpellAttribute
   /** Valeur exigée (`requirements.<attr>`) ; 0 : aucun prérequis. */
@@ -25,19 +24,14 @@ export interface SpellRequirementRow {
 }
 
 /**
- * Prérequis d'un sort comparés au profil. La comparaison est celle du moteur (`compareRequirements`, calculs.md « Prérequis comparés au profil »),
- * appelée avec la Force et la Dextérité à 0 : un sort n'exige que INT, FAI et ARC, et aucun bonus de deux mains ne s'applique.
- * Le moteur n'expose pas encore de fonction propre aux sorts : voir le rapport (getter manquant `checkSpellRequirements`).
+ * Prérequis d'un sort rangés par attribut, avec la comparaison au profil faite par le moteur (calculs.md, « Prérequis comparés au profil »),
+ * lue dans le store d'analyse (`requirementsOf`) : un sort n'exige que INT, FAI et ARC, et aucun bonus de deux mains ne s'applique.
  * @param spell Sort.
  * @param attrs Attributs des critères en cours.
+ * @param checks Comparaisons du moteur (`requirementsOf(ref).value.checks`), vides tant qu'elles ne sont pas calculées.
  * @returns Une ligne par attribut (INT, FAI, ARC), même quand il n'y a pas de prérequis.
  */
-export function spellRequirementRows(spell: Pick<SpellEntry, 'id' | 'category' | 'requirements'>, attrs: Attributes): SpellRequirementRow[] {
-  const checks = compareRequirements(
-    { id: spell.id, category: spell.category, requirements: { str: 0, dex: 0, ...spell.requirements } },
-    attrs,
-    'one',
-  )
+export function spellRequirementRows(spell: Pick<SpellEntry, 'requirements'>, attrs: Attributes, checks: readonly RequirementCheck[]): SpellRequirementRow[] {
   return SPELL_ATTRIBUTES.map((attr): SpellRequirementRow => ({
     attr,
     required: spell.requirements[attr],

@@ -3,7 +3,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { CATALOG_SPECS } from '../catalog/registry.ts'
-import type { CatalogKey, CatalogRow, ProfileContext } from '../catalog/registry.ts'
+import type { CatalogKey, CatalogRow } from '../catalog/registry.ts'
 import type { SortKey } from '../catalog/sort.ts'
 import CatalogCell from '../components/domain/catalog/CatalogCell.vue'
 import CatalogEmpty from '../components/domain/catalog/CatalogEmpty.vue'
@@ -19,7 +19,6 @@ import {
   familyOf,
   rowHeightOf,
   sortChoices,
-  sortClickOf,
   visibleColumns,
 } from '../components/domain/catalog/catalogModel.ts'
 import CxButton from '../components/ds/CxButton.vue'
@@ -36,7 +35,6 @@ import { useDatasets } from '../composables/useDatasets.ts'
 import { usePageTitle } from '../composables/usePageTitle.ts'
 import { catalogKeyOfRoute, useCatalogsStore } from '../stores/catalogs.ts'
 import { useAnalysisStore } from '../stores/analysis.ts'
-import { useCriteriaStore } from '../stores/criteria.ts'
 import { useDataStore } from '../stores/data.ts'
 import { usePreferencesStore } from '../stores/preferences.ts'
 import { useProfilesStore } from '../stores/profiles.ts'
@@ -52,7 +50,6 @@ const route = useRoute()
 const router = useRouter()
 const store = useCatalogsStore()
 const prefs = usePreferencesStore()
-const criteria = useCriteriaStore()
 const profiles = useProfilesStore()
 const analysis = useAnalysisStore()
 const data = useDataStore()
@@ -77,11 +74,7 @@ watch(
   { immediate: true },
 )
 
-// --- Profil : prérequis comparés aux attributs et à la posture des critères ---------------------------------------
-const profile = computed<ProfileContext>(() => ({
-  attributes: criteria.criteria.character.attributes,
-  hands: criteria.criteria.style.hands === 2 ? 'two' : 'one',
-}))
+// --- Profil : les prérequis sont comparés par `analysis.requirementsOf`, que lisent les cellules -----------------------
 const comparesProfile = computed(() => info.value.family === 'weapons' || key.value === 'spells')
 const profileLine = computed(() => {
   const level = analysis.level.value
@@ -141,21 +134,21 @@ const tableSort = computed<SortKey[]>(() => {
   return state.value.sort.every((k) => known.has(k.column)) ? [...state.value.sort] : []
 })
 
+/** Le tableau émet la liste complète des critères (clic, Maj + clic) : le store la remplace telle quelle. */
 function onTableSort(next: SortKey[]): void {
-  const click = sortClickOf(tableSort.value, next)
-  if (click) store.sortBy(key.value, click.column, click.additive)
+  store.setSort(key.value, next)
 }
 
 /** « Trier par » : la colonne devient le tri principal, dans son premier sens (croissant pour un texte, décroissant pour un nombre). */
 function sortByChoice(column: string): void {
   const first = sortChoices(key.value).find((c) => c.column === column)?.first ?? 'asc'
-  store.sortBy(key.value, column)
-  if (store.stateOf(key.value).sort[0]?.direction !== first) store.sortBy(key.value, column)
+  store.setSort(key.value, [{ column, direction: first }])
 }
 
+/** Inverse le sens du tri principal ; les critères suivants sont conservés. */
 function flipSort(): void {
-  const primary = state.value.sort[0]
-  if (primary) store.sortBy(key.value, primary.column)
+  const [primary, ...rest] = state.value.sort
+  if (primary) store.setSort(key.value, [{ column: primary.column, direction: primary.direction === 'asc' ? 'desc' : 'asc' }, ...rest])
 }
 
 // --- Résultats -----------------------------------------------------------------------------------------------------
@@ -341,7 +334,6 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
               :catalog="key"
               :column="column"
               :row="row"
-              :profile="profile"
             />
           </template>
         </CxDataTable>
@@ -351,7 +343,6 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
           :key="key"
           :catalog="key"
           :page="store.page(key)"
-          :profile="profile"
           @update:page="(page) => store.setPage(key, page)"
         />
       </div>
@@ -388,8 +379,7 @@ const activeText = computed(() => (activeCount.value === 0 ? 'Aucun actif' : `${
 .v-catalog-fhead { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-3); color: var(--ink); font-size: 14px; font-weight: 600; }
 .v-catalog-fhead > span { display: inline-flex; align-items: center; gap: 6px; }
 .v-catalog-fhead .cx-muted { font-size: 12px; font-weight: 400; }
-/* `isolation` : l'en-tête collant du tableau (z-index de `--z-sticky`) resterait sinon au-dessus de la barre du haut, qui a le même niveau et le précède dans la page. */
-.v-catalog-results { flex: 1 1 0; display: grid; gap: var(--space-3); min-width: 0; isolation: isolate; }
+.v-catalog-results { flex: 1 1 0; display: grid; gap: var(--space-3); min-width: 0; }
 @media (max-width: 767px) {
   .v-catalog { padding: var(--space-4) var(--space-3) var(--space-5); }
 }
