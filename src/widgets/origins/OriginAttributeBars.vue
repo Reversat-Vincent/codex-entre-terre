@@ -29,6 +29,7 @@ const rows = computed(() =>
   ATTRIBUTE_KEYS.map((key) => {
     const start = props.start[key]
     const target = props.target[key]
+    // Table partielle : un attribut absent de `wastedBy` n'a aucun point perdu.
     const wasted = props.wastedBy[key] ?? 0
     return {
       key,

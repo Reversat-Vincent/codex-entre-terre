@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import ArmorSheet from '../components/domain/sheet/armor/ArmorSheet.vue'
 import SheetPage from '../components/domain/sheet/SheetPage.vue'
 import { useSheetEntry } from '../components/domain/sheet/useSheetEntry.ts'
+import { armorSlotLabel } from '../ui/armorSlots.ts'
 
 /**
  * Fiche (armure) : la logique commune (chargement, état d'affichage, titre de la page) est celle de `useSheetEntry`, le cadre celui de `SheetPage`.
@@ -19,8 +20,8 @@ const entry = computed(() => sheet.entry.value)
   <SheetPage
     kind="armor"
     :view="sheet.view.value"
-    :name="entry?.name ?? null"
-    :category="entry?.category ?? null"
+    :name="entry?.derived.displayName ?? null"
+    :category="entry ? armorSlotLabel(entry.category) : null"
     :failed="sheet.failed.value"
     @retry="sheet.retry()"
   >

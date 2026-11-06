@@ -3,6 +3,7 @@
 import { onMounted } from 'vue'
 import ExploreCard from '../components/domain/explore/ExploreCard.vue'
 import { EXPLORE_GROUPS, MECHANICS_ENTRY, RESOURCE_GROUPS, entryCount, groupCount } from '../components/domain/explore/exploreModel.ts'
+import type { ExploreGroup } from '../components/domain/explore/exploreModel.ts'
 import CxIcon from '../components/ds/CxIcon.vue'
 import { useDataStore } from '../stores/data.ts'
 import { useSearchStore } from '../stores/search.ts'
@@ -19,6 +20,16 @@ const search = useSearchStore()
 onMounted(() => {
   void data.loadManifest()
 })
+
+/**
+ * Nombre d'entrées d'un groupe, formaté.
+ * @param group Groupe de catalogues.
+ * @returns Le nombre, ou `null` tant que le manifeste n'est pas chargé (rien n'est affiché, jamais 0).
+ */
+function groupCountText(group: ExploreGroup): string | null {
+  const n = groupCount(data.manifest, group)
+  return n === null ? null : formatInt(n)
+}
 </script>
 
 <template>
@@ -59,9 +70,9 @@ onMounted(() => {
       >
         {{ group.label }}
         <span
-          v-if="groupCount(data.manifest, group) !== null"
+          v-if="groupCountText(group) !== null"
           class="cx-muted v-explore-n"
-        >{{ formatInt(groupCount(data.manifest, group) ?? 0) }}</span>
+        >{{ groupCountText(group) }}</span>
       </h2>
       <ul class="v-explore-list">
         <li

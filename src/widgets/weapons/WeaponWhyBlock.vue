@@ -44,12 +44,13 @@ const alternatives = computed(() => analysis.alternativesOf(props.weapon))
 const name = computed(() => target.value?.candidate.weapon.name ?? '')
 
 /**
- * Total du score d'une arme proche.
+ * Total du score d'une arme proche, prêt à afficher.
  * @param alt Arme évaluée.
- * @returns Le total, ou `null` pour une arme sans score (« Non classé », D18).
+ * @returns Le total formaté, ou `null` pour une arme sans score (« Non classé », D18 : jamais « 0 sur 100 »).
  */
-function totalOf(alt: ScoredWeapon): number | null {
-  return alt.score.value?.total ?? null
+function totalOf(alt: ScoredWeapon): string | null {
+  const total = alt.score.value?.total
+  return total === undefined || total === null ? null : formatInt(total)
 }
 
 /** Donne le focus au panneau et le rend visible quand il s'ouvre ou change d'arme ou de mode. */
@@ -147,7 +148,7 @@ function onEscape(event: KeyboardEvent): void {
               <span
                 v-if="totalOf(alt) !== null"
                 class="cx-score-num"
-              >{{ formatInt(totalOf(alt) ?? 0) }}<span class="cx-sr"> sur 100</span></span>
+              >{{ totalOf(alt) }}<span class="cx-sr"> sur 100</span></span>
               <span
                 v-else
                 class="cx-null"

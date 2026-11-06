@@ -23,7 +23,7 @@ import { formatInt } from '../../ui/format.ts'
 import { DLC_ZONE_LABELS, STAGE_LABELS } from '../../ui/labels.ts'
 import { useWeaponActions } from './useWeaponActions.ts'
 import {
-  HIDDEN_REASON_TEXTS,
+  hiddenReasonOf,
   attackSortValue,
   isProfileConfigured,
   missingSortValue,
@@ -90,12 +90,13 @@ const columns: readonly TableColumn<ScoredWeapon>[] = [
 ]
 
 /**
- * Total du score d'une ligne.
+ * Total du score d'une ligne, prêt à afficher.
  * @param row Arme évaluée.
- * @returns Le total, ou `null` (arme sans score).
+ * @returns Le total formaté, ou `null` (arme sans score, « Non classé » : jamais « 0 sur 100 »).
  */
-function totalOf(row: ScoredWeapon): number | null {
-  return row.score.value?.total ?? null
+function totalOf(row: ScoredWeapon): string | null {
+  const total = row.score.value?.total
+  return total === undefined || total === null ? null : formatInt(total)
 }
 
 /**
@@ -127,7 +128,7 @@ function stageText(row: ScoredWeapon): string | null {
  * @returns La raison, ou `null` si l'arme est visible.
  */
 function reasonOf(row: ScoredWeapon): string | null {
-  return row.hidden === null ? null : HIDDEN_REASON_TEXTS[row.hidden].reason
+  return hiddenReasonOf(row)
 }
 
 /**
@@ -147,6 +148,7 @@ onMounted(() => {
   if (root.value === null || typeof ResizeObserver === 'undefined') return
   viewWidth.value = root.value.clientWidth
   observer = new ResizeObserver(() => {
+    // Géométrie : élément démonté = largeur nulle, le détail reprend alors sa largeur naturelle.
     viewWidth.value = root.value?.clientWidth ?? 0
   })
   observer.observe(root.value)
@@ -184,7 +186,7 @@ const rowCount = computed(() => formatInt(props.rows.length))
           :class="{ 'is-dim': row.hidden !== null }"
         >
           <template v-if="totalOf(row) !== null">
-            <span class="cx-score-num">{{ formatInt(totalOf(row) ?? 0) }}<span class="cx-sr"> sur 100</span></span>
+            <span class="cx-score-num">{{ totalOf(row) }}<span class="cx-sr"> sur 100</span></span>
             <CxReliabilityBadge
               v-if="row.hidden === null"
               kind="calculated"

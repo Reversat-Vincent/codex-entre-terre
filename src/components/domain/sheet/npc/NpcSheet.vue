@@ -53,7 +53,7 @@ const KINDS = ['location', 'boss', 'npc', 'item'] as const
   <SheetHeader
     kind="npc"
     :entity-ref="ref"
-    :name="npc.name"
+    :name="npc.derived.displayName"
     :source="npc.source"
     :url="npc.url"
     :category="typeof npc.infobox.role === 'string' ? npc.infobox.role : null"

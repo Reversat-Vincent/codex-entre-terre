@@ -3,13 +3,14 @@
 
 import { describe, expect, it } from 'vitest'
 import {
+  ARCHETYPE_LABELS,
   CLASSES_COLLAPSED,
+  archetypeName,
   archetypeOptions,
   bossChecklist,
   chipViews,
   keysToToggle,
   originOptions,
-  raiseToOrigin,
   recommendedCount,
   regionChecklist,
   sectionSummary,
@@ -72,10 +73,10 @@ describe('origines et archétypes', () => {
     expect(options.slice(1).map((o) => o.value)).toEqual([...ARCHETYPE_IDS])
   })
 
-  it('relève les attributs jusqu’à la base de l’origine sans jamais en baisser un', () => {
-    const attrs = { vig: 20, mnd: 10, end: 10, str: 10, dex: 30, int: 10, fai: 10, arc: 10 }
-    const start = { vig: 15, mnd: 12, end: 11, str: 14, dex: 13, int: 9, fai: 9, arc: 7 }
-    expect(raiseToOrigin(attrs, start)).toEqual({ vig: 20, mnd: 12, end: 11, str: 14, dex: 30, int: 10, fai: 10, arc: 10 })
+  it('nomme un archétype par ses clés propres, jamais par le prototype', () => {
+    expect(archetypeName('str')).toBe(ARCHETYPE_LABELS.str)
+    expect(archetypeName('constructor')).toBe('constructor')
+    expect(archetypeName('toString')).toBe('toString')
   })
 })
 

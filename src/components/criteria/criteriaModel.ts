@@ -13,13 +13,12 @@ import { REGION_STAGE, STAGE_IDS, stageIndex } from '../../engine/config/stages.
 import type { StageId } from '../../engine/config/stages.ts'
 import type { StageRecommendations } from '../../engine/score.ts'
 import type { TimelineView } from '../../engine/timeline.ts'
-import type { Attributes } from '../../engine/types.ts'
+import { ownValue } from '../../engine/types.ts'
 import type { Criteria, ProgressMode, StonePreference, StyleMode } from '../../persistence/model.ts'
 import type { CriteriaChip as AnalysisChip } from '../../stores/analysis.ts'
 import type { CriteriaPatch } from '../../stores/criteria.ts'
 import { formatInt } from '../../ui/format.ts'
 import { STAGE_LABELS, STATUS_BY_DATA_KEY, STATUS_LABELS } from '../../ui/labels.ts'
-import type { AttributeKey } from '../../ui/labels.ts'
 
 /** Sections du panneau, dans l'ordre d'affichage (note `spec-sheet`). */
 export const SECTION_IDS = ['content', 'character', 'style', 'progress', 'constraints', 'reliability'] as const
@@ -80,11 +79,11 @@ export function archetypeOptions(): SelectOption[] {
 
 /**
  * Nom français d'un archétype.
- * @param id Identifiant d'archétype des critères (une valeur inconnue est rendue telle quelle).
+ * @param id Identifiant d'archétype des critères (une valeur inconnue ou un nom du prototype, `constructor`… est rendu tel quel).
  * @returns Le nom affiché.
  */
 export function archetypeName(id: string): string {
-  return (ARCHETYPE_LABELS as Readonly<Record<string, string>>)[id] ?? id
+  return ownValue(ARCHETYPE_LABELS as Readonly<Record<string, string>>, id) ?? id
 }
 
 /**
@@ -105,18 +104,6 @@ export function originOptions(origins: readonly OriginEntry[], all: readonly Ori
   return out
 }
 
-/**
- * Relève chaque attribut au moins à sa valeur de départ pour l'origine choisie (comportement du design : choisir une origine ne baisse rien).
- * @param attributes Attributs actuels.
- * @param start Attributs de départ de l'origine.
- * @returns Les nouveaux attributs.
- */
-export function raiseToOrigin(attributes: Attributes, start: Attributes): Attributes {
-  const out = { ...attributes }
-  for (const key of Object.keys(out) as AttributeKey[]) out[key] = Math.max(out[key], start[key])
-  return out
-}
-
 /** Classe d'armes et nombre d'armes qu'elle compte. */
 export interface WeaponClass {
   readonly name: string
@@ -130,6 +117,7 @@ export interface WeaponClass {
  */
 export function weaponClasses(weapons: readonly WeaponEntry[]): WeaponClass[] {
   const counts = new Map<string, number>()
+  // Compteur : une classe jamais vue compte 0 avant la première arme.
   for (const w of weapons) counts.set(w.category, (counts.get(w.category) ?? 0) + 1)
   return [...counts].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'en'))
 }

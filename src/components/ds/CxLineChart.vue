@@ -79,6 +79,7 @@ let observer: ResizeObserver | null = null
 
 /** Mesure la zone de tracé ; une zone masquée (vue tableau, largeur 0) garde la dernière mesure. */
 function measure(): void {
+  // Géométrie : élément absent = largeur nulle, donc mesure ignorée.
   const width = Math.round(plotEl.value?.clientWidth ?? 0)
   if (width > 0) plotWidth.value = width
 }
@@ -103,6 +104,7 @@ const shown = computed(() =>
 const compact = computed(() => plotWidth.value < COMPACT_BELOW)
 /** Marges latérales : l'axe vertical et les étiquettes de fin de ligne ont moins de place sur un petit écran. */
 const sides = computed(() => (compact.value ? { left: 38, right: 60 } : { left: 44, right: 96 }))
+// Géométrie : sans abscisse, la plage est réduite au point 0 (le graphique n'est alors pas tracé).
 const xRange = computed(() => ({ first: props.x[0] ?? 0, last: props.x[props.x.length - 1] ?? 0 }))
 /** Repères placés (étiquettes sur une ou plusieurs rangées) : leur nombre de rangées fixe la marge haute du dessin. */
 const placedMarkers = computed(() => {
@@ -156,11 +158,14 @@ const readings = computed(() => {
     cls: s.cls,
     value: s.values[i] ?? null,
     base: s.values[0] ?? null,
-    y: geometry.value.yAt(s.values[i] ?? 0),
+    // Pas de point à tracer pour une valeur absente (`null`) : le repère n'a alors pas d'ordonnée.
+    y: s.values[i] == null ? null : geometry.value.yAt(s.values[i] as number),
     k,
   }))
 })
+// Étiquettes d'abscisse : sans abscisse, l'étiquette est celle du point 0 (graphique non tracé).
 const activeLabel = computed(() => (activeIndex.value === null ? '' : props.xLabel(props.x[activeIndex.value] ?? 0)))
+// Idem pour l'étiquette de base et la lecture vocale : sans abscisse, rien n'est tracé ni annoncé.
 const baseLabel = computed(() => props.xLabel(props.x[0] ?? 0))
 
 /** Lecture lue aux lecteurs d'écran quand le curseur change (le survol à la souris n'annonce rien). */
@@ -185,6 +190,7 @@ const tooltipStyle = computed(() => {
 })
 watch([activeIndex, view, plotWidth, shown], async () => {
   await nextTick()
+  // Géométrie : infobulle absente = largeur nulle.
   tipWidth.value = tipEl.value?.offsetWidth ?? 0
 })
 
@@ -211,11 +217,13 @@ function onLeave(): void {
   hoverIndex.value = null
 }
 
-/** Valeur du curseur natif : l'abscisse affichée, ou la première. */
+/** Valeur du curseur natif : l'abscisse affichée, ou la première (0 sans abscisse : le curseur n'est alors pas affiché). */
 const sliderValue = computed({
+  // Abscisse absente : le curseur n'est pas affiché, 0 sert seulement de valeur neutre.
   get: () => cursor.value ?? props.x[0] ?? 0,
   set: (v: number) => {
     // Le curseur natif avance au pas de 1 : on retient l'abscisse existante la plus proche.
+    // Même valeur neutre qu'au-dessus quand il n'y a aucune abscisse.
     let best = props.x[0] ?? 0
     for (const candidate of props.x) if (Math.abs(candidate - v) < Math.abs(best - v)) best = candidate
     cursor.value = best
@@ -290,7 +298,7 @@ const sliderValue = computed({
             :x="t.x"
             :y="geometry.plot.y1 + 18"
             :text-anchor="t.index === 0 ? 'start' : t.index === x.length - 1 ? 'end' : 'middle'"
-          >{{ xLabel(x[t.index] ?? 0) }}</text>
+          >{{ xLabel(x[t.index] as number) }}</text>
         </g>
         <g class="markers">
           <template
@@ -344,7 +352,7 @@ const sliderValue = computed({
             :key="r.id"
           >
             <circle
-              v-if="r.value !== null"
+              v-if="r.y !== null"
               class="dot"
               :class="r.cls"
               :cx="activeX"
@@ -438,8 +446,8 @@ const sliderValue = computed({
       <CxRange
         :id="`${uid}-cursor`"
         v-model="sliderValue"
-        :min="x[0] ?? 0"
-        :max="x[x.length - 1] ?? 0"
+        :min="xRange.first"
+        :max="xRange.last"
         :step="1"
         :value-text="xLabel(sliderValue)"
       />

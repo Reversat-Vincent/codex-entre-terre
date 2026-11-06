@@ -136,6 +136,10 @@ const text = computed(() => (props.column.cell === 'text' ? (props.column.value?
       >{{ skill.name }}</b>
       <span class="cx-muted">{{ skill.type }}</span>
     </template>
+    <span
+      v-else-if="skill.none"
+      class="cx-muted"
+    >Aucune</span>
     <CxValue
       v-else
       :value="null"

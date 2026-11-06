@@ -42,6 +42,7 @@ const props = withDefaults(
 )
 
 const paragraphs = computed(() => descriptionParagraphs(props.description))
+// Longueur : l'absence de détails veut dire « aucun détail » (la section est alors omise).
 const hasDetails = computed(() => (props.details?.length ?? 0) > 0)
 </script>
 

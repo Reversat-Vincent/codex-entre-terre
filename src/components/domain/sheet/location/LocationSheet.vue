@@ -66,7 +66,7 @@ const mapLinks = INTERACTIVE_MAPS.map((l) => ({ id: l.id, href: l.url, label: la
   <SheetHeader
     kind="location"
     :entity-ref="ref"
-    :name="entry.name"
+    :name="entry.derived.displayName"
     :source="entry.source"
     :url="entry.url"
     :category="kindLabel"

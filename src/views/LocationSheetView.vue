@@ -24,7 +24,7 @@ const trail = computed(() => (entry.value ? locationTrail(entry.value, buildLoca
   <SheetPage
     kind="location"
     :view="sheet.view.value"
-    :name="entry?.name ?? null"
+    :name="entry?.derived.displayName ?? null"
     :category="locationKindLabel(entry?.kind ?? null)"
     :trail="trail"
     :failed="sheet.failed.value"

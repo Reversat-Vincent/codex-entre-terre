@@ -26,6 +26,7 @@ const props = defineProps<{
 const ref = computed(() => `spirit:${props.spirit.id}` as const)
 const alerts = computed(() => spiritAlerts(props.spirit))
 const facts = computed(() => spiritFacts(props.spirit))
+// Longueur : sans détails d'effet, la présence se décide sur l'effet et la description.
 const hasEffect = computed(() => Boolean(props.spirit.effect) || (props.spirit.effect_details?.length ?? 0) > 0 || Boolean(props.spirit.description))
 </script>
 
@@ -33,7 +34,7 @@ const hasEffect = computed(() => Boolean(props.spirit.effect) || (props.spirit.e
   <SheetHeader
     kind="spirit"
     :entity-ref="ref"
-    :name="spirit.name"
+    :name="spirit.derived.displayName"
     :source="spirit.source"
     :url="spirit.url"
     :category="spirit.category"

@@ -55,7 +55,7 @@ src/persistence/ ◄──► localStorage (un document versionné), export et i
 | `src/App.vue`, `src/router/`, `src/styles/` (`tokens.css`, `fonts.css`, `base.css`) | coquille, routes, styles globaux | interface · **partagé** |
 | `src/components/ds/` (`Cx*`), `components/shell/`, `components/criteria/`, `components/domain/`, `src/views/`, composants de `src/widgets/` | interface | interface |
 | `src/widgets/registry.ts` | identifiants, fichiers requis, largeurs | logique |
-| `src/composables/`, `src/ui/` | `useDatasets` (logique) ; `format.ts`, `useBreakpoint`, `useFocusTrap`, `useHotkeys`, `useVirtualList`, `useReorder`, `labels.ts`, `explainText.ts`, `breakpoints.ts` (interface, D20) | selon le fichier |
+| `src/composables/`, `src/ui/` | `useDatasets` (logique) ; `format.ts`, `useBreakpoint`, `useFocusTrap`, `useHotkeys`, `useVirtualList`, `useReorder`, `labels.ts`, `skillTypes.ts` (types de compétence), `armorSlots.ts` (emplacements d'armure), `explainText.ts`, `breakpoints.ts` (interface, D20 ; vocabulaire D46) | selon le fichier |
 | `tests/unit/<module>/`, `tests/fixtures/` (extraits **réels** de `data/`), `tests/e2e/` | tests | auteur du module ; fixtures : données ; e2e : outillage |
 | `.cache/` | rapports, captures, sorties de Playwright | — |
 

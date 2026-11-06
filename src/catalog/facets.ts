@@ -143,7 +143,7 @@ export const BANDS = {
     { value: 'a3', label: '8 à moins de 12\u00a0%', min: 8, max: 12 },
     { value: 'a4', label: '12\u00a0% et plus', min: 12, max: null },
   ],
-  /** Coût en PF d'un sort (premier nombre de `fp_cost`). */
+  /** Coût en FP d'un sort (premier nombre de `fp_cost`). */
   spellFp: [
     { value: 'f0', label: 'Moins de 10', min: 0, max: 10 },
     { value: 'f1', label: '10 à 19', min: 10, max: 20 },
@@ -364,7 +364,7 @@ export interface SpellCatalogOptions {
 }
 
 /**
- * Premier nombre du coût en PF d'un sort (`"22 (4)"` → 22).
+ * Premier nombre du coût en FP d'un sort (`"22 (4)"` → 22).
  * @param cost Coût du wiki : nombre, ou texte quand il varie.
  * @returns Le coût, ou `null` si le texte ne commence pas par un nombre.
  */
@@ -375,7 +375,7 @@ export function spellFpCost(cost: number | string): number | null {
 }
 
 /**
- * Facettes de sorts : type, école (`sub_type`), attribut requis, prérequis atteints, coût en PF (brief § 6 ; tranches dans `BANDS`).
+ * Facettes de sorts : type, école (`sub_type`), attribut requis, prérequis atteints, coût en FP (brief § 6 ; tranches dans `BANDS`).
  * @param options Prédicat du moteur de calcul.
  * @returns La définition du catalogue.
  */
@@ -400,7 +400,7 @@ export function spellCatalog(options: SpellCatalogOptions): CatalogDef<SpellRow>
         fixedOptions: [{ value: TOGGLE_VALUE, label: 'Prérequis atteints' }],
         values: (r) => (options.meetsRequirements(r) ? [TOGGLE_VALUE] : []),
       },
-      { id: 'fp', label: 'Coût en PF', presentation: 'options', fixedOptions: bandOptions(BANDS.spellFp), values: (r) => [bandOf(BANDS.spellFp, spellFpCost(r.fp_cost))] },
+      { id: 'fp', label: 'Coût en FP', presentation: 'options', fixedOptions: bandOptions(BANDS.spellFp), values: (r) => [bandOf(BANDS.spellFp, spellFpCost(r.fp_cost))] },
     ],
   }
 }

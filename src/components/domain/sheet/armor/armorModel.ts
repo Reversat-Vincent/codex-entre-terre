@@ -4,6 +4,7 @@
 import type { ArmorEntry } from '../../../../data/types/armor.ts'
 import { DAMAGE_ICONS, DAMAGE_LABELS, STATUS_LABELS } from '../../../../ui/labels.ts'
 import type { DamageLabelKey } from '../../../../ui/labels.ts'
+import { armorSlotLabel } from '../../../../ui/armorSlots.ts'
 import { acquisitionAlert, acquisitionViews, missingFieldsAlert, presentAlerts } from '../sheetModel.ts'
 import type { SheetAlert, SheetFact } from '../sheetModel.ts'
 
@@ -141,10 +142,13 @@ export function resistanceRows(armor: Pick<ArmorEntry, 'resistance'>): Resistanc
  */
 export function armorFacts(armor: ArmorEntry): SheetFact[] {
   return [
-    { id: 'slot', label: 'Emplacement', value: armor.slot },
+    { id: 'slot', label: 'Emplacement', value: armorSlotLabel(armor.slot) },
     { id: 'weight', label: 'Poids', value: armor.weight, format: 'weight' },
     { id: 'poise', label: 'Équilibre', value: armor.poise, format: 'decimal', hint: 'Poise, dans les données du wiki.' },
-    ...(armor.altered_version === undefined ? [] : [{ id: 'altered', label: 'Version altérée', value: armor.altered_version }]),
+    // « Yes » : une version altérée existe ; sinon le wiki nomme la pièce (reprise telle quelle, c'est un nom du jeu).
+    ...(armor.altered_version === undefined
+      ? []
+      : [{ id: 'altered', label: 'Version altérée existante', value: armor.altered_version === 'Yes' ? 'oui' : armor.altered_version }]),
   ]
 }
 

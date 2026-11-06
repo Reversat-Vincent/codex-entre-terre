@@ -241,6 +241,7 @@ export function buildGeometry(
   const span = nice.max - nice.min || 1
   const yAt = (value: number): number => y1 - ((value - nice.min) / span) * (y1 - y0)
 
+  // Géométrie : sans abscisse, la plage est réduite au point 0 et le tracé reste vide.
   const first = xValues[0] ?? 0
   const last = xValues[xValues.length - 1] ?? first
   const xSpan = last - first

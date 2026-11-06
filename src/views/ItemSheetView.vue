@@ -22,7 +22,7 @@ const trail = computed(() => (entry.value && type.value ? itemTrail(type.value, 
   <SheetPage
     kind="item"
     :view="sheet.view.value"
-    :name="entry?.name ?? null"
+    :name="entry?.derived.displayName ?? null"
     :category="entry?.category ?? null"
     :trail="trail"
     :failed="sheet.failed.value"

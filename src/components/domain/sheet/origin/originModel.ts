@@ -42,7 +42,7 @@ export function originFacts(origin: OriginEntry): SheetFact[] {
     { id: 'level', label: 'Niveau', value: origin.level },
     { id: 'hp', label: 'PV', value: s.hp },
     { id: 'fp', label: 'FP', value: s.fp },
-    { id: 'stamina', label: 'Endurance', value: s.stamina },
+    { id: 'stamina', label: 'Endurance (jauge)', value: s.stamina },
     { id: 'load', label: 'Charge d’équipement', value: s.equip_load, format: 'decimal' },
     { id: 'discovery', label: 'Découverte', value: s.discovery },
     { id: 'poise', label: 'Équilibre', value: s.poise },

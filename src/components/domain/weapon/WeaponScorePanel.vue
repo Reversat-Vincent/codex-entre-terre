@@ -139,7 +139,10 @@ const parts = computed(() => {
           <span
             class="wp-bar"
             aria-hidden="true"
-          ><span :style="{ width: `${((p.value ?? 0) / 25) * 100}%` }" /></span>
+          ><span
+            v-if="p.value !== null"
+            :style="{ width: `${(p.value / 25) * 100}%` }"
+          /></span>
         </div>
       </div>
 

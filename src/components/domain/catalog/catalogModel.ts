@@ -21,9 +21,11 @@ import type { TalismanEntry } from '../../../data/types/talismans.ts'
 import type { AcquisitionDerived } from '../../../data/types/common.ts'
 import type { WeaponEntry } from '../../../data/types/weapon.ts'
 import { entityRoute } from '../../../router/entityRoute.ts'
+import { armorSlotLabel } from '../../../ui/armorSlots.ts'
 import { formatInt } from '../../../ui/format.ts'
 import { ATTRIBUTE_LABELS, DAMAGE_LABELS } from '../../../ui/labels.ts'
 import type { EstimateConfidence, ReliabilityKey } from '../../../ui/labels.ts'
+import { NO_SKILL_TYPE, skillTypeLabel } from '../../../ui/skillTypes.ts'
 
 // ---------------------------------------------------------------------------------------------
 // Catalogues : titres, noms, onglets
@@ -242,21 +244,18 @@ const WEAPON_COLUMNS: readonly CatalogColumn[] = [
   obtentionColumn(false),
 ]
 
-/** Libellés français des emplacements d'armure (les mêmes que ceux de la facette « Emplacement »). */
-const SLOT_LABELS: Readonly<Record<string, string>> = { Head: 'Tête', Chest: 'Torse', Arms: 'Bras', Legs: 'Jambes' }
-
 const NEGATION_KEYS_SHOWN = ['physical', 'strike', 'slash', 'pierce', 'magic', 'fire', 'lightning', 'holy'] as const
 
 const RESISTANCES = [
-  { id: 'immunity', label: 'Immunité' },
-  { id: 'robustness', label: 'Robustesse' },
-  { id: 'focus', label: 'Concentration' },
-  { id: 'vitality', label: 'Vitalité' },
+  { id: 'immunity', label: 'Immunity' },
+  { id: 'robustness', label: 'Robustness' },
+  { id: 'focus', label: 'Focus' },
+  { id: 'vitality', label: 'Vitality' },
 ] as const
 
 const ARMOR_COLUMNS: readonly CatalogColumn[] = [
   nameColumn('Armure'),
-  column({ id: 'slot', label: 'Emplacement', value: read<ArmorEntry, string>((r) => SLOT_LABELS[r.slot] ?? r.slot) }),
+  column({ id: 'slot', label: 'Emplacement', value: read<ArmorEntry, string>((r) => armorSlotLabel(r.slot)) }),
   column({ id: 'weight', label: 'Poids', align: 'right', format: 'weight', value: read<ArmorEntry, number | null>((r) => r.weight) }),
   column({ id: 'poise', label: 'Équilibre', align: 'right', value: read<ArmorEntry, number>((r) => r.poise) }),
   ...NEGATION_KEYS_SHOWN.map((k) =>
@@ -287,7 +286,7 @@ const SPELL_COLUMNS: readonly CatalogColumn[] = [
   nameColumn('Sort'),
   column({ id: 'type', label: 'Type', value: read<SpellEntry, string>((r) => r.type) }),
   column({ id: 'school', label: 'École', value: read<SpellEntry, string | null>((r) => r.sub_type ?? null) }),
-  column({ id: 'fp', label: 'Coût en PF', align: 'right', value: read<SpellEntry, number | string>((r) => r.fp_cost) }),
+  column({ id: 'fp', label: 'Coût en FP', align: 'right', value: read<SpellEntry, number | string>((r) => r.fp_cost) }),
   column({ id: 'slots', label: 'Emplacements', align: 'right', value: read<SpellEntry, number>((r) => r.slots_used) }),
   column({ id: 'requirements', label: 'Prérequis', cell: 'spell-requirements', card: {} }),
   column({ id: 'effect', label: 'Effet', cell: 'text', value: read<SpellEntry, string>((r) => r.effect), card: { icon: 'info' } }),
@@ -311,7 +310,7 @@ const COLUMNS: Readonly<Record<CatalogKey, readonly CatalogColumn[]>> = {
     nameColumn('Cendre de guerre'),
     column({ id: 'category', label: 'Catégorie', value: read<AshOfWarEntry, string>((r) => r.category) }),
     column({ id: 'affinity', label: 'Affinité', value: read<AshOfWarEntry, string>((r) => r.affinity) }),
-    column({ id: 'fp', label: 'Coût en PF', align: 'right', value: read<AshOfWarEntry, number | string | null>((r) => r.fp_cost) }),
+    column({ id: 'fp', label: 'Coût en FP', align: 'right', value: read<AshOfWarEntry, number | string | null>((r) => r.fp_cost) }),
     column({ id: 'skill', label: 'Compétence', cell: 'text', value: read<AshOfWarEntry, string>((r) => r.skill), card: { icon: 'skill' } }),
     obtentionColumn(),
   ],
@@ -327,7 +326,7 @@ const COLUMNS: Readonly<Record<CatalogKey, readonly CatalogColumn[]>> = {
   spirits: [
     nameColumn('Cendre d’esprit'),
     column({ id: 'category', label: 'Catégorie', value: read<SpiritAshEntry, string>((r) => r.category) }),
-    column({ id: 'fp', label: 'Coût en PF', align: 'right', value: read<SpiritAshEntry, number | null>((r) => r.fp_cost ?? null) }),
+    column({ id: 'fp', label: 'Coût en FP', align: 'right', value: read<SpiritAshEntry, number | null>((r) => r.fp_cost ?? null) }),
     column({ id: 'hp', label: 'Coût en PV', align: 'right', value: read<SpiritAshEntry, number | null>((r) => r.hp_cost ?? null) }),
     column({ id: 'effect', label: 'Effet', cell: 'text', value: read<SpiritAshEntry, string | null>((r) => r.effect ?? r.summary), card: { icon: 'info' } }),
     obtentionColumn(),
@@ -360,8 +359,8 @@ const COLUMNS: Readonly<Record<CatalogKey, readonly CatalogColumn[]>> = {
     nameColumn('Origine'),
     column({ id: 'level', label: 'Niveau', align: 'right', value: read<OriginEntry, number>((r) => r.level) }),
     column({ id: 'hp', label: 'PV', align: 'right', value: read<OriginEntry, number>((r) => r.base_stats.hp) }),
-    column({ id: 'fp', label: 'PF', align: 'right', value: read<OriginEntry, number>((r) => r.base_stats.fp) }),
-    column({ id: 'stamina', label: 'Endurance', menuLabel: 'Endurance (jauge)', align: 'right', value: read<OriginEntry, number>((r) => r.base_stats.stamina) }),
+    column({ id: 'fp', label: 'FP', align: 'right', value: read<OriginEntry, number>((r) => r.base_stats.fp) }),
+    column({ id: 'stamina', label: 'Endurance (jauge)', align: 'right', value: read<OriginEntry, number>((r) => r.base_stats.stamina) }),
     column({ id: 'equipLoad', label: 'Poids max.', align: 'right', format: 'decimal', digits: 1, value: read<OriginEntry, number>((r) => r.base_stats.equip_load) }),
     ...ATTRIBUTE_KEYS.map((k) =>
       column({
@@ -475,17 +474,12 @@ export function passiveParts(row: CatalogRow): PassiveParts {
   return { statuses, texts: statuses.length > 0 ? [] : weapon.passive_effects }
 }
 
-/** Libellé de la compétence d'arme selon son type de données. */
-const SKILL_TYPES: Readonly<Record<string, string>> = {
-  'Ash of War skill': 'Cendre de guerre',
-  'Unique Skill': 'compétence unique',
-  'Standard skill (no Ash of War item)': 'compétence standard',
-}
-
 /** Compétence d'une arme. */
 export interface SkillParts {
   readonly name: string | null
   readonly type: string
+  /** Vrai pour une arme sans compétence (`skill.type` = « No skill ») : la cellule dit « Aucune », pas « Non documenté ». */
+  readonly none: boolean
 }
 
 /**
@@ -495,7 +489,7 @@ export interface SkillParts {
  */
 export function skillParts(row: CatalogRow): SkillParts {
   const { skill } = row as unknown as WeaponEntry
-  return { name: skill.name, type: SKILL_TYPES[skill.type] ?? skill.type }
+  return { name: skill.name, type: skillTypeLabel(skill.type), none: skill.type === NO_SKILL_TYPE }
 }
 
 /** Amélioration d'une arme telle que l'affiche la cellule. */

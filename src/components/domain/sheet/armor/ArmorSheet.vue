@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import type { ArmorEntry } from '../../../../data/types/armor.ts'
 import CxIcon from '../../../ds/CxIcon.vue'
 import CxValue from '../../../ds/CxValue.vue'
+import { armorSlotLabel } from '../../../../ui/armorSlots.ts'
 import SheetAcquisition from '../SheetAcquisition.vue'
 import SheetAlerts from '../SheetAlerts.vue'
 import SheetEffect from '../SheetEffect.vue'
@@ -29,6 +30,7 @@ const props = defineProps<{
 const ref = computed(() => `armor:${props.armor.id}` as const)
 const alerts = computed(() => armorAlerts(props.armor))
 const facts = computed(() => armorFacts(props.armor))
+// Longueur : sans détails d'effet, la présence se décide sur la description seule.
 const hasEffect = computed(() => (props.armor.effect_details?.length ?? 0) > 0 || Boolean(props.armor.description))
 </script>
 
@@ -36,10 +38,10 @@ const hasEffect = computed(() => (props.armor.effect_details?.length ?? 0) > 0 |
   <SheetHeader
     kind="armor"
     :entity-ref="ref"
-    :name="armor.name"
+    :name="armor.derived.displayName"
     :source="armor.source"
     :url="armor.url"
-    :category="armor.category"
+    :category="armorSlotLabel(armor.category)"
   >
     <template #meta>
       <span class="sh-meta">

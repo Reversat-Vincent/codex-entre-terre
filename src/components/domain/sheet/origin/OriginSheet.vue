@@ -40,7 +40,7 @@ const EQUIPMENT_KINDS = ['weapon', 'armor', 'spell', 'talisman', 'item', 'ash'] 
   <SheetHeader
     kind="origin"
     :entity-ref="ref"
-    :name="origin.name"
+    :name="origin.derived.displayName"
     :source="origin.source"
     :url="origin.url"
   >

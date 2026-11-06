@@ -68,7 +68,7 @@ const hasCraftingBlock = computed(
   <SheetHeader
     kind="item"
     :entity-ref="ref"
-    :name="entry.name"
+    :name="entry.derived.displayName"
     :source="entry.source"
     :url="entry.url"
     :category="entry.category"

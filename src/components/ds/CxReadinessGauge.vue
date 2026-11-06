@@ -1,7 +1,7 @@
 <!-- Jauge de préparation : niveau du joueur face au niveau recommandé d'un boss, avec l'état en mot et en icône. -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import { gaugeMax, type ReadinessId } from '../../engine/readiness.ts'
+import type { ReadinessId } from '../../engine/readiness.ts'
 import { formatInt } from '../../ui/format.ts'
 import CxReadinessStatus from './CxReadinessStatus.vue'
 
@@ -20,12 +20,12 @@ const props = withDefaults(
     level: number
     /** Niveau recommandé ; `null` = non estimé (boss sans données de combat). */
     recommended: number | null
-    /** Maximum de l'échelle ; par défaut `gaugeMax(level, recommended)` du moteur. */
-    max?: number
+    /** Maximum de l'échelle, fourni par le moteur (`gaugeMax`, via le store `analysis`) : le composant ne le calcule pas. */
+    max: number
     /** Affiche la pastille d'état au-dessus de la piste (vrai par défaut). */
     showStatus?: boolean
   }>(),
-  { max: undefined, showStatus: true },
+  { showStatus: true },
 )
 
 /**
@@ -41,7 +41,7 @@ const STATES: Record<ReadinessId, { label: string; cls: string }> = {
 }
 
 const info = computed(() => STATES[props.state])
-const scaleMax = computed(() => props.max ?? gaugeMax(props.level, props.recommended))
+const scaleMax = computed(() => props.max)
 const clampPct = (n: number): number => (scaleMax.value > 0 ? Math.min(100, Math.max(0, (n / scaleMax.value) * 100)) : 0)
 const fillPct = computed(() => clampPct(props.level))
 const tickPct = computed(() => (props.recommended === null ? null : clampPct(props.recommended)))

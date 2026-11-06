@@ -43,6 +43,7 @@ const STAGE_PHRASE: Readonly<Record<StageId, string>> = {
  * @returns Une entrée par étape, avec son libellé et ses régions d'exemple.
  */
 export function threadStages(): ThreadStage[] {
+  // Compteur : une étape sans colonne compte 0 arme.
   return STAGE_IDS.map((id) => ({ id, label: STAGE_LABELS[id], regions: STAGE_REGIONS[id] }))
 }
 
@@ -82,7 +83,7 @@ function zoneRankOf(row: ScoredWeapon): number {
 
 /** Libellés des raisons qui masquent une arme : phrase du bouton d'élargissement, et raison affichée sur une ligne grisée du plein écran. */
 export const HIDDEN_REASON_TEXTS: Readonly<Record<MaskReason | 'style', { readonly action: string; readonly reason: string; readonly icon: string }>> = {
-  // Texte minimal (K-V1, tâche de logique) : « hors build » n'est jamais proposé en élargissement (`widenSuggestions`), seule sa raison s'affiche.
+  // « Hors build » n'est jamais proposé en élargissement (`widenSuggestions`), seule sa raison s'affiche ; son seuil (D48) s'y ajoute par `hiddenReasonOf`.
   'off-build': { action: 'Changer de build cible', reason: 'Hors du build cible', icon: 'sliders' },
   'content-sote': { action: 'Activer Shadow of the Erdtree', reason: 'Contenu Shadow of the Erdtree désactivé', icon: 'plus' },
   'content-tp': { action: 'Activer le Tarnished Pack', reason: 'Contenu Tarnished Pack désactivé', icon: 'plus' },
@@ -91,6 +92,20 @@ export const HIDDEN_REASON_TEXTS: Readonly<Record<MaskReason | 'style', { readon
   quest: { action: 'Inclure les armes de quête', reason: 'Arme de quête exclue', icon: 'quest' },
   estimate: { action: 'Inclure les valeurs estimées', reason: 'Valeurs estimées exclues', icon: 'approx' },
   style: { action: 'Élargir le style à « Hybride »', reason: 'Hors du style choisi', icon: 'sliders' },
+}
+
+/**
+ * Raison de masquage d'une arme, prête à afficher sur une ligne grisée. Pour « hors build », elle cite le seuil de la limite
+ * `weapon-hidden-off-build` (paramètre `max`, D48) plutôt que de le recopier ici.
+ * @param row Arme évaluée.
+ * @returns La raison, ou `null` si l'arme est visible.
+ */
+export function hiddenReasonOf(row: ScoredWeapon): string | null {
+  if (row.hidden === null) return null
+  const { reason } = HIDDEN_REASON_TEXTS[row.hidden]
+  if (row.hidden !== 'off-build') return reason
+  const max = row.score.explanation.limits.find((l) => l.code === 'weapon-hidden-off-build')?.params?.max
+  return typeof max === 'number' ? `${reason} : adéquation inférieure à ${max} sur 25` : reason
 }
 
 /**
@@ -318,7 +333,7 @@ export function attackSortValue(row: ScoredWeapon): number {
  * @returns Le maximum, ou `null`.
  */
 export function passiveSortValue(row: ScoredWeapon): number | null {
-  const values = STATUS_KEYS.map((k) => row.candidate.weapon.status_buildup?.[k] ?? 0).filter((v) => v > 0)
+  const values = STATUS_KEYS.map((k) => row.candidate.weapon.status_buildup?.[k]).filter((v): v is number => typeof v === 'number' && v > 0)
   return values.length === 0 ? null : Math.max(...values)
 }
 

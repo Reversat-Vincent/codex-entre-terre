@@ -219,12 +219,12 @@ function onToggle(target: TimelineBossView, event: Event): void {
         v-if="state"
         state="defeated"
       />
-      <template v-else-if="data && data.readiness && readinessState">
+      <template v-else-if="data && data.readiness && readinessState && data.gaugeMax !== null">
         <CxReadinessGauge
           :state="readinessState"
           :level="playerLevel"
           :recommended="recommended"
-          :max="data.gaugeMax ?? undefined"
+          :max="data.gaugeMax"
         >
           <template #extra>
             <span class="cx-row tight">

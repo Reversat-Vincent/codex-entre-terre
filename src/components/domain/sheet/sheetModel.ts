@@ -192,6 +192,7 @@ export function otherSectionViews(
   const same = (a: readonly string[], b: readonly string[]): boolean => a.length === b.length && a.every((line, i) => line === b[i])
   return Object.entries(sections)
     .filter(([, s]) => !(notes && (s.tables === undefined || s.tables.length === 0) && same(s.text, notes)))
+    // Longueur : une section sans tableau n'a aucun tableau à afficher.
     .filter(([, s]) => s.text.length > 0 || (s.tables?.length ?? 0) > 0)
     .map(([title, section]) => ({ title, section }))
 }

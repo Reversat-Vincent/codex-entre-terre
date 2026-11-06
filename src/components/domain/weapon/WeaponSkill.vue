@@ -7,10 +7,10 @@ import CxDamageChip from '../../ds/CxDamageChip.vue'
 import CxIcon from '../../ds/CxIcon.vue'
 import CxValue from '../../ds/CxValue.vue'
 import { parseSkillCost } from '../../../ui/skillCost.ts'
+import { NO_SKILL_TYPE, skillTypeLabel } from '../../../ui/skillTypes.ts'
 import type { SkillCost } from '../../../ui/skillCost.ts'
 import WikiText from '../WikiText.vue'
 import WeaponSection from './WeaponSection.vue'
-import { skillTypeLabel } from './weaponModel.ts'
 
 /**
  * Compétence de l'arme et effets passifs. Le nom, la description et les effets sont des données du wiki : ils restent en anglais, tels quels.
@@ -23,6 +23,8 @@ const props = defineProps<{
 
 const skill = computed(() => props.weapon.skill)
 const typeLabel = computed(() => skillTypeLabel(skill.value.type))
+/** Arme sans compétence (`No skill`) : « Aucune » ; un nom `null` avec un autre type reste « Non documenté ». */
+const hasNoSkill = computed(() => skill.value.type === NO_SKILL_TYPE)
 const fp = computed(() => (skill.value.fp_cost === null ? null : parseSkillCost(skill.value.fp_cost)))
 const stamina = computed(() => (skill.value.stamina_cost_wiki === undefined ? null : parseSkillCost(skill.value.stamina_cost_wiki)))
 const statuses = computed(() =>
@@ -61,9 +63,13 @@ function costParts(cost: SkillCost): string[] {
           class="wp-skill-title"
         >{{ skill.name }}</b>
         <span
-          v-else
+          v-else-if="hasNoSkill"
           class="cx-muted"
-        >Aucune compétence</span>
+        >Aucune</span>
+        <CxValue
+          v-else
+          :value="null"
+        />
         <span
           v-if="skill.name && typeLabel"
           class="cx-chip"
@@ -79,7 +85,7 @@ function costParts(cost: SkillCost): string[] {
         </p>
         <dl class="wp-costs">
           <div>
-            <dt>Coût en PF</dt>
+            <dt>Coût en FP</dt>
             <dd>
               <CxValue
                 v-if="skill.fp_cost === null"

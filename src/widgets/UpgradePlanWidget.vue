@@ -82,7 +82,10 @@ const weaponSource = computed<SourceName | null>(() => (weapon.value !== null &&
 
 /** Niveau maximal de l'arme : lu sur le plan de +0 à +0, que le moteur ne produit que pour une arme dont le type d'amélioration est connu. */
 const maxLevel = computed(() => (weaponRef.value === '' ? null : (analysis.upgradePlanFor(weaponRef.value, 0, 0)?.value?.maxLevel ?? null)))
+// Niveau maximal inconnu (arme sans type d'amélioration connu) : borné à 0, le sélecteur est alors désactivé.
 const upper = computed(() => Math.min(toLevel.value ?? maxLevel.value ?? 0, maxLevel.value ?? 0))
+// Borne du sélecteur « Objectif » : 0 tant que le niveau maximal est inconnu, le sélecteur étant alors désactivé.
+const stepperMax = computed(() => maxLevel.value ?? 0)
 const lower = computed(() => Math.min(fromLevel.value, upper.value))
 const fromModel = computed({
   get: () => lower.value,
@@ -178,7 +181,7 @@ const stageName = computed(() => (playerStage.value === null ? null : STAGE_LABE
             label="Objectif"
             prefix="+"
             :min="lower"
-            :max="maxLevel ?? 0"
+            :max="stepperMax"
             :disabled="maxLevel === null"
           />
         </span>

@@ -79,7 +79,7 @@ const wastedText = computed(() => {
 const stats = computed(() => [
   { key: 'hp', label: 'PV', value: props.derived?.value?.hp ?? null, format: 'int' as const },
   { key: 'fp', label: 'FP', value: props.derived?.value?.fp ?? null, format: 'int' as const },
-  { key: 'stamina', label: 'Endurance', value: props.derived?.value?.stamina ?? null, format: 'int' as const },
+  { key: 'stamina', label: 'Endurance (jauge)', value: props.derived?.value?.stamina ?? null, format: 'int' as const },
   { key: 'equipLoad', label: 'Charge', value: props.derived?.value?.equipLoad ?? null, format: 'decimal' as const },
 ])
 </script>

@@ -290,6 +290,7 @@ export function summaryParagraphs(summary: string | null | undefined): string[] 
  * @returns Vrai si au moins l'un des trois existe.
  */
 export function hasItemEffect(entry: ItemEntry): boolean {
+  // Longueur : l'absence de détails d'effet veut dire « aucun détail », pas une valeur à afficher.
   return Boolean(entry.effect) || (entry.effect_details?.length ?? 0) > 0 || Boolean(entry.description)
 }
 

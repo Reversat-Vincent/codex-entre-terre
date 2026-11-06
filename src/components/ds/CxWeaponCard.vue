@@ -9,6 +9,7 @@ import { STATUS_KEYS } from '../../data/keys.ts'
 import { formatInt } from '../../ui/format.ts'
 import { WEAPON_CLASS_ICONS } from '../../ui/labels.ts'
 import type { ReliabilityKey } from '../../ui/labels.ts'
+import { NO_SKILL_TYPE, skillTypeLabel } from '../../ui/skillTypes.ts'
 import CxButton from './CxButton.vue'
 import CxDamageChip from './CxDamageChip.vue'
 import CxFlag from './CxFlag.vue'
@@ -210,10 +211,10 @@ const hasFlags = computed(() => Object.values(flags.value).some(Boolean))
       <span>
         <b v-if="skillName !== null">{{ skillName }}</b>
         <CxValue
-          v-else-if="skillType !== 'No skill'"
+          v-else-if="skillType !== NO_SKILL_TYPE"
           :value="null"
         />
-        {{ ' ' }}<span class="cx-muted">{{ skillType }}</span>
+        {{ ' ' }}<span class="cx-muted">{{ skillTypeLabel(skillType) }}</span>
       </span>
     </div>
 

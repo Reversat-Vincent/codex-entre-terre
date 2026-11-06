@@ -56,7 +56,8 @@ interface Row {
   name: string
   grade: WeaponEntry['scaling'][WeaponAttributeKey]
   check: RequirementCheck | null
-  twoHand: boolean
+  /** Force effective à deux mains, `null` hors de la ligne de Force ou à une main. */
+  twoHand: number | null
   state: string
 }
 
@@ -69,7 +70,7 @@ const rows = computed((): Row[] =>
       name: ATTRIBUTE_LABELS[attr].name,
       grade: props.weapon.scaling[attr],
       check,
-      twoHand: attr === 'str' && props.effectiveStrength !== null,
+      twoHand: attr === 'str' ? props.effectiveStrength : null,
       state,
     }
   }),
@@ -163,10 +164,10 @@ const limits = computed(() => (props.requirements?.explanation.limits ?? []).map
               {{ formatInt(attrs[r.attr]) }}
               <span class="wp-state-inline">{{ r.state }}</span>
               <span
-                v-if="r.twoHand"
+                v-if="r.twoHand !== null"
                 class="wp-2h"
                 title="Force × 1,5 à deux mains, arrondie à l'entier inférieur"
-              >2M ×1,5 = {{ formatInt(effectiveStrength ?? 0) }}</span>
+              >2M ×1,5 = {{ formatInt(r.twoHand) }}</span>
             </td>
             <td class="wp-state wp-col-state">
               {{ r.state }}
@@ -188,7 +189,7 @@ const limits = computed(() => (props.requirements?.explanation.limits ?? []).map
       tone="warn"
       title="Prérequis non atteints."
     >
-      Il manque {{ gapText }}{{ missing.some((c) => c.twoHandApplied) ? ' (Force réelle)' : '' }}. L'arme reste utilisable, mais l'attaque calculée est réduite de 40 % pour les types de dégâts concernés, sans bonus de scaling.
+      Il manque {{ gapText }}{{ missing.some((c) => c.twoHandApplied) ? ' (Force réelle)' : '' }}. L'arme reste utilisable, mais l'attaque calculée est réduite de 40 % dès le premier point manquant (règle du jeu) pour les types de dégâts concernés, sans bonus de scaling.
     </CxNote>
     <CxNote
       v-else

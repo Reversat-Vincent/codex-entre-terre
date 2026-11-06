@@ -37,6 +37,7 @@ const enc = computed(() => props.model.encounter)
 const level = computed(() => analysis.bossLevel(props.model.key))
 const rows = computed(() => statusRows(enc.value))
 const hasWeaknesses = computed(() => enc.value?.damage_negation_percent !== undefined)
+// Longueur : une rencontre sans données de combat n'a aucune valeur de runes à afficher.
 const hasRunes = computed(() => (enc.value?.runes_values.length ?? 0) > 0)
 const dealt = computed(() => dealtChips(enc.value?.damage_types_dealt))
 const facts = computed(() => combatFacts(enc.value))
@@ -84,8 +85,9 @@ async function openWhy(explanation: Explanation, subject: string): Promise<void>
     >
       Les faiblesses et les immunités ne sont pas documentées pour cette rencontre : le Codex affiche « Non documenté », jamais 0.
     </CxNote>
+    <!-- La note du wiki (« pas d'infobox ») est masquée quand la rencontre a des données de combat : elle contredirait les PV et les runes affichés. -->
     <CxNote
-      v-if="boss.encounter_data_note"
+      v-if="boss.encounter_data_note && !hasCombatData"
       tone="info"
     >
       {{ boss.encounter_data_note }}

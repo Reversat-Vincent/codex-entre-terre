@@ -24,7 +24,7 @@ export interface StatMeta {
 export const STAT_META: readonly StatMeta[] = [
   { stat: 'hp', label: 'PV', name: 'Points de vie', perPoint: 'PV par point', digits: 0 },
   { stat: 'fp', label: 'FP', name: 'Points de concentration', perPoint: 'FP par point', digits: 0 },
-  { stat: 'stamina', label: 'Endurance', name: "Jauge d'endurance", perPoint: "d'endurance par point", digits: 0 },
+  { stat: 'stamina', label: 'Endurance (jauge)', name: "Jauge d'endurance", perPoint: "d'endurance par point", digits: 0 },
   { stat: 'equipLoad', label: 'Charge', name: "Charge d'équipement", perPoint: "de charge par point", digits: 1 },
 ]
 

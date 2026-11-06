@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { originAttributes } from '../../engine/level.ts'
 import { useAnalysisStore } from '../../stores/analysis.ts'
 import { useCriteriaStore } from '../../stores/criteria.ts'
+import { useToastsStore } from '../../stores/toasts.ts'
 import { formatInt } from '../../ui/format.ts'
 import { ATTRIBUTE_KEYS, ATTRIBUTE_LABELS } from '../../ui/labels.ts'
 import type { AttributeKey } from '../../ui/labels.ts'
@@ -12,7 +13,7 @@ import CxReliabilityBadge from '../ds/CxReliabilityBadge.vue'
 import CxWhyPanel from '../ds/CxWhyPanel.vue'
 import CxSelect from '../ds/CxSelect.vue'
 import CriteriaLevelStepper from './CriteriaLevelStepper.vue'
-import { archetypeOptions, originOptions, raiseToOrigin } from './criteriaModel.ts'
+import { archetypeOptions, originOptions } from './criteriaModel.ts'
 import { useCriteriaData } from './useCriteriaData.ts'
 
 /**
@@ -22,6 +23,7 @@ import { useCriteriaData } from './useCriteriaData.ts'
  */
 const criteria = useCriteriaStore()
 const analysis = useAnalysisStore()
+const toasts = useToastsStore()
 const { origins, entityName } = useCriteriaData()
 
 const c = computed(() => criteria.criteria)
@@ -39,9 +41,15 @@ const minimums = computed(() => (chosenOrigin.value === null ? null : originAttr
 const origin = computed({
   get: () => c.value.character.origin,
   set: (id: string) => {
-    const start = origins.value.find((o) => o.id === id)
-    // Choisir une origine relève les attributs jusqu'à sa base, sans jamais en baisser un (comportement du design).
-    criteria.set({ character: { origin: id, ...(start ? { attributes: raiseToOrigin(c.value.character.attributes, originAttributes(start)) } : {}) } })
+    // Le store décide s'il reprend les attributs de départ de l'origine (seulement si le joueur ne les a pas modifiés). Quand il le fait,
+    // l'interface le dit et propose « Annuler » : la copie prise avant l'appel rétablit l'origine et les attributs précédents.
+    const previous = { origin: c.value.character.origin, attributes: { ...c.value.character.attributes } }
+    if (!criteria.setOrigin(id)) return
+    toasts.undoable(
+      'Attributs de départ de l’origine repris.',
+      () => criteria.set({ character: { origin: previous.origin, attributes: previous.attributes } }),
+      'refresh',
+    )
   },
 })
 const archetype = computed({

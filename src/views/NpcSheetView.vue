@@ -20,7 +20,7 @@ const role = computed(() => (typeof entry.value?.infobox.role === 'string' ? ent
   <SheetPage
     kind="npc"
     :view="sheet.view.value"
-    :name="entry?.name ?? null"
+    :name="entry?.derived.displayName ?? null"
     :category="role"
     :failed="sheet.failed.value"
     @retry="sheet.retry()"

@@ -26,6 +26,7 @@ const props = defineProps<{
 }>()
 
 const ref = computed(() => `talisman:${props.talisman.id}` as const)
+// Longueur : une liste de détails absente veut dire que les valeurs exactes ne sont pas documentées.
 const alerts = computed(() =>
   presentAlerts([
     missingFieldsAlert([{ label: 'Valeurs exactes de l’effet', missing: (props.talisman.effect_details?.length ?? 0) === 0 }]),
@@ -43,7 +44,7 @@ const facts = computed((): SheetFact[] => [
   <SheetHeader
     kind="talisman"
     :entity-ref="ref"
-    :name="talisman.name"
+    :name="talisman.derived.displayName"
     :source="talisman.source"
     :url="talisman.url"
     :category="talisman.category"

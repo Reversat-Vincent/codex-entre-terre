@@ -32,6 +32,7 @@ const props = withDefaults(
 const SOLD_KINDS: readonly EntityKind[] = ['item', 'weapon', 'armor', 'talisman', 'spell', 'ash', 'spirit']
 
 const model = computed(() => shopTable(props.rows))
+// Compteur de lignes : sans tableau, aucune ligne, donc pas de défilement.
 const scrolls = computed(() => (model.value?.rows.length ?? 0) > 14)
 </script>
 

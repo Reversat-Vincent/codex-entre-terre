@@ -19,7 +19,7 @@ const entry = computed(() => sheet.entry.value)
   <SheetPage
     kind="origin"
     :view="sheet.view.value"
-    :name="entry?.name ?? null"
+    :name="entry?.derived.displayName ?? null"
     :failed="sheet.failed.value"
     @retry="sheet.retry()"
   >

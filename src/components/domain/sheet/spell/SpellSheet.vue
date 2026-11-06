@@ -34,7 +34,7 @@ const facts = computed(() => spellFacts(props.spell))
   <SheetHeader
     kind="spell"
     :entity-ref="ref"
-    :name="spell.name"
+    :name="spell.derived.displayName"
     :source="spell.source"
     :url="spell.url"
     :category="spell.category"

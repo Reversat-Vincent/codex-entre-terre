@@ -114,6 +114,7 @@ const shownActions = computed(() => {
 })
 
 /** Vrai quand l'index est lu et que la saisie ne correspond à aucun élément du jeu. */
+// Compteurs de résultats : un groupe absent compte 0 résultat.
 const noDocResults = computed(() => trimmed.value !== '' && index.value !== null && (base.value?.total ?? 0) === 0)
 
 const sections = computed<PaletteSection[]>(() => {
@@ -147,6 +148,7 @@ const view = computed(() => {
 const announcement = computed(() => {
   if (trimmed.value === '') return ''
   if (indexStatus.value === 'loading' || (index.value === null && indexStatus.value !== 'error')) return 'Chargement de l’index de recherche'
+  // Compteurs : un groupe de résultats absent compte 0.
   const total = (base.value?.total ?? 0) + (baseActions.value?.total ?? 0)
   return total === 0 ? 'Aucun résultat' : `${formatInt(total)} résultat${total > 1 ? 's' : ''}`
 })

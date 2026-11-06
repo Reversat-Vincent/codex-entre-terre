@@ -33,7 +33,7 @@ const facts = computed(() => ashFacts(props.ash))
   <SheetHeader
     kind="ash"
     :entity-ref="ref"
-    :name="ash.name"
+    :name="ash.derived.displayName"
     :source="ash.source"
     :url="ash.url"
     :category="ash.category"

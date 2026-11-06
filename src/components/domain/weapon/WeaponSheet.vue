@@ -139,7 +139,7 @@ function toggleCompare(): void {
         name="chev-r"
         size="xs"
       />
-      <span aria-current="page">{{ weapon.name }}</span>
+      <span aria-current="page">{{ weapon.derived.displayName }}</span>
     </nav>
 
     <WeaponHeader

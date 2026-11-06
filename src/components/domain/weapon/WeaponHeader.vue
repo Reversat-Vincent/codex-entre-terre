@@ -44,7 +44,7 @@ const wikiUrl = computed(() => wikiUrlOf(props.weapon))
 <template>
   <header class="wp-head">
     <CxEntityName
-      :name="weapon.name"
+      :name="weapon.derived.displayName"
       :source="weapon.source as SourceName"
       size="xl"
       as="h1"

@@ -108,6 +108,7 @@ export function describeUpgradeTables(weapon: WeaponEntry): UpgradeTables {
  */
 export function sliderMax(weapon: WeaponEntry, tables: UpgradeTables): number {
   if (tables.mode === 'none') return 0
+  // `maxLevel` absent : aucun niveau supplémentaire connu, le plus haut niveau documenté (0 sans tableau) fixe le maximum.
   return Math.max(weapon.derived.upgrade.maxLevel ?? 0, tables.highestDocumented)
 }
 
@@ -212,7 +213,12 @@ export function damageChart(weapon: WeaponEntry, affinity: string): ChartData {
   const table = weapon.upgrade.tables?.[affinity]
   if (table === undefined) return { x: [], series: [] }
   const x = levelsOf(table)
-  const types = DAMAGE_KEYS.filter((t) => x.some((n) => (rowAt(table, n)?.attack[t] ?? 0) !== 0))
+  // Un type sans valeur numérique (absent ou illisible) ne donne pas de série : seuls les types qui ont des dégâts sont tracés.
+  const hasDamage = (n: number, t: DamageKey): boolean => {
+    const v = rowAt(table, n)?.attack[t]
+    return typeof v === 'number' && v !== 0
+  }
+  const types = DAMAGE_KEYS.filter((t) => x.some((n) => hasDamage(n, t)))
   const series = types.map((t, i): ChartSeries => ({
     id: t,
     label: DAMAGE_LABELS[t],
@@ -483,23 +489,6 @@ export function acquisitionViews(weapon: WeaponEntry): AcquisitionView[] {
 
 // ─── Compétence ────────────────────────────────────────────────────────────────
 
-/** Libellés français des types de compétence de `skill.type` ; `null` : pas de compétence à afficher. */
-const SKILL_TYPE_LABELS: Readonly<Record<string, string | null>> = {
-  'Unique Skill': 'Compétence unique',
-  'Ash of War skill': 'Cendre de guerre',
-  'Standard skill (no Ash of War item)': 'Compétence standard',
-  'No skill': null,
-}
-
-/**
- * Libellé français du type de compétence.
- * @param type Valeur de `skill.type`.
- * @returns Le libellé, ou `null` pour « aucune compétence » ; un type inconnu est repris tel quel.
- */
-export function skillTypeLabel(type: string): string | null {
-  return type in SKILL_TYPE_LABELS ? (SKILL_TYPE_LABELS[type] ?? null) : type
-}
-
 /**
  * Tri des armes voisines : les armes évaluées d'abord (score décroissant, `null` après les notes), puis les autres par nom.
  * @param a Première arme voisine.
@@ -514,6 +503,6 @@ export function bySimilarOrder(
   const ra = rank(a.score)
   const rb = rank(b.score)
   if (ra !== rb) return ra - rb
-  if (ra === 0 && a.score !== b.score) return (b.score ?? 0) - (a.score ?? 0)
+  if (typeof a.score === 'number' && typeof b.score === 'number' && a.score !== b.score) return b.score - a.score
   return a.name.localeCompare(b.name, 'en')
 }
