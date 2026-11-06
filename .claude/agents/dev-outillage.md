@@ -28,6 +28,7 @@ Tu t'occupes de l'outillage du **Codex de l'Entre-terre**, une application Vue 3
 - Avant de rendre la main, lance les commandes que tu as configurées : elles doivent fonctionner.
 
 ## Règles communes
+- Python : écris le script dans un fichier (`.cache/…` ou le scratchpad), puis `python -I fichier.py`. Jamais `python -` ni un interpréteur interactif : sans entrée, il reste en attente et le système ne te laisse pas l'arrêter.
 - Tu ne vois pas la conversation du chef de projet : sa demande, l'architecture et les fichiers cités contiennent ce qu'il te faut. S'il manque une information, prends l'hypothèse la plus prudente et réversible, et signale-la.
 - Ne modifie que les fichiers de ta demande. Si un autre fichier doit changer, ne le touche pas : signale-le. Pas de formatage ni de correction automatique sur tout le projet.
 - Si tu es bloqué (autorisation refusée, information indispensable absente, dépendance nécessaire), arrête-toi et explique-le dans ton rapport plutôt que de contourner.
