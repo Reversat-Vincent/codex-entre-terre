@@ -108,3 +108,24 @@ export function formatSigned(value: number, maxDigits = 0): string {
   const sign = parts.negative ? '' : isZero ? '' : '+'
   return `${sign}${assemble(parts)}`
 }
+
+/** Mois en toutes lettres, de janvier à décembre. */
+const MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'] as const
+
+/**
+ * Formate une date calendaire (`AAAA-MM-JJ`, comme `metadata.retrieved` des données) à la française.
+ * Le calcul se fait sur les trois nombres, sans objet `Date` : aucun décalage de fuseau possible, et pas de dépendance aux données de l'ICU.
+ * @param ymd date au format `AAAA-MM-JJ` (une heure ISO après la date est ignorée)
+ * @param style `long` pour « 31 octobre 2026 » (« 1er novembre 2026 » le premier du mois), `short` pour « 31/10/2026 »
+ * @returns le texte, ou `null` si la date est absente, mal formée ou n'existe pas au calendrier (30 février) : l'appelant affiche « Non documenté »
+ */
+export function formatDate(ymd: string | null | undefined, style: 'long' | 'short' = 'long'): string | null {
+  const match = ymd ? /^(\d{4})-(\d{2})-(\d{2})(?:$|T)/.exec(ymd) : null
+  if (!match) return null
+  const [year, month, day] = [Number(match[1]), Number(match[2]), Number(match[3])]
+  // Vérification au calendrier grégorien : `Date.UTC` reporte un 30 février sur mars, ce qui trahit une date inexistante.
+  const check = new Date(Date.UTC(year, month - 1, day))
+  if (check.getUTCFullYear() !== year || check.getUTCMonth() !== month - 1 || check.getUTCDate() !== day) return null
+  if (style === 'short') return `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${String(year).padStart(4, '0')}`
+  return `${day === 1 ? '1er' : String(day)} ${MONTHS[month - 1]} ${year}`
+}

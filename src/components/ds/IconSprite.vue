@@ -1,5 +1,5 @@
 <!--
-  Sprite d'icônes du design system, copié tel quel de docs/design/ds/components/Iconography/preview.html (jeu original au trait, grille 24, aucune icône du jeu).
+  Sprite d'icônes du design system, copié de docs/design/ds/components/Iconography/preview.html (jeu original au trait, grille 24, aucune icône du jeu), plus `i-cols` tiré du prototype docs/design/Catalogue.dc.html (absent de l'aperçu d'iconographie).
   À insérer une seule fois dans la coquille ; CxIcon y fait référence par <use href="#i-…">. Balisage statique : aucune donnée n'y est interpolée.
 -->
 <template>
@@ -26,6 +26,7 @@
     <symbol id="i-max" viewBox="0 0 24 24"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></symbol>
     <symbol id="i-min" viewBox="0 0 24 24"><path d="M9 4v5H4"></path><path d="M15 4v5h5"></path><path d="M9 20v-5H4"></path><path d="M15 20v-5h5"></path></symbol>
     <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"></path></symbol>
+    <symbol id="i-cols" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M9.3 5v14"></path><path d="M14.7 5v14"></path></symbol>
     <symbol id="i-table" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M4 10h16"></path><path d="M4 15h16"></path><path d="M10 5v14"></path></symbol>
     <symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4z"></path><path d="M13 4h7v7h-7z"></path><path d="M4 13h7v7H4z"></path><path d="M13 13h7v7h-7z"></path></symbol>
     <symbol id="i-sort" viewBox="0 0 24 24"><path d="M8 5v14"></path><path d="M5 16l3 3 3-3"></path><path d="M16 19V5"></path><path d="M13 8l3-3 3 3"></path></symbol>

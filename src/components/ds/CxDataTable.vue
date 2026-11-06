@@ -344,7 +344,9 @@ function goTo(next: number): void {
 
 <style>
 .cx-dtable { display: grid; gap: var(--space-2); min-width: 0; }
-.cx-tbl-wrap { overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
+/* `isolation` : le z-index de l'en-tête collant (`--z-sticky`) reste dans le tableau. Sans cela, il rivalise avec la barre du haut, qui a le même
+   niveau : l'en-tête, plus tardif dans la page, la recouvrirait au défilement. */
+.cx-tbl-wrap { isolation: isolate; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
 .cx-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; line-height: 18px; }
 .cx-tbl th { position: sticky; top: 0; z-index: var(--z-sticky); padding: 8px 10px; border-bottom: 1px solid var(--line-strong); background: var(--surface-raised); color: var(--ink-2); font: 600 12px/16px var(--font-sans); text-align: left; white-space: nowrap; vertical-align: bottom; }
 .cx-tbl th.num { text-align: right; }

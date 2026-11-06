@@ -11,6 +11,25 @@ export interface ChartLayout {
   readonly bottom: number
 }
 
+/** Repère vertical permanent d'un graphique (palier, niveau du profil) : abscisse et libellé, lisibles sans couleur. */
+export interface ChartMarker {
+  /** Abscisse du repère, dans l'unité de `x` du graphique ; hors de l'étendue des abscisses, il n'est pas dessiné. */
+  readonly x: number
+  /** Libellé court écrit au-dessus de la ligne (« Palier 40 »). */
+  readonly label: string
+}
+
+/** Repère placé : position, ancrage du texte et rangée de l'étiquette (0 = la plus proche du tracé). */
+export interface PlacedMarker {
+  readonly marker: ChartMarker
+  /** Position horizontale de la ligne, dans le repère du `viewBox`. */
+  readonly x: number
+  /** Ancrage du texte : centré sur la ligne, ou calé pour ne pas sortir du `viewBox`. */
+  readonly anchor: 'start' | 'middle' | 'end'
+  /** Rangée de l'étiquette : les étiquettes qui se chevaucheraient montent d'une rangée. */
+  readonly row: number
+}
+
 /** Graduation de l'axe vertical. */
 export interface YTick {
   readonly value: number
@@ -46,6 +65,8 @@ export interface ChartGeometry {
   readonly endLabels: readonly EndLabel[]
   /** Ordonnée de la valeur donnée. */
   readonly yAt: (value: number) => number
+  /** Position horizontale d'une abscisse quelconque (interpolée linéairement entre la première et la dernière). */
+  readonly xAt: (value: number) => number
 }
 
 /**
@@ -156,6 +177,42 @@ export function xTickIndices(count: number, maxLabels = 7): number[] {
 }
 
 /**
+ * Place les repères verticaux d'un graphique : position, ancrage de l'étiquette et rangée. Deux étiquettes qui se chevaucheraient ne sont jamais
+ * superposées : la seconde monte d'une rangée (au plus `maxRows` ; au-delà, elle reste sur la dernière). Un repère hors de `[first, last]` est écarté.
+ * @param markers Repères demandés, dans un ordre quelconque.
+ * @param xAt Position horizontale d'une abscisse (`ChartGeometry.xAt`).
+ * @param range Première et dernière abscisse du graphique.
+ * @param width Largeur du `viewBox` : l'étiquette n'en sort pas.
+ * @param charWidth Largeur estimée d'un caractère de l'étiquette, dans le repère du `viewBox`.
+ * @param maxRows Nombre maximal de rangées d'étiquettes (3 par défaut).
+ * @returns Les repères placés, par abscisse croissante.
+ */
+export function placeMarkers(
+  markers: readonly ChartMarker[],
+  xAt: (value: number) => number,
+  range: { readonly first: number; readonly last: number },
+  width: number,
+  charWidth = 6.6,
+  maxRows = 3,
+): PlacedMarker[] {
+  const GAP = 6
+  const rowEnds: number[] = []
+  return markers
+    .filter((m) => Number.isFinite(m.x) && m.x >= range.first && m.x <= range.last)
+    .sort((a, b) => a.x - b.x)
+    .map((marker) => {
+      const x = xAt(marker.x)
+      const w = marker.label.length * charWidth
+      const anchor = x - w / 2 < 0 ? 'start' : x + w / 2 > width ? 'end' : 'middle'
+      const start = anchor === 'start' ? x : anchor === 'end' ? x - w : x - w / 2
+      let row = rowEnds.findIndex((end) => start >= end + GAP)
+      if (row < 0) row = rowEnds.length < maxRows ? rowEnds.length : maxRows - 1
+      rowEnds[row] = start + w
+      return { marker, x, anchor, row } satisfies PlacedMarker
+    })
+}
+
+/**
  * Calcule la géométrie d'un graphique en courbes.
  * @param xValues Abscisses numériques (niveaux d'amélioration), croissantes ; l'échelle est proportionnelle aux valeurs.
  * @param series Valeurs de chaque série, une par abscisse ; `null` interrompt la ligne (jamais interpolé, jamais 0).
@@ -163,13 +220,14 @@ export function xTickIndices(count: number, maxLabels = 7): number[] {
  * @param options `zeroBased` (vrai par défaut) ancre l'axe vertical à 0 quand toutes les valeurs sont positives ; `labelGap` écart minimal des étiquettes de bout de ligne.
  * @param options.zeroBased Ancre l'axe vertical à 0.
  * @param options.labelGap Écart minimal entre deux étiquettes de bout de ligne.
+ * @param options.maxXLabels Nombre maximal de graduations de l'axe horizontal (7 par défaut) ; moins sur un graphique étroit.
  * @returns La géométrie : échelles, graduations, chemins par plage continue et étiquettes de bout de ligne.
  */
 export function buildGeometry(
   xValues: readonly number[],
   series: readonly (readonly (number | null)[])[],
   layout: ChartLayout,
-  options: { readonly zeroBased?: boolean; readonly labelGap?: number } = {},
+  options: { readonly zeroBased?: boolean; readonly labelGap?: number; readonly maxXLabels?: number } = {},
 ): ChartGeometry {
   const x0 = layout.left
   const x1 = layout.width - layout.right
@@ -186,7 +244,8 @@ export function buildGeometry(
   const first = xValues[0] ?? 0
   const last = xValues[xValues.length - 1] ?? first
   const xSpan = last - first
-  const xs = xValues.map((v) => (xSpan > 0 ? x0 + ((v - first) / xSpan) * (x1 - x0) : (x0 + x1) / 2))
+  const xAt = (v: number): number => (xSpan > 0 ? x0 + ((v - first) / xSpan) * (x1 - x0) : (x0 + x1) / 2)
+  const xs = xValues.map(xAt)
 
   const paths = series.map((values) => {
     const runs: string[] = []
@@ -225,11 +284,12 @@ export function buildGeometry(
     yMin: nice.min,
     yMax: nice.max,
     yTicks: nice.ticks.map((value) => ({ value, y: yAt(value) })),
-    xTicks: xTickIndices(xValues.length).map((index) => ({ index, x: xs[index] as number })),
+    xTicks: xTickIndices(xValues.length, options.maxXLabels).map((index) => ({ index, x: xs[index] as number })),
     xs,
     paths,
     endLabels,
     yAt,
+    xAt,
   }
 }
 

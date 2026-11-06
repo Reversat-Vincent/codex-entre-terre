@@ -7,13 +7,14 @@ import CxValue from '../../components/ds/CxValue.vue'
 import CxWikiLink from '../../components/ds/CxWikiLink.vue'
 import type { ChartSeries } from '../../components/ds/types.ts'
 import type { YieldCurve } from '../../engine/attributeYield.ts'
+import type { ChartMarker } from '../../ui/chart.ts'
 import { formatInt } from '../../ui/format.ts'
 import { curveView } from './yieldModel.ts'
 
 /**
  * Panneau d'une statistique (PV, FP, endurance ou charge ; calculs.md, « Rendement des attributs »). Il ne lit aucun store : le widget lui passe la courbe
  * du moteur, et `yieldModel.ts` la met en forme. Le curseur du graphique part du niveau du profil ; les boutons de repère le déplacent sur un palier publié
- * ou sur le niveau du profil, ce qui marque le point sur la courbe (la courbe maison n'a pas de marqueurs permanents). Le gain du point suivant est
+ * ou sur le niveau du profil ; les paliers sont aussi tracés en repères permanents sur la courbe (`markers` de `CxLineChart`). Le gain du point suivant est
  * la seule valeur « Calculée » : son bouton « Pourquoi ? » est relayé au widget par l'événement `why`.
  */
 const props = withDefaults(
@@ -37,6 +38,8 @@ const view = computed(() => curveView(props.curve))
 const cursor = ref<number | null>(props.curve.position.points)
 
 const series = computed<ChartSeries[]>(() => [{ id: view.value.meta.stat, label: view.value.meta.label, values: view.value.values }])
+/** Paliers publiés, tracés en repères permanents sur la courbe (lisibles sans couleur : pointillés et libellé). */
+const markers = computed<ChartMarker[]>(() => view.value.paliers.map((p) => ({ x: p.points, label: `Palier ${p.points}` })))
 const chartTitle = computed(() => `${view.value.meta.name} selon ${view.value.attrName}, niveaux ${view.value.x[0] ?? 1} à ${view.value.x.at(-1) ?? 99}`)
 
 /** Les abscisses sont des niveaux d'attribut : le nombre seul, sans le « + » des niveaux d'amélioration. */
@@ -80,6 +83,7 @@ const nextText = computed(() => {
         :x-label="levelLabel"
         :x-name="view.attrName"
         :digits="view.meta.digits"
+        :markers="markers"
       />
     </div>
 
@@ -257,13 +261,6 @@ const nextText = computed(() => {
 
 <style scoped>
 .wd-yp { display: grid; gap: var(--space-3); min-width: 0; }
-/* Sur mobile, le graphique de `CxLineChart` (viewBox de 600 unités) est réduit à environ 0,6 : le texte des axes est agrandi pour rester lisible,
-   et laissé déborder de quelques pixels dans la marge plutôt que rogné. Défaut du composant partagé : voir le rapport. */
-@media (max-width: 767px) {
-  .wd-yp-chart :deep(.cx-chart) { overflow: visible; }
-  .wd-yp-chart :deep(.cx-chart text) { font-size: 15px; }
-  .wd-yp-chart :deep(.cx-chart .series) { stroke-width: 3; }
-}
 .wd-yp-title { margin: 0; color: var(--ink); font: 600 15px/20px var(--font-sans); }
 .wd-yp-now { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-2) var(--space-4); margin: 0; }
 .wd-yp-now dt { color: var(--ink-3); font-size: 12px; line-height: 16px; }

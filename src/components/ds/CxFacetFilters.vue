@@ -74,6 +74,15 @@ const groups = computed(() =>
   }),
 )
 
+/**
+ * Libellé du bouton qui déplie les options masquées d'une facette, accordé en nombre.
+ * @param hidden Nombre d'options masquées (au moins 1).
+ * @returns « Voir l'autre » pour une option, « Voir les N autres » au-delà.
+ */
+function moreLabel(hidden: number): string {
+  return hidden === 1 ? "Voir l'autre" : `Voir les ${hidden} autres`
+}
+
 function toggleUnfold(id: string): void {
   if (unfolded.has(id)) unfolded.delete(id)
   else unfolded.add(id)
@@ -132,7 +141,7 @@ function toggleUnfold(id: string): void {
             :aria-expanded="unfolded.has(group.facet.id)"
             @click="toggleUnfold(group.facet.id)"
           >
-            {{ unfolded.has(group.facet.id) ? 'Voir moins' : `Voir les ${group.hidden} autres` }}
+            {{ unfolded.has(group.facet.id) ? 'Voir moins' : moreLabel(group.hidden) }}
           </button>
         </template>
       </div>

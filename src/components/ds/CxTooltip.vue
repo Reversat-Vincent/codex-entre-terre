@@ -2,11 +2,15 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, useId, watch } from 'vue'
 
+/** Marge minimale entre la bulle et le bord de la fenêtre, en pixels. */
+const VIEWPORT_MARGIN = 8
+
 /**
  * Info-bulle autour d'un déclencheur focalisable (README du design system, composant Tooltip).
  * Le contenu de la bulle vient de `text` ou du slot `content` (une phrase en gras qui répond, une phrase qui explique) ; 280 px au plus.
  * Le déclencheur est un vrai `button` relié à la bulle par `aria-describedby`, la bulle porte `role="tooltip"`.
  * Ne jamais y mettre un autre élément interactif (pas de bouton dans le slot par défaut).
+ * La bulle reste dans la fenêtre : à l'ouverture, elle est décalée horizontalement si son alignement la ferait déborder (déclencheur près d'un bord).
  */
 const props = withDefaults(
   defineProps<{
@@ -22,6 +26,9 @@ const props = withDefaults(
 
 const bubbleId = useId()
 const root = ref<HTMLElement | null>(null)
+const bubble = ref<HTMLElement | null>(null)
+/** Décalage horizontal, en pixels, qui ramène la bulle dans la fenêtre (0 si elle y tient). */
+const shift = ref(0)
 const hovered = ref(false)
 const keyboardFocused = ref(false)
 const pinned = ref(false)
@@ -75,19 +82,45 @@ function onDocumentPointerdown(event: PointerEvent): void {
   }
 }
 
+/**
+ * Recale la bulle dans la fenêtre. La position naturelle (sans décalage) est déduite de la mesure en retranchant le décalage déjà appliqué :
+ * la mesure reste juste même quand elle est refaite à l'ouverture suivante ou au redimensionnement. Une bulle plus large que la fenêtre
+ * (rare : sa largeur est bornée par la fenêtre dans le CSS) est calée à gauche.
+ */
+function fitInViewport(): void {
+  const el = bubble.value
+  if (!el) return
+  const rect = el.getBoundingClientRect()
+  const viewport = document.documentElement.clientWidth
+  const left = rect.left - shift.value
+  const right = rect.right - shift.value
+  if (left < VIEWPORT_MARGIN) shift.value = VIEWPORT_MARGIN - left
+  else if (right > viewport - VIEWPORT_MARGIN) shift.value = Math.max(viewport - VIEWPORT_MARGIN - right, VIEWPORT_MARGIN - left)
+  else shift.value = 0
+}
+
 // Les écouteurs globaux n'existent que pendant que la bulle est ouverte.
-watch(visible, (isVisible) => {
-  if (isVisible) {
-    document.addEventListener('keydown', onDocumentKeydown)
-    document.addEventListener('pointerdown', onDocumentPointerdown)
-  } else {
-    document.removeEventListener('keydown', onDocumentKeydown)
-    document.removeEventListener('pointerdown', onDocumentPointerdown)
-  }
-})
+// `flush: 'post'` : la mesure se fait une fois le DOM à jour, avant l'affichage, donc sans saut visible.
+watch(
+  visible,
+  (isVisible) => {
+    if (isVisible) {
+      document.addEventListener('keydown', onDocumentKeydown)
+      document.addEventListener('pointerdown', onDocumentPointerdown)
+      window.addEventListener('resize', fitInViewport)
+      fitInViewport()
+    } else {
+      document.removeEventListener('keydown', onDocumentKeydown)
+      document.removeEventListener('pointerdown', onDocumentPointerdown)
+      window.removeEventListener('resize', fitInViewport)
+    }
+  },
+  { flush: 'post' },
+)
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', onDocumentKeydown)
   document.removeEventListener('pointerdown', onDocumentPointerdown)
+  window.removeEventListener('resize', fitInViewport)
 })
 </script>
 
@@ -110,8 +143,10 @@ onBeforeUnmount(() => {
     </button>
     <span
       :id="bubbleId"
+      ref="bubble"
       class="cx-tip-body"
       :class="bubbleClasses"
+      :style="shift === 0 ? undefined : { '--cx-tip-shift': `${shift}px` }"
       role="tooltip"
     >
       <slot name="content">{{ text }}</slot>
@@ -121,11 +156,11 @@ onBeforeUnmount(() => {
 
 <style>
 .cx-tip { position: relative; display: inline-flex; }
-.cx-tip-body { position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: var(--z-popover); width: max-content; max-width: 280px; padding: var(--space-2) var(--space-3); border-radius: var(--radius-s); background: var(--surface-raised); box-shadow: var(--shadow-2); color: var(--ink); font: 400 12px/17px var(--font-sans); text-align: left; white-space: normal; letter-spacing: 0; opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%); transition: opacity .12s ease; }
+.cx-tip-body { position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: var(--z-popover); width: max-content; max-width: min(280px, calc(100vw - 2 * 8px)); padding: var(--space-2) var(--space-3); border-radius: var(--radius-s); background: var(--surface-raised); box-shadow: var(--shadow-2); color: var(--ink); font: 400 12px/17px var(--font-sans); text-align: left; white-space: normal; letter-spacing: 0; opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(calc(-50% + var(--cx-tip-shift, 0px))); transition: opacity .12s ease; }
 .cx-tip-body b { font-weight: 600; }
 .cx-tip-body.below { top: calc(100% + 8px); bottom: auto; }
-.cx-tip-body.start { left: 0; transform: none; }
-.cx-tip-body.end { left: auto; right: 0; transform: none; }
+.cx-tip-body.start { left: 0; transform: translateX(var(--cx-tip-shift, 0px)); }
+.cx-tip-body.end { left: auto; right: 0; transform: translateX(var(--cx-tip-shift, 0px)); }
 /* L'ouverture est pilotée par le composant (survol, focus clavier, appui, Échap) : pas de règle :hover ici, sinon Échap serait sans effet. */
 .cx-tip-body.is-open { opacity: 1; visibility: visible; }
 .cx-tip-trigger { display: inline-flex; align-items: center; padding: 0; border: 0; background: transparent; color: inherit; cursor: help; }

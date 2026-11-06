@@ -1,5 +1,5 @@
 /* Styles globaux du Codex : remise à zéro légère, racine `.cx`, classes typographiques du design system, anneau de focus,
-   respect de prefers-reduced-motion, hachures des valeurs non documentées et utilitaires de mise en page minimaux.
+   respect de prefers-reduced-motion, hachures des valeurs non documentées, champ de saisie et utilitaires de mise en page minimaux.
    Toutes les valeurs viennent des variables de tokens.css ; les règles propres à un composant sont dans son fichier `Cx*.vue`. */
 
 /* ---------- Remise à zéro légère ---------- */
@@ -53,6 +53,13 @@ body { margin: 0; }
 .cx-hatch { background: repeating-linear-gradient(135deg, var(--hatch) 0 3px, transparent 3px 7px); }
 /* Case de tableau sans valeur : hachures et filet, le mot et l'icône restent visibles (jamais la couleur seule). */
 .cx-null.cx-null-cell { display: block; padding: 2px var(--space-2); border-radius: var(--radius-xs); box-shadow: inset 0 0 0 1px var(--line); }
+
+/* ---------- Champ de saisie (design system, `.cx-input` de bundle.css) ----------
+   Les écrans qui saisissent du texte hors d'un composant `Cx*` (recherche, nom d'un critère) réutilisent la classe ; sur mobile,
+   la hauteur passe à la cible tactile. */
+.cx-input { height: var(--size-controle); padding: 0 var(--space-3); border: 1px solid var(--control-border); border-radius: var(--radius-s); background: var(--surface-sunken); color: var(--ink); min-width: 0; }
+.cx-input::placeholder { color: var(--ink-3); }
+@media (max-width: 767px) { .cx-input { height: var(--size-cible); } }
 
 /* ---------- Mise en page minimale ---------- */
 .cx-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }

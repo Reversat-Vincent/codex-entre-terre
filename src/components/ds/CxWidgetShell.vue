@@ -123,7 +123,8 @@ function onMenuSelect(id: string): void {
           <CxIcon
             name="calc"
             size="sm"
-          />{{ how }}
+          />
+          <span class="cx-w-how-text">{{ how }}</span>
         </p>
       </div>
       <div class="cx-w-actions">
@@ -241,12 +242,17 @@ function onMenuSelect(id: string): void {
 
 <style>
 .cx-widget { position: relative; display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line-strong); border-radius: var(--radius-l); background: var(--surface); box-shadow: var(--shadow-1); }
-.cx-w-head { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-4) var(--space-5) var(--space-3); }
+/* L'en-tête passe à la ligne : sur mobile, les trois boutons de 44 px ne doivent pas écraser le titre (qui garde au moins 60 % de la ligne,
+   sinon les actions descendent sous lui, alignées à droite). */
+.cx-w-head { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-2) var(--space-3); padding: var(--space-4) var(--space-5) var(--space-3); }
 .cx-w-grip { margin-top: 5px; color: var(--ink-3); cursor: grab; touch-action: none; }
-.cx-w-titles { flex: 1 1 auto; min-width: 0; }
+.cx-w-titles { flex: 1 1 12rem; min-width: 0; }
 .cx-w-title { margin: 0; color: var(--ink); font: 600 22px/28px var(--font-display); }
-.cx-w-how { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 2px; color: var(--ink-3); font-size: 12px; line-height: 16px; }
-.cx-w-actions { display: flex; align-items: center; gap: 2px; flex: none; }
+.cx-w-how { display: flex; align-items: flex-start; gap: 6px; margin-top: 2px; color: var(--ink-3); font-size: 12px; line-height: 16px; }
+/* L'icône ƒ reste en tête de ligne ; le texte, enveloppé, se replie dans sa propre colonne au lieu de passer dessous. */
+.cx-w-how > .cx-i { flex: none; margin-top: 1px; }
+.cx-w-how-text { flex: 1 1 0; min-width: 0; }
+.cx-w-actions { display: flex; align-items: center; gap: 2px; flex: none; margin-left: auto; }
 .cx-w-body { min-width: 0; padding: 0 var(--space-5) var(--space-5); }
 .cx-w-body > .cx-note { margin-bottom: var(--space-3); }
 .cx-w-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-5); border-top: 1px solid var(--line); color: var(--ink-3); font-size: 12px; line-height: 16px; }

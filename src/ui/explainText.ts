@@ -3,6 +3,7 @@
 // Le moteur ne renvoie que des codes (docs/architecture.md § 5.1) ; `CxWhyPanel` et les widgets passent par ici pour afficher du texte.
 // Les noms propres (objets, boss, régions, champs de données) restent en anglais, comme dans `data/` ; tout le reste est en français, au vouvoiement.
 
+import type { AttackUnavailableCode } from '../engine/attackPower.ts'
 import { LABEL_CODES } from '../engine/codes.ts'
 import type { ComponentCode, LabelCode, LimitCode } from '../engine/codes.ts'
 import { UPGRADE } from '../engine/config/upgrade.ts'
@@ -211,7 +212,7 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   // Origine optimale : classement.
   'final-level': c(() => 'Niveau final avec cette origine'),
   'wasted-points': c(() => 'Points gaspillés'),
-  'early-fit': c(() => 'Adéquation précoce'),
+  'early-fit': c(() => 'Adéquation précoce', 'decimal'),
   'starting-weapon-bonus': c(() => "Bonus d'une arme de départ recommandée", 'signed'),
   rank: c(() => 'Rang'),
   // Puissance d'attaque calculée.
@@ -276,16 +277,16 @@ export const COMPONENT_SPECS: Readonly<Record<ComponentCode, ComponentSpec>> = {
   'estimate-penalty': c(() => "Pénalité d'un type d'amélioration estimé", 'signed'),
   'score-total': c(() => 'Score de recommandation'),
   // Armes efficaces contre une rencontre.
-  'weakness-absorption': c((p) => `Absorption ${p('type')} de la rencontre (en %)`, 'signed'),
+  'weakness-absorption': c((p) => `Absorption des dégâts ${p('type')} de la rencontre, en %`, 'signed'),
   // Couverture des données.
   'coverage-documented': c((p) => `Documenté par le wiki : ${p('row')}`),
   // Rendement des attributs.
   'yield-next-gain': c((p) => `Gain du point suivant pour ${p('stat')}, à ${p('points')} points`, 'decimal'),
   'yield-soft-cap': c((p) => `Palier de ${p('stat')} : le gain moyen par point passe de ${p('before')} à ${p('after')}, à partir de`),
-  // Priorités de montée de niveau (D42) : la valeur est l'attribut visé. Textes minimaux, à relire par l'interface.
-  'priority-weapon-requirement': c((p) => `${p('attr')} à monter pour atteindre le prérequis de la meilleure arme de votre étape (actuel ${p('actual')}) : viser`),
-  'priority-vigor-soft-cap': c((p) => `${p('attr')} à monter jusqu'au premier palier publié (actuel ${p('actual')}) : viser`),
-  'priority-build-target': c((p) => `${p('attr')} à rapprocher de la cible du build (actuel ${p('actual')}, écart ${p('points')}, poids ${p('weight')}) : viser`),
+  // Priorités de montée de niveau (D42) : la valeur affichée à droite est la valeur à atteindre, d'où la fin de phrase « à atteindre ».
+  'priority-weapon-requirement': c((p) => `${p('attr')}, prérequis de la meilleure arme de votre étape (actuellement ${p('actual')}), à atteindre`),
+  'priority-vigor-soft-cap': c((p) => `${p('attr')}, premier palier de rendement publié par le wiki (actuellement ${p('actual')}), à atteindre`),
+  'priority-build-target': c((p) => `${p('attr')}, cible du build (actuellement ${p('actual')}, écart de ${p('points')}, poids ${p('weight')}), à atteindre`),
 }
 
 /** Mise en forme d'une valeur de composante selon son format. */
@@ -389,7 +390,7 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'estimate-method': () => "Puissance estimée par une méthode approchée : le wiki ne publie pas la formule exacte du jeu.",
   'generic-curve': () => "Le bonus de scaling suit les deux courbes génériques du wiki, pas celles de chaque arme.",
   'curve-non-physical': () => "Affinité non physique : la courbe « non physique » du wiki s'applique à tous les types de dégâts de l'arme, physique compris.",
-  'curve-below-10': (p) => `À ${p('points')} points, sous 10, le wiki ne documente pas la courbe : interpolation proposée entre (1 ; 0) et (10 ; 15).`,
+  'curve-below-10': (p) => `À ${p('points')} points, sous 10, le wiki ne documente pas la courbe : interpolation proposée entre (1 ; 0) et le premier point publié de la courbe, à 10 points.`,
   'curve-above-99': (p) => `À ${p('points')} points, au-delà de 99, la valeur de la courbe à 99 est conservée.`,
   'base-interpolated': (p) => `Base interpolée entre +${p('from')} et +${p('to')} : valeur estimée.`,
   'coef-interpolated': () => 'Coefficient interpolé entre deux niveaux documentés : valeur estimée.',
@@ -410,7 +411,7 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'encounter-missing': (p) => `La rencontre ${p('encounter')} est absente des données : étape non déterminée.`,
   'stage-unclassified': () => "Aucune région exploitable ne donne d'étape : « Non classé », sans score et hors des colonnes.",
   'stage-from-regions-mentioned': () => "Étape déduite des régions citées dans le texte de l'arme, faute d'acquisition localisée.",
-  'stage-override': (p) => `Étape fixée par une condition d'obtention documentée par le wiki (${p('stage')}${p('zone') === '' ? '' : `, ${p('zone')}`}), avant toute autre règle.`,
+  'stage-override': (p) => `Étape imposée par une condition d'obtention décrite sur le wiki (${p('stage')}${p('zone') === '' ? '' : `, ${p('zone')}`}) : cette règle passe avant toutes les autres.`,
   'remembrance-encounter-unavailable': () => "Le fichier des boss n'est pas chargé : l'étape de la Remembrance n'est pas déterminée.",
   'remembrance-encounter-missing': (p) => `La rencontre ${p('encounter')}, liée à cette Remembrance, est absente des données.`,
   'dlc-unlocated': () => "Rencontre ou arme du DLC sans sous-zone connue : classée « DLC non localisé », en fin de colonne.",
@@ -438,26 +439,26 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
   'load-budget-unavailable': () => "La table de charge n'est pas chargée : le budget de poids est inconnu et aucune pénalité de poids n'est appliquée.",
   'spell-power-missing': (p) => `La puissance de sort de cette arme (${p('field')}) manque dans les données : la composante n'est pas calculée.`,
   // Armes efficaces contre une rencontre.
-  'absorption-undocumented': () => "L'absorption de cette rencontre n'est pas documentée : aucune arme n'est suggérée.",
-  'weakness-weapons-base-values': () => "Types de dégâts lus à +0 : ni l'affinité, ni les Cendres de guerre, ni les sorts ne sont comptés.",
+  'absorption-undocumented': () => "Le wiki ne documente pas l'absorption de cette rencontre : aucune arme n'est suggérée.",
+  'weakness-weapons-base-values': () => "Les types de dégâts sont lus à +0 : ni l'affinité, ni les Cendres de guerre, ni les sorts ne sont comptés.",
   /** Rendement des attributs : les paliers sont ceux publiés par le wiki (D39), les gains viennent des tables. */
   'soft-caps-published': () => 'Paliers de rendement publiés par le wiki ; les gains moyens autour de chaque palier sont lus dans les tables.',
   // Score d'une arme hors des critères.
-  'weapon-hidden-content-sote': () => 'Arme de Shadow of the Erdtree, contenu désactivé dans vos critères : elle ne figure pas dans les recommandations.',
-  'weapon-hidden-content-tp': () => 'Arme du Tarnished Pack, contenu désactivé dans vos critères : elle ne figure pas dans les recommandations.',
-  'weapon-hidden-remembrance': () => 'Échange de Remembrance, exclu par vos critères : cette arme ne figure pas dans les recommandations.',
-  'weapon-hidden-random-drop': () => 'Butin aléatoire, exclu par vos critères : cette arme ne figure pas dans les recommandations.',
-  'weapon-hidden-quest': () => 'Arme liée à une quête, exclue par vos critères : elle ne figure pas dans les recommandations.',
-  'weapon-hidden-estimate': () => "Type d'amélioration estimé, estimations exclues par vos critères : cette arme ne figure pas dans les recommandations.",
-  'weapon-outside-style': () => 'Arme hors du style de jeu choisi : score calculé pour information, elle ne figure pas dans les recommandations.',
+  'weapon-hidden-content-sote': () => 'Cette arme vient de Shadow of the Erdtree, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-content-tp': () => 'Cette arme vient du Tarnished Pack, dont le contenu est désactivé dans vos critères : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-remembrance': () => "Cette arme s'obtient par un échange de Remembrance, que vos critères excluent : elle ne figure pas dans les recommandations.",
+  'weapon-hidden-random-drop': () => 'Cette arme est un butin aléatoire, que vos critères excluent : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-quest': () => 'Cette arme est liée à une quête, que vos critères excluent : elle ne figure pas dans les recommandations.',
+  'weapon-hidden-estimate': () => "Le type d'amélioration de cette arme est une estimation, que vos critères excluent : elle ne figure pas dans les recommandations.",
+  'weapon-outside-style': () => 'Cette arme est hors du style de jeu choisi : son score est calculé pour information, mais elle ne figure pas dans les recommandations.',
   // Priorités de montée de niveau.
   'priorities-no-weapon': () => "Aucune arme recommandée à votre étape : pas de prérequis d'arme parmi les priorités.",
   'priorities-no-target': () => "Aucun build cible : seuls les prérequis d'arme et le palier de Vigor sont proposés.",
-  'priorities-two-handed-strength': () => "Force visée en Force réelle, l'arme étant maniée à deux mains (Force × 1,5).",
-  'priorities-survival-weight': (p) => `Vigor, Mind et Endurance, que l'archétype ne pondère pas, comptent avec un poids de ${p('weight')}.`,
-  'priorities-truncated': (p) => `Seules les ${p('max')} premières priorités sont affichées.`,
+  'priorities-two-handed-strength': () => "La Force visée est la Force réelle à atteindre : l'arme se manie à deux mains, ce qui multiplie la Force par 1,5.",
+  'priorities-survival-weight': (p) => `L'archétype ne pondère pas Vigor, Mind ni Endurance : ces attributs comptent avec un poids de ${p('weight')}.`,
+  'priorities-truncated': (p) => `Seules les ${p('max')} premières priorités sont affichées ; les suivantes sont omises.`,
   /** Priorités de montée de niveau : l'ordre des règles est un choix de conception (D42). */
-  'priorities-design-method': () => "Ordre des priorités choisi par le projet (prérequis, palier de Vigor, écart au build) : ce n'est pas une règle du jeu.",
+  'priorities-design-method': () => "L'ordre des priorités (prérequis d'arme, palier de Vigor, écart au build) est un choix de conception du projet, pas une règle du jeu.",
 }
 
 /**
@@ -468,6 +469,26 @@ export const LIMIT_TEXTS: Readonly<Record<LimitCode, (p: ParamReader) => string>
  */
 export function limitText(code: LimitCode, params?: CodeParams): string {
   return LIMIT_TEXTS[code](reader(params))
+}
+
+/**
+ * Texte de chaque raison pour laquelle la puissance d'attaque n'est pas calculable (`AttackUnavailableCode`, calculs.md, « Puissance d'attaque calculée »).
+ * Un `Record` complet : un nouveau code du moteur sans texte ne compile plus.
+ */
+export const ATTACK_UNAVAILABLE_TEXTS: Readonly<Record<AttackUnavailableCode, string>> = {
+  'level-out-of-range': "Ce niveau est hors des bornes de l'arme : rien n'est calculé.",
+  'affinity-undocumented': "Le wiki ne donne pas de tableau d'amélioration pour cette affinité : seule la base à +0 en Standard est calculable.",
+  'level-undocumented': "Le tableau du wiki n'encadre pas ce niveau par deux niveaux documentés : la base n'est pas interpolée.",
+  'published-value-missing': 'Le wiki ne publie pas la valeur à ce niveau.',
+}
+
+/**
+ * Texte d'une raison de non-calcul de la puissance d'attaque.
+ * @param code Code `unavailable` renvoyé par `attackPower` (`AttackPowerResult`).
+ * @returns La phrase ; « Non calculable. » si le code n'est pas connu (un moteur plus récent que l'interface).
+ */
+export function attackUnavailableText(code: AttackUnavailableCode): string {
+  return ATTACK_UNAVAILABLE_TEXTS[code] ?? 'Non calculable.'
 }
 
 // ─── Libellés ──────────────────────────────────────────────────────────────────
@@ -615,7 +636,7 @@ const METHOD_SUMMARIES: Readonly<Record<MethodId, { readonly title: string; read
   },
   'attribute-yield': {
     title: 'Rendement des attributs',
-    summary: 'Le gain de chaque point de Vigor, Mind et Endurance est lu dans les tables officielles, et les paliers où il baisse en sont déduits',
+    summary: 'Le gain de chaque point de Vigor, Mind et Endurance est lu dans les tables officielles ; les paliers où il baisse sont publiés par le wiki, et non déduits des tables',
   },
 }
 

@@ -1,6 +1,6 @@
 // Tests de src/ui/chart.ts : graduations rondes, tracés interrompus par les null, étiquettes de bout de ligne espacées, abscisse la plus proche.
 import { describe, expect, it } from 'vitest'
-import { buildGeometry, nearestIndex, niceTicks, spreadLabels, xTickIndices, type ChartLayout } from '../../../src/ui/chart.ts'
+import { buildGeometry, nearestIndex, niceTicks, placeMarkers, spreadLabels, xTickIndices, type ChartLayout } from '../../../src/ui/chart.ts'
 
 const LAYOUT: ChartLayout = { width: 600, height: 220, left: 44, right: 96, top: 14, bottom: 30 }
 
@@ -95,5 +95,37 @@ describe('buildGeometry', () => {
     const g = buildGeometry([], [], LAYOUT)
     expect(g.paths).toEqual([])
     expect(g.yTicks.length).toBeGreaterThan(1)
+  })
+})
+
+describe('xAt et repères', () => {
+  const geometry = buildGeometry([0, 50, 100], [[1, 2, 3]], LAYOUT)
+  const range = { first: 0, last: 100 }
+
+  it('donne la position d’une abscisse, interpolée entre la première et la dernière', () => {
+    expect(geometry.xAt(0)).toBe(geometry.plot.x0)
+    expect(geometry.xAt(100)).toBe(geometry.plot.x1)
+    expect(geometry.xAt(25)).toBeCloseTo((geometry.plot.x0 + geometry.xs[1]!) / 2)
+  })
+  it('place chaque repère sur sa colonne, centré, et écarte ceux hors de l’étendue', () => {
+    const placed = placeMarkers([{ x: 50, label: 'Palier 50' }, { x: 120, label: 'Hors' }, { x: -1, label: 'Avant' }], geometry.xAt, range, LAYOUT.width)
+    expect(placed).toHaveLength(1)
+    expect(placed[0]).toMatchObject({ x: geometry.xs[1], anchor: 'middle', row: 0 })
+  })
+  it('monte d’une rangée l’étiquette qui chevaucherait la précédente', () => {
+    const placed = placeMarkers([{ x: 50, label: 'Palier 50' }, { x: 55, label: 'Palier 55' }, { x: 99, label: 'Palier 99' }], geometry.xAt, range, LAYOUT.width)
+    expect(placed.map((p) => p.row)).toEqual([0, 1, 0])
+  })
+  it('cale l’étiquette qui sortirait du dessin et trie les repères par abscisse', () => {
+    const placed = placeMarkers([{ x: 100, label: 'Palier 100' }, { x: 0, label: 'Palier 0' }], geometry.xAt, range, LAYOUT.width)
+    expect(placed.map((p) => p.marker.x)).toEqual([0, 100])
+    expect(placed[0]?.anchor).toBe('middle')
+    const narrow = placeMarkers([{ x: 0, label: 'Palier 0' }, { x: 100, label: 'Palier 100' }], (v) => v * 0.9 + 5, range, 100)
+    expect(narrow.map((p) => p.anchor)).toEqual(['start', 'end'])
+  })
+  it('ne dépasse pas le nombre de rangées permis', () => {
+    const labels = Array.from({ length: 6 }, (_, i) => ({ x: 50 + i, label: `Palier ${50 + i}` }))
+    const placed = placeMarkers(labels, geometry.xAt, range, LAYOUT.width, 6.6, 3)
+    expect(Math.max(...placed.map((p) => p.row))).toBe(2)
   })
 })

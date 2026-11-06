@@ -1,6 +1,6 @@
 // Tests de src/ui/format.ts : séparateurs exacts (U+202F, U+00A0, U+2212), virgule décimale, arrondis, zéros et signes.
 import { describe, expect, it } from 'vitest'
-import { formatDecimal, formatInt, formatPercent, formatSigned, formatWeight } from '../../../src/ui/format.ts'
+import { formatDate, formatDecimal, formatInt, formatPercent, formatSigned, formatWeight } from '../../../src/ui/format.ts'
 
 const F = '\u202F' // espace fine insécable
 const N = '\u00A0' // espace insécable
@@ -79,5 +79,31 @@ describe('formatSigned', () => {
   it('accepte des décimales et le groupement', () => {
     expect(formatSigned(1.5, 1)).toBe('+1,5')
     expect(formatSigned(-1500)).toBe(`${M}1${F}500`)
+  })
+})
+
+describe('formatDate', () => {
+  it('écrit la date en toutes lettres', () => {
+    expect(formatDate('2026-10-31')).toBe('31 octobre 2026')
+    expect(formatDate('2026-02-05')).toBe('5 février 2026')
+    expect(formatDate('2026-12-25')).toBe('25 décembre 2026')
+  })
+  it('écrit « 1er » le premier du mois', () => {
+    expect(formatDate('2026-11-01')).toBe('1er novembre 2026')
+  })
+  it('écrit la date en JJ/MM/AAAA en style court', () => {
+    expect(formatDate('2026-10-31', 'short')).toBe('31/10/2026')
+    expect(formatDate('2026-01-05', 'short')).toBe('05/01/2026')
+  })
+  it('ignore l’heure d’un horodatage ISO, sans décalage de fuseau', () => {
+    expect(formatDate('2026-10-31T23:59:00Z')).toBe('31 octobre 2026')
+  })
+  it('renvoie null pour une date absente, mal formée ou inexistante', () => {
+    expect(formatDate(null)).toBeNull()
+    expect(formatDate(undefined)).toBeNull()
+    expect(formatDate('')).toBeNull()
+    expect(formatDate('31/10/2026')).toBeNull()
+    expect(formatDate('2026-02-30')).toBeNull()
+    expect(formatDate('2026-13-01')).toBeNull()
   })
 })

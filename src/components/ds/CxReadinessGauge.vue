@@ -3,7 +3,7 @@
 import { computed } from 'vue'
 import { gaugeMax, type ReadinessId } from '../../engine/readiness.ts'
 import { formatInt } from '../../ui/format.ts'
-import CxIcon from './CxIcon.vue'
+import CxReadinessStatus from './CxReadinessStatus.vue'
 
 /**
  * Jauge de préparation (README du design system, composant ReadinessGauge ; calculs.md, « Préparation et jauge »).
@@ -28,13 +28,16 @@ const props = withDefaults(
   { max: undefined, showStatus: true },
 )
 
-/** Mot, icône et classe de chaque état (README : Prêt, Limite, Trop tôt, Vaincu, Non estimé). */
-const STATES: Record<ReadinessId, { label: string; icon: string; cls: string }> = {
-  ready: { label: 'Prêt', icon: 'check-c', cls: 'ready' },
-  limit: { label: 'Limite', icon: 'alert', cls: 'limit' },
-  early: { label: 'Trop tôt', icon: 'clock', cls: 'early' },
-  defeated: { label: 'Vaincu', icon: 'check', cls: 'done' },
-  unknown: { label: 'Non estimé', icon: 'empty', cls: 'unknown' },
+/**
+ * Mot et classe de couleur de la piste, par état (README : Prêt, Limite, Trop tôt, Vaincu, Non estimé). L'icône et la pastille sont ceux de
+ * `CxReadinessStatus`, qui porte seul la règle `.cx-status` : pas de seconde définition à tenir d'accord.
+ */
+const STATES: Record<ReadinessId, { label: string; cls: string }> = {
+  ready: { label: 'Prêt', cls: 'ready' },
+  limit: { label: 'Limite', cls: 'limit' },
+  early: { label: 'Trop tôt', cls: 'early' },
+  defeated: { label: 'Vaincu', cls: 'done' },
+  unknown: { label: 'Non estimé', cls: 'unknown' },
 }
 
 const info = computed(() => STATES[props.state])
@@ -54,11 +57,10 @@ const summary = computed(() =>
     class="cx-gauge"
     :class="info.cls"
   >
-    <span
+    <CxReadinessStatus
       v-if="showStatus"
-      class="cx-status"
-      :class="info.cls"
-    ><CxIcon :name="info.icon" />{{ info.label }}</span>
+      :state="state"
+    />
     <template v-if="recommended !== null">
       <div
         class="cx-gauge-track"
@@ -90,13 +92,6 @@ const summary = computed(() =>
 </template>
 
 <style>
-.cx-status { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 7px 0 5px; border-radius: var(--radius-s); font: 600 12px/16px var(--font-sans); white-space: nowrap; justify-self: start; }
-.cx-status .cx-i { width: 14px; height: 14px; vertical-align: 0; }
-.cx-status.ready { background: var(--ready-wash); color: var(--ready); }
-.cx-status.limit { background: var(--warn-wash); color: var(--warn); }
-.cx-status.early { background: var(--danger-wash); color: var(--danger); }
-.cx-status.done { background: var(--surface-hover); color: var(--ink-2); }
-.cx-status.unknown { background: transparent; border: 1px dashed var(--line-strong); color: var(--ink-2); }
 .cx-gauge { display: grid; gap: 4px; min-width: 0; }
 .cx-gauge-track { position: relative; height: 8px; margin-block: 4px; border-radius: 4px; background: var(--surface-sunken); box-shadow: inset 0 0 0 1px var(--line); }
 .cx-gauge-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; background: var(--g, var(--gold)); transition: width .15s ease; }

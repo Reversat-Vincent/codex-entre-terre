@@ -3,10 +3,13 @@ import { describe, expect, it } from 'vitest'
 import { COMPONENT_CODES, LABEL_CODES, LIMIT_CODES } from '../../../src/engine/codes.ts'
 import { METHODS } from '../../../src/engine/methods.ts'
 import type { MethodId } from '../../../src/engine/types.ts'
+import type { AttackUnavailableCode } from '../../../src/engine/attackPower.ts'
 import {
+  ATTACK_UNAVAILABLE_TEXTS,
   COMPONENT_SPECS,
   LABEL_TEXTS,
   LIMIT_TEXTS,
+  attackUnavailableText,
   componentLabel,
   dataValueText,
   describeComponent,
@@ -65,5 +68,22 @@ describe('explainText.ts', () => {
     expect(dataValueText(undefined)).toBeNull()
     expect(dataValueText(true)).toBe('oui')
     expect(dataValueText('Katana')).toBe('Katana')
+  })
+  it('met en forme l’adéquation précoce en décimal et décrit les priorités de montée de niveau', () => {
+    expect(describeComponent({ code: 'early-fit', value: 12.2 }).value).toBe('12,2')
+    const label = componentLabel('priority-build-target', { attr: 'dex', actual: 14, points: 6, weight: 0.5 })
+    expect(label).toContain('DEX')
+    expect(label).toContain('0,5')
+    expectClean(label)
+  })
+  it('donne à la courbe sous 10 points un texte valable pour les deux courbes', () => {
+    const text = limitText('curve-below-10', { points: 5 })
+    expect(text).not.toContain('15')
+    expect(text).not.toContain('19')
+  })
+  it('donne un texte à chaque raison de non-calcul de la puissance d’attaque', () => {
+    const codes: AttackUnavailableCode[] = ['level-out-of-range', 'affinity-undocumented', 'level-undocumented', 'published-value-missing']
+    expect(Object.keys(ATTACK_UNAVAILABLE_TEXTS).sort()).toEqual([...codes].sort())
+    for (const code of codes) expectClean(attackUnavailableText(code))
   })
 })

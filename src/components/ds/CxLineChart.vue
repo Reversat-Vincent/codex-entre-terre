@@ -1,7 +1,7 @@
 <!-- Graphique en courbes maison (SVG) : jusqu'à 4 séries, réticule au survol et au curseur, valeurs en légende, vue tableau équivalente. -->
 <script setup lang="ts">
-import { computed, ref, useId } from 'vue'
-import { buildGeometry, nearestIndex, type ChartLayout } from '../../ui/chart.ts'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
+import { buildGeometry, nearestIndex, placeMarkers, type ChartLayout, type ChartMarker } from '../../ui/chart.ts'
 import { formatDecimal, formatInt } from '../../ui/format.ts'
 import CxRange from './CxRange.vue'
 import CxReliabilityBadge from './CxReliabilityBadge.vue'
@@ -14,6 +14,9 @@ import type { ChartSeries, SegmentedOption } from './types.ts'
  * - Quatre séries au plus (`cat-1` à `cat-4`, ordre fixe) ; le choix des séries est fait par l'appelant (sélecteur d'affinités). La couleur est attachée à la série.
  * - Lecture sans couleur : légende au-dessus (valeurs de l'abscisse affichée), étiquettes en bout de ligne, info-bulle au survol, vue tableau équivalente.
  * - Réticule au survol (souris, toucher) et au curseur « Niveau affiché » (curseur natif, utilisable au clavier). Texte du graphique dans les encres.
+ * - Repères verticaux permanents (`markers`, par exemple des paliers) : ligne en pointillés et libellé écrit, lisibles sans couleur.
+ * - Mise en page adaptée à la largeur réelle : le `viewBox` suit la largeur mesurée du conteneur (une unité = un pixel), donc le texte garde sa taille
+ *   à 390 px au lieu d'être réduit avec le dessin ; sous 520 px, marges et étiquettes de fin de ligne se resserrent.
  * - Un `null` interrompt la ligne (jamais 0 ni interpolation). Aucune animation : le mouvement réduit n'a donc rien à désactiver.
  * Le composant ne calcule aucune valeur de jeu ; la géométrie (échelles, graduations rondes) est dans `src/ui/chart.ts`.
  */
@@ -35,6 +38,8 @@ const props = withDefaults(
     calculated?: boolean
     /** Affiche le curseur « Niveau affiché » sous le graphique (vrai par défaut). */
     showCursorControl?: boolean
+    /** Repères verticaux permanents (abscisse et libellé), par exemple les paliers de rendement ; ceux hors des abscisses sont ignorés. */
+    markers?: readonly ChartMarker[]
   }>(),
   {
     xLabel: (x: number) => `+${x}`,
@@ -42,19 +47,50 @@ const props = withDefaults(
     digits: 0,
     calculated: false,
     showCursorControl: true,
+    markers: () => [],
   },
 )
 
 /** Abscisse affichée par le curseur ; `null` = aucun réticule tant que l'utilisateur ne survole pas. */
 const cursor = defineModel<number | null>('cursor', { default: null })
 
-const LAYOUT: ChartLayout = { width: 600, height: 220, left: 44, right: 96, top: 14, bottom: 30 }
+/** Largeur de départ (avant la première mesure, et hors navigateur), en unités du `viewBox`. */
+const DEFAULT_WIDTH = 600
+/** Sous cette largeur (px), le graphique passe en mise en page resserrée. */
+const COMPACT_BELOW = 520
+const HEIGHT = 220
+/** Largeur estimée d'un caractère du texte du graphique (12 px), pour tronquer les étiquettes et espacer les repères. */
+const CHAR_WIDTH = 6.6
+/** Hauteur d'une rangée d'étiquettes de repères. */
+const MARKER_ROW = 13
 const MAX_SERIES = 4
 
 const uid = useId()
 const view = ref<'chart' | 'table'>('chart')
 const hoverIndex = ref<number | null>(null)
 const svgEl = ref<SVGSVGElement | null>(null)
+const plotEl = ref<HTMLElement | null>(null)
+const tipEl = ref<HTMLElement | null>(null)
+/** Largeur mesurée de la zone de tracé ; le `viewBox` la reprend pour que le dessin ne soit jamais mis à l'échelle. */
+const plotWidth = ref(DEFAULT_WIDTH)
+/** Largeur de l'info-bulle affichée, mesurée pour la garder dans le graphique. */
+const tipWidth = ref(0)
+let observer: ResizeObserver | null = null
+
+/** Mesure la zone de tracé ; une zone masquée (vue tableau, largeur 0) garde la dernière mesure. */
+function measure(): void {
+  const width = Math.round(plotEl.value?.clientWidth ?? 0)
+  if (width > 0) plotWidth.value = width
+}
+onMounted(() => {
+  measure()
+  // Absent de certains environnements de test : la largeur par défaut reste alors en vigueur.
+  if (typeof ResizeObserver !== 'undefined' && plotEl.value) {
+    observer = new ResizeObserver(measure)
+    observer.observe(plotEl.value)
+  }
+})
+onBeforeUnmount(() => observer?.disconnect())
 
 const viewOptions: SegmentedOption<'chart' | 'table'>[] = [
   { value: 'chart', label: 'Courbe' },
@@ -64,12 +100,36 @@ const viewOptions: SegmentedOption<'chart' | 'table'>[] = [
 const shown = computed(() =>
   props.series.slice(0, MAX_SERIES).map((s, index) => ({ ...s, cls: `cx-cat-${s.color ?? (index % MAX_SERIES) + 1}` })),
 )
+const compact = computed(() => plotWidth.value < COMPACT_BELOW)
+/** Marges latérales : l'axe vertical et les étiquettes de fin de ligne ont moins de place sur un petit écran. */
+const sides = computed(() => (compact.value ? { left: 38, right: 60 } : { left: 44, right: 96 }))
+const xRange = computed(() => ({ first: props.x[0] ?? 0, last: props.x[props.x.length - 1] ?? 0 }))
+/** Repères placés (étiquettes sur une ou plusieurs rangées) : leur nombre de rangées fixe la marge haute du dessin. */
+const placedMarkers = computed(() => {
+  const { left, right } = sides.value
+  const span = xRange.value.last - xRange.value.first
+  const xAt = (v: number): number => (span > 0 ? left + ((v - xRange.value.first) / span) * (plotWidth.value - left - right) : (left + plotWidth.value - right) / 2)
+  return placeMarkers(props.markers, xAt, xRange.value, plotWidth.value, CHAR_WIDTH)
+})
+const markerRows = computed(() => placedMarkers.value.reduce((rows, m) => Math.max(rows, m.row + 1), 0))
+const layout = computed<ChartLayout>(() => ({
+  width: plotWidth.value,
+  height: HEIGHT,
+  ...sides.value,
+  top: markerRows.value > 0 ? 18 + (markerRows.value - 1) * MARKER_ROW : 14,
+  bottom: 30,
+}))
 const geometry = computed(() =>
   buildGeometry(
     props.x,
     shown.value.map((s) => s.values),
-    LAYOUT,
+    layout.value,
+    { maxXLabels: compact.value ? 5 : 7 },
   ),
+)
+/** Nom accessible du dessin : le titre, puis les repères (le texte du SVG n'est pas lu à travers `role="img"`). */
+const svgLabel = computed(() =>
+  placedMarkers.value.length === 0 ? props.title : `${props.title}. Repères : ${placedMarkers.value.map((m) => m.marker.label).join(', ')}.`,
 )
 
 const cursorIndex = computed(() => {
@@ -110,26 +170,40 @@ const liveText = computed(() => {
   return `${props.xName} ${props.xLabel(props.x[i] ?? 0)} : ${shown.value.map((s) => `${s.label} ${fmt(s.values[i])}`).join(', ')}`
 })
 
+/**
+ * Position de l'info-bulle : à droite du réticule s'il y a la place, sinon à gauche, sinon calée dans le graphique. La largeur de la bulle est
+ * mesurée après chaque rendu (son texte change avec l'abscisse) : une estimation la ferait sortir du cadre sur un écran étroit.
+ */
 const tooltipStyle = computed(() => {
   const x = activeX.value
-  return x === null ? {} : { left: `${(x / LAYOUT.width) * 100}%` }
+  if (x === null) return {}
+  const w = tipWidth.value
+  const total = plotWidth.value
+  const left = x + 8 + w <= total ? x + 8 : x - 8 - w >= 0 ? x - 8 - w : Math.max(0, total - w)
+  // Sous les étiquettes de repères (marge haute du dessin), pour ne pas les cacher.
+  return { left: `${left}px`, top: `${layout.value.top}px` }
 })
-const tooltipLeft = computed(() => (activeX.value ?? 0) > LAYOUT.width * 0.6)
+watch([activeIndex, view, plotWidth, shown], async () => {
+  await nextTick()
+  tipWidth.value = tipEl.value?.offsetWidth ?? 0
+})
 
-const endLabels = computed(() =>
-  geometry.value.endLabels.map((e) => {
+/** Étiquettes de fin de ligne, tronquées à ce que la marge droite peut porter (le nom complet reste dans la légende et le `title`). */
+const endLabels = computed(() => {
+  const maxChars = Math.max(3, Math.floor((sides.value.right - 8) / CHAR_WIDTH))
+  return geometry.value.endLabels.map((e) => {
     const s = shown.value[e.seriesIndex]
     const full = s?.label ?? ''
-    return { key: s?.id ?? String(e.seriesIndex), y: e.y, text: full.length > 13 ? `${full.slice(0, 12)}…` : full, full }
-  }),
-)
+    return { key: s?.id ?? String(e.seriesIndex), y: e.y, text: full.length > maxChars ? `${full.slice(0, maxChars - 1)}…` : full, full }
+  })
+})
 
 function onPointer(event: PointerEvent): void {
   const svg = svgEl.value
   if (!svg || props.x.length === 0) return
   const rect = svg.getBoundingClientRect()
   if (rect.width === 0) return
-  const vx = ((event.clientX - rect.left) / rect.width) * LAYOUT.width
+  const vx = ((event.clientX - rect.left) / rect.width) * layout.value.width
   const i = nearestIndex(vx, geometry.value.xs)
   hoverIndex.value = i < 0 ? null : i
 }
@@ -177,15 +251,17 @@ const sliderValue = computed({
 
     <div
       v-show="view === 'chart'"
+      ref="plotEl"
       class="cx-linechart-plot"
     >
       <svg
         ref="svgEl"
         class="cx-chart"
-        :viewBox="`0 0 ${LAYOUT.width} ${LAYOUT.height}`"
+        :viewBox="`0 0 ${layout.width} ${layout.height}`"
         width="100%"
+        :height="layout.height"
         role="img"
-        :aria-label="title"
+        :aria-label="svgLabel"
         @pointermove="onPointer"
         @pointerdown="onPointer"
         @pointerleave="onLeave"
@@ -215,6 +291,27 @@ const sliderValue = computed({
             :y="geometry.plot.y1 + 18"
             :text-anchor="t.index === 0 ? 'start' : t.index === x.length - 1 ? 'end' : 'middle'"
           >{{ xLabel(x[t.index] ?? 0) }}</text>
+        </g>
+        <g class="markers">
+          <template
+            v-for="m in placedMarkers"
+            :key="`${m.marker.x}-${m.marker.label}`"
+          >
+            <!-- Pointillés et texte : le repère se lit sans la couleur. La ligne monte jusqu'à son étiquette quand celle-ci est sur une rangée haute. -->
+            <line
+              class="marker"
+              :x1="m.x"
+              :x2="m.x"
+              :y1="geometry.plot.y0 - m.row * MARKER_ROW - 2"
+              :y2="geometry.plot.y1"
+            />
+            <text
+              class="marker-label"
+              :x="m.x"
+              :y="geometry.plot.y0 - 5 - m.row * MARKER_ROW"
+              :text-anchor="m.anchor"
+            >{{ m.marker.label }}</text>
+          </template>
         </g>
         <g
           v-for="(s, k) in shown"
@@ -259,8 +356,8 @@ const sliderValue = computed({
       </svg>
       <div
         v-if="activeIndex !== null"
+        ref="tipEl"
         class="cx-tip-body is-open cx-linechart-tip"
-        :class="{ 'is-left': tooltipLeft }"
         :style="tooltipStyle"
         aria-hidden="true"
       >
@@ -360,8 +457,10 @@ const sliderValue = computed({
 .cx-linechart { display: grid; gap: var(--space-2); min-width: 0; }
 .cx-linechart-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-4); }
 .cx-linechart-plot { position: relative; }
-.cx-chart { display: block; touch-action: pan-y; }
-.cx-chart text { fill: var(--ink-3); font: 400 11px var(--font-sans); font-variant-numeric: tabular-nums; }
+.cx-chart { display: block; touch-action: pan-y; overflow: visible; }
+.cx-chart text { fill: var(--ink-3); font: 400 12px var(--font-sans); font-variant-numeric: tabular-nums; }
+.cx-chart .marker { stroke: var(--ink-2); stroke-width: 1; stroke-dasharray: 4 3; }
+.cx-chart text.marker-label { fill: var(--ink-2); font-weight: 600; }
 .cx-chart .grid { stroke: var(--line); stroke-width: 1; }
 .cx-chart .axis { stroke: var(--line-strong); stroke-width: 1; }
 .cx-chart .series { fill: none; stroke: var(--cat); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -371,8 +470,7 @@ const sliderValue = computed({
 .cx-legend b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
 .cx-legend-key { display: inline-block; width: 14px; height: 3px; margin-right: 6px; border-radius: 2px; background: var(--cat, var(--ink-3)); vertical-align: 3px; }
 .cx-cat-1 { --cat: var(--cat-1); } .cx-cat-2 { --cat: var(--cat-2); } .cx-cat-3 { --cat: var(--cat-3); } .cx-cat-4 { --cat: var(--cat-4); }
-.cx-linechart .cx-linechart-tip { top: 0; bottom: auto; display: grid; gap: 2px; pointer-events: none; transform: translateX(8px); }
-.cx-linechart .cx-linechart-tip.is-left { transform: translateX(calc(-100% - 8px)); }
+.cx-linechart .cx-linechart-tip { top: 0; bottom: auto; right: auto; display: grid; gap: 2px; max-width: 100%; pointer-events: none; transform: none; }
 .cx-linechart-row { display: block; font-variant-numeric: tabular-nums; }
 .cx-linechart-cursor { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--space-3); color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
 .cx-chart-table-wrap { max-height: 360px; overflow: auto; border: 1px solid var(--line-strong); border-radius: var(--radius-m); background: var(--surface); }
