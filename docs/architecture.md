@@ -185,6 +185,7 @@ interface Calc<T> { value: T | null; estimate: { confidence: 'high' | 'medium' }
 - Le moteur renvoie des **codes**, jamais du texte d'interface : `src/ui/explainText.ts` les traduit (un test vérifie que chaque code a son texte).
 - `null` en entrée → composant `null` et limite (`hp-missing`, `region-unknown`…), jamais 0. Entrée estimée → `estimate` rempli, badge Estimation sur le résultat (plan de Moonveil).
 - Chaque fonction exportée cite sa section de `calculs.md` ; aucune ne lit un store ni le stockage.
+- Toute lecture d'une table de configuration par une clé venue de l'état de l'utilisateur passe par `ownValue(table, key)` (`types.ts`, `Object.hasOwn`), jamais par l'indexation brute : un état importé ne doit pas pouvoir atteindre une propriété du prototype.
 
 ### 5.2 Modules
 
