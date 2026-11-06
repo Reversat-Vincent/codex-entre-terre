@@ -1,5 +1,5 @@
 # Feuille de route
-> Phase : vérification, en pause à la demande du développeur depuis le 2026-11-06 · Mise à jour : 2026-11-06
+> Phase : vérification, en pause à la demande du développeur depuis le 2026-11-06 ; bêta 0.1.0 publiée le 2026-11-06 (D53) · Mise à jour : 2026-11-06
 
 ## Étapes
 - [x] 0. Lancement
@@ -121,6 +121,7 @@
     - dev-interface : focus après une action qui retire l'élément actif, Ctrl + Z pour « Annuler », score « Non classé » de la fiche arme, `router.onError`, texte « Prérequis non atteint », focus initial de la feuille de critères, focus sur le `h1`, méthodes d'obtention en français (carte et `myListModel.ts`, dont `detailOf`), affichage des limites V14 et V15 (`hiddenReasonOf`, `WeaponsTable.vue`, `VISIBILITY_LIMITS` de `WeaponScorePanel.vue`), restes de verif-masse (`?? 0`, `maxLevel`, « Points de concentration »).
     > Note : pause demandée le 06/11 avant le lancement de ces trois lots ; aucun sous-agent ne tourne. La tâche programmée de reprise automatique est supprimée pendant la pause.
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
+  - [x] 9.0 Bêta 0.1.0 publiée avant la fin de la boucle, à la demande du développeur (D53) — tag `v0.1.0`
 
 ## Questions en attente
 - [x] Q1 — Pages est-il activé dans le dépôt (Settings → Pages → Source « GitHub Actions ») ? — réponse du 01/11 : oui (D25).
@@ -247,6 +248,7 @@
     - TSDoc des réexportations de types, comme au tour 1 ;
     - fichiers de données volumineux suivis : voulus.
   - Par : chef de projet
+- D53 · 2026-11-06 · Publication d'une bêta : version 0.1.0 (tag `v0.1.0`), avant la fin de la boucle de vérification, pour que le développeur teste l'outil. Les corrections du tour 2 (8.4) et le tour 3 reprendront après la pause. `npm run check` a réussi avant publication (1 031 tests unitaires, 132 e2e) — par : développeur
 
 ## Vérifications
 - Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu : 12 constats (contenu affiché exact sur 30 entités, calculs conformes), 11 retenus (2 majeurs : armes hors du build recommandées, catalyseurs dont les prérequis manquent recommandés sans réduction de puissance), 1 reporté (V12 : ordre Prisoner / Astrologer qui dépend des colonnes, statu quo en v1).

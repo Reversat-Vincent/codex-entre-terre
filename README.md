@@ -1,6 +1,6 @@
 # Codex de l'Entre-terre
 
-Application web compagnon d'*Elden Ring*, pensée pour être consultée en second écran pendant le jeu. **État : en cours de développement, pas encore publiée.**
+Application web compagnon d'*Elden Ring*, pensée pour être consultée en second écran pendant le jeu. **État : version bêta 0.1.0, publiée le 06/11/2026 pour essai ; des corrections sont en cours.**
 
 ## Ce que fait l'application
 
@@ -16,7 +16,7 @@ Application web compagnon d'*Elden Ring*, pensée pour être consultée en secon
 
 ## Fonctionnement
 
-- **Site** : https://reversat-vincent.github.io/codex-entre-terre/, une fois publié.
+- **Site** : https://reversat-vincent.github.io/codex-entre-terre/
 - **Langues** : interface en français, données en anglais, comme sur le wiki.
 - **Dans le navigateur** : sans compte, sans serveur et sans traceur. Les réglages restent dans le navigateur ; ils s'exportent dans un fichier, qui peut être réimporté.
 - **Hors ligne** : le site fonctionne sans réseau après une première visite et peut s'installer comme une application.
