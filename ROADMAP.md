@@ -110,8 +110,8 @@
     > Note : 132 tests e2e ; audit (`npm run e2e:audit`) sans seuil d'échec, lu par la vérification.
   - [x] 7.3 README à jour (présentation) — chef de projet ; la ligne « État » passera à la version publiée lors de la publication
 - [ ] 8. Boucle de vérification
-  - [ ] 8.1 Tour 1, vérification — verif-masse, verif-approfondie (opus), contenu-jeu (opus, en cours)
-  - [ ] 8.2 Tour 1, corrections — dev-logique (import, `setOrigin`, glossaire, `gaugeMax`, `?? 0` de la logique), dev-interface A (contraste, widget A, marque, navigation, frise, obtention, restes), dev-outillage (stabilité e2e) ; puis dev-interface B (`?? 0` des composants, branchement de `setOrigin` et `gaugeMax`, note de Sir Gideon) ; puis corrections de contenu
+  - [x] 8.1 Tour 1, vérification — verif-masse, verif-approfondie (opus), contenu-jeu (opus) → `docs/contenu/verification-v1.md`
+  - [ ] 8.2 Tour 1, corrections — dev-logique (import, `setOrigin`, glossaire, `gaugeMax`, `?? 0` de la logique), dev-interface A (contraste, widget A, marque, navigation, frise, obtention, restes), dev-outillage (stabilité e2e) ; puis dev-interface B (`?? 0` des composants, branchement de `setOrigin` et `gaugeMax`, note de Sir Gideon) ; puis corrections de contenu : dev-donnees (D-V4 à D-V6), dev-logique en opus (K-V1 à K-V3, textes de `calculs.md`), puis dev-interface B (avec les libellés D46 et les textes V11)
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
 
 ## Questions en attente
@@ -182,6 +182,22 @@
 - D43 · 2026-11-05 · Arbitrages des catalogues : Obtention masquée par défaut dans le tableau des armes, comme Compétence, pour tenir sans défilement horizontal à 1440 px (note `spec-catalog`) ; champ « Rechercher par nom » ajouté ; l'état des estimations se lit dans la facette et dans « N masquées » plutôt qu'en puce ; jusqu'à trois suggestions chiffrées ; pas de « Tout afficher » en grille ; colonnes minimales pour les boss, lieux, PNJ et origines (écrans non dessinés). Libellés des résistances (Immunité, Robustesse, Concentration, Vitalité) et des types de compétence à relire par contenu-jeu en vérification — par : chef de projet
 - D44 · 2026-11-05 · Accumulations de statut : `status_buildup` ajouté pour 9 armes qui ne le décrivaient qu'en texte (Spiked Club, Cross-Naginata, Halo Scythe, Bloodhound Claws, Rotten Crystal Staff, Hookclaws, Death's Poker, Chilling Perfume Bottle, Ghostflame Torch), valeurs du wiki ; `passive_effects` inchangé ; Reduvia garde la valeur de sa page (50) malgré la liste Blood Loss (30) — raison : le score et la facette « Effet passif » lisent `status_buildup` ; un correctif de données vaut mieux qu'une lecture du texte par le moteur — par : chef de projet
 - D45 · 2026-11-06 · Les étapes de quête cochées sur une fiche PNJ sont enregistrées comme le reste de l'état (store `quests`, document de persistance, export et import), avec une clé d'étape tirée de son texte. Le schéma reste en version 1, rien n'étant publié — raison : une liste à cocher qui s'efface au rechargement ne sert pas en second écran pendant le jeu ; le brief demande une liste à cocher — par : chef de projet
+- D46 · 2026-11-06 · Vocabulaire unifié de l'interface (constats V7 à V9) :
+  - **Résistances d'armure** : noms anglais du jeu partout (Immunity, Robustness, Focus, Vitality), comme les attributs ; les sous-titres de statuts restent en français.
+  - **Coût de magie** : « FP » partout, jamais « PF ».
+  - **Endurance** : « Endurance (jauge) » quand il s'agit de la statistique `stamina`, pour ne pas la confondre avec l'attribut END.
+  - **Emplacements d'armure** : Tête, Torse, Bras, Jambes partout.
+  - **Types de compétence** : « Compétence unique », « Compétence de cendre de guerre », « Compétence sans cendre de guerre », même casse partout.
+  - **Arme sans compétence** (`No skill`) : « Aucune », et non « Non documenté ».
+  - **Version altérée** : « Version altérée existante : oui », et titre de page du wiki quand deux entrées portent le même nom.
+  - Raison : un même concept ne doit avoir qu'un nom ; les noms du jeu restent en anglais.
+  - Par : chef de projet
+- D47 · 2026-11-06 · Suites de contenu du tour 1 :
+  - **Score** : une arme dont aucune lettre de scaling ne porte sur un attribut pondéré du build est écartée des colonnes quand un build cible existe (raison « hors build ») ; la composante « Puissance » est multipliée par 0,6 quand un prérequis n'est pas atteint (règle du wiki, −40 %).
+  - **Étapes** : `Dragonbarrow` rattaché à Caelid dans `REGION_PARENT`.
+  - **Données** : lieu « Volcano Manor » pour Albinauric Staff, Erdtree Seal et Gelmir Glintstone Staff ; fiabilité « wiki » pour 49 types d'amélioration confirmés par la liste ; Nanaya's Torch garde 65 (page de l'arme), l'écart avec la page Madness est noté dans les métadonnées.
+  - **Statu quo** : V12, ordre Prisoner / Astrologer.
+  - Par : chef de projet
 
 ## Vérifications
-- Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu en cours.
+- Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu : 12 constats (contenu affiché exact sur 30 entités, calculs conformes), 11 retenus (2 majeurs : armes hors du build recommandées, catalyseurs dont les prérequis manquent recommandés sans réduction de puissance), 1 reporté (V12 : ordre Prisoner / Astrologer qui dépend des colonnes, statu quo en v1).
