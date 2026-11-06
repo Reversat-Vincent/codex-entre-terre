@@ -84,7 +84,9 @@
   - [x] 5.3b Catalogue des boss — fusionné dans 5.1
   - [x] 5.4a Fiches cendres, armures, talismans, sorts, esprits, et composants de fiche communs (`src/components/domain/sheet/`) — dev-interface — commit `266a626`
     > Note : écarts du wiki affichés tels quels (casse de `sub_type`, Gelmir's Fury, Cerulean Seed Talisman +1, Raya Lucaria Soldier Ashes) ; vendeur d'un sort « Non documenté » hors `infobox.seller` (28 sorts sur 213), sans deviner depuis le texte.
-  - [ ] 5.4b Fiches objets, lieux (fil d'Ariane de région, sites de grâce, boss, PNJ, butin), PNJ (boutique en tableau, quête en liste à cocher), origines ; sections absentes du schéma masquées, butin d'envahisseur lié au boss, `parseSkillCost` partagé — dev-interface (en cours)
+  - [x] 5.4b Fiches objets, lieux (fil d'Ariane de région, sites de grâce, boss, PNJ, butin), PNJ (boutique en tableau, quête en liste à cocher), origines ; sections absentes du schéma masquées, butin d'envahisseur lié au boss, `parseSkillCost` partagé — dev-interface — commit `36e26b1`
+    > Note : 816 tests. Une fiche d'objet charge les cinq fichiers d'objets, faute de savoir lequel contient l'entrée (optimisation reportée). Quête à cocher enregistrée : D45, tâche 2.14.
+  - [ ] 2.14 Suivi des quêtes enregistré (D45) : store `quests`, champ du document de persistance, validation, export et import, clé d'étape stable `questStepKey(texte)` — dev-logique
   - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [x] 6.1 Ma liste et comparateur — dev-interface
@@ -168,5 +170,6 @@
   Par : chef de projet
 - D43 · 2026-11-05 · Arbitrages des catalogues : Obtention masquée par défaut dans le tableau des armes, comme Compétence, pour tenir sans défilement horizontal à 1440 px (note `spec-catalog`) ; champ « Rechercher par nom » ajouté ; l'état des estimations se lit dans la facette et dans « N masquées » plutôt qu'en puce ; jusqu'à trois suggestions chiffrées ; pas de « Tout afficher » en grille ; colonnes minimales pour les boss, lieux, PNJ et origines (écrans non dessinés). Libellés des résistances (Immunité, Robustesse, Concentration, Vitalité) et des types de compétence à relire par contenu-jeu en vérification — par : chef de projet
 - D44 · 2026-11-05 · Accumulations de statut : `status_buildup` ajouté pour 9 armes qui ne le décrivaient qu'en texte (Spiked Club, Cross-Naginata, Halo Scythe, Bloodhound Claws, Rotten Crystal Staff, Hookclaws, Death's Poker, Chilling Perfume Bottle, Ghostflame Torch), valeurs du wiki ; `passive_effects` inchangé ; Reduvia garde la valeur de sa page (50) malgré la liste Blood Loss (30) — raison : le score et la facette « Effet passif » lisent `status_buildup` ; un correctif de données vaut mieux qu'une lecture du texte par le moteur — par : chef de projet
+- D45 · 2026-11-06 · Les étapes de quête cochées sur une fiche PNJ sont enregistrées comme le reste de l'état (store `quests`, document de persistance, export et import), avec une clé d'étape tirée de son texte. Le schéma reste en version 1, rien n'étant publié — raison : une liste à cocher qui s'efface au rechargement ne sert pas en second écran pendant le jeu ; le brief demande une liste à cocher — par : chef de projet
 
 ## Vérifications
