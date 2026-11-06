@@ -111,7 +111,9 @@
   - [x] 7.3 README à jour (présentation) — chef de projet ; la ligne « État » passera à la version publiée lors de la publication
 - [ ] 8. Boucle de vérification
   - [x] 8.1 Tour 1, vérification — verif-masse, verif-approfondie (opus), contenu-jeu (opus) → `docs/contenu/verification-v1.md`
-  - [ ] 8.2 Tour 1, corrections — dev-logique (import, `setOrigin`, glossaire, `gaugeMax`, `?? 0` de la logique), dev-interface A (contraste, widget A, marque, navigation, frise, obtention, restes), dev-outillage (stabilité e2e) ; puis dev-interface B (`?? 0` des composants, branchement de `setOrigin` et `gaugeMax`, note de Sir Gideon) ; puis corrections de contenu : dev-donnees (D-V4 à D-V6), dev-logique en opus (K-V1 à K-V3, textes de `calculs.md`), puis dev-interface B (avec les libellés D46 et les textes V11)
+  - [x] 8.2 Tour 1, corrections — dev-logique (import, `setOrigin`, glossaire, `gaugeMax`, `?? 0` de la logique), dev-interface A (contraste, widget A, marque, navigation, frise, obtention, restes), dev-outillage (stabilité e2e) ; puis dev-interface B (`?? 0` des composants, branchement de `setOrigin` et `gaugeMax`, note de Sir Gideon) ; puis corrections de contenu : dev-donnees (D-V4 à D-V6), dev-logique en opus (K-V1 à K-V3, textes de `calculs.md`), puis dev-interface B (avec les libellés D46 et les textes V11) — commits `037d9f6`, `4feef13`, `8ba9968`, `53f3227`, `4005d72`, `4cc1446`, `8d6d463`
+    > Note : 1 021 tests unitaires, 132 e2e. Arbitrages de la passe B en D50.
+  - [ ] 8.3 Tour 2, vérification des corrections et de ce que le tour 1 n'a pas pu voir — verif-masse, verif-approfondie (opus), contenu-jeu (opus) → `docs/contenu/verification-v2.md`
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
 
 ## Questions en attente
@@ -205,6 +207,8 @@
   - Raison : écarter les recommandations absurdes relevées en V1 et V2 sans pénaliser les armes presque accessibles.
   - Par : chef de projet
 - D49 · 2026-11-06 · Configuration des sous-agents : règle commune ajoutée aux sept définitions, « écrire le script Python dans un fichier, puis `python -I fichier.py` ; jamais `python -` ni un interpréteur interactif ». Raison : trois sous-agents ont laissé un `python.exe` en attente d'entrée, impossible à arrêter pour eux ; le développeur a dû les fermer à la main — par : chef de projet
+
+- D50 · 2026-11-06 · Arbitrages de la passe d'interface B du tour 1 : tables des types de compétence et des emplacements d'armure dans deux modules d'interface (`src/ui/skillTypes.ts`, `src/ui/armorSlots.ts`), partagés par la fiche, le catalogue et la carte d'arme, plutôt que dans `labels.ts` ; libellé « Coût en FP » corrigé dans `src/catalog/facets.ts` (D46) ; note « Prérequis non atteints » allongée, relue par contenu-jeu au tour 2 — par : chef de projet
 
 ## Vérifications
 - Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu : 12 constats (contenu affiché exact sur 30 entités, calculs conformes), 11 retenus (2 majeurs : armes hors du build recommandées, catalyseurs dont les prérequis manquent recommandés sans réduction de puissance), 1 reporté (V12 : ordre Prisoner / Astrologer qui dépend des colonnes, statu quo en v1).
