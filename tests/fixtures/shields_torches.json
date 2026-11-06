@@ -1,0 +1,329 @@
+{
+  "schema": 1,
+  "key": "shields_torches",
+  "kind": "weapon",
+  "listKey": "weapons",
+  "meta": {
+    "source_page": "https://eldenring.wiki.gg/wiki/Shields",
+    "source_wiki": "eldenring.wiki.gg (MediaWiki API, page wikitext)",
+    "retrieved": "2026-10-31",
+    "weapon_count": 89,
+    "counts_by_source": {
+      "Base game": 75,
+      "Shadow of the Erdtree": 12,
+      "Tarnished Pack": 2
+    },
+    "counts_by_category": {
+      "Torches": 8,
+      "Small Shields": 19,
+      "Medium Shields": 32,
+      "Greatshields": 27,
+      "Thrusting Shields": 3
+    },
+    "field_notes": {
+      "attack_power / guarded_damage_negation / scaling / requirements": "Base values at +0 (Standard affinity) from the page infobox. Scaling grades: S > A > B > C > D > E, null = no scaling.",
+      "skill.fp_cost": "Wiki notation 'X (Y Z)': X = FP cost of the skill itself, Y/Z = FP cost of the light/heavy follow-ups. '-' = none.",
+      "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
+      "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
+      "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
+      "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
+      "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
+      "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
+      "upgrade.tables_consistent_with_infobox": "false = the page's upgrade table +0 physical attack differs from the infobox (wiki data inconsistency, prefer the infobox).",
+      "regions_mentioned": "Map regions detected in the acquisition text (helper for game-progression analysis).",
+      "acquisition_flags": "Heuristic tags derived from the acquisition text.",
+      "notes / acquisition.details": "Bullet text from the wiki; nested bullets are prefixed with '→' (one per nesting level).",
+      "description / skill.description": "English in-game descriptions (weapon page / skill page).",
+      "skill.stamina_cost_wiki": "Same 'X (Y Z)' notation as fp_cost, from the skill page.",
+      "upgrade.buffable": "Only present when the wiki states whether the weapon can be buffed (grease/spells).",
+      "patch_notes": "Balance changes listed on the weapon page: game version, official patch note, community explanation.",
+      "compatible_ashes_of_war": "Only on the few pages that list them.",
+      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept.",
+      "status_inconsistencies_flagged": "Nanaya's Torch: weapon page 65 (kept), Madness page list +55"
+    },
+    "class_rules": {
+      "Thrusting Shields": {
+        "rule": "Note that despite being shields, Thrusting Shields have Ash of War-compatibility more akin to Weapons. Thrusting Swords are considered as \"medium-sized shields capable of thrusting\", though they are incompatible with Parrying skills. As such, the infusable ones are compatible with the following Ashes of War:",
+        "compatible_ashes_of_war": [
+          "Shield Bash",
+          "Shield Crash",
+          "Barricade Shield",
+          "Shield Strike",
+          "No Skill",
+          "Cragblade",
+          "Kick",
+          "Endure",
+          "Ground Slam",
+          "Hoarah Loux's Earthshaker",
+          "Impaling Thrust",
+          "Piercing Fang",
+          "Repeating Thrust",
+          "Quickstep",
+          "Bloodhound's Step",
+          "Raptor of the Mists",
+          "Beast's Roar",
+          "Charge Forth",
+          "Giant Hunt",
+          "Storm Assault",
+          "Storm Stomp",
+          "Determination",
+          "Royal Knight's Resolve",
+          "Glintstone Pebble",
+          "Glintblade Phalanx",
+          "Spinning Weapon",
+          "Gravitas",
+          "Chilling Mist",
+          "Hoarfrost Stomp",
+          "Divine Beast Frost Stomp",
+          "Flaming Strike",
+          "Flame of the Redmanes",
+          "Flame Skewer",
+          "Flame Spear",
+          "Thunderbolt",
+          "Blinkbolt",
+          "Lightning Ram",
+          "Sacred Blade",
+          "Sacred Order",
+          "Shared Order",
+          "Golden Slam",
+          "Golden Vow",
+          "Vow of the Indomitable",
+          "Holy Ground",
+          "Poisonous Mist",
+          "The Poison Flower Blooms Twice",
+          "Blood Tax",
+          "White Shadow's Lure",
+          "Shriek of Sorrow"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Thrusting_Shields"
+      },
+      "Small Shields": {
+        "rule": "The following Ashes of War are compatible with infusable Small Shields:",
+        "compatible_ashes_of_war": [
+          "Parry",
+          "Storm Wall",
+          "Shield Bash",
+          "Shield Crash",
+          "Barricade Shield",
+          "Shield Strike",
+          "No Skill",
+          "Thops's Barrier",
+          "Carian Retaliation",
+          "Golden Parry",
+          "Vow of the Indomitable",
+          "Holy Ground"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Small_Shields"
+      },
+      "Torches": {
+        "rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand.",
+        "compatible_ashes_of_war": [
+          "No Skill"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Torches"
+      },
+      "Greatshields": {
+        "rule": "The following Ashes of War are compatible with infusable Greatshields:",
+        "compatible_ashes_of_war": [
+          "Shield Bash",
+          "Shield Crash",
+          "Barricade Shield",
+          "Shield Strike",
+          "No Skill",
+          "Vow of the Indomitable",
+          "Holy Ground"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Greatshields"
+      },
+      "Medium Shields": {
+        "rule": "The following Ashes of War are compatible with infusable Medium Shields:",
+        "compatible_ashes_of_war": [
+          "Parry",
+          "Storm Wall",
+          "Shield Bash",
+          "Shield Crash",
+          "Barricade Shield",
+          "Shield Strike",
+          "No Skill",
+          "Thops's Barrier",
+          "Carian Retaliation",
+          "Golden Parry",
+          "Vow of the Indomitable",
+          "Holy Ground"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Medium_Shields"
+      }
+    },
+    "upgrade_path_documentation": {
+      "documented_by_wiki": 87,
+      "undocumented": 2,
+      "undocumented_with_estimate": 0
+    },
+    "wiki_inconsistencies_flagged": [],
+    "material_inconsistencies_flagged": []
+  },
+  "transforms": [
+    {
+      "code": "id",
+      "field": "id",
+      "count": 89,
+      "note": "Identifiant ajouté : slug(wiki_page)."
+    },
+    {
+      "code": "derived",
+      "field": "derived",
+      "count": 89,
+      "note": "Champs dérivés ajoutés : displayName, regions, methods, invaderDrop, upgrade, inconsistent."
+    }
+  ],
+  "entries": [
+    {
+      "name": "Silver Grooved Shield",
+      "wiki_page": "Silver Grooved Shield",
+      "url": "https://eldenring.wiki.gg/wiki/Silver_Grooved_Shield",
+      "category": "Medium Shields",
+      "weapon_type": "Medium Shield",
+      "source": "Tarnished Pack",
+      "attack_type": [
+        "Strike"
+      ],
+      "skill": {
+        "name": null,
+        "type": "No skill",
+        "fp_cost": null
+      },
+      "weight": 3,
+      "attack_power": {
+        "physical": 61,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 100,
+        "magic": 52,
+        "fire": 44,
+        "lightning": 24,
+        "holy": 48,
+        "guard_boost": 50
+      },
+      "scaling": {
+        "str": "D",
+        "dex": null,
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 9,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": 1000,
+      "sell_price": 100,
+      "description": "A silver shield whose expert craftsmanship compensates for its weight.\n\nThe elegant grooves render a picturesque scene, recalling the faraway Erdtree's principles.\n\nSpread out above shall its many boughs, spread below shall its many roots, till the whole world knows its blessing.",
+      "acquisition": [
+        {
+          "method": "Starting Equipment",
+          "location": "Idus Knight Tarnished Pack",
+          "region": null,
+          "details": [
+            "The Silver Grooved Shield is a starting weapon for the Idus Knight."
+          ]
+        },
+        {
+          "method": "Purchase",
+          "location": "Liurnia of the Lakes",
+          "region": null,
+          "details": [
+            "The Silver Grooved Shield can be purchased by a Wandering Merchant by the Bellum Church for 1,000 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "starting_equipment",
+        "purchasable"
+      ],
+      "upgrade": {
+        "material": null,
+        "max_level": null,
+        "material_info_source": null,
+        "ash_of_war_changeable": null,
+        "affinity_changeable": null,
+        "changeability_info_source": null,
+        "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
+      },
+      "notes": [
+        "The Silver Grooved Shield is one of two round shields to have 100% Physical Guard Damage Negation. The other is the Messmer Soldier Shield, which can be found in the Shadow of the Erdtree DLC.",
+        "This is the lighest Medium Shield with 100% Physical Guard Damage Negation, though it also has the second lowest Guard Boost of them all."
+      ],
+      "id": "silver-grooved-shield",
+      "derived": {
+        "displayName": "Silver Grooved Shield",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": true,
+              "values": [],
+              "parentsRemoved": [],
+              "unresolved": []
+            },
+            {
+              "index": 1,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Liurnia of the Lakes",
+                  "from": "location",
+                  "raw": "Liurnia of the Lakes",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Liurnia of the Lakes"
+          ]
+        },
+        "methods": [
+          "starting",
+          "purchase"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": null,
+          "maxLevel": null,
+          "reliability": "null"
+        },
+        "inconsistent": []
+      }
+    }
+  ]
+}

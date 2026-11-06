@@ -959,15 +959,14 @@
         "Upgraded with Grave Gloveworts.",
         "Summons two Imps, wielding serrated Forked Hatchets and throw Magic Pots as a ranged attack.",
         "Deal Standard damage and inflict Blood Loss build-up with their melee attacks, and deal Magic damage with their ranged attack.",
-        "A decent early offensive summon if you are willing to either forgo any of the other starting Keepsakes or to ride to the Academy of Raya Lucaria very early on."
+        "A decent early offensive summon if you are willing to either forgo any of the other starting Keepsakes or to ride to the Academy of Raya Lucaria very early on.",
+        "[Minor puzzle spoiler]",
+        "Summoning this duo to fight the nearby Imps is one of the ways to solve the puzzle at Albinauric Rise."
       ],
       "patch_notes": [
         {
           "version": "1.13 (General balance adjustment)",
           "official_notes": "Will no longer stagger as easily."
-        },
-        {
-          "minor puzzle spoiler": "* Summoning this duo to fight the nearby Imps is one of the ways to solve the puzzle at Albinauric Rise."
         }
       ],
       "infobox": {

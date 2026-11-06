@@ -25,6 +25,7 @@ Tu fais une revue approfondie du périmètre que t'indique le chef de projet sur
 - Pas de constat de goût sans conséquence concrète.
 
 ## Règles
+- Python : écris le script dans un fichier (`.cache/…` ou le scratchpad), puis `python -I fichier.py`. Jamais `python -` ni un interpréteur interactif : sans entrée, il reste en attente et le système ne te laisse pas l'arrêter.
 - Tu ne modifies aucun fichier du projet ; tes fichiers temporaires vont dans `.cache/verif/`.
 - Si tu es bloqué (application impossible à lancer, autorisation refusée), arrête-toi et dis-le dans ton rapport.
 - Tu ne poses pas de question à l'utilisateur. Git : `git status`, `git diff` et `git log` seulement.

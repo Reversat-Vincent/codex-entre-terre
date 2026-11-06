@@ -3589,8 +3589,7 @@
       ],
       "regions_mentioned": [
         "Scadu Altus",
-        "Scaduview",
-        "Altus Plateau"
+        "Scaduview"
       ],
       "acquisition_flags": [],
       "used_in_crafting": {
@@ -3894,8 +3893,7 @@
       ],
       "regions_mentioned": [
         "Gravesite Plain",
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [
         "purchasable"

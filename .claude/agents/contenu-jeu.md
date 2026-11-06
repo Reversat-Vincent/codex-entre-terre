@@ -20,6 +20,7 @@ Tu es le référent contenu d'*Elden Ring* (jeu de base, *Shadow of the Erdtree*
 - Les valeurs affichées par l'application, par sondage, contre `data/`.
 
 ## Règles
+- Python : écris le script dans un fichier (`.cache/…` ou le scratchpad), puis `python -I fichier.py`. Jamais `python -` ni un interpréteur interactif : sans entrée, il reste en attente et le système ne te laisse pas l'arrêter.
 - Wiki : 50 titres au plus par requête, au moins 1,5 s entre deux requêtes, User-Agent identifiable ; téléchargements dans `.cache/wiki/` ; Python lancé avec `python -I` ; pages « Nightreign: » exclues. Détails : `.claude/rules/donnees.md`.
 - Contenu DLC toujours étiqueté (`Shadow of the Erdtree`, `Tarnished Pack`).
 - Distingue toujours le fait du wiki, la déduction, l'estimation et le choix de conception (pondération, étape). Une décision de contenu se présente avec ses options et ta recommandation.

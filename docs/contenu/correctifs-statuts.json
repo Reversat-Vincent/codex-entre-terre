@@ -1,0 +1,146 @@
+[
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Spiked Club",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "blood_loss": 50
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Spiked_Club ; https://eldenring.wiki.gg/wiki/Blood_Loss",
+  "reason": "Page de l'arme : « Causes blood loss buildup » sans valeur ; +50 donné par le tableau Weapons de la page Blood Loss.",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Cross-Naginata",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "blood_loss": 50
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Cross-Naginata ; https://eldenring.wiki.gg/wiki/Blood_Loss",
+  "reason": "Page de l'arme : « Causes blood loss buildup » sans valeur ; +50 donné par le tableau Weapons de la page Blood Loss.",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Halo Scythe",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "blood_loss": 55
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Halo_Scythe ; https://eldenring.wiki.gg/wiki/Blood_Loss",
+  "reason": "Page de l'arme : « Causes blood loss buildup » sans valeur ; +55 donné par le tableau Weapons de la page Blood Loss.",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Hookclaws",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "blood_loss": 60
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Hookclaws ; https://eldenring.wiki.gg/wiki/Blood_Loss",
+  "reason": "Tableau d'amélioration de la page de l'arme (Standard et Standard +1) : « Causes blood loss buildup (60) » ; confirmé par la page Blood Loss (+60).",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Bloodhound Claws",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "blood_loss": 60
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Bloodhound_Claws ; https://eldenring.wiki.gg/wiki/Blood_Loss",
+  "reason": "Page de l'arme : « Causes blood loss buildup » sans valeur ; +60 donné par le tableau Weapons de la page Blood Loss.",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Death's Poker",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "frostbite": 65
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Death%27s_Poker ; https://eldenring.wiki.gg/wiki/Frostbite",
+  "reason": "Infobox de la page de l'arme : « Causes frost buildup (65) » ; confirmé par la page Frostbite (+65).",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "melee_armaments.json",
+  "entry": "Chilling Perfume Bottle",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "frostbite": 60
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Chilling_Perfume_Bottle ; https://eldenring.wiki.gg/wiki/Frostbite",
+  "reason": "Shadow of the Erdtree. Infobox de la page de l'arme : « Causes frost buildup (60) » (valeur fixe, indépendante du niveau) ; confirmé par la page Frostbite (+60).",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "ranged_weapons_catalysts.json",
+  "entry": "Rotten Crystal Staff",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "scarlet_rot": 50
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Rotten_Crystal_Staff ; https://eldenring.wiki.gg/wiki/Scarlet_Rot",
+  "reason": "Page de l'arme : « Causes slight scarlet rot buildup » sans valeur ; +50 donné par le tableau Weapons de la page Scarlet Rot (même valeur que Rotten Crystal Sword).",
+  "decision": "D44"
+ },
+ {
+  "op": "add",
+  "file": "shields_torches.json",
+  "entry": "Ghostflame Torch",
+  "path": "status_buildup",
+  "path_segments": [
+   "status_buildup"
+  ],
+  "old": null,
+  "new": {
+   "frostbite": 65
+  },
+  "url": "https://eldenring.wiki.gg/wiki/Ghostflame_Torch ; https://eldenring.wiki.gg/wiki/Frostbite",
+  "reason": "Infobox de la page de l'arme : « Causes frost buildup (65) » ; confirmé par la page Frostbite (+65).",
+  "decision": "D44"
+ }
+]

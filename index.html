@@ -1,0 +1,20 @@
+<!doctype html>
+<!-- Page d'entrée du Codex de l'Entre-terre : métadonnées, consigne de non-indexation et point de montage. Aucune ressource tierce. -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- Exception aux tokens : la barre du navigateur est lue avant le chargement des styles.
+         Valeur = --bg du thème sombre (docs/design/ds/tokens.css). -->
+    <meta name="theme-color" content="#13110e" />
+    <!-- Favicon tiré du symbole i-mark (scripts/icons.ts) ; l'icône pour l'écran d'accueil d'iOS reprend le PNG 192. Le lien du manifeste est ajouté à la compilation par le plugin PWA. -->
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <title>Codex de l'Entre-terre</title>
+  </head>
+  <body class="cx">
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

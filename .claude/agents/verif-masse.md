@@ -22,6 +22,7 @@ Tu fais des vérifications mécaniques sur le **Codex de l'Entre-terre**, une ap
 - **Tailles** : compilation et fichiers de données produits.
 
 ## Règles
+- Python : écris le script dans un fichier (`.cache/…` ou le scratchpad), puis `python -I fichier.py`. Jamais `python -` ni un interpréteur interactif : sans entrée, il reste en attente et le système ne te laisse pas l'arrêter.
 - Tu ne modifies aucun fichier du projet ; tes fichiers temporaires vont dans `.cache/verif/`.
 - Les fichiers de `data/` et les écrans du design sont volumineux : ne les lis pas en entier, cherche avec Grep.
 - Tu ne juges ni l'UX ni le contenu du jeu : signale ce qui mérite une revue approfondie.

@@ -1,0 +1,1058 @@
+{
+  "schema": 1,
+  "key": "ranged_weapons_catalysts",
+  "kind": "weapon",
+  "listKey": "weapons",
+  "meta": {
+    "source_page": "https://eldenring.wiki.gg/wiki/Ranged_Weapons/Catalysts",
+    "source_wiki": "eldenring.wiki.gg (MediaWiki API, page wikitext)",
+    "retrieved": "2026-10-31",
+    "weapon_count": 63,
+    "counts_by_source": {
+      "Base game": 52,
+      "Shadow of the Erdtree": 11
+    },
+    "counts_by_category": {
+      "Light Bows": 6,
+      "Bows": 8,
+      "Greatbows": 5,
+      "Crossbows": 9,
+      "Ballistas": 3,
+      "Staves": 20,
+      "Sacred Seals": 12
+    },
+    "field_notes": {
+      "attack_power / guarded_damage_negation / scaling / requirements": "Base values at +0 (Standard affinity) from the page infobox. Scaling grades: S > A > B > C > D > E, null = no scaling.",
+      "skill.fp_cost": "Wiki notation 'X (Y Z)': X = FP cost of the skill itself, Y/Z = FP cost of the light/heavy follow-ups. '-' = none.",
+      "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
+      "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
+      "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
+      "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
+      "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
+      "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
+      "upgrade.tables_consistent_with_infobox": "false = the page's upgrade table +0 physical attack differs from the infobox (wiki data inconsistency, prefer the infobox).",
+      "regions_mentioned": "Map regions detected in the acquisition text (helper for game-progression analysis).",
+      "acquisition_flags": "Heuristic tags derived from the acquisition text.",
+      "notes / acquisition.details": "Bullet text from the wiki; nested bullets are prefixed with '→' (one per nesting level).",
+      "description / skill.description": "English in-game descriptions (weapon page / skill page).",
+      "skill.stamina_cost_wiki": "Same 'X (Y Z)' notation as fp_cost, from the skill page.",
+      "upgrade.buffable": "Only present when the wiki states whether the weapon can be buffed (grease/spells).",
+      "patch_notes": "Balance changes listed on the weapon page: game version, official patch note, community explanation.",
+      "compatible_ashes_of_war": "Only on the few pages that list them.",
+      "range": "Bow/crossbow/ballista range as shown in the infobox (in-game 'Range' value).",
+      "sorcery_scaling / incantation_scaling": "Catalysts: base spell power at +0 from the infobox (Sorcery Scaling for staves, Incantation Scaling for seals).",
+      "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted).",
+      "effects_details": "Content of the page's 'Effects' section (e.g. which spells a seal boosts and by how much).",
+      "upgrade.material = 'Not upgradeable'": "The wiki states the weapon cannot be reinforced (max_level 0).",
+      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
+    },
+    "class_rules": {
+      "Bows": {
+        "rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:",
+        "compatible_ashes_of_war": [
+          "Mighty Shot",
+          "Sky Shot",
+          "Enchanted Shot",
+          "Rain of Arrows"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": true,
+        "source": "https://eldenring.wiki.gg/wiki/Bows"
+      },
+      "Crossbows": {
+        "rule": "Crossbows are not compatible with any Ashes of War.",
+        "compatible_ashes_of_war": [],
+        "no_ash_of_war": true,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Crossbows"
+      },
+      "Sacred Seals": {
+        "rule": "Sacred Seals are not compatible with any Ashes of War.",
+        "compatible_ashes_of_war": [],
+        "no_ash_of_war": true,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Sacred_Seals"
+      },
+      "Staves": {
+        "rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill.",
+        "compatible_ashes_of_war": [
+          "Spinning Weapon"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Staves"
+      },
+      "Greatbows": {
+        "rule": "Greatbows only have a few compatible Ashes of Wars, fewest of all bows. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Greatbows:",
+        "compatible_ashes_of_war": [
+          "Through and Through",
+          "Igon's Drake Hunt",
+          "Rain of Arrows"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": true,
+        "source": "https://eldenring.wiki.gg/wiki/Greatbows"
+      },
+      "Ballistas": {
+        "rule": "Ballistas are not compatible with any Ashes of War.",
+        "compatible_ashes_of_war": [],
+        "no_ash_of_war": true,
+        "affinity_locked_standard": false,
+        "source": "https://eldenring.wiki.gg/wiki/Ballistas"
+      },
+      "Light Bows": {
+        "rule": "Light Bows have the largest number of compatible Ashes of War among the bows (admittedly still a small number). All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Light Bows:",
+        "compatible_ashes_of_war": [
+          "Mighty Shot",
+          "Barrage",
+          "Sky Shot",
+          "Enchanted Shot",
+          "Rain of Arrows"
+        ],
+        "no_ash_of_war": false,
+        "affinity_locked_standard": true,
+        "source": "https://eldenring.wiki.gg/wiki/Light_Bows"
+      }
+    },
+    "upgrade_path_documentation": {
+      "documented_by_wiki": 63,
+      "undocumented": 0,
+      "undocumented_with_estimate": 0
+    },
+    "wiki_inconsistencies_flagged": [
+      "Lion Greatbow"
+    ],
+    "material_inconsistencies_flagged": []
+  },
+  "transforms": [
+    {
+      "code": "id",
+      "field": "id",
+      "count": 63,
+      "note": "Identifiant ajouté : slug(wiki_page)."
+    },
+    {
+      "code": "derived",
+      "field": "derived",
+      "count": 63,
+      "note": "Champs dérivés ajoutés : displayName, regions, methods, invaderDrop, upgrade, inconsistent."
+    }
+  ],
+  "entries": [
+    {
+      "name": "Horn Bow",
+      "wiki_page": "Horn Bow",
+      "url": "https://eldenring.wiki.gg/wiki/Horn_Bow",
+      "category": "Bows",
+      "weapon_type": "Bow",
+      "source": "Base game",
+      "japanese_name": "角の弓 (Tsuno no Yumi)",
+      "attack_type": [
+        "None"
+      ],
+      "skill": {
+        "name": "Mighty Shot",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "- (6 6)",
+        "description": "Archery skill performed from an oblique stance. Ready the bow, then pull the bowstring to its limit to enhance the power of the shot, penetrating the enemy's guard.",
+        "attack_type": "Pierce",
+        "stamina_cost_wiki": "- (30 30)",
+        "default_affinity": "Standard",
+        "properties": {
+          "hold": true,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Mighty_Shot"
+      },
+      "weight": 4.5,
+      "attack_power": {
+        "physical": 65,
+        "magic": 30,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null,
+        "guard_boost": null
+      },
+      "scaling": {
+        "str": "E",
+        "dex": "D",
+        "int": "E",
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 10,
+        "dex": 14,
+        "int": 12,
+        "fai": 0,
+        "arc": 0
+      },
+      "range": 50,
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": 100,
+      "description": "Longbow made from animal horn. Wielded by master hunters of the ancestral followers.\n\nImbues arrows fired with magic damage. Reveals its true worth when used with magic-infused arrows.",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Siofra River",
+          "region": null,
+          "details": [
+            "Found on a corpse in a niche in the lower levels of the bridge to the lower, southern version of Hallowhorn Grounds, east of the Siofra River Bank Site of Grace."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Siofra River"
+      ],
+      "acquisition_flags": [],
+      "upgrade": {
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (upgrade table max level)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (class page: Bows) + wiki (class page: Bows) + regular material",
+        "class_ash_of_war_rule": "Bows, like all ranged weapons, have a very small number of compatible Ashes of War. All of them are locked to Standard Affinity, regardless of the Whetblades that have been acquired. The following Ashes of War are compatible with infusable Bows:",
+        "tables": {
+          "Standard": {
+            "+0": {
+              "attack": {
+                "physical": 65,
+                "magic": 30,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.21
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.26
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.1
+                }
+              }
+            },
+            "+1": {
+              "attack": {
+                "physical": 68,
+                "magic": 31,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2142
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.2652
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.104
+                }
+              }
+            },
+            "+2": {
+              "attack": {
+                "physical": 72,
+                "magic": 33,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2184
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.2704
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.108
+                }
+              }
+            },
+            "+3": {
+              "attack": {
+                "physical": 76,
+                "magic": 35,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2226
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.2756
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.112
+                }
+              }
+            },
+            "+4": {
+              "attack": {
+                "physical": 80,
+                "magic": 36,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2268
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.2808
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.116
+                }
+              }
+            },
+            "+5": {
+              "attack": {
+                "physical": 83,
+                "magic": 38,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.231
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.286
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.12
+                }
+              }
+            },
+            "+6": {
+              "attack": {
+                "physical": 87,
+                "magic": 40,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2352
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.2912
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.124
+                }
+              },
+              "passive": "-\n\n-"
+            },
+            "+7": {
+              "attack": {
+                "physical": 91,
+                "magic": 42,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2394
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.2964
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.128
+                }
+              }
+            },
+            "+8": {
+              "attack": {
+                "physical": 95,
+                "magic": 43,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2436
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3016
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.132
+                }
+              }
+            },
+            "+9": {
+              "attack": {
+                "physical": 98,
+                "magic": 45,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.2478
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3068
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.136
+                }
+              }
+            },
+            "+10": {
+              "attack": {
+                "physical": 102,
+                "magic": 47,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.252
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.312
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.14
+                }
+              }
+            },
+            "+11": {
+              "attack": {
+                "physical": 106,
+                "magic": 49,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.262
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3172
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.143
+                }
+              }
+            },
+            "+12": {
+              "attack": {
+                "physical": 110,
+                "magic": 50,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2604
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3224
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.146
+                }
+              }
+            },
+            "+13": {
+              "attack": {
+                "physical": 114,
+                "magic": 52,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2646
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3276
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.149
+                }
+              }
+            },
+            "+14": {
+              "attack": {
+                "physical": 117,
+                "magic": 54,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2688
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3328
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.152
+                }
+              }
+            },
+            "+15": {
+              "attack": {
+                "physical": 121,
+                "magic": 56,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.273
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.338
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.155
+                }
+              }
+            },
+            "+16": {
+              "attack": {
+                "physical": 125,
+                "magic": 57,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2772
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3432
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.158
+                }
+              }
+            },
+            "+17": {
+              "attack": {
+                "physical": 129,
+                "magic": 59,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2814
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3484
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.161
+                }
+              }
+            },
+            "+18": {
+              "attack": {
+                "physical": 132,
+                "magic": 61,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2856
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3536
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.164
+                }
+              }
+            },
+            "+19": {
+              "attack": {
+                "physical": 136,
+                "magic": 63,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2898
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3588
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.167
+                }
+              }
+            },
+            "+20": {
+              "attack": {
+                "physical": 140,
+                "magic": 64,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.294
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.364
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.17
+                }
+              }
+            },
+            "+21": {
+              "attack": {
+                "physical": 144,
+                "magic": 66,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.2982
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3692
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.172
+                }
+              }
+            },
+            "+22": {
+              "attack": {
+                "physical": 147,
+                "magic": 68,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3024
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3744
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.174
+                }
+              }
+            },
+            "+23": {
+              "attack": {
+                "physical": 151,
+                "magic": 70,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3066
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3796
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.176
+                }
+              }
+            },
+            "+24": {
+              "attack": {
+                "physical": 155,
+                "magic": 71,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3108
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3848
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.178
+                }
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 159,
+                "magic": 73,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.315
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.39
+                },
+                "int": {
+                  "grade": "E",
+                  "coef": 0.18
+                }
+              }
+            }
+          }
+        },
+        "tables_consistent_with_infobox": true
+      },
+      "notes": [
+        "Due to how enemy defense is calculated, this weapon will deal considerably more damage with Dwelling Arrows, Magicbone Arrows, Spiritflame Arrows, and Coldbone Arrows compared to other bows.",
+        "Like other bows, attribute scaling applies to both the bow's base damage as well as the base damage of the ammunition used. This bow is the only means of applying Intelligence-scaling to magic-infused arrows.",
+        "→ The greatest impact of this is that Magic damage-increasers such as Terra Magica can be applied to increase the damage of its shots and skills.",
+        "The Horn Bow has Intelligence-scaling which will never progress past an \"E\", even at +25. This effectively makes it a Strength/Dexterity weapon that deals minor Magic damage.",
+        "→ Effectively, Intelligence is useless beyond the bare minimum to wield this Bow and possibly for casting Terra Magica (12 Intelligence and 20 Intelligence respectively).",
+        "Has the second lowest Physical Attack Power of all Bows, a bit behind the Black Bow but far ahead of the Erdtree Bow."
+      ],
+      "patch_notes": [
+        {
+          "version": "1.03 (Undocumented)",
+          "official_notes": "(Undocumented)",
+          "community_notes": "Added Intelligence scaling to the weapon. However, the scaling is very minor and never goes above an \"E\"."
+        }
+      ],
+      "id": "horn-bow",
+      "derived": {
+        "displayName": "Horn Bow",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Siofra River",
+                  "from": "location",
+                  "raw": "Siofra River",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Siofra River"
+          ]
+        },
+        "methods": [
+          "loot"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Meteorite Staff",
+      "wiki_page": "Meteorite Staff",
+      "url": "https://eldenring.wiki.gg/wiki/Meteorite_Staff",
+      "category": "Staves",
+      "weapon_type": "Glintstone Staff",
+      "source": "Base game",
+      "attack_type": [
+        "Strike"
+      ],
+      "skill": {
+        "name": null,
+        "type": "No skill",
+        "fp_cost": null
+      },
+      "weight": 4.5,
+      "attack_power": {
+        "physical": 39,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 28,
+        "magic": 17,
+        "fire": 17,
+        "lightning": 17,
+        "holy": 17,
+        "guard_boost": 17
+      },
+      "scaling": {
+        "str": "D",
+        "dex": null,
+        "int": "S",
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 6,
+        "dex": 0,
+        "int": 18,
+        "fai": 0,
+        "arc": 0
+      },
+      "sorcery_scaling": 138,
+      "passive_effects": [
+        "Boosts gravity sorcery"
+      ],
+      "buy_price": null,
+      "sell_price": 200,
+      "description": "Staff embedded with a dark purple glintstone, said to be the fragment of a meteorite. Boasts high sorcery scaling and boosts gravity sorceries as well.\n\nHowever, this staff cannot be strengthened in any way.",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Caelid",
+          "region": null,
+          "details": [
+            "Found inside a broken tower with Miranda Sprouts in the southwestern part of Street of Sages Ruins, in the northwestern corner of the Swamp of Aeonia."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [],
+      "upgrade": {
+        "material": "Not upgradeable",
+        "max_level": 0,
+        "material_info_source": "wiki (text)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (text)",
+        "buffable": false,
+        "class_ash_of_war_rule": "Staves only have one compatible Ash of War, the Ash of War: Spinning Weapon, though they aren't a very fitting match for that one's skill.",
+        "notes": [
+          "This weapon can't be upgraded at all.",
+          "This weapon can't be buffed or infused with Ashes of War."
+        ],
+        "tables": {
+          "Standard": {
+            "+0": {
+              "attack": {
+                "physical": 39,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 100,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "int": {
+                  "grade": "S",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 28,
+                "magic": 17,
+                "fire": 17,
+                "lightning": 17,
+                "holy": 17,
+                "boost": 17
+              }
+            }
+          }
+        },
+        "tables_consistent_with_infobox": true
+      },
+      "notes": [
+        "Though it is unupgradeable, it's effectively equivalent to a +15 Regular or +5 Somber Staff.",
+        "→ Useful early on for anything wishing to delve into Sorceries, especially if grabbed as soon as the playthrough starts.",
+        "→ Easily reachable by taking the teleport chest in Dragon-Burnt Ruins to get to Sellia Crystal Tunnel and exiting it down the hill (remember to rest at the Site of Grace to unlock regular teleportation again). From there, just head west in the swamp.",
+        "Has a Strength requirement of 6, below the minimum possible Strength for any of the Origins.",
+        "Increases the Attack Power of Gravity Sorceries by 30% (by 69% if one is held in each hand).",
+        "→ Also applies to Gravity Sorceries cast with other Staves, as long as a Meteorite Staff is held in the other hand.",
+        "Usable as a staff if casting Gravity Sorceries, but is otherwise best used as an off-hand stat stick to boost the power of specific spells after another staff has been sufficiently upgraded.",
+        "138 Sorcery Scaling at 18 Intelligence (minimum requirement) and 272 Sorcery Scaling at 80 Intelligence.",
+        "→ 168 Scaling at 30 Intelligence, 193 Scaling with 40 Intelligence, 218 Scaling at 50 Intelligence, 244 Scaling at 60 Intelligence, 258 Scaling at 70 Intelligence."
+      ],
+      "id": "meteorite-staff",
+      "derived": {
+        "displayName": "Meteorite Staff",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Caelid",
+                  "from": "location",
+                  "raw": "Caelid",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Caelid"
+          ]
+        },
+        "methods": [
+          "loot"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Not upgradeable",
+          "maxLevel": 0,
+          "reliability": "not-upgradeable"
+        },
+        "inconsistent": []
+      }
+    }
+  ]
+}

@@ -22,7 +22,7 @@
       "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
       "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
       "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
-      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
       "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
       "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
       "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
@@ -35,7 +35,9 @@
       "upgrade.buffable": "Only present when the wiki states whether the weapon can be buffed (grease/spells).",
       "patch_notes": "Balance changes listed on the weapon page: game version, official patch note, community explanation.",
       "compatible_ashes_of_war": "Only on the few pages that list them.",
-      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules)."
+      "upgrade.class_ash_of_war_rule": "Class-wide Ash of War rule quoted from the weapon class page (see metadata.class_rules).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept.",
+      "status_inconsistencies_flagged": "Nanaya's Torch: weapon page 65 (kept), Madness page list +55"
     },
     "class_rules": {
       "Thrusting Shields": {
@@ -161,11 +163,12 @@
       }
     },
     "upgrade_path_documentation": {
-      "documented_by_wiki": 7,
-      "undocumented": 82,
-      "undocumented_with_estimate": 8
+      "documented_by_wiki": 87,
+      "undocumented": 2,
+      "undocumented_with_estimate": 0
     },
-    "wiki_inconsistencies_flagged": []
+    "wiki_inconsistencies_flagged": [],
+    "material_inconsistencies_flagged": []
   },
   "weapons": [
     {
@@ -247,12 +250,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand.",
         "tables": {
           "Standard": {
@@ -404,12 +407,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand."
       },
       "notes": [
@@ -498,12 +501,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand.",
         "tables": {
           "Standard": {
@@ -654,12 +657,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand."
       },
       "notes": [
@@ -738,6 +741,9 @@
       "passive_effects": [
         "Causes frost buildup (65)"
       ],
+      "status_buildup": {
+        "frostbite": 65
+      },
       "buy_price": null,
       "sell_price": 100,
       "description": "Metal torch that burns with cold ghostflame. Tool of the Fallen Hawks who prowl the underground rivers.\n\nWhen the band's last embers were used up in their long search, they began to burn the bones of their fellows, acquiring the cold ghostflame, but sealing their fate as dwellers of the underground for all eternity.",
@@ -759,12 +765,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand."
       },
       "notes": [
@@ -856,12 +862,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand.",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -961,12 +967,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand.",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -1060,12 +1066,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "Torches have one compatible Ash of War, Ash of War: No Skill. This is primarily useful for having access to the right-hand weapon's skill while having a torch in the left hand.",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -1178,12 +1184,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -1286,12 +1292,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": []
@@ -1362,12 +1368,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": []
@@ -1467,12 +1473,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": []
@@ -1565,12 +1571,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -1644,12 +1650,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -1744,12 +1750,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -1833,12 +1839,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -1931,12 +1937,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2014,12 +2020,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2100,12 +2106,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2202,12 +2208,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2282,7 +2288,7 @@
       "acquisition": [
         {
           "method": "Drop",
-          "location": "Altus Plateau/Leyndell, Royal Capital/Scadu Altus/Shadow Keep",
+          "location": "Altus Plateau / Leyndell, Royal Capital / Scadu Altus / Shadow Keep",
           "region": null,
           "details": [
             "2% drop chance from Perfumer enemies in the base game.",
@@ -2302,12 +2308,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2399,12 +2405,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2498,12 +2504,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2596,12 +2602,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:"
       },
       "notes": [
@@ -2702,12 +2708,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -2911,17 +2917,16 @@
         }
       ],
       "regions_mentioned": [
-        "Scadu Altus",
-        "Altus Plateau"
+        "Scadu Altus"
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Small Shields:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -3026,12 +3031,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3107,12 +3112,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3196,12 +3201,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3284,12 +3289,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3364,12 +3369,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -3463,12 +3468,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3553,12 +3558,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3652,12 +3657,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -3729,12 +3734,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -3811,12 +3816,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -4002,12 +4007,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4101,12 +4106,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4191,12 +4196,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4281,12 +4286,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -4384,12 +4389,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4460,12 +4465,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4538,12 +4543,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [],
@@ -4640,12 +4645,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4730,12 +4735,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -4810,12 +4815,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -4915,12 +4920,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5001,12 +5006,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5096,12 +5101,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5188,12 +5193,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5279,12 +5284,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5385,12 +5390,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -5463,12 +5468,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": []
@@ -5540,12 +5545,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5618,12 +5623,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5712,12 +5717,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5819,12 +5824,12 @@
         "npc_or_quest_related"
       ],
       "upgrade": {
-        "material": "Smithing Stones",
-        "max_level": 25,
-        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
-        "ash_of_war_changeable": true,
-        "affinity_changeable": true,
-        "changeability_info_source": "wiki (text)",
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + wiki rule (Ashes of War cannot be applied to weapons upgraded with Somber Smithing Stones)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Medium Shields:"
       },
       "notes": [
@@ -5914,12 +5919,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -6029,12 +6034,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:",
         "tables": {
           "Standard": {
@@ -6190,12 +6195,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -6301,12 +6306,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -6782,12 +6787,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -6886,12 +6891,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -6992,12 +6997,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7099,12 +7104,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7204,12 +7209,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7296,12 +7301,12 @@
         "purchasable"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7391,12 +7396,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7484,12 +7489,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7572,12 +7577,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7663,12 +7668,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7751,12 +7756,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7856,12 +7861,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -7955,12 +7960,12 @@
       "regions_mentioned": [],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -8055,12 +8060,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -8167,7 +8172,7 @@
       "upgrade": {
         "material": "Smithing Stones",
         "max_level": 25,
-        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
         "ash_of_war_changeable": true,
         "affinity_changeable": true,
         "changeability_info_source": "wiki (text)",
@@ -8265,12 +8270,12 @@
         "random_enemy_drop"
       ],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:"
       },
       "notes": [
@@ -8779,12 +8784,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -8891,12 +8896,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -8999,12 +9004,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
-        "affinity_changeable": null,
-        "changeability_info_source": null,
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
         "class_ash_of_war_rule": "The following Ashes of War are compatible with infusable Greatshields:",
         "estimate_if_undocumented": {
           "material": "Somber Smithing Stones",
@@ -9499,8 +9504,7 @@
       "regions_mentioned": [
         "Gravesite Plain",
         "Scadu Altus",
-        "Enir-Ilim",
-        "Altus Plateau"
+        "Enir-Ilim"
       ],
       "acquisition_flags": [
         "npc_or_quest_related"
@@ -9986,12 +9990,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Note that despite being shields, Thrusting Shields have Ash of War-compatibility more akin to Weapons. Thrusting Swords are considered as \"medium-sized shields capable of thrusting\", though they are incompatible with Parrying skills. As such, the infusable ones are compatible with the following Ashes of War:"
       },
       "notes": [
@@ -10079,12 +10083,12 @@
       ],
       "acquisition_flags": [],
       "upgrade": {
-        "material": null,
-        "max_level": null,
-        "material_info_source": null,
-        "ash_of_war_changeable": null,
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
         "affinity_changeable": null,
-        "changeability_info_source": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
         "class_ash_of_war_rule": "Note that despite being shields, Thrusting Shields have Ash of War-compatibility more akin to Weapons. Thrusting Swords are considered as \"medium-sized shields capable of thrusting\", though they are incompatible with Parrying skills. As such, the infusable ones are compatible with the following Ashes of War:"
       },
       "notes": [

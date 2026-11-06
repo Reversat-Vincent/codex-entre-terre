@@ -1,0 +1,1172 @@
+{
+  "schema": 1,
+  "key": "origins",
+  "kind": "origin",
+  "listKey": "origins",
+  "meta": {
+    "source_page": "https://eldenring.wiki.gg/wiki/Origins",
+    "retrieved": "2026-10-31",
+    "count": 12,
+    "counts_by_source": {
+      "Base game": 10,
+      "Tarnished Pack": 2
+    },
+    "field_notes": {
+      "source": "'Tarnished Pack' = origin exclusive to ELDEN RING Tarnished Edition (Switch 2) or the Tarnished Pack DLC, as stated on its page.",
+      "attributes / level": "Starting level and the 8 attributes.",
+      "base_stats / defense / damage_negation / resistance": "Starting derived stats from the page infobox (resistance: base / equipment / total).",
+      "starting_equipment": "Grouped as on the wiki (Armaments, Spells, Gear, Misc.); ammunition joined to its bow with '+'."
+    }
+  },
+  "transforms": [
+    {
+      "code": "id",
+      "field": "id",
+      "count": 12,
+      "note": "Identifiant ajouté : slug(wiki_page)."
+    },
+    {
+      "code": "derived",
+      "field": "derived",
+      "count": 12,
+      "note": "Champs dérivés ajoutés : displayName."
+    }
+  ],
+  "entries": [
+    {
+      "name": "Vagabond",
+      "wiki_page": "Vagabond",
+      "url": "https://eldenring.wiki.gg/wiki/Vagabond",
+      "source": "Base game",
+      "level": 9,
+      "attributes": {
+        "vigor": 15,
+        "mind": 10,
+        "endurance": 11,
+        "strength": 14,
+        "dexterity": 13,
+        "intelligence": 9,
+        "faith": 9,
+        "arcane": 7
+      },
+      "base_stats": {
+        "hp": 522,
+        "fp": 78,
+        "stamina": 97,
+        "equip_load": 49.8,
+        "discovery": 107,
+        "poise": 46
+      },
+      "defense": {
+        "physical": 79,
+        "strike": 79,
+        "slash": 79,
+        "pierce": 79,
+        "magic": 93,
+        "fire": 85,
+        "lightning": 75,
+        "holy": 89
+      },
+      "damage_negation": {
+        "physical": 26.107,
+        "strike": 21.796,
+        "slash": 24.21,
+        "pierce": 23.215,
+        "magic": 19.401,
+        "fire": 21.274,
+        "lightning": 17.12,
+        "holy": 17.12
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 81,
+          "total": 173
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 133,
+          "total": 225
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 53,
+          "total": 145
+        },
+        "vitality": {
+          "base": 99,
+          "equipment": 53,
+          "total": 152
+        }
+      },
+      "in_game_description": "A knight exiled from their homeland to wander. A solid, armor-clad origin.",
+      "summary": "Vagabond is one of the starting origins in Elden Ring.\n\nIt has the unique disadvantage of starting out at 77.97% equip load, exceeding the 70.00% threshold of Heavy Load, resulting in slower, shorter rolls. The easiest way to correct this is to remove either the Halberd they are carrying (for a Longsword-focused build) or the Helmet they are wearing (if wishing to carry both weapons) or the Longsword and the Gauntlets (for a Halberd-focused build). Alternatively, increasing Endurance to 15 will also get them down to Medium Load, letting them roll normally.",
+      "starting_equipment": {
+        "Armaments": [
+          "Longsword",
+          "Halberd",
+          "Heater Shield"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Vagabond Knight Helm",
+          "Vagabond Knight Armor",
+          "Vagabond Knight Gauntlets",
+          "Vagabond Knight Greaves"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, Vagabond is the most effective choice for several build types. Note that these builds are not necessarily \"good\", they are just what this origin is better at than any other.",
+        "[Strength + Dexterity]",
+        "The primary benefit of Vagabond is that it saves a total of 5 levels when compared to Wretch across its Intelligence, Faith and Arcane stats. Builds that require at least 14 Strength and at least 13 Dexterity while also not investing in the other three stats will find Vagabond to be the most optimal origin. For builds that also wish to minimize the Mind stat, the Hero origin is able to tie with Vagabond in efficiency, but the Hero is not able to outclass Vagabond outright for a build that only increases Strength and Dexterity out of the five damage-increasing stats.",
+        "If a build requires fewer points in Strength than 13, Samurai becomes the most efficient option. If a build requires fewer points in Dexterity than 13, Hero becomes the most efficient option.",
+        "[Strength + Intelligence]",
+        "For a build that focuses exclusively on Strength and Intelligence as its damage-increasing stats, Astrologer and Hero are tied for being the most optimal starting origin to choose. However, Vagabond will share a tie with Astrologer if the build also requires at least 13 Dexterity, with 4 fewer stat points wasted compared to Wretch. This makes Vagabond an optimal choice for Strength + Intelligence builds that use weapons with high Dexterity requirements such as:",
+        "Royal Greatsword",
+        "Loretta's War Sickle",
+        "Onyx Lord's Greatsword",
+        "Troll Knight's Sword",
+        "[Strength + Faith]",
+        "Similarly to Strength + Intelligence, Prophet and Hero are tied by default for the most efficient starting class for a build exclusively utilizing Strength and Faith investment to increase damage. However, Vagabond is the most efficient option for a build that also requires at least 13 Dexterity, wasting 4 fewer stat points compared to Wretch. This makes Vagabond the optimal choice for Strength + Faith builds that use weapons with high Dexterity requirements such as:",
+        "Golden Halberd",
+        "Siluria's Tree",
+        "Ordovis's Greatsword",
+        "Magma Wyrm's Scalesword",
+        "Blasphemous Blade",
+        "Grafted Dragon",
+        "Devourer's Scepter",
+        "Gargoyle's Black Blades",
+        "[Dexterity + Faith]",
+        "By default, Prophet is the most efficient starting origin for a build that exclusively invests in Dexterity and Faith to increase damage output. However, if the build also requires 14 or more Strength, Vagabond becomes more efficient, wasting 4 fewer points compared to Wretch. This makes Vagabond the optimal choice for Dexterity + Faith builds that use weapons with high Strength requirements such as:",
+        "Sacred Relic Sword",
+        "Treespear",
+        "Godslayer's Greatsword",
+        "Golden Order Greatsword",
+        "Vyke's War Spear"
+      ],
+      "id": "vagabond",
+      "derived": {
+        "displayName": "Vagabond"
+      }
+    },
+    {
+      "name": "Warrior",
+      "wiki_page": "Warrior",
+      "url": "https://eldenring.wiki.gg/wiki/Warrior",
+      "source": "Base game",
+      "level": 8,
+      "attributes": {
+        "vigor": 11,
+        "mind": 12,
+        "endurance": 11,
+        "strength": 10,
+        "dexterity": 16,
+        "intelligence": 10,
+        "faith": 8,
+        "arcane": 9
+      },
+      "base_stats": {
+        "hp": 434,
+        "fp": 85,
+        "stamina": 97,
+        "equip_load": 49.8,
+        "discovery": 109,
+        "poise": 33
+      },
+      "defense": {
+        "physical": 77,
+        "strike": 77,
+        "slash": 77,
+        "pierce": 77,
+        "magic": 94,
+        "fire": 81,
+        "lightning": 74,
+        "holy": 92
+      },
+      "damage_negation": {
+        "physical": 18.698,
+        "strike": 18.698,
+        "slash": 15.792,
+        "pierce": 15.792,
+        "magic": 20.08,
+        "fire": 21.446,
+        "lightning": 23.302,
+        "holy": 18.698
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 147,
+          "total": 239
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 97,
+          "total": 189
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 116,
+          "total": 208
+        },
+        "vitality": {
+          "base": 101,
+          "equipment": 116,
+          "total": 217
+        }
+      },
+      "in_game_description": "A nomad warrior who fights wielding two blades at once. An origin of exceptional technique.",
+      "summary": "Warrior is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Scimitar (x2)",
+          "Riveted Wooden Shield"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Blue Cloth Cowl",
+          "Blue Cloth Vest",
+          "Warrior Gauntlets",
+          "Warrior Greaves"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, the Warrior is generally considered a bad option. For pure Dexterity builds, Samurai generally outclasses the Warrior due to the higher Intelligence, Mind and Arcane stats of the Warrior generating too many wasted points, while Astrologer and Prisoner are able to outclass it in Intelligence/Dexterity hybrid builds. Note that these builds are not necessarily \"good\", they are just what this origin is better at than any other.",
+        "[Demi-Human Queen's Staff]",
+        "Despite the unfortunate position of the Warrior, it does have a specific niche where it is considered the optimal choice, which is a pure Dexterity build that also uses between 10 and 12 Intelligence in order to cast low-level spells. Prisoner will become optimal if the intelligence required is any higher than 12, but within this range of intelligence, the Warrior origin can use the Demi-Human Queen's Staff which provides a relatively high spell scaling value for low intelligence casters, allowing for spells that deal a reasonable amount of damage. The spells that can be used within this range are:",
+        "Glintstone Pebble",
+        "Glintstone Stars",
+        "Scholar's Armament",
+        "Scholar's Shield",
+        "Swift Glintstone Shard",
+        "Unseen Blade",
+        "Warrior can also make use of the Horn Bow in such a build."
+      ],
+      "id": "warrior",
+      "derived": {
+        "displayName": "Warrior"
+      }
+    },
+    {
+      "name": "Hero",
+      "wiki_page": "Hero",
+      "url": "https://eldenring.wiki.gg/wiki/Hero",
+      "source": "Base game",
+      "level": 7,
+      "attributes": {
+        "vigor": 14,
+        "mind": 9,
+        "endurance": 12,
+        "strength": 16,
+        "dexterity": 9,
+        "intelligence": 7,
+        "faith": 8,
+        "arcane": 11
+      },
+      "base_stats": {
+        "hp": 499,
+        "fp": 75,
+        "stamina": 99,
+        "equip_load": 51.4,
+        "discovery": 111,
+        "poise": 22
+      },
+      "defense": {
+        "physical": 79,
+        "strike": 79,
+        "slash": 79,
+        "pierce": 79,
+        "magic": 88,
+        "fire": 83,
+        "lightning": 74,
+        "holy": 96
+      },
+      "damage_negation": {
+        "physical": 13.158,
+        "strike": 17.088,
+        "slash": 14.156,
+        "pierce": 15.403,
+        "magic": 15.403,
+        "fire": 18.575,
+        "lightning": 19.873,
+        "holy": 18.575
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 116,
+          "total": 208
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 73,
+          "total": 165
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 96,
+          "total": 188
+        },
+        "vitality": {
+          "base": 103,
+          "equipment": 88,
+          "total": 191
+        }
+      },
+      "in_game_description": "A stalwart hero, at home with a battleaxe, descended from a badlands chieftain.",
+      "summary": "Hero is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Battle Axe",
+          "Large Leather Shield"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Champion Headband",
+          "Champion Pauldron",
+          "Champion Bracers",
+          "Champion Gaiters"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, the Hero is the best choice for essentially any build which focuses mainly on Strength. Note that these builds are not necessarily \"good\", they are just what this origin is better at than any other.",
+        "[Pure Strength]",
+        "The Hero is by far and away the best origin for a build that increases strength while forsaking all other damage stats, saving 6 entire levels when compared to Wretch. This makes it the best choice for weapons such as the Greatsword or Giant-Crusher, which demand high strength but little of anything else. If a weapon requires 13 or more dexterity to wield, Vagabond will tie with Hero in point efficiency but hero will still outmatch every other origin considerably.",
+        "The Hero origin is also either the most efficient or tied for most efficient option for any hybrid class which is focused on raising the strength stat, with the exception of strength/dexterity/intelligence focuses and strength/dexterity/faith focuses, for which prisoner and vagabond are the best options respectively. This makes Hero the best option for essentially any strength hybrid weapon that does not demand high dexterity, such as:",
+        "Ruins Greatsword",
+        "Gargoyle's Black Axe",
+        "Cranial Vessel Candlestand",
+        "Staff of the Avatar",
+        "Troll's Hammer",
+        "Note that Astrologer and Prophet both beat out Hero for strength/intelligence and strength/faith builds respectively if the dexterity requirement is 10 or higher, meaning that Hero is not optimal for weapons such as Starscourge Greatsword.",
+        "[Pure Arcane]",
+        "Surprisingly, Hero is also the best origin for a build which focuses on ignoring the leveling of other damage stats in favor of only increasing Arcane - although only being 1 level more efficient than both Wretch and Bandit - making it potentially the best option for bleed, poison and occult infusions. However, if the build also requires at least 11 dexterity or 9 intelligence, Bandit then becomes the most optimal origin."
+      ],
+      "id": "hero",
+      "derived": {
+        "displayName": "Hero"
+      }
+    },
+    {
+      "name": "Bandit",
+      "wiki_page": "Bandit",
+      "url": "https://eldenring.wiki.gg/wiki/Bandit",
+      "source": "Base game",
+      "level": 5,
+      "attributes": {
+        "vigor": 10,
+        "mind": 11,
+        "endurance": 10,
+        "strength": 9,
+        "dexterity": 13,
+        "intelligence": 9,
+        "faith": 8,
+        "arcane": 14
+      },
+      "base_stats": {
+        "hp": 414,
+        "fp": 82,
+        "stamina": 96,
+        "equip_load": 48.2,
+        "discovery": 114,
+        "poise": 29
+      },
+      "defense": {
+        "physical": 76,
+        "strike": 76,
+        "slash": 76,
+        "pierce": 76,
+        "magic": 91,
+        "fire": 80,
+        "lightning": 73,
+        "holy": 101
+      },
+      "damage_negation": {
+        "physical": 15.441,
+        "strike": 16.954,
+        "slash": 18.106,
+        "pierce": 18.106,
+        "magic": 19.247,
+        "fire": 19.497,
+        "lightning": 20.788,
+        "holy": 18.106
+      },
+      "resistance": {
+        "immunity": {
+          "base": 91,
+          "equipment": 131,
+          "total": 222
+        },
+        "robustness": {
+          "base": 91,
+          "equipment": 74,
+          "total": 165
+        },
+        "focus": {
+          "base": 91,
+          "equipment": 120,
+          "total": 120
+        },
+        "vitality": {
+          "base": 105,
+          "equipment": 122,
+          "total": 122
+        }
+      },
+      "in_game_description": "A dangerous bandit who strikes for weak points. Excels at ranged combat with bows.",
+      "summary": "Bandit is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Great Knife",
+          "Shortbow + Bone Arrow (Fletched) x30",
+          "Buckler"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Bandit Mask",
+          "Bandit Garb",
+          "Bandit Manchettes",
+          "Bandit Boots"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "id": "bandit",
+      "derived": {
+        "displayName": "Bandit"
+      }
+    },
+    {
+      "name": "Astrologer",
+      "wiki_page": "Astrologer",
+      "url": "https://eldenring.wiki.gg/wiki/Astrologer",
+      "source": "Base game",
+      "level": 6,
+      "attributes": {
+        "vigor": 9,
+        "mind": 15,
+        "endurance": 9,
+        "strength": 8,
+        "dexterity": 12,
+        "intelligence": 16,
+        "faith": 7,
+        "arcane": 9
+      },
+      "base_stats": {
+        "hp": 396,
+        "fp": 95,
+        "stamina": 94,
+        "equip_load": 46.6,
+        "discovery": 109,
+        "poise": 24
+      },
+      "defense": {
+        "physical": 76,
+        "strike": 76,
+        "slash": 76,
+        "pierce": 76,
+        "magic": 105,
+        "fire": 79,
+        "lightning": 73,
+        "holy": 91
+      },
+      "damage_negation": {
+        "physical": 13.007,
+        "strike": 11.457,
+        "slash": 11.457,
+        "pierce": 11.457,
+        "magic": 26.27,
+        "fire": 25.448,
+        "lightning": 26.02,
+        "holy": 25.448
+      },
+      "resistance": {
+        "immunity": {
+          "base": 91,
+          "equipment": 113,
+          "total": 204
+        },
+        "robustness": {
+          "base": 91,
+          "equipment": 55,
+          "total": 146
+        },
+        "focus": {
+          "base": 91,
+          "equipment": 201,
+          "total": 292
+        },
+        "vitality": {
+          "base": 100,
+          "equipment": 171,
+          "total": 271
+        }
+      },
+      "in_game_description": "A scholar who reads fate in the stars. Heir to the school of glintstone sorcery.",
+      "summary": "Astrologer is one of the starting origins in Elden Ring.\n\nConsider this origin very carefully. While melee and bow fighters are spoiled for choice of weapons and equipment very early on from both loot and stores, you will not get access to effective equipment for spellcasting until you are past at least two major bosses of Margit, the Fell Omen and Godrick the Grafted, where you will be finally able to buy the equipment listed below that the Astrologer starts with. The Sorceress Sellen who will be your main spell teacher is also locked behind a boss fight. Even if you heavily prefer melee or bow combat, it might be worthwhile taking the Astrologer anyways just for the early tactical option of the spells.\n\nWhen choosing to be an Astrologer i.e. spellcaster, you're going to have to force your \"hand preference\" and controls based on your intended combat style due to two key spells that hard-force whether your Staff can be in your Right or Left hand, with such spells being blocked from firing in the opposite orientation. Note that the handedness has no effect on the raw strength of spells, nor does 2-handing a staff.\n\n* Scholar's Armament forces you to have the staff in the Left hand in order to be able to enchant a weapon on the Right.\n* Scholar's Shield forces you to have the staff in the Right hand in order to be able to enchant a shield on the Left.\n\nGiven that you can't have the same staff equipped twice in two different weapon slots and that it is not economical to keep Strengthening two separate staffs as you level up, it is suggested to stick with just one of the above. If you truly detest melee combat except as a last resort and want to stick with spells as much as possible, go with a Right-handed staff to be able to use the shield buff for more defense (which is the Astrologer's default setup when you first start the game). Otherwise, switch the staff to the Left hand and get used to the different activation keys so that you can use the surprisingly powerful weapon buff.",
+      "starting_equipment": {
+        "Armaments": [
+          "Astrologer's Staff",
+          "Short Sword",
+          "Scripture Wooden Shield"
+        ],
+        "Spells": [
+          "Glintstone Pebble (Sorcery)",
+          "Glintstone Arc (Sorcery)"
+        ],
+        "Gear": [
+          "Astrologer Hood",
+          "Astrologer Robe",
+          "Astrologer Gloves",
+          "Astrologer Trousers"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, the Astrologer is the best choice for essentially any build which focuses mainly on Intelligence, and more specifically the Sorceries. Note that these builds are not necessarily \"good\", they are just what this origin is better at than any other.",
+        "[Intelligence-Strength-Dex]",
+        "The main goal of this build is to give the Astrologer access to the very powerful spells while simultaneously giving some tactical flexibility in melee and the ability to lure/damage enemies at a range beyond what their spells can reach via a Longbow. If you get your Strength to 20 and Dexterity to 14, you can fully use the Longbow and the Pike, as well as several of the shields that have a 100% Physical damage reduction through guarding like the Heater Shield. However, as an alternate option you can stick with the Pike and Staff build for liberal use of Scholar's Armament, and then you can easily have both spells and melee attacks happening interchangeably along with relying on dodge rolls for defense. In this instance, just remove the shield to reduce your Equip Load; remember that a Shield only helps you, in any way, if you Guard with it. They do not give any bonus passive defenses just from wearing them like Armor does, so you may be better off saving the weight of the Shield and wearing a stronger Armor instead.",
+        "You won't really need to push either stat much further than this for a LONG time. Then you can pile on Intelligence, as well as the occasional Vigor, Mind and Endurance for improved HP, FP and Stamina capacity; keep Vigor and Mind up enough so that your HP and FP max capacities are just slightly above what a Flask charge can restore, growing as you upgrade the Flask strength.",
+        "Make liberal use of the auto-targeting feature and your range. While not having a particularly fast damage output, Glintstone Pebble is extremely FP-efficient against single targets. Glintstone Arc has identical damage per shot as Pebble but with a higher FP cost and slightly less range, however it can hit small groups of enemies simultaneously which is where it truly shines. Combine these with a careful evasive ranged combat style and a decent Summon, and you can do VERY well for quite some time before you even find another reasonable spell.",
+        "Once you've gotten comfortable with the attack patterns of certain enemies you can easily switch to melee with the ultra-long Pike (using the Spear beforehand which is acquired earlier), allowing for efficient kills without burning through too much FP."
+      ],
+      "id": "astrologer",
+      "derived": {
+        "displayName": "Astrologer"
+      }
+    },
+    {
+      "name": "Prophet",
+      "wiki_page": "Prophet",
+      "url": "https://eldenring.wiki.gg/wiki/Prophet",
+      "source": "Base game",
+      "level": 7,
+      "attributes": {
+        "vigor": 10,
+        "mind": 14,
+        "endurance": 8,
+        "strength": 11,
+        "dexterity": 10,
+        "intelligence": 7,
+        "faith": 16,
+        "arcane": 10
+      },
+      "base_stats": {
+        "hp": 414,
+        "fp": 91,
+        "stamina": 92,
+        "equip_load": 45,
+        "discovery": 110,
+        "poise": 16
+      },
+      "defense": {
+        "physical": 77,
+        "strike": 77,
+        "slash": 77,
+        "pierce": 77,
+        "magic": 88,
+        "fire": 80,
+        "lightning": 74,
+        "holy": 94
+      },
+      "damage_negation": {
+        "physical": 9.68,
+        "strike": 10.683,
+        "slash": 10.109,
+        "pierce": 9.68,
+        "magic": 23.671,
+        "fire": 22.383,
+        "lightning": 22.493,
+        "holy": 23.229
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 86,
+          "total": 178
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 44,
+          "total": 136
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 157,
+          "total": 249
+        },
+        "vitality": {
+          "base": 102,
+          "equipment": 168,
+          "total": 270
+        }
+      },
+      "in_game_description": "A seer ostracized for inauspicious prophecies. Well-versed in healing incantations.",
+      "summary": "Prophet is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Finger Seal",
+          "Short Spear",
+          "Rickety Shield"
+        ],
+        "Spells": [
+          "Catch Flame",
+          "Heal"
+        ],
+        "Gear": [
+          "Prophet Blindfold",
+          "Prophet Robe",
+          "Prophet Trousers"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "id": "prophet",
+      "derived": {
+        "displayName": "Prophet"
+      }
+    },
+    {
+      "name": "Samurai",
+      "wiki_page": "Samurai",
+      "url": "https://eldenring.wiki.gg/wiki/Samurai",
+      "source": "Base game",
+      "level": 9,
+      "attributes": {
+        "vigor": 12,
+        "mind": 11,
+        "endurance": 13,
+        "strength": 12,
+        "dexterity": 15,
+        "intelligence": 9,
+        "faith": 8,
+        "arcane": 8
+      },
+      "base_stats": {
+        "hp": 455,
+        "fp": 82,
+        "stamina": 101,
+        "equip_load": 52.9,
+        "discovery": 109,
+        "poise": 33
+      },
+      "defense": {
+        "physical": 79,
+        "strike": 79,
+        "slash": 79,
+        "pierce": 79,
+        "magic": 93,
+        "fire": 83,
+        "lightning": 75,
+        "holy": 91
+      },
+      "damage_negation": {
+        "physical": 17.088,
+        "strike": 18.575,
+        "slash": 23.668,
+        "pierce": 18.575,
+        "magic": 19.873,
+        "fire": 22.263,
+        "lightning": 23.187,
+        "holy": 21.156
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 135,
+          "total": 227
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 112,
+          "total": 204
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 90,
+          "total": 182
+        },
+        "vitality": {
+          "base": 100,
+          "equipment": 120,
+          "total": 220
+        }
+      },
+      "in_game_description": "A capable fighter from the distant Land of Reeds. Handy with katana and longbows.",
+      "summary": "Samurai is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Uchigatana",
+          "Red Thorn Roundshield",
+          "Longbow + Arrow x20 + Fire Arrow x10"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Land of Reeds Helm",
+          "Land of Reeds Armor",
+          "Land of Reeds Gauntlets",
+          "Land of Reeds Greaves"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, the Samurai is the most efficient choice in specific circumstances.",
+        "[Dexterity]",
+        "The Samurai is the most optimal choice for a pure Dexterity build, being 2 points more efficient than Wretch. Samurai is the most effective origin for weapons which have low Strength, but Vagabond becomes more optimal if the build requires 14 or more Strength."
+      ],
+      "id": "samurai",
+      "derived": {
+        "displayName": "Samurai"
+      }
+    },
+    {
+      "name": "Prisoner",
+      "wiki_page": "Prisoner",
+      "url": "https://eldenring.wiki.gg/wiki/Prisoner",
+      "source": "Base game",
+      "level": 9,
+      "attributes": {
+        "vigor": 11,
+        "mind": 12,
+        "endurance": 11,
+        "strength": 11,
+        "dexterity": 14,
+        "intelligence": 14,
+        "faith": 6,
+        "arcane": 9
+      },
+      "base_stats": {
+        "hp": 434,
+        "fp": 85,
+        "stamina": 97,
+        "equip_load": 49.8,
+        "discovery": 109,
+        "poise": 21
+      },
+      "defense": {
+        "physical": 78,
+        "strike": 78,
+        "slash": 78,
+        "pierce": 78,
+        "magic": 103,
+        "fire": 82,
+        "lightning": 75,
+        "holy": 93
+      },
+      "damage_negation": {
+        "physical": 12.768,
+        "strike": 13.561,
+        "slash": 14.571,
+        "pierce": 12.768,
+        "magic": 21.668,
+        "fire": 21.218,
+        "lightning": 20.887,
+        "holy": 22.789
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 97,
+          "total": 189
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 81,
+          "total": 173
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 137,
+          "total": 229
+        },
+        "vitality": {
+          "base": 101,
+          "equipment": 122,
+          "total": 223
+        }
+      },
+      "in_game_description": "A prisoner bound in an iron mask. Studied in glintstone sorcery, having lived among the elite prior to sentencing.",
+      "summary": "Prisoner is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Glintstone Staff",
+          "Estoc",
+          "Rift Shield"
+        ],
+        "Spells": [
+          "Magic Glintblade (Sorcery)"
+        ],
+        "Gear": [
+          "Prisoner Iron Mask",
+          "Prisoner Clothing",
+          "Prisoner Trousers"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "id": "prisoner",
+      "derived": {
+        "displayName": "Prisoner"
+      }
+    },
+    {
+      "name": "Confessor",
+      "wiki_page": "Confessor",
+      "url": "https://eldenring.wiki.gg/wiki/Confessor",
+      "source": "Base game",
+      "level": 10,
+      "attributes": {
+        "vigor": 10,
+        "mind": 13,
+        "endurance": 10,
+        "strength": 12,
+        "dexterity": 12,
+        "intelligence": 9,
+        "faith": 14,
+        "arcane": 9
+      },
+      "base_stats": {
+        "hp": 414,
+        "fp": 88,
+        "stamina": 96,
+        "equip_load": 48.2,
+        "discovery": 109,
+        "poise": 33
+      },
+      "defense": {
+        "physical": 79,
+        "strike": 79,
+        "slash": 79,
+        "pierce": 79,
+        "magic": 93,
+        "fire": 82,
+        "lightning": 75,
+        "holy": 93
+      },
+      "damage_negation": {
+        "physical": 17.12,
+        "strike": 21.274,
+        "slash": 17.12,
+        "pierce": 18.606,
+        "magic": 22.29,
+        "fire": 22.29,
+        "lightning": 24.21,
+        "holy": 19.969
+      },
+      "resistance": {
+        "immunity": {
+          "base": 92,
+          "equipment": 147,
+          "total": 239
+        },
+        "robustness": {
+          "base": 92,
+          "equipment": 116,
+          "total": 208
+        },
+        "focus": {
+          "base": 92,
+          "equipment": 116,
+          "total": 208
+        },
+        "vitality": {
+          "base": 101,
+          "equipment": 126,
+          "total": 227
+        }
+      },
+      "in_game_description": "A church spy adept at covert operations. Equally adept with a sword as they are with their incantations.",
+      "summary": "Confessor is one of the starting origins in Elden Ring.",
+      "starting_equipment": {
+        "Armaments": [
+          "Finger Seal",
+          "Broadsword",
+          "Blue Crest Heater Shield"
+        ],
+        "Spells": [
+          "Urgent Heal (Incantation)",
+          "Assassin's Approach (Incantation)"
+        ],
+        "Gear": [
+          "Confessor Hood",
+          "Confessor Armor",
+          "Confessor Gloves",
+          "Confessor Boots"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, Confessor is objectively the worst choice. Origins become more efficient when they have lower stats as this means the low stat can be ignored and the points can instead be invested in attributes that the build makes use of. With Confessor's lowest stat values being a 9 in Intelligence and a 9 in Arcane, the origin only has a maximum of 2 points it can potentially save when compared with Wretch. Even in a build where none of its other points are wasted, Prophet, Hero and Vagabond save more stat points overall than Confessor, as their lowest stats are all at 7 which grants them far more build potential. Note that these builds are not necessarily \"good\", they are just what this origin is better at than any other.",
+        "[Sword of Night and Flame]",
+        "Despite the issues inherent to confessor it has one single solitary niche, being one of the two most optimal origins to build for the Sword of Night and Flame. It shares this tie with Astrologer and both origins save 1 stat point on this build when compared to Wretch. The only notable difference between the two options is that Confessor has 2 less Mind than Astrologer. This gap in FP does not affect the number of times you are able to use the sword's weapon skill, meaning that Confessor is overall the most optimal origin if you specifically do not want to cast spells as part of this build, or invest in being able to cast the weapon skill more often."
+      ],
+      "id": "confessor",
+      "derived": {
+        "displayName": "Confessor"
+      }
+    },
+    {
+      "name": "Wretch",
+      "wiki_page": "Wretch",
+      "url": "https://eldenring.wiki.gg/wiki/Wretch",
+      "source": "Base game",
+      "level": 1,
+      "attributes": {
+        "vigor": 10,
+        "mind": 10,
+        "endurance": 10,
+        "strength": 10,
+        "dexterity": 10,
+        "intelligence": 10,
+        "faith": 10,
+        "arcane": 10
+      },
+      "base_stats": {
+        "hp": 414,
+        "fp": 78,
+        "stamina": 96,
+        "equip_load": 48.2,
+        "discovery": 110,
+        "poise": 0
+      },
+      "defense": {
+        "physical": 75,
+        "strike": 75,
+        "slash": 75,
+        "pierce": 75,
+        "magic": 91,
+        "fire": 78,
+        "lightning": 71,
+        "holy": 91
+      },
+      "damage_negation": {
+        "physical": 0,
+        "strike": 0,
+        "slash": 0,
+        "pierce": 0,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0
+      },
+      "resistance": {
+        "immunity": {
+          "base": 90,
+          "equipment": 0,
+          "total": 90
+        },
+        "robustness": {
+          "base": 90,
+          "equipment": 0,
+          "total": 90
+        },
+        "focus": {
+          "base": 90,
+          "equipment": 0,
+          "total": 90
+        },
+        "vitality": {
+          "base": 100,
+          "equipment": 0,
+          "total": 100
+        }
+      },
+      "in_game_description": "A poor, purposeless sod, naked as the day they were born. A nice club is all they have.",
+      "summary": "Wretch is one of the starting origins in Elden Ring.\n\nUnlike the other origins, this one only starts out with one piece of equipment, the club.",
+      "starting_equipment": {
+        "Armaments": [
+          "Club"
+        ],
+        "Spells": [],
+        "Gear": [],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "build_optimization": [
+        "For people who wish to select an origin that will have the most optimal stat distribution for a build with the fewest stat points wasted, Wretch does not specialize by lowering any particular stat below 10 and as a result is rarely the optimal choice - but not never.",
+        "[Omnicaster]",
+        "A build that uses Intelligence, Faith and Arcane to cast every type of spell available is one where the Wretch is surprisingly the most efficient, sharing this accolade with the Astrologer. Every other origin wastes more points in this type of build than the Wretch does, which arguably gives the Wretch more build utility than the Warrior or Confessor overall."
+      ],
+      "id": "wretch",
+      "derived": {
+        "displayName": "Wretch"
+      }
+    },
+    {
+      "name": "Idus Knight",
+      "wiki_page": "Idus Knight",
+      "url": "https://eldenring.wiki.gg/wiki/Idus_Knight",
+      "source": "Tarnished Pack",
+      "level": 7,
+      "attributes": {
+        "vigor": 10,
+        "mind": 12,
+        "endurance": 11,
+        "strength": 13,
+        "dexterity": 15,
+        "intelligence": 8,
+        "faith": 11,
+        "arcane": 6
+      },
+      "base_stats": {
+        "hp": 414,
+        "fp": 85,
+        "stamina": 97,
+        "equip_load": 49.8,
+        "discovery": 106,
+        "poise": 33
+      },
+      "defense": {
+        "physical": null,
+        "strike": null,
+        "slash": null,
+        "pierce": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null
+      },
+      "damage_negation": {
+        "physical": null,
+        "strike": null,
+        "slash": null,
+        "pierce": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null
+      },
+      "resistance": {
+        "immunity": {},
+        "robustness": {},
+        "focus": {},
+        "vitality": {}
+      },
+      "in_game_description": "A knight of the land of Idus, famed for their lightweight attire and weaponry, which they wield with ample dexterity.",
+      "summary": "Idus Knight is one of the starting origins in Elden Ring. It is exclusive to ELDEN RING Tarnished Edition on the Nintendo Switch or to those who purchased the Tarnished Pack DLC on other platforms.",
+      "starting_equipment": {
+        "Armaments": [
+          "Idus Sword",
+          "Silver Grooved Shield"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Silver Grooved Helm",
+          "Silver Grooved Armor",
+          "Silver Grooved Gauntlets",
+          "Silver Grooved Greaves"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "id": "idus-knight",
+      "derived": {
+        "displayName": "Idus Knight"
+      }
+    },
+    {
+      "name": "Heavy Knight",
+      "wiki_page": "Heavy Knight",
+      "url": "https://eldenring.wiki.gg/wiki/Heavy_Knight",
+      "source": "Tarnished Pack",
+      "level": 10,
+      "attributes": {
+        "vigor": 14,
+        "mind": 8,
+        "endurance": 17,
+        "strength": 15,
+        "dexterity": 11,
+        "intelligence": 7,
+        "faith": 8,
+        "arcane": 9
+      },
+      "base_stats": {
+        "hp": 499,
+        "fp": 72,
+        "stamina": 108,
+        "equip_load": 59.3,
+        "discovery": null,
+        "poise": null
+      },
+      "defense": {
+        "physical": null,
+        "strike": null,
+        "slash": null,
+        "pierce": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null
+      },
+      "damage_negation": {
+        "physical": null,
+        "strike": null,
+        "slash": null,
+        "pierce": null,
+        "magic": null,
+        "fire": null,
+        "lightning": null,
+        "holy": null
+      },
+      "resistance": {
+        "immunity": {},
+        "robustness": {},
+        "focus": {},
+        "vitality": {}
+      },
+      "in_game_description": "A knight in bulky steel armor capable of mowing through foes with a substantively-sized scimitar.",
+      "summary": "Heavy Knight is one of the starting origins in Elden Ring. It is exclusive to ELDEN RING Tarnished Edition for Nintendo Switch 2 or to those who purchased the Tarnished Pack DLC.",
+      "starting_equipment": {
+        "Armaments": [
+          "Hefty Scimitar"
+        ],
+        "Spells": [],
+        "Gear": [
+          "Steel Helm",
+          "Steel Armor",
+          "Steel Gauntlets",
+          "Steel Greaves"
+        ],
+        "Misc": [
+          "Any Keepsakes the player chooses",
+          "Memory of Grace"
+        ]
+      },
+      "id": "heavy-knight",
+      "derived": {
+        "displayName": "Heavy Knight"
+      }
+    }
+  ]
+}

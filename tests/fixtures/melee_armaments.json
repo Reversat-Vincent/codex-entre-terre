@@ -1,0 +1,4134 @@
+{
+  "schema": 1,
+  "key": "melee_armaments",
+  "kind": "weapon",
+  "listKey": "weapons",
+  "meta": {
+    "source_page": "https://eldenring.wiki.gg/wiki/Melee_Armaments",
+    "source_wiki": "eldenring.wiki.gg (MediaWiki API, page wikitext)",
+    "retrieved": "2026-10-31",
+    "weapon_count": 335,
+    "counts_by_source": {
+      "Base game": 250,
+      "Shadow of the Erdtree": 79,
+      "Tarnished Pack": 6
+    },
+    "counts_by_category": {
+      "Daggers": 18,
+      "Throwing Blades": 1,
+      "Straight Swords": 23,
+      "Light Greatswords": 4,
+      "Greatswords": 25,
+      "Colossal Swords": 16,
+      "Thrusting Swords": 8,
+      "Heavy Thrusting Swords": 6,
+      "Curved Swords": 19,
+      "Curved Greatswords": 12,
+      "Backhand Blades": 4,
+      "Katanas": 10,
+      "Great Katanas": 4,
+      "Twinblades": 8,
+      "Axes": 17,
+      "Greataxes": 14,
+      "Hammers": 16,
+      "Flails": 7,
+      "Great Hammers": 16,
+      "Colossal Weapons": 20,
+      "Spears": 19,
+      "Great Spears": 10,
+      "Halberds": 18,
+      "Reapers": 5,
+      "Whips": 7,
+      "Fists": 14,
+      "Hand-to-Hand": 2,
+      "Claws": 5,
+      "Beast Claws": 2,
+      "Perfume Bottles": 5
+    },
+    "field_notes": {
+      "attack_power / guarded_damage_negation / scaling / requirements": "Base values at +0 (Standard affinity) from the page infobox. Scaling grades: S > A > B > C > D > E, null = no scaling.",
+      "skill.fp_cost": "Wiki notation 'X (Y Z)': X = FP cost of the skill itself, Y/Z = FP cost of the light/heavy follow-ups. '-' = none.",
+      "skill.type": "'Unique Skill' = exclusive skill (never sold as an Ash of War); 'Ash of War skill' = an 'Ash of War: <name>' item exists on the wiki; 'Standard skill (no Ash of War item)' = non-unique skill with no Ash of War item.",
+      "passive_effects / status_buildup": "Innate on-hit effects at +0 (status buildup values grow with upgrades for some weapons).",
+      "upgrade.material": "Smithing Stones => max +25; Somber Smithing Stones => max +10 and the weapon cannot take Ashes of War. null = the wiki page does not document it.",
+      "upgrade.*_info_source": "Where the value comes from: 'wiki (...)' = stated on the weapon page (template, text or upgrade table); 'deduced (...)' / 'game rule (...)' = strict logical consequence of what the page states. 'wiki (Armaments by Bolstering Material)' / 'wiki (Ash of War-Compatible Armaments)' = row of the wiki list pages of the same names (one row per armament).",
+      "upgrade.estimate_if_undocumented": "Only present when the wiki page does not document the upgrade path AND the documented examples of the same group (unique skill / other skill / catalyst) support at least medium confidence: statistical guess with its basis. Treat as unverified.",
+      "upgrade.ash_of_war_changeable / affinity_changeable": "true/false only when stated by the wiki (or implied by somber material); null = not documented.",
+      "upgrade.tables": "Per-affinity reinforcement data when the page provides it (levels '+N'; 'growth_per_level' = % growth per level as shown on the wiki). Scaling values: grade + coefficient when available. Coverage varies between pages.",
+      "upgrade.tables_consistent_with_infobox": "false = the page's upgrade table +0 physical attack differs from the infobox (wiki data inconsistency, prefer the infobox).",
+      "regions_mentioned": "Map regions detected in the acquisition text (helper for game-progression analysis).",
+      "acquisition_flags": "Heuristic tags derived from the acquisition text.",
+      "notes / acquisition.details": "Bullet text from the wiki; nested bullets are prefixed with '→' (one per nesting level).",
+      "description / skill.description": "English in-game descriptions (weapon page / skill page).",
+      "skill.stamina_cost_wiki": "Same 'X (Y Z)' notation as fp_cost, from the skill page.",
+      "upgrade.buffable": "Only present when the wiki states whether the weapon can be buffed (grease/spells).",
+      "patch_notes": "Balance changes listed on the weapon page: game version, official patch note, community explanation.",
+      "compatible_ashes_of_war": "Only on the few pages that list them.",
+      "range": "Bow/crossbow/ballista range as shown in the infobox (in-game 'Range' value).",
+      "sorcery_scaling / incantation_scaling": "Catalysts: base spell power at +0 from the infobox (Sorcery Scaling for staves, Incantation Scaling for seals).",
+      "upgrade.tables.*.spell_buff": "Catalysts: sorcery/incantation scaling at that upgrade level ('?' on the wiki => omitted).",
+      "material_inconsistencies_flagged": "Weapons whose upgrade.material, read from a wiki list page ('Armaments by Bolstering Material'), is contradicted by another statement on the weapon's own page. Each item: name, reason, url. The list value is kept in upgrade.material and the weapon is reported in derived.inconsistent as 'upgrade.material'. Distinct from wiki_inconsistencies_flagged, which only names weapons whose upgrade table contradicts the infobox (see tables_consistent_with_infobox). Carian Sorcery Sword: material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept."
+    },
+    "upgrade_path_documentation": {
+      "documented_by_wiki": 331,
+      "undocumented": 4,
+      "undocumented_with_estimate": 4
+    },
+    "wiki_inconsistencies_flagged": [
+      "Fire Knight's Shortsword",
+      "Main-gauche",
+      "Cinquedea",
+      "Reduvia",
+      "Stone-Sheathed Sword",
+      "Bastard Sword",
+      "Claymore",
+      "Alabaster Lord's Sword",
+      "Greatsword of Damnation",
+      "Maliketh's Black Blade",
+      "Dragon King's Cragblade",
+      "Falx",
+      "Morgott's Cursed Sword",
+      "Eleonora's Poleblade",
+      "Iron Cleaver",
+      "Highland Axe",
+      "Sacrificial Axe",
+      "Icerind Hatchet",
+      "Family Heads",
+      "Bastard's Stars",
+      "Staff of the Avatar",
+      "Rotten Staff",
+      "Death Ritual Spear",
+      "Barbed Staff-Spear",
+      "Banished Knight's Halberd",
+      "Guardian's Swordspear",
+      "Golden Halberd",
+      "Hookclaws",
+      "Claws of Night"
+    ],
+    "material_inconsistencies_flagged": [
+      {
+        "name": "Carian Sorcery Sword",
+        "reason": "upgrade.material comes from the list page 'Armaments by Bolstering Material' (Somberstone, max +10), but the weapon page also says 'At +25 it has 163 Sorcery Scaling' and a patch note quotes a +25 value, which implies regular Smithing Stones; the list value is kept.",
+        "url": "https://eldenring.wiki.gg/wiki/Carian_Sorcery_Sword"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "code": "id",
+      "field": "id",
+      "count": 335,
+      "note": "Identifiant ajouté : slug(wiki_page)."
+    },
+    {
+      "code": "derived",
+      "field": "derived",
+      "count": 335,
+      "note": "Champs dérivés ajoutés : displayName, regions, methods, invaderDrop, upgrade, inconsistent."
+    }
+  ],
+  "entries": [
+    {
+      "name": "Dagger",
+      "wiki_page": "Dagger",
+      "url": "https://eldenring.wiki.gg/wiki/Dagger",
+      "category": "Daggers",
+      "weapon_type": "Dagger",
+      "source": "Base game",
+      "japanese_name": "ダガー (Dagā)",
+      "attack_type": [
+        "Slash",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Quickstep",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "3",
+        "description": "Skill prized by the crafty and fleet of foot.\nPerform a quickstep maneuver that allows for circling around lock-on targets.",
+        "stamina_cost_wiki": "12",
+        "default_affinity": "Keen",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Quickstep"
+      },
+      "weight": 1.5,
+      "attack_power": {
+        "physical": 74,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 130
+      },
+      "guarded_damage_negation": {
+        "physical": 35,
+        "magic": 20,
+        "fire": 20,
+        "lightning": 20,
+        "holy": 20,
+        "guard_boost": 15
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "C",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 5,
+        "dex": 9,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": 400,
+      "sell_price": 100,
+      "description": "A standard dagger with a straight blade.\n\nThough modest in reach and capacity for harm, this weapon is light enough to jab in rapid succession and delivers devastating critical hits.",
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": "Twin Maiden Husks",
+          "region": null,
+          "details": [
+            "1 sold by the Twin Maiden Husks at Roundtable Hold for 400 Runes."
+          ]
+        },
+        {
+          "method": "Loot",
+          "location": "Lands Between / Realm of Shadow",
+          "region": null,
+          "details": [
+            "A base 4% chance to drop from drop dagger-wielding enemies (Highwaymen, Godrick Foot Soldiers, Raya Lucaria Foot Soldiers, Radahn Foot Soldiers, Leyndell Foot Soldiers, Haligtree Foot Soldiers, and Messmer Foot Soldiers).",
+            "→ A good early farming spot is all the Highwaymen at the beginning of Murkwater Cave."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold",
+        "Leyndell, Royal Capital",
+        "Academy of Raya Lucaria",
+        "Miquella's Haligtree"
+      ],
+      "acquisition_flags": [
+        "purchasable",
+        "random_enemy_drop"
+      ],
+      "upgrade": {
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (text)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": true,
+        "changeability_info_source": "wiki (text)",
+        "notes": [
+          "Upgraded with regular Smithing Stones.",
+          "Can have its Affinity and Skill changed."
+        ],
+        "tables": {
+          "Standard": {
+            "+0": {
+              "attack": {
+                "physical": 74
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.35
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.65
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 181
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.52
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 0.97
+                }
+              },
+              "guard": {
+                "boost": 18
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.8%",
+              "scale_str": "+2.0%",
+              "scale_dex": "+2.0%",
+              "guard_boost": "+0.8%"
+            }
+          },
+          "Heavy": {
+            "+0": {
+              "attack": {
+                "physical": 67
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 0.99
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 166
+              },
+              "scaling": {
+                "str": {
+                  "grade": "A",
+                  "coef": 1.54
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+2.0%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Keen": {
+            "+0": {
+              "attack": {
+                "physical": 67
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.05
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 156
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.26
+                },
+                "dex": {
+                  "grade": "A",
+                  "coef": 1.75
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.3%",
+              "scale_str": "+6.4%",
+              "scale_dex": "+2.7%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Quality": {
+            "+0": {
+              "attack": {
+                "physical": 63
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.63
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.63
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 145
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 1.19
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.19
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.2%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Fire": {
+            "+0": {
+              "attack": {
+                "physical": 56,
+                "fire": 56
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.61
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.05
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 120,
+                "fire": 120
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 0.98
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.12
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+4.6%",
+              "scale_str": "+2.4%",
+              "scale_dex": "+5.6%"
+            }
+          },
+          "Flame Art": {
+            "+0": {
+              "attack": {
+                "physical": 60,
+                "fire": 60
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.08
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.15
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.55
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 142,
+                "fire": 142
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.34
+                },
+                "fai": {
+                  "grade": "B",
+                  "coef": 1.26
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.5%",
+              "scale_str": "+5.0%",
+              "scale_dex": "+5.1%",
+              "scale_fai": "+5.2%"
+            }
+          },
+          "Lightning": {
+            "+0": {
+              "attack": {
+                "physical": 56,
+                "lightning": 56
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.05
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.61
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 123,
+                "lightning": 123
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.12
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 0.98
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+4.8%",
+              "scale_str": "+5.6%",
+              "scale_dex": "+2.4%"
+            }
+          },
+          "Sacred": {
+            "+0": {
+              "attack": {
+                "physical": 53,
+                "holy": 53
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.19
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.55
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 142,
+                "holy": 142
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.34
+                },
+                "fai": {
+                  "grade": "B",
+                  "coef": 1.26
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.7%",
+              "scale_str": "+3.2%",
+              "scale_dex": "+3.2%",
+              "scale_fai": "+5.2%"
+            }
+          },
+          "Magic": {
+            "+0": {
+              "attack": {
+                "physical": 53,
+                "magic": 53
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.08
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.15
+                },
+                "int": {
+                  "grade": "D",
+                  "coef": 0.56
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 142,
+                "magic": 142
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.13
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.24
+                },
+                "int": {
+                  "grade": "B",
+                  "coef": 1.31
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.7%",
+              "scale_str": "+2.5%",
+              "scale_dex": "+2.4%",
+              "scale_int": "+5.4%"
+            }
+          },
+          "Cold": {
+            "+0": {
+              "attack": {
+                "physical": 60,
+                "magic": 51
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.31
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.58
+                },
+                "int": {
+                  "grade": "D",
+                  "coef": 0.52
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Frostbite (66)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 127,
+                "magic": 108
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.58
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.1
+                },
+                "int": {
+                  "grade": "B",
+                  "coef": 1.04
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Frostbite (105)"
+            },
+            "growth_per_level": {
+              "atk": "+4.5%",
+              "scale_str": "+3.5%",
+              "scale_dex": "+3.6%",
+              "scale_int": "+4.0%",
+              "passive": "+2.4%"
+            }
+          },
+          "Poison": {
+            "+0": {
+              "attack": {
+                "physical": 60
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.33
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.61
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Poison (66)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 152
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.62
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.15
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Poison (95)"
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+3.5%",
+              "scale_dex": "+3.5%",
+              "scale_arc": "+1.7%",
+              "passive": "+1.7%"
+            }
+          },
+          "Blood": {
+            "+0": {
+              "attack": {
+                "physical": 60
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.33
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.61
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Blood Loss (57)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 152
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.62
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.15
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Blood Loss (82)"
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+3.5%",
+              "scale_dex": "+3.5%",
+              "scale_arc": "+1.7%",
+              "passive": "+1.7%"
+            }
+          },
+          "Occult": {
+            "+0": {
+              "attack": {
+                "physical": 63
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.11
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.2
+                },
+                "arc": {
+                  "grade": "C",
+                  "coef": 0.85
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 159
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.21
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.39
+                },
+                "arc": {
+                  "grade": "A",
+                  "coef": 1.53
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.8%",
+              "scale_arc": "+3.2%",
+              "guard_boost": "+0.4%"
+            }
+          }
+        },
+        "tables_consistent_with_infobox": true
+      },
+      "compatible_ashes_of_war": [
+        "Cragblade",
+        "Kick",
+        "Endure",
+        "Ground Slam",
+        "Hoarah Loux's Earthshaker",
+        "Spinning Slash",
+        "Impaling Thrust",
+        "Repeating Thrust",
+        "Double Slash",
+        "Sword Dance",
+        "Quickstep",
+        "Bloodhound's Step",
+        "Raptor of the Mists",
+        "Beast's Roar",
+        "Storm Blade",
+        "Storm Stomp",
+        "Vacuum Slice",
+        "Determination",
+        "Royal Knight's Resolve",
+        "Glintstone Pebble",
+        "Glintblade Phalanx",
+        "Carian Greatsword",
+        "Carian Grandeur",
+        "Carian Sovereignty",
+        "Spinning Weapon",
+        "Flaming Strike",
+        "Flame of the Redmanes",
+        "Flame Skewer",
+        "Flame Spear",
+        "Thunderbolt",
+        "Blinkbolt",
+        "Lightning Ram",
+        "Sacred Blade",
+        "Sacred Order",
+        "Shared Order",
+        "Golden Slam",
+        "Golden Vow",
+        "Aspects of the Crucible Wings",
+        "Poisonous Mist",
+        "Poison Moth Flight",
+        "The Poison Flower Blooms Twice",
+        "Blood Blade",
+        "Bloody Slash",
+        "Blood Tax",
+        "Chilling Mist",
+        "Hoarfrost Stomp",
+        "Divine Beast Frost Stomp",
+        "White Shadow's Lure",
+        "Assassin's Gambit",
+        "Shriek of Sorrow",
+        "Parry"
+      ],
+      "notes": [
+        "Together with the Rapier this weapon has the second strongest critical multiplier at 130 (the Miséricorde has the highest, at 140).",
+        "Has low enough requirements to be used with any starting class's default attributes and is fairly common, making it a decent secondary weapon for backstabbing and other critical hits, especially for those who don't have the stats to wield the Miséricorde.",
+        "Generally Dexterity-leaning on its affinities and performs best on a Keen affinity (having scaling just short of S-tier scaling) but also works surprisingly well with the Occult affinity, even if it lacks any of the innate Status Effects required to truly take advantage of this.",
+        "→ Despite this its Keen affinity actually gives it slightly weaker Dexterity-scaling for \"bullet\"-type (i.e. doesn't scale directly with the used weapon's damage) Skills with a Keen, Quality, Lightning, or Cold affinity, giving them usually about 2% less damage than they otherwise would have. This includes, as an example, the skills Beast's Roar, Storm Blade, Thunderbolt, and Hoarfrost Stomp (these skills however perform as normal on any affinity besides Keen).",
+        "The shortest of all daggers."
+      ],
+      "id": "dagger",
+      "derived": {
+        "displayName": "Dagger",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Roundtable Hold",
+                  "from": "location",
+                  "raw": "Twin Maiden Husks",
+                  "rule": "npc",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            },
+            {
+              "index": 1,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Realm of Shadow",
+                  "from": "location",
+                  "raw": "Realm of Shadow",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": [
+                "Lands Between"
+              ]
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Roundtable Hold",
+            "Realm of Shadow"
+          ]
+        },
+        "methods": [
+          "purchase",
+          "loot"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Fire Knight's Shortsword",
+      "wiki_page": "Fire Knight's Shortsword",
+      "url": "https://eldenring.wiki.gg/wiki/Fire_Knight%27s_Shortsword",
+      "category": "Daggers",
+      "weapon_type": "Dagger",
+      "source": "Shadow of the Erdtree",
+      "japanese_name": "火の騎士の短剣 (Hi no Kishi no Tanken)",
+      "attack_type": [
+        "Slash",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Quickstep",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "3",
+        "description": "Skill prized by the crafty and fleet of foot.\nPerform a quickstep maneuver that allows for circling around lock-on targets.",
+        "stamina_cost_wiki": "12",
+        "default_affinity": "Keen",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Quickstep"
+      },
+      "weight": 2,
+      "attack_power": {
+        "physical": 75,
+        "magic": 0,
+        "fire": 32,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 110
+      },
+      "guarded_damage_negation": {
+        "physical": 32,
+        "magic": 18,
+        "fire": 31,
+        "lightning": 18,
+        "holy": 18,
+        "guard_boost": 15
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "D",
+        "int": null,
+        "fai": "D",
+        "arc": null
+      },
+      "requirements": {
+        "str": 8,
+        "dex": 13,
+        "int": 0,
+        "fai": 12,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": 100,
+      "description": "Shortsword used by the Fire Knights. A slender blade that undulates like fire.\n\nBlessed with a flame incantation. Further flame imbuement will amplify the effect and greatly increase the armament's power.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Dropped by dual dagger-wielding Fire Knights with a 4% droprate."
+          ]
+        }
+      ],
+      "regions_mentioned": [],
+      "acquisition_flags": [
+        "random_enemy_drop"
+      ],
+      "upgrade": {
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (text)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": true,
+        "changeability_info_source": "wiki (text)",
+        "notes": [
+          "Upgraded with regular Smithing Stones.",
+          "Can have its Affinity and Skill changed."
+        ],
+        "tables": {
+          "Standard": {
+            "+0": {
+              "attack": {
+                "physical": 72,
+                "fire": 22
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.5
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 183,
+                "fire": 53
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.45
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.75
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.54
+                }
+              },
+              "guard": {
+                "boost": 18
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.2%",
+              "scale_str": "+2.0%",
+              "scale_dex": "+2.0%",
+              "scale_fai": "+3.2%",
+              "guard_boost": "+0.8%"
+            }
+          },
+          "Heavy": {
+            "+0": {
+              "attack": {
+                "physical": 59,
+                "fire": 17
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 1.08
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 148,
+                "fire": 42
+              },
+              "scaling": {
+                "str": {
+                  "grade": "A",
+                  "coef": 1.68
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.0%",
+              "scale_str": "+2.2%",
+              "scale_fai": "+3.1%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Keen": {
+            "+0": {
+              "attack": {
+                "physical": 59,
+                "fire": 17
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.11
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.08
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 148,
+                "fire": 42
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.28
+                },
+                "dex": {
+                  "grade": "A",
+                  "coef": 1.68
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.0%",
+              "scale_str": "+6.2%",
+              "scale_dex": "+2.2%",
+              "scale_fai": "+3.1%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Quality": {
+            "+0": {
+              "attack": {
+                "physical": 56,
+                "fire": 16
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.68
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.68
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 129,
+                "fire": 36
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 1.29
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.29
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.2%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "scale_fai": "+3.1%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Fire": {
+            "+0": {
+              "attack": {
+                "physical": 50,
+                "fire": 64
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.53
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.11
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 107,
+                "fire": 136
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.86
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.26
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+4.6%",
+              "scale_str": "+2.5%",
+              "scale_dex": "+5.5%",
+              "scale_fai": "+3.1%"
+            }
+          },
+          "Flame Art": {
+            "+0": {
+              "attack": {
+                "physical": 53,
+                "fire": 68
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.04
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.08
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.55
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 126,
+                "fire": 160
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "fai": {
+                  "grade": "B",
+                  "coef": 1.26
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.5%",
+              "scale_str": "+6.0%",
+              "scale_dex": "+5.0%",
+              "scale_fai": "+5.2%"
+            }
+          },
+          "Lightning": {
+            "+0": {
+              "attack": {
+                "physical": 50,
+                "fire": "14/50"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.11
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.63
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 109,
+                "fire": "31/109"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.26
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.02
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+4.7%",
+              "scale_str": "+5.5%",
+              "scale_dex": "+2.5%",
+              "scale_fai": "+3.1%"
+            }
+          },
+          "Sacred": {
+            "+0": {
+              "attack": {
+                "physical": 47,
+                "fire": "13/47"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.06
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "fai": {
+                  "grade": "C",
+                  "coef": 0.6
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 126,
+                "fire": "36/126"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "fai": {
+                  "grade": "B",
+                  "coef": 1.38
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.7%",
+              "scale_str": "+2.7%",
+              "scale_dex": "+3.2%",
+              "scale_fai": "+5.2%"
+            }
+          },
+          "Magic": {
+            "+0": {
+              "attack": {
+                "physical": 47,
+                "magic": "47/13"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.07
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.12
+                },
+                "int": {
+                  "grade": "C",
+                  "coef": 0.6
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 126,
+                "magic": "126/36"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.11
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.19
+                },
+                "int": {
+                  "grade": "A",
+                  "coef": 1.41
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.7%",
+              "scale_str": "+2.3%",
+              "scale_dex": "+2.3%",
+              "scale_int": "+5.4%",
+              "scale_fai": "+3.1%"
+            }
+          },
+          "Cold": {
+            "+0": {
+              "attack": {
+                "physical": 53,
+                "magic": "45/15"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.27
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.45
+                },
+                "int": {
+                  "grade": "C",
+                  "coef": 0.66
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Frostbite (66)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 113,
+                "magic": "97/32"
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.51
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.85
+                },
+                "int": {
+                  "grade": "B",
+                  "coef": 1.32
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.48
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Frostbite (105)"
+            },
+            "growth_per_level": {
+              "atk": "+4.5%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "scale_int": "+4.0%",
+              "scale_fai": "+3.1%",
+              "passive": "+2.4%"
+            }
+          },
+          "Poison": {
+            "+0": {
+              "attack": {
+                "physical": 53,
+                "fire": 15
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.5
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Poison (66)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 135,
+                "fire": 38
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.57
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.95
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.51
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Poison (95)"
+            },
+            "growth_per_level": {
+              "atk": "+6.2%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "scale_fai": "+3.6%",
+              "scale_arc": "+1.7%",
+              "passive": "+1.7%"
+            }
+          },
+          "Blood": {
+            "+0": {
+              "attack": {
+                "physical": 53,
+                "fire": 15
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.5
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.27
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Blood Loss (57)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 135,
+                "fire": 38
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.57
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.95
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.51
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 15
+              },
+              "passive": "Blood Loss (82)"
+            },
+            "growth_per_level": {
+              "atk": "+6.2%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "scale_fai": "+3.6%",
+              "scale_arc": "+1.7%",
+              "passive": "+1.7%"
+            }
+          },
+          "Occult": {
+            "+0": {
+              "attack": {
+                "physical": 56,
+                "fire": 16
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.09
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.16
+                },
+                "fai": {
+                  "grade": "E",
+                  "coef": 0.05
+                },
+                "arc": {
+                  "grade": "B",
+                  "coef": 0.93
+                }
+              },
+              "guard": {
+                "boost": 15
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 141,
+                "fire": 40
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.3
+                },
+                "fai": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "arc": {
+                  "grade": "A",
+                  "coef": 1.67
+                }
+              },
+              "guard": {
+                "boost": 16.5
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+4.0%",
+              "scale_dex": "+3.5%",
+              "scale_fai": "+4.0%",
+              "scale_arc": "+3.2%",
+              "guard_boost": "+0.4%"
+            }
+          }
+        },
+        "tables_consistent_with_infobox": false
+      },
+      "notes": [
+        "Generally leans towards Dexterity-scaling over Strength-scaling.",
+        "Despite the description this dagger actually has higher Faith-scaling and raw Attack Power (AP) on a Sacred affinity than on a Flame Art affinity. It's also outclassed in raw AP by a Flame Art affinity Erdsteel Dagger.",
+        "→ However, the Fire Knight's Shortsword's Flame Art affinity usually has higher effective damage than the Sacred affinity due to only having to bypass 2 flat defences rather than 3, and the Fire damage will be higher on its own than either the Sacred affinity's Holy damage or the Flame Art Erdsteel Dagger's Fire damage.",
+        "Surprisingly enough, since this weapon is themed after Faith and Fire, it actually has the strongest Intelligence-scaling of all Daggers on the Magic and Cold affinities.",
+        "Has a unique double-hitting heavy attack shared with the Black Knife, Blade of Calling, and Erdsteel Dagger.",
+        "→ This unique attack grants 4 points towards the scaling of the Winged Sword Insignias instead of the usual 2, due to hitting twice.",
+        "Though the innate Fire damage is low on all but the Fire and Flame Art affinities, simply having it means it will immediate reset fully applied Frostbite on the next hit if using Frostbite-causing skills such as Chilling Mist. It will also stun enemies that are extremely vulnerable to fire, such as Fingercreepers and Miranda Sprouts and Blossoms.",
+        "→ There is a bug, where using the Magic, Cold, Lightning, or Sacred Affinities with this weapon prevents the usual on-hit effect from dealing Fire damage from taking place. This means that using any of those Affinities means that the weapon won't stun Fingercreepers, won't detonate red barrels, and won't remove fully applied Frostbite from targets.",
+        "→→ This also applies to the Fire Knight's Greatsword and Queelign's Greatsword.",
+        "If choosing any of the Magic, Cold, Blood, Poison, or Occult affinities this is one of the few weapons that can scale with four separate stats.",
+        "→ In the base game the ability to scale with four different stats via affinities was only held by the Clayman's Harpoon and the Erdsteel Dagger, while the DLC added the Black Steel Greathammer, Bloodfiend's Arm, and Fire Knight's Greatsword, weapons which all have the same quality."
+      ],
+      "id": "fire-knights-shortsword",
+      "derived": {
+        "displayName": "Fire Knight's Shortsword",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "none",
+          "values": []
+        },
+        "methods": [
+          null
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "wiki"
+        },
+        "inconsistent": [
+          {
+            "field": "upgrade.tables",
+            "reference": "infobox"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Scorpion's Stinger",
+      "wiki_page": "Scorpion's Stinger",
+      "url": "https://eldenring.wiki.gg/wiki/Scorpion%27s_Stinger",
+      "category": "Daggers",
+      "weapon_type": "Dagger",
+      "source": "Base game",
+      "japanese_name": "蠍の針 (Sasori no Hari)",
+      "attack_type": [
+        "Slash",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Repeating Thrust",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "7",
+        "description": "Twist to build power, then unleash a flurry of thrusts.",
+        "attack_type": "Weapon's Secondary Damage Type",
+        "stamina_cost_wiki": "33 (- -)",
+        "default_affinity": "Keen",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": true
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Repeating_Thrust"
+      },
+      "weight": 2.5,
+      "attack_power": {
+        "physical": 79,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 110
+      },
+      "guarded_damage_negation": {
+        "physical": 38,
+        "magic": 22,
+        "fire": 22,
+        "lightning": 22,
+        "holy": 22,
+        "guard_boost": 16
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "C",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 6,
+        "dex": 12,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [
+        "Causes scarlet rot buildup (50)"
+      ],
+      "status_buildup": {
+        "scarlet_rot": 50
+      },
+      "buy_price": null,
+      "sell_price": 100,
+      "description": "Dagger fashioned from a great scorpion's tail, glistening with scarlet rot.\n\nA ceremonial tool used by heretics, crafted from the relic of a sealed outer god.",
+      "acquisition": [
+        {
+          "method": "Loot",
+          "location": "Lake of Rot",
+          "region": "Ainsel River",
+          "details": [
+            "Found inside a chest near the Grand Cloister Site of Grace, located in the Lake of Rot. It inside the small shrine to the west that is guarded by a large group of Kindred of Rot."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Ainsel River",
+        "Lake of Rot"
+      ],
+      "acquisition_flags": [],
+      "upgrade": {
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (upgrade template)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (text)",
+        "buffable": false,
+        "notes": [
+          "The Scorpion's Stinger cannot be buffed by spells or any consumables.",
+          "The Scorpion's Stinger cannot have its Skill or Affinity changed."
+        ],
+        "tables": {
+          "Standard": {
+            "+0": {
+              "attack": {
+                "physical": 79,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16
+              },
+              "passive": "Causes scarlet rot buildup (50)"
+            },
+            "+1": {
+              "attack": {
+                "physical": 90,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16.16
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 180
+            },
+            "+2": {
+              "attack": {
+                "physical": 101,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16.32
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 270
+            },
+            "+3": {
+              "attack": {
+                "physical": 113,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16.48
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 360
+            },
+            "+4": {
+              "attack": {
+                "physical": 124,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16.64
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 450
+            },
+            "+5": {
+              "attack": {
+                "physical": 136,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16.8
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 540
+            },
+            "+6": {
+              "attack": {
+                "physical": 147,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 16.96
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 630
+            },
+            "+7": {
+              "attack": {
+                "physical": 159,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 17.12
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 720
+            },
+            "+8": {
+              "attack": {
+                "physical": 170,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 17.28
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 810
+            },
+            "+9": {
+              "attack": {
+                "physical": 182,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 17.44
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 900
+            },
+            "+10": {
+              "attack": {
+                "physical": 193,
+                "magic": 0,
+                "fire": 0,
+                "lightning": 0,
+                "holy": 0
+              },
+              "critical": 110,
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": null
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": null
+                }
+              },
+              "guard": {
+                "physical": 38,
+                "magic": 22,
+                "fire": 22,
+                "lightning": 22,
+                "holy": 22,
+                "boost": 17.6
+              },
+              "passive": "Causes scarlet rot buildup (50)",
+              "upgrade_cost_runes": 1080
+            }
+          }
+        },
+        "tables_consistent_with_infobox": true
+      },
+      "notes": [
+        "The locked skill, Repeating Thrust, is somewhat useful for applying the weapon's innate Scarlet Rot though does notably lack the extra mobility from the usual Quickstep skill.",
+        "Scales quite well with Dexterity, enough to be neck-and-neck with the Parrying Dagger and the Celebrant's Sickle and to only be substantially surpassed by the Wakizashi.",
+        "Has a unique, thrusting heavy attack compared to the standard daggers moveset. This trait is shared with the Glintstone Kris, Main-gauche, and the Miséricorde.",
+        "The Scarlet Rot build-up is flat; it does not increase no matter the stat investment or weapon upgrade level."
+      ],
+      "id": "scorpions-stinger",
+      "derived": {
+        "displayName": "Scorpion's Stinger",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Lake of Rot",
+                  "from": "location",
+                  "raw": "Lake of Rot",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [
+                "Ainsel River"
+              ],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Lake of Rot"
+          ]
+        },
+        "methods": [
+          "loot"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Somber Smithing Stones",
+          "maxLevel": 10,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Longsword",
+      "wiki_page": "Longsword",
+      "url": "https://eldenring.wiki.gg/wiki/Longsword",
+      "category": "Straight Swords",
+      "weapon_type": "Straight Sword",
+      "source": "Base game",
+      "japanese_name": "ロングソード (Rongu Sōdo)",
+      "attack_type": [
+        "Standard",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Square Off",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "- (6 8)",
+        "description": "This skill starts with the sword held level. Follow up with a normal attack to slash upwards through enemy's guard, or a strong attack to perform a running thrust.",
+        "attack_type": "Weapon's Primary Damage type/Weapon's Secondary Damage type",
+        "stamina_cost_wiki": "- (24 40)",
+        "default_affinity": "Quality",
+        "properties": {
+          "hold": true,
+          "charge": false,
+          "follow_up": true,
+          "combo": false,
+          "channel": false,
+          "parryable": true
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Square_Off"
+      },
+      "weight": 3.5,
+      "attack_power": {
+        "physical": 110,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 45,
+        "magic": 30,
+        "fire": 30,
+        "lightning": 30,
+        "holy": 30,
+        "guard_boost": 30
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "D",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 10,
+        "dex": 10,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": 1000,
+      "sell_price": 100,
+      "description": "A straight sword with a double-edged blade.\n\nIn addition to its reliable standard damage, this weapon also boasts powerful piercing attacks. A superbly balanced armament.",
+      "acquisition": [
+        {
+          "method": null,
+          "location": null,
+          "region": null,
+          "details": [
+            "Starting armament of the Vagabond origin.",
+            "Purchased from Twin Maiden Husks at the Roundtable Hold for 1,000 Runes."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold"
+      ],
+      "acquisition_flags": [
+        "starting_equipment",
+        "purchasable"
+      ],
+      "upgrade": {
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (text)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": true,
+        "changeability_info_source": "wiki (text)",
+        "notes": [
+          "Upgraded with regular Smithing Stones.",
+          "Can have its Affinity and Skill changed."
+        ],
+        "tables": {
+          "Standard": {
+            "+0": {
+              "attack": {
+                "physical": 110
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.5
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.33
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 265
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.75
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.49
+                }
+              },
+              "guard": {
+                "boost": 36
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.6%",
+              "scale_str": "+2.0%",
+              "scale_dex": "+1.9%",
+              "guard_boost": "+0.8%"
+            }
+          },
+          "Heavy": {
+            "+0": {
+              "attack": {
+                "physical": 99
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.86
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 246
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 1.34
+                }
+              },
+              "guard": {
+                "boost": 33
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.9%",
+              "scale_str": "+2.2%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Keen": {
+            "+0": {
+              "attack": {
+                "physical": 99
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.04
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.82
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 246
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.28
+                }
+              },
+              "guard": {
+                "boost": 33
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.9%",
+              "scale_str": "+6.0%",
+              "scale_dex": "+2.2%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Quality": {
+            "+0": {
+              "attack": {
+                "physical": 94
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.56
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.56
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 215
+              },
+              "scaling": {
+                "str": {
+                  "grade": "B",
+                  "coef": 1.06
+                },
+                "dex": {
+                  "grade": "B",
+                  "coef": 1.06
+                }
+              },
+              "guard": {
+                "boost": 33
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.1%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "guard_boost": "+0.4%"
+            }
+          },
+          "Fire": {
+            "+0": {
+              "attack": {
+                "physical": 84,
+                "fire": 84
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.45
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.04
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 178,
+                "fire": 178
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.73
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.09
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "growth_per_level": {
+              "atk": "+4.5%",
+              "scale_str": "+2.5%",
+              "scale_dex": "+5.0%"
+            }
+          },
+          "Flame Art": {
+            "+0": {
+              "attack": {
+                "physical": 89,
+                "fire": 89
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.08
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.04
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.42
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 210,
+                "fire": 210
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "fai": {
+                  "grade": "B",
+                  "coef": 0.96
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.4%",
+              "scale_str": "+5.0%",
+              "scale_dex": "+6.0%",
+              "scale_fai": "+5.1%"
+            }
+          },
+          "Lightning": {
+            "+0": {
+              "attack": {
+                "physical": 84,
+                "lightning": 84
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.04
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.45
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 182,
+                "lightning": 182
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.09
+                },
+                "dex": {
+                  "grade": "C",
+                  "coef": 0.73
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "growth_per_level": {
+              "atk": "+5.0%",
+              "scale_str": "+5.0%",
+              "scale_dex": "+2.5%"
+            }
+          },
+          "Sacred": {
+            "+0": {
+              "attack": {
+                "physical": 78,
+                "holy": 78
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.06
+                },
+                "fai": {
+                  "grade": "D",
+                  "coef": 0.42
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 210,
+                "holy": 210
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.18
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "fai": {
+                  "grade": "B",
+                  "coef": 0.96
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.8%",
+              "scale_str": "+3.2%",
+              "scale_dex": "+2.7%",
+              "scale_fai": "+5.1%"
+            }
+          },
+          "Magic": {
+            "+0": {
+              "attack": {
+                "physical": 78,
+                "magic": 78
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.05
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.03
+                },
+                "int": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 210,
+                "magic": 210
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.09
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.05
+                },
+                "int": {
+                  "grade": "B",
+                  "coef": 1.01
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.8%",
+              "scale_str": "+3.2%",
+              "scale_dex": "+2.7%",
+              "scale_int": "+5.4%"
+            }
+          },
+          "Cold": {
+            "+0": {
+              "attack": {
+                "physical": 89,
+                "magic": 71
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.45
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.29
+                },
+                "int": {
+                  "grade": "D",
+                  "coef": 0.4
+                }
+              },
+              "guard": {
+                "boost": 30
+              },
+              "passive": "Frostbite (66)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 189,
+                "magic": 151
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.85
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.55
+                },
+                "int": {
+                  "grade": "C",
+                  "coef": 0.8
+                }
+              },
+              "guard": {
+                "boost": 30
+              },
+              "passive": "Frostbite (105)"
+            },
+            "growth_per_level": {
+              "atk": "+4.5%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.6%",
+              "scale_int": "+4.0%",
+              "passive": "+2.4%"
+            }
+          },
+          "Poison": {
+            "+0": {
+              "attack": {
+                "physical": 89
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.47
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.31
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 30
+              },
+              "passive": "Poison (66)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 225
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.89
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.58
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 30
+              },
+              "passive": "Poison (95)"
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.5%",
+              "scale_arc": "+1.7%",
+              "passive": "+1.7%"
+            }
+          },
+          "Blood": {
+            "+0": {
+              "attack": {
+                "physical": 89
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.47
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.31
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.3
+                }
+              },
+              "guard": {
+                "boost": 30
+              },
+              "passive": "Blood Loss (57)"
+            },
+            "+25": {
+              "attack": {
+                "physical": 225
+              },
+              "scaling": {
+                "str": {
+                  "grade": "C",
+                  "coef": 0.89
+                },
+                "dex": {
+                  "grade": "D",
+                  "coef": 0.58
+                },
+                "arc": {
+                  "grade": "D",
+                  "coef": 0.43
+                }
+              },
+              "guard": {
+                "boost": 30
+              },
+              "passive": "Blood Loss (82)"
+            },
+            "growth_per_level": {
+              "atk": "+6.1%",
+              "scale_str": "+3.6%",
+              "scale_dex": "+3.5%",
+              "scale_arc": "+1.7%",
+              "passive": "+1.7%"
+            }
+          },
+          "Occult": {
+            "+0": {
+              "attack": {
+                "physical": 94
+              },
+              "scaling": {
+                "str": {
+                  "grade": "E",
+                  "coef": 0.16
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.1
+                },
+                "arc": {
+                  "grade": "C",
+                  "coef": 0.7
+                }
+              },
+              "guard": {
+                "boost": 30
+              }
+            },
+            "+25": {
+              "attack": {
+                "physical": 236
+              },
+              "scaling": {
+                "str": {
+                  "grade": "D",
+                  "coef": 0.3
+                },
+                "dex": {
+                  "grade": "E",
+                  "coef": 0.19
+                },
+                "arc": {
+                  "grade": "B",
+                  "coef": 1.26
+                }
+              },
+              "guard": {
+                "boost": 33
+              }
+            },
+            "growth_per_level": {
+              "atk": "+6.0%",
+              "scale_str": "+3.5%",
+              "scale_dex": "+3.6%",
+              "scale_arc": "+3.2%",
+              "guard_boost": "+0.4%"
+            }
+          }
+        },
+        "tables_consistent_with_infobox": true
+      },
+      "notes": [
+        "The default skill is useful for breaking the guard of blocking enemies with the light attack version or for breaking their Stance with the heavy attack version.",
+        "Consistently the second strongest of all regular Straight Swords, outmatched only by the Broadsword, almost matching it on a Keen affinity and outclassing it on a Quality affinity.",
+        "→ This may be somewhat surprising since the Longsword's scaling values leans towards Strength more so than Dexterity, but it's primarily because the Broadsword scales rather less well on Keen.",
+        "→ Quality affinity requires high stats to use properly, making this somewhat difficult to exploit before New Game Plus/Journey 2 and later.",
+        "While not quite to the level of the Short Sword's unique heavy attack chain, since the first heavy attack in a chain is a Pierce damage attack as well as the heavy variant of its default skill and as such can hit for heavy counter damage with the Spear Talisman."
+      ],
+      "id": "longsword",
+      "derived": {
+        "displayName": "Longsword",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": {
+            "values": [
+              {
+                "value": "Roundtable Hold",
+                "from": "regions_mentioned",
+                "raw": "Roundtable Hold",
+                "rule": "known",
+                "residue": false,
+                "known": true
+              }
+            ],
+            "parentsRemoved": []
+          },
+          "basis": "regions_mentioned",
+          "values": [
+            "Roundtable Hold"
+          ]
+        },
+        "methods": [
+          null
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Idus Sword",
+      "wiki_page": "Idus Sword",
+      "url": "https://eldenring.wiki.gg/wiki/Idus_Sword",
+      "category": "Light Greatswords",
+      "weapon_type": "Light Greatsword",
+      "source": "Tarnished Pack",
+      "japanese_name": "イデスの剣 (Idesu no Ken)",
+      "attack_type": [
+        "Standard",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Impaling Thrust",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "9",
+        "description": "Skill that lets piercing armaments overcome enemy shields. Build power, then lunge forward for a strong thrust that pierces an enemy's guard.",
+        "attack_type": "Weapon's Secondary Damage Type",
+        "stamina_cost_wiki": "40 (39 for CSS Shadow of the Erdtree) (- -)",
+        "default_affinity": "Keen",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": true
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Impaling_Thrust"
+      },
+      "weight": 7,
+      "attack_power": {
+        "physical": 124,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 65,
+        "magic": 33,
+        "fire": 33,
+        "lightning": 33,
+        "holy": 33,
+        "guard_boost": 38
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "D",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 10,
+        "dex": 15,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": null,
+      "description": "A light greatsword; that is, a sword whose blade matches the length of a greatsword, while only possessing a very light weight due to its remarkable manufacture.\n\nA signature weapon in the land of Idus.\n\nWith cultivated form, one can wield this weapon as swiftly as one might a straight sword.",
+      "acquisition": [
+        {
+          "method": "Starting Weapon",
+          "location": "Idus Knight Tarnished Pack",
+          "region": null,
+          "details": [
+            "The Idus Sword is the starting weapon for the Idus Knight."
+          ]
+        },
+        {
+          "method": "Loot",
+          "location": "Liurnia of the Lakes Tarnished Pack",
+          "region": null,
+          "details": [
+            "Found early into the Laskyar Ruins past the Nomadic Merchant in the Liurnia Lake Shore Site of Grace. Northwest of the merchant, following the rock wall which seats the Malefactor's Evergaol, there will be a tree with two Revenant Followers. Slaying them is ideal, since they will use their bells to summon ranged projectiles, but it can be obtained without doing so.",
+            "The path to the Idus Sword."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Liurnia of the Lakes"
+      ],
+      "acquisition_flags": [
+        "starting_equipment"
+      ],
+      "upgrade": {
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "deduced (wiki shows the weapon accepts Ashes of War/affinities; somber weapons cannot)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": true,
+        "changeability_info_source": "wiki (text)"
+      },
+      "notes": [
+        "Though the Idus Sword sports higher base damage than the other infusable Light Greatsword, the Milady, it has worse scaling. This means that as the Tarnished increases their levels of Dexterity (or Strength, Intelligence, etc.) they will not receive as much of a damage benefit from weapon scaling as they progress. However, the true strength of the Idus Sword is its accessiblity: depending on what class one chooses, it can be wielded either very early on or at the very beginning of the game.",
+        "As an infusable Light Greatsword, this is one of only two weapons able to take advantage of the synergy with Status Effect-based Affinities and the multi-hit attacks in the Light Greatsword moveset.",
+        "→ This applies more specifically to the one- and two-handed heavy attacks, charged heavy attacks, running heavy attacks, and jumping heavy attacks."
+      ],
+      "id": "idus-sword",
+      "derived": {
+        "displayName": "Idus Sword",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": true,
+              "values": [],
+              "parentsRemoved": [],
+              "unresolved": []
+            },
+            {
+              "index": 1,
+              "starting": false,
+              "values": [],
+              "parentsRemoved": [],
+              "unresolved": [
+                "Liurnia of the Lakes Tarnished Pack"
+              ]
+            }
+          ],
+          "fallback": {
+            "values": [
+              {
+                "value": "Liurnia of the Lakes",
+                "from": "regions_mentioned",
+                "raw": "Liurnia of the Lakes",
+                "rule": "known",
+                "residue": false,
+                "known": true
+              }
+            ],
+            "parentsRemoved": []
+          },
+          "basis": "regions_mentioned",
+          "values": [
+            "Liurnia of the Lakes"
+          ]
+        },
+        "methods": [
+          "starting",
+          "loot"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "deduced"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Leontiel's Greatsword",
+      "wiki_page": "Leontiel's Greatsword",
+      "url": "https://eldenring.wiki.gg/wiki/Leontiel%27s_Greatsword",
+      "category": "Greatswords",
+      "weapon_type": "Greatsword",
+      "source": "Tarnished Pack",
+      "japanese_name": "レオティエルの大剣 (Reotieru no Daiken)",
+      "attack_type": [
+        "Standard",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Muleta",
+        "type": "Unique Skill",
+        "ash_of_war_available": false,
+        "fp_cost": "- (10 13)",
+        "description": "Hold out a red cloth in front, inviting enemies to attack. Use normal or strong attack to gracefully dodge incoming attacks then pivot to offense. Can be charged to increase power of strong attack. Also, additional input allows for a follow-up attack.",
+        "attack_type": "Standard",
+        "stamina_cost_wiki": "- (30 30/40+30)",
+        "properties": {
+          "hold": true,
+          "follow_up": true,
+          "combo": false,
+          "channel": false,
+          "parryable": true
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Unique_Skill:_Muleta"
+      },
+      "weight": 9.5,
+      "attack_power": {
+        "physical": 130,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 63,
+        "magic": 33,
+        "fire": 33,
+        "lightning": 33,
+        "holy": 33,
+        "guard_boost": 44
+      },
+      "scaling": {
+        "str": "E",
+        "dex": "C",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 13,
+        "dex": 26,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": null,
+      "description": "The knight Leontiel's favored weapon - a greatsword whose blade is wrapped in leather at the base.\n\nSaid to have been wielded by a proud order of orthodox knights long ago, weapons of this ilk demand high dexterity.",
+      "acquisition": [
+        {
+          "method": "Guaranteed Drop",
+          "location": "Wailing Dunes",
+          "region": "Caelid",
+          "details": [
+            "Received after defeating Knight Leontiel after she invades in the Wailing Dunes Tarnished Pack.",
+            "→ Starscourge Radahn must be defeated prior, then she will invade near the entrance to War-Dead Catacombs in the northern part of the area."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [
+        "npc_or_quest_related"
+      ],
+      "upgrade": {
+        "material": null,
+        "max_level": null,
+        "material_info_source": null,
+        "ash_of_war_changeable": null,
+        "affinity_changeable": null,
+        "changeability_info_source": null,
+        "estimate_if_undocumented": {
+          "material": "Somber Smithing Stones",
+          "ash_of_war_changeable": false,
+          "confidence": "high",
+          "basis": "57 of 58 wiki-documented weapons with a Unique Skill use Somber Smithing Stones"
+        }
+      },
+      "notes": [
+        "Muleta is a unique stance skill that has the user hold up their Muleta in a provoking manner; performing a light attack dodges to the left with a horizontal slash, and performing a heavy attack dodges to the right for a chargeable thrust, an additional heavy input dodges to the right again for an upwards thrust that launches smaller enemies into the air.",
+        "→ The dodges with Muleta have i-frames.",
+        "→ All of the attacks of the skill deal Standard damage.",
+        "→ Godfrey Icon boosts the damage of Muleta's charged heavy attack.",
+        "Uses a unique, more vertical two-handed light attack moveset derived from Dark Souls 2's Mirrah Greatsword and shared with the Knight's Greatsword, Banished Knight's Greatsword, and the Inseparable Sword.",
+        "→ Shares unique thrusting heavy attacks with the Claymore, Lizard Greatsword Shadow of the Erdtree, and the Greatsword of Damnation Shadow of the Erdtree.",
+        "→ Also shares a unique thrusting rolling attack with the Claymore and the Greatsword of Damnation Shadow of the Erdtree.",
+        "This weapon makes fantastic use of the Rellana's Cameo Shadow of the Erdtree due to the skill's already high damage being boosted even further."
+      ],
+      "id": "leontiels-greatsword",
+      "derived": {
+        "displayName": "Leontiel's Greatsword",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Caelid",
+                  "from": "location",
+                  "raw": "Wailing Dunes",
+                  "rule": "location",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Caelid"
+          ]
+        },
+        "methods": [
+          "guaranteed-drop"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Somber Smithing Stones",
+          "maxLevel": 10,
+          "reliability": "estimate",
+          "confidence": "high",
+          "basis": "57 of 58 wiki-documented weapons with a Unique Skill use Somber Smithing Stones"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Blasphemous Blade",
+      "wiki_page": "Blasphemous Blade",
+      "url": "https://eldenring.wiki.gg/wiki/Blasphemous_Blade",
+      "category": "Greatswords",
+      "weapon_type": "Greatsword",
+      "source": "Base game",
+      "japanese_name": "冒涜の聖剣 (Bōtoku no Seiken)",
+      "attack_type": [
+        "Standard",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Taker's Flames",
+        "type": "Unique Skill",
+        "ash_of_war_available": false,
+        "fp_cost": "30",
+        "description": "Raise the sacred sword aloft to set it ablaze with blasphemous flames, then bring it down to fire off a forward blast. The flames steal HP from those they touch.",
+        "attack_type": "Standard and Fire",
+        "stamina_cost_wiki": "36",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Unique_Skill:_Taker's_Flames"
+      },
+      "weight": 13.5,
+      "attack_power": {
+        "physical": 121,
+        "magic": 0,
+        "fire": 78,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 56,
+        "magic": 39,
+        "fire": 54,
+        "lightning": 39,
+        "holy": 39,
+        "guard_boost": 42
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "D",
+        "int": null,
+        "fai": "D",
+        "arc": null
+      },
+      "requirements": {
+        "str": 22,
+        "dex": 15,
+        "int": 0,
+        "fai": 21,
+        "arc": 0
+      },
+      "passive_effects": [
+        "Restores HP equal to 4% of maximum HP + 40 upon nearby deaths"
+      ],
+      "buy_price": null,
+      "sell_price": null,
+      "description": "Sacred sword of Rykard, Lord of Blasphemy. Remains of the countless heroes he has devoured writhe upon the surface of this blade.\n\nNow they share the same blood, bound together as family. Some HP is restored upon defeating an enemy.",
+      "acquisition": [
+        {
+          "method": "Trade",
+          "location": "Roundtable Hold",
+          "region": null,
+          "details": [
+            "Trade the Remembrance of the Blasphemous, gained by defeating Rykard, Lord of Blasphemy, with Finger Reader Enia.",
+            "→ Alternatively, use one of the Wandering Mausoleums with a bell to duplicate one (can only obtain one per playthrough using either method)."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold"
+      ],
+      "acquisition_flags": [
+        "remembrance_weapon"
+      ],
+      "upgrade": {
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
+        "estimate_if_undocumented": {
+          "material": "Somber Smithing Stones",
+          "ash_of_war_changeable": false,
+          "confidence": "high",
+          "basis": "57 of 58 wiki-documented weapons with a Unique Skill use Somber Smithing Stones"
+        }
+      },
+      "notes": [
+        "Note that the innate skill Taker's Flames, unlike the weapon, only scales with Faith through the Fire Attack Power of the weapon.",
+        "→ The skill also serves as the weapon's strongest attack, with roughly twice as much Attack Power as the weapon itself.",
+        "Restores HP equal to (4% of wielder's maximum HP + 40) if a nearby creature is killed while the sword is held in an active hand.",
+        "→ Effect stacks with Greathorn Hammer, Serpent-God's Curved Sword and Taker's Cameo.",
+        "→ This is in addition to the skill restoring HP equal to (10% of target's maximum HP + 150) upon hit.",
+        "Very heavy for a greatsword, being outweighed only by the Greatsword of Solitude.",
+        "Though the Faith-scaling is technically stronger than both its Strength- and Dexterity-scalings, as it scales with the lower Fire Attack Power instead of the higher Physical Attack Power it's effectively a very high D-scaling that is just ever so slightly lower than the other stats' very low C-scaling.",
+        "→ Overall, a hybrid Strength-Dexterity or Dexterity-Faith build gains the most Attack Power, while a pure Faith build sacrifices about 6% more weapon Attack Power in exchange for 12% more skill Attack Power."
+      ],
+      "id": "blasphemous-blade",
+      "derived": {
+        "displayName": "Blasphemous Blade",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Roundtable Hold",
+                  "from": "location",
+                  "raw": "Roundtable Hold",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Roundtable Hold"
+          ]
+        },
+        "methods": [
+          "trade"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Somber Smithing Stones",
+          "maxLevel": 10,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Reverse-Bladed Sword",
+      "wiki_page": "Reverse-Bladed Sword",
+      "url": "https://eldenring.wiki.gg/wiki/Reverse-Bladed_Sword",
+      "category": "Backhand Blades",
+      "weapon_type": "Backhand Blade",
+      "source": "Tarnished Pack",
+      "japanese_name": "逆刃の曲剣 (Gyaku Ha no Kyoku Ken)",
+      "attack_type": [
+        "Slash",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Blind Spot",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "9",
+        "description": "Leap into close quarters to take advantage of the enemy's blind spot and gore them from the side. Inputs determine which side you strike from. This attack slips below the opponent's guard.",
+        "attack_type": "Weapon's Secondary Damage Type",
+        "stamina_cost_wiki": "30 (- -)",
+        "default_affinity": "Keen",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Blind_Spot"
+      },
+      "weight": 3,
+      "attack_power": {
+        "physical": 115,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 37,
+        "magic": 28,
+        "fire": 28,
+        "lightning": 28,
+        "holy": 28,
+        "guard_boost": 13
+      },
+      "scaling": {
+        "str": "D",
+        "dex": "D",
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 9,
+        "dex": 11,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": null,
+      "description": "Curved blade wielded with a backhand grip, said to have originated from the hidden realm of shadow.\n\nThe style of combat associated with this weapon is marked by spinning slashes and gouging thrust attacks.",
+      "acquisition": [
+        {
+          "method": "Purchase",
+          "location": "Twin Maiden Husks",
+          "region": null,
+          "details": [
+            "Sold by the Twin Maiden Husks at Roundtable Hold for 1,000 Runes. Tarnished Pack"
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Roundtable Hold"
+      ],
+      "acquisition_flags": [
+        "purchasable"
+      ],
+      "upgrade": {
+        "material": null,
+        "max_level": null,
+        "material_info_source": null,
+        "ash_of_war_changeable": null,
+        "affinity_changeable": null,
+        "changeability_info_source": null,
+        "estimate_if_undocumented": {
+          "material": "Smithing Stones",
+          "ash_of_war_changeable": true,
+          "confidence": "medium",
+          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
+        }
+      },
+      "notes": [
+        "When compared to the Backhand Blade, the Reverse-Bladed Sword has higher base damage and lower stat requirements, but has worse scaling, and weighs a tad more. The real advantage of the Reverse-Bladed Sword is being able to obtain a Backhand Blade without having to traverse to the Realm of Shadow.",
+        "→ It also shares the previously unique quality of inflicting Pierce damage with some of its attacks, which the other Backhand Blades don't do.",
+        "→→ More specifically, among the one-handed attacks it's the third attack of the light attack chain and the second hit of the running heavy attack, and among the two-handed/dual-wield attacks it's the first hit of the second attack in the light attack chain, the only hit of the fourth attack in the chain, and the second hit of the fifth attack in the chain, the first hit of the second heavy attack and the first and second hits of the second charged heavy attack, the third and fourth hits of the running heavy attack, the first hit of the backstep light attack and the guard counter, and all Critical Attacks.",
+        "Unlike the Backhand Blade, the Ash of War for the innate Skill: Blind Spot will be very far away from the point of acquisition for this weapon, making it impossible to pair with Affinities without the use of bugs for a long time."
+      ],
+      "id": "reverse-bladed-sword",
+      "derived": {
+        "displayName": "Reverse-Bladed Sword",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Roundtable Hold",
+                  "from": "location",
+                  "raw": "Twin Maiden Husks",
+                  "rule": "npc",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Roundtable Hold"
+          ]
+        },
+        "methods": [
+          "purchase"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "estimate",
+          "confidence": "medium",
+          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Moonveil",
+      "wiki_page": "Moonveil",
+      "url": "https://eldenring.wiki.gg/wiki/Moonveil",
+      "category": "Katanas",
+      "weapon_type": "Katana",
+      "source": "Base game",
+      "japanese_name": "名刀月隠 (Meitō Tsukikakure)",
+      "attack_type": [
+        "Slash",
+        "Pierce"
+      ],
+      "skill": {
+        "name": "Transient Moonlight",
+        "type": "Unique Skill",
+        "ash_of_war_available": false,
+        "fp_cost": "- (15 20)",
+        "description": "Sheathe blade, holding it at the hip in a composed stance. Follow up with either a normal or a strong attack to draw the blade at great speed for an instant slash attack. Both attacks fire off a wave of light.",
+        "attack_type": "Magic & Slash",
+        "stamina_cost_wiki": "- (32 32)",
+        "properties": {
+          "hold": true,
+          "charge": false,
+          "follow_up": false,
+          "combo": false,
+          "channel": false,
+          "parryable": true
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Unique_Skill:_Transient_Moonlight"
+      },
+      "weight": 6.5,
+      "attack_power": {
+        "physical": 73,
+        "magic": 87,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 31,
+        "magic": 57,
+        "fire": 26,
+        "lightning": 26,
+        "holy": 26,
+        "guard_boost": 31
+      },
+      "scaling": {
+        "str": "E",
+        "dex": "D",
+        "int": "C",
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 12,
+        "dex": 18,
+        "int": 23,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [
+        "Causes blood loss buildup (50)"
+      ],
+      "status_buildup": {
+        "blood_loss": 50
+      },
+      "buy_price": null,
+      "sell_price": 500,
+      "description": "Katana forged of glintstone. Masterpiece of a Sellian swordsmith.\n\nLight enwreathes the blade when sheathed, explaining its Moonveil moniker.",
+      "acquisition": [
+        {
+          "method": "Guaranteed Drop",
+          "location": "Gael Tunnel",
+          "region": "Caelid",
+          "details": [
+            "Dropped by the Magma Wyrm in Gael Tunnel."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Caelid"
+      ],
+      "acquisition_flags": [],
+      "upgrade": {
+        "material": "Somber Smithing Stones",
+        "max_level": 10,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": false,
+        "affinity_changeable": false,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments) + deduced (affinity_changeable: wiki rule, a weapon upgraded with Somber Smithing Stones takes no Ash of War, hence no affinity)",
+        "estimate_if_undocumented": {
+          "material": "Somber Smithing Stones",
+          "ash_of_war_changeable": false,
+          "confidence": "high",
+          "basis": "57 of 58 wiki-documented weapons with a Unique Skill use Somber Smithing Stones"
+        }
+      },
+      "notes": [
+        "The Unique Skill: Transient Moonlight is the regular Skill: Unsheathe but with added projectiles: a short-ranged one for the light attack sweep and a mid-ranged one for the heavy attack overhead slash.",
+        "→ The skill is useful in roughly the same ways that Unsheathe is, meaning that the light attack follow-up is generally slightly quicker and much wider in exchange for being slightly weaker, while the heavy attack follow-up hits a single target slightly harder and is slightly more difficult to roll directly away from.",
+        "→→ One stark difference is that the different attacks are much less dissimilar, with the light attack follow-up having less of a damage difference (22% less for Unsheathe, 10% less for Transient Moonlight) and much less of a Stance damage difference (50% less for Unsheathe, 8% less for Transient Moonlight).",
+        "→ While this does give the weapon some more reach (though mostly with the heavy attack follow-up), the skill is still the most effective at melee range since that means both the weapon and the magic waves can hit the target.",
+        "→ The skill's heavy attack follow-up has a weird interaction with jumping players and deals a lot less damage against them for some reason.",
+        "While a hybrid Intelligence/Dexterity build gains the highest total Attack Power a pure Intelligence build only loses about 2% total Attack Power in exchange for the skill's projectiles getting 13% higher Attack Power, making the latter generally preferable."
+      ],
+      "id": "moonveil",
+      "derived": {
+        "displayName": "Moonveil",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Caelid",
+                  "from": "location",
+                  "raw": "Gael Tunnel",
+                  "rule": "location",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Caelid"
+          ]
+        },
+        "methods": [
+          "guaranteed-drop"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Somber Smithing Stones",
+          "maxLevel": 10,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    },
+    {
+      "name": "Club",
+      "wiki_page": "Club",
+      "url": "https://eldenring.wiki.gg/wiki/Club",
+      "category": "Hammers",
+      "weapon_type": "Hammer",
+      "source": "Base game",
+      "japanese_name": "クラブ (Kurabu)",
+      "attack_type": [
+        "Strike"
+      ],
+      "skill": {
+        "name": "Barbaric Roar",
+        "type": "Ash of War skill",
+        "ash_of_war_available": true,
+        "fp_cost": "16",
+        "description": "Let loose a bestial roar to rally the spirit and increase attack power. While active, strong attacks change to savage combo attacks.",
+        "attack_type": "Varies",
+        "stamina_cost_wiki": "20 (Follow-up attacks vary)",
+        "default_affinity": "Heavy",
+        "properties": {
+          "hold": false,
+          "charge": false,
+          "follow_up": true,
+          "combo": false,
+          "channel": false
+        },
+        "wiki_url": "https://eldenring.wiki.gg/wiki/Skill:_Barbaric_Roar"
+      },
+      "weight": 3.5,
+      "attack_power": {
+        "physical": 103,
+        "magic": 0,
+        "fire": 0,
+        "lightning": 0,
+        "holy": 0,
+        "critical": 100
+      },
+      "guarded_damage_negation": {
+        "physical": 41,
+        "magic": 27,
+        "fire": 27,
+        "lightning": 27,
+        "holy": 27,
+        "guard_boost": 27
+      },
+      "scaling": {
+        "str": "C",
+        "dex": null,
+        "int": null,
+        "fai": null,
+        "arc": null
+      },
+      "requirements": {
+        "str": 10,
+        "dex": 0,
+        "int": 0,
+        "fai": 0,
+        "arc": 0
+      },
+      "passive_effects": [],
+      "buy_price": null,
+      "sell_price": 100,
+      "description": "A thick, solid lump of wood. Wielding this striking weapon requires no skill.\n\nA simple, primitive weapon that requires only brute strength and persistence to hammer your foe into the ground.",
+      "acquisition": [
+        {
+          "method": "Starting",
+          "location": null,
+          "region": null,
+          "details": [
+            "Starting gear for the Wretch origin."
+          ]
+        },
+        {
+          "method": "Purchase",
+          "location": "Limgrave",
+          "region": null,
+          "details": [
+            "Bought for 600 Runes from the Nomadic Merchant southeast of Coastal Cave, beneath the collapsed structure."
+          ]
+        },
+        {
+          "method": "Drop",
+          "location": "Coastal Cave & Limgrave / Demi-Human Forest Ruins / Lakeside Crystal Cave & Liurnia of the Lakes/ Volcano Cave (Mt. Gelmir) / Lux Ruins (Altus Plateau) / Shack of the Lofty (Mountaintops of the Giants) / Cerulean Coast Shadow of the Erdtree",
+          "region": "Weeping Peninsula",
+          "details": [
+            "2% drop chance from Club-wielding Demi-Humans.",
+            "→ 1 can be found just past the entrance to the Coastal Cave in Limgrave, near the merchant that also sells a Club.",
+            "→ 2 club-wielders can be found among a group just south of the Scenic Isle Site of Grace in southern Liurnia."
+          ]
+        }
+      ],
+      "regions_mentioned": [
+        "Limgrave",
+        "Weeping Peninsula",
+        "Liurnia of the Lakes",
+        "Altus Plateau",
+        "Mt. Gelmir",
+        "Mountaintops of the Giants",
+        "Cerulean Coast"
+      ],
+      "acquisition_flags": [
+        "starting_equipment",
+        "purchasable",
+        "random_enemy_drop"
+      ],
+      "upgrade": {
+        "material": "Smithing Stones",
+        "max_level": 25,
+        "material_info_source": "wiki (Armaments by Bolstering Material)",
+        "ash_of_war_changeable": true,
+        "affinity_changeable": null,
+        "changeability_info_source": "wiki (Ash of War-Compatible Armaments)",
+        "estimate_if_undocumented": {
+          "material": "Smithing Stones",
+          "ash_of_war_changeable": true,
+          "confidence": "medium",
+          "basis": "75 of 92 wiki-documented weapons with a non-unique skill use regular Smithing Stones"
+        }
+      },
+      "notes": [
+        "The simplest hammer, and has simpler, bonky light attacks.",
+        "→ Useful as a tool for whenever Strike damage is needed, such as against Skeletons.",
+        "Has unique, more repetitive one- and two-handed light attack chains than other Hammers. This attack chain is 1-2 frames/0.03-0.07 seconds quicker than the regular Hammer moveset when one-handed and 2-5 frames/0.07-0.15 seconds quicker when two-handed.",
+        "→ This trait is shared with the Stone Club, as well as the Celebrant's Cleaver and Iron Cleaver Axes."
+      ],
+      "id": "club",
+      "derived": {
+        "displayName": "Club",
+        "regions": {
+          "acquisitions": [
+            {
+              "index": 0,
+              "starting": true,
+              "values": [],
+              "parentsRemoved": [],
+              "unresolved": []
+            },
+            {
+              "index": 1,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Limgrave",
+                  "from": "location",
+                  "raw": "Limgrave",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": []
+            },
+            {
+              "index": 2,
+              "starting": false,
+              "values": [
+                {
+                  "value": "Limgrave",
+                  "from": "location",
+                  "raw": "Demi-Human Forest Ruins",
+                  "rule": "location",
+                  "residue": false,
+                  "known": true
+                },
+                {
+                  "value": "Mt. Gelmir",
+                  "from": "location",
+                  "raw": "Lakeside Crystal Cave & Liurnia of the Lakes/ Volcano Cave (Mt. Gelmir)",
+                  "rule": "suffix",
+                  "residue": false,
+                  "known": true
+                },
+                {
+                  "value": "Altus Plateau",
+                  "from": "location",
+                  "raw": "Lux Ruins (Altus Plateau)",
+                  "rule": "suffix",
+                  "residue": false,
+                  "known": true
+                },
+                {
+                  "value": "Mountaintops of the Giants",
+                  "from": "location",
+                  "raw": "Shack of the Lofty (Mountaintops of the Giants)",
+                  "rule": "suffix",
+                  "residue": false,
+                  "known": true
+                },
+                {
+                  "value": "Weeping Peninsula",
+                  "from": "region",
+                  "raw": "Weeping Peninsula",
+                  "rule": "known",
+                  "residue": false,
+                  "known": true
+                }
+              ],
+              "parentsRemoved": [],
+              "unresolved": [
+                "Coastal Cave & Limgrave",
+                "Cerulean Coast Shadow of the Erdtree"
+              ]
+            }
+          ],
+          "fallback": null,
+          "basis": "acquisition",
+          "values": [
+            "Limgrave",
+            "Mt. Gelmir",
+            "Altus Plateau",
+            "Mountaintops of the Giants",
+            "Weeping Peninsula"
+          ]
+        },
+        "methods": [
+          "starting",
+          "purchase",
+          "drop"
+        ],
+        "invaderDrop": [],
+        "upgrade": {
+          "material": "Smithing Stones",
+          "maxLevel": 25,
+          "reliability": "wiki"
+        },
+        "inconsistent": []
+      }
+    }
+  ]
+}

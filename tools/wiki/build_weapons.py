@@ -209,7 +209,8 @@ def num(v):
     t = clean(str(v)).replace(",", "").strip()
     if t in ("", "-", "–", "?", "??", "N/A", "n/a"):
         return None
-    m = re.fullmatch(r"[-+]?\d+(?:\.\d+)?", t)
+    # Le wiki écrit parfois les décimales sans zéro initial (".3068") : elles sont acceptées.
+    m = re.fullmatch(r"[-+]?(?:\d+(?:\.\d+)?|\.\d+)", t)
     if not m:
         return None
     f = float(t)
@@ -391,7 +392,8 @@ def cell_value(cell, field, aff):
     txt = clean(raw, br=" ")
     if field.startswith("scale_"):
         g = re.search(r"(?<![A-Za-z])([SABCDE])(?![A-Za-z])", txt)
-        n = re.search(r"\d+(?:\.\d+)?", txt)
+        # ".3068" doit donner 0.3068 et non 3068.0 (coefficients du Horn Bow, correctif P2 de data/CHANGELOG.md).
+        n = re.search(r"\d+(?:\.\d+)?|\.\d+", txt)
         coef = float(n.group()) if n else None
         if not g and not coef:
             return None
