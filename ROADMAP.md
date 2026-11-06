@@ -110,6 +110,8 @@
     > Note : 132 tests e2e ; audit (`npm run e2e:audit`) sans seuil d'échec, lu par la vérification.
   - [x] 7.3 README à jour (présentation) — chef de projet ; la ligne « État » passera à la version publiée lors de la publication
 - [ ] 8. Boucle de vérification
+  - [ ] 8.1 Tour 1, vérification — verif-masse, verif-approfondie (opus), contenu-jeu (opus, en cours)
+  - [ ] 8.2 Tour 1, corrections — dev-logique (import, `setOrigin`, glossaire, `gaugeMax`, `?? 0` de la logique), dev-interface A (contraste, widget A, marque, navigation, frise, obtention, restes), dev-outillage (stabilité e2e) ; puis dev-interface B (`?? 0` des composants, branchement de `setOrigin` et `gaugeMax`, note de Sir Gideon) ; puis corrections de contenu
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
 
 ## Questions en attente
@@ -182,3 +184,4 @@
 - D45 · 2026-11-06 · Les étapes de quête cochées sur une fiche PNJ sont enregistrées comme le reste de l'état (store `quests`, document de persistance, export et import), avec une clé d'étape tirée de son texte. Le schéma reste en version 1, rien n'étant publié — raison : une liste à cocher qui s'efface au rechargement ne sert pas en second écran pendant le jeu ; le brief demande une liste à cocher — par : chef de projet
 
 ## Vérifications
+- Tour 1 · 2026-11-06 · verif-masse et verif-approfondie : 25 constats, 18 retenus (5 majeurs : contraste des boutons principaux, validation de l'archétype importé, étapes du widget A perdues quand les colonnes passent à la ligne, attributs de départ non repris au choix d'une origine, `?? 0` qui affichent 0 pour une valeur absente), 6 rejetés (réexportations de types sans commentaire, débordements internes voulus, textes descriptifs tronqués avec `title`, adresses de documentation des bibliothèques dans le JavaScript compilé, fins de ligne de la copie de travail, lectures de configuration du moteur par les composants), 1 reporté (tokens parchemin entre 4,11 et 4,48:1 sur `surface-sunken`, sans occurrence affichée). contenu-jeu en cours.
