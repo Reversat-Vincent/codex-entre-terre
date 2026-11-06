@@ -92,7 +92,7 @@
     > Note : 816 tests. Une fiche d'objet charge les cinq fichiers d'objets, faute de savoir lequel contient l'entrée (optimisation reportée). Quête à cocher enregistrée : D45, tâche 2.14.
   - [x] 2.14 Suivi des quêtes enregistré (D45) : store `quests`, champ du document de persistance, validation, export et import, clé d'étape stable `questStepKey(texte)` — dev-logique — commit `7233213`
     > Note : un document sans `quests` se lit comme vide (sauvegardes de développement). Reste à ajouter une ligne « étapes de quête cochées » au résumé de confirmation d'import (`importer.ts`, `ProfileBackup.vue`) : à traiter en vérification.
-  - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface
+  - [ ] 5.5 Page de résultats de recherche et `ExploreView` — dev-interface (oubliée, lancée après la passe responsive ; en cours)
 - [ ] 6. Ma liste, comparateur, mécaniques, profil
   - [x] 6.1 Ma liste et comparateur — dev-interface
     > Note : vérifiés dans Chromium. Acceptés : « Meilleur » seulement sur les lignes qui ont un sens (attaque, poids, prérequis, absorptions…), « Écart » ailleurs (scaling, amélioration, compétence, passif, dont le mérite dépend du build) ; tableau défilant à hauteur bornée. Étape et score hors style par `stageOf` et `scoreOf` (2.12), branchés en 4.6.
@@ -103,7 +103,9 @@
 - [ ] 7. Hors ligne et finitions
   - [x] 7.1 Service worker, manifeste, icônes, enregistrement et mise à jour ; scripts e2e (captures, hors ligne, persistance) — dev-outillage (lancée tôt, la coquille suffisant) — commit `9f07106`
     > Note : précache de 72 entrées (9,5 Mio) ; 99 tests e2e. Restent : test export/import (`fixme`, page Profil en 6.2) ; message de nouvelle version non testé de bout en bout (deux versions à servir), à voir en vérification ; le nom de la marque se coupe sur deux lignes dans la navigation à 1440 px ; redondances à retirer (`declare const __APP_VERSION__` de `src/stores/app.ts` en 2.8, `tests/vue-shim.d.ts` en 3.2).
-  - [ ] 7.2 Mises en page tablette et passe responsive, avec les restes de 4.6b et 4.6a (CxTooltip fermée, .cx-input, profile, date du pied de page, stockage et import des quêtes, étape de rencontre) — dev-interface (en cours)
+  - [x] 7.2 Mises en page tablette et passe responsive, avec les restes de 4.6b et 4.6a (CxTooltip fermée, .cx-input, profile, date du pied de page, stockage et import des quêtes, étape de rencontre) — dev-interface — commit `0ea1210`
+    > Note : 894 tests unitaires, 131 e2e. Débordement horizontal : 0 sur 55 routes × 4 largeurs (contrôle e2e permanent). Cibles tactiles : 0 sous 44 px à 390 px (audit hors e2e, réintroduit en 7.4). Filtres des catalogues en tiroir sous 1280 px. Restent : matrice des faiblesses sans première colonne collante sur mobile ; tuiles PV et runes étroites à 768 px pour les boss à 6 valeurs.
+  - [ ] 7.4 Tests e2e : export et import sur la page Profil (critère d'acceptation § 8), audit d'accessibilité de base réutilisable (`e2e:audit`, hors `check`) — dev-outillage (en cours)
   - [x] 7.3 README à jour (présentation) — chef de projet ; la ligne « État » passera à la version publiée lors de la publication
 - [ ] 8. Boucle de vérification
 - [ ] 9. Publication : merge dans `main`, tag `v1.0.0`, déploiement, contrôle du site publié
