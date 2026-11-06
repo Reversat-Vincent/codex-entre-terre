@@ -24,6 +24,16 @@ const props = defineProps<{
 }>()
 
 const items = computed(() => acquisitionViews(props.entry))
+
+/**
+ * Acquisition dont seuls les détails portent l'information (ni méthode ni lieu, ex. Golden Seed) : les lignes « Méthode » et « Lieu » vides sont
+ * omises, sinon « Non documenté » s'afficherait en tête, au-dessus de détails pourtant documentés.
+ * @param a Acquisition affichée.
+ * @returns Vrai si la méthode et le lieu manquent alors que des détails existent.
+ */
+function detailsOnly(a: { method: string | null; location: string | null; details: readonly string[] }): boolean {
+  return !a.method && !a.location && a.details.length > 0
+}
 </script>
 
 <template>
@@ -47,27 +57,31 @@ const items = computed(() => acquisitionViews(props.entry))
           aria-hidden="true"
         ><CxIcon :name="a.icon" /></span>
         <div class="sh-acq-main">
-          <span class="sh-acq-title">
+          <span
+            v-if="!detailsOnly(a)"
+            class="sh-acq-title"
+          >
             <template v-if="a.method">{{ a.method }}</template>
-            <CxValue
-              v-else
-              :value="null"
-            />
+            <template v-else>
+              <span class="sh-acq-nolabel">Méthode :</span> <CxValue :value="null" />
+            </template>
           </span>
           <dl class="sh-acq-k">
-            <dt>{{ a.starting ? 'Origine' : 'Lieu' }}</dt>
-            <dd>
-              <WikiInline
-                v-if="a.location"
-                :text="a.location"
-                :preferred-kinds="a.starting ? ['origin'] : ['location', 'boss', 'npc']"
-                :skip-ref="entityRef"
-              />
-              <CxValue
-                v-else
-                :value="null"
-              />
-            </dd>
+            <template v-if="!detailsOnly(a)">
+              <dt>{{ a.starting ? 'Origine' : 'Lieu' }}</dt>
+              <dd>
+                <WikiInline
+                  v-if="a.location"
+                  :text="a.location"
+                  :preferred-kinds="a.starting ? ['origin'] : ['location', 'boss', 'npc']"
+                  :skip-ref="entityRef"
+                />
+                <CxValue
+                  v-else
+                  :value="null"
+                />
+              </dd>
+            </template>
             <template v-if="a.region">
               <dt>Région</dt>
               <dd>
@@ -109,6 +123,7 @@ const items = computed(() => acquisitionViews(props.entry))
 .sh-acq-ic { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line-strong); border-radius: var(--radius-m); color: var(--ink-2); }
 .sh-acq-main { min-width: 0; }
 .sh-acq-title { color: var(--ink); font-weight: 600; }
+.sh-acq-nolabel { color: var(--ink-3); font-weight: 400; }
 .sh-acq-k { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; margin-top: 4px; color: var(--ink-2); font-size: 12px; line-height: 17px; }
 .sh-acq-k dt { color: var(--ink-3); }
 .sh-acq-k dd { min-width: 0; overflow-wrap: anywhere; }

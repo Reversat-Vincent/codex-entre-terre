@@ -29,10 +29,28 @@ const route = useRoute()
 const { isMobile } = useBreakpoint()
 
 /**
+ * Libellés courts de la barre latérale dépliée (232 px : les libellés complets passaient sur deux lignes). Le libellé complet reste dans l'info-bulle
+ * et dans le menu du rail. Clé : identifiant du lien dans `src/data/externalLinks.ts`.
+ */
+const RESOURCE_SHORT_LABELS: Readonly<Record<string, string>> = {
+  'map-wiki-gg': 'Carte (wiki.gg)',
+  'map-fextralife': 'Carte (Fextralife)',
+  'guide-elden-ring-guide': 'Guide (wiki.gg)',
+  'guide-recommended-level': 'Niveau par zone (wiki.gg)',
+  'guide-walkthrough-wiki-gg': 'Pas à pas (wiki.gg)',
+  'guide-progress-route': 'Route (Fextralife)',
+  'guide-walkthrough-fextralife': 'Pas à pas (Fextralife)',
+}
+
+/**
  * Liens de la section « Ressources » : cartes interactives (eldenring.wiki.gg, Fextralife) puis pages de guides, d'après `src/data/externalLinks.ts`.
  * Constante : les adresses sont fixes et le libellé vient de `labelText` ; `AppSideNav` les ouvre dans un nouvel onglet (`rel="noopener noreferrer"`).
  */
-const resources: readonly ResourceLink[] = [...INTERACTIVE_MAPS, ...GUIDE_LINKS].map((link) => ({ label: labelText(link.labelCode), href: link.url }))
+const resources: readonly ResourceLink[] = [...INTERACTIVE_MAPS, ...GUIDE_LINKS].map((link) => ({
+  label: labelText(link.labelCode),
+  short: RESOURCE_SHORT_LABELS[link.id],
+  href: link.url,
+}))
 
 const content = ref<HTMLElement | null>(null)
 

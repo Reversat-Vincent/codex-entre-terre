@@ -291,6 +291,8 @@ function onToggle(target: TimelineBossView, event: Event): void {
 .cx-boss-stats { display: flex; flex-wrap: wrap; gap: 4px var(--space-3); margin-top: 6px; font-size: 12px; line-height: 16px; color: var(--ink-2); }
 .cx-boss-stats b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
 .cx-boss-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+/* `.cx-null` est en `nowrap` : « Faiblesses et immunités non documentées » dépassait de la carte étroite de la voie DLC. Le retour à la ligne est permis ici. */
+.cx-boss-tags .cx-null, .cx-boss-stats .cx-null { white-space: normal; }
 .cx-boss-side { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .cx-boss-note { color: var(--ink-3); font-size: 11px; line-height: 15px; }
 .cx-boss-note b { color: var(--ink-2); font-weight: 600; }

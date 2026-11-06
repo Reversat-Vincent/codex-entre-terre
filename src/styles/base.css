@@ -11,7 +11,9 @@ body { margin: 0; }
 /* ---------- Racine ---------- */
 .cx { font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 .cx *, .cx *::before, .cx *::after { box-sizing: border-box; }
-.cx button, .cx input, .cx select, .cx textarea { font: inherit; color: inherit; }
+/* `:where()` ramène la spécificité à celle d'un simple sélecteur d'élément : `.cx button` (0,1,1) l'emportait sur `.cx-btn-primary` (0,1,0) et
+   rendait le texte des boutons principaux crème sur or (1,8:1). Les classes de composant (couleur, police) gagnent désormais toujours. */
+:where(.cx) button, :where(.cx) input, :where(.cx) select, :where(.cx) textarea { font: inherit; color: inherit; }
 .cx input[type="checkbox"], .cx input[type="radio"], .cx input[type="range"] { accent-color: var(--gold); }
 .cx a { color: var(--gold-text); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .cx h1, .cx h2, .cx h3, .cx h4, .cx p, .cx ul, .cx ol, .cx dl, .cx dd, .cx figure { margin: 0; }

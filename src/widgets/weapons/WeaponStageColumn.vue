@@ -3,6 +3,7 @@
 import { computed } from 'vue'
 import CxButton from '../../components/ds/CxButton.vue'
 import CxEmptyState from '../../components/ds/CxEmptyState.vue'
+import CxIcon from '../../components/ds/CxIcon.vue'
 import CxWeaponCard from '../../components/ds/CxWeaponCard.vue'
 import type { EntityRef } from '../../data/datasets.ts'
 import { isRemembranceWeapon } from '../../engine/score.ts'
@@ -17,10 +18,12 @@ import { useWeaponActions } from './useWeaponActions.ts'
 /**
  * Colonne d'une étape (note `spec-main` ; design `Main.dc.html`, widget A). Elle affiche les armes de `StageColumn` (3 à 5, déjà classées par le moteur ;
  * en DLC, groupées par sous-zone), la recommandation n°1 du widget avec `glow-gold`, et les actions de chaque carte.
+ * Titre d'étape : tant que les colonnes sont alignées sous le fil d'or (widget d'au moins 940 px), le fil nomme l'étape et le titre n'est lu que par les lecteurs
+ * d'écran ; dès que la grille passe à la ligne, le fil ne désigne plus les colonnes et chacune affiche son titre, avec l'étape courante marquée.
  * Colonne vide : `CxEmptyState` avec l'élargissement le plus efficace (`analysis.widen`) ; DLC désactivé : état vide avec « Activer ».
  * Aucun calcul : étapes, scores, suggestions et explications viennent du store `analysis`. Les actions passent par `useWeaponActions`.
  */
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   /** Colonne du store `analysis`. */
   column: StageColumn
   /** Étape courante du joueur : la colonne est mise en avant. */
@@ -31,7 +34,9 @@ const props = defineProps<{
   openRef: EntityRef | null
   /** Mode du panneau ouvert. */
   openMode: 'why' | 'alts'
-}>()
+  /** Colonne affichée sous un onglet d'étape (mobile) : l'onglet nomme déjà l'étape, le titre reste réservé aux lecteurs d'écran. */
+  inTabs?: boolean
+}>(), { inTabs: false })
 
 const emit = defineEmits<{
   /** Ouvre ou ferme le panneau de l'arme dans le mode demandé. */
@@ -65,16 +70,25 @@ function onAction(id: string): void {
 <template>
   <div
     class="wa-col"
-    :class="{ 'is-current': current }"
+    :class="{ 'is-current': current, 'is-tabbed': inTabs }"
     role="group"
     :aria-label="`Étape ${label}`"
   >
-    <p
-      v-if="current"
-      class="wa-now"
-    >
-      Étape courante
-    </p>
+    <div class="wa-head">
+      <h3 class="wa-title">
+        {{ label }}
+      </h3>
+      <p
+        v-if="current"
+        class="wa-now"
+      >
+        <CxIcon
+          name="mark"
+          size="xs"
+        />
+        Étape courante
+      </p>
+    </div>
     <template
       v-for="(item, index) in column.weapons"
       :key="item.candidate.ref"
@@ -135,9 +149,18 @@ function onAction(id: string): void {
 </template>
 
 <style scoped>
-.wa-col { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.wa-col { position: relative; display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
 .wa-col.is-current { padding-top: var(--space-2); border-top: 2px solid var(--gold); }
-.wa-now { color: var(--gold-text); font: 600 12px/16px var(--font-sans); }
+.wa-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-2); }
+/* Titre lu par les lecteurs d'écran seulement (position dans la colonne, qui est le bloc conteneur) tant que le fil d'or nomme les colonnes. */
+.wa-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wa-now { display: inline-flex; align-items: center; gap: 4px; color: var(--gold-text); font: 600 12px/16px var(--font-sans); }
+/* Grille à la ligne (conteneur `wa` du widget, voir WeaponsByStageWidget) : titre visible, hors des onglets mobiles. */
+@container wa (max-width: 939px) {
+  /* Mêmes marges en haut de chaque colonne : les titres restent alignés, la courante se distingue par son filet d'or. */
+  .wa-col:not(.is-tabbed):not(.is-current) { padding-top: var(--space-2); border-top: 2px solid transparent; }
+  .wa-col:not(.is-tabbed) .wa-title { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; color: var(--ink); font: 600 18px/22px var(--font-display); }
+}
 .wa-zone { color: var(--ink-3); font: 600 12px/16px var(--font-sans); letter-spacing: .02em; }
 .wa-card { min-width: 0; }
 .wa-hidden { color: var(--ink-3); font-size: 11px; line-height: 15px; }

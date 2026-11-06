@@ -10,13 +10,16 @@ import { usePinsStore } from '../../stores/pins.ts'
 import { usePreferencesStore } from '../../stores/preferences.ts'
 import { formatInt } from '../../ui/format.ts'
 import CxIcon from '../ds/CxIcon.vue'
+import AppResourcesMenu from './AppResourcesMenu.vue'
 import { NAV_EXPLORE, NAV_HOME, NAV_TOOLS, isEntryActive } from './navModel.ts'
 import type { NavCount, NavEntry } from './navModel.ts'
 
 /** Lien externe de la section « Ressources » (carte interactive, guides). */
 export interface ResourceLink {
-  /** Libellé affiché. */
+  /** Libellé complet (info-bulle de la barre dépliée, liste du rail). */
   label: string
+  /** Libellé court de la barre dépliée, qui tient sur une ligne ou deux ; `label` à défaut. */
+  short?: string
   /** Adresse complète ; s'ouvre dans un nouvel onglet. */
   href: string
 }
@@ -26,6 +29,7 @@ export interface ResourceLink {
  * `expanded` garde la barre dépliée, `rail` la replie, `auto` la replie sous 1600 px quand le panneau de critères est ouvert.
  * Sous 1280 px la barre est toujours un rail. Les compteurs viennent du manifeste des données et des stores (Ma liste, Comparateur).
  * La section « Ressources » reste absente tant que `resources` est vide : la logique des liens externes (`src/data/externalLinks.ts`) la remplira.
+ * Dans le rail, les liens externes sont regroupés derrière un seul bouton (`AppResourcesMenu`) ; dépliée, la barre les liste avec leur libellé court.
  */
 const props = withDefaults(
   defineProps<{
@@ -95,8 +99,9 @@ function active(entry: NavEntry): boolean {
       title="Codex de l'Entre-terre"
     >
       <svg
-        class="cx-mark"
+        class="cx-i cx-mark"
         aria-hidden="true"
+        focusable="false"
       ><use href="#i-mark" /></svg>
       <span class="cx-brand-name cx-nav-text">Codex de l'Entre-terre</span>
     </RouterLink>
@@ -147,19 +152,25 @@ function active(entry: NavEntry): boolean {
       >
         Ressources
       </div>
-      <a
-        v-for="link in props.resources"
-        :key="link.href"
-        class="cx-nav-item"
-        :href="link.href"
-        target="_blank"
-        rel="noopener noreferrer"
-        :title="`${link.label} (s'ouvre dans un nouvel onglet)`"
-      >
-        <CxIcon name="ext" />
-        <span class="cx-nav-text">{{ link.label }}</span>
-        <span class="cx-sr">(s'ouvre dans un nouvel onglet)</span>
-      </a>
+      <AppResourcesMenu
+        v-if="isRail"
+        :resources="props.resources"
+      />
+      <template v-else>
+        <a
+          v-for="link in props.resources"
+          :key="link.href"
+          class="cx-nav-item cx-nav-res"
+          :href="link.href"
+          target="_blank"
+          rel="noopener noreferrer"
+          :title="`${link.label} (s'ouvre dans un nouvel onglet)`"
+        >
+          <CxIcon name="ext" />
+          <span class="cx-nav-text">{{ link.short ?? link.label }}</span>
+          <span class="cx-sr">(s'ouvre dans un nouvel onglet)</span>
+        </a>
+      </template>
     </template>
 
     <div
@@ -182,24 +193,30 @@ function active(entry: NavEntry): boolean {
 </template>
 
 <style>
+/* `z-index` de la barre : le menu des ressources du rail (position fixe) doit passer au-dessus du panneau de critères, sinon il reste dans le contexte d'empilement de la barre, plus bas. */
 /* Règles du design system (bundle.css, « Coquille d'application ») ; les règles du rail sont reprises du prototype Main.dc.html. */
-.cx-nav { position: sticky; top: 0; align-self: flex-start; height: 100vh; height: 100dvh; overflow-y: auto; flex: 0 0 var(--size-nav); width: var(--size-nav); display: flex; flex-direction: column; gap: 2px; padding: var(--space-4) var(--space-3); background: var(--surface); border-right: 1px solid var(--line); }
+.cx-nav { position: sticky; top: 0; z-index: var(--z-popover); align-self: flex-start; height: 100vh; height: 100dvh; overflow-y: auto; flex: 0 0 var(--size-nav); width: var(--size-nav); display: flex; flex-direction: column; gap: 2px; padding: var(--space-4) var(--space-3); background: var(--surface); border-right: 1px solid var(--line); }
 .cx-nav.is-rail { flex-basis: var(--size-rail); width: var(--size-rail); align-items: center; padding-inline: var(--space-2); }
 .cx-brand { display: flex; align-items: center; gap: var(--space-2); padding: 2px var(--space-2) var(--space-4); color: var(--ink); text-decoration: none; }
 .cx a.cx-brand { color: var(--ink); text-decoration: none; }
-.cx-brand-name { font: 600 19px/22px var(--font-display); }
-.cx-mark { width: 24px; height: 24px; flex: none; color: var(--gold); }
+/* 18 px (19 px au design) : « Codex de l'Entre-terre » (157 px) tient alors sur une ligne dans les 160 px que laisse la barre de 232 px ; à 19 px il passait à la ligne. */
+.cx-brand-name { font: 600 18px/22px var(--font-display); white-space: nowrap; }
+/* Marque : tracé du design system (losange au trait, 1,6 px, en or). Sans `cx-i`, le SVG était rempli de noir, invisible en thème sombre. `.cx-i.cx-mark` : la taille de 24 px l'emporte sur celle de `.cx-i` (16 px). */
+.cx-i.cx-mark { width: 24px; height: 24px; flex: none; color: var(--gold); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: baseline; }
 .cx-nav-label { padding: var(--space-3) var(--space-2) var(--space-1); color: var(--ink-3); font: 600 12px/16px var(--font-sans); }
-.cx a.cx-nav-item, .cx-nav-item { position: relative; display: flex; align-items: center; gap: var(--space-3); min-height: 34px; padding: 0 var(--space-2); border-radius: var(--radius-s); color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: 14px; }
+.cx a.cx-nav-item, .cx-nav-item { position: relative; display: flex; align-items: center; gap: var(--space-3); min-height: 34px; padding: 7px var(--space-2); border-radius: var(--radius-s); line-height: 20px; color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: 14px; }
 .cx-nav-item:hover { background: var(--surface-hover); color: var(--ink); }
 .cx a.cx-nav-item.is-active, .cx-nav-item.is-active { background: var(--gold-wash); color: var(--gold-text); }
 .cx-nav-item.is-active::after { content: ""; width: 6px; height: 6px; margin-left: auto; background: var(--gold); transform: rotate(45deg); flex: none; }
 .cx-nav-count { margin-left: auto; color: var(--ink-3); font: 600 11px/14px var(--font-sans); font-variant-numeric: tabular-nums; }
 .cx-nav-foot { margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--line); width: 100%; }
 .cx-nav-btn { width: 100%; border: 0; background: transparent; font: inherit; font-weight: 600; cursor: pointer; }
+/* Liens de ressources : le libellé peut passer sur deux lignes, l'icône reste en tête de la première. */
+.cx-nav-res { align-items: flex-start; }
+.cx-nav-res .cx-i { margin-top: 2px; }
 /* Dans le rail, les libellés restent lisibles par les lecteurs d'écran (nom accessible des liens) : masqués visuellement, pas retirés. */
 .cx-nav.is-rail .cx-nav-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.cx-nav.is-rail .cx-nav-item { width: 40px; justify-content: center; padding: 0; }
+.cx-nav.is-rail .cx-nav-item { width: 40px; justify-content: center; padding: 7px 0; }
 .cx-nav.is-rail .cx-nav-item.is-active::after { position: absolute; right: 3px; top: 50%; margin: -3px 0 0; }
 .cx-nav.is-rail .cx-nav-foot { display: flex; justify-content: center; }
 </style>

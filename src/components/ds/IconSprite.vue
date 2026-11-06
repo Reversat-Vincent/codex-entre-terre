@@ -2,6 +2,13 @@
   Sprite d'icônes du design system, copié de docs/design/ds/components/Iconography/preview.html (jeu original au trait, grille 24, aucune icône du jeu), plus `i-cols` tiré du prototype docs/design/Catalogue.dc.html (absent de l'aperçu d'iconographie).
   À insérer une seule fois dans la coquille ; CxIcon y fait référence par <use href="#i-…">. Balisage statique : aucune donnée n'y est interpolée.
 -->
+<script setup lang="ts">
+/**
+ * Sprite SVG des icônes du design system (symboles `i-…`), monté une seule fois par `App.vue` ; `CxIcon` et la marque y puisent par `<use>`.
+ * Composant sans propriété ni état : balisage statique, masqué aux technologies d'assistance.
+ */
+</script>
+
 <template>
   <!-- eslint-disable vue/max-attributes-per-line, vue/html-self-closing -- sprite copié tel quel du design system, conservé octet pour octet -->
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">

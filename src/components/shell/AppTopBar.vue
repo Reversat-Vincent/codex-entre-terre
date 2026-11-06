@@ -47,8 +47,9 @@ const listLabel = computed(() => (pinCount.value > 0 ? `Ma liste, ${formatInt(pi
         to="/"
       >
         <svg
-          class="cx-mark"
+          class="cx-i cx-mark"
           aria-hidden="true"
+          focusable="false"
         ><use href="#i-mark" /></svg>
         <span class="cx-brand-name">Codex</span>
       </RouterLink>

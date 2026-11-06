@@ -1,6 +1,11 @@
 <!-- Écran « Page introuvable » : adresse inconnue du routeur, avec retour au tableau de bord et à l'exploration. -->
 <script setup lang="ts">
 import CxEmptyState from '../components/ds/CxEmptyState.vue'
+
+/**
+ * Écran « Page introuvable » (route de repli du routeur) : titre, état vide explicatif et deux liens de sortie, vers le tableau de bord
+ * et vers l'exploration. Aucun état ni donnée.
+ */
 </script>
 
 <template>

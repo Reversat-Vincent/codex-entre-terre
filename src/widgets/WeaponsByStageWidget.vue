@@ -136,6 +136,7 @@ const fullscreenHref = computed(() => actions.fullscreenHref())
         v-if="tabColumn"
         :column="tabColumn"
         :current="tabColumn.stage === current"
+        in-tabs
         :top-ref="topRef"
         :open-ref="panel?.ref ?? null"
         :open-mode="panel?.mode ?? 'why'"

@@ -93,11 +93,11 @@ function onClick(event: MouseEvent): void {
 <style>
 .cx-btn, .cx a.cx-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: var(--size-controle); padding: 0 var(--space-3); border: 1px solid var(--control-border); border-radius: var(--radius-s); background: var(--surface-raised); color: var(--ink); font-size: 13px; font-weight: 600; line-height: 16px; white-space: nowrap; text-decoration: none; cursor: pointer; }
 .cx-btn:hover { background: var(--surface-hover); border-color: var(--ink-3); }
-.cx-btn:disabled, .cx-btn[aria-disabled="true"] { background: transparent; border-color: var(--line-strong); color: var(--ink-disabled); cursor: not-allowed; }
+.cx-btn:disabled, .cx-btn[aria-disabled="true"], .cx a.cx-btn[aria-disabled="true"] { background: transparent; border-color: var(--line-strong); color: var(--ink-disabled); cursor: not-allowed; }
 .cx-btn-primary, .cx a.cx-btn-primary { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
 .cx-btn-primary:hover { background: var(--gold-hover); border-color: var(--gold-hover); }
 .cx-btn-ghost, .cx a.cx-btn-ghost { background: transparent; border-color: transparent; color: var(--ink-2); }
-.cx-btn-ghost:hover { background: var(--surface-hover); border-color: transparent; color: var(--ink); }
+.cx-btn-ghost:hover, .cx a.cx-btn-ghost:hover { background: var(--surface-hover); border-color: transparent; color: var(--ink); }
 .cx-btn-icon { width: var(--size-controle); padding: 0; }
 .cx-btn-sm { height: 26px; padding: 0 var(--space-2); font-size: 12px; }
 .cx-btn-icon.cx-btn-sm { width: 26px; padding: 0; }

@@ -372,7 +372,8 @@ usePageTitle(() => (trimmed.value === '' ? 'Recherche' : `Recherche : ${trimmed.
 .v-search-empty-t { color: var(--ink); font: 600 17px/22px var(--font-display); }
 @media (max-width: 767px) {
   .v-search { padding: var(--space-4); }
-  .v-search-field { height: var(--size-cible); }
+  /* + 2 px de bordure : le champ de saisie lui-même (hauteur du contenu) atteint la cible tactile de 44 px. */
+  .v-search-field { height: calc(var(--size-cible) + 2px); }
   /* Les filtres défilent dans leur cadre plutôt que de s'empiler sur plusieurs lignes ; la page ne défile pas horizontalement. */
   .v-search-filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: var(--space-1); }
 }

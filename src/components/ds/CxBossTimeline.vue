@@ -117,6 +117,20 @@ const gateText = computed(() => {
   const lane = props.timeline.dlc.nodes.map(nameOf)
   return `Voie DLC : vaincre ${gate} pour accéder à ${lane.length > 1 ? `${lane.slice(0, -1).join(', ')} puis ${lane[lane.length - 1]}` : (lane[0] ?? 'ses boss')}.`
 })
+/**
+ * Ligne de détail d'un boss de la liste compacte : lieu puis niveau recommandé, séparés par une virgule collée au lieu.
+ * Construite en une seule chaîne (et non en fragments de gabarit) pour qu'aucune espace ne précède la virgule.
+ * @param levelKey Clé du boss dans `details`.
+ * @returns « Lieu, recommandé 35 », l'un ou l'autre seul, ou une chaîne vide si rien n'est connu.
+ */
+function rowDetail(levelKey: string): string {
+  const detail = props.details[levelKey]
+  const location = detail?.location ?? ''
+  const level = detail?.level?.value?.level
+  const recommended = level === undefined ? '' : `recommandé ${formatInt(level)}`
+  if (location === '') return recommended === '' ? '' : `${recommended.charAt(0).toUpperCase()}${recommended.slice(1)}`
+  return recommended === '' ? location : `${location}, ${recommended}`
+}
 </script>
 
 <template>
@@ -167,10 +181,7 @@ const gateText = computed(() => {
       >
         <div>
           <b>{{ nameOf(n) }}</b>
-          <small>
-            {{ details[n.levelKey]?.location ?? '' }}
-            <template v-if="details[n.levelKey]?.level?.value">, recommandé {{ formatInt(details[n.levelKey]!.level!.value!.level) }}</template>
-          </small>
+          <small v-if="rowDetail(n.levelKey) !== ''">{{ rowDetail(n.levelKey) }}</small>
         </div>
         <CxReadinessStatus
           v-if="details[n.levelKey]?.readiness?.value"
